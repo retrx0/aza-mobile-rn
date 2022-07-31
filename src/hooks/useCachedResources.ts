@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 
 const useCachedResources = () => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [isUserSignedIn, setUserSignedIn] = useState(false);
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
+
+        // Check if user is already logged in
 
         // Load fonts
         await Font.loadAsync({
