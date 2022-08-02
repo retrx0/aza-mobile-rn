@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Image, StyleSheet, FlatList } from "react-native";
+import { Image, StyleSheet, FlatList } from "react-native";
 import { RootStackScreenProps } from "../../types";
 import ButtonMd from "../components/buttons/ButtonMd";
 import { View, SafeAreaView, Text } from "../components/Themed";
@@ -85,7 +85,11 @@ const CarouselWrapper = ({ carousel }: any) => {
   return (
     <View style={[{ height: "100%", width: 390 }]}>
       <Image style={[styles.image]} source={carousel.source} />
-      <Text style={[styles.carouselText, { fontWeight: "500", fontSize: 24 }]}>{carousel.heading}</Text>
+      <Text
+        style={[styles.carouselText, { fontWeight: "500", fontSize: 24, fontFamily: "Euclid-Circular-A-Semi-Bold" }]}
+      >
+        {carousel.heading}
+      </Text>
       <Text style={[styles.carouselText, { width: "90%" }]}>{carousel.description}</Text>
     </View>
   );
@@ -123,6 +127,8 @@ const styles = StyleSheet.create({
   carouselText: {
     padding: 5,
     margin: 4,
+    fontFamily: "Euclid-Circular-A",
+    color: "#4d4d4d",
   },
   showme: {
     borderColor: "red",

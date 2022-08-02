@@ -13,7 +13,7 @@ const ButtonMd = (props: {
       style={[
         {
           backgroundColor: props.color,
-          width: 150,
+          width: 160,
           padding: 10,
           borderRadius: 10,
           borderColor: "black",
