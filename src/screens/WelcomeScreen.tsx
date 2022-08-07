@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, FlatList } from "react-native";
 import { RootStackScreenProps } from "../../types";
+import CommonStyles from "../common/styles/CommonStyles";
 import ButtonMd from "../components/buttons/ButtonMd";
 import { View, SafeAreaView, Text } from "../components/Themed";
 
@@ -72,7 +73,7 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
             color={"#000000"}
             alt={false}
             onPress={() => {
-              navigation.navigate("Root");
+              navigation.navigate("SignUp");
             }}
           />
         </View>
@@ -85,12 +86,8 @@ const CarouselWrapper = ({ carousel }: any) => {
   return (
     <View style={[{ height: "100%", width: 390 }]}>
       <Image style={[styles.image]} source={carousel.source} />
-      <Text
-        style={[styles.carouselText, { fontWeight: "500", fontSize: 24, fontFamily: "Euclid-Circular-A-Semi-Bold" }]}
-      >
-        {carousel.heading}
-      </Text>
-      <Text style={[styles.carouselText, { width: "90%" }]}>{carousel.description}</Text>
+      <Text style={[CommonStyles.headerText]}>{carousel.heading}</Text>
+      <Text style={[CommonStyles.bodyText, { width: "90%" }]}>{carousel.description}</Text>
     </View>
   );
 };
@@ -123,16 +120,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     resizeMode: "contain",
-  },
-  carouselText: {
-    padding: 5,
-    margin: 4,
-    fontFamily: "Euclid-Circular-A",
-    color: "#4d4d4d",
-  },
-  showme: {
-    borderColor: "red",
-    borderWidth: 1,
   },
 });
 

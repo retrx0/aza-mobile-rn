@@ -32,32 +32,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 5,
   },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginVertical: 20,
-    borderRadius: 15,
-    marginHorizontal: 10,
-    padding: 10,
-  },
-  col: {
-    flexDirection: "column",
-    alignSelf: "center",
-    marginVertical: 10,
-    borderRadius: 15,
-    marginHorizontal: 10,
-    padding: 10,
-  },
-  raised: {
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 3,
-    elevation: 5,
-  },
   centered: {
     flex: 1,
     justifyContent: "center",

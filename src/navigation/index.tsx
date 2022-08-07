@@ -22,6 +22,8 @@ import Profile from "../screens/tabs/Profile";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
+import LoginNavigator from "../screens/auth/login/LoginNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -41,6 +43,8 @@ const RootNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="SignUp" component={SignUpRoot} options={{ headerShown: false }} />
+      <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: true }} />
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
