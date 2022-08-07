@@ -37,7 +37,6 @@ export const Input = ({
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
-          <Text style={styles.countryCode}>+91</Text>
           <View style={styles.divider} />
           <TextInput
             placeholder='Your 10-digit phone number'
