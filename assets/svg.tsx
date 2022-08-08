@@ -98,9 +98,9 @@ export const FacebookIcon = () => {
   );
 };
 
-export const Flag = () => {
+export const Flag = (props) => {
   return (
-    <Svg width='15' height='15' viewBox='0 0 15 15' fill='none'>
+    <Svg width='15' height='15' viewBox='0 0 15 15' fill='none' {...props}>
       <Circle cx='7.5' cy='7.5' r='7.5' fill='url(#pattern0)' />
       <Defs>
         <Pattern
