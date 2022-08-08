@@ -1,41 +1,39 @@
 import { StyleSheet } from "react-native";
 import { hp, wp } from "../../common/utils";
+import * as Colors from "../../common/colors";
 
 export const OtpStyles = StyleSheet.create({
-  underlineStyleHighLighted: {
-    borderColor: "blue",
-  },
   resend: {
     fontWeight: "500",
     height: hp(20),
-    color: "#121212",
+    color: Colors.Primary,
     fontSize: hp(14),
   },
   noOtp: {
     alignSelf: "center",
     marginTop: hp(61),
-    color: "#4D4D4D",
+    color: Colors.darkGrey,
     fontSize: hp(14),
   },
   otpText: {
     marginBottom: 10,
     fontWeight: "500",
     fontSize: hp(16),
-    color: "#4D4D4D",
+    color: Colors.darkGrey,
   },
   otp: {
     marginLeft: hp(90),
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 20.29,
-    color: "#4D4D4D",
+    color: Colors.darkGrey,
   },
   back: {
     marginLeft: hp(10),
     fontSize: 16,
     fontWeight: "400",
     lineHeight: 20.29,
-    color: "#4D4D4D",
+    color: Colors.darkGrey,
   },
   backContainer: {
     alignItems: "center",
@@ -48,12 +46,10 @@ export const OtpStyles = StyleSheet.create({
     paddingHorizontal: hp(30),
   },
   button: {
-    backgroundColor: "black",
     marginTop: hp(20),
     width: wp(325),
   },
   sendOTPButton: {
-    color: "white",
     fontSize: hp(14),
     lineHeight: hp(17.75),
     fontWeight: "500",
@@ -78,6 +74,6 @@ export const OtpStyles = StyleSheet.create({
     color: "black",
     fontSize: hp(18),
     borderRadius: hp(8),
-    borderColor: "#121212",
+    borderColor: Colors.darkGrey,
   },
 });

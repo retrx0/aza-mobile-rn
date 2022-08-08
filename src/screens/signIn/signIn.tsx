@@ -5,7 +5,7 @@ import { CountryBox } from "../../components/CountryInput";
 import { Header } from "../../common/header";
 import { SigninStyles as styles } from "./styles";
 import { SocialSignInList } from "./signInCard";
-import { SocialSigInCard } from "../../components/SignInButtons";
+import { SocialSignInCard } from "../../components/SignInButtons";
 
 type SignInProp = {
   onCountryPress: () => void;
@@ -43,7 +43,7 @@ const Signin = (props: SignInProp) => {
       <View style={styles.signupOptions}>
         {SocialSignInList.map((item, index) => {
           return (
-            <SocialSigInCard
+            <SocialSignInCard
               key={index}
               icon={item.icon}
               connect={item.connect}
