@@ -6,6 +6,8 @@ import {
   TextStyle,
   ViewStyle,
 } from "react-native";
+import * as Colors from "./colors";
+import { hp, wp } from "./utils";
 
 type ButtonPropsType = {
   title: string;
@@ -36,28 +38,28 @@ export const Button: FC<ButtonPropsType> = ({
 
 const styles = {
   doneText: {
-    color: "white",
+    color: Colors.secondary,
     fontWeight: "500",
-    letterSpacing: 0.5,
-    fontSize: 14,
-    lineHeight: 17.75,
+    letterSpacing: hp(0.5),
+    fontSize: hp(140),
+    lineHeight: hp(17.75),
   },
   nextText: {
-    color: "white",
+    color: Colors.secondary,
   },
   doneButton: {
-    backgroundColor: "black",
-    width: 335,
-    height: 50,
-    borderRadius: 10,
+    backgroundColor: Colors.Primary,
+    width: wp(335),
+    height: hp(50),
+    borderRadius: hp(10),
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
     // marginTop: 100,
-    marginBottom: 20,
+    marginBottom: hp(20),
   },
   nextButton: {
-    backgroundColor: "black",
+    backgroundColor: Colors.Primary,
   },
 };
 

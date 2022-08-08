@@ -8,6 +8,7 @@ import {
   TextStyle,
 } from "react-native";
 import { hp } from "./utils";
+import * as Colors from "./colors";
 
 export type HeaderProps = {
   heading: string;
@@ -39,9 +40,9 @@ const styles = StyleSheet.create({
   },
 
   heading: {
-    fontSize: 16,
+    fontSize: hp(16),
     fontWeight: "600",
-    color: "#4D4D4D",
+    color: Colors.darkGrey,
     lineHeight: hp(20.29),
   },
   description: {

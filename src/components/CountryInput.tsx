@@ -2,7 +2,6 @@ import React from "react";
 import {
   Text,
   View,
-  Image,
   TouchableOpacity,
   TextInput,
   StyleSheet,
@@ -23,18 +22,11 @@ export const CountryBox = ({
   return (
     <View style={styles.container}>
       <View style={styles.countryContainer}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}>
-          <Flag />
-          <Text style={styles.countryCode}>+234</Text>
-          <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-            <SelectArrow />
-          </TouchableOpacity>
-        </View>
+        <Flag style={styles.flag} />
+        <Text style={styles.countryCode}>+234</Text>
+        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+          <SelectArrow />
+        </TouchableOpacity>
 
         <View style={styles.divider} />
 
@@ -53,38 +45,32 @@ const styles = StyleSheet.create({
   flag: {
     width: wp(29),
     height: hp(29),
-    // marginRight: wp(12),
+    marginLeft: wp(12),
   },
-  country: {
-    color: "black",
-    fontSize: 17,
-    paddingHorizontal: wp(2),
-  },
+
   container: {
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "black",
-    borderWidth: 1,
-    borderRadius: 8,
+    borderColor: Colors.Primary,
+    borderWidth: hp(1),
+    borderRadius: hp(8),
     height: hp(50),
-    paddingHorizontal: wp(15),
-    width: wp(340),
+    width: wp(335),
     alignSelf: "center",
   },
   countryContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: "95%",
   },
   divider: {
     width: 1,
-    backgroundColor: "grey",
+    backgroundColor: Colors.tertiary,
     height: hp(30),
     marginRight: wp(12),
     marginLeft: hp(12),
   },
   countryCode: {
-    color: "#4D4D4D",
+    color: Colors.Primary,
     fontSize: hp(16),
     marginRight: wp(5),
     marginLeft: hp(5),
@@ -92,7 +78,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     marginRight: wp(5),
-    width: wp(140),
+    width: wp(226),
     paddingRight: wp(5),
     fontSize: 18,
     alignItems: "center",

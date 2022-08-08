@@ -59,7 +59,7 @@ export const Input = ({
 const styles = StyleSheet.create({
   label: {
     fontSize: 15,
-    color: "#4D4D4D",
+    color: Colors.darkGrey,
   },
   container: {
     marginTop: hp(20),
@@ -77,14 +77,13 @@ const styles = StyleSheet.create({
     paddingRight: wp(10),
   },
   countryCode: {
-    color: "black",
+    color: Colors.Primary,
     fontSize: 15,
     marginRight: wp(7),
   },
 
   divider: {
     width: 1,
-    backgroundColor: "black",
     height: hp(18),
     marginRight: wp(7),
   },
