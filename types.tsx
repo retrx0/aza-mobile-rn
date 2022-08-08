@@ -66,4 +66,5 @@ export type SocialSignInProps = {
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   connect: string;
+  styleText?: StyleProp<TextStyle>;
 };
