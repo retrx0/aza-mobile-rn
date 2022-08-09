@@ -7,6 +7,7 @@ import ButtonMd from "../../../components/buttons/ButtonMd";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SignUpStackProps } from "./SignUpNavigator";
+import Colors from "../../../constants/Colors";
 
 const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
   const [phone, setPhone] = useState<string>("");
@@ -58,22 +59,22 @@ const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) 
       <ButtonLg
         iconName="apple"
         title="Connect with Apple"
-        color={"#000"}
-        onPress={() => console.log(phone)}
+        color={Colors.general.apple}
+        onPress={() => console.log("connecting with apple...")}
         alt={false}
       />
       <ButtonLg
         iconName={"facebook"}
         title="Connect with Facebook"
-        color={"#1198F6"}
-        onPress={() => console.log(phone)}
+        color={Colors.general.facebook}
+        onPress={() => console.log("connecting with facebook...")}
         alt={false}
       />
       <ButtonLg
         iconName={"google"}
         title="Connect with Google"
-        color={"#EB4235"}
-        onPress={() => console.log(phone)}
+        color={Colors.general.google}
+        onPress={() => console.log("connecting with google...")}
         alt={false}
       />
     </View>

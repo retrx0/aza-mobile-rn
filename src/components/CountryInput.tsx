@@ -1,25 +1,11 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  TextInputProps,
-} from "react-native";
+import { Text, View, Image, TouchableOpacity, TextInput, StyleSheet, TextInputProps } from "react-native";
 import { Flag, SelectArrow } from "../../assets/svg";
 import { hp, wp } from "../common/utils";
-import * as Colors from "../common/colors";
+// import * as Colors from "../common/colors";
 import { CountryProps } from "../../types";
 
-export const CountryBox = ({
-  code,
-  onPress,
-  imageLink,
-  id,
-  ...rest
-}: CountryProps & TextInputProps) => {
+export const CountryBox = ({ code, onPress, imageLink, id, ...rest }: CountryProps & TextInputProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.countryContainer}>
@@ -28,7 +14,8 @@ export const CountryBox = ({
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <Flag />
           <Text style={styles.countryCode}>+234</Text>
           <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
@@ -38,12 +25,7 @@ export const CountryBox = ({
 
         <View style={styles.divider} />
 
-        <TextInput
-          style={styles.textInput}
-          placeholder='phone number'
-          keyboardType='number-pad'
-          {...rest}
-        />
+        <TextInput style={styles.textInput} placeholder="phone number" keyboardType="number-pad" {...rest} />
       </View>
     </View>
   );

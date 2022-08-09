@@ -4,11 +4,7 @@ import { StyleSheet } from "react-native";
 import { TouchableOpacity, Text } from "react-native";
 import { hp, wp } from "../common/utils";
 
-export const SocialSigInCard = ({
-  icon,
-  onPress,
-  connect,
-}: SocialSignInProps) => {
+export const SocialSigInCard = ({ icon, onPress, connect }: SocialSignInProps) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.signupButtons}>
       {icon}
@@ -28,7 +24,7 @@ const styles = StyleSheet.create({
   signupButtons: {
     width: wp(340),
     height: hp(50),
-    borderRadius: 25,
+    borderRadius: 10,
     borderColor: "grey",
     borderWidth: 1,
     backgroundColor: "black",

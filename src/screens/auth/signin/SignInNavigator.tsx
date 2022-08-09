@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { Text } from "../../../components/Themed";
-import LoginScreen from "./LoginScreen";
+import SignInScreen from "./SignInScreen";
 
 const LogInStack = createNativeStackNavigator();
 
@@ -16,7 +15,7 @@ export type LogInStackProps = {
 const LoginNavigator = () => {
   return (
     <LogInStack.Navigator>
-      <LogInStack.Screen component={LoginScreen} name="LogInRoot" />
+      <LogInStack.Screen component={SignInScreen} name="LogInRoot" />
     </LogInStack.Navigator>
   );
 };

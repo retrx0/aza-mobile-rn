@@ -20,5 +20,5 @@ export default {
     error: "#FF361A",
     success: "#2AD168",
   },
-  general: { text: "#FFFFFF" },
+  general: { text: "#FFFFFF", facebook: "#1198F6", google: "#EB4235", apple: "#000000" },
 };

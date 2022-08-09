@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Alert, Text, View } from "react-native";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { OtpStyles as styles } from "./styles";
-import Button from "../../common/Button";
-import { BackIcon } from "../../../assets/svg";
+import Button from "../../../common/Button";
+import { BackIcon } from "../../../../assets/svg";
 
 type OtpProp = {
   onWrongNumber: () => void;
@@ -14,7 +14,7 @@ type OtpProp = {
   phoneNumber: string;
 };
 
-const Otp = (props: OtpProp) => {
+const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged } = props;
   return (
     <>
@@ -25,14 +25,12 @@ const Otp = (props: OtpProp) => {
         </View>
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>
-        Please enter the 6-digit code sent to your mobile number
-      </Text>
+      <Text style={styles.verification}>Please enter the 6-digit code sent to your mobile number</Text>
       <View style={styles.otpContainer}>
         <Text style={styles.otpText}>0TP</Text>
         <OTPInputView
-          placeholderTextColor='black'
-          keyboardType='number-pad'
+          placeholderTextColor="black"
+          keyboardType="number-pad"
           pinCount={6}
           code={otpCode} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
           onCodeChanged={onOtpChanged}
@@ -47,13 +45,9 @@ const Otp = (props: OtpProp) => {
       <Text style={styles.noOtp}>
         Didn't get the code? <Text style={styles.resend}>Resend</Text>
       </Text>
-      <Button
-        title='Continue'
-        style={styles.button}
-        styleText={styles.sendOTPButton}
-      />
+      <Button title="Continue" style={styles.button} styleText={styles.sendOTPButton} />
     </>
   );
 };
 
-export default Otp;
+export default OtpScreen;

@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { WelcomeStyles as styles } from "./styles";
-import Button from "../../common/Button";
+import Button from "../../../common/Button";
 
 type OtpProp = {
   onWrongNumber: () => void;
@@ -22,8 +22,8 @@ const Welcome = (props: OtpProp) => {
       <View style={styles.otpContainer}>
         <Text style={styles.passwordText}>Password</Text>
         <OTPInputView
-          placeholderTextColor='black'
-          keyboardType='number-pad'
+          placeholderTextColor="black"
+          keyboardType="number-pad"
           pinCount={6}
           code={otpCode} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
           onCodeChanged={onOtpChanged}
@@ -35,11 +35,7 @@ const Welcome = (props: OtpProp) => {
           // }}
         />
       </View>
-      <Button
-        title='Login'
-        style={styles.button}
-        styleText={styles.sendOTPButton}
-      />
+      <Button title="Login" style={styles.button} styleText={styles.sendOTPButton} />
       <Text style={styles.noOtp} onPress={onResend}>
         Forget Me
       </Text>

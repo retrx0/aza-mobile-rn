@@ -1,11 +1,5 @@
 import React, { FC } from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleProp,
-  TextStyle,
-  ViewStyle,
-} from "react-native";
+import { TouchableOpacity, Text, StyleProp, TextStyle, ViewStyle } from "react-native";
 
 type ButtonPropsType = {
   title: string;
@@ -15,21 +9,14 @@ type ButtonPropsType = {
   styleText?: StyleProp<TextStyle>;
 };
 
-export const Button: FC<ButtonPropsType> = ({
-  title,
-  onPressButton,
-  isNext,
-  style,
-  styleText,
-}) => {
+export const Button: FC<ButtonPropsType> = ({ title, onPressButton, isNext, style, styleText }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPressButton}
-      style={[styles.doneButton, isNext && styles.nextButton, style]}>
-      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
-        {title}
-      </Text>
+      style={[styles.doneButton, isNext && styles.nextButton, style]}
+    >
+      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>{title}</Text>
     </TouchableOpacity>
   );
 };

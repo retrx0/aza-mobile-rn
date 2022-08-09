@@ -23,7 +23,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../../
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
-import LoginNavigator from "../screens/auth/login/LoginNavigator";
+import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
