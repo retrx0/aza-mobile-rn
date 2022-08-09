@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Text, View } from "react-native";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { OtpStyles as styles } from "./styles";
-import Button from "../../../common/Button";
+import Button from "../../../components/buttons/Button";
 import { BackIcon } from "../../../../assets/svg";
 
 type OtpProp = {

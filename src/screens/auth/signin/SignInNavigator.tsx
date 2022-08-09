@@ -15,7 +15,7 @@ export type LogInStackProps = {
 const LoginNavigator = () => {
   return (
     <LogInStack.Navigator>
-      <LogInStack.Screen component={SignInScreen} name="LogInRoot" />
+      <LogInStack.Screen component={SignInScreen} name="LogInRoot" options={{ headerShown: false }} />
     </LogInStack.Navigator>
   );
 };

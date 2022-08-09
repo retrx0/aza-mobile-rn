@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { hp, wp } from "../../../common/utils";
+import { hp, wp } from "../../../common/util/utils";
 
 export const WelcomeStyles = StyleSheet.create({
   sentCode: {

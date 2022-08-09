@@ -1,11 +1,11 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { Button } from "../../../common/Button";
-import { CountryBox } from "../../../components/CountryInput";
-import { Header } from "../../../common/header";
+import { Button } from "../../../components/buttons/Button";
+import { CountryBox } from "../../../components/input/CountryInput";
+import { Header } from "../../../components/text/header";
 import { SigninStyles as styles } from "./styles";
 import { SocialSignInList } from "./SignInCard";
-import { SocialSigInCard } from "../../../components/SignInButtons";
+import { SocialSigInCard } from "../../../components/buttons/SignInButtons";
 
 type SignInProp = {
   onCountryPress: () => void;

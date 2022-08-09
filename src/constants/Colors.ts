@@ -20,5 +20,15 @@ export default {
     error: "#FF361A",
     success: "#2AD168",
   },
-  general: { text: "#FFFFFF", facebook: "#1198F6", google: "#EB4235", apple: "#000000" },
+  general: {
+    text: "#FFFFFF",
+    facebook: "#1198F6",
+    google: "#EB4235",
+    apple: "#000000",
+    darkGrey: "#4D4D4D",
+    primary: "#121212",
+    grey: "#A6A6A6",
+    secondary: "#FFFFFF",
+    tertiary: "#D7D7DB",
+  },
 };

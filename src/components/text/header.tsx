@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-} from "react-native";
-import { hp } from "./utils";
+import { StyleSheet, View, Text, StyleProp, ViewStyle, TextStyle } from "react-native";
+import { hp } from "../../common/util/utils";
 
 export type HeaderProps = {
   heading: string;
@@ -17,13 +10,7 @@ export type HeaderProps = {
   descriptionStyle: StyleProp<TextStyle>;
 };
 
-export const Header = ({
-  heading,
-  description,
-  style,
-  headerStyle,
-  descriptionStyle,
-}: HeaderProps) => {
+export const Header = ({ heading, description, style, headerStyle, descriptionStyle }: HeaderProps) => {
   return (
     <View style={[styles.container, style]}>
       <Text style={[styles.heading, headerStyle]}>{heading}</Text>

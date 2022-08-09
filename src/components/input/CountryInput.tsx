@@ -1,9 +1,9 @@
 import React from "react";
 import { Text, View, Image, TouchableOpacity, TextInput, StyleSheet, TextInputProps } from "react-native";
-import { Flag, SelectArrow } from "../../assets/svg";
-import { hp, wp } from "../common/utils";
+import { Flag, SelectArrow } from "../../../assets/svg";
+import { hp, wp } from "../../common/util/utils";
 // import * as Colors from "../common/colors";
-import { CountryProps } from "../../types";
+import { CountryProps } from "../../../types";
 
 export const CountryBox = ({ code, onPress, imageLink, id, ...rest }: CountryProps & TextInputProps) => {
   return (

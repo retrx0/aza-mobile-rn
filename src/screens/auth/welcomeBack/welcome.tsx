@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { WelcomeStyles as styles } from "./styles";
-import Button from "../../../common/Button";
+import Button from "../../../components/buttons/Button";
 
 type OtpProp = {
   onWrongNumber: () => void;

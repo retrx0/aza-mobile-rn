@@ -3,7 +3,7 @@ import React from "react";
 // import { SocialSignInProps } from "../../../types";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity, Text } from "react-native";
-import { hp, wp } from "../../../common/utils";
+import { hp, wp } from "../../../common/util/utils";
 
 export type showBackgroundcolorProp = {
   showBackgroundcolor: {};
