@@ -1,5 +1,9 @@
 import { StyleSheet } from "react-native";
 import { hp, wp } from "../../../common/util/utils";
+import Colors from "../../../constants/Colors";
+
+const darkGrey = Colors.general.darkGrey;
+const primary = Colors.general.primary;
 
 export const OtpStyles = StyleSheet.create({
   underlineStyleHighLighted: {
@@ -8,38 +12,27 @@ export const OtpStyles = StyleSheet.create({
   resend: {
     fontWeight: "500",
     height: hp(20),
-    color: "#121212",
+    color: primary,
     fontSize: hp(14),
   },
   noOtp: {
     alignSelf: "center",
     marginTop: hp(61),
-    color: "#4D4D4D",
+    color: darkGrey,
     fontSize: hp(14),
   },
   otpText: {
     marginBottom: 10,
     fontWeight: "500",
     fontSize: hp(16),
-    color: "#4D4D4D",
+    color: darkGrey,
   },
   otp: {
     marginLeft: hp(90),
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 20.29,
-    color: "#4D4D4D",
-  },
-  back: {
-    marginLeft: hp(10),
-    fontSize: 16,
-    fontWeight: "400",
-    lineHeight: 20.29,
-    color: "#4D4D4D",
-  },
-  backContainer: {
-    alignItems: "center",
-    flexDirection: "row",
+    color: darkGrey,
   },
   Container: {
     alignItems: "center",
@@ -63,7 +56,7 @@ export const OtpStyles = StyleSheet.create({
     marginTop: hp(30),
     fontSize: hp(14),
     fontWeight: "400",
-    color: "#4D4D4D",
+    color: darkGrey,
     marginLeft: hp(30),
   },
   otpContainer: {
@@ -78,6 +71,6 @@ export const OtpStyles = StyleSheet.create({
     color: "black",
     fontSize: hp(18),
     borderRadius: hp(8),
-    borderColor: "#121212",
+    borderColor: primary,
   },
 });

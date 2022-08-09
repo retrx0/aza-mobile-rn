@@ -54,7 +54,7 @@ const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) 
           <Text style={[{ fontWeight: "bold", textDecorationLine: "underline" }]}>Login</Text>
         </TouchableOpacity>
       </View>
-      <ButtonLg title="Continue" color={"#000"} onPress={() => navigation.navigate("SignUpEmail")} alt={false} />
+      <ButtonLg title="Continue" color={"#000"} onPress={() => navigation.navigate("SignUpOTP")} alt={false} />
       <Text style={[CommonStyles.bodyText, CommonStyles.centerText, { fontSize: 18 }]}>OR</Text>
       <ButtonLg
         iconName="apple"

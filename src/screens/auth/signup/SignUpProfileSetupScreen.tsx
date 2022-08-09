@@ -1,10 +1,12 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import BoxTextInput from "../../../components/input/BoxTextInput";
 import { Text, View } from "../../../components/Themed";
+import { SignUpStackProps } from "./SignUpNavigator";
 
-const SignUpEmailScreen = () => {
+const SignUpEmailScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
   return (
     <View style={[{ flex: 1 }]}>
       <View>
@@ -13,7 +15,14 @@ const SignUpEmailScreen = () => {
       </View>
       <BoxTextInput placeHolder="Full Name" required value="John Appleased" onChange={() => {}} />
       <BoxTextInput placeHolder="Email" required value="johnappleased@apple.com" onChange={() => {}} />
-      <ButtonLg color={"#000"} alt={false} onPress={() => {}} title="Continue" />
+      <ButtonLg
+        color={"#000"}
+        alt={false}
+        onPress={() => {
+          navigation.navigate("SignUpPassword");
+        }}
+        title="Continue"
+      />
     </View>
   );
 };
