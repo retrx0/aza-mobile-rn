@@ -4,7 +4,7 @@
 
 - Make sure you have Node.js installed
 - Install expo cli with `npm install -g expo-cli`, you can check the documentation [here](https://docs.expo.dev/workflow/expo-cli/)
-- Add your ssh public key to your azure account
+- Add your ssh public key to your azure account, don't add any passpharse when generating your ssh key!
 - Clone this repository using the ssh option
 - Go to project's root directory and run `expo start`
 - Download the Expo Go app from App Store or Playstore link [here](https://expo.dev/client)

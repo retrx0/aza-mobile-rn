@@ -6,9 +6,6 @@ const darkGrey = Colors.general.darkGrey;
 const primary = Colors.general.primary;
 
 export const OtpStyles = StyleSheet.create({
-  underlineStyleHighLighted: {
-    borderColor: "blue",
-  },
   resend: {
     fontWeight: "500",
     height: hp(20),
@@ -20,12 +17,6 @@ export const OtpStyles = StyleSheet.create({
     marginTop: hp(61),
     color: darkGrey,
     fontSize: hp(14),
-  },
-  otpText: {
-    marginBottom: 10,
-    fontWeight: "500",
-    fontSize: hp(16),
-    color: darkGrey,
   },
   otp: {
     marginLeft: hp(90),
@@ -58,19 +49,5 @@ export const OtpStyles = StyleSheet.create({
     fontWeight: "400",
     color: darkGrey,
     marginLeft: hp(30),
-  },
-  otpContainer: {
-    marginTop: hp(20),
-    paddingHorizontal: hp(30),
-    height: hp(40),
-    marginBottom: hp(61),
-  },
-  underlineStyleBase: {
-    width: wp(40),
-    height: hp(40),
-    color: "black",
-    fontSize: hp(18),
-    borderRadius: hp(8),
-    borderColor: primary,
   },
 });

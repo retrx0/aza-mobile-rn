@@ -8,12 +8,13 @@ import ButtonLg from "../../../components/buttons/ButtonLg";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SignUpStackProps } from "./SignUpNavigator";
 import Colors from "../../../constants/Colors";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
 
 const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
   const [phone, setPhone] = useState<string>("");
 
   return (
-    <View style={{ flex: 1 }}>
+    <SpacerWrapper>
       <View style={{ padding: 15 }}>
         <Text style={[CommonStyles.headerText]}>Sign up for AZA</Text>
         <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
@@ -77,7 +78,7 @@ const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) 
         onPress={() => console.log("connecting with google...")}
         alt={false}
       />
-    </View>
+    </SpacerWrapper>
   );
 };
 

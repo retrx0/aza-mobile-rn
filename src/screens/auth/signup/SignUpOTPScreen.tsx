@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { Text, View } from "../../../components/Themed";
 import OtpScreen from "../otp/OtpScreen";
 import { SignUpStackProps } from "./SignUpNavigator";
@@ -7,22 +8,23 @@ import { SignUpStackProps } from "./SignUpNavigator";
 const SignUpOTPScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
   const [signUpOtp, setSignUpOtp] = useState("");
   return (
-    <View style={[{ flex: 1 }]}>
+    <SpacerWrapper>
       <OtpScreen
+        onBackButtonPressed={() => navigation.goBack()}
         onWrongNumber={function (): void {
           throw new Error("Function not implemented.");
         }}
         otpCode={signUpOtp}
-        onOtpChanged={function (): void {
-          setSignUpOtp;
-        }}
+        onOtpChanged={() => setSignUpOtp}
         onVerify={function (): void {
           navigation.navigate("SignUpProfileSetup");
         }}
-        onResend={function (): void {}}
+        onResend={() => {
+          console.log("otp resend");
+        }}
         phoneNumber={""}
       />
-    </View>
+    </SpacerWrapper>
   );
 };
 

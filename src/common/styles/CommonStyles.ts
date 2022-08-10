@@ -43,6 +43,13 @@ const CommonStyles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 5,
   },
+  //Other
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "90%",
+    alignSelf: "center",
+  },
   //for testing only!
   outlineThisComponent: {
     borderColor: "red",

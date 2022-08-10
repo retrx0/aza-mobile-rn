@@ -10,6 +10,7 @@ export default {
     tabIconSelected: tintColorLight,
     error: "#FF361A",
     success: "#2AD168",
+    separator: "#EAEAEC",
   },
   dark: {
     text: "#fff",
@@ -19,6 +20,7 @@ export default {
     tabIconSelected: tintColorDark,
     error: "#FF361A",
     success: "#2AD168",
+    separator: "#A4A4A4",
   },
   general: {
     text: "#FFFFFF",
@@ -30,5 +32,7 @@ export default {
     grey: "#A6A6A6",
     secondary: "#FFFFFF",
     tertiary: "#D7D7DB",
+    black: "#000000",
+    white: "#ffffff",
   },
 };

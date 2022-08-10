@@ -13,7 +13,7 @@ type OtpProp = {
   phoneNumber: string;
 };
 
-const Welcome = (props: OtpProp) => {
+const WelcomeBackScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onResend } = props;
   return (
     <>
@@ -43,4 +43,4 @@ const Welcome = (props: OtpProp) => {
   );
 };
 
-export default Welcome;
+export default WelcomeBackScreen;

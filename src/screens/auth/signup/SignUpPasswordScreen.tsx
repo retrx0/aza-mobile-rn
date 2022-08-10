@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, TouchableOpacity } from "react-native";
+import { Switch } from "react-native";
 import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
@@ -7,14 +7,17 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SignUpStackProps } from "./SignUpNavigator";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import Colors from "../../../constants/Colors";
 
-const SignUpPasswordScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpPasswordScreen = ({ navigation, route }: NativeStackScreenProps<SignUpStackProps>) => {
+  const { passWordScreenType }: any = route.params;
   return (
-    <View style={[{ flex: 1 }]}>
+    <SpacerWrapper>
       <View>
-        <BackButton />
+        <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <Text style={[CommonStyles.headerText]}>Create AZA Passcode</Text>
+      <Text style={[CommonStyles.headerText]}>{passWordScreenType} AZA Passcode</Text>
       <Text style={[CommonStyles.bodyText]}>The passcode will be used to access your account</Text>
       <SegmentedInput
         value={"1221221"}
@@ -28,13 +31,24 @@ const SignUpPasswordScreen = ({ navigation }: NativeStackScreenProps<SignUpStack
         <Text style={{}}>Use as transaction pin?</Text>
         <Switch />
       </View>
+      <Separator />
       <Button
         title="Continue"
         style={{}}
         styleText={{}}
-        onPressButton={() => navigation.navigate("SignUpConfirmPassword")}
+        onPressButton={() => {
+          passWordScreenType === "Create"
+            ? navigation.navigate("SignUpConfirmPassword")
+            : navigation.getParent()?.navigate("Root");
+        }}
       />
-    </View>
+    </SpacerWrapper>
+  );
+};
+
+const Separator = () => {
+  return (
+    <View lightColor={Colors.light.separator} darkColor={Colors.dark.separator} style={[CommonStyles.separator]}></View>
   );
 };
 

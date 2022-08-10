@@ -43,12 +43,6 @@ const styles = StyleSheet.create({
     height: hp(40),
     marginBottom: hp(61),
   },
-  noOtp: {
-    alignSelf: "center",
-    marginTop: hp(61),
-    color: darkGrey,
-    fontSize: hp(14),
-  },
   otpText: {
     marginBottom: 10,
     fontWeight: "500",
@@ -67,7 +61,7 @@ const styles = StyleSheet.create({
     height: hp(40),
     color: "black",
     fontSize: hp(18),
-    borderRadius: hp(8),
+    borderRadius: hp(5),
     borderColor: Colors.general.primary,
   },
   underlineStyleHighLighted: {

@@ -1,5 +1,6 @@
 import React from "react";
 import { ColorValue, GestureResponderEvent, StyleSheet, TouchableOpacity } from "react-native";
+import { hp, wp } from "../../common/util/utils";
 import { Text } from "../Themed";
 
 const ButtonMd = (props: {
@@ -9,34 +10,24 @@ const ButtonMd = (props: {
   onPress: (event: GestureResponderEvent) => void;
 }) => {
   return (
-    <TouchableOpacity
-      style={[
-        {
-          backgroundColor: props.color,
-          width: 160,
-          padding: 10,
-          borderRadius: 10,
-          borderColor: "black",
-          borderWidth: 1,
-        },
-      ]}
-      onPress={props.onPress}
-    >
+    <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: props.color }]} onPress={props.onPress}>
       <Text style={[styles.buttonText, { color: props.alt ? "black" : "white" }]}>{props.title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    width: wp(160),
+    height: hp(50),
+    justifyContent: "center",
+    borderRadius: 10,
+    borderColor: "black",
+    borderWidth: 1,
+  },
   buttonText: {
     textAlign: "center",
     margin: 5,
-  },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignSelf: "center",
-    flexDirection: "column",
   },
 });
 

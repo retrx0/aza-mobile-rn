@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { BackIcon } from "../../../assets/svg";
-import { hp } from "../../common/util/utils";
+import { hp, wp } from "../../common/util/utils";
 import Colors from "../../constants/Colors";
 import { Text } from "../Themed";
 
-const BackButton = () => {
+const BackButton = (props: { onPress: () => void }) => {
   return (
-    <TouchableOpacity style={styles.backContainer}>
+    <TouchableOpacity style={styles.backContainer} onPress={props.onPress}>
       <BackIcon />
       <Text style={styles.back}>Back</Text>
     </TouchableOpacity>
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
   backContainer: {
     alignItems: "center",
     flexDirection: "row",
+    marginLeft: hp(15),
+    marginTop: hp(25),
   },
 });
 

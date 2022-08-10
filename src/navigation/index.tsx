@@ -21,7 +21,7 @@ import Settings from "../screens/tabs/Settings";
 import Profile from "../screens/tabs/Profile";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import WelcomeScreen from "../screens/WelcomeScreen";
+import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 
