@@ -1,41 +1,74 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { Button } from "../../../components/buttons/Button";
-import { CountryBox } from "../../../components/input/CountryInput";
+import React, { useState } from "react";
+import { Text } from "react-native";
 import { Header } from "../../../components/text/header";
 import { SigninStyles as styles } from "./styles";
-import { SocialSignInList } from "./SignInCard";
-import { SocialSigInCard } from "../../../components/buttons/SignInButtons";
+import ButtonLg from "../../../components/buttons/ButtonLg";
+import Colors from "../../../constants/Colors";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import PhoneInput from "react-native-phone-input";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { LogInStackProps } from "./SignInNavigator";
 
-type SignInProp = {
-  onCountryPress: () => void;
-  onChangeText: (text: string) => void;
-  onSendOtp: () => void;
-  phoneNumber: string;
-  short_name: string;
-};
-
-const SignInScreen = (props: SignInProp) => {
-  const { onCountryPress, onChangeText, onSendOtp, phoneNumber } = props;
+const SignInScreen = ({
+  navigation,
+}: NativeStackScreenProps<LogInStackProps>) => {
+  const [phone, setPhone] = useState<string>("");
   return (
-    <>
-      <Header heading="phone number" headerStyle={styles.header} descriptionStyle={undefined} description={""} />
-      <CountryBox
-        onPress={onCountryPress}
-        value={phoneNumber}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSendOtp}
-        code={""}
-        short_name={""}
+    <SpacerWrapper>
+      <Header
+        heading='Phone Number'
+        headerStyle={styles.header}
+        descriptionStyle={undefined}
+        description={""}
       />
-      <Button title="Continue" style={styles.button} styleText={styles.sendOTPButton} onPressButton={onSendOtp} />
-      <Text style={styles.orText}>OR</Text>
-      <View style={styles.signupOptions}>
-        {SocialSignInList.map((item, index) => {
-          return <SocialSigInCard key={index} icon={() => <></>} connect={item.connect} onPress={() => {}} />;
-        })}
-      </View>
-    </>
+      <PhoneInput
+        initialValue={phone}
+        onChangePhoneNumber={(p) => setPhone(p)}
+        initialCountry='ng'
+        autoFormat
+        textStyle={styles.textStyle}
+        textProps={{
+          placeholder: "Enter a phone number...",
+        }}
+        style={styles.phoneStyle}
+      />
+      <ButtonLg
+        title='Continue'
+        color={"#000"}
+        onPress={() => navigation.navigate("LogiOTP")}
+        alt={false}
+      />
+      <Text
+        style={[
+          CommonStyles.bodyText,
+          CommonStyles.centerText,
+          { fontSize: 18 },
+        ]}>
+        OR
+      </Text>
+      <ButtonLg
+        iconName='apple'
+        title='Connect with Apple'
+        color={Colors.general.apple}
+        onPress={() => console.log("connecting with apple...")}
+        alt={false}
+      />
+      <ButtonLg
+        iconName={"facebook"}
+        title='Connect with Facebook'
+        color={Colors.general.facebook}
+        onPress={() => console.log("connecting with facebook...")}
+        alt={false}
+      />
+      <ButtonLg
+        iconName={"google"}
+        title='Connect with Google'
+        color={Colors.general.google}
+        onPress={() => console.log("connecting with google...")}
+        alt={false}
+      />
+    </SpacerWrapper>
   );
 };
 

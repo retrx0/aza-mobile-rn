@@ -1,41 +1,11 @@
 import React from "react";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../assets/svg";
-import { SocialSignInProps } from "../../../types";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity, Text } from "react-native";
-import { hp, wp } from "../../common/utils";
+import { hp, wp } from "../../../common/utils";
 
 export type showBackgroundcolorProp = {
   showBackgroundcolor: {};
 };
-
-const showBackgroundcolor = (icon: any) => {
-  switch (icon) {
-    case (<AppleIcon />):
-      return "black";
-    case (<FacebookIcon />):
-      return "blue";
-    case (<GoogleIcon />):
-      return "red";
-  }
-};
-
-export const SocialSignInList = [
-  {
-    connect: "Connect Apple Account",
-    // icon: <AppleIcon />,
-  },
-  {
-    connect: "Connect with Facebook",
-    // icon: <FacebookIcon />,
-  },
-  {
-    connect: "Connect Google Account",
-    // icon: <GoogleIcon />,
-  },
-];
-<<<<<<< HEAD:src/screens/signIn/signInCard.tsx
-=======
 
 type SocialSignInProps = {
   icon: undefined;
@@ -68,3 +38,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
+
+export const GENDER = [
+  {
+    label: "Male",
+    value: "male",
+  },
+];
