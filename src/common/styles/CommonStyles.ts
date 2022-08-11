@@ -1,12 +1,17 @@
 import { StyleSheet } from "react-native";
+import { grey } from "../colors";
+import { hp } from "../utils";
 
 const CommonStyles = StyleSheet.create({
+  container: {
+    position: "absolute",
+    alignSelf: "center",
+  },
   //Grid
   row: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    // margin: 5,
-    // padding: 5,
+    alignSelf: "center",
+    alignItems: "center",
   },
   col: {
     flexDirection: "column",
@@ -22,12 +27,16 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 24,
     fontFamily: "Euclid-Circular-A-Semi-Bold",
+    marginLeft: 15,
   },
   bodyText: {
     padding: 5,
     margin: 4,
     fontFamily: "Euclid-Circular-A",
-    color: "#4d4d4d",
+    color: grey,
+    // marginBottom: hp(56),
+    // marginTop: hp(40),
+    marginLeft: 15,
   },
   centerText: {
     textAlign: "center",
@@ -45,7 +54,7 @@ const CommonStyles = StyleSheet.create({
   },
   //Other
   separator: {
-    marginVertical: 30,
+    marginVertical: 10,
     height: 1,
     width: "90%",
     alignSelf: "center",
