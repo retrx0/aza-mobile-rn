@@ -1,23 +1,10 @@
 import React from "react";
-import { SocialSignInProps } from "../../types";
+import { SocialSignInProps } from "../../../types";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity, Text } from "react-native";
 import { hp, wp } from "../common/utils";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "../../assets/svg";
-import * as Colors from "../common/colors";
 
-const showBackgroundcolor = (icon: any) => {
-  switch (icon) {
-    case (<AppleIcon />):
-      return "black";
-    case (<FacebookIcon />):
-      return "blue";
-    case (<GoogleIcon />):
-      return "red";
-  }
-};
-
-export const SocialSignInCard = ({
+export const SocialSigInCard = ({
   icon,
   onPress,
   connect,
@@ -44,8 +31,10 @@ const styles = StyleSheet.create({
   signupButtons: {
     width: wp(340),
     height: hp(50),
-    borderRadius: hp(10),
-    backgroundColor: Colors.Primary,
+    borderRadius: 25,
+    borderColor: "grey",
+    borderWidth: 1,
+    backgroundColor: "black",
     marginVertical: 10,
     alignItems: "center",
     flexDirection: "row",

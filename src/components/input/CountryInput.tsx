@@ -2,6 +2,7 @@ import React from "react";
 import {
   Text,
   View,
+  Image,
   TouchableOpacity,
   TextInput,
   StyleSheet,
@@ -22,11 +23,18 @@ export const CountryBox = ({
   return (
     <View style={styles.container}>
       <View style={styles.countryContainer}>
-        <Flag style={styles.flag} />
-        <Text style={styles.countryCode}>+234</Text>
-        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-          <SelectArrow />
-        </TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}>
+          <Flag />
+          <Text style={styles.countryCode}>+234</Text>
+          <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+            <SelectArrow />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.divider} />
 

@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { hp, wp } from "../../common/utils";
-import * as Colors from "../../common/colors";
 
 export const SigninStyles = StyleSheet.create({
   header: {

@@ -6,8 +6,6 @@ import {
   TextStyle,
   ViewStyle,
 } from "react-native";
-import * as Colors from "./colors";
-import { hp, wp } from "./utils";
 
 type ButtonPropsType = {
   title: string;

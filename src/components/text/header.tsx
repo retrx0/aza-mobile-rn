@@ -8,7 +8,6 @@ import {
   TextStyle,
 } from "react-native";
 import { hp } from "./utils";
-import * as Colors from "./colors";
 
 export type HeaderProps = {
   heading: string;

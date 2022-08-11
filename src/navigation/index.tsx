@@ -15,7 +15,7 @@ import * as React from "react";
 import { ColorSchemeName, Pressable, View } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import ModalScreen from "../screens/ModalScreen";
+import ModalScreen from "../screens/modals/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import Home from "../screens/tabs/Home";
 import Vault from "../screens/tabs/vault/Vault";
@@ -28,9 +28,6 @@ import {
   RootTabScreenProps,
 } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
-import NewVault from "../screens/tabs/vault/newVault";
-import { useNavigation } from "@react-navigation/native";
-import VaultPassword from "../screens/tabs/vault/vaultPassword";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
