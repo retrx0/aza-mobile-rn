@@ -20,7 +20,7 @@ const WelcomeBackScreen = (props: WelcomeOTProp) => {
 
   return (
     <SpacerWrapper>
-      <Text style={styles.welcome}>Welcome back, Chiazo</Text>
+      <Text style={styles.welcome}>Welcome back,Chiazo</Text>
       <Text style={styles.sentCode}>Enter your Aza password to login</Text>
       <SegmentedInput
         value={otpCode}
