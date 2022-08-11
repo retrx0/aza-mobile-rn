@@ -24,6 +24,7 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
+import { HomeIcon, PaymentsIcon, ProfileIcon, QRCodeIcon, SettingsIcon, VaultIcon } from "../../assets/svg";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -75,7 +76,7 @@ const BottomTabNavigator = () => {
         component={Home}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          tabBarIcon: ({ color }) => <HomeIcon color={color} size={16} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
@@ -83,7 +84,7 @@ const BottomTabNavigator = () => {
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <FontAwesome name="qrcode" size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+              <QRCodeIcon size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
             </Pressable>
           ),
         })}
@@ -93,7 +94,7 @@ const BottomTabNavigator = () => {
         component={Vault}
         options={{
           title: "Vault",
-          tabBarIcon: ({ color }) => <TabBarIcon name="lock" color={color} />,
+          tabBarIcon: ({ color }) => <VaultIcon color={color} size={16} />,
         }}
       />
       <BottomTab.Screen
@@ -101,7 +102,7 @@ const BottomTabNavigator = () => {
         component={Payments}
         options={{
           title: "Payments",
-          tabBarIcon: ({ color }) => <TabBarIcon name="credit-card" color={color} />,
+          tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={16} />,
         }}
       />
       <BottomTab.Screen
@@ -109,7 +110,7 @@ const BottomTabNavigator = () => {
         component={Settings}
         options={{
           title: "Settings",
-          tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
+          tabBarIcon: ({ color }) => <SettingsIcon color={color} size={16} />,
         }}
       />
       <BottomTab.Screen
@@ -117,7 +118,7 @@ const BottomTabNavigator = () => {
         component={Profile}
         options={{
           title: "Profile",
-          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          tabBarIcon: ({ color }) => <ProfileIcon color={color} size={16} />,
         }}
       />
     </BottomTab.Navigator>
