@@ -6,6 +6,8 @@ import {
   TextStyle,
   ViewStyle,
 } from "react-native";
+import { Primary, secondary } from "../../common/colors";
+import { hp, wp } from "../../common/util/utils";
 
 type ButtonPropsType = {
   title: string;
@@ -36,17 +38,17 @@ export const Button: FC<ButtonPropsType> = ({
 
 const styles = {
   doneText: {
-    color: Colors.secondary,
+    color: secondary,
     fontWeight: "500",
     letterSpacing: hp(0.5),
-    fontSize: hp(140),
+    fontSize: hp(14),
     lineHeight: hp(17.75),
   },
   nextText: {
-    color: Colors.secondary,
+    color: secondary,
   },
   doneButton: {
-    backgroundColor: Colors.Primary,
+    backgroundColor: Primary,
     width: wp(335),
     height: hp(50),
     borderRadius: hp(10),
@@ -56,9 +58,9 @@ const styles = {
     // marginTop: 100,
     marginBottom: hp(20),
   },
-  nextButton: {
-    backgroundColor: Colors.Primary,
-  },
+  // nextButton: {
+  //   backgroundColor: Primary,
+  // },
 };
 
 export default Button;

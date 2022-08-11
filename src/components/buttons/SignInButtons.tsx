@@ -2,7 +2,8 @@ import React from "react";
 import { SocialSignInProps } from "../../../types";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity, Text } from "react-native";
-import { hp, wp } from "../common/utils";
+import { hp, wp } from "../../common/utils";
+import { Primary, secondary } from "../../common/colors";
 
 export const SocialSigInCard = ({
   icon,
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: hp(14),
     lineHeight: hp(17.75),
     fontWeight: "500",
-    color: Colors.secondary,
+    color: secondary,
     marginLeft: hp(50),
   },
   signupButtons: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     borderColor: "grey",
     borderWidth: 1,
-    backgroundColor: "black",
+    backgroundColor: Primary,
     marginVertical: 10,
     alignItems: "center",
     flexDirection: "row",

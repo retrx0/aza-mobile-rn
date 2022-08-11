@@ -10,6 +10,8 @@ import {
   TextStyle,
   TouchableOpacity,
 } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { darkGrey, Primary } from "../../common/colors";
 import { hp, wp } from "../../common/util/utils";
 
 export type InputProps = {
@@ -37,7 +39,11 @@ export const Input = ({
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
           <View style={styles.divider} />
-          <TextInput placeholder="Your 10-digit phone number" style={styles.phoneInput} keyboardType="number-pad" />
+          <TextInput
+            placeholder='Your 10-digit phone number'
+            style={styles.phoneInput}
+            keyboardType='number-pad'
+          />
         </View>
       ) : (
         <View>
@@ -54,7 +60,7 @@ export const Input = ({
 const styles = StyleSheet.create({
   label: {
     fontSize: 15,
-    color: Colors.darkGrey,
+    color: darkGrey,
   },
   container: {
     marginTop: hp(20),
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
     paddingRight: wp(10),
   },
   countryCode: {
-    color: Colors.Primary,
+    color: Primary,
     fontSize: 15,
     marginRight: wp(7),
   },

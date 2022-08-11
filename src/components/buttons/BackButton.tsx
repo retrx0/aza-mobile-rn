@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     marginLeft: hp(15),
-    marginTop: hp(25),
+    padding: hp(5),
   },
 });
 

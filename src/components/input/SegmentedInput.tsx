@@ -18,7 +18,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     <View style={styles.otpContainer}>
       <Text style={styles.otpText}>{headerText}</Text>
       <OTPInputView
-        keyboardType="number-pad"
+        keyboardType='number-pad'
         pinCount={6}
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
         onCodeChanged={onValueChanged}
@@ -39,9 +39,9 @@ const darkGrey = Colors.general.darkGrey;
 const styles = StyleSheet.create({
   otpContainer: {
     marginTop: hp(20),
-    paddingHorizontal: hp(30),
+    paddingHorizontal: hp(20),
     height: hp(40),
-    marginBottom: hp(61),
+    marginBottom: hp(50),
   },
   otpText: {
     marginBottom: 10,
@@ -59,14 +59,13 @@ const styles = StyleSheet.create({
   underlineStyleBase: {
     width: wp(40),
     height: hp(40),
-    color: "black",
     fontSize: hp(18),
     borderRadius: hp(5),
     borderColor: Colors.general.primary,
   },
-  underlineStyleHighLighted: {
-    borderColor: "blue",
-  },
+  // underlineStyleHighLighted: {
+  //   borderColor: "blue",
+  // },
 });
 
 export default SegmentedInput;

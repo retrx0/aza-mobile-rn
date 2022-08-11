@@ -1,6 +1,11 @@
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { ColorValue, GestureResponderEvent, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  ColorValue,
+  GestureResponderEvent,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { Text, ThemedFAIcon, View } from "../Themed";
 
@@ -12,13 +17,26 @@ const ButtonLg = (props: {
   onPress: (event: GestureResponderEvent) => void;
 }) => {
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor: props.color }]} onPress={props.onPress}>
-      <View style={[{ flex: 1, justifyContent: "center", backgroundColor: "transparent" }]}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: props.color }]}
+      onPress={props.onPress}>
+      <View
+        style={[
+          { flex: 1, justifyContent: "center", backgroundColor: "transparent" },
+        ]}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
           {props.iconName ? (
             <FontAwesome
               name={props.iconName}
-              style={[CommonStyles.centerText, { color: "#FFFFFF", fontSize: 18, flex: 1, textAlign: "center" }]}
+              style={[
+                CommonStyles.centerText,
+                {
+                  color: "#FFFFFF",
+                  fontSize: 18,
+                  flex: 1,
+                  textAlign: "center",
+                },
+              ]}
             />
           ) : (
             <></>
@@ -27,9 +45,13 @@ const ButtonLg = (props: {
             adjustsFontSizeToFit
             style={[
               CommonStyles.centerText,
-              { color: props.alt ? "black" : "white", fontFamily: "Euclid-Circular-A", fontSize: 14, flex: 6 },
-            ]}
-          >
+              {
+                color: props.alt ? "black" : "white",
+                fontFamily: "Euclid-Circular-A",
+                fontSize: 14,
+                flex: 6,
+              },
+            ]}>
             {props.title}
           </Text>
         </View>
