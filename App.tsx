@@ -4,9 +4,10 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./src/hooks/useCachedResources";
 import useColorScheme from "./src/hooks/useColorScheme";
 import Navigation from "./src/navigation";
-import Otp from "./src/screens/otp/otp";
-import Signin from "./src/screens/signIn/signIn";
-import Welcome from "./src/screens/welcomeBck/welcome";
+import Otp from "./src/screens/signIn/otp/0tp";
+import Login from "./src/screens/signIn/login/Login";
+import Signin from "./src/screens/signIn/login/Login";
+import Welcome from "./src/screens/signIn/welcomeBack/Welcome";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,7 +19,7 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <StatusBar />
-        <Signin />
+        <Login />
         {/* <Otp /> */}
         {/* <Welcome /> */}
         {/* <Navigation colorScheme={colorScheme} /> */}

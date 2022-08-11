@@ -5,26 +5,38 @@
  */
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
-
+import { ColorSchemeName, Pressable, View } from "react-native";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import Home from "../screens/tabs/Home";
-import Vault from "../screens/tabs/Vault";
+import Vault from "../screens/tabs/vault/Vault";
 import Payments from "../screens/tabs/Payments";
 import Settings from "../screens/tabs/Settings";
 import Profile from "../screens/tabs/Profile";
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../../types";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import NewVault from "../screens/tabs/vault/newVault";
+import { useNavigation } from "@react-navigation/native";
+import VaultPassword from "../screens/tabs/vault/vaultPassword";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
-    <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <NavigationContainer
+      linking={LinkingConfiguration}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -39,11 +51,29 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+      <Stack.Screen
+        name='Root'
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='NotFound'
+        component={NotFoundScreen}
+        options={{ title: "Oops!" }}
+      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name='Modal' component={ModalScreen} />
       </Stack.Group>
+      <Stack.Screen
+        name='newvault'
+        component={NewVault}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='vaultpassword'
+        component={VaultPassword}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
@@ -53,65 +83,71 @@ const RootNavigator = () => {
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const VaultStack = createNativeStackNavigator();
 
 const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName='Home'
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
-    >
+      }}>
       <BottomTab.Screen
-        name="Home"
+        name='Home'
         component={Home}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome name="qrcode" size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+              })}>
+              <FontAwesome
+                name='qrcode'
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
             </Pressable>
           ),
         })}
       />
       <BottomTab.Screen
-        name="Vault"
+        name='Vault'
         component={Vault}
         options={{
-          title: "Vault",
-          tabBarIcon: ({ color }) => <TabBarIcon name="lock" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name='lock' color={color} />,
         }}
+        // }}
       />
       <BottomTab.Screen
-        name="Payments"
+        name='Payments'
         component={Payments}
         options={{
           title: "Payments",
-          tabBarIcon: ({ color }) => <TabBarIcon name="credit-card" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name='credit-card' color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="Settings"
+        name='Settings'
         component={Settings}
         options={{
           title: "Settings",
-          tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name='gear' color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="Profile"
+        name='Profile'
         component={Profile}
         options={{
           title: "Profile",
-          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name='user' color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -121,7 +157,10 @@ const BottomTabNavigator = () => {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 
