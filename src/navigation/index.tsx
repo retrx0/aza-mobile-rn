@@ -12,13 +12,14 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable, View } from "react-native";
+import { ColorSchemeName, Pressable } from "react-native";
+
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/modals/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import Home from "../screens/tabs/Home";
-import Vault from "../screens/tabs/vault/Vault";
+import Vault from "../screens/tabs/Vault";
 import Payments from "../screens/tabs/Payments";
 import Settings from "../screens/tabs/Settings";
 import Profile from "../screens/tabs/Profile";
@@ -28,6 +29,9 @@ import {
   RootTabScreenProps,
 } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
+import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
+import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -49,6 +53,21 @@ const RootNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name='Welcome'
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='SignUp'
+        component={SignUpRoot}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='SignIn'
+        component={LoginNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name='Root'
         component={BottomTabNavigator}
         options={{ headerShown: false }}
@@ -61,16 +80,6 @@ const RootNavigator = () => {
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name='Modal' component={ModalScreen} />
       </Stack.Group>
-      <Stack.Screen
-        name='newvault'
-        component={NewVault}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='vaultpassword'
-        component={VaultPassword}
-        options={{ headerShown: false }}
-      />
     </Stack.Navigator>
   );
 };
@@ -80,7 +89,6 @@ const RootNavigator = () => {
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
-const VaultStack = createNativeStackNavigator();
 
 const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
@@ -117,9 +125,9 @@ const BottomTabNavigator = () => {
         name='Vault'
         component={Vault}
         options={{
+          title: "Vault",
           tabBarIcon: ({ color }) => <TabBarIcon name='lock' color={color} />,
         }}
-        // }}
       />
       <BottomTab.Screen
         name='Payments'
