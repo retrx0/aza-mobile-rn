@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   signupButtons: {
     width: wp(340),
     height: hp(50),
-    borderRadius: hp(25),
+    borderRadius: hp(10),
     backgroundColor: Colors.Primary,
     marginVertical: 10,
     alignItems: "center",
