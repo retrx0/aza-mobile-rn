@@ -6,3 +6,5 @@ export const grey = "#A6A6A6";
 export const secondary = "#FFFFFF";
 
 export const tertiary = "#D7D7DB";
+
+export const white = "#F2F2F2";
