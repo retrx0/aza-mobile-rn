@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Switch, TouchableOpacity } from "react-native";
-import Button from "../../../common/Button";
-import { Undraw } from "../../../../assets/images/index";
-import EditScreenInfo from "../../../components/EditScreenInfo";
+import { StyleSheet, Switch, TouchableOpacity } from "react-native";
+import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { hp } from "../../../common/utils";
-import { Header } from "../../../common/header";
-import { Input } from "../../../common/input";
+import { Header } from "../../../components/text/header";
+import { Input } from "../../../components/input/input";
 import {
   DaysCard,
   DaysList,

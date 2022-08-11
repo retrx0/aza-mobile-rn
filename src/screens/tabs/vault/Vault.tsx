@@ -1,10 +1,9 @@
 import { Image, StyleSheet } from "react-native";
-import Button from "../../../common/Button";
-import { Undraw } from "../../../../assets/images/index";
-import EditScreenInfo from "../../../components/EditScreenInfo";
+import Button from "../../../components/buttons/Button";
+import { Undraw } from "../../../../assets/svg";
 import { Text, View } from "../../../components/Themed";
 import { hp } from "../../../common/utils";
-import { Header } from "../../../common/header";
+import { Header } from "../../../components/text/header";
 
 const Vault = ({ navigation }) => {
   return (
