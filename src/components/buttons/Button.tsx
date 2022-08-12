@@ -58,9 +58,9 @@ const styles = {
     // marginTop: 100,
     marginBottom: hp(20),
   },
-  // nextButton: {
-  //   backgroundColor: Primary,
-  // },
+  nextButton: {
+    backgroundColor: Primary,
+  },
 };
 
 export default Button;
