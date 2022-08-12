@@ -32,6 +32,14 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
+import {
+  HomeIcon,
+  PaymentsIcon,
+  ProfileIcon,
+  QRCodeIcon,
+  SettingsIcon,
+  VaultIcon,
+} from "../../assets/svg";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (

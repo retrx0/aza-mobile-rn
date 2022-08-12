@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Image, FlatList } from "react-native";
+import AppIntroSlider from "react-native-app-intro-slider";
 import { RootStackScreenProps } from "../../../types";
 import CommonStyles from "../../common/styles/CommonStyles";
 import ButtonMd from "../../components/buttons/ButtonMd";
@@ -29,19 +30,20 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
       <View style={{ height: "4%", marginTop: 50 }}>
         <Image style={[styles.image]} source={logo} />
       </View>
-      <View style={{ height: "70%" }}>
-        <FlatList
-          style={[]}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={true}
-          data={carousel_data}
-          keyExtractor={(item) => "key" + item.id}
-          renderItem={(carousel) => {
-            return <CarouselWrapper carousel={carousel.item} />;
-          }}
-        />
-      </View>
+      <AppIntroSlider
+        style={[{ height: "70%" }]}
+        data={carousel_data}
+        onSlideChange={(index) => {
+          let tmpArray = [...carouselIndicatorState];
+          if (!tmpArray[index].active) tmpArray[index].active = true;
+          setCarouselIndicatorState([...tmpArray]);
+        }}
+        renderPagination={() => <></>}
+        renderItem={(carousel) => {
+          console.log(carousel.item);
+          return <CarouselWrapper carousel={carousel.item} />;
+        }}
+      />
       <View style={[styles.row]}>
         <View style={[styles.col]}>
           <ButtonMd

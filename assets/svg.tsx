@@ -1,8 +1,14 @@
 import React from "react";
-import { Path, Circle, Image, Defs, Use, Pattern } from "react-native-svg";
-import Svg, { Line } from "react-native-svg";
+import { StyleProp, ViewStyle } from "react-native";
+import Svg, { Path, Circle, Image, Defs, Use, Pattern } from "react-native-svg";
 
-export const VaultLock = () => {
+type SvgIconProps = {
+  color: string;
+  size: number;
+  style?: StyleProp<ViewStyle>;
+};
+
+export const VaultIcon = ({ color, size }: SvgIconProps) => {
   return (
     <Svg width='17' height='16' viewBox='0 0 17 16' fill='none'>
       <Path
@@ -17,7 +23,7 @@ export const VaultLock = () => {
   );
 };
 
-export const SelectArrow = () => {
+export const HomeIcon = ({ color, size }: SvgIconProps) => {
   return (
     <Svg width='14' height='8' viewBox='0 0 14 8' fill='none'>
       <Path
