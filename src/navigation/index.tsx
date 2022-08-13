@@ -25,6 +25,7 @@ import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import { HomeIcon, PaymentsIcon, ProfileIcon, QRCodeIcon, SettingsIcon, VaultIcon } from "../../assets/svg";
+import PaymentNavigator from "./PaymensNavigation";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -43,10 +44,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      
       <Stack.Screen name="SignUp" component={SignUpRoot} options={{ headerShown: false }} />
       <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: true }} />
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -99,10 +101,11 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="Payments"
-        component={Payments}
+        component={PaymentNavigator}
         options={{
           title: "Payments",
           tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={16} />,
+          headerShown:false
         }}
       />
       <BottomTab.Screen
