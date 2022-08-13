@@ -15,9 +15,7 @@ import { Primary } from "../../../common/colors";
 // import { hp } from "../../../common/util/utils";
 import { Picker } from "@react-native-picker/picker";
 
-const SignUpEmailScreen = ({
-  navigation,
-}: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpEmailScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
   // const [gender, setGender] = useState(GENDER);
   // const placeholder = {
   //   label: "Select gender..",
@@ -31,18 +29,8 @@ const SignUpEmailScreen = ({
         <Text style={[CommonStyles.headerText]}>Profile Setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <BoxTextInput
-        placeHolder='Full Name'
-        required
-        value='John Appleased'
-        onChange={() => {}}
-      />
-      <BoxTextInput
-        placeHolder='Email'
-        required
-        value='johnappleased@apple.com'
-        onChange={() => {}}
-      />
+      <BoxTextInput placeHolder="Full Name" required value="John Appleased" onChange={() => {}} />
+      <BoxTextInput placeHolder="Email" required value="johnappleased@apple.com" onChange={() => {}} />
       {/* <RNPickerSelect
         placeholder={placeholder}
         onValueChange={(value) => {
@@ -70,8 +58,8 @@ const SignUpEmailScreen = ({
         }}
       /> */}
       <Picker collapsable>
-        <Picker.Item label='male' value={"Male"} />
-        <Picker.Item label='female' value={"Female"} />
+        <Picker.Item label="male" value={"Male"} />
+        <Picker.Item label="female" value={"Female"} />
       </Picker>
       <ButtonLg
         color={"#000"}
@@ -79,7 +67,7 @@ const SignUpEmailScreen = ({
         onPress={() => {
           navigation.navigate("SignUpPassword");
         }}
-        title='Continue'
+        title="Continue"
       />
     </SpacerWrapper>
   );

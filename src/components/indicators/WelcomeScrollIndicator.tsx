@@ -8,7 +8,6 @@ const WelcomeScrollIndicator = (props: { count: number; active: boolean; activeI
     ? useThemeColor({ light: Colors.general.black, dark: Colors.general.white }, "background")
     : "#A6A6A6";
 
-  console.log(props.activeIndex);
   return (
     <View
       style={[

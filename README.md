@@ -23,3 +23,4 @@ TODO: Describe and show how to build your code and run the tests.
 
 - Project uses yarn as package manager!
 - Push new code only to feature branches!
+- Don't stage non compiling code e.g code editor configs...

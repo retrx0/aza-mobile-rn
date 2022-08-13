@@ -6,7 +6,6 @@ export const SigninStyles = StyleSheet.create({
   sentCode: {
     fontSize: hp(14),
     fontWeight: "400",
-    color: darkGrey,
     paddingHorizontal: hp(10),
     lineHeight: hp(17.75),
     marginBottom: hp(35),
@@ -27,7 +26,6 @@ export const SigninStyles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "500",
     fontSize: hp(16),
-    color: darkGrey,
     lineHeight: hp(20.29),
   },
   welcomebutton: {
@@ -59,11 +57,9 @@ export const SigninStyles = StyleSheet.create({
   resend: {
     fontWeight: "500",
     fontSize: hp(14),
-    color: Primary,
   },
   noOtp: {
     marginTop: hp(40),
-    color: darkGrey,
     justifyContent: "center",
   },
   welcomenoOtp: {
@@ -76,21 +72,18 @@ export const SigninStyles = StyleSheet.create({
   otpText: {
     fontWeight: "500",
     fontSize: hp(14),
-    color: darkGrey,
   },
   otp: {
     marginLeft: hp(90),
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 20.29,
-    color: darkGrey,
   },
   back: {
     marginLeft: hp(10),
     fontSize: 16,
     fontWeight: "400",
     lineHeight: 20.29,
-    color: darkGrey,
   },
   backContainer: {
     alignItems: "center",
@@ -106,16 +99,13 @@ export const SigninStyles = StyleSheet.create({
     marginTop: hp(30),
     fontSize: hp(14),
     fontWeight: "400",
-    color: darkGrey,
     marginLeft: hp(20),
   },
   phoneStyle: {
     alignSelf: "center",
     height: 50,
     width: "90%",
-    backgroundColor: white,
     padding: 10,
-    borderColor: darkGrey,
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 5,
@@ -160,7 +150,6 @@ export const SigninStyles = StyleSheet.create({
   orText: {
     fontSize: 14,
     alignSelf: "center",
-    color: darkGrey,
     fontWeight: "500",
     marginTop: hp(20),
     marginBottom: hp(20),

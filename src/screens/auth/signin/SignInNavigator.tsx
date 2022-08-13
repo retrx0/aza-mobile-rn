@@ -7,31 +7,17 @@ import WelcomeBackScreen from "./SignInWelcome";
 const LogInStack = createNativeStackNavigator();
 
 export type LogInStackProps = {
-  SignUpRoot: undefined;
-  SignUpEmail: undefined;
-  SignUpOTP: undefined;
-  SignUpPassword: undefined;
-  SignUpConfirmPassword: undefined;
+  SignInRoot: undefined;
+  SignInWelcomeBack: undefined;
+  SignInOTP: undefined;
 };
 
 const LoginNavigator = () => {
   return (
     <LogInStack.Navigator>
-      <LogInStack.Screen
-        component={SignInScreen}
-        name='LogInRoot'
-        options={{ headerShown: false, title: "Sign In" }}
-      />
-      <LogInStack.Screen
-        component={LoginOTPScreen}
-        name='LogiOTP'
-        options={{ headerShown: false }}
-      />
-      <LogInStack.Screen
-        component={WelcomeBackScreen}
-        name='Welcome'
-        options={{ headerShown: false }}
-      />
+      <LogInStack.Screen component={SignInScreen} name="SignInRoot" options={{ headerShown: false }} />
+      <LogInStack.Screen component={LoginOTPScreen} name="SignInOTP" options={{ headerShown: false }} />
+      <LogInStack.Screen component={WelcomeBackScreen} name="SignInWelcomeBack" options={{ headerShown: false }} />
     </LogInStack.Navigator>
   );
 };

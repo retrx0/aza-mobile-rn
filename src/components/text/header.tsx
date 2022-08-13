@@ -1,30 +1,17 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-} from "react-native";
-import { darkGrey } from "../../common/colors";
+import { StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 import { hp } from "../../common/utils";
+import { Text, View } from "../Themed";
 
 export type HeaderProps = {
   heading: string;
-  description: string;
+  description?: string;
   style?: StyleProp<ViewStyle>;
   headerStyle: StyleProp<TextStyle>;
   descriptionStyle: StyleProp<TextStyle>;
 };
 
-export const Header = ({
-  heading,
-  description,
-  style,
-  headerStyle,
-  descriptionStyle,
-}: HeaderProps) => {
+export const Header = ({ heading, description, style, headerStyle, descriptionStyle }: HeaderProps) => {
   return (
     <View style={[styles.container, style]}>
       <Text style={[styles.heading, headerStyle]}>{heading}</Text>
@@ -42,7 +29,6 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: hp(16),
     fontWeight: "500",
-    color: darkGrey,
     lineHeight: hp(20.29),
   },
   description: {

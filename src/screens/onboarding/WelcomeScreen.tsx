@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Image, FlatList } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import { AZALogo } from "../../../assets/svg";
 import { RootStackScreenProps } from "../../../types";
 import CommonStyles from "../../common/styles/CommonStyles";
 import ButtonMd from "../../components/buttons/ButtonMd";
 import WelcomeScrollIndicator from "../../components/indicators/WelcomeScrollIndicator";
-import { View, SafeAreaView } from "../../components/Themed";
+import { View, SafeAreaView, useThemeColor } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data, logo } from "./OnboardingUtil";
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
+  const color = useThemeColor({ light: Colors.light.text, dark: Colors.dark.text }, "text");
+
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
     { id: 1, active: true },
     { id: 2, active: false },
@@ -27,9 +30,10 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           <WelcomeScrollIndicator key={id} count={5} active={active} />
         ))}
       </View>
-      <View style={{ height: "4%", marginTop: 50 }}>
-        <Image style={[styles.image]} source={logo} />
+      <View style={{ height: "4%", marginTop: 50, alignItems: "center" }}>
+        <AZALogo color={color} size={16} />
       </View>
+
       <AppIntroSlider
         style={[{ height: "70%" }]}
         data={carousel_data}
@@ -40,7 +44,6 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
         }}
         renderPagination={() => <></>}
         renderItem={(carousel) => {
-          console.log(carousel.item);
           return <CarouselWrapper carousel={carousel.item} />;
         }}
       />
