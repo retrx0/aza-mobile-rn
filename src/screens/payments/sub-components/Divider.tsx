@@ -3,15 +3,14 @@ import React from 'react'
 
 export default function Divider() {
   return (
-    <View style={styles.divide}>
-      
-    </View>
+    <View style={styles.divide}></View>
   )
 }
 const styles = StyleSheet.create({
 divide:{
     width:'100%',
     height:1,
-    backgroundColor:'#EAEAEC'
+    backgroundColor:'#EAEAEC',
+    marginTop:20
 }
 })

@@ -39,7 +39,20 @@ export const PaymentStyles=StyleSheet.create({
         lineHeight:18
        },
        imageIcon:{
-        width:28,
-        height:28,
-       }
+        width:58,
+        height:58,
+       },
+       imageHeaderContainer:{
+        marginLeft:20,
+        minHeight:70,
+        maxHeight:100
+ 
+        },
+        itemListContainer:{
+        paddingHorizontal:20,
+        width:'100%',
+        marginTop:10,
+        backgroundColor:'transparent',
+        flex:1
+        }
   })

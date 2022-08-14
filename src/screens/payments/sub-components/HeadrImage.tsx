@@ -1,24 +1,45 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React from 'react'
+import { TickIcon } from '../../../../assets/svg'
 
-
-export default function HeadrImage() {
+type HeaderImageProps={
+    image:any
+    header?:string
+    title:string
+    amount?:string
+}
+export default function HeadrImage({image,header,title,amount}:HeaderImageProps) {
   return (
-    <View style={styles.mainConatiner}>
+    <View style={[styles.mainConatiner,{height:amount?120:70}]}>
     <View style={styles.imageContainer}>
-    <Image style={styles.image} source={require('../../../../assets/images/mtn.png')}/>
-    <Image style={styles.icon} source={require('../../../../assets/images/Vector.png')}/>
+    <Image style={styles.image} source={image}/>
+    {
+    amount&&(
+        <View style={styles.icon}>
+        <TickIcon />
+        </View>
+    )
+    }
     </View>
-     <Text style={styles.text}>Paid</Text>
-     <Text style={styles.text2}>MTN</Text>
-     <Text style={styles.text3}>₦2,050</Text>
+    {
+    header&&(
+    <Text style={styles.text}>{header}</Text>
+    )
+    }
+     
+     <Text style={styles.text2}>{title}</Text>
+     {
+        amount&&(
+        <Text style={styles.text3}>₦{amount}</Text>
+        )
+     }
+     
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     mainConatiner:{
-    minHeight:100,
     width:44,
     backgroundColor:'#ffffff',
     alignItems:'center',
@@ -46,7 +67,6 @@ const styles = StyleSheet.create({
         position:'absolute',
         bottom:0,
         right:0,
-        backgroundColor:'green',
         transform:[{translateY:2}],
         borderRadius:20
     },

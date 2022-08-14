@@ -6,6 +6,8 @@ import { Header } from '../../components/text/header'
 import HeadrImage from './sub-components/HeadrImage'
 import {Image} from 'react-native'
 import Divider from './sub-components/Divider'
+import ListItem from './sub-components/ListItem'
+import { CableTvIcon, DataIcon, DropIcon, ElectricIcon, GiftIcon, LoveIcon, PieIcon, WifiIcon } from '../../../assets/svg'
 
 
 export default function PaymentIndexScreen() {
@@ -14,25 +16,69 @@ export default function PaymentIndexScreen() {
     <View style={styles.header}>
        <Text style={styles.headerText}>Payments</Text>
         <View style={styles.icon}>
-          <Image source={require('../../../assets/images/pie.png')} style={styles.imageIcon} />
+          <PieIcon style={styles.imageIcon} />
         </View>
     </View>
     <Header description='' headerStyle={null} descriptionStyle={null} style={styles.subHead} heading='Recent Payments'/>
     <ScrollView 
-   showsHorizontalScrollIndicator={false}
-    horizontal style={{
-        marginLeft:20,
-        maxHeight:120
+    showsHorizontalScrollIndicator={false}
+    horizontal 
+    style={styles.imageHeaderContainer}>
 
-        }}>
-    <HeadrImage/>
-    <HeadrImage/>
-    <HeadrImage/>
-    <HeadrImage/>
-    <HeadrImage/>
+    <HeadrImage 
+    header='Paid' 
+    title='MTN' 
+    amount='200'
+    image={require('../../../assets/images/mtn.png')}/>
+
 
     </ScrollView>
+
+    <ScrollView
+     style={styles.itemListContainer}>
     <Divider/>
+
+    <ListItem 
+    Icon={()=><DataIcon/>} 
+    title='Airtime & Data' 
+    route=''/>
+
+   <ListItem 
+    Icon={()=><WifiIcon/>} 
+    title='Internet' 
+    route=''/>
+
+   <ListItem 
+    Icon={()=><CableTvIcon/>} 
+    title='Cable TV' 
+    route=''/>
+
+
+  <ListItem 
+    Icon={()=><ElectricIcon/>} 
+    title='Electricity' 
+    route=''/>
+
+  
+<ListItem 
+    Icon={()=><DropIcon/>} 
+    title='Water' 
+    route=''/>
+
+
+<ListItem 
+    Icon={()=><GiftIcon/>} 
+    title='Gift Cards' 
+    route=''/>
+
+<ListItem 
+    Icon={()=><LoveIcon/>} 
+    title='Charity' 
+    route=''/>
+   
+   
+    </ScrollView>
+    
     </SafeAreaView>
   )
 }
