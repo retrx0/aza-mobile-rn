@@ -1,12 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import ButtonLg from "../../../components/buttons/ButtonLg";
-import { Text, View } from "../../../components/Themed";
-import OtpScreen from "../password/otp/OtpScreen";
+import OtpScreen from "../Password/otp/OtpScreen";
 import { SignUpStackProps } from "./SignUpNavigator";
 
-const SignUpOTPScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpOTPScreen = ({
+  navigation,
+}: NativeStackScreenProps<SignUpStackProps>) => {
   const [signUpOtp, setSignUpOtp] = useState("123456");
   return (
     <SpacerWrapper>

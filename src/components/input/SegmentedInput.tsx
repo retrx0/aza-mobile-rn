@@ -18,7 +18,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     <View style={styles.otpContainer}>
       <Text style={styles.otpText}>{headerText}</Text>
       <OTPInput
-        keyboardType="number-pad"
+        keyboardType='number-pad'
         pinCount={6}
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
         onCodeChanged={onValueChanged}
