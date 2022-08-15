@@ -4,24 +4,28 @@ const tabIconColorDefault = "#A6A6A6";
 
 export default {
   light: {
-    text: "#000",
+    text: "#121212",
     background: "#fff",
+    backgroundSecondary: "#F2F2F2",
     tint: tintColorLight,
     tabIconDefault: tabIconColorDefault,
     tabIconSelected: tintColorLight,
     error: "#FF361A",
     success: "#2AD168",
     separator: "#EAEAEC",
+    border: "#121212",
   },
   dark: {
     text: "#fff",
     background: "#121212",
+    backgroundSecondary: "#3A3D42",
     tint: tintColorDark,
     tabIconDefault: tabIconColorDefault,
     tabIconSelected: tintColorDark,
     error: "#FF361A",
     success: "#2AD168",
     separator: "#A4A4A4",
+    border: "#E7E9EA",
   },
   general: {
     text: "#FFFFFF",

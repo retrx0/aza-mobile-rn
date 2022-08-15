@@ -1,6 +1,4 @@
 import { StyleSheet } from "react-native";
-import { grey } from "../colors";
-import { hp } from "../utils";
 
 const CommonStyles = StyleSheet.create({
   container: {
@@ -23,7 +21,6 @@ const CommonStyles = StyleSheet.create({
   headerText: {
     padding: 5,
     margin: 4,
-    color: "#121212",
     fontWeight: "500",
     fontSize: 24,
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -33,7 +30,6 @@ const CommonStyles = StyleSheet.create({
     padding: 5,
     margin: 4,
     fontFamily: "Euclid-Circular-A",
-    color: grey,
     // marginBottom: hp(56),
     // marginTop: hp(40),
     marginLeft: 15,

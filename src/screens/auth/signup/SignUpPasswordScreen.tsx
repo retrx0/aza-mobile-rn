@@ -13,10 +13,7 @@ import { darkGrey, Primary, white } from "../../../common/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/utils";
 
-const SignUpPasswordScreen = ({
-  navigation,
-  route,
-}: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpPasswordScreen = ({ navigation, route }: NativeStackScreenProps<SignUpStackProps>) => {
   const { passWordScreenType }: any = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
@@ -27,22 +24,10 @@ const SignUpPasswordScreen = ({
       <View>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <Text style={[CommonStyles.headerText]}>
-        {passWordScreenType} AZA Passcode
-      </Text>
-      <Text style={[CommonStyles.bodyText]}>
-        The passcode will be used to access your account
-      </Text>
-      <SegmentedInput
-        value={"1221221"}
-        secureInput
-        headerText=''
-        onValueChanged={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
-      <View
-        style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
+      <Text style={[CommonStyles.headerText]}>{passWordScreenType} AZA Passcode</Text>
+      <Text style={[CommonStyles.bodyText]}>The passcode will be used to access your account</Text>
+      <SegmentedInput value={"1221221"} secureInput headerText="" onValueChanged={(): void => {}} />
+      <View style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
         <View style={[CommonStyles.row]}>
           <Text style={{ marginRight: 20 }}>Use as transaction pin?</Text>
           <Switch
@@ -55,7 +40,7 @@ const SignUpPasswordScreen = ({
         </View>
         <Separator />
         <Button
-          title='Continue'
+          title="Continue"
           style={{}}
           styleText={{}}
           onPressButton={() => {
@@ -71,10 +56,7 @@ const SignUpPasswordScreen = ({
 
 const Separator = () => {
   return (
-    <View
-      lightColor={Colors.light.separator}
-      darkColor={Colors.dark.separator}
-      style={[CommonStyles.separator]}></View>
+    <View lightColor={Colors.light.separator} darkColor={Colors.dark.separator} style={[CommonStyles.separator]}></View>
   );
 };
 
