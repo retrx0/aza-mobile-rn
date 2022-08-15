@@ -1,58 +1,30 @@
-import { Image, StyleSheet } from "react-native";
-import Button from "../../../components/buttons/Button";
-import { Undraw } from "../../../../assets/svg";
-import { Text, View } from "../../../components/Themed";
-import { hp } from "../../../common/utils";
-import { Header } from "../../../components/text/header";
+import { StyleSheet } from "react-native";
 
-const Vault = ({ navigation }) => {
+import { Text, View } from "../../../components/Themed";
+
+const Vault = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.vaultContainer}>
-        <Header
-          heading='Vault'
-          description={""}
-          headerStyle={undefined}
-          descriptionStyle={undefined}
-        />
-        <Image source={Undraw} resizeMode='cover' style={styles.undraw} />
-        <Text style={styles.vaultText}>You dont have any vaults</Text>
-        <Text style={styles.createVault}>
-          Click ‘New Vault’ to create a new vault
-        </Text>
-      </View>
-      <Button
-        title='New Vault'
-        onPressButton={() => navigation.navigate("newvault")}
-      />
+      <Text style={styles.title}>Vault</Text>
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  vaultContainer: {
-    alignSelf: "center",
-    alignItems: "center",
-  },
-  undraw: {
-    marginTop: hp(159),
-  },
-  createVault: {
-    fontSize: 14,
-    fontWeight: "400",
-    lineHeight: 17.75,
-    marginBottom: hp(158),
-  },
-  vaultText: {
-    fontSize: 16,
-    fontWeight: "600",
-    lineHeight: 20.29,
-    color: "#2A9E17",
-    marginTop: 30,
-    marginBottom: 10,
-  },
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
   },
 });
 

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../components/Themed";
-import { RootTabScreenProps } from "../../../types";
+import { Text, View } from "../../../components/Themed";
+import { RootTabScreenProps } from "../../../../types";
 
 const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
   return (

@@ -3,11 +3,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Pressable, useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
-import Home from "../screens/tabs/Home";
-import Payments from "../screens/tabs/Payments";
-import Profile from "../screens/tabs/Profile";
-import Vault from "../screens/tabs/Vault";
-import Settings from "../screens/tabs/Settings";
+import Home from "../screens/tabs/home/Home";
+import Payments from "../screens/tabs/payments/Payments";
+import Profile from "../screens/tabs/profile/Profile";
+import Vault from "../screens/tabs/vault/Vault";
+import Settings from "../screens/tabs/settings/Settings";
 import { RootTabParamList, RootTabScreenProps } from "../../types";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
