@@ -28,7 +28,7 @@ const SignUpScreen = ({
           Enter your phone number to continue
         </Text>
         <Text style={[CommonStyles.bodyText]}>
-          Phone Number <Text style={{ color: "red" }}>*</Text>
+          Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
       <PhoneInput
@@ -36,36 +36,19 @@ const SignUpScreen = ({
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry='ng'
         autoFormat
-        textStyle={{ fontSize: 16, padding: 3 }}
+        textStyle={[CommonStyles.textStyle]}
         textProps={{
           placeholder: "Enter a phone number...",
         }}
-        style={[
-          {
-            alignSelf: "center",
-            height: 50,
-            width: "90%",
-            padding: 10,
-            borderWidth: 1,
-            borderStyle: "solid",
-            borderRadius: 5,
-          },
-        ]}
+        style={[CommonStyles.textProps]}
       />
-      <View
-        style={[
-          CommonStyles.row,
-          { justifyContent: "center", marginVertical: 20 },
-        ]}>
+      <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={{}}>Already have an account? </Text>
         <TouchableOpacity
           onPress={() => {
             navigation.getParent()?.navigate("SignIn");
           }}>
-          <Text
-            style={[{ fontWeight: "bold", textDecorationLine: "underline" }]}>
-            Login
-          </Text>
+          <Text style={[CommonStyles.login]}>Login</Text>
         </TouchableOpacity>
       </View>
       <ButtonLg
@@ -78,7 +61,7 @@ const SignUpScreen = ({
         style={[
           CommonStyles.bodyText,
           CommonStyles.centerText,
-          { fontSize: 18 },
+          CommonStyles.otherWise,
         ]}>
         OR
       </Text>

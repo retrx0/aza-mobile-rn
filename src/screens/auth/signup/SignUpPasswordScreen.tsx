@@ -42,7 +42,9 @@ const SignUpPasswordScreen = ({
       <View
         style={[CommonStyles.container, { bottom: insets.bottom || hp(45) }]}>
         <View style={[CommonStyles.row]}>
-          <Text style={{ marginRight: 20 }}>Use as transaction pin?</Text>
+          <Text style={[CommonStyles.transaction]}>
+            Use as transaction pin?
+          </Text>
           <Switch
             trackColor={{ false: white, true: white }}
             thumbColor={isEnabled ? darkGrey : "white"}

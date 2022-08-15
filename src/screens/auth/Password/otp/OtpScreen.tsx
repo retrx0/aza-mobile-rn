@@ -1,6 +1,5 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { SigninStyles as styles } from "../../signin/styles";
 import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -22,11 +21,11 @@ const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onVerify } = props;
   return (
     <SpacerWrapper>
-      <View style={styles.Container}>
+      <View style={[CommonStyles.otpcontainer]}>
         <BackButton onPress={() => props.onBackButtonPressed()} />
-        <Text style={styles.otp}>OTP</Text>
+        <Text style={[CommonStyles.otp]}>OTP</Text>
       </View>
-      <Text style={styles.verification}>
+      <Text style={[CommonStyles.verification]}>
         Please enter the 6-digit code sent to your mobile number
       </Text>
       <SegmentedInput
@@ -35,18 +34,19 @@ const OtpScreen = (props: OtpProp) => {
         headerText='OTP'
         secureInput={false}
       />
-      <View style={[styles.noOtp, CommonStyles.row]}>
-        <Text style={styles.otpText}>Didn't get the code? </Text>
+      <View style={[CommonStyles.row, CommonStyles.noOtp]}>
+        <Text style={[CommonStyles.otpText]}>Didn't get the code? </Text>
         <TouchableOpacity>
-          <Text style={[styles.resend, { textDecorationLine: "underline" }]}>
+          <Text
+            style={[CommonStyles.resend, { textDecorationLine: "underline" }]}>
             Resend
           </Text>
         </TouchableOpacity>
       </View>
       <Button
         title='Continue'
-        style={styles.otpbutton}
-        styleText={styles.OTPButton}
+        style={[CommonStyles.otpbutton]}
+        styleText={[CommonStyles.OTPButton]}
         onPressButton={onVerify}
       />
     </SpacerWrapper>

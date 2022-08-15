@@ -1,6 +1,5 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { SigninStyles as styles } from "../../signin/styles";
 import Button from "../../../../components/buttons/Button";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -20,8 +19,10 @@ const WelcomeBackScreen = (props: WelcomeOTProp) => {
 
   return (
     <SpacerWrapper>
-      <Text style={styles.welcome}>Welcome back,Chiazo</Text>
-      <Text style={styles.sentCode}>Enter your Aza password to login</Text>
+      <Text style={[CommonStyles.welcome]}>Welcome back,Chiazo</Text>
+      <Text style={[CommonStyles.sentCode]}>
+        Enter your Aza password to login
+      </Text>
       <SegmentedInput
         value={otpCode}
         onValueChanged={onOtpChanged}
@@ -33,11 +34,11 @@ const WelcomeBackScreen = (props: WelcomeOTProp) => {
         <Button
           title='Login'
           style={{}}
-          styleText={styles.welcomeOTPButton}
+          styleText={[CommonStyles.welcomeOTPButton]}
           onPressButton={onVerify}
         />
         <TouchableOpacity>
-          <Text style={styles.welcomenoOtp}>Forget Me</Text>
+          <Text style={[CommonStyles.forgetOTP]}>Forget Me</Text>
         </TouchableOpacity>
       </View>
     </SpacerWrapper>

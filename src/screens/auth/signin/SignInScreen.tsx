@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { SigninStyles as styles } from "./styles";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -26,7 +25,7 @@ const SignInScreen = ({
           Enter your phone number to continue
         </Text>
         <Text style={[CommonStyles.bodyText]}>
-          Phone Number <Text style={{ color: "red" }}>*</Text>
+          Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
       <PhoneInput
@@ -34,11 +33,11 @@ const SignInScreen = ({
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry='ng'
         autoFormat
-        textStyle={styles.textStyle}
+        textStyle={[CommonStyles.textStyle]}
         textProps={{
           placeholder: "Enter a phone number...",
         }}
-        style={styles.phoneStyle}
+        style={[CommonStyles.phoneStyle]}
       />
       <ButtonLg
         title='Continue'
@@ -50,7 +49,7 @@ const SignInScreen = ({
         style={[
           CommonStyles.bodyText,
           CommonStyles.centerText,
-          { fontSize: 18 },
+          CommonStyles.otherWise,
         ]}>
         OR
       </Text>
