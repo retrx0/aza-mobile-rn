@@ -15,7 +15,7 @@ export const SigninStyles = StyleSheet.create({
     marginTop: hp(50),
     fontSize: hp(24),
     fontWeight: "bold",
-    color: Primary,
+    // color: Primary,
     paddingHorizontal: hp(10),
     lineHeight: hp(30.43),
     marginBottom: hp(10),
@@ -29,12 +29,12 @@ export const SigninStyles = StyleSheet.create({
     lineHeight: hp(20.29),
   },
   welcomebutton: {
-    backgroundColor: Primary,
+    // backgroundColor: Primary,
     marginTop: hp(340),
     width: wp(325),
   },
   welcomeOTPButton: {
-    color: "white",
+    // color: "white",
     fontSize: hp(14),
     lineHeight: hp(17.75),
     fontWeight: "500",
@@ -48,7 +48,7 @@ export const SigninStyles = StyleSheet.create({
   underlineStyleBase: {
     width: wp(40),
     height: hp(40),
-    color: Primary,
+    // color: Primary,
     fontSize: hp(18),
     borderRadius: hp(8),
     borderColor: Primary,
@@ -65,7 +65,7 @@ export const SigninStyles = StyleSheet.create({
   welcomenoOtp: {
     alignSelf: "center",
     fontWeight: "500",
-    color: Primary,
+    // color: Primary,
     fontSize: hp(14),
     lineHeight: hp(17.75),
   },
