@@ -41,8 +41,7 @@ export const Input = ({
         </View>
       ) : (
         <View>
-          <TextInput {...rest} style={[inputStyle]}>
-            {placeholder}
+          <TextInput placeholder={placeholder} {...rest} style={[inputStyle]}>
           </TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>

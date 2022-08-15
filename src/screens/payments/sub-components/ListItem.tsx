@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable } from 'react-native'
 import React from 'react'
 import Divider from './Divider'
 import { ArrowFowardIcon, DataIcon } from '../../../../assets/svg'
@@ -6,12 +6,13 @@ import { ArrowFowardIcon, DataIcon } from '../../../../assets/svg'
 type Props={
     Icon:any
     title:string
-    route:string
+    route:string,
+    onPress:any
 }
 
-export default function ListItem({Icon,title,route}:Props) {
+export default function ListItem({Icon,title,onPress}:Props) {
   return (
-    <View style={styles.listContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.listContainer}>
       <View style={styles.mainItem}>
         <View style={styles.item}>    
         <Icon/>
@@ -22,7 +23,7 @@ export default function ListItem({Icon,title,route}:Props) {
         </TouchableOpacity>
       </View>
       <Divider/>
-    </View>
+    </TouchableOpacity>
   )
 }
 const styles = StyleSheet.create({

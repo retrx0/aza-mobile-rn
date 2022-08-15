@@ -38,6 +38,7 @@ export type RootTabParamList = {
 
 export type PaymentsStackParamList = {
   PaymentIndex: undefined;
+  airtimeData:undefined
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

@@ -10,7 +10,7 @@ import ListItem from './sub-components/ListItem'
 import { CableTvIcon, DataIcon, DropIcon, ElectricIcon, GiftIcon, LoveIcon, PieIcon, WifiIcon } from '../../../assets/svg'
 
 
-export default function PaymentIndexScreen() {
+export default function PaymentIndexScreen({navigation}:{navigation?:any}) {
   return (
     <SafeAreaView style={styles.container}>
     <View style={styles.header}>
@@ -39,39 +39,48 @@ export default function PaymentIndexScreen() {
     <Divider/>
 
     <ListItem 
+    onPress={()=>{
+      navigation.navigate('airtimeData')
+    }}
     Icon={()=><DataIcon/>} 
     title='Airtime & Data' 
     route=''/>
 
    <ListItem 
+    onPress={()=>{}}
     Icon={()=><WifiIcon/>} 
     title='Internet' 
     route=''/>
 
-   <ListItem 
+   <ListItem
+   onPress={()=>{}} 
     Icon={()=><CableTvIcon/>} 
     title='Cable TV' 
     route=''/>
 
 
-  <ListItem 
+  <ListItem
+  onPress={()=>{}} 
     Icon={()=><ElectricIcon/>} 
     title='Electricity' 
     route=''/>
 
   
-<ListItem 
+<ListItem
+onPress={()=>{}} 
     Icon={()=><DropIcon/>} 
     title='Water' 
     route=''/>
 
 
-<ListItem 
+<ListItem
+onPress={()=>{}} 
     Icon={()=><GiftIcon/>} 
     title='Gift Cards' 
     route=''/>
 
-<ListItem 
+<ListItem
+onPress={()=>{}} 
     Icon={()=><LoveIcon/>} 
     title='Charity' 
     route=''/>

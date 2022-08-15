@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     text3:{
         fontWeight:'400',
         fontSize:12,
-        color:'#A6A6A6'
+        color:'#A6A6A6',
+        
     }
 })
