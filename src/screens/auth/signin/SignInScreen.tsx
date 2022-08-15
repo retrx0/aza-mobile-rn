@@ -15,11 +15,11 @@ const SignInScreen = ({
   const [phone, setPhone] = useState<string>("");
   return (
     <SpacerWrapper>
-      <BackButton
+      {/* <BackButton
         onPress={() => {
           navigation.getParent()?.navigate("Welcome");
         }}
-      />
+      /> */}
       <View>
         <Text style={[CommonStyles.headerText]}>Login</Text>
         <Text style={[CommonStyles.bodyText]}>
