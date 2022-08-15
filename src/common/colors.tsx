@@ -8,3 +8,5 @@ export const secondary = "#FFFFFF";
 export const tertiary = "#D7D7DB";
 
 export const white = "#F2F2F2";
+
+export const red = "#FF361A";

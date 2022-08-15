@@ -10,7 +10,6 @@ import {
   TextStyle,
   TouchableOpacity,
 } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { darkGrey, Primary } from "../../common/colors";
 import { hp, wp } from "../../common/util/utils";
 
@@ -47,9 +46,10 @@ export const Input = ({
         </View>
       ) : (
         <View>
-          <TextInput {...rest} style={[inputStyle]}>
-            {placeholder}
-          </TextInput>
+          <TextInput
+            placeholder={placeholder}
+            {...rest}
+            style={[inputStyle]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}
