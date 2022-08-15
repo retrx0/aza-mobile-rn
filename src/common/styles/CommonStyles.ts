@@ -2,11 +2,11 @@ import { Appearance, Platform, StyleSheet, StatusBar } from "react-native";
 import Colors from "../../constants/Colors";
 
 const CommonStyles = StyleSheet.create({
-  // container: {
-  //   position: "absolute",
-  //   alignSelf: "center",
-  // },
   //Grid
+  container: {
+    position: "absolute",
+    alignSelf: "center",
+  },
   row: {
     flexDirection: "row",
     alignSelf: "center",
@@ -61,20 +61,23 @@ const CommonStyles = StyleSheet.create({
     borderColor: "red",
     borderWidth: 1,
   },
-  container: {
+  parentcontainer: {
     flex: 1,
     backgroundColor:
       Appearance.getColorScheme() == "light"
         ? Colors.light.background
         : Colors.dark.background,
     paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
-    position: "absolute",
-    alignSelf: "center",
+    // position: "absolute",
+    // alignSelf: "center",
   },
   imageHeaderContainer: {
     marginLeft: 20,
     minHeight: 70,
     maxHeight: 100,
+  },
+  wrapperContainer: {
+    flex: 1,
   },
 });
 
