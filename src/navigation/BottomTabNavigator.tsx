@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Pressable, useColorScheme } from "react-native";
 import Colors from "../constants/Colors";
-import Home from "../screens/tabs/Home";
+import Home from "../screens/tabs/home/Home";
 import Payments from "../screens/tabs/Payments";
 import Profile from "../screens/tabs/Profile";
 import Vault from "../screens/tabs/Vault";
@@ -55,7 +55,9 @@ const BottomTabNavigator = () => {
         component={Payments}
         options={{
           title: "Payments",
-          tabBarIcon: ({ color }) => <TabBarIcon name="credit-card" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="credit-card" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
@@ -81,7 +83,10 @@ const BottomTabNavigator = () => {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 export default BottomTabNavigator;

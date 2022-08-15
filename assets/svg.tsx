@@ -1,6 +1,16 @@
 import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from "react-native-svg";
+import Svg, {
+  Path,
+  Circle,
+  Image,
+  Defs,
+  Use,
+  Pattern,
+  G,
+  Rect,
+  ClipPath,
+} from "react-native-svg";
 
 type SvgIconProps = {
   color: string;
@@ -66,10 +76,22 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
       <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
       <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
       <Defs>
-        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <Use href="#image0_1093_6630" transform="translate(-0.25) scale(0.003125)" />
+        <Pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
+          <Use
+            href="#image0_1093_6630"
+            transform="translate(-0.25) scale(0.003125)"
+          />
         </Pattern>
-        <Image href={require("../assets/images/logo/lightning-bolt.png")} width="480" height="320" />
+        <Image
+          href={require("../assets/images/logo/lightning-bolt.png")}
+          width="480"
+          height="320"
+        />
       </Defs>
     </Svg>
   );
@@ -254,11 +276,152 @@ export const Flag = () => {
     <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
       <Circle cx="7.5" cy="7.5" r="7.5" fill="url(#pattern0)" />
       <Defs>
-        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <Use xlinkHref="#image0_295_18064" transform="translate(-0.124378) scale(0.00497512)" />
+        <Pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
+          <Use
+            xlinkHref="#image0_295_18064"
+            transform="translate(-0.124378) scale(0.00497512)"
+          />
         </Pattern>
         <Image id="image0_295_18064" width="251" height="201" />
       </Defs>
+    </Svg>
+  );
+};
+
+export const DangerIcon = () => {
+  return (
+    <Svg width={24} height={24} fill="none">
+      <Path
+        d="M21.76 15.92 15.36 4.4C14.5 2.85 13.31 2 12 2s-2.5.85-3.36 2.4l-6.4 11.52c-.81 1.47-.9 2.88-.25 3.99.65 1.11 1.93 1.72 3.61 1.72h12.8c1.68 0 2.96-.61 3.61-1.72.65-1.11.56-2.53-.25-3.99ZM11.25 9c0-.41.34-.75.75-.75s.75.34.75.75v5c0 .41-.34.75-.75.75s-.75-.34-.75-.75V9Zm1.46 8.71-.15.12c-.06.04-.12.07-.18.09-.06.03-.12.05-.19.06-.06.01-.13.02-.19.02s-.13-.01-.2-.02a.636.636 0 0 1-.18-.06.757.757 0 0 1-.18-.09l-.15-.12c-.18-.19-.29-.45-.29-.71 0-.26.11-.52.29-.71l.15-.12c.06-.04.12-.07.18-.09.06-.03.12-.05.18-.06.13-.03.27-.03.39 0 .07.01.13.03.19.06.06.02.12.05.18.09l.15.12c.18.19.29.45.29.71 0 .26-.11.52-.29.71Z"
+        fill="#FF361A"
+      />
+    </Svg>
+  );
+};
+
+export const WithdrawIcon = () => (
+  <Svg width={40} height={40} fill="none">
+    <Path
+      d="M19.867 36.667c9.166 0 16.666-7.5 16.666-16.667 0-9.167-7.5-16.667-16.666-16.667C10.7 3.333 3.2 10.833 3.2 20c0 9.167 7.5 16.667 16.667 16.667ZM13.2 20h13.333"
+      stroke="#FF361A"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={24} height={24} fill="none">
+      <Path
+        d="M3 7h18M3 12h18M3 17h18"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+    </Svg>
+  );
+};
+
+export const MessageIcon = ({ color, size, style }: SvgIconProps) => (
+  <Svg width={size} height={size} fill="none">
+    <Path
+      d="M4.25 9.5H4c-2 0-3-.5-3-3V4c0-2 1-3 3-3h4c2 0 3 1 3 3v2.5c0 2-1 3-3 3h-.25a.507.507 0 0 0-.4.2l-.75 1c-.33.44-.87.44-1.2 0l-.75-1a.565.565 0 0 0-.4-.2Z"
+      stroke={color}
+      strokeWidth={0.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M7.998 5.5h.005M5.998 5.5h.004M3.997 5.5h.005"
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const ReceivedIcon = () => (
+  <Svg width={12} height={12} fill="none">
+    <Path
+      d="m2.5 8.75 7-7M2.5 3.615V8.75h5.135M1.75 11h8.5"
+      stroke="#2A9E17"
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const DepositIcon = () => (
+  <Svg width={40} height={40} fill="none">
+    <Path
+      d="M20 36.667c9.167 0 16.667-7.5 16.667-16.667 0-9.167-7.5-16.667-16.667-16.667-9.167 0-16.667 7.5-16.667 16.667 0 9.167 7.5 16.667 16.667 16.667ZM13.333 20h13.334M20 26.667V13.333"
+      stroke="#2AD168"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const SendIcon = ({ iconColor }: any) => (
+  <Svg width={12} height={12} fill="none">
+    <Path
+      d="M10.25 11h-8.5M9.5 1.75l-7 7M9.5 6.885V1.75H4.365"
+      stroke={iconColor ? iconColor : "#A6A6A6"}
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const TransferIcon = ({ color, size, style }: SvgIconProps) => (
+  <Svg width={size} height={size} fill="none">
+    <Path
+      d="m12.333 10.533 14.15-4.716c6.35-2.117 9.8 1.35 7.7 7.7l-4.716 14.15c-3.167 9.516-8.367 9.516-11.534 0l-1.4-4.2-4.2-1.4c-9.516-3.167-9.516-8.35 0-11.534ZM16.85 22.75l5.967-5.983"
+      stroke={color}
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const NairaIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg style={style} width={22} height={20} fill="none">
+      <Path
+        d="M21.183 11.16H18.18V8.272h3.003a.817.817 0 1 0 0-1.634H18.18V2.634c0-.584-.116-1.013-.343-1.275-.217-.248-.501-.364-.895-.364-.377 0-.65.115-.863.362-.225.262-.339.692-.339 1.278V6.64h-5.649L7.689 3.005c-.205-.324-.399-.628-.586-.92a4.091 4.091 0 0 0-.49-.636 1.567 1.567 0 0 0-.479-.335A1.585 1.585 0 0 0 5.48.995c-.333 0-.634.091-.923.279a1.528 1.528 0 0 0-.605.7c-.106.27-.162.687-.162 1.224V6.64H.817a.817.817 0 0 0 0 1.634H3.79v2.887H.817a.817.817 0 1 0 0 1.633H3.79v4.573c0 .567.12.992.355 1.262.225.257.51.377.896.377.373 0 .656-.12.89-.378.24-.264.361-.689.361-1.261v-4.573h5.112l2.766 4.242c.193.28.391.564.59.841.178.25.373.469.579.652.185.166.383.288.59.362.212.076.46.115.737.115.748 0 1.514-.229 1.514-1.927v-4.285h3.003a.817.817 0 0 0 0-1.634ZM15.74 8.272v2.886h-2.662l-1.907-2.886h4.569ZM6.292 4.957 7.39 6.639H6.292V4.957Zm0 6.202V8.273h2.164l1.882 2.886H6.292Zm9.448 4.029-1.582-2.395h1.582v2.395Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+//Might replace with lottie animation
+export const BvnVerificationSuccessIcon = () => {
+  return (
+    <Svg width={80} height={80} fill="none">
+      <Circle cx={40} cy={40} r={40} fill="#D8F9D2" />
+      <Circle cx={40} cy={40} r={30} fill="#2A9E17" />
+      <Path
+        d="M53.333 30 35 48.333 26.667 40"
+        stroke="#fff"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </Svg>
   );
 };

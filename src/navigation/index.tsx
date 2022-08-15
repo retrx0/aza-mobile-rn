@@ -5,7 +5,11 @@
  */
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
@@ -14,21 +18,39 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/modals/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import Home from "../screens/tabs/Home";
+import Home from "../screens/tabs/home/Home";
 import Vault from "../screens/tabs/Vault";
 import Payments from "../screens/tabs/Payments";
 import Settings from "../screens/tabs/Settings";
 import Profile from "../screens/tabs/Profile";
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../../types";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
-import { HomeIcon, PaymentsIcon, ProfileIcon, QRCodeIcon, SettingsIcon, VaultIcon } from "../../assets/svg";
+import BvnVerificationNavigator from "../screens/bvn/BvnVerificationNavigator";
+
+import {
+  AZALogo,
+  HomeIcon,
+  PaymentsIcon,
+  ProfileIcon,
+  QRCodeIcon,
+  SettingsIcon,
+  VaultIcon,
+  MenuIcon,
+} from "../../assets/svg";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
-    <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <NavigationContainer
+      linking={LinkingConfiguration}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -43,11 +65,27 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+      {/* <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="SignUp" component={SignUpRoot} options={{ headerShown: false }} />
-      <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+      <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: false }} /> */}
+
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="BvnVerification"
+        component={BvnVerificationNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="NotFound"
+        component={NotFoundScreen}
+        options={{ title: "Oops!" }}
+      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
@@ -75,6 +113,13 @@ const BottomTabNavigator = () => {
         name="Home"
         component={Home}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
+          headerStatusBarHeight: 70,
+
+          //center it in android
+          headerTitleAlign: "center",
+          headerTitle: () => (
+            <AZALogo size={25} color={Colors[colorScheme].text} />
+          ),
           title: "Home",
           tabBarIcon: ({ color }) => <HomeIcon color={color} size={16} />,
           headerRight: () => (
@@ -84,9 +129,24 @@ const BottomTabNavigator = () => {
                 opacity: pressed ? 0.5 : 1,
               })}
             >
-              <QRCodeIcon size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+              <QRCodeIcon
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
             </Pressable>
           ),
+          headerLeft: () => (
+            <Pressable
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+                marginLeft: 15,
+              })}
+            >
+              <MenuIcon size={25} color={Colors[colorScheme].text} />
+            </Pressable>
+          ),
+          headerShadowVisible: false,
         })}
       />
       <BottomTab.Screen
@@ -128,7 +188,10 @@ const BottomTabNavigator = () => {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 

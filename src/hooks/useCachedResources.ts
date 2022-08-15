@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 
 const Euclid = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Regular.ttf");
 const EuclidSemiBold = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-SemiBold.ttf");
+const EuclidBold = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Bold.ttf");
+const EuclidMedium = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Medium.ttf");
+const EuclidLight = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Light.ttf");
 const SpaceMono = require("../../assets/fonts/SpaceMono-Regular.ttf");
 
 const useCachedResources = () => {
@@ -23,6 +26,9 @@ const useCachedResources = () => {
         await Font.loadAsync({
           "Euclid-Circular-A": Euclid,
           "Euclid-Circular-A-Semi-Bold": EuclidSemiBold,
+          "Euclid-Circular-A-Bold": EuclidBold,
+          "Euclid-Circular-A-Medium": EuclidMedium,
+          "Euclid-Circular-A-Light": EuclidLight,
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
