@@ -43,7 +43,22 @@ import {
   SettingsIcon,
   VaultIcon,
   MenuIcon,
+  SendMoneyIcon,
+  RequestMoneyIcon,
+  RecurringTransferIcon,
+  SplitIcon,
+  GraphIcon,
+  FeesAndLimitsIcon,
+  HeadphoneIcon,
+  MessageQuestionIcon,
+  GalleryIcon,
+  UserIcon,
+  ClockIcon,
+  BankIcon,
+  CreditCardIcon,
+  LogoutIcon,
 } from "../../assets/svg";
+import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -100,88 +115,191 @@ const RootNavigator = () => {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
+  const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
+  const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
   const colorScheme = useColorScheme();
 
-  return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
-    >
-      <BottomTab.Screen
-        name="Home"
-        component={Home}
-        options={({ navigation }: RootTabScreenProps<"Home">) => ({
-          headerStatusBarHeight: 70,
+  const toggleProfileModal = () => {
+    setProfileModalVisible(!isProfileModalVisible);
+  };
 
-          //center it in android
-          headerTitleAlign: "center",
-          headerTitle: () => (
-            <AZALogo size={25} color={Colors[colorScheme].text} />
-          ),
-          title: "Home",
-          tabBarIcon: ({ color }) => <HomeIcon color={color} size={16} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <QRCodeIcon
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-          headerLeft: () => (
-            <Pressable
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-                marginLeft: 15,
-              })}
-            >
-              <MenuIcon size={25} color={Colors[colorScheme].text} />
-            </Pressable>
-          ),
-          headerShadowVisible: false,
-        })}
-      />
-      <BottomTab.Screen
-        name="Vault"
-        component={Vault}
-        options={{
-          title: "Vault",
-          tabBarIcon: ({ color }) => <VaultIcon color={color} size={16} />,
+  const toggleMenuModal = () => {
+    setMenuModalVisible(!isMenuModalVisible);
+  };
+
+  const menuBottomSheetListItems = [
+    {
+      itemName: "Split",
+      itemIcon: <SplitIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Monthly Summary",
+      itemIcon: <GraphIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Fees & Limits",
+      itemIcon: (
+        <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Frequently Asked Questions (FAQs)",
+      itemIcon: (
+        <MessageQuestionIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Customer Support",
+      itemIcon: (
+        <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+  ];
+
+  const profileBottomSheetListItems = [
+    {
+      itemName: "Choose Profile Photo",
+      itemIcon: <GalleryIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Account Details",
+      itemIcon: <UserIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Transaction History",
+      itemIcon: <ClockIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Bank Accounts",
+      itemIcon: <BankIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Debit/Credit Cards",
+      itemIcon: (
+        <CreditCardIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Sign out",
+      itemIcon: <LogoutIcon size={16} color={Colors[colorScheme].mainText} />,
+      onPress: () => console.log("called"),
+    },
+  ];
+
+  return (
+    <>
+      <BottomTab.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme].tint,
         }}
-      />
-      <BottomTab.Screen
-        name="Payments"
-        component={Payments}
-        options={{
-          title: "Payments",
-          tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={16} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => <SettingsIcon color={color} size={16} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: "Profile",
-          tabBarIcon: ({ color }) => <ProfileIcon color={color} size={16} />,
-        }}
-      />
-    </BottomTab.Navigator>
+      >
+        <BottomTab.Screen
+          name="Home"
+          component={Home}
+          options={({ navigation }: RootTabScreenProps<"Home">) => ({
+            headerStatusBarHeight: 70,
+
+            //center it in android
+            headerTitleAlign: "center",
+            headerTitle: () => (
+              <AZALogo size={25} color={Colors[colorScheme].text} />
+            ),
+            title: "Home",
+            tabBarIcon: ({ color }) => <HomeIcon color={color} size={16} />,
+            headerRight: () => (
+              <Pressable
+                onPress={() => navigation.navigate("Modal")}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <QRCodeIcon
+                  size={25}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+            ),
+            headerLeft: () => (
+              <Pressable
+                onPress={toggleMenuModal}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                  marginLeft: 15,
+                })}
+              >
+                <MenuIcon size={25} color={Colors[colorScheme].text} />
+              </Pressable>
+            ),
+            headerShadowVisible: false,
+          })}
+        />
+        <BottomTab.Screen
+          name="Vault"
+          component={Vault}
+          options={{
+            title: "Vault",
+            tabBarIcon: ({ color }) => <VaultIcon color={color} size={16} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Payments"
+          component={Payments}
+          options={{
+            title: "Payments",
+            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={16} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: "Settings",
+            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={16} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Profile"
+          listeners={{
+            tabPress: (e) =>
+              // to prevent the click from going to the profile screen and instead show a bottomsheet modal
+              {
+                e.preventDefault();
+                toggleProfileModal();
+              },
+          }}
+          component={Profile}
+          options={{
+            title: "Profile",
+            tabBarIcon: ({ color }) => <ProfileIcon color={color} size={16} />,
+          }}
+        />
+      </BottomTab.Navigator>
+      {isProfileModalVisible ? (
+        <CustomBottomSheet
+          isModalVisible={isProfileModalVisible}
+          toggleModal={toggleProfileModal}
+          listItems={profileBottomSheetListItems}
+        />
+      ) : (
+        <CustomBottomSheet
+          isModalVisible={isMenuModalVisible}
+          toggleModal={toggleMenuModal}
+          listItems={menuBottomSheetListItems}
+        />
+      )}
+    </>
   );
 };
 

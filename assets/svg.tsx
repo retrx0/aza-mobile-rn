@@ -460,3 +460,207 @@ export const RecurringTransferIcon = ({ color, size, style }: SvgIconProps) => {
     </Svg>
   );
 };
+
+export const GalleryIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M6 14.667h4c3.333 0 4.667-1.334 4.667-4.667V6c0-3.333-1.334-4.667-4.667-4.667H6C2.667 1.333 1.333 2.667 1.333 6v4c0 3.333 1.334 4.667 4.667 4.667Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M6 6.667A1.333 1.333 0 1 0 6 4a1.333 1.333 0 0 0 0 2.667ZM1.78 12.633l3.287-2.206c.526-.354 1.286-.314 1.76.093l.22.193c.52.447 1.36.447 1.88 0l2.773-2.38c.52-.446 1.36-.446 1.88 0l1.087.934"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const UserIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M8 8a3.333 3.333 0 1 0 0-6.667A3.333 3.333 0 0 0 8 8ZM13.727 14.667C13.727 12.087 11.16 10 8 10s-5.727 2.087-5.727 4.667"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const ClockIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M14.667 8A6.67 6.67 0 0 1 8 14.667 6.669 6.669 0 0 1 1.333 8 6.67 6.67 0 0 1 8 1.333 6.67 6.67 0 0 1 14.667 8Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M10.473 10.12 8.407 8.887c-.36-.214-.654-.727-.654-1.147V5.007"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const BankIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m8.247 1.433 6 2.4c.233.094.42.374.42.62v2.214c0 .366-.3.666-.667.666H2a.669.669 0 0 1-.667-.666V4.453c0-.246.187-.526.42-.62l6-2.4a.78.78 0 0 1 .494 0ZM14.667 14.667H1.333v-2c0-.367.3-.667.667-.667h12c.367 0 .667.3.667.667v2ZM2.667 12V7.333M5.333 12V7.333M8 12V7.333M10.667 12V7.333M13.333 12V7.333M.667 14.667h14.666"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 5.667a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const CreditCardIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M1.333 5.67h13.334M4 11.003h1.333M7 11.003h2.667"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M4.293 2.337H11.7c2.373 0 2.967.586 2.967 2.926v5.474c0 2.34-.594 2.926-2.96 2.926H4.293c-2.366.007-2.96-.58-2.96-2.92v-5.48c0-2.34.594-2.926 2.96-2.926Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const LogoutIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m11.627 9.747 1.706-1.707-1.706-1.707M6.507 8.04h6.78M7.84 13.333c-2.947 0-5.333-2-5.333-5.333S4.893 2.667 7.84 2.667"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const SplitIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m5.713 10.18 4.36-4.36M5.987 6.913a.82.82 0 1 0 0-1.64.82.82 0 0 0 0 1.64ZM10.347 10.727a.82.82 0 1 0 0-1.64.82.82 0 0 0 0 1.64Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 14.667A6.667 6.667 0 1 0 8 1.333a6.667 6.667 0 0 0 0 13.334Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const GraphIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M1.333 1.333v11.334c0 1.106.894 2 2 2h11.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="m3.333 11.333 3.06-3.573a1.33 1.33 0 0 1 1.954-.073l.633.633a1.336 1.336 0 0 0 1.953-.073L14 4.667"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M2.447 1.667v7.98c0 .653.306 1.273.833 1.666l3.473 2.6a2.09 2.09 0 0 0 2.5 0l3.474-2.6a2.08 2.08 0 0 0 .833-1.666v-7.98H2.447Z"
+        stroke={color}
+        strokeMiterlimit={10}
+      />
+      <Path
+        d="M1.333 1.667h13.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+      />
+      <Path
+        d="M5.333 5.333h5.334M5.333 8.667h5.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const MessageQuestionIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M11.333 12.287H8.667L5.7 14.26a.665.665 0 0 1-1.033-.553v-1.42c-2 0-3.334-1.334-3.334-3.334v-4c0-2 1.334-3.333 3.334-3.333h6.666c2 0 3.334 1.333 3.334 3.333v4c0 2-1.334 3.334-3.334 3.334Z"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 7.573v-.14c0-.453.28-.693.56-.886.273-.187.547-.427.547-.867 0-.613-.494-1.107-1.107-1.107s-1.107.494-1.107 1.107M7.997 9.167h.006"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M3.64 12.327V10.38c0-.647.507-1.227 1.227-1.227.646 0 1.226.507 1.226 1.227v1.873c0 1.3-1.08 2.38-2.38 2.38-1.3 0-2.38-1.086-2.38-2.38V8.147a6.608 6.608 0 0 1 6.634-6.78c3.746 0 6.7 3.033 6.7 6.706v4.107c0 1.3-1.08 2.38-2.38 2.38-1.3 0-2.38-1.08-2.38-2.38v-1.873c0-.647.506-1.227 1.226-1.227.647 0 1.227.507 1.227 1.227v2.02"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
