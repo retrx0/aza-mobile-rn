@@ -63,10 +63,6 @@ const CommonStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor:
-      Appearance.getColorScheme() == "light"
-        ? Colors.light.background
-        : Colors.dark.background,
     paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
     position: "absolute",
     alignSelf: "center",

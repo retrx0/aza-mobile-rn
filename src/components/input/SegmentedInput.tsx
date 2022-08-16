@@ -2,7 +2,7 @@ import React from "react";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { OTPInput, Text, View } from "../Themed";
 import { StyleSheet } from "react-native";
-import { hp, wp } from "../../common/util/utils";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 
 type SegmentedInputProps = {
@@ -18,7 +18,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     <View style={styles.otpContainer}>
       <Text style={styles.otpText}>{headerText}</Text>
       <OTPInput
-        keyboardType='number-pad'
+        keyboardType="number-pad"
         pinCount={6}
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
         onCodeChanged={onValueChanged}

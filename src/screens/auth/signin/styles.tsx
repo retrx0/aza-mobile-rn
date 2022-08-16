@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { darkGrey, Primary, white } from "../../../common/colors";
-import { hp, wp } from "../../../common/utils";
+import Colors from "../../../constants/Colors";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 
 export const SigninStyles = StyleSheet.create({
   sentCode: {
@@ -51,7 +51,7 @@ export const SigninStyles = StyleSheet.create({
     // color: Primary,
     fontSize: hp(18),
     borderRadius: hp(8),
-    borderColor: Primary,
+    borderColor: Colors.general.primary,
   },
 
   resend: {

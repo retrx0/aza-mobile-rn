@@ -6,7 +6,7 @@ import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp } from "../../../common/util/utils";
+import { hp } from "../../../common/util/LayoutUtil";
 
 type WelcomeOTProp = {
   otpCode: string;

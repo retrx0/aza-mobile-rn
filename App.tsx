@@ -14,9 +14,6 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <StatusBar />
-        {/* <Signin /> */}
-        {/* <Otp /> */}
-        {/* <Welcome /> */}
         <Navigation colorScheme={colorScheme} />
       </SafeAreaProvider>
     );

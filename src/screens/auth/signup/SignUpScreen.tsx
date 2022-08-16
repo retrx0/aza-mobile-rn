@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
-import ButtonMd from "../../../components/buttons/ButtonMd";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SignUpStackProps } from "./SignUpNavigator";

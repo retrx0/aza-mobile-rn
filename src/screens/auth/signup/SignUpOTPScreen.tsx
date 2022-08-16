@@ -10,9 +10,7 @@ const SignUpOTPScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps
     <SpacerWrapper>
       <OtpScreen
         onBackButtonPressed={() => navigation.goBack()}
-        onWrongNumber={function (): void {
-          throw new Error("Function not implemented.");
-        }}
+        onWrongNumber={function (): void {}}
         otpCode={signUpOtp}
         onOtpChanged={() => setSignUpOtp}
         onVerify={function (): void {

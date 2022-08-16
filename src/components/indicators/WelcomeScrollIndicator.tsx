@@ -1,5 +1,5 @@
 import React from "react";
-import { hp, wp } from "../../common/util/utils";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import { useThemeColor, View } from "../Themed";
 

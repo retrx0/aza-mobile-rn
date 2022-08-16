@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
-import { hp } from "../../common/utils";
+import { hp } from "../../common/util/LayoutUtil";
 import { Text, View } from "../Themed";
 
 export type HeaderProps = {

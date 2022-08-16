@@ -1,6 +1,6 @@
 import React from "react";
 import { ColorValue, GestureResponderEvent, StyleSheet, TouchableOpacity } from "react-native";
-import { hp, wp } from "../../common/util/utils";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import { Text } from "../Themed";
 
 const ButtonMd = (props: {
