@@ -1,16 +1,50 @@
+import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 import {
   DepositIcon,
+  RecurringTransferIcon,
+  RequestMoneyIcon,
+  SendMoneyIcon,
   TransferIcon,
   WithdrawIcon,
 } from "../../../../../assets/svg";
+import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
 export default function TransactionOptions() {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const colorScheme = useColorScheme();
+
+  const transferBottomSheetListItems = [
+    {
+      itemName: "Send Money",
+      itemIcon: (
+        <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Request Money",
+      itemIcon: (
+        <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+    {
+      itemName: "Recurring Transfer",
+      itemIcon: (
+        <RecurringTransferIcon size={16} color={Colors[colorScheme].mainText} />
+      ),
+      onPress: () => console.log("called"),
+    },
+  ];
 
   return (
     <>
@@ -33,7 +67,7 @@ export default function TransactionOptions() {
           </Text>
         </View>
 
-        <TouchableOpacity onPress={() => console.log("called")}>
+        <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
             <TransferIcon size={40} color={Colors[colorScheme].text} />
             <Text
@@ -57,6 +91,11 @@ export default function TransactionOptions() {
           </Text>
         </View>
       </View>
+      <CustomBottomSheet
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        listItems={transferBottomSheetListItems}
+      />
     </>
   );
 }
