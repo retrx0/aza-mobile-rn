@@ -1,16 +1,14 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import WelcomeBackScreen from "../Password/welcomeBack/WelcomeBackScreen";
+import SignInPasswordScreen from "./SignInPasswordScreen";
 import { LogInStackProps } from "./SignInNavigator";
 
-const WelcomeScreen = ({
-  navigation,
-}: NativeStackScreenProps<LogInStackProps>) => {
+const WelcomeScreen = ({ navigation }: NativeStackScreenProps<LogInStackProps>) => {
   const [WelcomeOtp, setWelcomeUpOtp] = useState("");
   return (
     <SpacerWrapper>
-      <WelcomeBackScreen
+      <SignInPasswordScreen
         otpCode={WelcomeOtp}
         onOtpChanged={() => setWelcomeUpOtp}
         onVerify={function (): void {

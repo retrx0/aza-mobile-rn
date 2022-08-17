@@ -1,4 +1,3 @@
-// import { Picker } from "@react-native-picker/picker";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -8,13 +7,18 @@ import ButtonLg from "../../../components/buttons/ButtonLg";
 import BoxTextInput from "../../../components/input/BoxTextInput";
 import { Text, View } from "../../../components/Themed";
 import { SignUpStackProps } from "./SignUpNavigator";
+<<<<<<< HEAD
 import RNPickerSelect from "react-native-picker-select";
 import { GENDER } from "../Password/SignInCard";
 import { Primary } from "../../../common/colors";
 // import { wp } from "../../../common/utils";
 // import { hp } from "../../../common/util/utils";
+=======
+>>>>>>> 3c3de3ccf8ce68a77a835de75831bed65131f8a3
 import { Picker } from "@react-native-picker/picker";
+import Colors from "../../../constants/Colors";
 
+<<<<<<< HEAD
 const SignUpEmailScreen = ({
   navigation,
 }: NativeStackScreenProps<SignUpStackProps>) => {
@@ -24,6 +28,9 @@ const SignUpEmailScreen = ({
   //   value: null,
   //   color: Primary,
   // };
+=======
+const SignUpEmailScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
+>>>>>>> 3c3de3ccf8ce68a77a835de75831bed65131f8a3
   return (
     <SpacerWrapper>
       <BackButton onPress={() => navigation.goBack()} />
@@ -31,6 +38,7 @@ const SignUpEmailScreen = ({
         <Text style={[CommonStyles.headerText]}>Profile Setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
+<<<<<<< HEAD
       <BoxTextInput
         placeHolder='Full Name'
         required
@@ -69,12 +77,16 @@ const SignUpEmailScreen = ({
           },
         }}
       /> */}
+=======
+      <BoxTextInput placeHolder="Full Name" required value="John Appleased" onChange={() => {}} />
+      <BoxTextInput placeHolder="Email" required value="johnappleased@apple.com" onChange={() => {}} />
+>>>>>>> 3c3de3ccf8ce68a77a835de75831bed65131f8a3
       <Picker collapsable>
         <Picker.Item label='male' value={"Male"} />
         <Picker.Item label='female' value={"Female"} />
       </Picker>
       <ButtonLg
-        color={"#000"}
+        color={Colors.general.black}
         alt={false}
         onPress={() => {
           navigation.navigate("SignUpPassword");

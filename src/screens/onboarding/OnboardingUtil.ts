@@ -12,7 +12,7 @@ export const logo = require("../../../assets/images/logo/AZA-logo-4.png");
 export const carousel_data: CarouselItem[] = [
   {
     id: 1,
-    source: require("../../../assets/images/banner/Home-onboard-1-2.png"),
+    source: require("../../../assets/images/banner/Home-onboard-1-new.png"),
     heading: "Life made easy",
     description: "Enjoy your experience on Aza while making your payments and exploring unprecedented features",
   },

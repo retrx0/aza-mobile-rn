@@ -1,114 +1,8 @@
-import { Appearance, Platform, StyleSheet, StatusBar } from "react-native";
-import Colors from "../../constants/Colors";
-import { hp, wp } from "../util/utils";
+import { StyleSheet } from "react-native";
+import Colors from "../../../constants/Colors";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 
-const CommonStyles = StyleSheet.create({
-  //Grid
-  container: {
-    position: "absolute",
-    alignSelf: "center",
-  },
-  row: {
-    flexDirection: "row",
-    alignSelf: "center",
-    alignItems: "center",
-  },
-  col: {
-    flexDirection: "column",
-    alignSelf: "center",
-    // margin: 5,
-    // padding: 5,
-  },
-  //Texts
-  headerText: {
-    padding: hp(5),
-    margin: hp(4),
-    fontWeight: "500",
-    fontSize: hp(24),
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
-    marginLeft: hp(15),
-  },
-  bodyText: {
-    padding: hp(5),
-    margin: hp(4),
-    fontFamily: "Euclid-Circular-A",
-    // marginBottom: hp(56),
-    // marginTop: hp(40),
-    marginLeft: hp(15),
-  },
-  centerText: {
-    textAlign: "center",
-  },
-  // Shadows
-  raised: {
-    shadowOffset: {
-      width: wp(0),
-      height: hp(2),
-    },
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: hp(3),
-    elevation: hp(5),
-  },
-  //Other
-  separator: {
-    marginVertical: hp(10),
-    height: hp(1),
-    width: wp(335),
-    alignSelf: "center",
-  },
-  //for testing only!
-  outlineThisComponent: {
-    borderColor: "red",
-    borderWidth: hp(1),
-  },
-  parentcontainer: {
-    flex: 1,
-    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
-    // position: "absolute",
-    // alignSelf: "center",
-  },
-  imageHeaderContainer: {
-    marginLeft: hp(20),
-    minHeight: hp(70),
-    maxHeight: hp(100),
-  },
-  wrapperContainer: {
-    flex: 1,
-  },
-
-  textProps: {
-    alignSelf: "center",
-    height: hp(55),
-    width: wp(350),
-    padding: hp(10),
-    borderWidth: hp(1),
-    borderStyle: "solid",
-    borderRadius: hp(5),
-    alignItems: "center",
-  },
-  login: {
-    fontWeight: "bold",
-    textDecorationLine: "underline",
-  },
-
-  otherWise: {
-    fontSize: hp(18),
-  },
-  user: {
-    justifyContent: "center",
-    marginVertical: 20,
-  },
-  textStyle: {
-    fontSize: 16,
-    padding: 3,
-  },
-  phoneNumber: {
-    color: Colors.general.red,
-  },
-  transaction: {
-    marginRight: 20,
-  },
+export const SigninStyles = StyleSheet.create({
   sentCode: {
     fontSize: hp(14),
     fontWeight: "400",
@@ -151,25 +45,24 @@ const CommonStyles = StyleSheet.create({
     height: hp(40),
     marginBottom: hp(61),
   },
-
-  otpcontainer: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
   underlineStyleBase: {
     width: wp(40),
     height: hp(40),
     // color: Primary,
     fontSize: hp(18),
     borderRadius: hp(8),
-    // borderColor: Primary,
+    borderColor: Colors.general.primary,
   },
 
+  resend: {
+    fontWeight: "500",
+    fontSize: hp(14),
+  },
   noOtp: {
     marginTop: hp(40),
     justifyContent: "center",
   },
-  forgetOTP: {
+  welcomenoOtp: {
     alignSelf: "center",
     fontWeight: "500",
     // color: Primary,
@@ -196,9 +89,9 @@ const CommonStyles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  resend: {
-    fontWeight: "bold",
-    textDecorationLine: "underline",
+  Container: {
+    alignItems: "center",
+    flexDirection: "row",
   },
 
   verification: {
@@ -218,7 +111,10 @@ const CommonStyles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: hp(40),
   },
-
+  textStyle: {
+    fontSize: 16,
+    padding: 3,
+  },
   header: {
     marginTop: hp(0),
     marginBottom: hp(0),
@@ -265,5 +161,3 @@ const CommonStyles = StyleSheet.create({
     marginVertical: hp(20),
   },
 });
-
-export default CommonStyles;

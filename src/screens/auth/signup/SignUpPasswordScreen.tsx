@@ -9,9 +9,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SignUpStackProps } from "./SignUpNavigator";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
-import { darkGrey, Primary, white } from "../../../common/colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp } from "../../../common/util/utils";
+import { hp } from "../../../common/util/LayoutUtil";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -21,6 +21,11 @@ const SignUpPasswordScreen = ({
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
   const insets = useSafeAreaInsets();
+
+  const colorScheme = useColorScheme();
+
+  const switchColor = Colors[colorScheme].backgroundSecondary;
+  const switchOnColor = Colors[colorScheme].success;
 
   return (
     <SpacerWrapper>
@@ -46,9 +51,9 @@ const SignUpPasswordScreen = ({
             Use as transaction pin?
           </Text>
           <Switch
-            trackColor={{ false: white, true: white }}
-            thumbColor={isEnabled ? darkGrey : "white"}
-            ios_backgroundColor={white}
+            trackColor={{ false: switchColor, true: switchOnColor }}
+            thumbColor={isEnabled ? "white" : "grey"}
+            ios_backgroundColor={switchColor}
             onValueChange={toggleSwitch}
             value={isEnabled}
           />

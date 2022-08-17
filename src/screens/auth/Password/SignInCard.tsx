@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity, Text } from "react-native";
-import { hp, wp } from "../../../common/utils";
+import { hp } from "../../../common/util/LayoutUtil";
 
 export type showBackgroundcolorProp = {
   showBackgroundcolor: {};
@@ -14,12 +14,7 @@ type SocialSignInProps = {
   connect: undefined;
 };
 
-export const SocialSigInCard = ({
-  icon,
-  onPress,
-  style,
-  connect,
-}: showBackgroundcolorProp & SocialSignInProps) => {
+export const SocialSigInCard = ({ icon, onPress, style, connect }: showBackgroundcolorProp & SocialSignInProps) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.signupButtons}>
       {icon}
