@@ -34,7 +34,7 @@ const OtpScreen = (props: OtpProp) => {
         headerText='OTP'
         secureInput={false}
       />
-      <View style={[CommonStyles.row, CommonStyles.noOtp]}>
+      <View style={[CommonStyles.row]}>
         <Text style={[CommonStyles.otpText]}>Didn't get the code? </Text>
         <TouchableOpacity>
           <Text

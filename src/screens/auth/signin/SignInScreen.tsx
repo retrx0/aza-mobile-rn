@@ -14,16 +14,12 @@ const SignInScreen = ({
   const [phone, setPhone] = useState<string>("");
   return (
     <SpacerWrapper>
-      {/* <BackButton
+      <BackButton
         onPress={() => {
           navigation.getParent()?.navigate("Welcome");
         }}
-      /> */}
+      />
       <View>
-        <Text style={[CommonStyles.headerText]}>Login</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to continue
-        </Text>
         <Text style={[CommonStyles.bodyText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
