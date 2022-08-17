@@ -3,9 +3,6 @@ import { TouchableOpacity } from "react-native";
 
 import {
   DepositIcon,
-  RecurringTransferIcon,
-  RequestMoneyIcon,
-  SendMoneyIcon,
   TransferIcon,
   WithdrawIcon,
 } from "../../../../../assets/svg";
@@ -13,38 +10,16 @@ import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSh
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { useBottomSheetType } from "../hooks/useBottomSheetType";
 
 export default function TransactionOptions() {
   const [isModalVisible, setModalVisible] = useState(false);
+  const transferBottomSheetListItems = useBottomSheetType("transfer");
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
   const colorScheme = useColorScheme();
-
-  const transferBottomSheetListItems = [
-    {
-      itemName: "Send Money",
-      itemIcon: (
-        <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Request Money",
-      itemIcon: (
-        <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Recurring Transfer",
-      itemIcon: (
-        <RecurringTransferIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-  ];
 
   return (
     <>

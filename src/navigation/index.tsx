@@ -43,22 +43,9 @@ import {
   SettingsIcon,
   VaultIcon,
   MenuIcon,
-  SendMoneyIcon,
-  RequestMoneyIcon,
-  RecurringTransferIcon,
-  SplitIcon,
-  GraphIcon,
-  FeesAndLimitsIcon,
-  HeadphoneIcon,
-  MessageQuestionIcon,
-  GalleryIcon,
-  UserIcon,
-  ClockIcon,
-  BankIcon,
-  CreditCardIcon,
-  LogoutIcon,
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
+import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -127,74 +114,8 @@ const BottomTabNavigator = () => {
     setMenuModalVisible(!isMenuModalVisible);
   };
 
-  const menuBottomSheetListItems = [
-    {
-      itemName: "Split",
-      itemIcon: <SplitIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Monthly Summary",
-      itemIcon: <GraphIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Fees & Limits",
-      itemIcon: (
-        <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Frequently Asked Questions (FAQs)",
-      itemIcon: (
-        <MessageQuestionIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Customer Support",
-      itemIcon: (
-        <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-  ];
-
-  const profileBottomSheetListItems = [
-    {
-      itemName: "Choose Profile Photo",
-      itemIcon: <GalleryIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Account Details",
-      itemIcon: <UserIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Transaction History",
-      itemIcon: <ClockIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Bank Accounts",
-      itemIcon: <BankIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Debit/Credit Cards",
-      itemIcon: (
-        <CreditCardIcon size={16} color={Colors[colorScheme].mainText} />
-      ),
-      onPress: () => console.log("called"),
-    },
-    {
-      itemName: "Sign out",
-      itemIcon: <LogoutIcon size={16} color={Colors[colorScheme].mainText} />,
-      onPress: () => console.log("called"),
-    },
-  ];
+  const menuBottomSheetListItems = useBottomSheetType("menu");
+  const profileBottomSheetListItems = useBottomSheetType("profile");
 
   return (
     <>
