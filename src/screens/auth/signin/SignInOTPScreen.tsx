@@ -7,7 +7,7 @@ import { LogInStackProps } from "./SignInNavigator";
 const LoginOTPScreen = ({
   navigation,
 }: NativeStackScreenProps<LogInStackProps>) => {
-  const [LoginOtp, setLoginUpOtp] = useState("");
+  const [LoginOtp, setLoginUpOtp] = useState("123456");
   return (
     <SpacerWrapper>
       <OtpScreen

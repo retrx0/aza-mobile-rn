@@ -39,7 +39,7 @@ const OtpScreen = (props: OtpProp) => {
         <TouchableOpacity>
           <Text
             style={[CommonStyles.resend, { textDecorationLine: "underline" }]}>
-            Resend
+            Resend Code
           </Text>
         </TouchableOpacity>
       </View>

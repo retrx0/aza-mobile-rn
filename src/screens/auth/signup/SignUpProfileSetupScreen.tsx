@@ -9,14 +9,19 @@ import { Text, View } from "../../../components/Themed";
 import { SignUpStackProps } from "./SignUpNavigator";
 import { Picker } from "@react-native-picker/picker";
 import Colors from "../../../constants/Colors";
+import Button from "../../../components/buttons/Button";
+import { hp } from "../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SignUpEmailScreen = ({
   navigation,
 }: NativeStackScreenProps<SignUpStackProps>) => {
+  const insets = useSafeAreaInsets();
+
   return (
     <SpacerWrapper>
       <BackButton onPress={() => navigation.goBack()} />
-      <View>
+      <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Profile Setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
@@ -32,17 +37,16 @@ const SignUpEmailScreen = ({
         value='johnappleased@apple.com'
         onChange={() => {}}
       />
+
       <Picker collapsable>
         <Picker.Item label='male' value={"Male"} />
         <Picker.Item label='female' value={"Female"} />
       </Picker>
-      <ButtonLg
-        color={Colors.general.black}
-        alt={false}
-        onPress={() => {
-          navigation.navigate("SignUpPassword");
-        }}
+
+      <Button
         title='Continue'
+        onPressButton={() => navigation.navigate("SignUpPassword")}
+        style={[CommonStyles.container, { bottom: insets.bottom || hp(45) }]}
       />
     </SpacerWrapper>
   );

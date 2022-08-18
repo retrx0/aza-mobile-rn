@@ -10,7 +10,7 @@ import { SignUpStackProps } from "./SignUpNavigator";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp } from "../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 
 const SignUpPasswordScreen = ({
@@ -32,9 +32,11 @@ const SignUpPasswordScreen = ({
       <View>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <Text style={[CommonStyles.headerText]}>
-        {passWordScreenType} AZA Passcode
-      </Text>
+      <View style={[CommonStyles.phoneContainer]}>
+        <Text style={[CommonStyles.headerText]}>
+          {passWordScreenType} Aza Passcode
+        </Text>
+      </View>
       <Text style={[CommonStyles.bodyText]}>
         The passcode will be used to access your account
       </Text>
@@ -61,13 +63,12 @@ const SignUpPasswordScreen = ({
         <Separator />
         <Button
           title='Continue'
-          style={{}}
-          styleText={{}}
           onPressButton={() => {
             passWordScreenType === "Create"
               ? navigation.navigate("SignUpConfirmPassword")
               : navigation.getParent()?.navigate("Root");
           }}
+          style={[CommonStyles.button]}
         />
       </View>
     </SpacerWrapper>
@@ -79,7 +80,8 @@ const Separator = () => {
     <View
       lightColor={Colors.light.separator}
       darkColor={Colors.dark.separator}
-      style={[CommonStyles.separator]}></View>
+      style={[CommonStyles.separator]}
+    />
   );
 };
 

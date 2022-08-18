@@ -7,6 +7,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LogInStackProps } from "./SignInNavigator";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
+import Button from "../../../components/buttons/Button";
+import styles from "../../onboarding/OnboardingStyles";
 
 const SignInScreen = ({
   navigation,
@@ -19,7 +21,7 @@ const SignInScreen = ({
           navigation.getParent()?.navigate("Welcome");
         }}
       />
-      <View>
+      <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.bodyText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
@@ -35,23 +37,15 @@ const SignInScreen = ({
         }}
         style={[CommonStyles.phoneStyle]}
       />
-      <ButtonLg
+
+      <Button
         title='Continue'
-        color={"#000"}
-        onPress={() => navigation.navigate("SignInOTP")}
-        alt={false}
+        onPressButton={() => navigation.navigate("SignInOTP")}
       />
-      <Text
-        style={[
-          CommonStyles.bodyText,
-          CommonStyles.centerText,
-          CommonStyles.otherWise,
-        ]}>
-        OR
-      </Text>
+      <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
         iconName='apple'
-        title='Connect with Apple'
+        title='Connect Apple Account'
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
@@ -65,7 +59,7 @@ const SignInScreen = ({
       />
       <ButtonLg
         iconName={"google"}
-        title='Connect with Google'
+        title='Connect Google Account'
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}
