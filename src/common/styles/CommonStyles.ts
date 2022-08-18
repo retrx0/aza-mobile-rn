@@ -1,6 +1,6 @@
 import { Appearance, Platform, StyleSheet, StatusBar } from "react-native";
 import Colors from "../../constants/Colors";
-import { hp, wp } from "../util/utils";
+import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
   //Grid
@@ -36,8 +36,15 @@ const CommonStyles = StyleSheet.create({
     // marginTop: hp(40),
     marginLeft: hp(15),
   },
+  phoneContainer: {
+    marginTop: hp(50),
+  },
+  iconStyle: {
+    marginLeft: 40,
+  },
   centerText: {
-    textAlign: "center",
+    width: wp(160),
+    left: 35,
   },
   // Shadows
   raised: {
@@ -76,16 +83,17 @@ const CommonStyles = StyleSheet.create({
   wrapperContainer: {
     flex: 1,
   },
-
+  button: {
+    width: wp(338),
+  },
   textProps: {
     alignSelf: "center",
-    height: hp(55),
-    width: wp(350),
-    padding: hp(10),
-    borderWidth: hp(1),
+    width: "90%",
+    padding: 10,
+    borderWidth: 1,
     borderStyle: "solid",
-    borderRadius: hp(5),
-    alignItems: "center",
+    borderRadius: 5,
+    marginBottom: hp(40),
   },
   login: {
     fontWeight: "bold",
@@ -101,7 +109,6 @@ const CommonStyles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 16,
-    padding: 3,
   },
   phoneNumber: {
     color: Colors.general.red,
@@ -155,6 +162,7 @@ const CommonStyles = StyleSheet.create({
   otpcontainer: {
     alignItems: "center",
     flexDirection: "row",
+    marginTop: hp(50),
   },
   underlineStyleBase: {
     width: wp(40),
@@ -165,10 +173,6 @@ const CommonStyles = StyleSheet.create({
     // borderColor: Primary,
   },
 
-  noOtp: {
-    marginTop: hp(40),
-    justifyContent: "center",
-  },
   forgetOTP: {
     alignSelf: "center",
     fontWeight: "500",
@@ -177,14 +181,16 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17.75),
   },
   otpText: {
-    fontWeight: "500",
     fontSize: hp(14),
+    fontWeight: "400",
+    color: Colors.general.darkGrey,
   },
   otp: {
-    marginLeft: hp(90),
-    fontSize: 16,
-    fontWeight: "600",
+    fontSize: hp(16),
+    fontWeight: "bold",
     lineHeight: 20.29,
+    left: 100,
+    textAlign: "center",
   },
   back: {
     marginLeft: hp(10),
@@ -197,26 +203,29 @@ const CommonStyles = StyleSheet.create({
     flexDirection: "row",
   },
   resend: {
-    fontWeight: "bold",
+    fontWeight: "400",
     textDecorationLine: "underline",
+
+    fontSize: hp(14),
   },
 
   verification: {
-    width: wp(321),
+    width: wp(340),
     marginTop: hp(30),
     fontSize: hp(14),
     fontWeight: "400",
     marginLeft: hp(20),
+    marginBottom: hp(32),
   },
   phoneStyle: {
     alignSelf: "center",
-    height: 50,
     width: "90%",
     padding: 10,
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 5,
     marginBottom: hp(40),
+    height: hp(50),
   },
 
   header: {
@@ -224,8 +233,8 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(0),
   },
   otpbutton: {
-    marginTop: hp(40),
-    width: wp(340),
+    marginTop: hp(20),
+    width: "90%",
   },
 
   OTPButton: {
@@ -252,12 +261,14 @@ const CommonStyles = StyleSheet.create({
   //   fontWeight: "500",
   // },
   orText: {
-    fontSize: 14,
+    fontSize: 18,
     alignSelf: "center",
     fontWeight: "500",
-    marginTop: hp(20),
+    marginTop: hp(30),
     marginBottom: hp(20),
     lineHeight: hp(18),
+    padding: hp(5),
+    color: Colors.general.darkGrey,
   },
   signupOptions: {
     justifyContent: "space-between",
