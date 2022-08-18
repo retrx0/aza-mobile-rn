@@ -1,3 +1,4 @@
+import { ScrollView } from "react-native";
 import { View } from "../../components/Themed";
 import CommonStyles from "../styles/CommonStyles";
 import NotchResponsive from "./NotchResponsiveness";
