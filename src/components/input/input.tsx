@@ -10,13 +10,8 @@ import {
   TextStyle,
   TouchableOpacity,
 } from "react-native";
-<<<<<<< HEAD
-import { darkGrey, Primary } from "../../common/colors";
-import { hp, wp } from "../../common/util/utils";
-=======
-import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
->>>>>>> 3c3de3ccf8ce68a77a835de75831bed65131f8a3
+import Colors from "../../constants/Colors";
 
 export type InputProps = {
   label: string;
@@ -43,7 +38,11 @@ export const Input = ({
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
           <View style={styles.divider} />
-          <TextInput placeholder="Your 10-digit phone number" style={styles.phoneInput} keyboardType="number-pad" />
+          <TextInput
+            placeholder='Your 10-digit phone number'
+            style={styles.phoneInput}
+            keyboardType='number-pad'
+          />
         </View>
       ) : (
         <View>

@@ -18,14 +18,14 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     <View style={styles.otpContainer}>
       <Text style={styles.otpText}>{headerText}</Text>
       <OTPInput
-        keyboardType="number-pad"
+        keyboardType='phone-pad'
         pinCount={6}
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
         onCodeChanged={onValueChanged}
         secureTextEntry={secureInput}
         autoFocusOnLoad
         codeInputFieldStyle={styles.underlineStyleBase}
-        codeInputHighlightStyle={styles.underlineStyleHighLighted}
+        // codeInputHighlightStyle={styles.underlineStyleHighLighted}
         onCodeFilled={(code) => {
           console.log(`Code is ${code}, you are good to go!`);
         }}
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     marginTop: hp(20),
     paddingHorizontal: hp(20),
     height: hp(40),
-    marginBottom: hp(50),
+    marginBottom: hp(100),
   },
   otpText: {
     marginBottom: 10,
@@ -59,9 +59,7 @@ const styles = StyleSheet.create({
     height: hp(40),
     fontSize: hp(18),
     borderRadius: hp(5),
-  },
-  underlineStyleHighLighted: {
-    borderColor: Colors.general.grey,
+    marginVertical: 50,
   },
 });
 
