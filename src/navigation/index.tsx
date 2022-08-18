@@ -12,17 +12,10 @@ import {
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { ColorSchemeName } from "react-native";
 
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/modals/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import Home from "../screens/tabs/home/Home";
-import Vault from "../screens/tabs/Vault";
-import Payments from "../screens/tabs/Payments";
-import Settings from "../screens/tabs/Settings";
-import Profile from "../screens/tabs/Profile";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -33,19 +26,7 @@ import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BvnVerificationNavigator from "../screens/bvn/BvnVerificationNavigator";
-
-import {
-  AZALogo,
-  HomeIcon,
-  PaymentsIcon,
-  ProfileIcon,
-  QRCodeIcon,
-  SettingsIcon,
-  VaultIcon,
-  MenuIcon,
-} from "../../assets/svg";
-import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
-import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
+import BottomTabNavigator from "./BottomTabNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -100,129 +81,6 @@ const RootNavigator = () => {
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
-const BottomTabNavigator = () => {
-  const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
-  const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
-  const colorScheme = useColorScheme();
-
-  const toggleProfileModal = () => {
-    setProfileModalVisible(!isProfileModalVisible);
-  };
-
-  const toggleMenuModal = () => {
-    setMenuModalVisible(!isMenuModalVisible);
-  };
-
-  const menuBottomSheetListItems = useBottomSheetType("menu");
-  const profileBottomSheetListItems = useBottomSheetType("profile");
-
-  return (
-    <>
-      <BottomTab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme].tint,
-        }}
-      >
-        <BottomTab.Screen
-          name="Home"
-          component={Home}
-          options={({ navigation }: RootTabScreenProps<"Home">) => ({
-            headerStatusBarHeight: 70,
-
-            //center it in android
-            headerTitleAlign: "center",
-            headerTitle: () => (
-              <AZALogo size={25} color={Colors[colorScheme].text} />
-            ),
-            title: "Home",
-            tabBarIcon: ({ color }) => <HomeIcon color={color} size={16} />,
-            headerRight: () => (
-              <Pressable
-                onPress={() => navigation.navigate("Modal")}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <QRCodeIcon
-                  size={25}
-                  color={Colors[colorScheme].text}
-                  style={{ marginRight: 15 }}
-                />
-              </Pressable>
-            ),
-            headerLeft: () => (
-              <Pressable
-                onPress={toggleMenuModal}
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                  marginLeft: 15,
-                })}
-              >
-                <MenuIcon size={25} color={Colors[colorScheme].text} />
-              </Pressable>
-            ),
-            headerShadowVisible: false,
-          })}
-        />
-        <BottomTab.Screen
-          name="Vault"
-          component={Vault}
-          options={{
-            title: "Vault",
-            tabBarIcon: ({ color }) => <VaultIcon color={color} size={16} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Payments"
-          component={Payments}
-          options={{
-            title: "Payments",
-            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={16} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Settings"
-          component={Settings}
-          options={{
-            title: "Settings",
-            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={16} />,
-          }}
-        />
-        <BottomTab.Screen
-          name="Profile"
-          listeners={{
-            tabPress: (e) =>
-              // to prevent the click from going to the profile screen and instead show a bottomsheet modal
-              {
-                e.preventDefault();
-                toggleProfileModal();
-              },
-          }}
-          component={Profile}
-          options={{
-            title: "Profile",
-            tabBarIcon: ({ color }) => <ProfileIcon color={color} size={16} />,
-          }}
-        />
-      </BottomTab.Navigator>
-      {isProfileModalVisible ? (
-        <CustomBottomSheet
-          isModalVisible={isProfileModalVisible}
-          toggleModal={toggleProfileModal}
-          listItems={profileBottomSheetListItems}
-        />
-      ) : (
-        <CustomBottomSheet
-          isModalVisible={isMenuModalVisible}
-          toggleModal={toggleMenuModal}
-          listItems={menuBottomSheetListItems}
-        />
-      )}
-    </>
-  );
-};
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/

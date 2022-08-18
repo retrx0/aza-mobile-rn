@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { Appearance, Platform, StyleSheet, StatusBar } from "react-native";
+import Colors from "../../constants/Colors";
 
 const CommonStyles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    alignSelf: "center",
-  },
+  // container: {
+  //   position: "absolute",
+  //   alignSelf: "center",
+  // },
   //Grid
   row: {
     flexDirection: "row",
@@ -59,6 +60,17 @@ const CommonStyles = StyleSheet.create({
   outlineThisComponent: {
     borderColor: "red",
     borderWidth: 1,
+  },
+  container: {
+    flex: 1,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+    position: "absolute",
+    alignSelf: "center",
+  },
+  imageHeaderContainer: {
+    marginLeft: 20,
+    minHeight: 70,
+    maxHeight: 100,
   },
 });
 

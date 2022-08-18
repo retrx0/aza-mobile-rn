@@ -4,7 +4,7 @@ import { Text, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { StyleSheet } from "react-native";
 import useColorScheme from "../../hooks/useColorScheme";
-import { hp } from "../../common/util/utils";
+import { hp } from "../../common/util/LayoutUtil";
 import Button from "../../components/buttons/Button";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";

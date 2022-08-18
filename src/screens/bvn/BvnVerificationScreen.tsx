@@ -5,7 +5,7 @@ import { Text, TextInput, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { StyleSheet } from "react-native";
 import useColorScheme from "../../hooks/useColorScheme";
-import { hp } from "../../common/util/utils";
+import { hp } from "../../common/util/LayoutUtil";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import CommonStyles from "../../common/styles/CommonStyles";

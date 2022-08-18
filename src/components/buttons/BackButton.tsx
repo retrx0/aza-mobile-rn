@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { BackIcon } from "../../../assets/svg";
-import { hp, wp } from "../../common/util/utils";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text, useThemeColor } from "../Themed";

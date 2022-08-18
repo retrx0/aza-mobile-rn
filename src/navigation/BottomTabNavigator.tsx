@@ -1,82 +1,150 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { Pressable, useColorScheme } from "react-native";
+import { Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import Home from "../screens/tabs/home/Home";
-import Payments from "../screens/tabs/Payments";
-import Profile from "../screens/tabs/Profile";
-import Vault from "../screens/tabs/Vault";
-import Settings from "../screens/tabs/Settings";
+import Payments from "../screens/tabs/payments/Payments";
+import Profile from "../screens/tabs/profile/Profile";
+import Vault from "../screens/tabs/vault/Vault";
+import Settings from "../screens/tabs/settings/Settings";
 import { RootTabParamList, RootTabScreenProps } from "../../types";
+import useColorScheme from "../hooks/useColorScheme";
+import {
+  HomeIcon,
+  QRCodeIcon,
+  VaultIcon,
+  PaymentsIcon,
+  SettingsIcon,
+  ProfileIcon,
+  MenuIcon,
+  AZALogo,
+} from "../../assets/svg";
+import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
+import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
+  const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
+  const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
   const colorScheme = useColorScheme();
 
+  const toggleProfileModal = () => {
+    setProfileModalVisible(!isProfileModalVisible);
+  };
+
+  const toggleMenuModal = () => {
+    setMenuModalVisible(!isMenuModalVisible);
+  };
+
+  const menuBottomSheetListItems = useBottomSheetType("menu");
+  const profileBottomSheetListItems = useBottomSheetType("profile");
+
   return (
-    <BottomTab.Navigator
-      initialRouteName="Home"
-      screenOptions={
-        {
-          // tabBarActiveTintColor: Colors[colorScheme].tint,
-        }
-      }
-    >
-      <BottomTab.Screen
-        name="Home"
-        component={Home}
-        options={({ navigation }: RootTabScreenProps<"Home">) => ({
-          title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              {/* <FontAwesome name="qrcode" size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} /> */}
-            </Pressable>
-          ),
-        })}
-      />
-      <BottomTab.Screen
-        name="Vault"
-        component={Vault}
-        options={{
-          title: "Vault",
-          tabBarIcon: ({ color }) => <TabBarIcon name="lock" color={color} />,
+    <>
+      <BottomTab.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme].tint,
         }}
-      />
-      <BottomTab.Screen
-        name="Payments"
-        component={Payments}
-        options={{
-          title: "Payments",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="credit-card" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => <TabBarIcon name="gear" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: "Profile",
-          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
+      >
+        <BottomTab.Screen
+          name="Home"
+          component={Home}
+          options={({ navigation }: RootTabScreenProps<"Home">) => ({
+            headerStatusBarHeight: 70,
+
+            //center it in android
+            headerTitleAlign: "center",
+            headerTitle: () => (
+              <AZALogo size={25} color={Colors[colorScheme].text} />
+            ),
+            title: "Home",
+            tabBarIcon: ({ color }) => <HomeIcon color={color} size={16} />,
+            headerRight: () => (
+              <Pressable
+                onPress={() => navigation.navigate("Modal")}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <QRCodeIcon
+                  size={25}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+            ),
+            headerLeft: () => (
+              <Pressable
+                onPress={toggleMenuModal}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                  marginLeft: 15,
+                })}
+              >
+                <MenuIcon size={25} color={Colors[colorScheme].text} />
+              </Pressable>
+            ),
+            headerShadowVisible: false,
+          })}
+        />
+        <BottomTab.Screen
+          name="Vault"
+          component={Vault}
+          options={{
+            title: "Vault",
+            tabBarIcon: ({ color }) => <VaultIcon color={color} size={16} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Payments"
+          component={Payments}
+          options={{
+            title: "Payments",
+            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={16} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: "Settings",
+            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={16} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Profile"
+          listeners={{
+            tabPress: (e) =>
+              // to prevent the click from going to the profile screen and instead show a bottomsheet modal
+              {
+                e.preventDefault();
+                toggleProfileModal();
+              },
+          }}
+          component={Profile}
+          options={{
+            title: "Profile",
+            tabBarIcon: ({ color }) => <ProfileIcon color={color} size={16} />,
+          }}
+        />
+      </BottomTab.Navigator>
+      {isProfileModalVisible ? (
+        <CustomBottomSheet
+          isModalVisible={isProfileModalVisible}
+          toggleModal={toggleProfileModal}
+          listItems={profileBottomSheetListItems}
+        />
+      ) : (
+        <CustomBottomSheet
+          isModalVisible={isMenuModalVisible}
+          toggleModal={toggleMenuModal}
+          listItems={menuBottomSheetListItems}
+        />
+      )}
+    </>
   );
 };
 

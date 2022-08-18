@@ -1,5 +1,5 @@
 import Modal from "react-native-modal";
-import { hp } from "../../common/util/utils";
+import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import Button from "../buttons/Button";

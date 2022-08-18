@@ -3,7 +3,7 @@ import { Platform, StyleSheet } from "react-native";
 
 import { Text, View } from "../../components/Themed";
 
-export default function ModalScreen() {
+const ModalScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Modal</Text>
@@ -13,7 +13,7 @@ export default function ModalScreen() {
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -31,3 +31,5 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+
+export default ModalScreen;

@@ -26,15 +26,29 @@ const OtpScreen = (props: OtpProp) => {
         <BackButton onPress={() => props.onBackButtonPressed()} />
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>Please enter the 6-digit code sent to your mobile number</Text>
-      <SegmentedInput value={otpCode} onValueChanged={onOtpChanged} headerText="OTP" secureInput={false} />
+      <Text style={styles.verification}>
+        Please enter the 6-digit code sent to your mobile number
+      </Text>
+      <SegmentedInput
+        value={otpCode}
+        onValueChanged={onOtpChanged}
+        headerText='OTP'
+        secureInput={false}
+      />
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
         <TouchableOpacity>
-          <Text style={[styles.resend, { textDecorationLine: "underline" }]}>Resend</Text>
+          <Text style={[styles.resend, { textDecorationLine: "underline" }]}>
+            Resend
+          </Text>
         </TouchableOpacity>
       </View>
-      <Button title="Continue" style={styles.otpbutton} styleText={styles.OTPButton} onPressButton={onVerify} />
+      <Button
+        title='Continue'
+        style={styles.otpbutton}
+        styleText={styles.OTPButton}
+        onPressButton={onVerify}
+      />
     </SpacerWrapper>
   );
 };

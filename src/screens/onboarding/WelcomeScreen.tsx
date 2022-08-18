@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Image, FlatList } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { AZALogo } from "../../../assets/svg";
 import { RootStackScreenProps } from "../../../types";

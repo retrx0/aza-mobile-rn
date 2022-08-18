@@ -2,7 +2,7 @@ import React from "react";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { OTPInput, Text, View } from "../Themed";
 import { StyleSheet } from "react-native";
-import { hp, wp } from "../../common/util/utils";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 
 type SegmentedInputProps = {
