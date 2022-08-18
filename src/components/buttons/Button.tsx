@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { TouchableOpacity, Text, StyleProp, TextStyle, ViewStyle } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import { useThemeColor } from "../Themed";
@@ -12,14 +18,21 @@ type ButtonPropsType = {
   styleText?: StyleProp<TextStyle>;
 };
 
-export const Button: FC<ButtonPropsType> = ({ title, onPressButton, isNext, style, styleText }) => {
+export const Button: FC<ButtonPropsType> = ({
+  title,
+  onPressButton,
+  isNext,
+  style,
+  styleText,
+}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPressButton}
-      style={[styles.doneButton, isNext && styles.nextButton, style]}
-    >
-      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>{title}</Text>
+      style={[styles.doneButton, isNext && styles.nextButton, style]}>
+      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -37,7 +50,7 @@ const styles = {
   },
   doneButton: {
     backgroundColor: Colors.general.black,
-    width: wp(335),
+    width: "90%",
     height: hp(50),
     borderRadius: hp(10),
     alignItems: "center",
@@ -48,6 +61,7 @@ const styles = {
   },
   nextButton: {
     backgroundColor: Colors.general.primary,
+    width: "90%",
   },
 };
 
