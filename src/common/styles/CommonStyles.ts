@@ -22,29 +22,57 @@ const CommonStyles = StyleSheet.create({
   //Texts
   headerText: {
     padding: hp(5),
+    fontWeight: "600",
+    fontSize: hp(26),
+    fontFamily: "Euclid-Circular-A-Bold",
+    marginLeft: hp(15),
+    lineHeight: hp(30),
+  },
+  phoneText: {
+    padding: hp(5),
     margin: hp(4),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    marginTop: hp(35),
+    marginLeft: hp(15),
+    fontSize: hp(16),
     fontWeight: "500",
-    fontSize: hp(24),
+  },
+
+  setUpText: {
+    padding: hp(5),
+    margin: hp(4),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginLeft: hp(15),
+    fontSize: hp(16),
+    fontWeight: "500",
+    lineHeight: hp(20),
   },
+  genderstyle: {
+    marginLeft: hp(18),
+    fontSize: hp(16),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    marginTop: hp(40),
+    fontWeight: "500",
+  },
+
   bodyText: {
     padding: hp(5),
     margin: hp(4),
     fontFamily: "Euclid-Circular-A",
-    // marginBottom: hp(56),
-    // marginTop: hp(40),
     marginLeft: hp(15),
+    fontSize: hp(15.5),
+    fontWeight: "400",
+    lineHeight: hp(18),
   },
   phoneContainer: {
     marginTop: hp(50),
   },
   iconStyle: {
-    marginLeft: 40,
+    marginLeft: 26,
   },
   centerText: {
     width: wp(160),
-    left: 35,
+    left: 30,
   },
   // Shadows
   raised: {
@@ -95,27 +123,32 @@ const CommonStyles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: hp(40),
   },
+  account: {
+    fontSize: hp(16),
+    fontWeight: "100",
+  },
   login: {
     fontWeight: "bold",
     textDecorationLine: "underline",
+    fontSize: hp(16),
+    fontFamily: "Euclid-Circular-A-Bold",
   },
 
   otherWise: {
     fontSize: hp(18),
   },
   user: {
-    justifyContent: "center",
-    marginVertical: 20,
+    marginVertical: hp(20),
   },
   textStyle: {
-    fontSize: 16,
+    fontSize: hp(16),
+    fontWeight: "400",
+    fontFamily: "Euclid-Circular-A",
   },
   phoneNumber: {
     color: Colors.general.red,
   },
-  transaction: {
-    marginRight: 20,
-  },
+  transaction: {},
   sentCode: {
     fontSize: hp(14),
     fontWeight: "400",
@@ -181,16 +214,17 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17.75),
   },
   otpText: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
-    color: Colors.general.darkGrey,
+    color: Colors.general.primary,
   },
   otp: {
-    fontSize: hp(16),
-    fontWeight: "bold",
+    fontSize: hp(18),
+    fontWeight: "500",
     lineHeight: 20.29,
     left: 100,
     textAlign: "center",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   back: {
     marginLeft: hp(10),
@@ -205,27 +239,28 @@ const CommonStyles = StyleSheet.create({
   resend: {
     fontWeight: "400",
     textDecorationLine: "underline",
-
-    fontSize: hp(14),
+    fontFamily: "Euclid-Circular-A-Bold",
+    fontSize: hp(16),
   },
 
   verification: {
     width: wp(340),
     marginTop: hp(30),
-    fontSize: hp(14),
-    fontWeight: "400",
+    fontSize: hp(16),
     marginLeft: hp(20),
     marginBottom: hp(32),
+    fontFamily: "Euclid-Circular-A-Medium",
+    lineHeight: hp(18),
+    color: Colors.general.black,
   },
   phoneStyle: {
     alignSelf: "center",
     width: "90%",
     padding: 10,
     borderWidth: 1,
-    borderStyle: "solid",
     borderRadius: 5,
     marginBottom: hp(40),
-    height: hp(50),
+    height: hp(55),
   },
 
   header: {
@@ -234,7 +269,6 @@ const CommonStyles = StyleSheet.create({
   },
   otpbutton: {
     marginTop: hp(20),
-    width: "90%",
   },
 
   OTPButton: {
@@ -268,7 +302,7 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(20),
     lineHeight: hp(18),
     padding: hp(5),
-    color: Colors.general.darkGrey,
+    color: Colors.general.grey,
   },
   signupOptions: {
     justifyContent: "space-between",
