@@ -42,8 +42,9 @@ const styles = {
     color: Colors.general.secondary,
     fontWeight: "500",
     letterSpacing: hp(0.5),
-    fontSize: hp(14),
-    lineHeight: hp(17.75),
+    fontSize: hp(16),
+    lineHeight: hp(18),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   nextText: {
     color: Colors.general.secondary,
@@ -57,7 +58,6 @@ const styles = {
     justifyContent: "center",
     alignSelf: "center",
     // marginTop: 100,
-    marginBottom: hp(20),
   },
   nextButton: {
     backgroundColor: Colors.general.primary,

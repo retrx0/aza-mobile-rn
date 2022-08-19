@@ -52,8 +52,9 @@ const ButtonLg = (props: {
               CommonStyles.centerText,
               {
                 color: props.alt ? "black" : "white",
-                fontSize: 14,
+                fontSize: 16,
                 flex: 6,
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
               },
             ]}>
             {props.title}

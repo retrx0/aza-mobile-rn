@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "500",
     fontSize: hp(16),
+    fontFamily: "Euclid-Circular-A-Bold",
+    lineHeight: hp(20),
   },
   otp: {
     marginLeft: hp(90),
