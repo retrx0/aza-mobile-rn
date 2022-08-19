@@ -23,11 +23,11 @@ const SignUpScreen = ({
         }}
       />
       <View style={[CommonStyles.phoneContainer]}>
-        <Text style={[CommonStyles.headerText]}>Sign up for Aza</Text>
+        <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
         <Text style={[CommonStyles.bodyText]}>
           Enter your phone number to continue
         </Text>
-        <Text style={[CommonStyles.bodyText]}>
+        <Text style={[CommonStyles.phoneText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
@@ -47,7 +47,7 @@ const SignUpScreen = ({
         onPressButton={() => navigation.navigate("SignUpOTP")}
       />
       <View style={[CommonStyles.row, CommonStyles.user]}>
-        <Text style={{}}>Already have an account? </Text>
+        <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <TouchableOpacity
           onPress={() => {
             navigation.getParent()?.navigate("SignIn");

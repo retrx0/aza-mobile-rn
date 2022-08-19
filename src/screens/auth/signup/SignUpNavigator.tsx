@@ -25,21 +25,29 @@ const SignUpRoot = () => {
     <SignUpStack.Navigator>
       <SignUpStack.Screen
         component={SignUpScreen}
-        name="SignUpRoot"
+        name='SignUpRoot'
         options={{ headerShown: false, title: "Sign Up" }}
       />
-      <SignUpStack.Screen component={SignUpEmailScreen} name="SignUpProfileSetup" options={{ headerShown: false }} />
-      <SignUpStack.Screen component={SignUpOTPScreen} name="SignUpOTP" options={{ headerShown: false }} />
+      <SignUpStack.Screen
+        component={SignUpEmailScreen}
+        name='SignUpProfileSetup'
+        options={{ headerShown: false }}
+      />
+      <SignUpStack.Screen
+        component={SignUpOTPScreen}
+        name='SignUpOTP'
+        options={{ headerShown: false }}
+      />
       <SignUpStack.Screen
         component={SignUpPasswordScreen}
         initialParams={create}
-        name="SignUpPassword"
+        name='SignUpPassword'
         options={{ headerShown: false }}
       />
       <SignUpStack.Screen
         component={SignUpPasswordScreen}
         initialParams={confirm}
-        name="SignUpConfirmPassword"
+        name='SignUpConfirmPassword'
         options={{ headerShown: false }}
       />
     </SignUpStack.Navigator>

@@ -46,7 +46,6 @@ const OtpScreen = (props: OtpProp) => {
       <Button
         title='Continue'
         style={[CommonStyles.otpbutton]}
-        styleText={[CommonStyles.OTPButton]}
         onPressButton={onVerify}
       />
     </SpacerWrapper>

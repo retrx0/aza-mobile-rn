@@ -34,11 +34,11 @@ const SignUpPasswordScreen = ({
       </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>
-          {passWordScreenType} Aza Passcode
+          {passWordScreenType} Aza Password
         </Text>
       </View>
       <Text style={[CommonStyles.bodyText]}>
-        The passcode will be used to access your account
+        The password will be used to access your account
       </Text>
       <SegmentedInput
         value={"1221221"}
@@ -46,18 +46,21 @@ const SignUpPasswordScreen = ({
         headerText=''
         onValueChanged={(): void => {}}
       />
-      <View
-        style={[CommonStyles.container, { bottom: insets.bottom || hp(45) }]}>
+      <View style={[CommonStyles.container, { bottom: hp(400) }]}>
         <View style={[CommonStyles.row]}>
           <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?
           </Text>
+
           <Switch
             trackColor={{ false: switchColor, true: switchOnColor }}
             thumbColor={isEnabled ? "white" : "grey"}
             ios_backgroundColor={switchColor}
             onValueChange={toggleSwitch}
             value={isEnabled}
+            style={{
+              marginLeft: hp(13),
+            }}
           />
         </View>
         <Separator />
