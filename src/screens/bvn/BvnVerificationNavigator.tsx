@@ -1,13 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { BvnVerificationStackParamList } from "../../common/navigation/types";
 import BvnVerificationScreen from "./BvnVerificationScreen";
 import BvnVerificationSuccess from "./BvnVerificationSuccess";
 
-const BvnVerificationStack = createNativeStackNavigator();
-
-export type BvnVerificationStackProps = {
-  BvnVerificationScreen: undefined;
-  BvnVerificationSuccess: undefined;
-};
+const BvnVerificationStack = createNativeStackNavigator<BvnVerificationStackParamList>();
 
 const BvnVerificationNavigator = () => {
   return (
@@ -17,9 +13,7 @@ const BvnVerificationNavigator = () => {
         name="BvnVerificationScreen"
         options={() => ({ headerShadowVisible: false })}
       />
-      <BvnVerificationStack.Group
-        screenOptions={{ presentation: "fullScreenModal" }}
-      >
+      <BvnVerificationStack.Group screenOptions={{ presentation: "fullScreenModal" }}>
         <BvnVerificationStack.Screen
           component={BvnVerificationSuccess}
           name="BvnVerificationSuccess"

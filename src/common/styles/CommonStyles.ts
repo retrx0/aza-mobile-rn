@@ -29,7 +29,7 @@ const CommonStyles = StyleSheet.create({
   },
   bodyText: {
     padding: 5,
-    margin: 4,
+    margin: 0,
     fontFamily: "Euclid-Circular-A",
     // marginBottom: hp(56),
     // marginTop: hp(40),

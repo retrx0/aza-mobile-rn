@@ -1,16 +1,15 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import BoxTextInput from "../../../components/input/BoxTextInput";
 import { Text, View } from "../../../components/Themed";
-import { SignUpStackProps } from "./SignUpNavigator";
 import { Picker } from "@react-native-picker/picker";
 import Colors from "../../../constants/Colors";
+import { SignUpScreenProps } from "../../../../types";
 
-const SignUpEmailScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
   return (
     <SpacerWrapper>
       <BackButton onPress={() => navigation.goBack()} />
@@ -28,7 +27,7 @@ const SignUpEmailScreen = ({ navigation }: NativeStackScreenProps<SignUpStackPro
         color={Colors.general.black}
         alt={false}
         onPress={() => {
-          navigation.navigate("SignUpPassword");
+          navigation.navigate("SignUpPassword", { passwordScreenType: "Create" });
         }}
         title="Continue"
       />
@@ -36,4 +35,4 @@ const SignUpEmailScreen = ({ navigation }: NativeStackScreenProps<SignUpStackPro
   );
 };
 
-export default SignUpEmailScreen;
+export default SignUpProfileSetupScreen;

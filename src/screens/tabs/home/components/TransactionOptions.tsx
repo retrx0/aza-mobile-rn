@@ -1,20 +1,17 @@
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
-import {
-  DepositIcon,
-  TransferIcon,
-  WithdrawIcon,
-} from "../../../../../assets/svg";
+import { DepositIcon, TransferIcon, WithdrawIcon } from "../../../../../assets/svg";
+import { RootTabScreenProps } from "../../../../../types";
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useBottomSheetType } from "../hooks/useBottomSheetType";
 
-export default function TransactionOptions() {
+const TransactionOptions = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const transferBottomSheetListItems = useBottomSheetType("transfer");
+  const transferBottomSheetListItems = useBottomSheetType("transfer", { navigation, route });
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -73,4 +70,6 @@ export default function TransactionOptions() {
       />
     </>
   );
-}
+};
+
+export default TransactionOptions;

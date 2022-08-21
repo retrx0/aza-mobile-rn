@@ -4,14 +4,11 @@ import ButtonLg from "../../../components/buttons/ButtonLg";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { LogInStackProps } from "./SignInNavigator";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
+import { SignInScreenProps } from "../../../../types";
 
-const SignInScreen = ({
-  navigation,
-}: NativeStackScreenProps<LogInStackProps>) => {
+const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
   return (
     <SpacerWrapper>
@@ -22,9 +19,7 @@ const SignInScreen = ({
       />
       <View>
         <Text style={[CommonStyles.headerText]}>Login</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to continue
-        </Text>
+        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
         <Text style={[CommonStyles.bodyText]}>
           Phone Number <Text style={{ color: "red" }}>*</Text>
         </Text>
@@ -32,7 +27,7 @@ const SignInScreen = ({
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry='ng'
+        initialCountry="ng"
         autoFormat
         textStyle={styles.textStyle}
         textProps={{
@@ -40,37 +35,25 @@ const SignInScreen = ({
         }}
         style={styles.phoneStyle}
       />
+      <ButtonLg title="Continue" color={"#000"} onPress={() => navigation.navigate("SignInOTP")} alt={false} />
+      <Text style={[CommonStyles.bodyText, CommonStyles.centerText, { fontSize: 18 }]}>OR</Text>
       <ButtonLg
-        title='Continue'
-        color={"#000"}
-        onPress={() => navigation.navigate("SignInOTP")}
-        alt={false}
-      />
-      <Text
-        style={[
-          CommonStyles.bodyText,
-          CommonStyles.centerText,
-          { fontSize: 18 },
-        ]}>
-        OR
-      </Text>
-      <ButtonLg
-        iconName='apple'
-        title='Connect with Apple'
+        iconName="apple"
+        title="Connect with Apple"
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
       />
       <ButtonLg
         iconName={"facebook"}
-        title='Connect with Facebook'
+        title="Connect with Facebook"
         color={Colors.general.facebook}
         onPress={() => console.log("connecting with facebook...")}
         alt={false}
       />
       <ButtonLg
         iconName={"google"}
-        title='Connect with Google'
+        title="Connect with Google"
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}

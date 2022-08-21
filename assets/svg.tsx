@@ -1,16 +1,6 @@
 import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import Svg, {
-  Path,
-  Circle,
-  Image,
-  Defs,
-  Use,
-  Pattern,
-  G,
-  Rect,
-  ClipPath,
-} from "react-native-svg";
+import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from "react-native-svg";
 
 type SvgIconProps = {
   color: string;
@@ -20,7 +10,7 @@ type SvgIconProps = {
 
 export const VaultIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 17 16" fill="none">
       <Path
         d="M9.33333 8.38677V9.70677C9.33333 10.1668 8.96 10.5401 8.5 10.5401C8.04 10.5401 7.66667 10.1668 7.66667 9.70677V8.38677C7.42667 8.2401 7.24 8.02677 7.10667 7.77344H2.5C2.13334 7.77344 1.83334 8.07344 1.83334 8.4401V10.7934C1.83334 12.9334 3.56667 14.6668 5.70667 14.6668H11.2867C13.4333 14.6668 15.1667 12.9334 15.1667 10.7934V8.4401C15.1667 8.07344 14.8667 7.77344 14.5 7.77344H9.89333C9.76 8.02677 9.57333 8.2401 9.33333 8.38677Z"
         fill={color}
@@ -35,7 +25,7 @@ export const VaultIcon = ({ color, size }: SvgIconProps) => {
 
 export const HomeIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 15 14" fill="none">
       <Path
         d="M13.3867 4.33999L9.02002 0.846659C8.16668 0.166659 6.83335 0.159992 5.98668 0.839992L1.62002 4.33999C0.993349 4.83999 0.613349 5.83999 0.746683 6.62666L1.58668 11.6533C1.78002 12.78 2.82668 13.6667 3.96668 13.6667H11.0333C12.16 13.6667 13.2267 12.76 13.42 11.6467L14.26 6.61999C14.38 5.83999 14 4.83999 13.3867 4.33999ZM8.00002 11C8.00002 11.2733 7.77335 11.5 7.50002 11.5C7.22668 11.5 7.00002 11.2733 7.00002 11V8.99999C7.00002 8.72666 7.22668 8.49999 7.50002 8.49999C7.77335 8.49999 8.00002 8.72666 8.00002 8.99999V11Z"
         fill={color}
@@ -46,7 +36,7 @@ export const HomeIcon = ({ color, size }: SvgIconProps) => {
 
 export const PaymentsIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 15 15" fill="none">
       <Path
         d="M0.833313 3.66668V13C0.833313 13.5533 1.45998 13.8667 1.89998 13.5333L3.03998 12.68C3.30665 12.48 3.67998 12.5067 3.91998 12.7467L5.02665 13.86C5.28665 14.12 5.71331 14.12 5.97331 13.86L7.09331 12.74C7.32665 12.5067 7.69998 12.48 7.95998 12.68L9.09998 13.5333C9.53998 13.86 10.1666 13.5467 10.1666 13V1.66668C10.1666 0.933344 10.7666 0.333344 11.5 0.333344H4.16665H3.49998C1.49998 0.333344 0.833313 1.52668 0.833313 3.00001V3.66668Z"
         fill={color}
@@ -61,7 +51,7 @@ export const PaymentsIcon = ({ color, size }: SvgIconProps) => {
 
 export const SettingsIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 15 13" fill="none">
       <Path
         d="M12.9 4.64666C11.6933 4.64666 11.2 3.79333 11.8 2.74666C12.1466 2.14 11.94 1.36666 11.3333 1.02L10.18 0.359998C9.65331 0.046665 8.97331 0.233332 8.65998 0.759998L8.58665 0.886665C7.98665 1.93333 6.99998 1.93333 6.39331 0.886665L6.31998 0.759998C6.01998 0.233332 5.33998 0.046665 4.81331 0.359998L3.65998 1.02C3.05331 1.36666 2.84665 2.14667 3.19331 2.75333C3.79998 3.79333 3.30665 4.64666 2.09998 4.64666C1.40665 4.64666 0.833313 5.21333 0.833313 5.91333V7.08666C0.833313 7.78 1.39998 8.35333 2.09998 8.35333C3.30665 8.35333 3.79998 9.20666 3.19331 10.2533C2.84665 10.86 3.05331 11.6333 3.65998 11.98L4.81331 12.64C5.33998 12.9533 6.01998 12.7667 6.33331 12.24L6.40665 12.1133C7.00665 11.0667 7.99331 11.0667 8.59998 12.1133L8.67331 12.24C8.98665 12.7667 9.66665 12.9533 10.1933 12.64L11.3466 11.98C11.9533 11.6333 12.16 10.8533 11.8133 10.2533C11.2066 9.20666 11.7 8.35333 12.9066 8.35333C13.6 8.35333 14.1733 7.78666 14.1733 7.08666V5.91333C14.1666 5.22 13.6 4.64666 12.9 4.64666ZM7.49998 8.66666C6.30665 8.66666 5.33331 7.69333 5.33331 6.5C5.33331 5.30666 6.30665 4.33333 7.49998 4.33333C8.69331 4.33333 9.66665 5.30666 9.66665 6.5C9.66665 7.69333 8.69331 8.66666 7.49998 8.66666Z"
         fill={color}
@@ -72,26 +62,14 @@ export const SettingsIcon = ({ color, size }: SvgIconProps) => {
 
 export const ProfileIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 17 17" fill="none">
       <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
       <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
       <Defs>
-        <Pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <Use
-            href="#image0_1093_6630"
-            transform="translate(-0.25) scale(0.003125)"
-          />
+        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <Use href="#image0_1093_6630" transform="translate(-0.25) scale(0.003125)" />
         </Pattern>
-        <Image
-          href={require("../assets/images/logo/lightning-bolt.png")}
-          width="480"
-          height="320"
-        />
+        <Image href={require("../assets/images/logo/lightning-bolt.png")} width="480" height="320" />
       </Defs>
     </Svg>
   );
@@ -190,6 +168,17 @@ export const AZALogo = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
+export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
+  return (
+    <Svg width="8" height={size} viewBox="0 0 8 22" fill="none">
+      <Path
+        d="M0.0078125 21.9968L2.65615 12.7984H0.0078125V0.00318909H5.39392L2.69003 9.71971H7.993L0.0078125 21.9968Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
 export const SelectArrow = () => {
   return (
     <Svg width="14" height="8" viewBox="0 0 14 8" fill="none">
@@ -276,16 +265,8 @@ export const Flag = () => {
     <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
       <Circle cx="7.5" cy="7.5" r="7.5" fill="url(#pattern0)" />
       <Defs>
-        <Pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <Use
-            xlinkHref="#image0_295_18064"
-            transform="translate(-0.124378) scale(0.00497512)"
-          />
+        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <Use xlinkHref="#image0_295_18064" transform="translate(-0.124378) scale(0.00497512)" />
         </Pattern>
         <Image id="image0_295_18064" width="251" height="201" />
       </Defs>
@@ -319,12 +300,7 @@ export const WithdrawIcon = () => (
 export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={24} height={24} fill="none">
-      <Path
-        d="M3 7h18M3 12h18M3 17h18"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
+      <Path d="M3 7h18M3 12h18M3 17h18" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
     </Svg>
   );
 };
@@ -615,12 +591,7 @@ export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
         stroke={color}
         strokeMiterlimit={10}
       />
-      <Path
-        d="M1.333 1.667h13.334"
-        stroke={color}
-        strokeMiterlimit={10}
-        strokeLinecap="round"
-      />
+      <Path d="M1.333 1.667h13.334" stroke={color} strokeMiterlimit={10} strokeLinecap="round" />
       <Path
         d="M5.333 5.333h5.334M5.333 8.667h5.334"
         stroke={color}

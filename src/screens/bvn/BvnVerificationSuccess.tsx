@@ -1,5 +1,4 @@
 import React, { useLayoutEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { StyleSheet } from "react-native";
@@ -9,11 +8,9 @@ import Button from "../../components/buttons/Button";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { BvnVerificationSuccessIcon } from "../../../assets/svg";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { BvnVerificationStackProps } from "./BvnVerificationNavigator";
+import { BvnVerificationScreenProps } from "../../common/navigation/types";
 
-const BvnVerificationSuccess = () => {
-  const navigation = useNavigation();
+const BvnVerificationSuccess = ({ navigation }: BvnVerificationScreenProps<"BvnVerificationSuccess">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -25,12 +22,7 @@ const BvnVerificationSuccess = () => {
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View
-          style={[
-            CommonStyles.col,
-            { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+        <View style={[CommonStyles.col, { alignItems: "center", marginTop: "auto", marginBottom: "auto" }]}>
           <BvnVerificationSuccessIcon />
           <Text
             style={{
@@ -56,7 +48,7 @@ const BvnVerificationSuccess = () => {
         <View style={[CommonStyles.col, { marginBottom: hp(50) }]}>
           <Button
             title="Continue"
-            onPressButton={() => navigation.navigate("Root")}
+            onPressButton={() => navigation.getParent()?.navigate("Home")}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",

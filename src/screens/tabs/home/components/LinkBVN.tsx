@@ -1,12 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { DangerIcon } from "../../../../../assets/svg";
+import { RootTabScreenProps } from "../../../../../types";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 
-export default function LinkBVN() {
-  const navigation = useNavigation();
+const LinkBVN = ({ navigation }: RootTabScreenProps<"Home">) => {
   return (
     <View
       style={{
@@ -47,11 +46,15 @@ export default function LinkBVN() {
             marginTop: 5,
           }}
         >
-          Link your BVN to upgrade your account as there are certain limits on
-          it.
+          Link your BVN to upgrade your account as there are certain limits on it.
         </Text>
         <TouchableOpacity
-          onPress={() => navigation.navigate("BvnVerification")}
+          onPress={() =>
+            navigation.navigate("Common", {
+              screen: "BvnVerificationRoot",
+              params: { screen: "BvnVerificationScreen" },
+            })
+          }
         >
           <View
             style={{
@@ -76,4 +79,6 @@ export default function LinkBVN() {
       </View>
     </View>
   );
-}
+};
+
+export default LinkBVN;

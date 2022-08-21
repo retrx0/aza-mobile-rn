@@ -8,12 +8,12 @@ import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
 
-const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
+const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   return (
     <View style={styles.container}>
       <AccountDetails />
-      <TransactionOptions />
-      <LinkBVN />
+      <TransactionOptions navigation={navigation} route={route} />
+      <LinkBVN navigation={navigation} route={route} />
       <RecentTransactions />
     </View>
   );

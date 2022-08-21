@@ -5,21 +5,22 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
 import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { SignUpStackProps } from "./SignUpNavigator";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { SignUpScreenProps } from "../../../../types";
 
-const SignUpPasswordScreen = ({ navigation, route }: NativeStackScreenProps<SignUpStackProps>) => {
-  const { passWordScreenType }: any = route.params;
+const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPassword">) => {
+  const { passwordScreenType } = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
   const insets = useSafeAreaInsets();
 
   const colorScheme = useColorScheme();
+
+  const [passcode, setPasscode] = useState("");
 
   const switchColor = Colors[colorScheme].backgroundSecondary;
   const switchOnColor = Colors[colorScheme].success;
@@ -29,9 +30,9 @@ const SignUpPasswordScreen = ({ navigation, route }: NativeStackScreenProps<Sign
       <View>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <Text style={[CommonStyles.headerText]}>{passWordScreenType} AZA Passcode</Text>
+      <Text style={[CommonStyles.headerText]}>{passwordScreenType} AZA Passcode</Text>
       <Text style={[CommonStyles.bodyText]}>The passcode will be used to access your account</Text>
-      <SegmentedInput value={"1221221"} secureInput headerText="" onValueChanged={(): void => {}} />
+      <SegmentedInput value={passcode} secureInput headerText="" onValueChanged={(code) => setPasscode(code)} />
       <View style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
         <View style={[CommonStyles.row]}>
           <Text style={{ marginRight: 20 }}>Use as transaction pin?</Text>
@@ -49,8 +50,8 @@ const SignUpPasswordScreen = ({ navigation, route }: NativeStackScreenProps<Sign
           style={{}}
           styleText={{}}
           onPressButton={() => {
-            passWordScreenType === "Create"
-              ? navigation.navigate("SignUpConfirmPassword")
+            passwordScreenType === "Create"
+              ? navigation.navigate("SignUpConfirmPassword", { passwordScreenType: "Confirm" })
               : navigation.getParent()?.navigate("Root");
           }}
         />

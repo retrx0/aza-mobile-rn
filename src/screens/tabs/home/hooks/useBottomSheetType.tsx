@@ -16,10 +16,11 @@ import {
   SplitIcon,
   UserIcon,
 } from "../../../../../assets/svg";
+import { RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
-export const useBottomSheetType = (itemToReturn: string) => {
+export const useBottomSheetType = (itemToReturn: string, { navigation }: RootTabScreenProps<"Home">) => {
   const colorScheme = useColorScheme();
   const [items, _] = useState({
     menuBottomSheetListItems: [
@@ -35,32 +36,24 @@ export const useBottomSheetType = (itemToReturn: string) => {
       },
       {
         itemName: "Fees & Limits",
-        itemIcon: (
-          <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () => console.log("called"),
       },
       {
         itemName: "Frequently Asked Questions (FAQs)",
-        itemIcon: (
-          <MessageQuestionIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <MessageQuestionIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () => console.log("called"),
       },
       {
         itemName: "Customer Support",
-        itemIcon: (
-          <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () => console.log("called"),
       },
     ],
     profileBottomSheetListItems: [
       {
         itemName: "Choose Profile Photo",
-        itemIcon: (
-          <GalleryIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <GalleryIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () => console.log("called"),
       },
       {
@@ -80,40 +73,36 @@ export const useBottomSheetType = (itemToReturn: string) => {
       },
       {
         itemName: "Debit/Credit Cards",
-        itemIcon: (
-          <CreditCardIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
-        onPress: () => console.log("called"),
+        itemIcon: <CreditCardIcon size={16} color={Colors[colorScheme].mainText} />,
+        onPress: () => {
+          console.log("called");
+          // Call navigation this way!
+          // navigation.navigate("Common", { screen: "DebitCredit" });
+        },
       },
       {
         itemName: "Sign out",
         itemIcon: <LogoutIcon size={16} color={Colors[colorScheme].mainText} />,
-        onPress: () => console.log("called"),
+        onPress: () => {
+          navigation.navigate("Welcome");
+        },
       },
     ],
     transferBottomSheetListItems: [
       {
         itemName: "Send Money",
-        itemIcon: (
-          <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
-        onPress: () => console.log("called"),
+        itemIcon: <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />,
+        onPress: () =>
+          navigation.navigate("Common", { screen: "BvnVerificationRoot", params: { screen: "BvnVerificationScreen" } }),
       },
       {
         itemName: "Request Money",
-        itemIcon: (
-          <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () => console.log("called"),
       },
       {
         itemName: "Recurring Transfer",
-        itemIcon: (
-          <RecurringTransferIcon
-            size={16}
-            color={Colors[colorScheme].mainText}
-          />
-        ),
+        itemIcon: <RecurringTransferIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () => console.log("called"),
       },
     ],

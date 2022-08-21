@@ -1,6 +1,5 @@
 import React, { useLayoutEffect } from "react";
 import BackButton from "../../components/buttons/BackButton";
-import { useNavigation } from "@react-navigation/native";
 import { Text, TextInput, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import { StyleSheet } from "react-native";
@@ -10,9 +9,9 @@ import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
+import { BvnVerificationScreenProps } from "../../common/navigation/types";
 
-const BvnVerificationScreen = () => {
-  const navigation = useNavigation();
+const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVerificationScreen">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -94,10 +93,7 @@ const BvnVerificationScreen = () => {
               backgroundColor: Colors[colorScheme].button,
             }}
           />
-          <CancelButtonWithUnderline
-            title="Cancel"
-            onPressButton={() => navigation.navigate("Root")}
-          />
+          <CancelButtonWithUnderline title="Cancel" onPressButton={() => navigation.getParent()?.navigate("Home")} />
         </View>
       </View>
     </SpacerWrapper>
