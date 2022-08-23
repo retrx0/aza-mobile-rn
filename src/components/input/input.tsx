@@ -59,8 +59,11 @@ export const Input = ({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 15,
-    color: Colors.general.darkGrey,
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17.75),
+    marginBottom: hp(11),
+    fontFamily: "Euclid-Circular-A",
   },
   container: {
     marginTop: hp(20),

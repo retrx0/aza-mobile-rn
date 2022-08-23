@@ -10,7 +10,15 @@ import Vault from "../screens/tabs/vault/Vault";
 import Settings from "../screens/tabs/settings/Settings";
 import { RootTabParamList, RootTabScreenProps } from "../../types";
 import useColorScheme from "../hooks/useColorScheme";
-import { HomeIcon, QRCodeIcon, VaultIcon, PaymentsIcon, SettingsIcon, ProfileIcon } from "../../assets/svg";
+import {
+  HomeIcon,
+  QRCodeIcon,
+  VaultIcon,
+  PaymentsIcon,
+  SettingsIcon,
+  ProfileIcon,
+} from "../../assets/svg";
+import VaultNavigator from "../screens/tabs/vault/VaultNavigator";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -19,13 +27,12 @@ const BottomTabNavigator = () => {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName='Home'
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
-    >
+      }}>
       <BottomTab.Screen
-        name="Home"
+        name='Home'
         component={Home}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
@@ -35,23 +42,27 @@ const BottomTabNavigator = () => {
               onPress={() => navigation.navigate("Modal")}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <QRCodeIcon size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+              })}>
+              <QRCodeIcon
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
             </Pressable>
           ),
         })}
       />
       <BottomTab.Screen
-        name="Vault"
-        component={Vault}
+        name='Vault'
+        component={VaultNavigator}
         options={{
-          title: "Vault",
           tabBarIcon: ({ color }) => <VaultIcon color={color} size={16} />,
+          headerShown: false,
         }}
       />
+
       <BottomTab.Screen
-        name="Payments"
+        name='Payments'
         component={Payments}
         options={{
           title: "Payments",
@@ -59,7 +70,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Settings"
+        name='Settings'
         component={Settings}
         options={{
           title: "Settings",
@@ -67,7 +78,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Profile"
+        name='Profile'
         component={Profile}
         options={{
           title: "Profile",
@@ -81,7 +92,10 @@ const BottomTabNavigator = () => {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 export default BottomTabNavigator;
