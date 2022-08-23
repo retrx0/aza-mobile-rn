@@ -3,6 +3,236 @@ import Colors from "../../constants/Colors";
 import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
+  archievedContainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  createVaultContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: hp(200),
+  },
+  archievedVault: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: hp(20),
+  },
+  addVault: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: hp(20),
+    justifyContent: "space-between",
+  },
+  Style: {
+    fontSize: hp(24),
+    fontWeight: "600",
+    lineHeight: hp(30),
+    fontFamily: "Euclid-Circular-A-Bold",
+    marginBottom: hp(10),
+    color: Colors.general.green,
+  },
+  successStyle: {
+    textAlign: "center",
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    width: wp(295),
+  },
+  archivedStyle: {
+    textAlign: "center",
+    marginBottom: hp(20),
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17),
+    fontFamily: "Euclid-Circular-A",
+  },
+  cancelStyle: {
+    textAlign: "center",
+    marginTop: hp(16),
+    color: Colors.general.red,
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17),
+    fontFamily: "Euclid-Circular-A",
+  },
+  actionContainer: {
+    alignSelf: "center",
+    alignItems: "center",
+    marginTop: 26,
+  },
+  lockupStyle: {
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17),
+    fontFamily: "Euclid-Circular-A",
+    marginTop: hp(10),
+  },
+  actionStyle: {
+    fontSize: hp(24),
+    fontWeight: "600",
+    lineHeight: hp(30),
+    fontFamily: "Euclid-Circular-A-Bold",
+  },
+  caution: {
+    alignSelf: "center",
+    marginTop: hp(264),
+  },
+  passwordContainer: {
+    position: "absolute",
+    alignSelf: "center",
+  },
+  everyMonth: {
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(15.22),
+    color: "#A6A6A6",
+    alignSelf: "center",
+    fontFamily: "Euclid-Circular-A",
+  },
+  SwitchContainer: {
+    marginTop: hp(16),
+    paddingHorizontal: hp(60),
+    marginBottom: hp(23),
+    position: "absolute",
+    alignSelf: "center",
+  },
+  Container: {
+    paddingHorizontal: hp(20),
+  },
+  choose: {
+    fontWeight: "500",
+    alignSelf: "center",
+    color: "#A6A6A6",
+    paddingRight: wp(10),
+    fontSize: hp(14),
+    lineHeight: hp(17.75),
+    fontFamily: "Euclid-Circular-A",
+  },
+  period: {
+    color: "#4D4D4D",
+    fontWeight: "400",
+    fontSize: 14,
+    lineHeight: hp(17.75),
+    marginBottom: hp(12),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+  },
+  chooseContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  periodContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  daysContainer: {
+    width: wp(360),
+    height: hp(200),
+    alignSelf: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderWidth: hp(1),
+    borderColor: "white",
+    marginBottom: hp(30),
+  },
+
+  percentageContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginHorizontal: hp(20),
+    marginVertical: hp(20),
+    marginTop: hp(10),
+  },
+  inputStyle: {
+    color: "#A6A6A6",
+    paddingRight: wp(10),
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17.75),
+    marginBottom: hp(5),
+    fontFamily: "Euclid-Circular-A",
+  },
+  vaultInput: {
+    marginBottom: hp(5),
+    marginTop: hp(11),
+  },
+  // line: {
+  //   borderWidth: 0.7,
+  //   borderColor: "#EAEAEC",
+  // },
+  vaultInputcontainer: {
+    paddingHorizontal: hp(20),
+  },
+  vaultInputContainer: {
+    paddingHorizontal: hp(20),
+    marginBottom: hp(10),
+  },
+  archieved: {
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(16),
+    fontWeight: "400",
+    marginRight: hp(90),
+  },
+  vaultAdd: {
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(16),
+    fontWeight: "400",
+    marginLeft: hp(150),
+  },
+  vault: {
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(16),
+    fontWeight: "400",
+    lineHeight: hp(20),
+    textAlign: "center",
+    marginBottom: hp(30),
+  },
+  descriptionStyle: {
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17.75),
+    marginBottom: hp(10),
+    fontFamily: "Euclid-Circular-A",
+  },
+  undraw: {
+    marginTop: hp(159),
+  },
+  createVault: {
+    fontSize: hp(14),
+    fontWeight: "400",
+    lineHeight: hp(17.75),
+    marginBottom: hp(158),
+  },
+  vaultcontainer: {
+    flex: hp(1),
+    marginTop: hp(20),
+  },
+
+  vaultContainer: {
+    alignSelf: "center",
+    alignItems: "center",
+  },
+
+  createNewVault: {
+    fontSize: hp(14),
+    fontWeight: "400",
+    fontFamily: "Euclid-Circular-A",
+    lineHeight: hp(18),
+    marginRight: hp(10),
+  },
+  vaultText: {
+    fontSize: hp(16),
+    fontWeight: "600",
+    lineHeight: hp(20),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    marginTop: hp(30),
+    marginBottom: hp(10),
+  },
   //Grid
   container: {
     position: "absolute",
@@ -72,7 +302,7 @@ const CommonStyles = StyleSheet.create({
   },
   centerText: {
     width: wp(160),
-    left: 30,
+    left: hp(30),
   },
   // Shadows
   raised: {
@@ -81,11 +311,19 @@ const CommonStyles = StyleSheet.create({
       height: hp(2),
     },
     shadowColor: "#000",
-    shadowOpacity: 0.08,
+    shadowOpacity: hp(0.08),
     shadowRadius: hp(3),
     elevation: hp(5),
   },
   //Other
+
+  lineDivider: {
+    borderWidth: 0.4,
+    borderColor: "#EAEAEC",
+    marginBottom: hp(10),
+    width: wp(370),
+    alignSelf: "center",
+  },
   separator: {
     marginVertical: hp(10),
     height: hp(1),
@@ -98,7 +336,7 @@ const CommonStyles = StyleSheet.create({
     borderWidth: hp(1),
   },
   parentcontainer: {
-    flex: 1,
+    flex: hp(1),
     paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
     // position: "absolute",
     // alignSelf: "center",
@@ -109,7 +347,7 @@ const CommonStyles = StyleSheet.create({
     maxHeight: hp(100),
   },
   wrapperContainer: {
-    flex: 1,
+    flex: hp(1),
   },
   button: {
     width: wp(338),
@@ -117,10 +355,10 @@ const CommonStyles = StyleSheet.create({
   textProps: {
     alignSelf: "center",
     width: "90%",
-    padding: 10,
-    borderWidth: 1,
+    padding: hp(10),
+    borderWidth: hp(1),
     borderStyle: "solid",
-    borderRadius: 5,
+    borderRadius: hp(5),
     marginBottom: hp(40),
   },
   account: {
@@ -148,7 +386,9 @@ const CommonStyles = StyleSheet.create({
   phoneNumber: {
     color: Colors.general.red,
   },
-  transaction: {},
+  transaction: {
+    fontFamily: "Euclid-Circular-A",
+  },
   sentCode: {
     fontSize: hp(14),
     fontWeight: "400",
@@ -169,7 +409,7 @@ const CommonStyles = StyleSheet.create({
   },
 
   passwordText: {
-    marginBottom: 10,
+    marginBottom: hp(10),
     fontWeight: "500",
     fontSize: hp(16),
     lineHeight: hp(20.29),
@@ -221,16 +461,16 @@ const CommonStyles = StyleSheet.create({
   otp: {
     fontSize: hp(18),
     fontWeight: "500",
-    lineHeight: 20.29,
+    lineHeight: hp(20.29),
     left: 100,
     textAlign: "center",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   back: {
     marginLeft: hp(10),
-    fontSize: 16,
+    fontSize: hp(16),
     fontWeight: "400",
-    lineHeight: 20.29,
+    lineHeight: hp(20.29),
   },
   backContainer: {
     alignItems: "center",
@@ -256,9 +496,9 @@ const CommonStyles = StyleSheet.create({
   phoneStyle: {
     alignSelf: "center",
     width: "90%",
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 5,
+    padding: hp(10),
+    borderWidth: hp(1),
+    borderRadius: hp(5),
     marginBottom: hp(40),
     height: hp(55),
   },
@@ -295,7 +535,7 @@ const CommonStyles = StyleSheet.create({
   //   fontWeight: "500",
   // },
   orText: {
-    fontSize: 18,
+    fontSize: hp(18),
     alignSelf: "center",
     fontWeight: "500",
     marginTop: hp(30),
