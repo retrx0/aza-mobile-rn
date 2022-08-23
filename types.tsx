@@ -4,7 +4,10 @@
  */
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps, NavigatorScreenParams } from "@react-navigation/native";
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 
@@ -23,10 +26,8 @@ export type RootStackParamList = {
   SignIn: undefined;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
   Home: undefined;
@@ -36,15 +37,11 @@ export type RootTabParamList = {
   Profile: undefined;
 };
 
-export type PaymentsStackParamList = {
-  PaymentIndex: undefined;
-  airtimeData:undefined
-};
-
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 
 export type PercentageProps = {
   percentage: string;
@@ -54,6 +51,15 @@ export type PercentageProps = {
 export type DaysProps = {
   days: string;
   onPress?: () => void;
+};
+
+export type VautListProps = {
+  item: string;
+  lockIcon: any;
+  onPress?: () => void;
+  closeIcon: any;
+  amount: string;
+  unlockIcon: any;
 };
 
 export type CountryProps = {
