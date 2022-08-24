@@ -9,9 +9,6 @@ export const styles = StyleSheet.create({
     margin: 5,
   },
   row: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginVertical: 20,
     marginHorizontal: 10,
     padding: 10,
   },

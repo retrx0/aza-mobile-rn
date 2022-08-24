@@ -1,19 +1,19 @@
 import React, { useState } from "react";
+import { View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { AZALogo } from "../../../assets/svg";
 import { RootStackScreenProps } from "../../../types";
 import CommonStyles from "../../common/styles/CommonStyles";
+import { hp } from "../../common/util/LayoutUtil";
 import ButtonMd from "../../components/buttons/ButtonMd";
 import WelcomeScrollIndicator from "../../components/indicators/WelcomeScrollIndicator";
-import { View, SafeAreaView, useThemeColor } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data, logo } from "./OnboardingUtil";
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
-  const color = useThemeColor({ light: Colors.light.text, dark: Colors.dark.text }, "text");
-
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
     { id: 1, active: true },
     { id: 2, active: false },
@@ -23,14 +23,14 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   ]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.general.white }}>
       <View style={[CommonStyles.row]}>
         {carouselIndicatorState.map(({ active, id }) => (
           <WelcomeScrollIndicator key={id} count={5} active={active} />
         ))}
       </View>
       <View style={{ height: "4%", marginTop: 50, alignItems: "center" }}>
-        <AZALogo color={color} size={16} />
+        <AZALogo color={"black"} size={16} />
       </View>
 
       <AppIntroSlider
@@ -46,8 +46,8 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           return <CarouselWrapper carousel={carousel.item} />;
         }}
       />
-      <View style={[styles.row]}>
-        <View style={[styles.col]}>
+      <View style={[CommonStyles.row]}>
+        <View style={[{ marginLeft: 10, marginRight: 7.5, marginTop: 0, marginBottom: hp(100) }, CommonStyles.col]}>
           <ButtonMd
             title="Login"
             color={Colors.general.white}
@@ -57,7 +57,7 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
             }}
           />
         </View>
-        <View style={[styles.col]}>
+        <View style={[{ marginLeft: 7.5, marginRight: 10, marginTop: 0, marginBottom: hp(100) }, CommonStyles.col]}>
           <ButtonMd
             title="Sign Up"
             color={Colors.general.black}

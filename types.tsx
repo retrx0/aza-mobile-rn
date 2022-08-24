@@ -10,6 +10,7 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { CommonStackParamList } from "./src/common/navigation/types";
 
 declare global {
   namespace ReactNavigation {
@@ -17,17 +18,22 @@ declare global {
   }
 }
 
+/* Root Stack */
+
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
   Welcome: undefined;
+  Common: NavigatorScreenParams<CommonStackParamList>;
   SignUp: undefined;
   SignIn: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
+
+/* Tabs */
 
 export type RootTabParamList = {
   Home: undefined;
@@ -42,6 +48,41 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
     BottomTabScreenProps<RootTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >;
+
+/* Sign In */
+
+export type SignInStackParamList = {
+  SignInRoot: undefined;
+  SignInWelcomeBack: undefined;
+  SignInOTP: undefined;
+};
+
+export type SignInScreenProps<Screen extends keyof SignInStackParamList> = NativeStackScreenProps<
+  SignInStackParamList,
+  Screen
+>;
+
+/* Sign Up */
+
+export type PasswordScreenParamsType = {
+  passwordScreenType: "Create" | "Confirm";
+  password?: string;
+};
+
+export type SignUpStackParamList = {
+  SignUpRoot: undefined;
+  SignUpProfileSetup: undefined;
+  SignUpOTP: undefined;
+  SignUpPassword: PasswordScreenParamsType;
+  SignUpConfirmPassword: PasswordScreenParamsType;
+};
+
+export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> = NativeStackScreenProps<
+  SignUpStackParamList,
+  Screen
+>;
+
+/* Other Types */
 
 export type PercentageProps = {
   percentage: string;
@@ -64,7 +105,7 @@ export type VautListProps = {
 
 export type CountryProps = {
   code: string;
-  short_name: string;
+  shortName: string;
   name?: string;
   id?: string;
   imageLink?: string;

@@ -1,4 +1,3 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -6,9 +5,9 @@ import BackButton from "../../../components/buttons/BackButton";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import BoxTextInput from "../../../components/input/BoxTextInput";
 import { Text, View } from "../../../components/Themed";
-import { SignUpStackProps } from "./SignUpNavigator";
 import { Picker } from "@react-native-picker/picker";
 import Colors from "../../../constants/Colors";
+import { SignUpScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -17,9 +16,7 @@ import { GENDER } from "../../../constants/Gender";
 import { TextHeader } from "../../../components/text/textHeader";
 import { SelectIcon } from "../../../../assets/svg";
 
-const SignUpEmailScreen = ({
-  navigation,
-}: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
   const insets = useSafeAreaInsets();
 
   const [gender, setGender] = useState(GENDER);
@@ -36,22 +33,11 @@ const SignUpEmailScreen = ({
         <Text style={[CommonStyles.headerText]}>Profile setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <BoxTextInput
-        placeHolder='Full Name'
-        required
-        value='Chiazondu Joseph'
-        onChange={() => {}}
-      />
-      <BoxTextInput
-        placeHolder='Email'
-        required
-        value='chiazo@examplemail.com'
-        onChange={() => {}}
-      />
-      <TextHeader label='Gender' style={[CommonStyles.genderstyle]} />
+      <BoxTextInput placeHolder="Full Name" required value="Chiazondu Joseph" onChange={() => {}} />
+      <BoxTextInput placeHolder="Email" required value="chiazo@examplemail.com" onChange={() => {}} />
+      <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
 
-      <View
-        style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
+      <View style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
         <RNPickerSelect
           placeholder={placeholder}
           onValueChange={(value) => {
@@ -83,12 +69,12 @@ const SignUpEmailScreen = ({
       </View>
 
       <Button
-        title='Continue'
-        onPressButton={() => navigation.navigate("SignUpPassword")}
+        title="Continue"
+        onPressButton={() => navigation.navigate("SignUpPassword", { passwordScreenType: "Create" })}
         style={[CommonStyles.container, { bottom: hp(75) }]}
       />
     </SpacerWrapper>
   );
 };
 
-export default SignUpEmailScreen;
+export default SignUpProfileSetupScreen;

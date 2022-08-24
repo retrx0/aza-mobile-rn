@@ -1,13 +1,10 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
+import { SignUpScreenProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import OtpScreen from "../Password/otp/OtpScreen";
-import { SignUpStackProps } from "./SignUpNavigator";
+import OtpScreen from "../otp/OtpScreen";
 
-const SignUpOTPScreen = ({
-  navigation,
-}: NativeStackScreenProps<SignUpStackProps>) => {
-  const [signUpOtp, setSignUpOtp] = useState("123456");
+const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
+  const [signUpOtp, setSignUpOtp] = useState("");
   return (
     <SpacerWrapper>
       <OtpScreen
@@ -21,7 +18,8 @@ const SignUpOTPScreen = ({
         onResend={() => {
           console.log("otp resend");
         }}
-        phoneNumber={""}></OtpScreen>
+        phoneNumber={""}
+      />
     </SpacerWrapper>
   );
 };

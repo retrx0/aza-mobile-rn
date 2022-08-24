@@ -1,4 +1,5 @@
 import { Image, TouchableOpacity } from "react-native";
+import { RootTabScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
@@ -11,35 +12,28 @@ import styles from "../../onboarding/OnboardingStyles";
 import { VaultStackProps } from "./VaultNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-const Vault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
+const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View>
         <View style={[CommonStyles.vaultContainer]}>
-          <Header
-            heading='Vault'
-            description={""}
-            headerStyle={[CommonStyles.vault]}
-            descriptionStyle={undefined}
-          />
+          <Header heading="Vault" description={""} headerStyle={[CommonStyles.vault]} descriptionStyle={undefined} />
           <Image
             source={require("../../../../assets/images/Undraw.png")}
-            resizeMode='cover'
+            resizeMode="cover"
             style={[CommonStyles.undraw]}
           />
           <Text style={[CommonStyles.vaultText]}>You dont have any vaults</Text>
           <View style={CommonStyles.createVaultContainer}>
-            <Text style={[CommonStyles.createNewVault]}>
-              Click New Vault to create a new vault
-            </Text>
+            <Text style={[CommonStyles.createNewVault]}>Click New Vault to create a new vault</Text>
             <TouchableOpacity>
               <ArrowDown />
             </TouchableOpacity>
           </View>
         </View>
         <Button
-          title='New Vault'
-          onPressButton={() => navigation.navigate("newvault")}
+          title="New Vault"
+          // onPressButton={() => navigation.navigate("newvault")}
         />
       </View>
     </SpacerWrapper>
