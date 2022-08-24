@@ -7,10 +7,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { VaultStackProps } from "./VaultNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootTabScreenProps } from "../../../../types";
 
-const VaultSuccessful = ({
-  navigation,
-}: NativeStackScreenProps<VaultStackProps>) => {
+const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -18,24 +17,19 @@ const VaultSuccessful = ({
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../assets/images/Successful.png")}
-          resizeMode='cover'
+          resizeMode="cover"
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>
-            You have successfully locked away {`#${2000}`} to Flight Ticket
-            vault
+            You have successfully locked away {`#${2000}`} to Flight Ticket vault
           </Text>
         </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: insets.bottom || hp(45) }]}>
           <Button
-            title='Continue'
-            onPressButton={() => navigation.navigate("addVault")}
+            title="Continue"
+            onPressButton={() => navigation.navigate("Common", { screen: "AddVault" })}
             style={[CommonStyles.button, { bottom: insets.bottom || hp(45) }]}
           />
         </View>

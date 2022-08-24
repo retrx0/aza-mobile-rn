@@ -11,18 +11,14 @@ import styles from "../../onboarding/OnboardingStyles";
 import { ListCard, VaultList } from "./VaultCard";
 import { VaultStackProps } from "./VaultNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootTabScreenProps } from "../../../../types";
 
-const AddVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
+const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
         <View style={[CommonStyles.addVault]}>
-          <Header
-            heading='Vault'
-            description={""}
-            headerStyle={[CommonStyles.vaultAdd]}
-            descriptionStyle={undefined}
-          />
+          <Header heading="Vault" description={""} headerStyle={[CommonStyles.vaultAdd]} descriptionStyle={undefined} />
           <TouchableOpacity>
             <InfoIcon />
           </TouchableOpacity>
@@ -46,18 +42,12 @@ const AddVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
           <TouchableOpacity>
-            <Text
-              style={[
-                CommonStyles.archivedStyle,
-                { textDecorationLine: "underline" },
-              ]}>
-              Archived Vaults
-            </Text>
+            <Text style={[CommonStyles.archivedStyle, { textDecorationLine: "underline" }]}>Archived Vaults</Text>
           </TouchableOpacity>
 
           <Button
-            title='New Vault'
-            onPressButton={() => navigation.navigate("archievedVault")}
+            title="New Vault"
+            onPressButton={() => navigation.navigate("Common", { screen: "ArchievedVault" })}
             style={CommonStyles.button}
           />
         </View>

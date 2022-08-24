@@ -5,6 +5,13 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type CommonStackParamList = {
   BvnVerificationRoot: NavigatorScreenParams<BvnVerificationStackParamList>;
+  NewVault: undefined;
+  VaultPassword: undefined;
+  DeleteVault: undefined;
+  VaultSuccessful: undefined;
+  AddVault: undefined;
+  ConfirmDeleteVault: undefined;
+  ArchievedVault: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> = NativeStackScreenProps<

@@ -19,6 +19,7 @@ import {
   ProfileIcon,
   MenuIcon,
   AZALogo,
+  AZALightningLogo,
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
 import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
@@ -57,7 +58,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
 
             //center it in android
             headerTitleAlign: "center",
-            headerTitle: () => <AZALogo size={25} color={Colors[colorScheme].text} />,
+            headerTitle: () => <AZALightningLogo size={25} color={Colors[colorScheme].text} />,
             title: "Home",
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
             headerRight: () => (

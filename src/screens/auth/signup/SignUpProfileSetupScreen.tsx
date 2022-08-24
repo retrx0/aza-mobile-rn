@@ -5,7 +5,6 @@ import BackButton from "../../../components/buttons/BackButton";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import BoxTextInput from "../../../components/input/BoxTextInput";
 import { Text, View } from "../../../components/Themed";
-import { Picker } from "@react-native-picker/picker";
 import Colors from "../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
@@ -38,7 +37,7 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
       <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
 
       <View style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
-        <RNPickerSelect
+        {/* <RNPickerSelect
           placeholder={placeholder}
           onValueChange={(value) => {
             setGender(value);
@@ -65,7 +64,7 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
               color: Colors.general.black,
             },
           }}
-        />
+        /> */}
       </View>
 
       <Button

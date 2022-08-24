@@ -5,22 +5,16 @@ import { Text, View } from "../../../components/Themed";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
-import {
-  DaysCard,
-  DaysList,
-  PercentageCard,
-  PercentageList,
-} from "./VaultCard";
+import { DaysCard, DaysList, PercentageCard, PercentageList } from "./VaultCard";
 import { SelectArrow } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { VaultStackProps } from "./VaultNavigator";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootTabScreenProps } from "../../../../types";
 
-const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
+const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
 
@@ -35,16 +29,16 @@ const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
         <Header
           headerStyle={CommonStyles.vault}
           descriptionStyle={CommonStyles.descriptionStyle}
-          heading='Vault'
-          description='Save and lock part of your Aza funds temporarily,
-        for future use.'
+          heading="Vault"
+          description="Save and lock part of your Aza funds temporarily,
+        for future use."
         />
 
         <View style={CommonStyles.vaultInputContainer}>
           <Input
             label={"Vault Name"}
             labelStyle={undefined}
-            placeholder='Give your vault a name'
+            placeholder="Give your vault a name"
             // style={styles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
@@ -55,7 +49,7 @@ const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
           <Input
             label={"Amount"}
             labelStyle={undefined}
-            placeholder='Enter an amount you wish to save'
+            placeholder="Enter an amount you wish to save"
             style={CommonStyles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
@@ -64,21 +58,13 @@ const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
-            return (
-              <PercentageCard
-                key={index}
-                percentage={item.percentage}
-                onPress={() => {}}
-              />
-            );
+            return <PercentageCard key={index} percentage={item.percentage} onPress={() => {}} />;
           })}
         </View>
         <View style={CommonStyles.Container}>
           <Text style={CommonStyles.period}>Period</Text>
           <View style={CommonStyles.chooseContainer}>
-            <Text style={CommonStyles.choose}>
-              Choose a period to lock funds away
-            </Text>
+            <Text style={CommonStyles.choose}>Choose a period to lock funds away</Text>
             <TouchableOpacity>
               <SelectArrow />
             </TouchableOpacity>
@@ -91,9 +77,7 @@ const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
         </View>
         <View style={[CommonStyles.SwitchContainer, { bottom: hp(5) }]}>
           <View style={CommonStyles.periodContainer}>
-            <Text style={CommonStyles.everyMonth}>
-              Save this amount every month
-            </Text>
+            <Text style={CommonStyles.everyMonth}>Save this amount every month</Text>
             <Switch
               trackColor={{ false: switchColor, true: switchOnColor }}
               thumbColor={isEnabled ? "white" : "grey"}
@@ -108,7 +92,7 @@ const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
           <Separator />
           <Button
             title={"Continue"}
-            onPressButton={() => navigation.navigate("deleteVault")}
+            onPressButton={() => navigation.navigate("Common", { screen: "DeleteVault" })}
             style={[CommonStyles.button]}
           />
         </View>
@@ -119,11 +103,7 @@ const NewVault = ({ navigation }: NativeStackScreenProps<VaultStackProps>) => {
 
 const Separator = () => {
   return (
-    <View
-      lightColor={Colors.light.separator}
-      darkColor={Colors.dark.separator}
-      style={[CommonStyles.separator]}
-    />
+    <View lightColor={Colors.light.separator} darkColor={Colors.dark.separator} style={[CommonStyles.separator]} />
   );
 };
 

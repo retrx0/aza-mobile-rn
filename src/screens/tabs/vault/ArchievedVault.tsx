@@ -12,10 +12,9 @@ import { ListCard, VaultList } from "./VaultCard";
 import BackButton from "../../../components/buttons/BackButton";
 import { VaultStackProps } from "./VaultNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootTabScreenProps } from "../../../../types";
 
-const ArchievedVault = ({
-  navigation,
-}: NativeStackScreenProps<VaultStackProps>) => {
+const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -23,7 +22,7 @@ const ArchievedVault = ({
           <BackButton onPress={() => navigation.goBack()} />
           <View style={[CommonStyles.archievedVault]}>
             <Header
-              heading='Archived Vaults'
+              heading="Archived Vaults"
               description={""}
               descriptionStyle={undefined}
               headerStyle={CommonStyles.archieved}
@@ -53,18 +52,12 @@ const ArchievedVault = ({
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
           <TouchableOpacity>
-            <Text
-              style={[
-                CommonStyles.archivedStyle,
-                { textDecorationLine: "underline" },
-              ]}>
-              Archived Vaults
-            </Text>
+            <Text style={[CommonStyles.archivedStyle, { textDecorationLine: "underline" }]}>Archived Vaults</Text>
           </TouchableOpacity>
 
           <Button
-            title='New Vault'
-            onPressButton={() => navigation.navigate("confirmDeleteVault")}
+            title="New Vault"
+            onPressButton={() => navigation.navigate("Common", { screen: "ConfirmDeleteVault" })}
             style={CommonStyles.button}
           />
         </View>

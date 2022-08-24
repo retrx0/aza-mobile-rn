@@ -31,10 +31,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </TouchableOpacity>
           </View>
         </View>
-        <Button
-          title="New Vault"
-          // onPressButton={() => navigation.navigate("newvault")}
-        />
+        <Button title="New Vault" onPressButton={() => navigation.navigate("Common", { screen: "NewVault" })} />
       </View>
     </SpacerWrapper>
   );

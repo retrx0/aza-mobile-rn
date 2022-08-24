@@ -3,6 +3,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 
 const EuclidRegular = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A.ttf");
+const EuclidLight = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Light.ttf");
 const EuclidSemiBold = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Semi-Bold.ttf");
 const EuclidBold = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Bold.ttf");
 const EuclidMedium = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Medium.ttf");
@@ -29,7 +30,7 @@ const useCachedResources = () => {
           "Euclid-Circular-A-Semi-Bold": EuclidSemiBold,
           "Euclid-Circular-A-Medium": EuclidMedium,
           "Euclid-Circular-A-Semi-Bold-Italic": EuclidSemiBoldItalic,
-
+          "Euclid-Circular-A-Light": EuclidLight,
           "SpaceMono-Regular": SpaceMono,
         });
       } catch (e) {
