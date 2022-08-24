@@ -386,17 +386,28 @@ export const NairaIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 //Might replace with lottie animation
-export const BvnVerificationSuccessIcon = () => {
+export const StatusSuccessIcon = () => {
   return (
-    <Svg width={80} height={80} fill="none">
-      <Circle cx={40} cy={40} r={40} fill="#D8F9D2" />
-      <Circle cx={40} cy={40} r={30} fill="#2A9E17" />
+    <Svg width={60} height={60} fill="none">
+      <Circle cx={30} cy={30} r={30} fill="#2A9E17" />
       <Path
-        d="M53.333 30 35 48.333 26.667 40"
+        d="M43.334 20 25 38.333 16.667 30"
         stroke="#fff"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const StatusWarningIcon = () => {
+  return (
+    <Svg width={60} height={60} fill="none">
+      <Circle cx={30} cy={30} r={30} fill="#FFD200" />
+      <Path
+        d="m28.278 33.76-1.04-7.52V15.6h5.52v10.64l-1.08 7.52h-3.4Zm1.68 10.56c-1.12 0-2.066-.387-2.84-1.16-.773-.773-1.16-1.72-1.16-2.84 0-1.12.387-2.067 1.16-2.84.774-.773 1.72-1.16 2.84-1.16 1.094 0 2.027.4 2.8 1.2.8.773 1.2 1.707 1.2 2.8 0 1.093-.4 2.04-1.2 2.84a3.816 3.816 0 0 1-2.8 1.16Z"
+        fill="#fff"
       />
     </Svg>
   );

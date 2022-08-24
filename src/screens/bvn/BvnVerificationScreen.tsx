@@ -6,12 +6,14 @@ import { StyleSheet } from "react-native";
 import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import Button from "../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+import { ButtonWithUnderline } from "../../components/buttons/ButtonWithUnderline";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { BvnVerificationScreenProps } from "../../common/navigation/types";
+import { CommonScreenProps } from "../../common/navigation/types";
 
-const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVerificationScreen">) => {
+const BvnVerificationScreen = ({
+  navigation,
+}: CommonScreenProps<"BvnVerificationScreen">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -83,7 +85,14 @@ const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVe
         <View style={[CommonStyles.col, { marginBottom: hp(50) }]}>
           <Button
             title="Verify"
-            onPressButton={() => navigation.navigate("BvnVerificationSuccess")}
+            onPressButton={() =>
+              navigation.navigate("StatusScreen", {
+                statusIcon: "Success",
+                status: "Successful",
+                statusMessage:
+                  "You have successfully added your BVN to your Aza account",
+              })
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
@@ -93,7 +102,11 @@ const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVe
               backgroundColor: Colors[colorScheme].button,
             }}
           />
-          <CancelButtonWithUnderline title="Cancel" onPressButton={() => navigation.getParent()?.navigate("Home")} />
+          <ButtonWithUnderline
+            title="Cancel"
+            color={"#FF361A"}
+            onPressButton={() => navigation.getParent()?.navigate("Home")}
+          />
         </View>
       </View>
     </SpacerWrapper>
