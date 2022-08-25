@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
-import { useThemeColor } from "../Themed";
 
 type ButtonPropsType = {
   title: string;
@@ -44,7 +43,7 @@ const styles = {
     letterSpacing: hp(0.5),
     fontSize: hp(16),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   nextText: {
     color: Colors.general.secondary,

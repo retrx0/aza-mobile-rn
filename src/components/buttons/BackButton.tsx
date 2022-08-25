@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
   backContainer: {
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: hp(15),
-    padding: hp(5),
   },
 });
 
