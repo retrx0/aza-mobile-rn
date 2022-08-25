@@ -4,24 +4,39 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { SignUpStackProps } from "./SignUpNavigator";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
+import { SignUpScreenProps } from "../../../../types";
+import { CountriesType } from "../../../../types";
+import { CountryBox } from "./CountryInput";
 
-const SignUpScreen = ({
-  navigation,
-}: NativeStackScreenProps<SignUpStackProps>) => {
-  const [phone, setPhone] = useState<string>("");
+type StageOneProp = {
+  onCountryPress: () => void;
+  country: CountriesType;
+  onChangeText: (text: string) => void;
+  onSendOtp: () => void;
+  phoneNumber: string;
+};
+
+const SignUpScreen = (
+  props: StageOneProp,
+  { navigation }: SignUpScreenProps<"SignUpRoot">
+) => {
+  // const [phone, setPhone] = useState<string>("");
+  const { onCountryPress, country, onChangeText, onSendOtp, phoneNumber } =
+    props;
 
   return (
     <SpacerWrapper>
-      <BackButton
-        onPress={() => {
-          navigation.getParent()?.navigate("Welcome");
-        }}
-      />
+      <View style={{ marginLeft: 20 }}>
+        <BackButton
+          onPress={() => {
+            navigation.getParent()?.navigate("Welcome");
+          }}
+        />
+      </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
         <Text style={[CommonStyles.bodyText]}>
@@ -31,7 +46,16 @@ const SignUpScreen = ({
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
-      <PhoneInput
+
+      <CountryBox
+        onPress={onCountryPress}
+        short_name={country.short_name}
+        code={country.code}
+        value={phoneNumber}
+        onChangeText={onChangeText}
+        onSubmitEditing={onSendOtp}
+      />
+      {/* <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry='ng'
@@ -41,7 +65,7 @@ const SignUpScreen = ({
           placeholder: "Enter a phone number...",
         }}
         style={[CommonStyles.phoneStyle]}
-      />
+      /> */}
       <Button
         title='Continue'
         onPressButton={() => navigation.navigate("SignUpOTP")}

@@ -15,7 +15,9 @@ import { GENDER } from "../../../constants/Gender";
 import { TextHeader } from "../../../components/text/textHeader";
 import { SelectIcon } from "../../../../assets/svg";
 
-const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
+const SignUpProfileSetupScreen = ({
+  navigation,
+}: SignUpScreenProps<"SignUpProfileSetup">) => {
   const insets = useSafeAreaInsets();
 
   const [gender, setGender] = useState(GENDER);
@@ -27,17 +29,30 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
   };
   return (
     <SpacerWrapper>
-      <BackButton onPress={() => navigation.goBack()} />
+      <View style={{ marginLeft: 20 }}>
+        <BackButton onPress={() => navigation.goBack()} />
+      </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Profile setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <BoxTextInput placeHolder="Full Name" required value="Chiazondu Joseph" onChange={() => {}} />
-      <BoxTextInput placeHolder="Email" required value="chiazo@examplemail.com" onChange={() => {}} />
-      <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
+      <BoxTextInput
+        placeHolder='Full Name'
+        required
+        value='Chiazondu Joseph'
+        onChange={() => {}}
+      />
+      <BoxTextInput
+        placeHolder='Email'
+        required
+        value='chiazo@examplemail.com'
+        onChange={() => {}}
+      />
+      <TextHeader label='Gender' style={[CommonStyles.genderstyle]} />
 
-      <View style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
-        {/* <RNPickerSelect
+      <View
+        style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
+        <RNPickerSelect
           placeholder={placeholder}
           onValueChange={(value) => {
             setGender(value);
@@ -62,15 +77,20 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
               lineHeight: hp(20),
               fontFamily: "Euclid-Circular-A",
               color: Colors.general.black,
+              fontWeight: "400",
             },
           }}
-        /> */}
+        />
       </View>
 
       <Button
-        title="Continue"
-        onPressButton={() => navigation.navigate("SignUpPassword", { passwordScreenType: "Create" })}
-        style={[CommonStyles.container, { bottom: hp(75) }]}
+        title='Continue'
+        onPressButton={() =>
+          navigation.navigate("SignUpPassword", {
+            passwordScreenType: "Create",
+          })
+        }
+        style={[CommonStyles.container, { bottom: hp(45) }]}
       />
     </SpacerWrapper>
   );
