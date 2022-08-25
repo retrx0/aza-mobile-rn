@@ -7,6 +7,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
 type OtpProp = {
   onWrongNumber: () => void;
@@ -18,7 +19,7 @@ type OtpProp = {
   onBackButtonPressed: () => void;
 };
 
-const OtpScreen = (props: OtpProp) => {
+const OtpScreen = (props: OtpProp, { navigation }: { navigation: any }) => {
   const { otpCode, onOtpChanged, onVerify } = props;
   return (
     <SpacerWrapper>
@@ -38,9 +39,11 @@ const OtpScreen = (props: OtpProp) => {
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
         <TouchableOpacity>
-          <Text style={[styles.resend, { textDecorationLine: "underline" }]}>
-            Resend
-          </Text>
+          <CancelButtonWithUnderline
+            title='Resend code'
+            style={CommonStyles.resendBox}
+            styleText={CommonStyles.resend}
+          />
         </TouchableOpacity>
       </View>
       <Button
