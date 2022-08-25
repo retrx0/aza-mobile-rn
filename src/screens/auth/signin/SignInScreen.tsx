@@ -6,7 +6,6 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
-import styles from "../../onboarding/OnboardingStyles";
 import { SignInScreenProps } from "../../../../types";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {

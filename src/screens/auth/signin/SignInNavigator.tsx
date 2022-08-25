@@ -15,11 +15,19 @@ export type LogInStackProps = {
 const LoginNavigator = () => {
   return (
     <LogInStack.Navigator>
-      <LogInStack.Screen component={SignInScreen} name="SignInRoot" options={{ headerShown: false }} />
-      <LogInStack.Screen component={LoginOTPScreen} name="SignInOTP" options={{ headerShown: false }} />
+      <LogInStack.Screen
+        component={SignInScreen}
+        name='SignInRoot'
+        options={{ headerShown: false }}
+      />
+      <LogInStack.Screen
+        component={LoginOTPScreen}
+        name='SignInOTP'
+        options={{ headerShown: false }}
+      />
       <LogInStack.Screen
         component={SignInWelcomeBackScreen}
-        name="SignInWelcomeBack"
+        name='SignInWelcomeBack'
         options={{ headerShown: false }}
       />
     </LogInStack.Navigator>

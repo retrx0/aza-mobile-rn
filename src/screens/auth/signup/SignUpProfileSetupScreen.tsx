@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
-import ButtonLg from "../../../components/buttons/ButtonLg";
 import BoxTextInput from "../../../components/input/BoxTextInput";
 import { Text, View } from "../../../components/Themed";
 import Colors from "../../../constants/Colors";
