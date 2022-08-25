@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { SigninStyles as styles } from "../signin/styles";
+import { SigninStyles as styles } from "../SignIn/styles";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
