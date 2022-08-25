@@ -1,12 +1,10 @@
-import { Image, TouchableOpacity } from "react-native";
+import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View, Text } from "../../../components/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { VaultStackProps } from "./VaultNavigator";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 

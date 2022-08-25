@@ -3,9 +3,9 @@ import { RootTabScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
-import { ArrowDown } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
+import { ArrowDownIcon } from "../../../../assets/svg";
 
 const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
@@ -29,7 +29,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               Click New Vault to create a new vault
             </Text>
             <TouchableOpacity>
-              <ArrowDown />
+              <ArrowDownIcon />
             </TouchableOpacity>
           </View>
         </View>

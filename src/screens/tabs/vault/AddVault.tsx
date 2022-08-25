@@ -3,7 +3,7 @@ import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { hp } from "../../../common/util/LayoutUtil";
-import { ArrowDown, InfoIcon } from "../../../../assets/svg";
+import { InfoIcon } from "../../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";

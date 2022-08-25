@@ -11,13 +11,13 @@ import {
   PercentageCard,
   PercentageList,
 } from "./components/VaultCard";
-import { SelectArrow } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
+import { SelectIcon } from "../../../../assets/svg";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -79,7 +79,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               Choose a period to lock funds away
             </Text>
             <TouchableOpacity>
-              <SelectArrow />
+              <SelectIcon />
             </TouchableOpacity>
           </View>
         </View>

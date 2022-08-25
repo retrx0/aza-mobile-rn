@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { hp } from "../../../common/util/LayoutUtil";
 import { InfoIcon } from "../../../../assets/svg";

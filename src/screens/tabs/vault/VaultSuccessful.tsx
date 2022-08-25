@@ -5,8 +5,6 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { VaultStackProps } from "./VaultNavigator";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootTabScreenProps } from "../../../../types";
 
 const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
