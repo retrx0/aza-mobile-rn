@@ -1,32 +1,16 @@
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import ButtonLg from "../../../components/buttons/ButtonLg";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
-import { CountriesType } from "../../../../types";
-import { CountryBox } from "./CountryInput";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
-type StageOneProp = {
-  onCountryPress: () => void;
-  country: CountriesType;
-  onChangeText: (text: string) => void;
-  onSendOtp: () => void;
-  phoneNumber: string;
-};
-
-const SignUpScreen = (
-  props: StageOneProp,
-  { navigation }: SignUpScreenProps<"SignUpRoot">
-) => {
-  // const [phone, setPhone] = useState<string>("");
-  const { onCountryPress, country, onChangeText, onSendOtp, phoneNumber } =
-    props;
+const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
+  const [phone, setPhone] = useState<string>("");
 
   return (
     <SpacerWrapper>
@@ -47,15 +31,7 @@ const SignUpScreen = (
         </Text>
       </View>
 
-      <CountryBox
-        onPress={onCountryPress}
-        short_name={country.short_name}
-        code={country.code}
-        value={phoneNumber}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSendOtp}
-      />
-      {/* <PhoneInput
+      <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry='ng'
@@ -65,19 +41,19 @@ const SignUpScreen = (
           placeholder: "Enter a phone number...",
         }}
         style={[CommonStyles.phoneStyle]}
-      /> */}
+      />
       <Button
         title='Continue'
         onPressButton={() => navigation.navigate("SignUpOTP")}
       />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.getParent()?.navigate("SignIn");
-          }}>
-          <Text style={[CommonStyles.login]}>Login</Text>
-        </TouchableOpacity>
+        <CancelButtonWithUnderline
+          title='Login'
+          style={CommonStyles.resendBox}
+          styleText={CommonStyles.resend}
+          onPressButton={() => navigation.getParent()?.navigate("SignIn")}
+        />
       </View>
 
       <Text style={[CommonStyles.orText]}>OR</Text>
