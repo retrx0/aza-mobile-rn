@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import { Close, Lock, Unlock } from "../../../../../assets/svg";
+import { CloseIcon, LockIcon } from "../../../../../assets/svg";
 import {
   DaysProps,
   PercentageProps,
@@ -44,22 +44,22 @@ export const DaysList = [
 
 export const VaultList = [
   {
-    lockIcon: <Lock />,
+    lockIcon: <LockIcon />,
     item: "Flight Ticket",
     amount: "2000",
-    closeIcon: <Close />,
+    closeIcon: <CloseIcon />,
   },
   {
-    lockIcon: <Lock />,
+    lockIcon: <LockIcon />,
     item: "New Laptop",
     amount: "2000",
-    closeIcon: <Close />,
+    closeIcon: <CloseIcon />,
   },
   {
-    lockIcon: <Lock />,
+    lockIcon: <LockIcon />,
     item: "New Phone",
     amount: "200000",
-    closeIcon: <Close />,
+    closeIcon: <CloseIcon />,
   },
 ];
 
