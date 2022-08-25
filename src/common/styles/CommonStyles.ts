@@ -491,9 +491,14 @@ const CommonStyles = StyleSheet.create({
   },
   resend: {
     fontWeight: "400",
-    textDecorationLine: "underline",
     fontFamily: "Euclid-Circular-A-Bold",
     fontSize: hp(16),
+    color: Colors.general.primary,
+  },
+  resendBox: {
+    borderBottomColor: "#121212",
+    paddingBottom: 1,
+    borderBottomWidth: 1,
   },
 
   verification: {
