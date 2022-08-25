@@ -93,6 +93,7 @@ const BvnVerificationScreen = ({
           <CancelButtonWithUnderline
             title='Cancel'
             onPressButton={() => navigation.getParent()?.navigate("Home")}
+            style={{ marginTop: 5 }}
           />
         </View>
       </View>
