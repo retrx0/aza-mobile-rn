@@ -10,7 +10,9 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { BvnVerificationSuccessIcon } from "../../../assets/svg";
 import { BvnVerificationScreenProps } from "../../common/navigation/types";
 
-const BvnVerificationSuccess = ({ navigation }: BvnVerificationScreenProps<"BvnVerificationSuccess">) => {
+const BvnVerificationSuccess = ({
+  navigation,
+}: BvnVerificationScreenProps<"BvnVerificationSuccess">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -22,7 +24,11 @@ const BvnVerificationSuccess = ({ navigation }: BvnVerificationScreenProps<"BvnV
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View style={[CommonStyles.col, { alignItems: "center", marginTop: "auto", marginBottom: "auto" }]}>
+        <View
+          style={[
+            CommonStyles.col,
+            { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
+          ]}>
           <BvnVerificationSuccessIcon />
           <Text
             style={{
@@ -30,8 +36,7 @@ const BvnVerificationSuccess = ({ navigation }: BvnVerificationScreenProps<"BvnV
               fontSize: 24,
               marginVertical: 20,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}
-          >
+            }}>
             Successful
           </Text>
           <Text
@@ -40,23 +45,20 @@ const BvnVerificationSuccess = ({ navigation }: BvnVerificationScreenProps<"BvnV
               fontSize: 14,
               textAlign: "center",
               fontFamily: "Euclid-Circular-A-Medium",
-            }}
-          >
+            }}>
             You have successfully linked your BVN to your Aza account
           </Text>
         </View>
         <View style={[CommonStyles.col, { marginBottom: hp(50) }]}>
           <Button
-            title="Continue"
+            title='Continue'
             onPressButton={() => navigation.getParent()?.navigate("Home")}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
             }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={CommonStyles.button}
           />
         </View>
       </View>

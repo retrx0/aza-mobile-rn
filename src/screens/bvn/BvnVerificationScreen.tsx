@@ -11,7 +11,9 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { BvnVerificationScreenProps } from "../../common/navigation/types";
 
-const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVerificationScreen">) => {
+const BvnVerificationScreen = ({
+  navigation,
+}: BvnVerificationScreenProps<"BvnVerificationScreen">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -23,8 +25,7 @@ const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVe
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Tier 1 Verification
         </Text>
       ),
@@ -47,8 +48,7 @@ const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVe
               fontFamily: "Euclid-Circular-A",
               fontSize: 14,
               marginVertical: hp(30),
-            }}
-          >
+            }}>
             Verify your BVN
           </Text>
           <View>
@@ -58,8 +58,7 @@ const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVe
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: 14,
-              }}
-            >
+              }}>
               BVN
             </Text>
             <TextInput
@@ -74,26 +73,27 @@ const BvnVerificationScreen = ({ navigation }: BvnVerificationScreenProps<"BvnVe
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
               }}
-              placeholder="Enter your bank verification number"
-              keyboardType="number-pad"
-              returnKeyType="done"
+              placeholder='Enter your bank verification number'
+              keyboardType='number-pad'
+              returnKeyType='done'
             />
           </View>
         </View>
         <View style={[CommonStyles.col, { marginBottom: hp(50) }]}>
           <Button
-            title="Verify"
+            title='Verify'
             onPressButton={() => navigation.navigate("BvnVerificationSuccess")}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
             }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[CommonStyles.button]}
           />
-          <CancelButtonWithUnderline title="Cancel" onPressButton={() => navigation.getParent()?.navigate("Home")} />
+          <CancelButtonWithUnderline
+            title='Cancel'
+            onPressButton={() => navigation.getParent()?.navigate("Home")}
+          />
         </View>
       </View>
     </SpacerWrapper>

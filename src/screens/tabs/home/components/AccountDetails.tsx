@@ -12,8 +12,8 @@ export default function AccountDetails() {
   return (
     <View style={[CommonStyles.col, { alignItems: "center" }]}>
       <View
-        lightColor="#eaeaec"
-        darkColor="#1D1D20"
+        lightColor='#eaeaec'
+        darkColor='#1D1D20'
         style={[
           CommonStyles.row,
           {
@@ -23,13 +23,11 @@ export default function AccountDetails() {
             justifyContent: "center",
             borderRadius: 50,
           },
-        ]}
-      >
+        ]}>
         <Text
           lightColor={Colors.general.darkGrey}
           darkColor={Colors.dark.tabIconDefault}
-          style={{ fontSize: 12, fontFamily: "Euclid-Circular-A" }}
-        >
+          style={{ fontSize: 12, fontFamily: "Euclid-Circular-A" }}>
           Nigerian Naira
         </Text>
         <Image
@@ -39,8 +37,7 @@ export default function AccountDetails() {
         <Text
           lightColor={Colors.general.darkGrey}
           darkColor={Colors.dark.tabIconDefault}
-          style={{ fontSize: 12, fontFamily: "Euclid-Circular-A" }}
-        >
+          style={{ fontSize: 12, fontFamily: "Euclid-Circular-A" }}>
           NGN
         </Text>
       </View>
@@ -57,8 +54,7 @@ export default function AccountDetails() {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 24,
             marginVertical: 15,
-          }}
-        >
+          }}>
           2,239,290.00
         </Text>
       </View>
@@ -69,8 +65,7 @@ export default function AccountDetails() {
           style={{
             fontSize: 12,
             fontFamily: "Euclid-Circular-A",
-          }}
-        >
+          }}>
           Aza Number:
         </Text>
         <Text
@@ -80,8 +75,7 @@ export default function AccountDetails() {
             marginLeft: 3,
             fontSize: 12,
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-          }}
-        >
+          }}>
           1234567890
         </Text>
       </View>
