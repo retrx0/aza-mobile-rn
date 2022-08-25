@@ -57,10 +57,8 @@ export type SignInStackParamList = {
   SignInOTP: undefined;
 };
 
-export type SignInScreenProps<Screen extends keyof SignInStackParamList> = NativeStackScreenProps<
-  SignInStackParamList,
-  Screen
->;
+export type SignInScreenProps<Screen extends keyof SignInStackParamList> =
+  NativeStackScreenProps<SignInStackParamList, Screen>;
 
 /* Sign Up */
 
@@ -77,10 +75,8 @@ export type SignUpStackParamList = {
   SignUpConfirmPassword: PasswordScreenParamsType;
 };
 
-export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> = NativeStackScreenProps<
-  SignUpStackParamList,
-  Screen
->;
+export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> =
+  NativeStackScreenProps<SignUpStackParamList, Screen>;
 
 /* Other Types */
 
@@ -103,15 +99,6 @@ export type VautListProps = {
   unlockIcon: any;
 };
 
-export type CountryProps = {
-  code: string;
-  shortName: string;
-  name?: string;
-  id?: string;
-  imageLink?: string;
-  onPress?: () => void;
-};
-
 export type SocialSignInProps = {
   icon: React.ReactNode;
   onPress?: () => void;
@@ -119,3 +106,14 @@ export type SocialSignInProps = {
   connect: string;
   styleText?: StyleProp<TextStyle>;
 };
+
+export type CountryProps = {
+  code: string;
+  name?: string;
+  id?: string;
+  imageLink?: string;
+  onPress?: () => void;
+  short_name: string;
+};
+
+export type CountriesType = Omit<CountryProps, "onPress">;
