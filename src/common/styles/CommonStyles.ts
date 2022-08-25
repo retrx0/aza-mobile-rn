@@ -3,10 +3,24 @@ import Colors from "../../constants/Colors";
 import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
+  archivedBox: {
+    marginBottom: 10,
+    borderBottomColor: "#121212",
+    paddingBottom: 1,
+    borderBottomWidth: 1,
+  },
+  archived: {
+    color: "#121212",
+    fontFamily: "Euclid-Circular-A",
+    fontSize: 12,
+    fontWeight: "500",
+  },
+
   archievedContainer: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: hp(20),
   },
   createVaultContainer: {
     flexDirection: "row",
@@ -17,12 +31,11 @@ const CommonStyles = StyleSheet.create({
   archievedVault: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: hp(20),
   },
   addVault: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(15),
     justifyContent: "space-between",
   },
   Style: {
@@ -38,7 +51,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17),
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontFamily: "Euclid-Circular-A-Medium",
     width: wp(295),
   },
   archivedStyle: {
@@ -67,7 +80,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     marginTop: hp(10),
   },
   actionStyle: {
@@ -176,7 +189,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     fontSize: hp(16),
     fontWeight: "400",
-    marginRight: hp(90),
+    marginRight: hp(60),
   },
   vaultAdd: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -197,7 +210,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17.75),
     marginBottom: hp(10),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   undraw: {
     marginTop: hp(159),
@@ -221,7 +234,7 @@ const CommonStyles = StyleSheet.create({
   createNewVault: {
     fontSize: hp(14),
     fontWeight: "400",
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     lineHeight: hp(18),
     marginRight: hp(10),
   },
