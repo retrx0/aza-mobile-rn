@@ -5,7 +5,11 @@ import { RootTabScreenProps } from "../../../../../types";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 
-const LinkBVN = ({ navigation }: RootTabScreenProps<"Home">) => {
+interface IProps {
+  isBvnLinked: boolean;
+}
+
+const LinkBVN = ( { navigation, isBvnLinked }:  RootTabScreenProps<"Home"> & IProps ) => {
   return (
     <View
       style={{
@@ -14,7 +18,7 @@ const LinkBVN = ({ navigation }: RootTabScreenProps<"Home">) => {
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
-        display: "flex",
+        display: isBvnLinked ? 'none' : "flex",
         justifyContent: "center",
         alignItems: "flex-start",
         flexDirection: "row",

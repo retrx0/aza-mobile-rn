@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BvnVerificationNavigator from "../../screens/bvn/BvnVerificationNavigator";
-import StatusScreen from "../../screens/bvn/StatusScreen";
+import StatusScreen from "../../screens/status/StatusScreen";
 import { CommonStackParamList } from "./types";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
