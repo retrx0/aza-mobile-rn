@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BvnVerificationNavigator from "../../screens/bvn/BvnVerificationNavigator";
-import AddVault from "../../screens/tabs/vault/AddVault";
-import ArchievedVault from "../../screens/tabs/vault/ArchievedVault";
-import ConfirmDeleteVault from "../../screens/tabs/vault/ConfirmDeleteVault";
-import DeleteVault from "../../screens/tabs/vault/DeleteVault";
-import NewVault from "../../screens/tabs/vault/NewVault";
-import VaultSuccessful from "../../screens/tabs/vault/VaultSuccessful";
+import AddVault from "../../screens/tabs/Vault/AddVault";
+import ArchievedVault from "../../screens/tabs/Vault/ArchievedVault";
+import ConfirmDeleteVault from "../../screens/tabs/Vault/ConfirmDeleteVault";
+import DeleteVault from "../../screens/tabs/Vault/DeleteVault";
+import NewVault from "../../screens/tabs/Vault/NewVault";
+import VaultSuccessful from "../../screens/tabs/Vault/VaultSuccessful";
 import { CommonStackParamList } from "./types";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
