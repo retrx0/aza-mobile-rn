@@ -26,7 +26,7 @@ const CommonStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: hp(200),
+    marginBottom: hp(250),
   },
   archievedVault: {
     flexDirection: "row",
@@ -213,7 +213,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Medium",
   },
   undraw: {
-    marginTop: hp(159),
+    marginTop: hp(130),
   },
   createVault: {
     fontSize: hp(14),
