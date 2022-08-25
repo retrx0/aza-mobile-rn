@@ -1,18 +1,15 @@
-import { Image, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { hp } from "../../../common/util/LayoutUtil";
-import { ArrowDown, InfoIcon } from "../../../../assets/svg";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import styles from "../../onboarding/OnboardingStyles";
-import { ListCard, VaultList } from "./VaultCard";
+import { ListCard, VaultList } from "./components/VaultCard";
 import BackButton from "../../../components/buttons/BackButton";
-import { VaultStackProps } from "./VaultNavigator";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootTabScreenProps } from "../../../../types";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
 const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
@@ -22,7 +19,7 @@ const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <BackButton onPress={() => navigation.goBack()} />
           <View style={[CommonStyles.archievedVault]}>
             <Header
-              heading="Archived Vaults"
+              heading='Archived Vaults'
               description={""}
               descriptionStyle={undefined}
               headerStyle={CommonStyles.archieved}
@@ -50,14 +47,21 @@ const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           })}
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <TouchableOpacity>
-            <Text style={[CommonStyles.archivedStyle, { textDecorationLine: "underline" }]}>Archived Vaults</Text>
+            <CancelButtonWithUnderline
+              title='Archived Vaults'
+              onPressButton={() => navigation.getParent()?.navigate("AddVault")}
+              style={CommonStyles.archivedBox}
+              styleText={CommonStyles.archived}
+            />
           </TouchableOpacity>
 
           <Button
-            title="New Vault"
-            onPressButton={() => navigation.navigate("Common", { screen: "ConfirmDeleteVault" })}
+            title='New Vault'
+            onPressButton={() =>
+              navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
+            }
             style={CommonStyles.button}
           />
         </View>

@@ -8,17 +8,23 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import styles from "../../onboarding/OnboardingStyles";
-import { ListCard, VaultList } from "./VaultCard";
+import { ListCard, VaultList } from "./components/VaultCard";
 import { VaultStackProps } from "./VaultNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootTabScreenProps } from "../../../../types";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
         <View style={[CommonStyles.addVault]}>
-          <Header heading="Vault" description={""} headerStyle={[CommonStyles.vaultAdd]} descriptionStyle={undefined} />
+          <Header
+            heading='Vault'
+            description={""}
+            headerStyle={[CommonStyles.vaultAdd]}
+            descriptionStyle={undefined}
+          />
           <TouchableOpacity>
             <InfoIcon />
           </TouchableOpacity>
@@ -40,14 +46,21 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           })}
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
-          <TouchableOpacity>
-            <Text style={[CommonStyles.archivedStyle, { textDecorationLine: "underline" }]}>Archived Vaults</Text>
-          </TouchableOpacity>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+          <CancelButtonWithUnderline
+            title='Archived Vaults'
+            onPressButton={() =>
+              navigation.getParent()?.navigate("VaultSuccessful")
+            }
+            style={CommonStyles.archivedBox}
+            styleText={CommonStyles.archived}
+          />
 
           <Button
-            title="New Vault"
-            onPressButton={() => navigation.navigate("Common", { screen: "ArchievedVault" })}
+            title='New Vault'
+            onPressButton={() =>
+              navigation.navigate("Common", { screen: "ArchievedVault" })
+            }
             style={CommonStyles.button}
           />
         </View>

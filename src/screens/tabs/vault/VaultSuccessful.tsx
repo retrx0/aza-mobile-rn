@@ -17,20 +17,27 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../assets/images/Successful.png")}
-          resizeMode="cover"
+          resizeMode='cover'
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>
-            You have successfully locked away {`#${2000}`} to Flight Ticket vault
+            You have successfully locked away {`#${2000}`} to Flight Ticket
+            vault
           </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: insets.bottom || hp(45) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate("Common", { screen: "AddVault" })}
-            style={[CommonStyles.button, { bottom: insets.bottom || hp(45) }]}
+            title='Continue'
+            onPressButton={() =>
+              navigation.navigate("Common", { screen: "AddVault" })
+            }
+            style={[CommonStyles.button, { bottom: hp(20) }]}
           />
         </View>
       </View>
