@@ -162,7 +162,7 @@ const CommonStyles = StyleSheet.create({
     marginTop: hp(10),
   },
   inputStyle: {
-    color: "#A6A6A6",
+    color: Colors.light.secondaryText,
     paddingRight: wp(10),
     fontSize: hp(14),
     fontWeight: "500",

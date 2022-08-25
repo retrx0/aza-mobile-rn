@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleProp, StyleSheet, Text, TextStyle } from "react-native";
-import * as Colors from "../../common/colors";
+import Colors from "../../constants/Colors";
 
 type TextHeaderProps = {
   label: string;
@@ -14,6 +14,6 @@ export const TextHeader = ({ label, style }: TextHeaderProps) => {
 const styles = StyleSheet.create({
   label: {
     fontSize: 18,
-    color: Colors.Primary,
+    color: Colors.general.primary,
   },
 });
