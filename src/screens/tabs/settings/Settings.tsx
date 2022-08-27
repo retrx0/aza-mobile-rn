@@ -1,8 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
+import { RootTabScreenProps } from "../../../../types";
 
-const Settings = () => {
-  return <Text>Settings</Text>;
+const Settings = ({ navigation }: RootTabScreenProps<"Settings">) => {
+  return null;
 };
 
 export default Settings;

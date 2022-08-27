@@ -1,4 +1,5 @@
 import { ImageSourcePropType } from "react-native";
+import { AZALightningLogo } from "../../../assets/svg";
 
 export type CarouselItem = {
   id: number;
@@ -19,7 +20,7 @@ export const carousel_data: CarouselItem[] = [
   {
     id: 2,
     source: require("../../../assets/images/banner/Home-onboard-5.png"),
-    heading: "Lightning fast transactions",
+    heading: `Lightning fast transactions`,
     description: "Make payments 24/7 at the speed of light with a 100% transaction certainty",
   },
   {

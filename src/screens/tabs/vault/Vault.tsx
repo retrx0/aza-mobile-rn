@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import { RootTabScreenProps } from "../../../../types";
 
 import { Text, View } from "../../../components/Themed";
 
-const Vault = () => {
+const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Vault</Text>

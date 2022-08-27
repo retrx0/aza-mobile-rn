@@ -7,7 +7,7 @@ import Colors from "../../constants/Colors";
 
 type SegmentedInputProps = {
   value: string;
-  onValueChanged: () => void;
+  onValueChanged: (code: string) => void;
   secureInput: boolean;
   headerText: string;
 };
@@ -21,7 +21,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         keyboardType="number-pad"
         pinCount={6}
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-        onCodeChanged={onValueChanged}
+        onCodeChanged={(code) => onValueChanged(code)}
         secureTextEntry={secureInput}
         autoFocusOnLoad
         codeInputFieldStyle={styles.underlineStyleBase}

@@ -12,12 +12,25 @@ import { ColorSchemeName } from "react-native";
 
 import ModalScreen from "../screens/modals/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../../types";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+  SignInStackParamList,
+  SignUpStackParamList,
+} from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
+import SignInScreen from "../screens/auth/signin/SignInScreen";
+import LoginOTPScreen from "../screens/auth/signin/SignInOTPScreen";
+import SignUpScreen from "../screens/auth/signup/SignUpScreen";
+import SignUpEmailScreen from "../screens/auth/signup/SignUpProfileSetupScreen";
+import SignUpOTPScreen from "../screens/auth/signup/SignUpOTPScreen";
+import SignUpPasswordScreen from "../screens/auth/signup/SignUpPasswordScreen";
+import CommonStack from "../common/navigation/CommonStackNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -33,14 +46,51 @@ const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+type PasswordScreenParamsType = {
+  passWordScreenType: string;
+};
+
 const RootNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="SignUp" component={SignUpRoot} options={{ headerShown: false }} />
       <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen name="Common" component={CommonStack} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+
+      {/* Auth Stack */}
+      {/* <Stack.Group navigationKey={isSignedIn ? "Home" : "Login"} screenOptions={{ headerShown: false }}>
+        <Stack.Group>
+          <Stack.Screen component={SignInScreen} name="SignInRoot" options={{ headerShown: false }} />
+          <Stack.Screen component={LoginOTPScreen} name="SignInOTP" options={{ headerShown: false }} />
+          <Stack.Screen component={WelcomeScreen} name="SignInWelcomeBack" options={{ headerShown: false }} />
+        </Stack.Group>
+        <Stack.Group>
+          <Stack.Screen component={SignUpScreen} name="SignUpRoot" options={{ headerShown: false, title: "Sign Up" }} />
+          <Stack.Screen component={SignUpEmailScreen} name="SignUpProfileSetup" options={{ headerShown: false }} />
+          <Stack.Screen component={SignUpOTPScreen} name="SignUpOTP" options={{ headerShown: false }} />
+          <Stack.Screen
+            component={SignUpPasswordScreen}
+            initialParams={create}
+            name="SignUpPassword"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            component={SignUpPasswordScreen}
+            initialParams={confirm}
+            name="SignUpConfirmPassword"
+            options={{ headerShown: false }}
+          />
+        </Stack.Group>
+      </Stack.Group> */}
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

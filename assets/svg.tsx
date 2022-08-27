@@ -10,7 +10,7 @@ type SvgIconProps = {
 
 export const VaultIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 17 16" fill="none">
       <Path
         d="M9.33333 8.38677V9.70677C9.33333 10.1668 8.96 10.5401 8.5 10.5401C8.04 10.5401 7.66667 10.1668 7.66667 9.70677V8.38677C7.42667 8.2401 7.24 8.02677 7.10667 7.77344H2.5C2.13334 7.77344 1.83334 8.07344 1.83334 8.4401V10.7934C1.83334 12.9334 3.56667 14.6668 5.70667 14.6668H11.2867C13.4333 14.6668 15.1667 12.9334 15.1667 10.7934V8.4401C15.1667 8.07344 14.8667 7.77344 14.5 7.77344H9.89333C9.76 8.02677 9.57333 8.2401 9.33333 8.38677Z"
         fill={color}
@@ -25,7 +25,7 @@ export const VaultIcon = ({ color, size }: SvgIconProps) => {
 
 export const HomeIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 15 14" fill="none">
       <Path
         d="M13.3867 4.33999L9.02002 0.846659C8.16668 0.166659 6.83335 0.159992 5.98668 0.839992L1.62002 4.33999C0.993349 4.83999 0.613349 5.83999 0.746683 6.62666L1.58668 11.6533C1.78002 12.78 2.82668 13.6667 3.96668 13.6667H11.0333C12.16 13.6667 13.2267 12.76 13.42 11.6467L14.26 6.61999C14.38 5.83999 14 4.83999 13.3867 4.33999ZM8.00002 11C8.00002 11.2733 7.77335 11.5 7.50002 11.5C7.22668 11.5 7.00002 11.2733 7.00002 11V8.99999C7.00002 8.72666 7.22668 8.49999 7.50002 8.49999C7.77335 8.49999 8.00002 8.72666 8.00002 8.99999V11Z"
         fill={color}
@@ -36,7 +36,7 @@ export const HomeIcon = ({ color, size }: SvgIconProps) => {
 
 export const PaymentsIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 15 15" fill="none">
       <Path
         d="M0.833313 3.66668V13C0.833313 13.5533 1.45998 13.8667 1.89998 13.5333L3.03998 12.68C3.30665 12.48 3.67998 12.5067 3.91998 12.7467L5.02665 13.86C5.28665 14.12 5.71331 14.12 5.97331 13.86L7.09331 12.74C7.32665 12.5067 7.69998 12.48 7.95998 12.68L9.09998 13.5333C9.53998 13.86 10.1666 13.5467 10.1666 13V1.66668C10.1666 0.933344 10.7666 0.333344 11.5 0.333344H4.16665H3.49998C1.49998 0.333344 0.833313 1.52668 0.833313 3.00001V3.66668Z"
         fill={color}
@@ -51,7 +51,7 @@ export const PaymentsIcon = ({ color, size }: SvgIconProps) => {
 
 export const SettingsIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="15" height="13" viewBox="0 0 15 13" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 15 13" fill="none">
       <Path
         d="M12.9 4.64666C11.6933 4.64666 11.2 3.79333 11.8 2.74666C12.1466 2.14 11.94 1.36666 11.3333 1.02L10.18 0.359998C9.65331 0.046665 8.97331 0.233332 8.65998 0.759998L8.58665 0.886665C7.98665 1.93333 6.99998 1.93333 6.39331 0.886665L6.31998 0.759998C6.01998 0.233332 5.33998 0.046665 4.81331 0.359998L3.65998 1.02C3.05331 1.36666 2.84665 2.14667 3.19331 2.75333C3.79998 3.79333 3.30665 4.64666 2.09998 4.64666C1.40665 4.64666 0.833313 5.21333 0.833313 5.91333V7.08666C0.833313 7.78 1.39998 8.35333 2.09998 8.35333C3.30665 8.35333 3.79998 9.20666 3.19331 10.2533C2.84665 10.86 3.05331 11.6333 3.65998 11.98L4.81331 12.64C5.33998 12.9533 6.01998 12.7667 6.33331 12.24L6.40665 12.1133C7.00665 11.0667 7.99331 11.0667 8.59998 12.1133L8.67331 12.24C8.98665 12.7667 9.66665 12.9533 10.1933 12.64L11.3466 11.98C11.9533 11.6333 12.16 10.8533 11.8133 10.2533C11.2066 9.20666 11.7 8.35333 12.9066 8.35333C13.6 8.35333 14.1733 7.78666 14.1733 7.08666V5.91333C14.1666 5.22 13.6 4.64666 12.9 4.64666ZM7.49998 8.66666C6.30665 8.66666 5.33331 7.69333 5.33331 6.5C5.33331 5.30666 6.30665 4.33333 7.49998 4.33333C8.69331 4.33333 9.66665 5.30666 9.66665 6.5C9.66665 7.69333 8.69331 8.66666 7.49998 8.66666Z"
         fill={color}
@@ -62,7 +62,7 @@ export const SettingsIcon = ({ color, size }: SvgIconProps) => {
 
 export const ProfileIcon = ({ color, size }: SvgIconProps) => {
   return (
-    <Svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 17 17" fill="none">
       <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
       <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
       <Defs>
@@ -168,6 +168,17 @@ export const AZALogo = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
+export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
+  return (
+    <Svg width="8" height={size} viewBox="0 0 8 22" fill="none">
+      <Path
+        d="M0.0078125 21.9968L2.65615 12.7984H0.0078125V0.00318909H5.39392L2.69003 9.71971H7.993L0.0078125 21.9968Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
 export const SelectArrow = () => {
   return (
     <Svg width="14" height="8" viewBox="0 0 14 8" fill="none">
@@ -259,6 +270,379 @@ export const Flag = () => {
         </Pattern>
         <Image id="image0_295_18064" width="251" height="201" />
       </Defs>
+    </Svg>
+  );
+};
+
+export const DangerIcon = () => {
+  return (
+    <Svg width={24} height={24} fill="none">
+      <Path
+        d="M21.76 15.92 15.36 4.4C14.5 2.85 13.31 2 12 2s-2.5.85-3.36 2.4l-6.4 11.52c-.81 1.47-.9 2.88-.25 3.99.65 1.11 1.93 1.72 3.61 1.72h12.8c1.68 0 2.96-.61 3.61-1.72.65-1.11.56-2.53-.25-3.99ZM11.25 9c0-.41.34-.75.75-.75s.75.34.75.75v5c0 .41-.34.75-.75.75s-.75-.34-.75-.75V9Zm1.46 8.71-.15.12c-.06.04-.12.07-.18.09-.06.03-.12.05-.19.06-.06.01-.13.02-.19.02s-.13-.01-.2-.02a.636.636 0 0 1-.18-.06.757.757 0 0 1-.18-.09l-.15-.12c-.18-.19-.29-.45-.29-.71 0-.26.11-.52.29-.71l.15-.12c.06-.04.12-.07.18-.09.06-.03.12-.05.18-.06.13-.03.27-.03.39 0 .07.01.13.03.19.06.06.02.12.05.18.09l.15.12c.18.19.29.45.29.71 0 .26-.11.52-.29.71Z"
+        fill="#FF361A"
+      />
+    </Svg>
+  );
+};
+
+export const WithdrawIcon = () => (
+  <Svg width={40} height={40} fill="none">
+    <Path
+      d="M19.867 36.667c9.166 0 16.666-7.5 16.666-16.667 0-9.167-7.5-16.667-16.666-16.667C10.7 3.333 3.2 10.833 3.2 20c0 9.167 7.5 16.667 16.667 16.667ZM13.2 20h13.333"
+      stroke="#FF361A"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={24} height={24} fill="none">
+      <Path d="M3 7h18M3 12h18M3 17h18" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+    </Svg>
+  );
+};
+
+export const MessageIcon = ({ color, size, style }: SvgIconProps) => (
+  <Svg width={size} height={size} fill="none">
+    <Path
+      d="M4.25 9.5H4c-2 0-3-.5-3-3V4c0-2 1-3 3-3h4c2 0 3 1 3 3v2.5c0 2-1 3-3 3h-.25a.507.507 0 0 0-.4.2l-.75 1c-.33.44-.87.44-1.2 0l-.75-1a.565.565 0 0 0-.4-.2Z"
+      stroke={color}
+      strokeWidth={0.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M7.998 5.5h.005M5.998 5.5h.004M3.997 5.5h.005"
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const ReceivedIcon = () => (
+  <Svg width={12} height={12} fill="none">
+    <Path
+      d="m2.5 8.75 7-7M2.5 3.615V8.75h5.135M1.75 11h8.5"
+      stroke="#2A9E17"
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const DepositIcon = () => (
+  <Svg width={40} height={40} fill="none">
+    <Path
+      d="M20 36.667c9.167 0 16.667-7.5 16.667-16.667 0-9.167-7.5-16.667-16.667-16.667-9.167 0-16.667 7.5-16.667 16.667 0 9.167 7.5 16.667 16.667 16.667ZM13.333 20h13.334M20 26.667V13.333"
+      stroke="#2AD168"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const SendIcon = ({ iconColor }: any) => (
+  <Svg width={12} height={12} fill="none">
+    <Path
+      d="M10.25 11h-8.5M9.5 1.75l-7 7M9.5 6.885V1.75H4.365"
+      stroke={iconColor ? iconColor : "#A6A6A6"}
+      strokeWidth={1.5}
+      strokeMiterlimit={10}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const TransferIcon = ({ color, size, style }: SvgIconProps) => (
+  <Svg width={size} height={size} fill="none">
+    <Path
+      d="m12.333 10.533 14.15-4.716c6.35-2.117 9.8 1.35 7.7 7.7l-4.716 14.15c-3.167 9.516-8.367 9.516-11.534 0l-1.4-4.2-4.2-1.4c-9.516-3.167-9.516-8.35 0-11.534ZM16.85 22.75l5.967-5.983"
+      stroke={color}
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+export const NairaIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg style={style} width={22} height={20} fill="none">
+      <Path
+        d="M21.183 11.16H18.18V8.272h3.003a.817.817 0 1 0 0-1.634H18.18V2.634c0-.584-.116-1.013-.343-1.275-.217-.248-.501-.364-.895-.364-.377 0-.65.115-.863.362-.225.262-.339.692-.339 1.278V6.64h-5.649L7.689 3.005c-.205-.324-.399-.628-.586-.92a4.091 4.091 0 0 0-.49-.636 1.567 1.567 0 0 0-.479-.335A1.585 1.585 0 0 0 5.48.995c-.333 0-.634.091-.923.279a1.528 1.528 0 0 0-.605.7c-.106.27-.162.687-.162 1.224V6.64H.817a.817.817 0 0 0 0 1.634H3.79v2.887H.817a.817.817 0 1 0 0 1.633H3.79v4.573c0 .567.12.992.355 1.262.225.257.51.377.896.377.373 0 .656-.12.89-.378.24-.264.361-.689.361-1.261v-4.573h5.112l2.766 4.242c.193.28.391.564.59.841.178.25.373.469.579.652.185.166.383.288.59.362.212.076.46.115.737.115.748 0 1.514-.229 1.514-1.927v-4.285h3.003a.817.817 0 0 0 0-1.634ZM15.74 8.272v2.886h-2.662l-1.907-2.886h4.569ZM6.292 4.957 7.39 6.639H6.292V4.957Zm0 6.202V8.273h2.164l1.882 2.886H6.292Zm9.448 4.029-1.582-2.395h1.582v2.395Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+//Might replace with lottie animation
+export const StatusSuccessIcon = () => {
+  return (
+    <Svg width={60} height={60} fill="none">
+      <Circle cx={30} cy={30} r={30} fill="#2A9E17" />
+      <Path
+        d="M43.334 20 25 38.333 16.667 30"
+        stroke="#fff"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const StatusWarningIcon = () => {
+  return (
+    <Svg width={60} height={60} fill="none">
+      <Circle cx={30} cy={30} r={30} fill="#FFD200" />
+      <Path
+        d="m28.278 33.76-1.04-7.52V15.6h5.52v10.64l-1.08 7.52h-3.4Zm1.68 10.56c-1.12 0-2.066-.387-2.84-1.16-.773-.773-1.16-1.72-1.16-2.84 0-1.12.387-2.067 1.16-2.84.774-.773 1.72-1.16 2.84-1.16 1.094 0 2.027.4 2.8 1.2.8.773 1.2 1.707 1.2 2.8 0 1.093-.4 2.04-1.2 2.84a3.816 3.816 0 0 1-2.8 1.16Z"
+        fill="#fff"
+      />
+    </Svg>
+  );
+};
+
+export const SendMoneyIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m4.933 4.213 5.66-1.886c2.54-.847 3.92.54 3.08 3.08l-1.886 5.66c-1.267 3.806-3.347 3.806-4.614 0l-.56-1.68-1.68-.56c-3.807-1.267-3.807-3.34 0-4.614ZM6.74 9.1l2.387-2.393"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const RequestMoneyIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M7.32 4.127 4.846 1.653a.521.521 0 0 0-.173-.113c-.007 0-.013 0-.02-.007a.464.464 0 0 0-.167-.033.5.5 0 0 0-.353.147l-2.487 2.48a.503.503 0 0 0 0 .706.503.503 0 0 0 .707 0L3.986 3.2V14c0 .273.227.5.5.5.274 0 .5-.227.5-.5V3.207l1.627 1.626a.494.494 0 0 0 .707 0 .503.503 0 0 0 0-.706ZM14.354 11.167a.503.503 0 0 0-.707 0L12.014 12.8V2c0-.273-.227-.5-.5-.5-.274 0-.5.227-.5.5v10.793l-1.627-1.626a.503.503 0 0 0-.707 0 .503.503 0 0 0 0 .706l2.473 2.474a.524.524 0 0 0 .174.113.501.501 0 0 0 .193.04.5.5 0 0 0 .354-.147l2.48-2.48a.503.503 0 0 0 0-.706Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+export const RecurringTransferIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M11.613 2.94h-8.02l1.254-1.253a.503.503 0 0 0 0-.707.503.503 0 0 0-.707 0L2.033 3.087a.517.517 0 0 0-.146.353.517.517 0 0 0 .147.353L4.14 5.9a.494.494 0 0 0 .707 0 .503.503 0 0 0 0-.707L3.593 3.94h8.02c.827 0 1.5.673 1.5 1.5v2.213c0 .274.227.5.5.5.274 0 .5-.226.5-.5V5.44a2.5 2.5 0 0 0-2.5-2.5ZM14.113 12.56a.517.517 0 0 0-.147-.353L11.86 10.1a.503.503 0 0 0-.707 0 .503.503 0 0 0 0 .707l1.254 1.253h-8.02c-.827 0-1.5-.673-1.5-1.5V8.347c0-.274-.227-.5-.5-.5-.274 0-.5.226-.5.5v2.213a2.5 2.5 0 0 0 2.5 2.5h8.02l-1.254 1.253a.503.503 0 0 0 0 .707c.1.1.227.147.354.147a.495.495 0 0 0 .353-.147l2.107-2.107a.517.517 0 0 0 .146-.353Z"
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+export const GalleryIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M6 14.667h4c3.333 0 4.667-1.334 4.667-4.667V6c0-3.333-1.334-4.667-4.667-4.667H6C2.667 1.333 1.333 2.667 1.333 6v4c0 3.333 1.334 4.667 4.667 4.667Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M6 6.667A1.333 1.333 0 1 0 6 4a1.333 1.333 0 0 0 0 2.667ZM1.78 12.633l3.287-2.206c.526-.354 1.286-.314 1.76.093l.22.193c.52.447 1.36.447 1.88 0l2.773-2.38c.52-.446 1.36-.446 1.88 0l1.087.934"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const UserIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M8 8a3.333 3.333 0 1 0 0-6.667A3.333 3.333 0 0 0 8 8ZM13.727 14.667C13.727 12.087 11.16 10 8 10s-5.727 2.087-5.727 4.667"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const ClockIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M14.667 8A6.67 6.67 0 0 1 8 14.667 6.669 6.669 0 0 1 1.333 8 6.67 6.67 0 0 1 8 1.333 6.67 6.67 0 0 1 14.667 8Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M10.473 10.12 8.407 8.887c-.36-.214-.654-.727-.654-1.147V5.007"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const BankIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m8.247 1.433 6 2.4c.233.094.42.374.42.62v2.214c0 .366-.3.666-.667.666H2a.669.669 0 0 1-.667-.666V4.453c0-.246.187-.526.42-.62l6-2.4a.78.78 0 0 1 .494 0ZM14.667 14.667H1.333v-2c0-.367.3-.667.667-.667h12c.367 0 .667.3.667.667v2ZM2.667 12V7.333M5.333 12V7.333M8 12V7.333M10.667 12V7.333M13.333 12V7.333M.667 14.667h14.666"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 5.667a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const CreditCardIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M1.333 5.67h13.334M4 11.003h1.333M7 11.003h2.667"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M4.293 2.337H11.7c2.373 0 2.967.586 2.967 2.926v5.474c0 2.34-.594 2.926-2.96 2.926H4.293c-2.366.007-2.96-.58-2.96-2.92v-5.48c0-2.34.594-2.926 2.96-2.926Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const LogoutIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m11.627 9.747 1.706-1.707-1.706-1.707M6.507 8.04h6.78M7.84 13.333c-2.947 0-5.333-2-5.333-5.333S4.893 2.667 7.84 2.667"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const SplitIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="m5.713 10.18 4.36-4.36M5.987 6.913a.82.82 0 1 0 0-1.64.82.82 0 0 0 0 1.64ZM10.347 10.727a.82.82 0 1 0 0-1.64.82.82 0 0 0 0 1.64Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 14.667A6.667 6.667 0 1 0 8 1.333a6.667 6.667 0 0 0 0 13.334Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const GraphIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M1.333 1.333v11.334c0 1.106.894 2 2 2h11.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="m3.333 11.333 3.06-3.573a1.33 1.33 0 0 1 1.954-.073l.633.633a1.336 1.336 0 0 0 1.953-.073L14 4.667"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M2.447 1.667v7.98c0 .653.306 1.273.833 1.666l3.473 2.6a2.09 2.09 0 0 0 2.5 0l3.474-2.6a2.08 2.08 0 0 0 .833-1.666v-7.98H2.447Z"
+        stroke={color}
+        strokeMiterlimit={10}
+      />
+      <Path d="M1.333 1.667h13.334" stroke={color} strokeMiterlimit={10} strokeLinecap="round" />
+      <Path
+        d="M5.333 5.333h5.334M5.333 8.667h5.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const MessageQuestionIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M11.333 12.287H8.667L5.7 14.26a.665.665 0 0 1-1.033-.553v-1.42c-2 0-3.334-1.334-3.334-3.334v-4c0-2 1.334-3.333 3.334-3.333h6.666c2 0 3.334 1.333 3.334 3.333v4c0 2-1.334 3.334-3.334 3.334Z"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 7.573v-.14c0-.453.28-.693.56-.886.273-.187.547-.427.547-.867 0-.613-.494-1.107-1.107-1.107s-1.107.494-1.107 1.107M7.997 9.167h.006"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M3.64 12.327V10.38c0-.647.507-1.227 1.227-1.227.646 0 1.226.507 1.226 1.227v1.873c0 1.3-1.08 2.38-2.38 2.38-1.3 0-2.38-1.086-2.38-2.38V8.147a6.608 6.608 0 0 1 6.634-6.78c3.746 0 6.7 3.033 6.7 6.706v4.107c0 1.3-1.08 2.38-2.38 2.38-1.3 0-2.38-1.08-2.38-2.38v-1.873c0-.647.506-1.227 1.226-1.227.647 0 1.227.507 1.227 1.227v2.02"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </Svg>
   );
 };

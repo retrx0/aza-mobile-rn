@@ -1,13 +1,20 @@
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
 
-const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
+import AccountDetails from "./components/AccountDetails";
+import TransactionOptions from "./components/TransactionOptions";
+import LinkBVN from "./components/LinkBVN";
+import RecentTransactions from "./components/RecentTransactions";
+
+const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <AccountDetails />
+      <TransactionOptions navigation={navigation} route={route} />
+      <LinkBVN navigation={navigation} route={route} isBvnLinked={true} />
+      <RecentTransactions />
     </View>
   );
 };
@@ -15,17 +22,7 @@ const Home = ({ navigation }: RootTabScreenProps<"Home">) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+    paddingHorizontal: 15,
   },
 });
 

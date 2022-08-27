@@ -1,12 +1,10 @@
 import React from "react";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { useThemeColor, View } from "../Themed";
+import { View } from "../Themed";
 
 const WelcomeScrollIndicator = (props: { count: number; active: boolean; activeIndex?: number }) => {
-  const backgroundColor = props.active
-    ? useThemeColor({ light: Colors.general.black, dark: Colors.general.white }, "background")
-    : "#A6A6A6";
+  const backgroundColor = props.active ? Colors.general.black : Colors.general.grey;
 
   return (
     <View
