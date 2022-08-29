@@ -200,21 +200,6 @@ export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
   );
 };
 
-// export const SelectArrow = () => {
-//   return (
-//     <Svg width='14' height='8' viewBox='0 0 14 8' fill='none'>
-//       <Path
-//         d='M12.8334 1.08333L7.00008 6.91666L1.16675 1.08333'
-//         stroke='#2A9E17'
-//         stroke-width='1.5'
-//         stroke-linecap='round'
-//         stroke-linejoin='round'
-//       />
-//     </Svg>
-
-//   );
-// };
-
 export const BackIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width='8' height='14' viewBox='0 0 8 14' fill='none'>
@@ -937,6 +922,81 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
         stroke={color}
         strokeLinecap='round'
         strokeLinejoin='round'
+      />
+    </Svg>
+  );
+};
+
+export const TrashIcon = () => {
+  return (
+    <Svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+      <Path
+        d='M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M18.8499 9.14062L18.1999 19.2106C18.0899 20.7806 17.9999 22.0006 15.2099 22.0006H8.7899C5.9999 22.0006 5.9099 20.7806 5.7999 19.2106L5.1499 9.14062'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M10.3301 16.5H13.6601'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M9.5 12.5H14.5'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </Svg>
+  );
+};
+
+export const ArchieveIcon = () => {
+  return (
+    <Svg
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'>
+      <Path
+        d='M19.5 10.2207V19.0007C19.5 21.0007 19 22.0007 16.5 22.0007H7.5C5 22.0007 4.5 21.0007 4.5 19.0007V10.2207'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M5 2H19C21 2 22 3 22 5V7C22 9 21 10 19 10H5C3 10 2 9 2 7V5C2 3 3 2 5 2Z'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M10.1799 14H13.8199'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
       />
     </Svg>
   );
