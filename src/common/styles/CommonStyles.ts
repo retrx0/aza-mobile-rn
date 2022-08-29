@@ -3,6 +3,11 @@ import Colors from "../../constants/Colors";
 import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
+  parentContainer: {
+    flex: 1,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+  },
+
   archivedBox: {
     marginBottom: 10,
     borderBottomColor: "#121212",
@@ -25,8 +30,9 @@ const CommonStyles = StyleSheet.create({
   createVaultContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: hp(250),
+
+    marginLeft: hp(30),
+    justifyContent: "center",
   },
   archievedVault: {
     flexDirection: "row",
@@ -52,7 +58,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A-Medium",
-    width: wp(295),
+    width: wp(300),
   },
   archivedStyle: {
     textAlign: "center",
@@ -123,6 +129,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(14),
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A",
+    marginBottom: hp(10),
   },
   period: {
     color: "#4D4D4D",
@@ -144,13 +151,10 @@ const CommonStyles = StyleSheet.create({
   },
   daysContainer: {
     width: wp(360),
-    height: hp(200),
     alignSelf: "center",
     justifyContent: "center",
-    backgroundColor: "white",
-    borderWidth: hp(1),
-    borderColor: "white",
     marginBottom: hp(30),
+    alignItems: "center",
   },
 
   percentageContainer: {
@@ -167,8 +171,10 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    marginBottom: hp(5),
+    marginBottom: hp(15),
     fontFamily: "Euclid-Circular-A",
+    borderBottomWidth: hp(0.3),
+    borderColor: Colors.light.secondaryText,
   },
   vaultInput: {
     marginBottom: hp(5),
@@ -185,11 +191,18 @@ const CommonStyles = StyleSheet.create({
     paddingHorizontal: hp(20),
     marginBottom: hp(10),
   },
+  confirmation: {
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(16),
+    fontWeight: "400",
+    alignSelf: "center",
+    marginLeft: hp(60),
+  },
   archieved: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     fontSize: hp(16),
     fontWeight: "400",
-    marginRight: hp(60),
+    marginRight: hp(70),
   },
   vaultAdd: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -197,19 +210,39 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "400",
     marginLeft: hp(150),
   },
+  vaultContainerdetails: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  headervault: {
+    marginLeft: hp(80),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(16),
+    fontWeight: "400",
+    lineHeight: hp(20),
+    textAlign: "center",
+  },
   vault: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     fontSize: hp(16),
     fontWeight: "400",
     lineHeight: hp(20),
     textAlign: "center",
+  },
+  confirmDetails: {
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17.75),
+    fontFamily: "Euclid-Circular-A-Medium",
+    marginLeft: hp(18),
+    marginTop: hp(20),
     marginBottom: hp(30),
   },
   descriptionStyle: {
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    marginBottom: hp(10),
+    marginBottom: hp(5),
     fontFamily: "Euclid-Circular-A-Medium",
   },
   undraw: {
@@ -245,6 +278,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginTop: hp(30),
     marginBottom: hp(10),
+    textAlign: "center",
   },
   //Grid
   container: {
@@ -493,7 +527,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "400",
     fontFamily: "Euclid-Circular-A-Bold",
     fontSize: hp(16),
-    color: Colors.general.primary,
+    color: Colors.general.grey,
   },
   resendBox: {
     borderBottomColor: "#121212",
