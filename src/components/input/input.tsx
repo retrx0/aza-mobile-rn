@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   container: {
     marginTop: hp(20),
+    marginBottom: hp(20),
   },
   textInput: {
     borderRadius: 9,

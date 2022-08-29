@@ -43,7 +43,7 @@ const styles = {
     letterSpacing: hp(0.5),
     fontSize: hp(16),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
   },
   nextText: {
     color: Colors.general.secondary,
