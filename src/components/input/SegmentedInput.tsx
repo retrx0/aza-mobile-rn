@@ -10,12 +10,13 @@ type SegmentedInputProps = {
   onValueChanged: (code: string) => void;
   secureInput: boolean;
   headerText: string;
+  style?: {};
 };
 
 const SegmentedInput = (props: SegmentedInputProps) => {
-  const { value, onValueChanged, secureInput, headerText } = props;
+  const { value, onValueChanged, secureInput, headerText, style } = props;
   return (
-    <View style={styles.otpContainer}>
+    <View style={[styles.otpContainer, style]}>
       <Text style={styles.otpText}>{headerText}</Text>
       <OTPInput
         keyboardType="number-pad"

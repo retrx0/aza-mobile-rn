@@ -9,6 +9,7 @@ import {
   View,
   TextStyle,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
@@ -33,7 +34,7 @@ export const Input = ({
   ...rest
 }: InputProps & TextInputProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,style]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
@@ -87,4 +88,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  image:{
+    height:36,
+    width:36,
+    borderRadius:36
+  }
 });

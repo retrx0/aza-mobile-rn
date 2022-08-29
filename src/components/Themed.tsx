@@ -8,6 +8,7 @@ import {
   View as DefaultView,
   SafeAreaView as ThemedSafeAreaView,
   TextInput as ThemedTextInput,
+  ScrollView as DefaultScrollView
 } from "react-native";
 
 import Colors from "../constants/Colors";
@@ -57,6 +58,13 @@ export const View = (props: ViewProps) => {
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 };
 
+export const ScrollView = (props: ViewProps) => {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, "background");
+
+  return <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
+};
+
 export const SafeAreaView = (props: SafeAreaViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, "background");
@@ -80,15 +88,27 @@ export const ThemedFAIcon = (props: IconProps) => {
 };
 
 export const OTPInput = (props: OTPInputViewProps) => {
-  const { style, codeInputFieldStyle, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, "backgroundSecondary");
+  const { style, codeInputFieldStyle, lightColor, darkColor, ...otherProps } =
+    props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "backgroundSecondary"
+  );
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
-  const border = useThemeColor({ light: lightColor, dark: darkColor }, "border");
+  const border = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "border"
+  );
 
   return (
     <ThemedOTPInputView
       style={style}
-      codeInputFieldStyle={{ color, backgroundColor, borderColor: border, ...codeInputFieldStyle }}
+      codeInputFieldStyle={{
+        color,
+        backgroundColor,
+        borderColor: border,
+        ...codeInputFieldStyle,
+      }}
       {...otherProps}
     />
   );

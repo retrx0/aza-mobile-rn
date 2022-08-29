@@ -67,6 +67,10 @@ const CommonStyles = StyleSheet.create({
     position: "absolute",
     alignSelf: "center",
   },
+  parentContainer: {
+    flex: 1,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+  },
   imageHeaderContainer: {
     marginLeft: 20,
     minHeight: 70,

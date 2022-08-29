@@ -8,11 +8,17 @@ const ButtonLg = (props: {
   title: string;
   color: ColorValue;
   alt: boolean;
+  style?: {};
+  disabled?: boolean;
   iconName?: typeof FontAwesome["defaultProps"];
   onPress: (event: GestureResponderEvent) => void;
 }) => {
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor: props.color }]} onPress={props.onPress}>
+    <TouchableOpacity
+      {...props}
+      style={[styles.button, { backgroundColor: props.color }, props.style]}
+      onPress={props.onPress}
+    >
       <View style={[{ flex: 1, justifyContent: "center", backgroundColor: "transparent" }]}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
           {props.iconName ? (
