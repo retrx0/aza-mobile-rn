@@ -96,7 +96,7 @@ export type VautListProps = {
   onPress?: () => void;
   closeIcon: any;
   amount: string;
-  unlockIcon: any;
+  stage: string;
 };
 
 export type SocialSignInProps = {

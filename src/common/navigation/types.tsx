@@ -12,12 +12,14 @@ export type CommonStackParamList = {
   AddVault: undefined;
   ConfirmDeleteVault: undefined;
   ArchievedVault: undefined;
+  VaultWithdraw: undefined;
+  VaultWithdrawsuccessful: undefined;
+  VaultDetails: undefined;
+  VaultActivity: undefined;
 };
 
-export type CommonScreenProps<Screen extends keyof CommonStackParamList> = NativeStackScreenProps<
-  CommonStackParamList,
-  Screen
->;
+export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
+  NativeStackScreenProps<CommonStackParamList, Screen>;
 
 /* BVN */
 
@@ -26,7 +28,6 @@ export type BvnVerificationStackParamList = {
   BvnVerificationSuccess: undefined;
 };
 
-export type BvnVerificationScreenProps<Screen extends keyof BvnVerificationStackParamList> = NativeStackScreenProps<
-  BvnVerificationStackParamList,
-  Screen
->;
+export type BvnVerificationScreenProps<
+  Screen extends keyof BvnVerificationStackParamList
+> = NativeStackScreenProps<BvnVerificationStackParamList, Screen>;
