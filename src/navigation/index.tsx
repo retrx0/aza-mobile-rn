@@ -16,25 +16,12 @@ import { ColorSchemeName } from "react-native";
 
 import ModalScreen from "../screens/modals/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-  SignInStackParamList,
-  SignUpStackParamList,
-} from "../../types";
+import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/SignUp/SignUpNavigator";
 import LoginNavigator from "../screens/auth/SignIn/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
-import SignInScreen from "../screens/auth/SignIn/SignInScreen";
-import LoginOTPScreen from "../screens/auth/SignIn/SignInOTPScreen";
-import SignUpScreen from "../screens/auth/SignUp/SignUpScreen";
-import SignUpEmailScreen from "../screens/auth/SignUp/SignUpProfileSetupScreen";
-import SignUpOTPScreen from "../screens/auth/SignUp/SignUpOTPScreen";
-import SignUpPasswordScreen from "../screens/auth/SignUp/SignUpPasswordScreen";
-import CommonStack from "../common/navigation/CommonStackNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -81,11 +68,7 @@ const RootNavigator = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name='Common'
-        component={CommonStack}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name='NotFound'
         component={NotFoundScreen}

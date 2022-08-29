@@ -1,17 +1,23 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Text, TouchableOpacity } from "react-native";
-import { BackIcon } from "../../../../assets/svg";
 import Vault from "./Vault";
 import NewVault from "./NewVault";
-// import VaultPassword from "./VaultPassword";
 import DeleteVault from "./DeleteVault";
 import VaultSuccessful from "./VaultSuccessful";
 import AddVault from "./AddVault";
 import ConfirmDeleteVault from "./ConfirmDeleteVault";
-import ArchievedVault from "./ArchievedVault";
+// import ArchievedVault from "./ArchievedVault";
+import VaultWithdraw from "./VaultwithdrawalConfirmation";
+import VaultWithdrawsuccessful from "./VaultWithdrawSuccessful";
+import VaultDetails from "./VaultDetails";
+import VaultActivity from "./VaultActivity";
+import { Platform } from "react-native";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { SafeAreaView } from "../../../components/Themed";
+import useColorScheme from "../../../hooks/useColorScheme";
+import CommonStyles from "../../../common/styles/CommonStyles";
 
 const VaultStack = createNativeStackNavigator<VaultStackProps>();
+const Tab = createMaterialTopTabNavigator();
 
 export type VaultStackProps = {
   Vault: undefined;
@@ -22,6 +28,36 @@ export type VaultStackProps = {
   addVault: undefined;
   confirmDeleteVault: undefined;
   archievedVault: undefined;
+  vaultWithdraw: undefined;
+  vaultWithdrawsuccessful: undefined;
+  VaultDetails: undefined;
+  VaultActivity: undefined;
+};
+
+export const VaultTabs = () => {
+  const scheme = useColorScheme();
+  return (
+    <SafeAreaView style={CommonStyles.parentContainer}>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarItemStyle: {
+            borderRadius: 100,
+            marginTop: Platform.OS == "android" ? 50 : 0,
+          },
+          tabBarIndicatorStyle: {
+            borderWidth: 2,
+            borderColor: scheme == "light" ? "red" : "black",
+          },
+          tabBarLabelStyle: {
+            textTransform: "capitalize",
+          },
+        }}
+        initialRouteName='VaultDetails'>
+        <Tab.Screen name='VaultDetails' component={VaultDetails} />
+        <Tab.Screen name='VaultActivity' component={VaultDetails} />
+      </Tab.Navigator>
+    </SafeAreaView>
+  );
 };
 
 const VaultNavigator = () => {
@@ -39,16 +75,19 @@ const VaultNavigator = () => {
         name='newvault'
         component={NewVault}
       />
-      {/* <VaultStack.Screen
-        options={{ headerShown: false }}
-        name='vaultpassword'
-        component={VaultPassword}
-      /> */}
+
       <VaultStack.Screen
         options={{ headerShown: false }}
         name='deleteVault'
         component={DeleteVault}
       />
+
+      <VaultStack.Screen
+        options={{ title: "Details & Activity" }}
+        name='VaultDetails'
+        component={VaultTabs}
+      />
+
       <VaultStack.Screen
         options={{ headerShown: false }}
         name='Vaultsuccessful'
@@ -65,10 +104,20 @@ const VaultNavigator = () => {
         component={ConfirmDeleteVault}
       />
 
-      <VaultStack.Screen
+      {/* <VaultStack.Screen
         options={{ headerShown: false }}
         name='archievedVault'
         component={ArchievedVault}
+      /> */}
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name='vaultWithdraw'
+        component={VaultWithdraw}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name='vaultWithdrawsuccessful'
+        component={VaultWithdrawsuccessful}
       />
     </VaultStack.Navigator>
   );
