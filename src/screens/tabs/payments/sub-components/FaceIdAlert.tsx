@@ -2,12 +2,13 @@ import { Image, StyleSheet } from "react-native";
 import React from "react";
 import { Text, View } from "../../../../components/Themed";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { Auth } from "../../../../../assets/images";
 
 export default function FaceIdAlert() {
   return (
     <View style={styles.container}>
       <Animated.View entering={ZoomIn.delay(1000)} style={styles.faceContainer}>
-        <Image style={styles.auth} source={require("../../../../assets/images/auth.png")} />
+        <Image style={styles.auth} source={Auth} />
         <Text>Face ID</Text>
       </Animated.View>
     </View>

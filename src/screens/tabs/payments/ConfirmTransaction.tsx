@@ -6,8 +6,10 @@ import SegmentedInput from "../../../components/input/SegmentedInput";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import MyButton from "./sub-components/MyButton";
 import { Text, View } from "../../../components/Themed";
+import { Auth } from "../../../../assets/images";
+import { RootTabScreenProps } from "../../../../types";
 
-export default function ConfirmTransaction({ navigation }: { navigation: { navigate: any } }) {
+export default function ConfirmTransaction({ navigation }: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles.container]}>
       {/* <RegularText 
@@ -16,14 +18,14 @@ export default function ConfirmTransaction({ navigation }: { navigation: { navig
 
       <SegmentedInput headerText="Password" onValueChanged={() => {}} value="01234" secureInput={true} />
       <Text style={styles.seprate}>OR</Text>
-      <Image style={styles.auth} source={require("../../../assets/images/auth.png")} />
+      <Image style={styles.auth} source={Auth} />
       <Text style={styles.authText}>Authenticate with Face ID</Text>
       <MyButton
         style={styles.btn}
         disabled={false}
         title="Continue"
         onPress={() => {
-          navigation.navigate("complete_transaction");
+          navigation.navigate("Common", { screen: "CompleteTransaction" });
         }}
       />
       <TouchableOpacity style={styles.cancelContainer}>

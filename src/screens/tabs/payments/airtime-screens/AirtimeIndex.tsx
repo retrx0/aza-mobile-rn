@@ -11,8 +11,10 @@ import MyButton from "../sub-components/MyButton";
 import MySwitch from "../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
 import SelectInput from "../../../../components/input/SelectInput";
+import { Glo, Mtn } from "../../../../../assets/images";
+import { RootTabScreenProps } from "../../../../../types";
 
-export default function AirtimeIndex({ navigation }: { navigation: { navigate: any } }) {
+export default function AirtimeIndex({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [selected, setSelected] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
@@ -30,10 +32,10 @@ export default function AirtimeIndex({ navigation }: { navigation: { navigate: a
             setSelected(true);
           }}
           index={0}
-          image={require("../../../../assets/images/mtn.png")}
+          image={Mtn}
           title="MTN"
         />
-        <HeadrImage selected={false} index={1} image={require("../../../../assets/images/glo.png")} title="Glo" />
+        <HeadrImage selected={false} index={1} image={Glo} title="Glo" />
       </ScrollView>
       <Input
         icon={null}
@@ -59,7 +61,7 @@ export default function AirtimeIndex({ navigation }: { navigation: { navigate: a
         disabled={false}
         title="Continue"
         onPress={() => {
-          navigation.navigate("confirm");
+          navigation.navigate("Common", { screen: "Confirm" });
         }}
       />
     </View>

@@ -52,7 +52,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "AirtimeData" });
           }}
-          Icon={() => <DataIcon color={"#753FF6"} />}
+          Icon={() => <DataIcon />}
           title="Airtime & Data"
           route=""
         />
@@ -62,7 +62,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "InternetPlans" });
           }}
-          Icon={() => <WifiIcon color={"#2A9E17"} />}
+          Icon={() => <WifiIcon />}
           title="Internet"
           route=""
         />
@@ -72,7 +72,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "CableTV" });
           }}
-          Icon={() => <CableTvIcon color="#FFD200" />}
+          Icon={() => <CableTvIcon />}
           title="Cable TV"
           route=""
         />
@@ -82,7 +82,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "Electricity" });
           }}
-          Icon={() => <ElectricIcon color="#ED8A0A" />}
+          Icon={() => <ElectricIcon />}
           title="Electricity"
           route=""
         />
@@ -92,19 +92,19 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "Water" });
           }}
-          Icon={() => <DropIcon color="#1198F6" />}
+          Icon={() => <DropIcon />}
           title="Water"
           route=""
         />
 
-        <ListItem index={5} onPress={() => {}} Icon={() => <GiftIcon color="#BED600" />} title="Gift Cards" route="" />
+        <ListItem index={5} onPress={() => {}} Icon={() => <GiftIcon />} title="Gift Cards" route="" />
 
         <ListItem
           index={6}
           onPress={() => {
             navigation.navigate("Common", { screen: "Charity" });
           }}
-          Icon={() => <LoveIcon color="#FF361A" />}
+          Icon={() => <LoveIcon />}
           title="Charity"
           route=""
         />

@@ -6,7 +6,9 @@ import { Input } from "../../../../components/input/input";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
 import { BackIcon, LoveIcon } from "../../../../../assets/svg";
-export default function InternetPlans(props: any) {
+import { Ntel, Spectranet } from "../../../../../assets/images";
+import { RootTabScreenProps } from "../../../../../types";
+export default function InternetPlans({ navigation }: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <Input
@@ -19,12 +21,12 @@ export default function InternetPlans(props: any) {
 
       <ListItem
         onPress={() => {
-          props.navigation.navigate("internet_plan_detail", { name: "Spectranet" });
+          navigation.navigate("Common", { screen: "InternetPlanDetail", params: { name: "Spectranet" } });
         }}
         route=""
         index={0}
         title="Spectranet"
-        Icon={() => <Image style={styles2.img} source={require("../../../../assets/images/spec.png")} />}
+        Icon={() => <Image style={styles2.img} source={Spectranet} />}
       />
 
       <ListItem
@@ -32,7 +34,7 @@ export default function InternetPlans(props: any) {
         route=""
         index={2}
         title="NTEL"
-        Icon={() => <Image style={styles2.img} source={require("../../../../assets/images/ntel.png")} />}
+        Icon={() => <Image style={styles2.img} source={Ntel} />}
       />
     </View>
   );

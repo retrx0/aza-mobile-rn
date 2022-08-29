@@ -8,7 +8,8 @@ import ImageInput from "../sub-components/ImageInput";
 import MyButton from "../sub-components/MyButton";
 import { SafeAreaView, Text, View } from "../../../../components/Themed";
 import FaceIdAlert from "../sub-components/FaceIdAlert";
-export default function Confirmation({ navigation }: { navigation: { navigate: any } }) {
+import { RootTabScreenProps } from "../../../../../types";
+export default function Confirmation({ navigation }: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
   return (
     <SafeAreaView
@@ -50,7 +51,7 @@ export default function Confirmation({ navigation }: { navigation: { navigate: a
         onPress={() => {
           setConfirm(true);
           setTimeout(() => {
-            navigation.navigate("complete_transaction");
+            navigation.navigate("Common", { screen: "CompleteTransaction" });
             setConfirm(false);
           }, 3000);
         }}

@@ -4,8 +4,9 @@ import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { SuccessIcon } from "../../../../assets/svg";
 import MyButton from "./sub-components/MyButton";
+import { RootTabScreenProps } from "../../../../types";
 
-export default function CompletedTransaction({ navigation }: { navigation: { navigate: any } }) {
+export default function CompletedTransaction({ navigation }: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles.container]}>
       <SuccessIcon style={styles.icon} />
@@ -16,7 +17,7 @@ export default function CompletedTransaction({ navigation }: { navigation: { nav
         disabled={false}
         title="Confirm"
         onPress={() => {
-          navigation.navigate("PaymentIndex");
+          navigation.navigate("Payments");
         }}
       />
     </View>

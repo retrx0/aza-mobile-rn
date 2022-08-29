@@ -6,11 +6,29 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type CommonStackParamList = {
   BvnVerificationRoot: NavigatorScreenParams<BvnVerificationStackParamList>;
   BvnVerificationScreen: undefined;
+
+  // Status
   StatusScreen: StatusScreenParamsType;
+
+  //Payments
+  AirtimeData: undefined;
+  Confirm: undefined;
+  ConfirmTransaction: undefined;
+  CompleteTransaction: undefined;
+  InternetPlans: undefined;
+  InternetPlanDetail: { name: string };
+  Electricity: undefined;
+  CableTV: undefined;
+  Pie: undefined;
+  Water: undefined;
+  Charity: undefined;
+  CharityDetail: { name: string };
 };
 
-export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
-  NativeStackScreenProps<CommonStackParamList, Screen>;
+export type CommonScreenProps<Screen extends keyof CommonStackParamList> = NativeStackScreenProps<
+  CommonStackParamList,
+  Screen
+>;
 
 /* BVN */
 
@@ -18,9 +36,10 @@ export type BvnVerificationStackParamList = {
   BvnVerificationScreen: undefined;
 };
 
-export type BvnVerificationScreenProps<
-  Screen extends keyof BvnVerificationStackParamList
-> = NativeStackScreenProps<BvnVerificationStackParamList, Screen>;
+export type BvnVerificationScreenProps<Screen extends keyof BvnVerificationStackParamList> = NativeStackScreenProps<
+  BvnVerificationStackParamList,
+  Screen
+>;
 
 // Status screen
 export type StatusScreenParamsType = {
@@ -31,3 +50,25 @@ export type StatusScreenParamsType = {
   receiptButton?: boolean;
   setupRecurringTransfer?: boolean;
 };
+
+/* Payments Tab */
+
+export type PaymentsStackParamList = {
+  AirtimeData: undefined;
+  Confirm: undefined;
+  confirmTransaction: undefined;
+  CompleteTransaction: undefined;
+  InternetPlans: undefined;
+  InternetPlanDetail: undefined;
+  Electricity: undefined;
+  CableTV: undefined;
+  Pie: undefined;
+  Water: undefined;
+  Charity: undefined;
+  CharityDetail: undefined;
+};
+
+export type PaymentsTabScreenProps<Screen extends keyof PaymentsStackParamList> = NativeStackScreenProps<
+  PaymentsStackParamList,
+  Screen
+>;

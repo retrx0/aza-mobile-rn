@@ -5,8 +5,10 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Input } from "../../../../components/input/input";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
+import { Ntel, Spectranet } from "../../../../../assets/images";
+import { RootTabScreenProps } from "../../../../../types";
 
-export default function CharityIndexScreen(props: any) {
+export default function CharityIndexScreen({ navigation }: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <Input
@@ -20,12 +22,12 @@ export default function CharityIndexScreen(props: any) {
 
       <ListItem
         onPress={() => {
-          props.navigation.navigate("charity_detail", { name: "Chess in Slums" });
+          navigation.navigate("Common", { screen: "CharityDetail", params: { name: "Chess in Slums" } });
         }}
         route=""
         index={0}
         title="Chess in Slums"
-        Icon={() => <Image style={styles2.img} source={require("../../../../assets/images/spec.png")} />}
+        Icon={() => <Image style={styles2.img} source={Spectranet} />}
       />
 
       <ListItem
@@ -33,7 +35,7 @@ export default function CharityIndexScreen(props: any) {
         route=""
         index={2}
         title="ICICE"
-        Icon={() => <Image style={styles2.img} source={require("../../../../assets/images/ntel.png")} />}
+        Icon={() => <Image style={styles2.img} source={Ntel} />}
       />
     </View>
   );

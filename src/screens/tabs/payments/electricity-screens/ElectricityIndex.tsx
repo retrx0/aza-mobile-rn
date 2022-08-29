@@ -8,8 +8,11 @@ import HeadrImage from "../sub-components/HeadrImage";
 import { Input } from "../../../../components/input/input";
 import MyButton from "../sub-components/MyButton";
 import SelectInput from "../../../../components/input/SelectInput";
+import { Ie } from "../../../../../assets/images";
+import HeaderImage from "../sub-components/HeaderImage";
+import { RootTabScreenProps } from "../../../../../types";
 
-export default function ElectricityIndex({ navigation }: { navigation: { navigate: any } }) {
+export default function ElectricityIndex({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const bundles = ["100mb", "200mb", "500mb"];
   return (
@@ -23,7 +26,7 @@ export default function ElectricityIndex({ navigation }: { navigation: { navigat
       />
 
       <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={require("../../../../assets/images/ie.png")} title="IE" />
+        <HeaderImage selected index={0} image={Ie} title="IE" />
       </ScrollView>
 
       <SelectInput items={bundles} title="Meter Type" placeHolder="Choose a bundle" style={styles.select} />
@@ -47,7 +50,7 @@ export default function ElectricityIndex({ navigation }: { navigation: { navigat
         disabled={false}
         title="Continue"
         onPress={() => {
-          navigation.navigate("confirm");
+          navigation.navigate("Common", { screen: "Confirm" });
         }}
       />
     </SafeAreaView>

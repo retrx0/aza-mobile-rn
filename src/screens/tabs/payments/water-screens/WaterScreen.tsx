@@ -8,8 +8,10 @@ import HeadrImage from "../sub-components/HeadrImage";
 import { Input } from "../../../../components/input/input";
 import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
+import { Ie } from "../../../../../assets/images";
+import { RootTabScreenProps } from "../../../../../types";
 
-export default function WaterScreen({ navigation }: { navigation: { navigate: any } }) {
+export default function WaterScreen({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -26,7 +28,7 @@ export default function WaterScreen({ navigation }: { navigation: { navigate: an
       />
 
       <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={require("../../../../assets/images/ie.png")} title="FCTWB" />
+        <HeadrImage selected index={0} image={Ie} title="FCTWB" />
       </ScrollView>
 
       <Input
@@ -52,7 +54,7 @@ export default function WaterScreen({ navigation }: { navigation: { navigate: an
         disabled={false}
         title="Continue"
         onPress={() => {
-          navigation.navigate("confirm");
+          navigation.navigate("Common", { screen: "Confirm" });
         }}
       />
     </SafeAreaView>

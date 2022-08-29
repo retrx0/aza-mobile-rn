@@ -11,8 +11,10 @@ import MyButton from "../sub-components/MyButton";
 import MySwitch from "../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
 import SelectInput from "../../../../components/input/SelectInput";
+import { Ie } from "../../../../../assets/images";
+import { RootTabScreenProps } from "../../../../../types";
 
-export default function CableTvIndex({ navigation }: { navigation: { navigate: any } }) {
+export default function CableTvIndex({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -29,7 +31,7 @@ export default function CableTvIndex({ navigation }: { navigation: { navigate: a
       />
 
       <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={require("../../../../assets/images/ie.png")} title="IE" />
+        <HeadrImage selected index={0} image={Ie} title="IE" />
       </ScrollView>
 
       <SelectInput
@@ -52,7 +54,7 @@ export default function CableTvIndex({ navigation }: { navigation: { navigate: a
         disabled={false}
         title="Continue"
         onPress={() => {
-          navigation.navigate("confirm");
+          navigation.navigate("Common", { screen: "Confirm" });
         }}
       />
     </SafeAreaView>

@@ -11,8 +11,9 @@ import MyButton from "../sub-components/MyButton";
 import MySwitch from "../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
 import SelectInput from "../../../../components/input/SelectInput";
+import { RootTabScreenProps } from "../../../../../types";
 
-export default function InternetDetail({ navigation }: { navigation: { navigate: any } }) {
+export default function InternetDetail({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -48,7 +49,7 @@ export default function InternetDetail({ navigation }: { navigation: { navigate:
         disabled={false}
         title="Continue"
         onPress={() => {
-          navigation.navigate("confirm");
+          navigation.navigate("Common", { screen: "Confirm" });
         }}
       />
     </SafeAreaView>

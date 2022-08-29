@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { Input } from "../../../../components/input/input";
+import { Mtn } from "../../../../../assets/images";
 
 export default function ImageInput() {
   return (
@@ -14,7 +15,7 @@ export default function ImageInput() {
         placeholder="MTN"
       />
 
-      <Image style={styles.img} source={require("../../../../assets/images/mtn.png")} />
+      <Image style={styles.img} source={Mtn} />
     </View>
   );
 }

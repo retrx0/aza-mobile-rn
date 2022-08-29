@@ -24,7 +24,7 @@ const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
 
 // AIRTIME AND DATA_BUNDLE TABS
-function AirtimeTabs() {
+export function AirtimeTabs() {
   const scheme = useColorScheme();
   return (
     <SafeAreaView style={CommonStyles.parentContainer}>
@@ -52,7 +52,7 @@ function AirtimeTabs() {
 }
 
 // Charity TABS
-function CharityTabs() {
+export function CharityTabs() {
   const scheme = useColorScheme();
   return (
     <SafeAreaView style={CommonStyles.parentContainer}>
