@@ -6,15 +6,11 @@ import { Header } from "../../../components/text/header";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { ArrowDownIcon } from "../../../../assets/svg";
-import { hp } from "../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const insets = useSafeAreaInsets();
-
+const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
-      <View style={CommonStyles.vaultcontainer}>
+      <View>
         <View style={[CommonStyles.vaultContainer]}>
           <Header
             heading='Vault'
@@ -37,22 +33,9 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
-          <Button
-            title='New Vault'
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "NewVault" })
-            }
-            style={[CommonStyles.button, { bottom: hp(10) }]}
-          />
-        </View>
       </View>
     </SpacerWrapper>
   );
 };
 
-export default Vault;
+export default VaultActivity;

@@ -38,7 +38,9 @@ const DeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
           <CancelButtonWithUnderline
             title='Cancel'
-            onPressButton={() => navigation.getParent()?.navigate("NewVault")}
+            onPressButton={() =>
+              navigation.getParent()?.navigate("VaultDetails")
+            }
             style={{ marginTop: 5 }}
           />
         </View>

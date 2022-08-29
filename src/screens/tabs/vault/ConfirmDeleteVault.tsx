@@ -31,16 +31,14 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title='Delete'
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "VaultSuccessful" })
+              navigation.navigate("Common", { screen: "VaultWithdraw" })
             }
             style={CommonStyles.button}
           />
 
           <CancelButtonWithUnderline
             title='Cancel'
-            onPressButton={() =>
-              navigation.getParent()?.navigate("ArchievedVault")
-            }
+            onPressButton={() => navigation.getParent()?.navigate("AddVault")}
             style={{ marginTop: 5 }}
           />
         </View>

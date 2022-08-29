@@ -6,37 +6,26 @@ import { Header } from "../../../components/text/header";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { ArrowDownIcon } from "../../../../assets/svg";
-import { hp } from "../../../common/util/LayoutUtil";
+import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { hp } from "../../../common/util/LayoutUtil";
 
-const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultDetails = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={[CommonStyles.vaultContainer]}>
-          <Header
-            heading='Vault'
-            description={""}
-            headerStyle={[CommonStyles.vault]}
-            descriptionStyle={undefined}
-          />
-          <Image
-            source={require("../../../../assets/images/Undraw.png")}
-            resizeMode='cover'
-            style={[CommonStyles.undraw]}
-          />
-          <Text style={[CommonStyles.vaultText]}>You dont have any vaults</Text>
-          <View style={CommonStyles.createVaultContainer}>
-            <Text style={[CommonStyles.createNewVault]}>
-              Click New Vault to create a new vault
-            </Text>
-            <TouchableOpacity>
-              <ArrowDownIcon />
-            </TouchableOpacity>
+        <View style={[CommonStyles.vaultContainerdetails]}>
+          <View style={{ marginLeft: 20 }}>
+            <BackButton
+              onPress={() => {
+                navigation.getParent()?.navigate("NewVault");
+              }}
+            />
           </View>
+          <Text style={CommonStyles.headervault}>Vault</Text>
         </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
@@ -45,7 +34,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title='New Vault'
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "NewVault" })
+              navigation.navigate("Common", { screen: "DeleteVault" })
             }
             style={[CommonStyles.button, { bottom: hp(10) }]}
           />
@@ -55,4 +44,4 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   );
 };
 
-export default Vault;
+export default VaultDetails;

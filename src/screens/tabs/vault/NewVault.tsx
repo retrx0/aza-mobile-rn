@@ -48,7 +48,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
           />
-          <View style={styles.separator} />
+          {/* <View style={styles.separator} /> */}
         </View>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
@@ -59,7 +59,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
           />
-          <View style={styles.separator} />
+          {/* <View style={styles.separator} /> */}
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
@@ -88,7 +88,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             return <DaysCard key={index} days={item.days} onPress={() => {}} />;
           })}
         </View>
-        <View style={[CommonStyles.SwitchContainer, { bottom: hp(35) }]}>
+        <View style={[CommonStyles.SwitchContainer, { bottom: hp(20) }]}>
           <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month
@@ -108,7 +108,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title={"Continue"}
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "DeleteVault" })
+              navigation.navigate("Common", { screen: "VaultDetails" })
             }
             style={[CommonStyles.button]}
           />
@@ -130,9 +130,9 @@ const Separator = () => {
 
 const styles = StyleSheet.create({
   separator: {
-    borderWidth: 0.7,
+    borderWidth: hp(0.3),
     borderColor: "#EAEAEC",
-    width: 335,
+    width: "100%",
   },
 });
 

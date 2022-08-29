@@ -48,18 +48,21 @@ export const VaultList = [
     item: "Flight Ticket",
     amount: "2000",
     closeIcon: <CloseIcon />,
+    stage: "Matured",
   },
   {
     lockIcon: <LockIcon />,
     item: "New Laptop",
     amount: "2000",
     closeIcon: <CloseIcon />,
+    stage: "Matured",
   },
   {
     lockIcon: <LockIcon />,
     item: "New Phone",
     amount: "200000",
     closeIcon: <CloseIcon />,
+    stage: "Matured",
   },
 ];
 
@@ -68,7 +71,7 @@ export const ListCard = ({
   closeIcon,
   item,
   amount,
-  unlockIcon,
+  stage,
   onPress,
 }: VautListProps) => {
   return (
@@ -81,7 +84,10 @@ export const ListCard = ({
             <Text style={styles.amount}>{`#${amount}`}</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text>{stage}</Text>
+          <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
+        </View>
       </View>
       <View style={styles.separator} />
     </View>
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   separator: {
-    borderWidth: hp(0.4),
+    borderWidth: hp(0.3),
     borderColor: "#EAEAEC",
     marginBottom: hp(10),
     width: wp(370),
@@ -149,7 +155,7 @@ const styles = StyleSheet.create({
   },
   daysContainer: {
     borderRadius: hp(10),
-    paddingVertical: 5,
+    marginBottom: hp(15),
   },
   percentageStyle: {
     fontSize: hp(14),
