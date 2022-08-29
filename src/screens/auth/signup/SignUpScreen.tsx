@@ -7,10 +7,25 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
+import { CountriesType } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import { CountryBox } from "./components/CountryInput";
 
-const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
+// type StageOneProp = {
+//   onCountryPress: () => void;
+//   country: CountriesType;
+//   onChangeText: (text: string) => void;
+//   onSendOtp: () => void;
+//   phoneNumber: string;
+// };
+
+const SignUpScreen = (
+  // props: StageOneProp,
+  { navigation }: SignUpScreenProps<"SignUpRoot">
+) => {
   const [phone, setPhone] = useState<string>("");
+  // const { onCountryPress, country, onChangeText, onSendOtp, phoneNumber } =
+  //   props;
 
   return (
     <SpacerWrapper>
@@ -31,6 +46,14 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         </Text>
       </View>
 
+      {/* <CountryBox
+        onPress={onCountryPress}
+        short_name={country.short_name}
+        code={country.code}
+        value={phoneNumber}
+        onChangeText={onChangeText}
+        onSubmitEditing={onSendOtp}
+      /> */}
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
