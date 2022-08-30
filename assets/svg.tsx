@@ -646,3 +646,181 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
     </Svg>
   );
 };
+
+export const ChangePasswordIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M16.53 29.25h-5.28c-.93 0-1.755-.03-2.49-.135-3.945-.435-5.01-2.295-5.01-7.365v-7.5c0-5.07 1.065-6.93 5.01-7.365.735-.105 1.56-.135 2.49-.135h5.19M22.53 6.75h2.22c.93 0 1.755.03 2.49.135 3.945.435 5.01 2.295 5.01 7.365v7.5c0 5.07-1.065 6.93-5.01 7.365-.735.105-1.56.135-2.49.135h-2.22M22.5 3v30"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16.642 18h.013M10.642 18h.013"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+  </Svg>
+  );
+};
+
+export const ChangePhoneNumberIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={32} height={38} fill="none">
+      <Path
+        d="M31 10v18c0 7.2-1.875 9-9.375 9h-11.25C2.875 37 1 35.2 1 28V10c0-7.2 1.875-9 9.375-9h11.25C29.125 1 31 2.8 31 10ZM19.75 7.3h-7.5"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M16 31.78c1.605 0 2.906-1.25 2.906-2.79 0-1.542-1.3-2.79-2.906-2.79-1.605 0-2.906 1.248-2.906 2.79 0 1.54 1.3 2.79 2.906 2.79Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+  </Svg>
+  );
+};
+
+export const ChangeEmailIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M25.5 30.75h-15C6 30.75 3 28.5 3 23.25v-10.5c0-5.25 3-7.5 7.5-7.5h15c4.5 0 7.5 2.25 7.5 7.5v10.5c0 5.25-3 7.5-7.5 7.5Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="m25.5 13.5-4.695 3.75c-1.545 1.23-4.08 1.23-5.625 0L10.5 13.5"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+  </Svg>
+  );
+};
+
+export const PrivacySettingsIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M15.735 3.345 8.25 6.165C6.525 6.81 5.115 8.85 5.115 10.68v11.145c0 1.77 1.17 4.095 2.595 5.16l6.45 4.815c2.115 1.59 5.595 1.59 7.71 0l6.45-4.815c1.425-1.065 2.595-3.39 2.595-5.16V10.68c0-1.845-1.41-3.885-3.135-4.53l-7.485-2.805c-1.275-.465-3.315-.465-4.56 0Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const LoginOptionsIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M25.44 9.256c3 2.085 5.07 5.4 5.49 9.225M5.235 18.555c.39-3.81 2.43-7.125 5.4-9.225M12.285 31.41c1.74.885 3.72 1.38 5.805 1.38 2.01 0 3.9-.45 5.595-1.275M18.09 11.55a4.17 4.17 0 1 0 0-8.339 4.17 4.17 0 0 0 0 8.34ZM7.245 29.88a4.17 4.17 0 1 0 0-8.34 4.17 4.17 0 0 0 0 8.34ZM28.755 29.88a4.17 4.17 0 1 0 0-8.341 4.17 4.17 0 0 0 0 8.34Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>  
+  );
+};
+
+export const MoonIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M3.045 18.63c.54 7.725 7.095 14.01 14.94 14.354 5.535.24 10.485-2.34 13.455-6.405 1.23-1.665.57-2.774-1.485-2.4-1.005.18-2.04.256-3.12.21-7.335-.3-13.335-6.434-13.365-13.68-.015-1.95.39-3.795 1.125-5.475.81-1.86-.165-2.745-2.04-1.95-5.94 2.505-10.005 8.49-9.51 15.346Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const NotificationSettingsIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M33 15v4.5c0 6-3 9-9 9h-.75a1.52 1.52 0 0 0-1.2.6l-2.25 3c-.99 1.32-2.61 1.32-3.6 0l-2.25-3c-.24-.33-.795-.6-1.2-.6H12c-6 0-9-1.5-9-9V12c0-6 3-9 9-9h9"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M29.25 10.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M23.995 16.5h.013M17.993 16.5h.014M11.992 16.5h.013"
+        stroke={color}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const FaceIdIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+    <Path
+      d="M3 13.5V9.75A6.741 6.741 0 0 1 9.75 3h3.75M22.5 3h3.75A6.741 6.741 0 0 1 33 9.75v3.75M33 24v2.25A6.741 6.741 0 0 1 26.25 33H24M13.5 33H9.75A6.741 6.741 0 0 1 3 26.25V22.5M25.5 14.25v7.5c0 3-1.5 4.5-4.5 4.5h-6c-3 0-4.5-1.5-4.5-4.5v-7.5c0-3 1.5-4.5 4.5-4.5h6c3 0 4.5 1.5 4.5 4.5ZM28.5 18h-21"
+      stroke={color}
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+  );
+};
+
+export const HeartSlashIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+    <Path
+      d="M9.165 26.25C5.85 23.145 3 18.72 3 13.02c0-4.635 3.735-8.385 8.34-8.385 2.73 0 5.145 1.32 6.66 3.36a8.295 8.295 0 0 1 6.66-3.36c1.725 0 3.33.525 4.665 1.44M32.61 10.5a8.3 8.3 0 0 1 .39 2.535c0 10.5-9.72 16.695-14.07 18.195-.51.18-1.35.18-1.86 0-.975-.33-2.205-.9-3.54-1.695M33 3 3 33"
+      stroke={color}
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+  );
+};
+
+export const ChevronRightIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+    <Path
+      d="m7.083 4.167 5.834 5.834-5.833 5.833"
+      stroke={color}
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+  );
+};

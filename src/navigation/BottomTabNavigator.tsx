@@ -106,6 +106,8 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           options={{
             title: "Settings",
             tabBarIcon: ({ color }) => <SettingsIcon color={color} size={24} />,
+            headerShadowVisible: false,
+            headerStatusBarHeight: 70,
           }}
         />
         <BottomTab.Screen
