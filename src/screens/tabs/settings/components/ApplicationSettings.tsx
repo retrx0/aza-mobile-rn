@@ -6,14 +6,16 @@ import useColorScheme from '../../../../hooks/useColorScheme'
 
 import { hp } from '../../../../common/util/LayoutUtil'
 import { FaceIdIcon, HeartSlashIcon, MoonIcon, NotificationSettingsIcon } from '../../../../../assets/svg'
+import { RootTabScreenProps } from '../../../../../types'
 
-export default function ApplicationSettings() {
+export default function ApplicationSettings({navigation}: RootTabScreenProps<'Settings'> ) {
   const colorScheme = useColorScheme()
   const applicationSettings = [
     {
       icon: <MoonIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Appearance',
       detail: 'Change appearance as light/dark/system',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'Appearance'})
     },
     {
       icon: (
@@ -24,16 +26,19 @@ export default function ApplicationSettings() {
       ),
       name: 'Notification Settings',
       detail: 'Change your notification preferences',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'NotificationSettings'})
     },
     {
       icon: <FaceIdIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Face ID',
       detail: 'Login and confrim transactions with Face ID',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'FaceId'})
     },
     {
       icon: <HeartSlashIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Close Aza account',
       detail: 'You can close your Aza account',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'Appearance'})
     },
   ]
 
@@ -58,8 +63,8 @@ export default function ApplicationSettings() {
         />
       </View>
 
-      {applicationSettings.map(({ icon, detail, name }, i) => (
-        <SettingsListItem detail={detail} icon={icon} name={name} key={i} />
+      {applicationSettings.map(({ icon, detail, name, handleNavigation }, i) => (
+        <SettingsListItem detail={detail} icon={icon} name={name} handleNavigation={handleNavigation} key={i}/>
       ))}
     </View>
   )

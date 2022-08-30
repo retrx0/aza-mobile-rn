@@ -1,9 +1,12 @@
 import React from "react";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
+import Colors from "../../constants/Colors";
+import useColorScheme from "../../hooks/useColorScheme";
 import { Text, TextInput, View } from "../Themed";
 
-const BoxTextInput = (props: { placeHolder: string; required: boolean; value: string; onChange: () => void }) => {
+const BoxTextInput = (props: { placeHolder: string; required: boolean; value: string; onChange: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void }) => {
+  const colorScheme = useColorScheme()
   return (
     <View>
       <Text style={[CommonStyles.bodyText, { marginHorizontal: 15, marginTop: 20 }]}>
@@ -16,7 +19,7 @@ const BoxTextInput = (props: { placeHolder: string; required: boolean; value: st
             width: "90%",
             alignSelf: "center",
             borderWidth: 0.5,
-            borderColor: "#121212",
+            borderColor: Colors[colorScheme].border,
             borderRadius: 5,
             padding: 15,
             marginBottom: 20,

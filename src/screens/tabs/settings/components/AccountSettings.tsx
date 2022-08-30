@@ -11,8 +11,9 @@ import {
   PrivacySettingsIcon,
 } from '../../../../../assets/svg'
 import { hp } from '../../../../common/util/LayoutUtil'
+import { RootTabScreenProps } from '../../../../../types'
 
-export default function AccountSettings() {
+export default function AccountSettings({navigation}: RootTabScreenProps<'Settings'> ) {
   const colorScheme = useColorScheme()
 
   const accountSettings = [
@@ -22,6 +23,8 @@ export default function AccountSettings() {
       ),
       name: 'Change Password',
       detail: 'Change your Aza account password',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'ChangePassword'})
+      
     },
     {
       icon: (
@@ -29,11 +32,13 @@ export default function AccountSettings() {
       ),
       name: 'Change Mobile Phone Number',
       detail: 'Change your mobile number',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'ChangePhoneNumber'})
     },
     {
       icon: <ChangeEmailIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Change Email Address',
       detail: 'Change your email address',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'ChangeEmail'})
     },
     {
       icon: (
@@ -41,11 +46,13 @@ export default function AccountSettings() {
       ),
       name: 'Privacy Settings',
       detail: 'Change your privacy settings',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'PrivacySettings'})
     },
     {
       icon: <LoginOptionsIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Login Options',
       detail: 'Connect your social media accounts',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'LoginOptions'})
     },
   ]
 
@@ -70,8 +77,8 @@ export default function AccountSettings() {
         />
       </View>
 
-      {accountSettings.map(({ icon, detail, name }, i) => (
-        <SettingsListItem detail={detail} icon={icon} name={name} key={i} />
+      {accountSettings.map(({ icon, detail, name,handleNavigation }, i) => (
+        <SettingsListItem detail={detail} icon={icon} name={name} handleNavigation={handleNavigation} key={i}/>
       ))}
     </View>
   )

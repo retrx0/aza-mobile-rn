@@ -7,19 +7,26 @@ import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import useColorScheme from '../../../../hooks/useColorScheme'
 
+interface SettingsListItemsProps {
+  name: string
+  icon?: JSX.Element
+  detail?: string
+  handleNavigation: () => void
+}
+
 const SettingsListItem = ({
   icon,
   detail,
   name,
-}: {
-  name: string
-  detail: string
-  icon: JSX.Element
-}) => {
+  handleNavigation,
+}: SettingsListItemsProps) => {
   const colorScheme = useColorScheme()
   return (
     <>
-      <TouchableOpacity style={[CommonStyles.col, { alignSelf: 'stretch' }]}>
+      <TouchableOpacity
+        onPress={handleNavigation}
+        style={[CommonStyles.col, { alignSelf: 'stretch' }]}
+      >
         <View
           style={[
             CommonStyles.row,
@@ -32,7 +39,10 @@ const SettingsListItem = ({
         >
           <View>{icon}</View>
           <View
-            style={[CommonStyles.col, { marginRight: 'auto', marginLeft: 20 }]}
+            style={[
+              CommonStyles.col,
+              { marginRight: 'auto', marginLeft: icon ? 20 : 0 },
+            ]}
           >
             <Text
               lightColor={Colors.light.text}
@@ -44,13 +54,15 @@ const SettingsListItem = ({
             >
               {name}
             </Text>
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 12, marginTop: hp(4) }}
-            >
-              {detail}
-            </Text>
+            {detail && (
+              <Text
+                lightColor={Colors.light.text}
+                darkColor={Colors.dark.secondaryText}
+                style={{ fontSize: 12, marginTop: hp(4) }}
+              >
+                {detail}
+              </Text>
+            )}
           </View>
           <ChevronRightIcon color="#2A9E17" size={20} />
         </View>

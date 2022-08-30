@@ -125,7 +125,6 @@ const recentTransactions = [
 ];
 
 export default function RecentTransactions() {
-  const colorScheme = useColorScheme();
 
   return (
     <View style={{ display: "flex", marginTop: 50 }}>

@@ -1,18 +1,15 @@
 import { ScrollView, StyleSheet } from 'react-native'
 import { RootTabScreenProps } from '../../../../types'
 import { View } from '../../../components/Themed'
-import useColorScheme from '../../../hooks/useColorScheme'
 import AccountSettings from './components/AccountSettings'
 import ApplicationSettings from './components/ApplicationSettings'
 
-const Settings = ({ navigation }: RootTabScreenProps<'Settings'>) => {
-  const colorScheme = useColorScheme()
-
+const Settings = ({ navigation, route }: RootTabScreenProps<'Settings'>) => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <AccountSettings />
-        <ApplicationSettings />
+        <AccountSettings navigation={navigation} route={route} />
+        <ApplicationSettings navigation={navigation} route={route} />
       </ScrollView>
     </View>
   )
