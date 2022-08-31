@@ -14,6 +14,12 @@ import PrivacySettingsScreen from "../../screens/tabs/settings/screens/PrivacySe
 import NameVisibilityScreen from "../../screens/tabs/settings/screens/NameVisibilityScreen";
 import ContactsVisibilityScreen from "../../screens/tabs/settings/screens/ContactsVisibilityScreen";
 import SplitAndMoneyRequestsScreen from "../../screens/tabs/settings/screens/SplitAndMoneyRequests";
+import BlockUsersScreen from "../../screens/tabs/settings/screens/BlockUsersScreen";
+import NorificationSettingsScreen from "../../screens/tabs/settings/screens/NorificationSettingsScreen";
+import LoginWithFaceIdScreen from "../../screens/tabs/settings/screens/LoginWithFaceIdScreen";
+import LoginOptionsScreen from "../../screens/tabs/settings/screens/LoginOptionsScreen";
+import AppearanceScreen from "../../screens/tabs/settings/screens/AppearanceScreen";
+import AppLanguageScreen from "../../screens/tabs/settings/screens/AppLanguageScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 
@@ -45,6 +51,12 @@ const CommonStack = () => {
         <Stack.Screen name="NameVisibility" component={NameVisibilityScreen} />
         <Stack.Screen name="ContactVisibility" component={ContactsVisibilityScreen} />
         <Stack.Screen name="SplitAndMoneyRequests" component={SplitAndMoneyRequestsScreen} />
+        <Stack.Screen name="BlockUsers" component={BlockUsersScreen} />
+        <Stack.Screen name="NotificationSettings" component={NorificationSettingsScreen} />
+        <Stack.Screen name="FaceId" component={LoginWithFaceIdScreen} />
+        <Stack.Screen name="LoginOptions" component={LoginOptionsScreen} />
+        <Stack.Screen name="Appearance" component={AppearanceScreen} />
+        <Stack.Screen name="AppLanguage" component={AppLanguageScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

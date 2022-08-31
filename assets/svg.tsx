@@ -1,12 +1,22 @@
-import React from "react";
-import { StyleProp, ViewStyle } from "react-native";
-import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from "react-native-svg";
+import React from 'react'
+import { StyleProp, ViewStyle } from 'react-native'
+import Svg, {
+  Path,
+  Circle,
+  Image,
+  Defs,
+  Use,
+  Pattern,
+  G,
+  Rect,
+  ClipPath,
+} from 'react-native-svg'
 
 type SvgIconProps = {
-  color: string;
-  size: number;
-  style?: StyleProp<ViewStyle>;
-};
+  color: string
+  size: number
+  style?: StyleProp<ViewStyle>
+}
 
 export const VaultIcon = ({ color, size }: SvgIconProps) => {
   return (
@@ -20,8 +30,8 @@ export const VaultIcon = ({ color, size }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const HomeIcon = ({ color, size }: SvgIconProps) => {
   return (
@@ -31,8 +41,8 @@ export const HomeIcon = ({ color, size }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const PaymentsIcon = ({ color, size }: SvgIconProps) => {
   return (
@@ -46,8 +56,8 @@ export const PaymentsIcon = ({ color, size }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const SettingsIcon = ({ color, size }: SvgIconProps) => {
   return (
@@ -57,8 +67,8 @@ export const SettingsIcon = ({ color, size }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const ProfileIcon = ({ color, size }: SvgIconProps) => {
   return (
@@ -66,14 +76,26 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
       <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
       <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
       <Defs>
-        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <Use href="#image0_1093_6630" transform="translate(-0.25) scale(0.003125)" />
+        <Pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
+          <Use
+            href="#image0_1093_6630"
+            transform="translate(-0.25) scale(0.003125)"
+          />
         </Pattern>
-        <Image href={require("../assets/images/logo/lightning-bolt.png")} width="480" height="320" />
+        <Image
+          href={require('../assets/images/logo/lightning-bolt.png')}
+          width="480"
+          height="320"
+        />
       </Defs>
     </Svg>
-  );
-};
+  )
+}
 
 export const QRCodeIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -135,8 +157,8 @@ export const QRCodeIcon = ({ color, size, style }: SvgIconProps) => {
         stroke-linejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const AZALogo = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -165,8 +187,8 @@ export const AZALogo = ({ color, size, style }: SvgIconProps) => {
         </ClipPath>
       </Defs>
     </Svg>
-  );
-};
+  )
+}
 
 export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
   return (
@@ -176,8 +198,8 @@ export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const SelectArrow = () => {
   return (
@@ -190,8 +212,8 @@ export const SelectArrow = () => {
         stroke-linejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const BackIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -204,8 +226,8 @@ export const BackIcon = ({ color, size, style }: SvgIconProps) => {
         stroke-linejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const AppleIcon = () => {
   return (
@@ -215,8 +237,8 @@ export const AppleIcon = () => {
         fill="white"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const GoogleIcon = () => {
   return (
@@ -246,8 +268,8 @@ export const GoogleIcon = () => {
         fill="#EA4335"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const FacebookIcon = () => {
   return (
@@ -257,22 +279,30 @@ export const FacebookIcon = () => {
         fill="#007AFF"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const Flag = () => {
   return (
     <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
       <Circle cx="7.5" cy="7.5" r="7.5" fill="url(#pattern0)" />
       <Defs>
-        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <Use xlinkHref="#image0_295_18064" transform="translate(-0.124378) scale(0.00497512)" />
+        <Pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
+          <Use
+            xlinkHref="#image0_295_18064"
+            transform="translate(-0.124378) scale(0.00497512)"
+          />
         </Pattern>
         <Image id="image0_295_18064" width="251" height="201" />
       </Defs>
     </Svg>
-  );
-};
+  )
+}
 
 export const DangerIcon = () => {
   return (
@@ -282,8 +312,8 @@ export const DangerIcon = () => {
         fill="#FF361A"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const WithdrawIcon = () => (
   <Svg width={40} height={40} fill="none">
@@ -295,15 +325,20 @@ export const WithdrawIcon = () => (
       strokeLinejoin="round"
     />
   </Svg>
-);
+)
 
 export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={24} height={24} fill="none">
-      <Path d="M3 7h18M3 12h18M3 17h18" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+      <Path
+        d="M3 7h18M3 12h18M3 17h18"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
     </Svg>
-  );
-};
+  )
+}
 
 export const MessageIcon = ({ color, size, style }: SvgIconProps) => (
   <Svg width={size} height={size} fill="none">
@@ -322,7 +357,7 @@ export const MessageIcon = ({ color, size, style }: SvgIconProps) => (
       strokeLinejoin="round"
     />
   </Svg>
-);
+)
 
 export const ReceivedIcon = () => (
   <Svg width={12} height={12} fill="none">
@@ -335,7 +370,7 @@ export const ReceivedIcon = () => (
       strokeLinejoin="round"
     />
   </Svg>
-);
+)
 
 export const DepositIcon = () => (
   <Svg width={40} height={40} fill="none">
@@ -347,20 +382,20 @@ export const DepositIcon = () => (
       strokeLinejoin="round"
     />
   </Svg>
-);
+)
 
 export const SendIcon = ({ iconColor }: any) => (
   <Svg width={12} height={12} fill="none">
     <Path
       d="M10.25 11h-8.5M9.5 1.75l-7 7M9.5 6.885V1.75H4.365"
-      stroke={iconColor ? iconColor : "#A6A6A6"}
+      stroke={iconColor ? iconColor : '#A6A6A6'}
       strokeWidth={1.5}
       strokeMiterlimit={10}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
   </Svg>
-);
+)
 
 export const TransferIcon = ({ color, size, style }: SvgIconProps) => (
   <Svg width={size} height={size} fill="none">
@@ -372,7 +407,7 @@ export const TransferIcon = ({ color, size, style }: SvgIconProps) => (
       strokeLinejoin="round"
     />
   </Svg>
-);
+)
 
 export const NairaIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -382,8 +417,8 @@ export const NairaIcon = ({ color, size, style }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 //Might replace with lottie animation
 export const StatusSuccessIcon = () => {
@@ -398,8 +433,8 @@ export const StatusSuccessIcon = () => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const StatusWarningIcon = () => {
   return (
@@ -410,8 +445,8 @@ export const StatusWarningIcon = () => {
         fill="#fff"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const SendMoneyIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -423,8 +458,8 @@ export const SendMoneyIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const RequestMoneyIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -434,8 +469,8 @@ export const RequestMoneyIcon = ({ color, size, style }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const RecurringTransferIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -445,8 +480,8 @@ export const RecurringTransferIcon = ({ color, size, style }: SvgIconProps) => {
         fill={color}
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const GalleryIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -464,8 +499,8 @@ export const GalleryIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const UserIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -477,8 +512,8 @@ export const UserIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const ClockIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -496,8 +531,8 @@ export const ClockIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const BankIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -517,8 +552,8 @@ export const BankIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const CreditCardIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -537,8 +572,8 @@ export const CreditCardIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const LogoutIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -551,8 +586,8 @@ export const LogoutIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const SplitIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -570,8 +605,8 @@ export const SplitIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const GraphIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -591,8 +626,8 @@ export const GraphIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -602,7 +637,12 @@ export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
         stroke={color}
         strokeMiterlimit={10}
       />
-      <Path d="M1.333 1.667h13.334" stroke={color} strokeMiterlimit={10} strokeLinecap="round" />
+      <Path
+        d="M1.333 1.667h13.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+      />
       <Path
         d="M5.333 5.333h5.334M5.333 8.667h5.334"
         stroke={color}
@@ -611,8 +651,8 @@ export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const MessageQuestionIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -631,8 +671,8 @@ export const MessageQuestionIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -644,8 +684,8 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const ChangePasswordIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -664,9 +704,9 @@ export const ChangePasswordIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-  </Svg>
-  );
-};
+    </Svg>
+  )
+}
 
 export const ChangePhoneNumberIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -685,9 +725,9 @@ export const ChangePhoneNumberIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-  </Svg>
-  );
-};
+    </Svg>
+  )
+}
 
 export const ChangeEmailIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -708,9 +748,9 @@ export const ChangeEmailIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-  </Svg>
-  );
-};
+    </Svg>
+  )
+}
 
 export const PrivacySettingsIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -723,8 +763,8 @@ export const PrivacySettingsIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const LoginOptionsIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -736,9 +776,9 @@ export const LoginOptionsIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </Svg>  
-  );
-};
+    </Svg>
+  )
+}
 
 export const MoonIcon = ({ color, size, style }: SvgIconProps) => {
   return (
@@ -751,10 +791,14 @@ export const MoonIcon = ({ color, size, style }: SvgIconProps) => {
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
-export const NotificationSettingsIcon = ({ color, size, style }: SvgIconProps) => {
+export const NotificationSettingsIcon = ({
+  color,
+  size,
+  style,
+}: SvgIconProps) => {
   return (
     <Svg width={size} height={size} fill="none">
       <Path
@@ -780,47 +824,202 @@ export const NotificationSettingsIcon = ({ color, size, style }: SvgIconProps) =
         strokeLinejoin="round"
       />
     </Svg>
-  );
-};
+  )
+}
 
 export const FaceIdIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} fill="none">
-    <Path
-      d="M3 13.5V9.75A6.741 6.741 0 0 1 9.75 3h3.75M22.5 3h3.75A6.741 6.741 0 0 1 33 9.75v3.75M33 24v2.25A6.741 6.741 0 0 1 26.25 33H24M13.5 33H9.75A6.741 6.741 0 0 1 3 26.25V22.5M25.5 14.25v7.5c0 3-1.5 4.5-4.5 4.5h-6c-3 0-4.5-1.5-4.5-4.5v-7.5c0-3 1.5-4.5 4.5-4.5h6c3 0 4.5 1.5 4.5 4.5ZM28.5 18h-21"
-      stroke={color}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-  );
-};
+      <Path
+        d="M3 13.5V9.75A6.741 6.741 0 0 1 9.75 3h3.75M22.5 3h3.75A6.741 6.741 0 0 1 33 9.75v3.75M33 24v2.25A6.741 6.741 0 0 1 26.25 33H24M13.5 33H9.75A6.741 6.741 0 0 1 3 26.25V22.5M25.5 14.25v7.5c0 3-1.5 4.5-4.5 4.5h-6c-3 0-4.5-1.5-4.5-4.5v-7.5c0-3 1.5-4.5 4.5-4.5h6c3 0 4.5 1.5 4.5 4.5ZM28.5 18h-21"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
 
 export const HeartSlashIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} fill="none">
-    <Path
-      d="M9.165 26.25C5.85 23.145 3 18.72 3 13.02c0-4.635 3.735-8.385 8.34-8.385 2.73 0 5.145 1.32 6.66 3.36a8.295 8.295 0 0 1 6.66-3.36c1.725 0 3.33.525 4.665 1.44M32.61 10.5a8.3 8.3 0 0 1 .39 2.535c0 10.5-9.72 16.695-14.07 18.195-.51.18-1.35.18-1.86 0-.975-.33-2.205-.9-3.54-1.695M33 3 3 33"
-      stroke={color}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-  );
-};
+      <Path
+        d="M9.165 26.25C5.85 23.145 3 18.72 3 13.02c0-4.635 3.735-8.385 8.34-8.385 2.73 0 5.145 1.32 6.66 3.36a8.295 8.295 0 0 1 6.66-3.36c1.725 0 3.33.525 4.665 1.44M32.61 10.5a8.3 8.3 0 0 1 .39 2.535c0 10.5-9.72 16.695-14.07 18.195-.51.18-1.35.18-1.86 0-.975-.33-2.205-.9-3.54-1.695M33 3 3 33"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
 
 export const ChevronRightIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} fill="none">
+      <Path
+        d="m7.083 4.167 5.834 5.834-5.833 5.833"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+export const UndrawCancelIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={202} height={226} fill="none">
+      <G clipPath="url(#a)">
+        <Path
+          d="M114.515 174.137c48.317 0 87.485-38.982 87.485-87.069C202 38.982 162.832 0 114.515 0 66.199 0 27.03 38.982 27.03 87.068c0 48.087 39.169 87.069 87.485 87.069Z"
+          fill="#F2F2F2"
+        />
+        <Path
+          d="M171.685 38.938H11.425a.62.62 0 0 1-.609-.633.62.62 0 0 1 .609-.606h160.26a.62.62 0 0 1 0 1.239Z"
+          fill="#CACACA"
+        />
+        <Path
+          d="M117.069 59.807H72.766c-3.327 0-6.025 2.684-6.025 5.996 0 3.312 2.698 5.997 6.025 5.997h44.303c3.327 0 6.025-2.685 6.025-5.997s-2.698-5.996-6.025-5.996ZM44.147 83.793h101.541c3.328 0 6.026 2.685 6.026 5.996 0 3.312-2.698 5.997-6.026 5.997H44.148c-3.328 0-6.026-2.685-6.026-5.997 0-3.311 2.698-5.996 6.025-5.996ZM44.147 107.779h101.541c3.328 0 6.026 2.685 6.026 5.997s-2.698 5.996-6.026 5.996H44.148c-3.328 0-6.026-2.684-6.026-5.996 0-3.312 2.698-5.997 6.025-5.997Z"
+          fill="#fff"
+        />
+        <Path
+          d="m31.564 225.473-.24-.023a27.762 27.762 0 0 1-20.041-11.867 26.745 26.745 0 0 1-3.036-6l-.073-.203.215-.017c2.565-.205 5.2-.638 6.37-.845l-7.548-2.545-.046-.223a5.224 5.224 0 0 1 2.214-5.437 5.373 5.373 0 0 1 5.994-.101c.822.522 1.682 1.04 2.513 1.54 2.856 1.72 5.81 3.498 8.025 5.931a16.631 16.631 0 0 1 4.005 13.799l1.648 5.991Z"
+          fill="#F2F2F2"
+        />
+        <Path d="m59 221.737 3.72-.001 1.77-14.281H59v14.282Z" fill="#A0616A" />
+        <Path
+          d="M58.87 225.599h11.44v-.144c0-2.448-1.994-4.432-4.454-4.432l-2.09-1.578-3.898 1.578h-.999v4.576Z"
+          fill="#2F2E41"
+        />
+        <Path
+          d="m29.188 211.482 2.975 2.222 10.027-10.366-4.392-3.279-8.61 11.423Z"
+          fill="#A0616A"
+        />
+        <Path
+          d="m26.753 214.494 9.151 6.833.087-.116a4.418 4.418 0 0 0-.89-6.204l-.72-2.51-4.07-1.067-.799-.596-2.759 3.66ZM41.553 154.719s.206 5.575.465 10.046c.042.733-1.684 1.53-1.64 2.328.03.529.355 1.043.385 1.595.032.583-.416 1.098-.384 1.7.031.589.542 1.264.573 1.866.332 6.482 1.534 14.242.33 16.411-.593 1.069-8.158 15.879-8.158 15.879s4.215 6.292 5.419 4.195c1.59-2.77 13.848-15.73 13.848-18.205 0-2.471 2.836-20.997 2.836-20.997l1.977 10.963.907 2.172-.285 1.276.586 1.721.032 1.703.57 3.162s-1.716 24.641-.75 25.327c.97.689 5.663 1.926 6.217.689.551-1.238 4.137-25.716 4.137-25.716s.578-11.218 1.204-21.644c.036-.605.464-1.336.497-1.933.039-.692-.232-1.591-.196-2.262.04-.77.382-1.312.416-2.049.255-5.696-1.181-12.632-1.639-13.315-1.381-2.061-2.625-3.709-2.625-3.709s-18.611-6.086-23.584.098l-1.138 8.699Z"
+          fill="#2F2E41"
+        />
+        <Path
+          d="m60.116 97.388-7.378-1.468-3.443 4.65c-6.425 6.287-6.522 11.836-5.375 20.73v12.483l-.83 8.368s-2.938 6.117.092 7.541c3.031 1.425 22.939 1.303 24.84.735 1.9-.569.253-1.267-.246-3.916-.938-4.977-.31-2.577-.246-4.161.925-22.732-1.23-32.064-1.449-34.517l-3.752-6.773-2.213-3.672Z"
+          fill="#3F3D56"
+        />
+        <Path
+          d="M99.002 115.715a2.99 2.99 0 0 1-4.472.956L78.597 126.74l.046-5.482 15.478-8.94a3.009 3.009 0 0 1 4.234-.24 2.974 2.974 0 0 1 .647 3.637Z"
+          fill="#A0616A"
+        />
+        <Path
+          d="m54.29 103.736-1.813-.191a4.81 4.81 0 0 0-4.333 1.882 4.65 4.65 0 0 0-.818 1.711l-.001.005a4.76 4.76 0 0 0 1.81 4.964l6.266 4.597c4.397 5.913 12.66 9.836 22.353 13.023l15.066-9.312-5.329-6.424-10.334 5.512-15.36-11.834-.01-.007-5.846-3.749-1.65-.177Z"
+          fill="#3F3D56"
+        />
+        <Path
+          d="M57.623 93.782c4.752 0 8.604-3.834 8.604-8.563 0-4.73-3.853-8.563-8.604-8.563-4.752 0-8.604 3.834-8.604 8.563 0 4.73 3.852 8.563 8.604 8.563Z"
+          fill="#A0616A"
+        />
+        <Path
+          d="m57.822 93.783-.209.006c-.03.077-.061.153-.098.227l.307-.233ZM60.183 85.457c.013.084.034.168.061.248a1.162 1.162 0 0 0-.061-.248Z"
+          fill="#2F2E41"
+        />
+        <Path
+          d="M66.337 77.023c-.355 1.094-.67-.294-1.836-.044-1.401.3-3.032.197-4.18-.658a6.501 6.501 0 0 0-5.932-.9c-1.964.691-5.253 1.18-5.765 3.189-.178.698-.249 1.456-.68 2.035-.377.506-.972.795-1.47 1.184-1.679 1.316-.395 5.053.4 7.028.795 1.975 2.619 3.413 4.624 4.15 1.94.713 4.046.839 6.116.783.36-.93.204-2.003-.093-2.966-.322-1.043-.798-2.05-.932-3.132-.134-1.082.16-2.312 1.073-2.917.838-.556 2.202-.217 2.521.682-.186-1.124.958-2.211 2.137-2.403 1.267-.205 2.533.25 3.795.476 1.263.227.815-5.064.222-6.507Z"
+          fill="#2F2E41"
+        />
+        <Path
+          d="M114.455 99.384c.802-9.645-6.404-18.11-16.095-18.909-9.69-.798-18.197 6.373-19 16.018-.801 9.645 6.405 18.111 16.096 18.909 9.691.799 18.197-6.373 18.999-16.018Z"
+          fill={color}
+        />
+        <Path
+          d="m101.533 90.637-4.625 4.603-4.625-4.603a1.923 1.923 0 0 0-2.711 0 1.902 1.902 0 0 0 0 2.698l4.625 4.603-4.625 4.603a1.902 1.902 0 0 0 .002 2.699c.749.743 1.96.743 2.709 0l4.625-4.603 4.625 4.603c.75.744 1.963.743 2.711-.003a1.902 1.902 0 0 0 0-2.696l-4.625-4.603 4.625-4.603a1.901 1.901 0 0 0 0-2.698 1.923 1.923 0 0 0-2.711 0Z"
+          fill="#fff"
+        />
+        <Path
+          d="M89.97 83.21a2.966 2.966 0 0 1-2.404 3.873l-3.73 18.413-3.943-3.828 4.234-17.305a2.99 2.99 0 0 1 2.757-3.207 2.999 2.999 0 0 1 3.085 2.053Z"
+          fill="#A0616A"
+        />
+        <Path
+          d="m50.33 107.027-1.395 1.171a4.764 4.764 0 0 0-.96 6.187l.002.004a4.804 4.804 0 0 0 4.853 2.136l7.67-1.317c7.332.936 15.897-2.283 24.918-7.038l3.678-17.267-8.346-.62-3.158 11.238-19.215 2.839-.011.001-6.766 1.603-1.27 1.063Z"
+          fill="#3F3D56"
+        />
+        <Path
+          d="M94.007 225.894.41 226a.41.41 0 0 1 0-.817l93.598-.105a.408.408 0 1 1 0 .816Z"
+          fill="#CACACA"
+        />
+        <Path
+          d="M19.556 31.093c1.608 0 2.912-1.327 2.912-2.963 0-1.637-1.304-2.964-2.912-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM29.618 31.093c1.608 0 2.913-1.327 2.913-2.963 0-1.637-1.305-2.964-2.913-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM39.68 31.093c1.608 0 2.913-1.327 2.913-2.963 0-1.637-1.305-2.964-2.913-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM51.153 30.471a.344.344 0 0 1-.246-.103l-1.965-2a.341.341 0 0 1 0-.479l1.965-1.999a.346.346 0 0 1 .487-.005c.136.132.138.35.005.484l-1.73 1.76 1.73 1.76a.342.342 0 0 1-.246.582ZM54.456 30.472a.344.344 0 0 1-.246-.583l1.73-1.76-1.73-1.76a.342.342 0 0 1 .005-.484.345.345 0 0 1 .487.005l1.965 2a.342.342 0 0 1 0 .479l-1.965 2a.344.344 0 0 1-.246.103ZM157.271 25.51h-3.654a.753.753 0 0 0-.755.75v3.64c0 .416.338.752.755.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM148.316 25.51h-3.654a.753.753 0 0 0-.755.75v3.64c0 .416.338.752.755.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM165.709 25.68h-3.654a.752.752 0 0 0-.754.75v3.64c0 .416.337.752.754.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM110.628 27.064h-29.21c-.51 0-.92.412-.92.916s.41.915.92.915h29.21a.92.92 0 0 0 .92-.915.92.92 0 0 0-.92-.916Z"
+          fill="#3F3D56"
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Path fill="#fff" d="M0 0h202v226H0z" />
+        </ClipPath>
+      </Defs>
+    </Svg>
+  )
+}
+
+export const CheckIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M10 1.666c-4.592 0-8.333 3.742-8.333 8.333 0 4.592 3.741 8.334 8.333 8.334 4.591 0 8.333-3.742 8.333-8.334 0-4.591-3.741-8.333-8.333-8.333Zm3.983 6.417-4.725 4.725a.625.625 0 0 1-.883 0l-2.359-2.359a.629.629 0 0 1 0-.883.629.629 0 0 1 .884 0l1.916 1.917L13.1 7.199a.629.629 0 0 1 .883 0 .629.629 0 0 1 0 .884Z"
+        fill={color}
+      />
+    </Svg>
+  )
+}
+
+export const DarkModeIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M1.354 8.28c.24 3.433 3.153 6.227 6.64 6.38a7.006 7.006 0 0 0 5.98-2.847c.546-.74.253-1.233-.66-1.066a6.33 6.33 0 0 1-1.387.093C8.667 10.707 6 7.98 5.987 4.76a5.93 5.93 0 0 1 .5-2.433c.36-.827-.073-1.22-.907-.867-2.64 1.113-4.446 3.773-4.226 6.82Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+export const LightModeIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none" >
     <Path
-      d="m7.083 4.167 5.834 5.834-5.833 5.833"
+      d="M8 12.333a4.333 4.333 0 1 0 0-8.667 4.333 4.333 0 0 0 0 8.667Z"
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="m12.76 12.76-.086-.086m0-9.347.086-.086-.086.086ZM3.24 12.761l.087-.087-.087.087ZM8 1.387v-.053.053Zm0 13.28v-.053.053ZM1.387 8.001h-.054.054Zm13.28 0h-.053.053ZM3.327 3.327l-.087-.086.087.086Z"
       stroke={color}
       strokeWidth={1.5}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
   </Svg>
-  );
-};
+  )
+}
+
+
+export const SystemModeIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={14} height={18} fill="none" >
+    <Path
+      d="M13 5v8c0 3.2-.75 4-3.75 4h-4.5c-3 0-3.75-.8-3.75-4V5c0-3.2.75-4 3.75-4h4.5c3 0 3.75.8 3.75 4ZM8.5 3.8h-3"
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M7 14.68c.642 0 1.162-.556 1.162-1.24 0-.686-.52-1.24-1.162-1.24-.642 0-1.163.554-1.163 1.24 0 .684.52 1.24 1.163 1.24Z"
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+  )
+}
