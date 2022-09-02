@@ -19,6 +19,7 @@ export type CommonStackParamList = {
   ContactVisibility: undefined;
   SplitAndMoneyRequests: undefined;
   BlockUsers: undefined;
+  BlockNewUser: undefined;
   NotificationSettings: undefined;
   FaceId: undefined;
   LoginOptions: undefined;

@@ -20,6 +20,7 @@ import LoginWithFaceIdScreen from "../../screens/tabs/settings/screens/LoginWith
 import LoginOptionsScreen from "../../screens/tabs/settings/screens/LoginOptionsScreen";
 import AppearanceScreen from "../../screens/tabs/settings/screens/AppearanceScreen";
 import AppLanguageScreen from "../../screens/tabs/settings/screens/AppLanguageScreen";
+import BlockNewUserScreen from "../../screens/tabs/settings/screens/BlockNewUserScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 
@@ -52,6 +53,7 @@ const CommonStack = () => {
         <Stack.Screen name="ContactVisibility" component={ContactsVisibilityScreen} />
         <Stack.Screen name="SplitAndMoneyRequests" component={SplitAndMoneyRequestsScreen} />
         <Stack.Screen name="BlockUsers" component={BlockUsersScreen} />
+        <Stack.Screen name="BlockNewUser" component={BlockNewUserScreen} />
         <Stack.Screen name="NotificationSettings" component={NorificationSettingsScreen} />
         <Stack.Screen name="FaceId" component={LoginWithFaceIdScreen} />
         <Stack.Screen name="LoginOptions" component={LoginOptionsScreen} />

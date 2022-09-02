@@ -66,8 +66,8 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<'Appearance'>) => {
             borderBottomColor: Colors[colorScheme].separator,
           }}
         />
-        {options.map(({ icon, name }) => (
-          <>
+        {options.map(({ icon, name }, i) => (
+          <View key={i}>
             <TouchableOpacity
               onPress={() => setSelectedAppearance(name)}
               style={[
@@ -102,7 +102,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<'Appearance'>) => {
                 borderBottomColor: Colors[colorScheme].separator,
               }}
             />
-          </>
+          </View>
         ))}
       </View>
     </View>

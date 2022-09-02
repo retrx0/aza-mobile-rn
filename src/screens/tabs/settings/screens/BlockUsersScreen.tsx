@@ -81,7 +81,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<'BlockUsers'>) => {
         <View style={[CommonStyles.col]}>
           <Button
             title="Block New User"
-            onPressButton={() => navigation.getParent()?.navigate('Settings')}
+            onPressButton={() => navigation.navigate('BlockNewUser')}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: 'Euclid-Circular-A-Medium',

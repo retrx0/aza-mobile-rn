@@ -5,7 +5,7 @@ import Colors from '../../../../constants/Colors'
 import useColorScheme from '../../../../hooks/useColorScheme'
 
 import { hp } from '../../../../common/util/LayoutUtil'
-import { FaceIdIcon, HeartSlashIcon, MoonIcon, NotificationSettingsIcon } from '../../../../../assets/svg'
+import { FaceIdIcon, HeartSlashIcon, MoonIcon, NotificationSettingsIcon, AppLanguageIcon } from '../../../../../assets/svg'
 import { RootTabScreenProps } from '../../../../../types'
 
 export default function ApplicationSettings({navigation}: RootTabScreenProps<'Settings'> ) {
@@ -29,6 +29,17 @@ export default function ApplicationSettings({navigation}: RootTabScreenProps<'Se
       handleNavigation: ()=> navigation.navigate('Common', {screen: 'NotificationSettings'})
     },
     {
+      icon: (
+        <AppLanguageIcon
+          size={36}
+          color={Colors[colorScheme].mainText}
+        />
+      ),
+      name: 'App Language',
+      detail: 'Change the app language',
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'AppLanguage'})
+    },
+    {
       icon: <FaceIdIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Face ID',
       detail: 'Login and confrim transactions with Face ID',
@@ -38,7 +49,11 @@ export default function ApplicationSettings({navigation}: RootTabScreenProps<'Se
       icon: <HeartSlashIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Close Aza account',
       detail: 'You can close your Aza account',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'Appearance'})
+      handleNavigation: ()=> navigation.navigate('Common', {screen: 'StatusScreen', params: {
+        status: 'Do you want to close your Aza account?',
+        statusIcon: 'Warning',
+        statusMessage:'Are you sure you want to go back to a life without Aza?',
+      }})
     },
   ]
 

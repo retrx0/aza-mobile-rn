@@ -67,8 +67,8 @@ const AppLanguageScreen = ({
             borderBottomColor: Colors[colorScheme].separator,
           }}
         />
-        {languages.map(({ icon, name }) => (
-          <>
+        {languages.map(({ icon, name },i) => (
+          <View key={i}>
             <TouchableOpacity
               onPress={() => setSelectedLanguage(name)}
               style={[
@@ -103,7 +103,7 @@ const AppLanguageScreen = ({
                 borderBottomColor: Colors[colorScheme].separator,
               }}
             />
-          </>
+          </View>
         ))}
       </View>
     </View>

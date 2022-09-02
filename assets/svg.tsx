@@ -986,40 +986,51 @@ export const DarkModeIcon = ({ color, size, style }: SvgIconProps) => {
 
 export const LightModeIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width={size} height={size} fill="none" >
-    <Path
-      d="M8 12.333a4.333 4.333 0 1 0 0-8.667 4.333 4.333 0 0 0 0 8.667Z"
-      stroke={color}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Path
-      d="m12.76 12.76-.086-.086m0-9.347.086-.086-.086.086ZM3.24 12.761l.087-.087-.087.087ZM8 1.387v-.053.053Zm0 13.28v-.053.053ZM1.387 8.001h-.054.054Zm13.28 0h-.053.053ZM3.327 3.327l-.087-.086.087.086Z"
-      stroke={color}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M8 12.333a4.333 4.333 0 1 0 0-8.667 4.333 4.333 0 0 0 0 8.667Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="m12.76 12.76-.086-.086m0-9.347.086-.086-.086.086ZM3.24 12.761l.087-.087-.087.087ZM8 1.387v-.053.053Zm0 13.28v-.053.053ZM1.387 8.001h-.054.054Zm13.28 0h-.053.053ZM3.327 3.327l-.087-.086.087.086Z"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
   )
 }
 
-
 export const SystemModeIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width={14} height={18} fill="none" >
-    <Path
-      d="M13 5v8c0 3.2-.75 4-3.75 4h-4.5c-3 0-3.75-.8-3.75-4V5c0-3.2.75-4 3.75-4h4.5c3 0 3.75.8 3.75 4ZM8.5 3.8h-3"
-      stroke={color}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Path
-      d="M7 14.68c.642 0 1.162-.556 1.162-1.24 0-.686-.52-1.24-1.162-1.24-.642 0-1.163.554-1.163 1.24 0 .684.52 1.24 1.163 1.24Z"
-      stroke={color}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
+    <Svg width={14} height={18} fill="none">
+      <Path
+        d="M13 5v8c0 3.2-.75 4-3.75 4h-4.5c-3 0-3.75-.8-3.75-4V5c0-3.2.75-4 3.75-4h4.5c3 0 3.75.8 3.75 4ZM8.5 3.8h-3"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M7 14.68c.642 0 1.162-.556 1.162-1.24 0-.686-.52-1.24-1.162-1.24-.642 0-1.163.554-1.163 1.24 0 .684.52 1.24 1.163 1.24Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  )
+}
+
+export const AppLanguageIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none" >
+      <Path
+        d="M8.25 15v6c0 3 1.5 4.5 4.5 4.5h2.145c.555 0 1.11.166 1.59.45l4.38 2.746c3.78 2.37 6.885.645 6.885-3.81v-13.77c0-4.47-3.105-6.18-6.885-3.81l-4.38 2.745c-.48.285-1.035.45-1.59.45H12.75c-3 0-4.5 1.5-4.5 4.5Z"
+        stroke={color}
+        strokeWidth={1.5}
+      />
+    </Svg>
   )
 }
