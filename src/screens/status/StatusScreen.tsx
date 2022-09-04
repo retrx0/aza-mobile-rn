@@ -23,6 +23,8 @@ const StatusScreen = ({
     statusMessage2,
     receiptButton,
     setupRecurringTransfer,
+    cancelButton,
+    handleContinueButtonClick
   } = route.params;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -61,6 +63,7 @@ const StatusScreen = ({
               color: Colors[colorScheme].text,
               fontSize: 14,
               textAlign: "center",
+              maxWidth: 350,
               fontFamily: "Euclid-Circular-A-Medium",
             }}
           >
@@ -99,7 +102,7 @@ const StatusScreen = ({
 
           <Button
             title="Continue"
-            onPressButton={() => navigation.getParent()?.navigate("Home")}
+            onPressButton={handleContinueButtonClick}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
@@ -114,6 +117,13 @@ const StatusScreen = ({
               title="Receipt"
               color={Colors[colorScheme].text}
               onPressButton={() => console.log("called receipt")}
+            />
+          )}
+          {cancelButton && (
+            <ButtonWithUnderline
+              title="Cancel"
+              color={Colors[colorScheme].error}
+              onPressButton={() => navigation.goBack()}
             />
           )}
         </View>

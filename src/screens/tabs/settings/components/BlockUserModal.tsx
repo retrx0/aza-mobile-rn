@@ -1,4 +1,3 @@
-import Modal from 'react-native-modal'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import { hp } from '../../../../common/util/LayoutUtil'
 import Button from '../../../../components/buttons/Button'
@@ -21,7 +20,19 @@ export default function BlockUserModal({
 }: CommonScreenProps<'BlockNewUser'> & IProps) {
   const colorScheme = useColorScheme()
   return (
-    <Modal isVisible={isModalVisible}>
+    <View
+      style={{
+        display: isModalVisible ? 'flex' : 'none',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+      }}
+    >
       <View
         style={{
           backgroundColor: Colors[colorScheme].backgroundSecondary,
@@ -73,6 +84,7 @@ export default function BlockUserModal({
               statusIcon: 'Success',
               status: 'Successful',
               statusMessage: `The user ${user} has been successfully blocked.`,
+              handleContinueButtonClick: () => navigation.goBack(),
             })
           }}
           styleText={{
@@ -91,6 +103,6 @@ export default function BlockUserModal({
           onPressButton={toggleModal}
         />
       </View>
-    </Modal>
+    </View>
   )
 }

@@ -53,6 +53,8 @@ export default function ApplicationSettings({navigation}: RootTabScreenProps<'Se
         status: 'Do you want to close your Aza account?',
         statusIcon: 'Warning',
         statusMessage:'Are you sure you want to go back to a life without Aza?',
+        cancelButton: true,
+        handleContinueButtonClick: ()=> navigation.navigate('Settings')
       }})
     },
   ]

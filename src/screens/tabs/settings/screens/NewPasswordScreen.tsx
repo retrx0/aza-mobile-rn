@@ -62,6 +62,9 @@ const NewPasswordScreen = ({
             statusIcon: 'Success',
             status: 'Successful',
             statusMessage: 'We have successfully updated your password',
+            handleContinueButtonClick() {
+              navigation.getParent()?.navigate('Settings')
+            },
           })
         }
         styleText={{

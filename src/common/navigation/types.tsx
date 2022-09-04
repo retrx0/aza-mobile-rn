@@ -9,22 +9,22 @@ export type CommonStackParamList = {
   StatusScreen: StatusScreenParamsType
 
   // Settings
-  ChangePassword: undefined;
-  NewPassword: undefined;
-  ChangePhoneNumber: undefined;
-  ChangePhoneNumberOTP: undefined;
-  ChangeEmail: undefined;
-  PrivacySettings: undefined;
-  NameVisibility: undefined;
-  ContactVisibility: undefined;
-  SplitAndMoneyRequests: undefined;
-  BlockUsers: undefined;
-  BlockNewUser: undefined;
-  NotificationSettings: undefined;
-  FaceId: undefined;
-  LoginOptions: undefined;
-  Appearance: undefined;
-  AppLanguage: undefined;
+  ChangePassword: undefined
+  NewPassword: undefined
+  ChangePhoneNumber: undefined
+  ChangePhoneNumberOTP: undefined
+  ChangeEmail: undefined
+  PrivacySettings: undefined
+  NameVisibility: undefined
+  ContactVisibility: undefined
+  SplitAndMoneyRequests: undefined
+  BlockUsers: undefined
+  BlockNewUser: undefined
+  NotificationSettings: undefined
+  FaceId: undefined
+  LoginOptions: undefined
+  Appearance: undefined
+  AppLanguage: undefined
 }
 
 export type CommonScreenProps<
@@ -37,7 +37,6 @@ export type BvnVerificationStackParamList = {
   BvnVerificationScreen: undefined
 }
 
-
 export type BvnVerificationScreenProps<
   Screen extends keyof BvnVerificationStackParamList
 > = NativeStackScreenProps<BvnVerificationStackParamList, Screen>
@@ -46,8 +45,10 @@ export type BvnVerificationScreenProps<
 export type StatusScreenParamsType = {
   statusIcon: 'Success' | 'Warning'
   status: string
-  statusMessage: string
+  statusMessage: string | JSX.Element
   statusMessage2?: string
   receiptButton?: boolean
   setupRecurringTransfer?: boolean
+  cancelButton?: boolean
+  handleContinueButtonClick: () => void
 }

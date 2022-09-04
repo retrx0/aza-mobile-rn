@@ -91,6 +91,9 @@ const BvnVerificationScreen = ({
                 status: "Successful",
                 statusMessage:
                   "You have successfully added your BVN to your Aza account",
+                  handleContinueButtonClick() {
+                    navigation.getParent()?.navigate('Home')
+                  },
               })
             }
             styleText={{
