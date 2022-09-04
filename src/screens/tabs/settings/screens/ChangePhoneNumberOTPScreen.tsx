@@ -12,7 +12,7 @@ import useColorScheme from '../../../../hooks/useColorScheme'
 const ChangePhoneNumberOTPScreen = ({
   navigation,
 }: CommonScreenProps<'ChangePhoneNumberOTP'>) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
   const [otp, setOTP] = useState('')
 
   useLayoutEffect(() => {
@@ -47,22 +47,26 @@ const ChangePhoneNumberOTPScreen = ({
       >
         Please enter the OTP sent to your phone via SMS
       </Text>
-      <View style={{marginBottom: 100, marginTop: 100}}>
-
-      <SegmentedInput value={otp} secureInput={false} headerText="OTP" onValueChanged={(pass) => setOTP(pass)} />
+      <View style={{ marginBottom: 100, marginTop: 100 }}>
+        <SegmentedInput
+          value={otp}
+          secureInput={false}
+          headerText="OTP"
+          onValueChanged={(pass) => setOTP(pass)}
+        />
       </View>
       <Button
-            title="Continue"
-            onPressButton={() => navigation.getParent()?.navigate("Settings")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
-          />
+        title="Continue"
+        onPressButton={() => navigation.getParent()?.navigate('Settings')}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+          fontFamily: 'Euclid-Circular-A-Medium',
+          fontSize: 14,
+        }}
+        style={{
+          backgroundColor: Colors[colorScheme].button,
+        }}
+      />
     </View>
   )
 }

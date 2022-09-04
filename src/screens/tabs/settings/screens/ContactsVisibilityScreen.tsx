@@ -1,23 +1,19 @@
-import { Image, StyleSheet, Switch } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import { hp } from '../../../../common/util/LayoutUtil'
-import useColorScheme from '../../../../hooks/useColorScheme'
 import CommonStyles from '../../../../common/styles/CommonStyles'
+import Divider from '../../../../components/divider/Divider'
+import SettingsSwitch from '../components/SettingsSwitch'
+import ContactListItem from '../../../../components/ListItem/ContactListItem'
 
 const ContactsVisibilityScreen = ({
   navigation,
 }: CommonScreenProps<'ContactVisibility'>) => {
   const [isEnabled, setIsEnabled] = useState(false)
-
-  const colorScheme = useColorScheme()
-
-  const toggleSwitch = () => setIsEnabled(!isEnabled)
-  const switchColor = Colors[colorScheme].backgroundSecondary
-  const switchOnColor = Colors[colorScheme].success
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -65,46 +61,16 @@ const ContactsVisibilityScreen = ({
         In turn, Aza users in your contact won't be labeled as such.
       </Text>
       <View style={{ marginTop: hp(50) }}>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              justifyContent: 'space-between',
-              alignSelf: 'stretch',
-              paddingVertical: 30,
-              alignItems: 'center',
-            },
-          ]}
-        >
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
-          >
-            Contact Visibility
-          </Text>
-          <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isEnabled ? 'white' : 'grey'}
-            ios_backgroundColor={switchColor}
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
-        </View>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
+        <Divider />
+        <SettingsSwitch
+          text={'Contact Visibility'}
+          isEnabled={isEnabled}
+          setIsEnabled={setIsEnabled}
         />
 
-        <View style={[CommonStyles.col, { alignSelf: 'flex-start', marginTop: 30 }]}>
+        <View
+          style={[CommonStyles.col, { alignSelf: 'flex-start', marginTop: 30 }]}
+        >
           <View
             style={[
               CommonStyles.row,
@@ -130,36 +96,11 @@ const ContactsVisibilityScreen = ({
               +18
             </Text>
           </View>
-          <View
-            style={[
-              CommonStyles.row,
-              { alignSelf: 'flex-start', marginTop: hp(25) },
-            ]}
-          >
-            <Image
-              style={{ borderRadius: 50, width: 45, height: 45 }}
-              source={{
-                uri:
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s',
-              }}
-            />
-            <View style={[CommonStyles.col, { marginLeft: 20 }]}>
-              <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.mainText}
-                style={{ fontSize: 16, fontFamily: 'Euclid-Circular-A-Medium' }}
-              >
-                Adewale Adeyesufu
-              </Text>
-              <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
-                style={{ fontSize: 12, marginTop: 5 }}
-              >
-                8012345678
-              </Text>
-            </View>
-          </View>
+          <ContactListItem
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
+            name={'Adewale Adeyesufu'}
+            phoneNumber={'8012345678'}
+          />
         </View>
       </View>
     </View>

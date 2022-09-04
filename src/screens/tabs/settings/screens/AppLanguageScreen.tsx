@@ -8,6 +8,7 @@ import { hp } from '../../../../common/util/LayoutUtil'
 import useColorScheme from '../../../../hooks/useColorScheme'
 import CommonStyles from '../../../../common/styles/CommonStyles'
 import { CheckIcon } from '../../../../../assets/svg'
+import Divider from '../../../../components/divider/Divider'
 
 const AppLanguageScreen = ({
   navigation,
@@ -61,13 +62,8 @@ const AppLanguageScreen = ({
         You can change the app language
       </Text>
       <View style={{ marginTop: hp(30) }}>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
-        {languages.map(({ icon, name },i) => (
+        <Divider />
+        {languages.map(({ icon, name }, i) => (
           <View key={i}>
             <TouchableOpacity
               onPress={() => setSelectedLanguage(name)}

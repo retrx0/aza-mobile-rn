@@ -1,23 +1,18 @@
-import { Image, StyleSheet, Switch } from 'react-native'
+import { Image, StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import { hp } from '../../../../common/util/LayoutUtil'
-import useColorScheme from '../../../../hooks/useColorScheme'
 import CommonStyles from '../../../../common/styles/CommonStyles'
+import Divider from '../../../../components/divider/Divider'
+import SettingsSwitch from '../components/SettingsSwitch'
 
 const NameVisibilityScreen = ({
   navigation,
 }: CommonScreenProps<'NameVisibility'>) => {
   const [isEnabled, setIsEnabled] = useState(false)
-
-  const colorScheme = useColorScheme()
-
-  const toggleSwitch = () => setIsEnabled(!isEnabled)
-  const switchColor = Colors[colorScheme].backgroundSecondary
-  const switchOnColor = Colors[colorScheme].success
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -53,43 +48,11 @@ const NameVisibilityScreen = ({
         others send or receive money from you
       </Text>
       <View style={{ marginTop: hp(80) }}>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              justifyContent: 'space-between',
-              alignSelf: 'stretch',
-              paddingVertical: 30,
-              alignItems: 'center',
-            },
-          ]}
-        >
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
-          >
-            Name Visibility
-          </Text>
-          <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isEnabled ? 'white' : 'grey'}
-            ios_backgroundColor={switchColor}
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
-        </View>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
+        <Divider />
+        <SettingsSwitch
+          text={'Name Visibility'}
+          isEnabled={isEnabled}
+          setIsEnabled={setIsEnabled}
         />
         <View
           style={[
@@ -126,12 +89,7 @@ const NameVisibilityScreen = ({
             }}
           />
         </View>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
+        <Divider />
       </View>
     </View>
   )

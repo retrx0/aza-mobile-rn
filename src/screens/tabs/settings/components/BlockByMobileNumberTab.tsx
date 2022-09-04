@@ -5,6 +5,7 @@ import { hp } from '../../../../common/util/LayoutUtil'
 import useColorScheme from '../../../../hooks/useColorScheme'
 import { Text, View } from '../../../../components/Themed'
 import ContactListItem from '../../../../components/ListItem/ContactListItem'
+import { AZALightningLogo } from '../../../../../assets/svg'
 
 interface IProps {
   toggleModal: () => void
@@ -71,7 +72,17 @@ const BlockByMobileNumberTab = ({ toggleModal = () => {} }: IProps) => {
             .fill('')
             .map((_, i) => (
               <TouchableOpacity key={i} onPress={toggleModal}>
-                <ContactListItem  />
+                <ContactListItem
+                  image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
+                  name={'Adewale Adeyesufu'}
+                  phoneNumber={'8012345678'}
+                  suffixIcon={
+                    <AZALightningLogo
+                      size={25}
+                      color={Colors[colorScheme].text}
+                    />
+                  }
+                />
               </TouchableOpacity>
             ))}
         </ScrollView>

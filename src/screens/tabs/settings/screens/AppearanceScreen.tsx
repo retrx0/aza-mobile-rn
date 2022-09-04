@@ -13,6 +13,7 @@ import {
   LightModeIcon,
   SystemModeIcon,
 } from '../../../../../assets/svg'
+import Divider from '../../../../components/divider/Divider'
 
 const AppearanceScreen = ({ navigation }: CommonScreenProps<'Appearance'>) => {
   const colorScheme = useColorScheme()
@@ -60,12 +61,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<'Appearance'>) => {
   return (
     <View style={styles.container}>
       <View style={{ marginTop: hp(10) }}>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
+        <Divider />
         {options.map(({ icon, name }, i) => (
           <View key={i}>
             <TouchableOpacity

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
 import { Text, View } from '../../../../components/Themed'

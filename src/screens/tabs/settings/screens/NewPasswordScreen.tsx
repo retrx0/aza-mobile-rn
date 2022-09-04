@@ -11,8 +11,8 @@ import useColorScheme from '../../../../hooks/useColorScheme'
 
 const NewPasswordScreen = ({
   navigation,
-}: CommonScreenProps<'ChangePassword'>) => {
-  const colorScheme = useColorScheme();
+}: CommonScreenProps<'NewPassword'>) => {
+  const colorScheme = useColorScheme()
   const [newPassword, setNewPassword] = useState('')
 
   useLayoutEffect(() => {
@@ -47,27 +47,32 @@ const NewPasswordScreen = ({
       >
         Please enter your new password
       </Text>
-      <View style={{marginBottom: 100, marginTop: 100}}>
-
-      <SegmentedInput value={newPassword} secureInput headerText="Password" onValueChanged={(pass) => setNewPassword(pass)} />
+      <View style={{ marginBottom: 100, marginTop: 100 }}>
+        <SegmentedInput
+          value={newPassword}
+          secureInput
+          headerText="Password"
+          onValueChanged={(pass) => setNewPassword(pass)}
+        />
       </View>
       <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate("StatusScreen",{
-                statusIcon: "Success",
-                status: "Successful",
-                statusMessage:
-                  "We have successfully updated your password",
-            })}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
-          />
+        title="Continue"
+        onPressButton={() =>
+          navigation.navigate('StatusScreen', {
+            statusIcon: 'Success',
+            status: 'Successful',
+            statusMessage: 'We have successfully updated your password',
+          })
+        }
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+          fontFamily: 'Euclid-Circular-A-Medium',
+          fontSize: 14,
+        }}
+        style={{
+          backgroundColor: Colors[colorScheme].button,
+        }}
+      />
     </View>
   )
 }

@@ -12,7 +12,7 @@ import useColorScheme from '../../../../hooks/useColorScheme'
 const ChangePasswordScreen = ({
   navigation,
 }: CommonScreenProps<'ChangePassword'>) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
   const [password, setPassword] = useState('')
 
   useLayoutEffect(() => {
@@ -47,22 +47,26 @@ const ChangePasswordScreen = ({
       >
         Please enter your current password
       </Text>
-      <View style={{marginBottom: 100, marginTop: 100}}>
-
-      <SegmentedInput value={password} secureInput headerText="Password" onValueChanged={(pass) => setPassword(pass)} />
+      <View style={{ marginBottom: 100, marginTop: 100 }}>
+        <SegmentedInput
+          value={password}
+          secureInput
+          headerText="Password"
+          onValueChanged={(pass) => setPassword(pass)}
+        />
       </View>
       <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate('NewPassword')}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
-          />
+        title="Continue"
+        onPressButton={() => navigation.navigate('NewPassword')}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+          fontFamily: 'Euclid-Circular-A-Medium',
+          fontSize: 14,
+        }}
+        style={{
+          backgroundColor: Colors[colorScheme].button,
+        }}
+      />
     </View>
   )
 }

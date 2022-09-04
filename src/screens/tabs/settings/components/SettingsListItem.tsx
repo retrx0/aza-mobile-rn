@@ -3,9 +3,9 @@ import { TouchableOpacity } from 'react-native'
 import { ChevronRightIcon } from '../../../../../assets/svg'
 import CommonStyles from '../../../../common/styles/CommonStyles'
 import { hp } from '../../../../common/util/LayoutUtil'
+import Divider from '../../../../components/divider/Divider'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
-import useColorScheme from '../../../../hooks/useColorScheme'
 
 interface SettingsListItemsProps {
   name: string
@@ -20,7 +20,6 @@ const SettingsListItem = ({
   name,
   handleNavigation,
 }: SettingsListItemsProps) => {
-  const colorScheme = useColorScheme()
   return (
     <>
       <TouchableOpacity
@@ -67,13 +66,7 @@ const SettingsListItem = ({
           <ChevronRightIcon color="#2A9E17" size={20} />
         </View>
       </TouchableOpacity>
-      <View
-        style={{
-          backgroundColor: 'transparent',
-          borderBottomWidth: 0.6,
-          borderBottomColor: Colors[colorScheme].separator,
-        }}
-      />
+      <Divider />
     </>
   )
 }

@@ -1,23 +1,17 @@
-import {  StyleSheet, Switch } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import { hp } from '../../../../common/util/LayoutUtil'
-import useColorScheme from '../../../../hooks/useColorScheme'
-import CommonStyles from '../../../../common/styles/CommonStyles'
+import Divider from '../../../../components/divider/Divider'
+import SettingsSwitch from '../components/SettingsSwitch'
 
 const SplitAndMoneyRequestsScreen = ({
   navigation,
 }: CommonScreenProps<'SplitAndMoneyRequests'>) => {
   const [isEnabled, setIsEnabled] = useState(false)
-
-  const colorScheme = useColorScheme()
-
-  const toggleSwitch = () => setIsEnabled(!isEnabled)
-  const switchColor = Colors[colorScheme].backgroundSecondary
-  const switchOnColor = Colors[colorScheme].success
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -49,49 +43,16 @@ const SplitAndMoneyRequestsScreen = ({
         darkColor={Colors.dark.mainText}
         style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
       >
-        You can disable this setting to reject all split and
-money requests from other users.
+        You can disable this setting to reject all split and money requests from
+        other users.
       </Text>
       <View style={{ marginTop: hp(50) }}>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
+        <Divider />
+        <SettingsSwitch
+          text={'Split and Money Requests'}
+          isEnabled={isEnabled}
+          setIsEnabled={setIsEnabled}
         />
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              justifyContent: 'space-between',
-              alignSelf: 'stretch',
-              paddingVertical: 30,
-              alignItems: 'center',
-            },
-          ]}
-        >
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
-          >
-            Split and Money Requests
-          </Text>
-          <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isEnabled ? 'white' : 'grey'}
-            ios_backgroundColor={switchColor}
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
-        </View>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
-
       </View>
     </View>
   )

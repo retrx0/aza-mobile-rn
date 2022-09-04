@@ -6,18 +6,14 @@ import { Text } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import useColorScheme from '../../../../hooks/useColorScheme'
 import SpacerWrapper from '../../../../common/util/SpacerWrapper'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import { TabView, TabBar } from 'react-native-tab-view'
 import BlockByAzaNumberTab from '../components/BlockByAzaNumberTab'
 import BlockByMobileNumberTab from '../components/BlockByMobileNumberTab'
 import BlockUserModal from '../components/BlockUserModal'
 
-// const renderScene = SceneMap({
-//   first: BlockByMobileNumberTab,
-//   second: BlockByAzaNumberTab,
-// })
-
 const BlockNewUserScreen = ({
-  navigation,route
+  navigation,
+  route,
 }: CommonScreenProps<'BlockNewUser'>) => {
   const [isModalVisible, setModalVisible] = useState(false)
   const [index, setIndex] = useState(0)
@@ -58,9 +54,9 @@ const BlockNewUserScreen = ({
   const renderScene = ({ route }: any) => {
     switch (route.key) {
       case 'first':
-        return <BlockByMobileNumberTab  toggleModal={toggleModal} />
+        return <BlockByMobileNumberTab toggleModal={toggleModal} />
       case 'second':
-        return <BlockByAzaNumberTab  toggleModal={toggleModal} />
+        return <BlockByAzaNumberTab toggleModal={toggleModal} />
     }
   }
 
@@ -110,7 +106,7 @@ const BlockNewUserScreen = ({
       <BlockUserModal
         navigation={navigation}
         route={route}
-        user='Chiazo'
+        user="Chiazo"
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}
       />

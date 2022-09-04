@@ -1,23 +1,23 @@
-import { StyleSheet, Switch } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import { hp } from '../../../../common/util/LayoutUtil'
-import useColorScheme from '../../../../hooks/useColorScheme'
-import CommonStyles from '../../../../common/styles/CommonStyles'
+import Divider from '../../../../components/divider/Divider'
+import SettingsSwitch from '../components/SettingsSwitch'
 
 const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<'FaceId'>) => {
   const [isLoginWithFaceId, setLoginWithFaceId] = useState(false)
-  const [isConfirmTransactionWithFaceId, setConfirmTransactionWithFaceId] = useState(false)
-
-  const colorScheme = useColorScheme()
+  const [
+    isConfirmTransactionWithFaceId,
+    setConfirmTransactionWithFaceId,
+  ] = useState(false)
 
   const toggleLoginWithFaceId = () => setLoginWithFaceId(!isLoginWithFaceId)
-  const toggleConfirmTransactionWithFaceId = () => setConfirmTransactionWithFaceId(!isConfirmTransactionWithFaceId)
-  const switchColor = Colors[colorScheme].backgroundSecondary
-  const switchOnColor = Colors[colorScheme].success
+  const toggleConfirmTransactionWithFaceId = () =>
+    setConfirmTransactionWithFaceId(!isConfirmTransactionWithFaceId)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -55,75 +55,16 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<'FaceId'>) => {
         </Text>
       </View>
       <View style={{ marginTop: hp(100) }}>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
+        <Divider />
+        <SettingsSwitch
+          text={'Login with Face ID'}
+          isEnabled={isLoginWithFaceId}
+          setIsEnabled={toggleLoginWithFaceId}
         />
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              justifyContent: 'space-between',
-              alignSelf: 'stretch',
-              paddingVertical: 30,
-              alignItems: 'center',
-            },
-          ]}
-        >
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
-          >
-            Login with Face ID
-          </Text>
-          <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isLoginWithFaceId ? 'white' : 'grey'}
-            ios_backgroundColor={switchColor}
-            onValueChange={toggleLoginWithFaceId}
-            value={isLoginWithFaceId}
-          />
-        </View>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              justifyContent: 'space-between',
-              alignSelf: 'stretch',
-              paddingVertical: 30,
-              alignItems: 'center',
-            },
-          ]}
-        >
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
-          >
-            Confirm transactions with Face ID
-          </Text>
-          <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isConfirmTransactionWithFaceId ? 'white' : 'grey'}
-            ios_backgroundColor={switchColor}
-            onValueChange={toggleConfirmTransactionWithFaceId}
-            value={isConfirmTransactionWithFaceId}
-          />
-        </View>
-        <View
-          style={{
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
+        <SettingsSwitch
+          text={'Confirm transactions with Face ID'}
+          isEnabled={isConfirmTransactionWithFaceId}
+          setIsEnabled={toggleConfirmTransactionWithFaceId}
         />
       </View>
     </View>

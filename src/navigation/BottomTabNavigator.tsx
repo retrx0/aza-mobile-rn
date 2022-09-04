@@ -53,7 +53,6 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           name="Home"
           component={Home}
           options={({ navigation }: RootTabScreenProps<"Home">) => ({
-            headerStatusBarHeight: 70,
 
             //center it in android
             headerTitleAlign: "center",
@@ -107,7 +106,6 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
             title: "Settings",
             tabBarIcon: ({ color }) => <SettingsIcon color={color} size={24} />,
             headerShadowVisible: false,
-            headerStatusBarHeight: 70,
           }}
         />
         <BottomTab.Screen

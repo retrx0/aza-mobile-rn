@@ -5,9 +5,7 @@ import BackButton from '../../../../components/buttons/BackButton'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import { hp } from '../../../../common/util/LayoutUtil'
-import Button from '../../../../components/buttons/Button'
 import useColorScheme from '../../../../hooks/useColorScheme'
-import BoxTextInput from '../../../../components/input/BoxTextInput'
 import SettingsListItem from '../components/SettingsListItem'
 
 const PrivacySettingsScreen = ({
@@ -65,7 +63,7 @@ const PrivacySettingsScreen = ({
       >
         You can change your privacy settings
       </Text>
-      <View style={{marginTop: hp(100)}}>
+      <View style={{ marginTop: hp(100) }}>
         <View
           style={{
             backgroundColor: 'transparent',
