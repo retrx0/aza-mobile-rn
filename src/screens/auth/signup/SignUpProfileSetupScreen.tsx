@@ -17,8 +17,12 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
         <Text style={[CommonStyles.headerText]}>Profile Setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <BoxTextInput placeHolder="Full Name" required value="John Appleased" onChange={() => {}} />
-      <BoxTextInput placeHolder="Email" required value="johnappleased@apple.com" onChange={() => {}} />
+      <View style={{width: "90%", alignSelf: "center" }}>
+        <BoxTextInput placeHolder="Full Name" required value="John Appleased" onChange={() => {}} />
+      </View>
+      <View style={{width: "90%", alignSelf: "center" }}>
+        <BoxTextInput placeHolder="Email" required value="johnappleased@apple.com" onChange={() => {}} />
+      </View>
       <Picker collapsable>
         <Picker.Item label="male" value={"Male"} />
         <Picker.Item label="female" value={"Female"} />

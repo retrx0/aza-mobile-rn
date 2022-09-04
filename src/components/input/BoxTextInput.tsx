@@ -9,14 +9,14 @@ const BoxTextInput = (props: { placeHolder: string; required: boolean; value: st
   const colorScheme = useColorScheme()
   return (
     <View>
-      <Text style={[CommonStyles.bodyText, { marginHorizontal: 15, marginTop: 20 }]}>
+      <Text style={{padding: 5, marginTop: 20 }}>
         {props.placeHolder}
         <Text style={{ color: "red" }}>{props.required ? "*" : ""}</Text>
       </Text>
       <TextInput
         style={[
           {
-            width: "90%",
+            width: "100%",
             alignSelf: "center",
             borderWidth: 0.5,
             borderColor: Colors[colorScheme].border,

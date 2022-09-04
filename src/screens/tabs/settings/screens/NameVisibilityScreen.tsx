@@ -33,7 +33,11 @@ const NameVisibilityScreen = ({
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => (
+        <View style={{ marginLeft: -25 }}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </View>
+      ),
     })
   }, [])
 

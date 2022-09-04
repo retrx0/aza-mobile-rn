@@ -35,7 +35,11 @@ const ChangeEmailScreen = ({
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => (
+        <View style={{ marginLeft: -25 }}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </View>
+      ),
     })
   }, [])
 
@@ -71,6 +75,7 @@ const ChangeEmailScreen = ({
           fontSize: 14,
         }}
         style={{
+          width: '100%',
           marginTop: 10,
           backgroundColor: Colors[colorScheme].button,
         }}

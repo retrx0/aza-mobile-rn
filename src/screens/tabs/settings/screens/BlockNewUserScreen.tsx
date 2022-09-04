@@ -2,7 +2,7 @@ import { useWindowDimensions } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
-import { Text } from '../../../../components/Themed'
+import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
 import useColorScheme from '../../../../hooks/useColorScheme'
 import SpacerWrapper from '../../../../common/util/SpacerWrapper'
@@ -47,7 +47,11 @@ const BlockNewUserScreen = ({
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => (
+        <View style={{ marginLeft: -25 }}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </View>
+      ),
     })
   }, [])
 

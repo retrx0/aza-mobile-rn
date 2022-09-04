@@ -34,7 +34,11 @@ const NewPasswordScreen = ({
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => (
+        <View style={{ marginLeft: -25 }}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </View>
+      ),
     })
   }, [])
 
@@ -47,7 +51,7 @@ const NewPasswordScreen = ({
       >
         Please enter your new password
       </Text>
-      <View style={{ marginBottom: 100, marginTop: 100 }}>
+      <View style={{ marginBottom: 100, marginTop: 80, marginLeft: -20 }}>
         <SegmentedInput
           value={newPassword}
           secureInput
@@ -73,6 +77,7 @@ const NewPasswordScreen = ({
           fontSize: 14,
         }}
         style={{
+          width: '100%',
           backgroundColor: Colors[colorScheme].button,
         }}
       />

@@ -34,7 +34,11 @@ const ChangePhoneNumberScreen = ({
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => (
+        <View style={{ marginLeft: -25 }}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </View>
+      ),
     })
   }, [])
 
@@ -71,7 +75,7 @@ const ChangePhoneNumberScreen = ({
           style={{
             alignSelf: 'center',
             height: 50,
-            width: '90%',
+            width: '100%',
             padding: 10,
             borderWidth: 1,
             borderStyle: 'solid',
@@ -106,7 +110,7 @@ const ChangePhoneNumberScreen = ({
           style={{
             alignSelf: 'center',
             height: 50,
-            width: '90%',
+            width: '100%',
             padding: 10,
             borderWidth: 1,
             borderStyle: 'solid',
@@ -124,6 +128,7 @@ const ChangePhoneNumberScreen = ({
           fontSize: 14,
         }}
         style={{
+          width: '100%',
           backgroundColor: Colors[colorScheme].button,
         }}
       />
