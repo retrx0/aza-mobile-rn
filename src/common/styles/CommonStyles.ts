@@ -69,7 +69,7 @@ const CommonStyles = StyleSheet.create({
   },
   parentContainer: {
     flex: 1,
-    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 10,
   },
   imageHeaderContainer: {
     marginLeft: 20,

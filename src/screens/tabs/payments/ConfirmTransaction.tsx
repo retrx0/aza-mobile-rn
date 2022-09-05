@@ -1,66 +1,80 @@
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import RegularText from "../../../components/text/RegularText";
-import SegmentedInput from "../../../components/input/SegmentedInput";
-import OTPInputView from "@twotalltotems/react-native-otp-input";
+import { Input } from "../../../components/input/input";
+import ImageInput from "./sub-components/ImageInput";
 import MyButton from "./sub-components/MyButton";
-import { Text, View } from "../../../components/Themed";
-import { Auth } from "../../../../assets/images";
+import { SafeAreaView, Text, View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
-
-export default function ConfirmTransaction({ navigation }: RootTabScreenProps<"Payments">) {
+export default function Confirmation({ navigation }: RootTabScreenProps<"Payments">) {
+  const [confirmed, setConfirm] = useState(false);
   return (
-    <View style={[CommonStyles.parentContainer, styles.container]}>
-      {/* <RegularText 
-      style={styles.text}
-      text=''/> */}
+    <SafeAreaView
+      style={[CommonStyles.parentContainer, styles.container, { paddingTop: Platform.OS == "android" ? 100 : 20 }]}
+    >
+      <Text style={styles.txt}>Kindly confirm the details of this transaction</Text>
+      <ImageInput />
+      <Input
+        icon={null}
+        keyboardType="phone-pad"
+        inputStyle={styles.input}
+        labelStyle={null}
+        label="Phone Number"
+        placeholder="08164942224"
+      />
 
-      <SegmentedInput headerText="Password" onValueChanged={() => {}} value="01234" secureInput={true} />
-      <Text style={styles.seprate}>OR</Text>
-      <Image style={styles.auth} source={Auth} />
-      <Text style={styles.authText}>Authenticate with Face ID</Text>
+      <Input
+        icon={null}
+        keyboardType="phone-pad"
+        inputStyle={styles.input}
+        labelStyle={null}
+        label="Amount"
+        placeholder="N2,000 (Airtime)"
+      />
+
+      <Input
+        icon={null}
+        keyboardType="phone-pad"
+        inputStyle={styles.input}
+        labelStyle={null}
+        label="Payment Method"
+        placeholder="Aza Account"
+      />
+
       <MyButton
         style={styles.btn}
         disabled={false}
-        title="Continue"
+        title="Confirm"
         onPress={() => {
-          navigation.navigate("Common", { screen: "CompleteTransaction" });
+            navigation.navigate("StatusScreen", { 
+              statusIcon: "Success",
+              status: "Successful",
+              statusMessage:"Your internet purchase was successful",
+             });
         }}
       />
       <TouchableOpacity style={styles.cancelContainer}>
-        <RegularText style={styles.cancel} text="Cancel" />
+        <Text style={styles.cancel}>Cancel Transaction</Text>
       </TouchableOpacity>
-    </View>
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    marginTop: 90,
   },
-  text: {
-    fontWeight: "500",
-    marginBottom: 50,
-    fontSize: 14,
+  txt: {
+    color: "#4D4D4D",
+    marginBottom: 40,
   },
-  seprate: {
-    textAlign: "center",
-    color: "#A6A6A6",
-  },
-  auth: {
-    width: 50,
-    height: 50,
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginTop: 40,
-    marginBottom: 10,
-  },
-  authText: {
-    textAlign: "center",
-    fontWeight: "400",
-    color: "#A6A6A6",
+  input: {
+    width: "100%",
+    borderBottomColor: "#EAEAEC",
+    borderBottomWidth: 1,
+    height: 40,
+    marginBottom: 20,
   },
   btn: {
     marginTop: "auto",
@@ -71,7 +85,7 @@ const styles = StyleSheet.create({
     color: "#FF361A",
     borderBottomColor: "#FF361A",
     borderBottomWidth: 1,
-    width: 50,
+    width: 140,
     marginLeft: "auto",
     marginRight: "auto",
   },
@@ -79,6 +93,6 @@ const styles = StyleSheet.create({
     width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 40,
+    marginBottom: 20,
   },
 });

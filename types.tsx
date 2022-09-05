@@ -40,6 +40,7 @@ export type RootTabParamList = {
   Payments: undefined;
   Settings: undefined;
   Profile: undefined;
+  StatusScreen:any
 };
 
 export type PaymentsStackParamList = {
@@ -56,6 +57,7 @@ export type PaymentsStackParamList = {
   water: undefined;
   Charity: undefined;
   charity_detail: undefined;
+  
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

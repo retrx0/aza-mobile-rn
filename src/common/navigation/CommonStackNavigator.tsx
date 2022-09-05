@@ -49,7 +49,7 @@ const CommonStack = () => {
          
         ),
         headerStyle:{
-        backgroundColor:'',
+        backgroundColor:scheme=='light'?'#ffffff':'#000000',
         },
         headerTransparent:true,
         headerTitleStyle:{
@@ -61,8 +61,7 @@ const CommonStack = () => {
     )}>
         <Stack.Screen options={{ title: "Airtime & Data" }} name="AirtimeData" component={AirtimeTabs} />
         <Stack.Screen options={{ presentation: "fullScreenModal", title: "" }} name="Pie" component={Pie} />
-        <Stack.Screen options={{ title: "Confirmation" }} name="Confirm" component={Confirmation} />
-        <Stack.Screen options={{ title: "Password" }} name="ConfirmTransaction" component={ConfirmTransaction} />
+        <Stack.Screen options={{ title: "Confirmation" }} name="Confirm" component={ConfirmTransaction} />
         <Stack.Screen options={{ title: "Internet" }} name="InternetPlans" component={InternetPlans} />
         <Stack.Screen options={{ title: "Electricity" }} name="Electricity" component={ElectricityIndex} />
         <Stack.Screen options={{ title: "Cable TV" }} name="CableTV" component={CableTvIndex} />
@@ -79,13 +78,13 @@ const CommonStack = () => {
           name="InternetPlanDetail"
           component={InternetDetail}
         />
-
+        
         <Stack.Screen
           options={{
             headerShown: false,
           }}
           name="CompleteTransaction"
-          component={CompletedTransaction}
+          component={StatusScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

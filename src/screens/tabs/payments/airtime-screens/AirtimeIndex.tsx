@@ -8,11 +8,11 @@ import HeadrImage from "../sub-components/HeadrImage";
 import { Input } from "../../../../components/input/input";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
 import MyButton from "../sub-components/MyButton";
-import MySwitch from "../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
 import SelectInput from "../../../../components/input/SelectInput";
 import { Glo, Mtn } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
+import CustomSwitch from "../../../../components/input/CustomSwitch";
 
 export default function AirtimeIndex({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -46,7 +46,7 @@ export default function AirtimeIndex({ navigation }: RootTabScreenProps<"Payment
         label="Phone Number"
         placeholder="Enter a phone number"
       />
-      <MySwitch title="My number" onValueChange={toggleSwitch} isEnabled={isEnabled} />
+      <CustomSwitch title="My number" onValueChange={toggleSwitch} isEnabled={isEnabled} />
       {route.name == "data" && (
         <SelectInput items={bundles} title="Bundle" placeHolder="Choose a bundle" style={styles.select} />
       )}
