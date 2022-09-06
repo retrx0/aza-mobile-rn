@@ -105,10 +105,12 @@ export const PercentageCard = ({ percentage, onPress }: PercentageProps) => {
 
 export const DaysCard = ({ days, onPress }: DaysProps) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.daysContainer}>
+    <View>
       <View style={styles.separator} />
-      <Text style={styles.daysStyle}>{days}</Text>
-    </TouchableOpacity>
+      <TouchableOpacity onPress={onPress} style={styles.daysContainer}>
+        <Text style={styles.daysStyle}>{days}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -141,8 +143,8 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   separator: {
-    borderWidth: hp(0.2),
-    borderColor: Colors.general.grey,
+    borderWidth: hp(0.3),
+    borderColor: "#EAEAEC",
     marginBottom: hp(10),
     width: wp(335),
     alignSelf: "center",
@@ -150,12 +152,10 @@ const styles = StyleSheet.create({
   daysStyle: {
     fontSize: hp(14),
     fontWeight: "400",
-    marginLeft: hp(10),
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A",
   },
   daysContainer: {
-    borderRadius: hp(10),
     marginBottom: hp(10),
   },
   percentageStyle: {
