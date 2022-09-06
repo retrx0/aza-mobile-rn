@@ -8,6 +8,7 @@ import {
 } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
 
 export const PercentageList = [
   {
@@ -140,10 +141,10 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   separator: {
-    borderWidth: hp(0.3),
-    borderColor: "#EAEAEC",
+    borderWidth: hp(0.2),
+    borderColor: Colors.general.grey,
     marginBottom: hp(10),
-    width: wp(370),
+    width: wp(335),
     alignSelf: "center",
   },
   daysStyle: {
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
   },
   daysContainer: {
     borderRadius: hp(10),
-    marginBottom: hp(15),
+    marginBottom: hp(10),
   },
   percentageStyle: {
     fontSize: hp(14),
@@ -172,6 +173,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: hp(10),
+    // marginTop: hp(10),
   },
 });

@@ -7,8 +7,9 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import { useState } from "react";
 
-const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -24,21 +25,23 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             This action cannot be undone
           </Text>
           <Text style={CommonStyles.lockupStyle}>
-            You are about to delete this Vault
+            You are about to lock up {`#${2000}`} for 2 Weeks
           </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
-            title='Delete'
+            title='Continue'
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
+              navigation.navigate("Common", {
+                screen: "VaultSuccessful",
+              })
             }
             style={CommonStyles.button}
           />
 
           <CancelButtonWithUnderline
             title='Cancel'
-            onPressButton={() => navigation.getParent()?.navigate("AddVault")}
+            onPressButton={() => navigation.getParent()?.navigate("NewVault")}
             style={{ marginTop: 5 }}
             styleText={CommonStyles.cancelStyle}
           />
@@ -48,4 +51,4 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   );
 };
 
-export default ConfirmDeleteVault;
+export default LockVault;

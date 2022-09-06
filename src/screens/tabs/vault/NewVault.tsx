@@ -44,11 +44,10 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             label={"Vault Name"}
             labelStyle={undefined}
             placeholder='Give your vault a name'
-            // style={styles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
+            containerStyle={undefined}
           />
-          {/* <View style={styles.separator} /> */}
         </View>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
@@ -58,8 +57,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={CommonStyles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
+            containerStyle={{ marginBottom: 2 }}
           />
-          {/* <View style={styles.separator} /> */}
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
@@ -108,7 +107,9 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title={"Continue"}
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "VaultDetails" })
+              navigation.navigate("Common", {
+                screen: "LockVault",
+              })
             }
             style={[CommonStyles.button]}
           />
