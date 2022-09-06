@@ -22,6 +22,7 @@ import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/SignUp/SignUpNavigator";
 import LoginNavigator from "../screens/auth/SignIn/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
+import CommonStack from "../common/navigation/CommonStackNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -67,6 +68,11 @@ const RootNavigator = () => {
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+        name='Common'
+        component={CommonStack}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
