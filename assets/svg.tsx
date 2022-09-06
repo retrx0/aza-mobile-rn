@@ -671,6 +671,73 @@ export const NairaIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
+export const CurrencyIcon = ({ color }: SvgIconProps) => {
+  return (
+    <Svg width='11' height='11' viewBox='0 0 11 11' fill='none'>
+      <Path
+        d='M10.5915 6.08018H9.08991V4.63706H10.5915C10.8171 4.63706 11 4.45435 11 4.22868C11 4.00299 10.8171 3.82016 10.5915 3.82016H9.08991V1.81776C9.08991 1.52546 9.03215 1.31092 8.91829 1.18023C8.81007 1.0559 8.66779 0.998047 8.47076 0.998047C8.28275 0.998047 8.14583 1.0555 8.0397 1.17905C7.92717 1.30987 7.87005 1.52482 7.87005 1.81789V3.82041H5.04551L3.84455 2.00308C3.74177 1.8409 3.64513 1.68897 3.55128 1.54315C3.46678 1.41181 3.38437 1.30489 3.30653 1.22505C3.23761 1.15436 3.15908 1.09965 3.06722 1.05761C2.98056 1.01804 2.87037 0.99818 2.74001 0.99818C2.57375 0.99818 2.42282 1.04373 2.2783 1.13731C2.13529 1.22988 2.03643 1.34432 1.97605 1.4872C1.92305 1.62299 1.89501 1.83106 1.89501 2.09964V3.82027H0.408359C0.182778 3.8203 0 4.00312 0 4.22879C0 4.45446 0.182778 4.63717 0.408381 4.63717H1.89504V6.08045H0.408381C0.182778 6.08045 0 6.26322 0 6.48896C0 6.71456 0.182778 6.89721 0.408381 6.89721H1.89504V9.18345C1.89504 9.4671 1.95464 9.67947 2.07269 9.81442C2.18496 9.94309 2.32731 10.0028 2.52062 10.0028C2.70712 10.0028 2.84836 9.94282 2.96548 9.81391C3.08542 9.68184 3.14609 9.46961 3.14609 9.18347V6.89721H5.70197L7.08509 9.01809C7.18127 9.15829 7.28057 9.29979 7.37961 9.43855C7.46896 9.56314 7.56644 9.67293 7.66929 9.76463C7.76192 9.84758 7.86122 9.90835 7.96445 9.94544C8.07071 9.9837 8.19491 10.0031 8.33273 10.0031C8.70678 10.0031 9.08987 9.88858 9.08987 9.03935V6.89721H10.5914C10.8171 6.89721 11 6.7143 11 6.48869C11 6.26309 10.8171 6.08018 10.5915 6.08018ZM7.87002 4.63704V6.08016H6.53917L5.58558 4.63704H7.87002ZM3.14611 2.97884L3.69494 3.82016H3.14611V2.97884ZM3.14611 6.08018V4.63706H4.22784L5.16913 6.08018H3.14611ZM7.87002 8.09445L7.07909 6.89721H7.87002V8.09445Z'
+        fill={color}
+      />
+    </Svg>
+  );
+};
+
+export const WithDrawIcon = () => {
+  return (
+    <Svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+      <Path
+        d='M13.6667 14.666H2.33342'
+        stroke='#FF361A'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M12.6667 2.33398L3.33342 11.6673'
+        stroke='#FF361A'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M12.6667 9.18065V2.33398H5.82008'
+        stroke='#FF361A'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </Svg>
+  );
+};
+
+export const ReceiveIcon = () => {
+  return (
+    <Svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+      <Path
+        d='M3.33325 11.6673L12.6666 2.33398'
+        stroke='#2A9E17'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M3.33325 4.82031V11.667H10.1799'
+        stroke='#2A9E17'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M2.33325 14.666H13.6666'
+        stroke='#2A9E17'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </Svg>
+  );
+};
+
 //Might replace with lottie animation
 export const BvnVerificationSuccessIcon = () => {
   return (
@@ -997,6 +1064,117 @@ export const ArchieveIcon = () => {
         stroke-width='1.5'
         stroke-linecap='round'
         stroke-linejoin='round'
+      />
+    </Svg>
+  );
+};
+
+export const DownLoadIcon = () => {
+  return (
+    <Svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+      <Path
+        d='M10.96 5.93359C13.36 6.14026 14.34 7.37359 14.34 10.0736V10.1603C14.34 13.1403 13.1467 14.3336 10.1667 14.3336H5.82667C2.84667 14.3336 1.65334 13.1403 1.65334 10.1603V10.0736C1.65334 7.39359 2.62 6.16026 4.98 5.94026'
+        stroke='#A6A6A6'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M8 1.33398V9.92065'
+        stroke='#A6A6A6'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M10.2333 8.43359L8 10.6669L5.76666 8.43359'
+        stroke='#A6A6A6'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </Svg>
+  );
+};
+
+export const CaptionIcon = () => {
+  return (
+    <Svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
+      <Path
+        d='M4.25 9.5H4C2 9.5 1 9 1 6.5V4C1 2 2 1 4 1H8C10 1 11 2 11 4V6.5C11 8.5 10 9.5 8 9.5H7.75C7.595 9.5 7.445 9.575 7.35 9.7L6.6 10.7C6.27 11.14 5.73 11.14 5.4 10.7L4.65 9.7C4.57 9.59 4.385 9.5 4.25 9.5Z'
+        stroke='#292D32'
+        stroke-width='0.5'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M7.99823 5.5H8.00272'
+        stroke='#292D32'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M5.99774 5.5H6.00223'
+        stroke='#292D32'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M3.99725 5.5H4.00174'
+        stroke='#292D32'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </Svg>
+  );
+};
+
+export const FlightIcon = () => {
+  return (
+    <Svg width='16' height='16' viewBox='0 0 16 16' fill='none'>
+      <Path
+        d='M5.99992 14.6673H9.99992C13.3333 14.6673 14.6666 13.334 14.6666 10.0007V6.00065C14.6666 2.66732 13.3333 1.33398 9.99992 1.33398H5.99992C2.66659 1.33398 1.33325 2.66732 1.33325 6.00065V10.0007C1.33325 13.334 2.66659 14.6673 5.99992 14.6673Z'
+        stroke='#292D32'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M9.5674 7.27342C9.50074 7.74675 9.22073 8.14675 8.83407 8.38675V9.70675C8.83407 10.1667 8.46073 10.5401 8.00073 10.5401C7.54073 10.5401 7.1674 10.1667 7.1674 9.70675V8.38675C6.78073 8.14675 6.50073 7.74675 6.43406 7.27342C6.42073 7.20008 6.41406 7.12008 6.41406 7.04008C6.41406 6.02675 7.37408 5.24008 8.42741 5.52008C8.96074 5.66008 9.39406 6.09342 9.53406 6.62675C9.59406 6.84675 9.60074 7.06675 9.5674 7.27342Z'
+        stroke='#292D32'
+        stroke-miterlimit='10'
+      />
+      <Path
+        d='M14.6676 7.27344H9.56763'
+        stroke='#292D32'
+        stroke-miterlimit='10'
+      />
+      <Path
+        d='M6.43325 7.27344H1.33325'
+        stroke='#292D32'
+        stroke-miterlimit='10'
+      />
+    </Svg>
+  );
+};
+
+export const UnarchiveIcon = () => {
+  return (
+    <Svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
+      <Path
+        d='M19.5 10.2207V19.0007C19.5 21.0007 19 22.0007 16.5 22.0007H7.5C5 22.0007 4.5 21.0007 4.5 19.0007V10.2207'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M5 2H19C21 2 22 3 22 5V7C22 9 21 10 19 10H5C3 10 2 9 2 7V5C2 3 3 2 5 2Z'
+        stroke='white'
+        stroke-width='1.5'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+      <Path
+        d='M12.5303 11.6494C12.2374 11.3565 11.7626 11.3565 11.4697 11.6494L6.6967 16.4223C6.40381 16.7152 6.40381 17.1901 6.6967 17.483C6.98959 17.7759 7.46447 17.7759 7.75736 17.483L12 13.2403L16.2426 17.483C16.5355 17.7759 17.0104 17.7759 17.3033 17.483C17.5962 17.1901 17.5962 16.7152 17.3033 16.4223L12.5303 11.6494ZM11.25 13.1797C11.25 13.5939 11.5858 13.9297 12 13.9297C12.4142 13.9297 12.75 13.5939 12.75 13.1797H11.25ZM11.25 12.1797V13.1797H12.75V12.1797H11.25Z'
+        fill='white'
       />
     </Svg>
   );
