@@ -84,7 +84,7 @@ export default function BlockUserModal({
               statusIcon: 'Success',
               status: 'Successful',
               statusMessage: `The user ${user} has been successfully blocked.`,
-              handleContinueButtonClick: () => navigation.goBack(),
+              navigateTo: 'BlockNewUser',
             })
           }}
           styleText={{

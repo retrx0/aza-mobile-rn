@@ -24,7 +24,7 @@ const StatusScreen = ({
     receiptButton,
     setupRecurringTransfer,
     cancelButton,
-    handleContinueButtonClick
+    navigateTo
   } = route.params;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -102,7 +102,7 @@ const StatusScreen = ({
 
           <Button
             title="Continue"
-            onPressButton={handleContinueButtonClick}
+            onPressButton={()=> navigation.getParent()?.navigate(navigateTo)}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",

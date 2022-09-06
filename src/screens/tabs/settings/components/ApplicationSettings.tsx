@@ -86,7 +86,7 @@ export default function ApplicationSettings({
             statusMessage:
               'Are you sure you want to go back to a life without Aza?',
             cancelButton: true,
-            handleContinueButtonClick: () => navigation.navigate('Settings'),
+            navigateTo: 'Settings'
           },
         }),
     },

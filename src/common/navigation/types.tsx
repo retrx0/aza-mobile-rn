@@ -50,5 +50,5 @@ export type StatusScreenParamsType = {
   receiptButton?: boolean
   setupRecurringTransfer?: boolean
   cancelButton?: boolean
-  handleContinueButtonClick: () => void
+  navigateTo: string
 }
