@@ -87,7 +87,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             return <DaysCard key={index} days={item.days} onPress={() => {}} />;
           })}
         </View>
-        <View style={[CommonStyles.SwitchContainer, { bottom: hp(20) }]}>
+        <View style={[CommonStyles.SwitchContainer, { bottom: hp(50) }]}>
           <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month
