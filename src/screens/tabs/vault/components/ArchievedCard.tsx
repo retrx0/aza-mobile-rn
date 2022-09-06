@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   I18nManager,
 } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {
   ArchieveIcon,
