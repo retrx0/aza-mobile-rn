@@ -28,6 +28,7 @@ export type RootStackParamList = {
   Common: NavigatorScreenParams<CommonStackParamList>;
   SignUp: undefined;
   SignIn: undefined;
+  TopBar: NavigatorScreenParams<CommonStackParamList>;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -41,6 +42,11 @@ export type RootTabParamList = {
   Payments: undefined;
   Settings: undefined;
   Profile: undefined;
+};
+
+export type TopTabParamList = {
+  details: undefined;
+  activity: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
@@ -97,6 +103,13 @@ export type VautListProps = {
   closeIcon: any;
   amount: string;
   stage: string;
+};
+export type VautActivitytProps = {
+  send: any;
+  status: string;
+  price: string;
+  due: string;
+  onPress?: () => void;
 };
 
 export type SocialSignInProps = {
