@@ -20,6 +20,7 @@ export type InputProps = {
   inputStyle: StyleProp<TextStyle>;
   icon: any;
   isPhone?: boolean;
+  containerStyle: StyleProp<ViewStyle>;
 };
 
 export const Input = ({
@@ -30,10 +31,11 @@ export const Input = ({
   inputStyle,
   icon,
   isPhone,
+  containerStyle,
   ...rest
 }: InputProps & TextInputProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
