@@ -8,11 +8,14 @@ import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp } from "../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
 
-const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPassword">) => {
+const SignUpPasswordScreen = ({
+  navigation,
+  route,
+}: SignUpScreenProps<"SignUpPassword">) => {
   const { passwordScreenType } = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
@@ -27,33 +30,51 @@ const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPa
 
   return (
     <SpacerWrapper>
-      <View>
+      <View style={{ marginLeft: 20 }}>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <Text style={[CommonStyles.headerText]}>{passwordScreenType} AZA Passcode</Text>
-      <Text style={[CommonStyles.bodyText]}>The passcode will be used to access your account</Text>
-      <SegmentedInput value={passcode} secureInput headerText="" onValueChanged={(code) => setPasscode(code)} />
-      <View style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
+      <View style={[CommonStyles.phoneContainer]}>
+        <Text style={[CommonStyles.headerText]}>
+          {passwordScreenType} Aza Password
+        </Text>
+      </View>
+      <Text style={[CommonStyles.bodyText]}>
+        The password will be used to access your account
+      </Text>
+      <SegmentedInput
+        value={passcode}
+        secureInput
+        headerText=''
+        onValueChanged={(code) => setPasscode(code)}
+      />
+      <View style={[CommonStyles.container, { bottom: hp(400) }]}>
         <View style={[CommonStyles.row]}>
-          <Text style={{ marginRight: 20 }}>Use as transaction pin?</Text>
+          <Text style={[CommonStyles.transaction]}>
+            Use as transaction pin?
+          </Text>
+
           <Switch
             trackColor={{ false: switchColor, true: switchOnColor }}
             thumbColor={isEnabled ? "white" : "grey"}
             ios_backgroundColor={switchColor}
             onValueChange={toggleSwitch}
             value={isEnabled}
+            style={{
+              marginLeft: hp(13),
+            }}
           />
         </View>
         <Separator />
         <Button
-          title="Continue"
-          style={{}}
-          styleText={{}}
+          title='Continue'
           onPressButton={() => {
             passwordScreenType === "Create"
-              ? navigation.navigate("SignUpConfirmPassword", { passwordScreenType: "Confirm" })
+              ? navigation.navigate("SignUpConfirmPassword", {
+                  passwordScreenType: "Confirm",
+                })
               : navigation.getParent()?.navigate("Root");
           }}
+          style={[CommonStyles.button]}
         />
       </View>
     </SpacerWrapper>
@@ -62,7 +83,11 @@ const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPa
 
 const Separator = () => {
   return (
-    <View lightColor={Colors.light.separator} darkColor={Colors.dark.separator} style={[CommonStyles.separator]}></View>
+    <View
+      lightColor={Colors.light.separator}
+      darkColor={Colors.dark.separator}
+      style={[CommonStyles.separator]}
+    />
   );
 };
 

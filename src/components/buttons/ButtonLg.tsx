@@ -1,7 +1,13 @@
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
-import { ColorValue, GestureResponderEvent, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  ColorValue,
+  GestureResponderEvent,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
+import { hp } from "../../common/util/LayoutUtil";
 import { Text, View } from "../Themed";
 
 const ButtonLg = (props: {
@@ -12,19 +18,28 @@ const ButtonLg = (props: {
   onPress: (event: GestureResponderEvent) => void;
 }) => {
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor: props.color }]} onPress={props.onPress}>
-      <View style={[{ flex: 1, justifyContent: "center", backgroundColor: "transparent" }]}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: props.color }]}
+      onPress={props.onPress}>
+      <View
+        style={[
+          {
+            flex: 1,
+            justifyContent: "center",
+            backgroundColor: "transparent",
+            alignItems: "center",
+          },
+        ]}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
           {props.iconName ? (
             <FontAwesome
               name={props.iconName}
               style={[
-                CommonStyles.centerText,
+                CommonStyles.iconStyle,
                 {
                   color: "#FFFFFF",
                   fontSize: 18,
                   flex: 1,
-                  textAlign: "center",
                 },
               ]}
             />
@@ -37,11 +52,11 @@ const ButtonLg = (props: {
               CommonStyles.centerText,
               {
                 color: props.alt ? "black" : "white",
-                fontSize: 14,
+                fontSize: 16,
                 flex: 6,
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
               },
-            ]}
-          >
+            ]}>
             {props.title}
           </Text>
         </View>

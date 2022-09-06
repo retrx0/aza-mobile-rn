@@ -1,17 +1,15 @@
 import React, { FC } from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 type ButtonPropsType = {
   title: string;
   color: string;
   onPressButton?: () => void;
+  style?: StyleProp<ViewStyle>;
+  styleText?: StyleProp<TextStyle>;
 };
 
-export const ButtonWithUnderline: FC<ButtonPropsType> = ({
-  title,
-  color,
-  onPressButton,
-}) => {
+export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({ title, color, onPressButton, style, styleText }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -28,4 +26,4 @@ export const ButtonWithUnderline: FC<ButtonPropsType> = ({
   );
 };
 
-export default ButtonWithUnderline;
+export default CancelButtonWithUnderline;

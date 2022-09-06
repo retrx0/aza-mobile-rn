@@ -26,9 +26,20 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <Text style={styles.welcome}>Welcome back, $firstname</Text>
       <Text style={styles.sentCode}>Enter your Aza password to login</Text>
-      <SegmentedInput value={otpCode} onValueChanged={onOtpChanged} headerText="Password" secureInput={true} />
-      <View style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
-        <Button title="Forget Me" style={{}} styleText={styles.welcomeOTPButton} onPressButton={onVerify} />
+      <SegmentedInput
+        value={otpCode}
+        onValueChanged={onOtpChanged}
+        headerText='Password'
+        secureInput={true}
+      />
+      <View
+        style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
+        <Button
+          title='Forget Me'
+          style={{}}
+          styleText={styles.welcomeOTPButton}
+          onPressButton={onVerify}
+        />
       </View>
     </SpacerWrapper>
   );

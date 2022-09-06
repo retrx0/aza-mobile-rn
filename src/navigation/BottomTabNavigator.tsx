@@ -18,6 +18,7 @@ import {
   SettingsIcon,
   ProfileIcon,
   MenuIcon,
+  AZALogo,
   AZALightningLogo,
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
@@ -53,7 +54,6 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           name="Home"
           component={Home}
           options={({ navigation }: RootTabScreenProps<"Home">) => ({
-
             //center it in android
             headerTitleAlign: "center",
             headerTitle: () => <AZALightningLogo size={25} color={Colors[colorScheme].text} />,
@@ -88,6 +88,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           component={Vault}
           options={{
             title: "Vault",
+            headerShown: false,
             tabBarIcon: ({ color }) => <VaultIcon color={color} size={24} />,
           }}
         />

@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  infoIcon: {
+    marginLeft: 100,
+  },
   buttonText: {
     alignSelf: "center",
     margin: 5,

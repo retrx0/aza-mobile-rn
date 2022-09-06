@@ -17,8 +17,7 @@ export default function RecentTransactionListItem({ item }: any) {
           alignItems: "flex-start",
           alignSelf: "stretch",
         },
-      ]}
-    >
+      ]}>
       <Image
         style={{ borderRadius: 50, width: 36, height: 36 }}
         source={{
@@ -32,8 +31,7 @@ export default function RecentTransactionListItem({ item }: any) {
           style={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
-          }}
-        >
+          }}>
           {item.name}
         </Text>
         <View
@@ -44,8 +42,7 @@ export default function RecentTransactionListItem({ item }: any) {
               marginBottom: 8,
               alignSelf: "flex-start",
             },
-          ]}
-        >
+          ]}>
           {item.transferType === "incoming" ? (
             <ReceivedIcon />
           ) : (
@@ -58,8 +55,7 @@ export default function RecentTransactionListItem({ item }: any) {
               marginLeft: 3,
               fontSize: 12,
               fontFamily: "Euclid-Circular-A",
-            }}
-          >
+            }}>
             {item.transferTitle}
           </Text>
         </View>
@@ -73,8 +69,7 @@ export default function RecentTransactionListItem({ item }: any) {
                 marginLeft: 3,
                 fontSize: 10,
                 fontFamily: "Euclid-Circular-A-Light",
-              }}
-            >
+              }}>
               {item.transferMessage}
             </Text>
           </View>
@@ -84,16 +79,14 @@ export default function RecentTransactionListItem({ item }: any) {
       <View
         style={{
           display: "flex",
-        }}
-      >
+        }}>
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 14,
             color:
               item.transferType === "incoming" ? "#2A9E17" : Colors.light.error,
-          }}
-        >
+          }}>
           {"\u20A6"} {item.amount}
         </Text>
         <Text
@@ -103,8 +96,7 @@ export default function RecentTransactionListItem({ item }: any) {
             fontSize: 10,
             marginTop: 3,
             fontFamily: "Euclid-Circular-A-Light",
-          }}
-        >
+          }}>
           {item.date}
         </Text>
       </View>

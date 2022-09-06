@@ -49,5 +49,10 @@ export default {
     tertiary: "#D7D7DB",
     black: "#000000",
     white: "#ffffff",
+    red: "#FF361A",
+    green: "#2A9E17",
+    lightGreen: "#EBFCE9",
+    lightRed: "#FFE9E5",
+    background: " #E5E5E5",
   },
 };

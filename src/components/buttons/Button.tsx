@@ -1,8 +1,13 @@
 import React, { FC } from "react";
-import { TouchableOpacity, Text, StyleProp, TextStyle, ViewStyle } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
-import { useThemeColor } from "../Themed";
 
 type ButtonPropsType = {
   title: string;
@@ -12,14 +17,21 @@ type ButtonPropsType = {
   styleText?: StyleProp<TextStyle>;
 };
 
-export const Button: FC<ButtonPropsType> = ({ title, onPressButton, isNext, style, styleText }) => {
+export const Button: FC<ButtonPropsType> = ({
+  title,
+  onPressButton,
+  isNext,
+  style,
+  styleText,
+}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={onPressButton}
-      style={[styles.doneButton, isNext && styles.nextButton, style]}
-    >
-      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>{title}</Text>
+      style={[styles.doneButton, isNext && styles.nextButton, style]}>
+      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -29,25 +41,26 @@ const styles = {
     color: Colors.general.secondary,
     fontWeight: "500",
     letterSpacing: hp(0.5),
-    fontSize: hp(14),
-    lineHeight: hp(17.75),
+    fontSize: hp(16),
+    lineHeight: hp(18),
+    fontFamily: "Euclid-Circular-A",
   },
   nextText: {
     color: Colors.general.secondary,
   },
   doneButton: {
     backgroundColor: Colors.general.black,
-    width: wp(335),
+    width: "90%",
     height: hp(50),
     borderRadius: hp(10),
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
     // marginTop: 100,
-    marginBottom: hp(20),
   },
   nextButton: {
     backgroundColor: Colors.general.primary,
+    width: "90%",
   },
 };
 
