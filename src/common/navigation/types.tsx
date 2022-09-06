@@ -7,15 +7,22 @@ export type CommonStackParamList = {
   BvnVerificationRoot: NavigatorScreenParams<BvnVerificationStackParamList>;
   NewVault: undefined;
   VaultPassword: undefined;
-  DeleteVault: undefined;
+  LockVault: undefined;
   VaultSuccessful: undefined;
   AddVault: undefined;
   ConfirmDeleteVault: undefined;
   ArchievedVault: undefined;
-  VaultWithdraw: undefined;
+  VaultToAza: undefined;
   VaultWithdrawsuccessful: undefined;
-  VaultDetails: undefined;
-  VaultActivity: undefined;
+  details: undefined;
+  activity: undefined;
+  TopBar: undefined;
+  mature: undefined;
+  MatureTab: undefined;
+  VaulToBank: undefined;
+  VaultWithdrawConfirmation: undefined;
+  VaultToBankSuccessfull: undefined;
+  TransactionHistory: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
