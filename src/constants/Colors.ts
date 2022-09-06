@@ -51,5 +51,6 @@ export default {
     green: "#2A9E17",
     lightGreen: "#EBFCE9",
     lightRed: "#FFE9E5",
+    background: " #E5E5E5",
   },
 };

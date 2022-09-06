@@ -336,11 +336,14 @@ const CommonStyles = StyleSheet.create({
     alignSelf: "center",
   },
   daysContainer: {
-    width: wp(360),
+    width: wp(365),
     alignSelf: "center",
     justifyContent: "center",
     marginBottom: hp(30),
     alignItems: "center",
+    height: hp(200),
+    borderRadius: hp(10),
+    backgroundColor: "white",
   },
 
   percentageContainer: {
