@@ -5,17 +5,28 @@ import Colors from '../../../../constants/Colors'
 import useColorScheme from '../../../../hooks/useColorScheme'
 
 import { hp } from '../../../../common/util/LayoutUtil'
-import { FaceIdIcon, HeartSlashIcon, MoonIcon, NotificationSettingsIcon, AppLanguageIcon } from '../../../../../assets/svg'
+import {
+  FaceIdIcon,
+  HeartSlashIcon,
+  MoonIcon,
+  NotificationSettingsIcon,
+  AppLanguageIcon,
+} from '../../../../../assets/svg'
 import { RootTabScreenProps } from '../../../../../types'
 
-export default function ApplicationSettings({navigation}: RootTabScreenProps<'Settings'> ) {
+export default function ApplicationSettings({
+  navigation,
+}: RootTabScreenProps<'Settings'>) {
   const colorScheme = useColorScheme()
   const applicationSettings = [
     {
       icon: <MoonIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Appearance',
       detail: 'Change appearance as light/dark/system',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'Appearance'})
+      disabled: false,
+      disabledIcon: <MoonIcon size={36} color={Colors[colorScheme].disabled} />,
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'Appearance' }),
     },
     {
       icon: (
@@ -26,36 +37,58 @@ export default function ApplicationSettings({navigation}: RootTabScreenProps<'Se
       ),
       name: 'Notification Settings',
       detail: 'Change your notification preferences',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'NotificationSettings'})
-    },
-    {
-      icon: (
-        <AppLanguageIcon
+      disabled: false,
+      disabledIcon: (
+        <NotificationSettingsIcon
           size={36}
-          color={Colors[colorScheme].mainText}
+          color={Colors[colorScheme].disabled}
         />
       ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'NotificationSettings' }),
+    },
+    {
+      icon: <AppLanguageIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'App Language',
       detail: 'Change the app language',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'AppLanguage'})
+      disabled: false,
+      disabledIcon: (
+        <AppLanguageIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'AppLanguage' }),
     },
     {
       icon: <FaceIdIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Face ID',
       detail: 'Login and confrim transactions with Face ID',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'FaceId'})
+      disabled: false,
+      disabledIcon: (
+        <FaceIdIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'FaceId' }),
     },
     {
       icon: <HeartSlashIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Close Aza account',
       detail: 'You can close your Aza account',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'StatusScreen', params: {
-        status: 'Do you want to close your Aza account?',
-        statusIcon: 'Warning',
-        statusMessage:'Are you sure you want to go back to a life without Aza?',
-        cancelButton: true,
-        handleContinueButtonClick: ()=> navigation.navigate('Settings')
-      }})
+      disabled: false,
+      disabledIcon: (
+        <HeartSlashIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', {
+          screen: 'StatusScreen',
+          params: {
+            status: 'Do you want to close your Aza account?',
+            statusIcon: 'Warning',
+            statusMessage:
+              'Are you sure you want to go back to a life without Aza?',
+            cancelButton: true,
+            handleContinueButtonClick: () => navigation.navigate('Settings'),
+          },
+        }),
     },
   ]
 
@@ -80,9 +113,22 @@ export default function ApplicationSettings({navigation}: RootTabScreenProps<'Se
         />
       </View>
 
-      {applicationSettings.map(({ icon, detail, name, handleNavigation }, i) => (
-        <SettingsListItem detail={detail} icon={icon} name={name} handleNavigation={handleNavigation} key={i}/>
-      ))}
+      {applicationSettings.map(
+        (
+          { icon, detail, name, handleNavigation, disabled, disabledIcon },
+          i,
+        ) => (
+          <SettingsListItem
+            detail={detail}
+            disabled={disabled}
+            icon={icon}
+            name={name}
+            disabledIcon={disabledIcon}
+            handleNavigation={handleNavigation}
+            key={i}
+          />
+        ),
+      )}
     </View>
   )
 }

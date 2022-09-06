@@ -6,11 +6,14 @@ import { hp } from '../../../../common/util/LayoutUtil'
 import Divider from '../../../../components/divider/Divider'
 import { Text, View } from '../../../../components/Themed'
 import Colors from '../../../../constants/Colors'
+import useColorScheme from '../../../../hooks/useColorScheme'
 
 interface SettingsListItemsProps {
   name: string
   icon?: JSX.Element
   detail?: string
+  disabledIcon?: JSX.Element
+  disabled?: boolean
   handleNavigation: () => void
 }
 
@@ -18,11 +21,16 @@ const SettingsListItem = ({
   icon,
   detail,
   name,
+  disabled,
+  disabledIcon,
   handleNavigation,
 }: SettingsListItemsProps) => {
+  const colorScheme = useColorScheme()
+
   return (
     <>
       <TouchableOpacity
+        disabled={disabled}
         onPress={handleNavigation}
         style={[CommonStyles.col, { alignSelf: 'stretch' }]}
       >
@@ -36,7 +44,7 @@ const SettingsListItem = ({
             },
           ]}
         >
-          <View>{icon}</View>
+          <View>{disabled ? disabledIcon : icon}</View>
           <View
             style={[
               CommonStyles.col,
@@ -44,8 +52,12 @@ const SettingsListItem = ({
             ]}
           >
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              lightColor={
+                disabled ? Colors[colorScheme].disabled : Colors.light.text
+              }
+              darkColor={
+                disabled ? Colors[colorScheme].disabled : Colors.dark.mainText
+              }
               style={{
                 fontFamily: 'Euclid-Circular-A-Medium',
                 fontSize: 14,
@@ -55,15 +67,24 @@ const SettingsListItem = ({
             </Text>
             {detail && (
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
+                lightColor={
+                  disabled ? Colors[colorScheme].disabled : Colors.light.text
+                }
+                darkColor={
+                  disabled
+                    ? Colors[colorScheme].disabled
+                    : Colors.dark.secondaryText
+                }
                 style={{ fontSize: 12, marginTop: hp(4) }}
               >
                 {detail}
               </Text>
             )}
           </View>
-          <ChevronRightIcon color="#2A9E17" size={20} />
+          <ChevronRightIcon
+            color={disabled ? Colors[colorScheme].disabled : '#2A9E17'}
+            size={20}
+          />
         </View>
       </TouchableOpacity>
       <Divider />

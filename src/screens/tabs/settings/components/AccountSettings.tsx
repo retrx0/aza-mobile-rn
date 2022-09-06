@@ -13,7 +13,9 @@ import {
 import { hp } from '../../../../common/util/LayoutUtil'
 import { RootTabScreenProps } from '../../../../../types'
 
-export default function AccountSettings({navigation}: RootTabScreenProps<'Settings'> ) {
+export default function AccountSettings({
+  navigation,
+}: RootTabScreenProps<'Settings'>) {
   const colorScheme = useColorScheme()
 
   const accountSettings = [
@@ -23,8 +25,12 @@ export default function AccountSettings({navigation}: RootTabScreenProps<'Settin
       ),
       name: 'Change Password',
       detail: 'Change your Aza account password',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'ChangePassword'})
-      
+      disabled: false,
+      disabledIcon: (
+        <ChangePasswordIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'ChangePassword' }),
     },
     {
       icon: (
@@ -32,13 +38,23 @@ export default function AccountSettings({navigation}: RootTabScreenProps<'Settin
       ),
       name: 'Change Mobile Phone Number',
       detail: 'Change your mobile number',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'ChangePhoneNumber'})
+      disabled: false,
+      disabledIcon: (
+        <ChangePhoneNumberIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'ChangePhoneNumber' }),
     },
     {
       icon: <ChangeEmailIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Change Email Address',
       detail: 'Change your email address',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'ChangeEmail'})
+      disabled: false,
+      disabledIcon: (
+        <ChangeEmailIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'ChangeEmail' }),
     },
     {
       icon: (
@@ -46,13 +62,23 @@ export default function AccountSettings({navigation}: RootTabScreenProps<'Settin
       ),
       name: 'Privacy Settings',
       detail: 'Change your privacy settings',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'PrivacySettings'})
+      disabled: false,
+      disabledIcon: (
+        <PrivacySettingsIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'PrivacySettings' }),
     },
     {
       icon: <LoginOptionsIcon size={36} color={Colors[colorScheme].mainText} />,
       name: 'Login Options',
       detail: 'Connect your social media accounts',
-      handleNavigation: ()=> navigation.navigate('Common', {screen: 'LoginOptions'})
+      disabled: false,
+      disabledIcon: (
+        <LoginOptionsIcon size={36} color={Colors[colorScheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate('Common', { screen: 'LoginOptions' }),
     },
   ]
 
@@ -77,8 +103,16 @@ export default function AccountSettings({navigation}: RootTabScreenProps<'Settin
         />
       </View>
 
-      {accountSettings.map(({ icon, detail, name,handleNavigation }, i) => (
-        <SettingsListItem detail={detail} icon={icon} name={name} handleNavigation={handleNavigation} key={i}/>
+      {accountSettings.map(({ icon, detail, name, handleNavigation, disabled, disabledIcon }, i) => (
+        <SettingsListItem
+          detail={detail}
+          icon={icon}
+          name={name}
+          disabled={disabled}
+          disabledIcon={disabledIcon}
+          handleNavigation={handleNavigation}
+          key={i}
+        />
       ))}
     </View>
   )
