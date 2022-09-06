@@ -22,7 +22,6 @@ export type CommonStackParamList = {
   VaulToBank: undefined;
   VaultWithdrawConfirmation: undefined;
   VaultToBankSuccessfull: undefined;
-  TransactionHistory: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
