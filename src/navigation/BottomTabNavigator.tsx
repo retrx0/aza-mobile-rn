@@ -6,7 +6,7 @@ import Colors from "../constants/Colors";
 import Home from "../screens/tabs/home/Home";
 import Payments from "../screens/tabs/payments/Payments";
 import Profile from "../screens/tabs/profile/Profile";
-import Vault from "../screens/tabs/Vault/Vault";
+import Vault from "../screens/tabs/vault/Vault";
 import Settings from "../screens/tabs/settings/Settings";
 import {
   RootStackScreenProps,

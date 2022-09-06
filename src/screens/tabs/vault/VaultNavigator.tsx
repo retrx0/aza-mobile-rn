@@ -1,25 +1,22 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Vault from "./Vault";
 import NewVault from "./NewVault";
-import DeleteVault from "./LockVault";
-import VaultSuccessful from "./VaultSuccessful";
 import AddVault from "./AddVault";
 import ConfirmDeleteVault from "./ConfirmDeleteVault";
-import VaultWithdrawsuccessful from "./withdrawToAza/VaultWithdrawSuccessful";
-import VaultDetails from "./withdrawToAza/VaultDetails";
-import VaultActivity from "./withdrawToAza/VaultActivity";
+import VaultWithdrawsuccessful from "./withdraw-to-aza/VaultWithdrawSuccessful";
+import VaultDetails from "./withdraw-to-aza/VaultDetails";
+import VaultActivity from "./withdraw-to-aza/VaultActivity";
 import { Platform } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { SafeAreaView } from "../../../components/Themed";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import VaulToBank from "./withdrawToBank/VaultWithdrawToBank";
-import VaultWithdrawConfirmation from "./withdrawToBank/VaultWithdrawToBankConfirmation";
-import VaultToAza from "./withdrawToAza/VaultwithdrawalConfirmation";
-import VaultToBankSuccessfull from "./withdrawToBank/VaultToBankSuccessful";
-import TransactionHistory from "./TransactionHistory";
-import MaturedVault from "./withdrawToAza/MaturedVault";
-import UnMatureVault from "./withdrawToAza/unMatureVault";
+import VaulToBank from "./withdraw-to-bankank/VaultWithdrawToBank";
+import VaultWithdrawConfirmation from "./withdraw-to-bankank/VaultWithdrawToBankConfirmation";
+import VaultToAza from "./withdraw-to-aza/VaultwithdrawalConfirmation";
+import VaultToBankSuccessfull from "./withdraw-to-bankank/VaultToBankSuccessful";
+import MaturedVault from "./withdraw-to-aza/MaturedVault";
+import UnMatureVault from "./withdraw-to-aza/unMatureVault";
 import LockVault from "./LockVault";
 import ArchievedVault from "./ArchievedVault";
 
@@ -42,7 +39,6 @@ export type VaultStackProps = {
   vaultToBank: undefined;
   vaultWithdrawConfirmation: undefined;
   vaultToBankSuccessfull: undefined;
-  transactionHistory: undefined;
   unMatureVault: undefined;
   maturedVault: undefined;
 };
@@ -142,11 +138,7 @@ const VaultNavigator = () => {
         name='vaultWithdrawConfirmation'
         component={VaultWithdrawConfirmation}
       />
-      <VaultStack.Screen
-        options={{ headerShown: false }}
-        name='transactionHistory'
-        component={TransactionHistory}
-      />
+
       <VaultStack.Screen
         options={{ headerShown: false }}
         name='maturedVault'

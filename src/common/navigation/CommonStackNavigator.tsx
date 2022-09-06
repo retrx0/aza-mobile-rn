@@ -1,14 +1,13 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BvnVerificationNavigator from "../../screens/bvn/BvnVerificationNavigator";
-import AddVault from "../../screens/tabs/Vault/AddVault";
-import ConfirmDeleteVault from "../../screens/tabs/Vault/ConfirmDeleteVault";
-import DeleteVault from "../../screens/tabs/Vault/LockVault";
-import NewVault from "../../screens/tabs/Vault/NewVault";
-import VaultActivity from "../../screens/tabs/Vault/withdrawToAza/VaultActivity";
-import VaultDetails from "../../screens/tabs/Vault/withdrawToAza/VaultDetails";
-import VaultSuccessful from "../../screens/tabs/Vault/VaultSuccessful";
-import VaultWithdrawsuccessful from "../../screens/tabs/Vault/withdrawToAza/VaultWithdrawSuccessful";
+import AddVault from "../../screens/tabs/vault/AddVault";
+import ConfirmDeleteVault from "../../screens/tabs/vault/ConfirmDeleteVault";
+import NewVault from "../../screens/tabs/vault/NewVault";
+import VaultActivity from "../../screens/tabs/vault/withdraw-to-aza/VaultActivity";
+import VaultDetails from "../../screens/tabs/vault/withdraw-to-aza/VaultDetails";
+import VaultSuccessful from "../../screens/tabs/vault/VaultSuccessful";
+import VaultWithdrawsuccessful from "../../screens/tabs/vault/withdraw-to-aza/VaultWithdrawSuccessful";
 import { CommonStackParamList } from "./types";
 import { Platform } from "react-native";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -16,13 +15,12 @@ import { Text, View } from "../../components/Themed";
 import CommonStyles from "../styles/CommonStyles";
 import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
-import VaulToBank from "../../screens/tabs/Vault/withdrawToBank/VaultWithdrawToBank";
-import VaultWithdrawConfirmation from "../../screens/tabs/Vault/withdrawToBank/VaultWithdrawToBankConfirmation";
-import VaultToAza from "../../screens/tabs/Vault/withdrawToAza/VaultwithdrawalConfirmation";
-import VaultToBankSuccessfull from "../../screens/tabs/Vault/withdrawToBank/VaultToBankSuccessful";
-import TransactionHistory from "../../screens/tabs/Vault/TransactionHistory";
-import LockVault from "../../screens/tabs/Vault/LockVault";
-import ArchievedVault from "../../screens/tabs/Vault/ArchievedVault";
+import VaulToBank from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBank";
+import VaultWithdrawConfirmation from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBankConfirmation";
+import VaultToAza from "../../screens/tabs/vault/withdraw-to-aza/VaultwithdrawalConfirmation";
+import VaultToBankSuccessfull from "../../screens/tabs/vault/withdraw-to-bankank/VaultToBankSuccessful";
+import LockVault from "../../screens/tabs/vault/LockVault";
+import ArchievedVault from "../../screens/tabs/vault/ArchievedVault";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -132,11 +130,6 @@ const CommonStack = () => {
           options={{ headerShown: false }}
           name='VaultToBankSuccessfull'
           component={VaultToBankSuccessfull}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name='TransactionHistory'
-          component={TransactionHistory}
         />
       </Stack.Group>
     </Stack.Navigator>
