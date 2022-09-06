@@ -1,5 +1,4 @@
 import { FlatList } from "react-native";
-
 import { SendIcon } from "../../../../../assets/svg";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
@@ -135,13 +134,11 @@ export default function RecentTransactions() {
           marginBottom: 25,
           flexDirection: "row",
           alignItems: "center",
-        }}
-      >
+        }}>
         <Text
           lightColor={Colors.light.mainText}
           darkColor={Colors.dark.mainText}
-          style={{ marginRight: 3 }}
-        >
+          style={{ marginRight: 3 }}>
           Recent Transactions
         </Text>
         <SendIcon />
