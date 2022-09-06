@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, StyleProp, ViewStyle, TextStyle } from "react-n
 
 type ButtonPropsType = {
   title: string;
-  color: string;
+  color?: string;
   onPressButton?: () => void;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;

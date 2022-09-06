@@ -9,7 +9,7 @@ import { VaultStyles } from "../styles";
 import { Input } from "../../../../components/input/input";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
 
-const UnMatureVault = ({ setMatured }) => {
+const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
   return (
     <SpacerWrapper>
       <View style={VaultStyles.container}>
@@ -39,7 +39,7 @@ const UnMatureVault = ({ setMatured }) => {
           <Input
             label={"Top up Vault"}
             labelStyle={undefined}
-            placeholder='Add more funds from your Aza balance'
+            placeholder="Add more funds from your Aza balance"
             style={CommonStyles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
@@ -48,22 +48,12 @@ const UnMatureVault = ({ setMatured }) => {
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
-            return (
-              <PercentageCard
-                key={index}
-                percentage={item.percentage}
-                onPress={() => {}}
-              />
-            );
+            return <PercentageCard key={index} percentage={item.percentage} onPress={() => {}} />;
           })}
         </View>
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
-          <Button
-            title='Continue'
-            onPressButton={() => setMatured()}
-            style={[CommonStyles.button]}
-          />
+          <Button title="Continue" onPressButton={() => setMatured()} style={[CommonStyles.button]} />
         </View>
       </View>
     </SpacerWrapper>

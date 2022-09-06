@@ -8,8 +8,8 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import { CountriesType } from "../../../../types";
-import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import { CountryBox } from "./components/CountryInput";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
 // type StageOneProp = {
 //   onCountryPress: () => void;
@@ -38,9 +38,7 @@ const SignUpScreen = (
       </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to continue
-        </Text>
+        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
         <Text style={[CommonStyles.phoneText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
@@ -57,7 +55,7 @@ const SignUpScreen = (
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry='ng'
+        initialCountry="ng"
         autoFormat
         textStyle={[CommonStyles.textStyle]}
         textProps={{
@@ -65,14 +63,11 @@ const SignUpScreen = (
         }}
         style={[CommonStyles.phoneStyle]}
       />
-      <Button
-        title='Continue'
-        onPressButton={() => navigation.navigate("SignUpOTP")}
-      />
+      <Button title="Continue" onPressButton={() => navigation.navigate("SignUpOTP")} />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <CancelButtonWithUnderline
-          title='Login'
+          title="Login"
           style={CommonStyles.resendBox}
           styleText={CommonStyles.resend}
           onPressButton={() => navigation.getParent()?.navigate("SignIn")}
@@ -81,22 +76,22 @@ const SignUpScreen = (
 
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
-        iconName='apple'
-        title='Connect Apple Account'
+        iconName="apple"
+        title="Connect Apple Account"
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
       />
       <ButtonLg
         iconName={"facebook"}
-        title='Connect with Facebook'
+        title="Connect with Facebook"
         color={Colors.general.facebook}
         onPress={() => console.log("connecting with facebook...")}
         alt={false}
       />
       <ButtonLg
         iconName={"google"}
-        title='Connect Google Account'
+        title="Connect Google Account"
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}

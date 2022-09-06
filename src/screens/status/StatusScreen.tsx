@@ -9,12 +9,9 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 import { CommonScreenProps } from "../../common/navigation/types";
-import ButtonWithUnderline from "../../components/buttons/ButtonWithUnderline";
+import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
-const StatusScreen = ({
-  navigation,
-  route,
-}: CommonScreenProps<"StatusScreen">) => {
+const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) => {
   const colorScheme = useColorScheme();
   const {
     statusIcon,
@@ -24,7 +21,7 @@ const StatusScreen = ({
     receiptButton,
     setupRecurringTransfer,
     cancelButton,
-    handleContinueButtonClick
+    handleContinueButtonClick,
   } = route.params;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -35,21 +32,11 @@ const StatusScreen = ({
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View
-          style={[
-            CommonStyles.col,
-            { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
-          {statusIcon === "Success" ? (
-            <StatusSuccessIcon />
-          ) : (
-            <StatusWarningIcon />
-          )}
+        <View style={[CommonStyles.col, { alignItems: "center", marginTop: "auto", marginBottom: "auto" }]}>
+          {statusIcon === "Success" ? <StatusSuccessIcon /> : <StatusWarningIcon />}
           <Text
             style={{
-              color:
-                statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
+              color: statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
               fontSize: 24,
               marginVertical: 20,
               textAlign: "center",

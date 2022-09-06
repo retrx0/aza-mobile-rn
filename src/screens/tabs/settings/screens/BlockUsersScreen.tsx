@@ -1,19 +1,19 @@
-import { StyleSheet } from 'react-native'
-import React, { useLayoutEffect } from 'react'
-import { CommonScreenProps } from '../../../../common/navigation/types'
-import BackButton from '../../../../components/buttons/BackButton'
-import { Text, View } from '../../../../components/Themed'
-import Colors from '../../../../constants/Colors'
-import { hp } from '../../../../common/util/LayoutUtil'
-import useColorScheme from '../../../../hooks/useColorScheme'
-import CommonStyles from '../../../../common/styles/CommonStyles'
-import { UndrawCancelIcon } from '../../../../../assets/svg'
-import Button from '../../../../components/buttons/Button'
-import ButtonWithUnderline from '../../../../components/buttons/ButtonWithUnderline'
-import SpacerWrapper from '../../../../common/util/SpacerWrapper'
+import { StyleSheet } from "react-native";
+import React, { useLayoutEffect } from "react";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import BackButton from "../../../../components/buttons/BackButton";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import { UndrawCancelIcon } from "../../../../../assets/svg";
+import Button from "../../../../components/buttons/Button";
+import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
-const BlockUsersScreen = ({ navigation }: CommonScreenProps<'BlockUsers'>) => {
-  const colorScheme = useColorScheme()
+const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
+  const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -22,7 +22,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<'BlockUsers'>) => {
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontFamily: 'Euclid-Circular-A-Semi-Bold',
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
           }}
         >
@@ -32,27 +32,26 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<'BlockUsers'>) => {
       // hide default back button which only shows in android
       headerBackVisible: false,
       //center it in android
-      headerTitleAlign: 'center',
+      headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => (
         <View style={{ marginLeft: -25 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
       ),
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container, { justifyContent: 'space-between' }]}>
+      <View style={[styles.container, { justifyContent: "space-between" }]}>
         <View>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
+            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
           >
-            Blocked users won't be able to send you money, request money from
-            you or split payments with you.
+            Blocked users won't be able to send you money, request money from you or split payments with you.
           </Text>
           <Text
             lightColor={Colors.light.text}
@@ -66,49 +65,42 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<'BlockUsers'>) => {
           </Text>
         </View>
         <View style={[CommonStyles.col]}>
-          <UndrawCancelIcon
-            color={colorScheme === 'dark' ? '#2AD168' : '#000000'}
-            size={30}
-          />
+          <UndrawCancelIcon color={colorScheme === "dark" ? "#2AD168" : "#000000"} size={30} />
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
               fontSize: 16,
-              fontFamily: 'Euclid-Circular-A-Semi-Bold',
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: 30,
             }}
           >
             You have not blocked anyone
           </Text>
         </View>
-        <View style={[CommonStyles.col,{width: '100%'}]}>
+        <View style={[CommonStyles.col, { width: "100%" }]}>
           <Button
             title="Block New User"
-            onPressButton={() => navigation.navigate('BlockNewUser')}
+            onPressButton={() => navigation.navigate("BlockNewUser")}
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: 'Euclid-Circular-A-Medium',
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
             }}
             style={{
               marginTop: 10,
-              width: '100%',
+              width: "100%",
               backgroundColor: Colors[colorScheme].button,
             }}
           />
-          <ButtonWithUnderline
-            title="Cancel"
-            color="#FF361A"
-            onPressButton={() => navigation.goBack()}
-          />
+          <ButtonWithUnderline title="Cancel" color="#FF361A" onPressButton={() => navigation.goBack()} />
         </View>
       </View>
     </SpacerWrapper>
-  )
-}
+  );
+};
 
-export default BlockUsersScreen
+export default BlockUsersScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -116,4 +108,4 @@ const styles = StyleSheet.create({
     paddingVertical: hp(20),
     paddingHorizontal: 15,
   },
-})
+});

@@ -5,11 +5,7 @@
  */
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
@@ -19,16 +15,14 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
-import SignUpRoot from "../screens/auth/SignUp/SignUpNavigator";
-import LoginNavigator from "../screens/auth/SignIn/SignInNavigator";
+import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
+import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -47,39 +41,19 @@ type PasswordScreenParamsType = {
 const RootNavigator = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="SignUp" component={SignUpRoot} options={{ headerShown: false }} />
+      <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: false }} />
       <Stack.Screen
-        name='Welcome'
-        component={WelcomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='SignUp'
-        component={SignUpRoot}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='SignIn'
-        component={LoginNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='Root'
+        name="Root"
         component={BottomTabNavigator}
         options={{
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name='Common'
-        component={CommonStack}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="Common" component={CommonStack} options={{ headerShown: false }} />
 
-      <Stack.Screen
-        name='NotFound'
-        component={NotFoundScreen}
-        options={{ title: "Oops!" }}
-      />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
 
       {/* Auth Stack */}
       {/* <Stack.Group navigationKey={isSignedIn ? "Home" : "Login"} screenOptions={{ headerShown: false }}>
@@ -107,7 +81,7 @@ const RootNavigator = () => {
         </Stack.Group>
       </Stack.Group> */}
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name='Modal' component={ModalScreen} />
+        <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -122,10 +96,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) => {
+const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 

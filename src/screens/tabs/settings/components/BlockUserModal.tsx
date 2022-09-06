@@ -1,15 +1,15 @@
-import { CommonScreenProps } from '../../../../common/navigation/types'
-import { hp } from '../../../../common/util/LayoutUtil'
-import Button from '../../../../components/buttons/Button'
-import ButtonWithUnderline from '../../../../components/buttons/ButtonWithUnderline'
-import { Text, View } from '../../../../components/Themed'
-import Colors from '../../../../constants/Colors'
-import useColorScheme from '../../../../hooks/useColorScheme'
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import { hp } from "../../../../common/util/LayoutUtil";
+import Button from "../../../../components/buttons/Button";
+import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 interface IProps {
-  toggleModal: () => void
-  isModalVisible: boolean
-  user: string
+  toggleModal: () => void;
+  isModalVisible: boolean;
+  user: string;
 }
 
 export default function BlockUserModal({
@@ -17,20 +17,20 @@ export default function BlockUserModal({
   isModalVisible,
   navigation,
   user,
-}: CommonScreenProps<'BlockNewUser'> & IProps) {
-  const colorScheme = useColorScheme()
+}: CommonScreenProps<"BlockNewUser"> & IProps) {
+  const colorScheme = useColorScheme();
   return (
     <View
       style={{
-        display: isModalVisible ? 'flex' : 'none',
-        position: 'absolute',
+        display: isModalVisible ? "flex" : "none",
+        position: "absolute",
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
       }}
     >
       <View
@@ -40,17 +40,17 @@ export default function BlockUserModal({
           paddingHorizontal: 25,
           paddingBottom: 20,
           paddingTop: 30,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontFamily: 'Euclid-Circular-A-Semi-Bold',
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
           }}
         >
@@ -62,34 +62,34 @@ export default function BlockUserModal({
           style={{
             fontSize: 14,
             marginVertical: 15,
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-          The user{' '}
+          The user{" "}
           <Text
             style={{
-              fontFamily: 'Euclid-Circular-A-Semi-Bold',
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 15,
             }}
           >
             {user}
-          </Text>{' '}
+          </Text>{" "}
           will be blocked. Do you confirm?
         </Text>
         <Button
           title="Confirm"
           onPressButton={() => {
-            toggleModal()
-            navigation.navigate('StatusScreen', {
-              statusIcon: 'Success',
-              status: 'Successful',
+            toggleModal();
+            navigation.navigate("StatusScreen", {
+              statusIcon: "Success",
+              status: "Successful",
               statusMessage: `The user ${user} has been successfully blocked.`,
               handleContinueButtonClick: () => navigation.goBack(),
-            })
+            });
           }}
           styleText={{
             color: Colors[colorScheme].buttonText,
-            fontFamily: 'Euclid-Circular-A-Medium',
+            fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
@@ -97,12 +97,8 @@ export default function BlockUserModal({
             backgroundColor: Colors[colorScheme].button,
           }}
         />
-        <ButtonWithUnderline
-          color="#FF361A"
-          title="Cancel"
-          onPressButton={toggleModal}
-        />
+        <ButtonWithUnderline color="#FF361A" title="Cancel" onPressButton={toggleModal} />
       </View>
     </View>
-  )
+  );
 }

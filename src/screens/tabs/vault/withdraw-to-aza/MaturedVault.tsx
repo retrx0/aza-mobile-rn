@@ -8,8 +8,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { VaultStyles } from "../styles";
 import { useNavigation } from "@react-navigation/core";
 
-const MaturedVault = ({}: RootTabScreenProps<"Vault">) => {
-  const navigation = useNavigation();
+const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={VaultStyles.container}>
@@ -30,20 +29,16 @@ const MaturedVault = ({}: RootTabScreenProps<"Vault">) => {
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(155) }]}>
           <Button
-            title='Withdraw to Aza'
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "VaultToAza" })
-            }
+            title="Withdraw to Aza"
+            onPressButton={() => navigation.getParent()?.navigate("Common", { screen: "VaultToAza" })}
             style={[CommonStyles.maturebutton]}
             styleText={CommonStyles.buttonText}
           />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
-            title='Withdraw to Bank'
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "VaulToBank" })
-            }
+            title="Withdraw to Bank"
+            onPressButton={() => navigation.getParent()?.navigate("Common", { screen: "VaulToBank" })}
             style={[CommonStyles.button]}
           />
         </View>
