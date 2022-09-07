@@ -14,12 +14,15 @@ const ButtonLg = (props: {
   title: string;
   color: ColorValue;
   alt: boolean;
+  style?: {};
+  disabled?: boolean;
   iconName?: typeof FontAwesome["defaultProps"];
   onPress: (event: GestureResponderEvent) => void;
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: props.color }]}
+    {...props}
+      style={[styles.button, { backgroundColor: props.color }, props.style]}
       onPress={props.onPress}>
       <View
         style={[

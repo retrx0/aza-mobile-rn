@@ -42,6 +42,24 @@ export type RootTabParamList = {
   Payments: undefined;
   Settings: undefined;
   Profile: undefined;
+  StatusScreen:any
+};
+
+export type PaymentsStackParamList = {
+  PaymentIndex: undefined;
+  airtimeData: undefined;
+  confirm: undefined;
+  confirm_transaction: undefined;
+  complete_transaction: undefined;
+  internet_plans: undefined;
+  internet_plan_detail: undefined;
+  electricity: undefined;
+  cabletv: undefined;
+  pie: undefined;
+  water: undefined;
+  Charity: undefined;
+  charity_detail: undefined;
+  
 };
 
 export type TopTabParamList = {

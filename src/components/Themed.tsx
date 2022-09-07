@@ -8,6 +8,7 @@ import {
   View as DefaultView,
   SafeAreaView as ThemedSafeAreaView,
   TextInput as ThemedTextInput,
+  ScrollView as DefaultScrollView
 } from "react-native";
 
 import Colors from "../constants/Colors";
@@ -64,6 +65,13 @@ export const View = (props: ViewProps) => {
   );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+};
+
+export const ScrollView = (props: ViewProps) => {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, "background");
+
+  return <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
 };
 
 export const SafeAreaView = (props: SafeAreaViewProps) => {

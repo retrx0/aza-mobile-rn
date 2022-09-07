@@ -6,7 +6,25 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type CommonStackParamList = {
   BvnVerificationRoot: NavigatorScreenParams<BvnVerificationStackParamList>;
   BvnVerificationScreen: undefined;
+
+  // Status
   StatusScreen: StatusScreenParamsType;
+
+    //Payments
+    AirtimeData: undefined;
+    Confirm: undefined;
+    ConfirmTransaction: undefined;
+    CompleteTransaction: undefined;
+    InternetPlans: undefined;
+    InternetPlanDetail: { name: string };
+    Electricity: undefined;
+    CableTV: undefined;
+    Pie: undefined;
+    Water: undefined;
+    Charity: undefined;
+    CharityDetail: { name: string };
+
+  // Vault
   NewVault: undefined;
   VaultPassword: undefined;
   LockVault: undefined;
@@ -71,3 +89,25 @@ export type StatusScreenParamsType = {
   cancelButton?: boolean;
   navigateTo: string;
 };
+
+/* Payments Tab */
+
+export type PaymentsStackParamList = {
+  AirtimeData: undefined;
+  Confirm: undefined;
+  confirmTransaction: undefined;
+  CompleteTransaction: undefined;
+  InternetPlans: undefined;
+  InternetPlanDetail: undefined;
+  Electricity: undefined;
+  CableTV: undefined;
+  Pie: undefined;
+  Water: undefined;
+  Charity: undefined;
+  CharityDetail: undefined;
+};
+
+export type PaymentsTabScreenProps<Screen extends keyof PaymentsStackParamList> = NativeStackScreenProps<
+  PaymentsStackParamList,
+  Screen
+>;

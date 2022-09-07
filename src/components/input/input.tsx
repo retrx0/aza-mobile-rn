@@ -9,6 +9,7 @@ import {
   View,
   TextStyle,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
@@ -20,7 +21,7 @@ export type InputProps = {
   inputStyle: StyleProp<TextStyle>;
   icon: any;
   isPhone?: boolean;
-  containerStyle: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
 export const Input = ({
@@ -35,23 +36,16 @@ export const Input = ({
   ...rest
 }: InputProps & TextInputProps) => {
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style={[styles.container, style, containerStyle]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
           <View style={styles.divider} />
-          <TextInput
-            placeholder='Your 10-digit phone number'
-            style={styles.phoneInput}
-            keyboardType='number-pad'
-          />
+          <TextInput placeholder="Your 10-digit phone number" style={styles.phoneInput} keyboardType="number-pad" />
         </View>
       ) : (
         <View>
-          <TextInput
-            placeholder={placeholder}
-            {...rest}
-            style={[inputStyle]}></TextInput>
+          <TextInput placeholder={placeholder} {...rest} style={[inputStyle]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}
@@ -97,5 +91,10 @@ const styles = StyleSheet.create({
   isPhone: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  image: {
+    height: 36,
+    width: 36,
+    borderRadius: 36,
   },
 });

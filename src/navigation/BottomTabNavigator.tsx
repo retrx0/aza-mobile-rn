@@ -97,6 +97,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           component={Payments}
           options={{
             title: "Payments",
+            headerShown: false,
             tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={24} />,
           }}
         />

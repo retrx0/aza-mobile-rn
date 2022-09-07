@@ -1,5 +1,8 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { TouchableOpacity, Platform } from "react-native";
+import { BackIcon } from "../../../assets/svg";
+import { AirtimeTabs, CharityTabs } from "../../navigation/PaymensNavigation";
 import BvnVerificationNavigator from "../../screens/bvn/BvnVerificationNavigator";
 import AddVault from "../../screens/tabs/vault/AddVault";
 import ConfirmDeleteVault from "../../screens/tabs/vault/ConfirmDeleteVault";
@@ -9,7 +12,6 @@ import VaultDetails from "../../screens/tabs/vault/withdraw-to-aza/VaultDetails"
 import VaultSuccessful from "../../screens/tabs/vault/VaultSuccessful";
 import VaultWithdrawsuccessful from "../../screens/tabs/vault/withdraw-to-aza/VaultWithdrawSuccessful";
 import { CommonStackParamList } from "./types";
-import { Platform } from "react-native";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text, View } from "../../components/Themed";
 import CommonStyles from "../styles/CommonStyles";
@@ -41,6 +43,16 @@ import LoginOptionsScreen from "../../screens/tabs/settings/screens/LoginOptions
 import AppearanceScreen from "../../screens/tabs/settings/screens/AppearanceScreen";
 import AppLanguageScreen from "../../screens/tabs/settings/screens/AppLanguageScreen";
 import BlockNewUserScreen from "../../screens/tabs/settings/screens/BlockNewUserScreen";
+
+// Payments
+import Pie from "../../screens/tabs/payments/Pie";
+import InternetPlans from "../../screens/tabs/payments/internet-screens/InternetPlans";
+import ElectricityIndex from "../../screens/tabs/payments/electricity-screens/ElectricityIndex";
+import CableTvIndex from "../../screens/tabs/payments/cable-tv-screens/CableTvIndex";
+import WaterScreen from "../../screens/tabs/payments/water-screens/WaterScreen";
+import CharityIndexScreen from "../../screens/tabs/payments/charity-screens/CharityIndexScreen";
+import InternetDetail from "../../screens/tabs/payments/internet-screens/InternetDetail";
+import ConfirmTransaction from "../../screens/tabs/payments/ConfirmTransaction";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -84,6 +96,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
 };
 
 const CommonStack = () => {
+  const scheme = useColorScheme();
   return (
     <Stack.Navigator defaultScreenOptions={{ headerShown: false }}>
       <Stack.Group screenOptions={{ headerShown: false }}>
@@ -142,6 +155,62 @@ const CommonStack = () => {
           options={{ headerShown: false }}
           name="VaultToBankSuccessfull"
           component={VaultToBankSuccessfull}
+        />
+      </Stack.Group>
+
+      {/* Payments */}
+
+      <Stack.Group
+        screenOptions={(props) => ({
+          headerTitleAlign: "center",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => props.navigation.goBack()}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <BackIcon color={scheme == "light" ? "#000000" : "#ffffff"} size={24} />
+              <Text style={{ marginLeft: 5 }}>Back</Text>
+            </TouchableOpacity>
+          ),
+          headerStyle: {
+            backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
+          },
+          headerTransparent: true,
+          headerTitleStyle: {
+            fontSize: 16,
+            fontWeight: "600",
+          },
+        })}
+      >
+        <Stack.Screen options={{ title: "Airtime & Data" }} name="AirtimeData" component={AirtimeTabs} />
+        <Stack.Screen options={{ presentation: "fullScreenModal", title: "" }} name="Pie" component={Pie} />
+        <Stack.Screen options={{ title: "Confirmation" }} name="Confirm" component={ConfirmTransaction} />
+        <Stack.Screen options={{ title: "Internet" }} name="InternetPlans" component={InternetPlans} />
+        <Stack.Screen options={{ title: "Electricity" }} name="Electricity" component={ElectricityIndex} />
+        <Stack.Screen options={{ title: "Cable TV" }} name="CableTV" component={CableTvIndex} />
+        <Stack.Screen options={{ title: "Water" }} name="Water" component={WaterScreen} />
+        <Stack.Screen name="Charity" component={CharityIndexScreen} />
+        <Stack.Screen
+          options={({ route }: { route: any }) => ({ title: route.params.name })}
+          name="CharityDetail"
+          component={CharityTabs}
+        />
+
+        <Stack.Screen
+          options={({ route }: { route: any }) => ({ title: route.params.name })}
+          name="InternetPlanDetail"
+          component={InternetDetail}
+        />
+
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="CompleteTransaction"
+          component={StatusScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

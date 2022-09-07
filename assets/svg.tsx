@@ -291,6 +291,48 @@ export const ArrowFowardIcon = ({ style }: { style?: {} }) => {
   );
 };
 
+export const ArrowLeftIcon = ({ style }: SvgIconProps) => {
+  return (
+    <Svg style={style} width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <Path
+        d="M6.38001 3.95337L2.33334 8.00004L6.38001 12.0467"
+        stroke="#292D32"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M13.6667 8H2.44666"
+        stroke="#292D32"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const ArrowRightIcon = ({ style }: SvgIconProps) => {
+  return (
+    <Svg style={style} width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <Path
+        d="M9.62 3.95337L13.6667 8.00004L9.62 12.0467"
+        stroke="#292D32"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M2.33334 8H13.5533"
+        stroke="#292D32"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </Svg>
+  );
+};
+
 export const GoogleIcon = () => {
   return (
     <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1452,6 +1494,22 @@ export const AppLanguageIcon = ({ color, size, style }: SvgIconProps) => {
         d="M8.25 15v6c0 3 1.5 4.5 4.5 4.5h2.145c.555 0 1.11.166 1.59.45l4.38 2.746c3.78 2.37 6.885.645 6.885-3.81v-13.77c0-4.47-3.105-6.18-6.885-3.81l-4.38 2.745c-.48.285-1.035.45-1.59.45H12.75c-3 0-4.5 1.5-4.5 4.5Z"
         stroke={color}
         strokeWidth={1.5}
+      />
+    </Svg>
+  );
+};
+
+export const SuccessIcon = ({ style }: SvgIconProps) => {
+  return (
+    <Svg style={style} width="80" height="80" viewBox="0 0 80 80" fill="none">
+      <Circle cx="40" cy="40" r="40" fill="#D8F9D2" />
+      <Circle cx="40" cy="40" r="30" fill="#2A9E17" />
+      <Path
+        d="M53.3334 30L35.0001 48.3333L26.6667 40"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </Svg>
   );

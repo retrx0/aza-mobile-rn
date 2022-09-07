@@ -23,4 +23,6 @@ TODO: Describe and show how to build your code and run the tests.
 
 - Project uses yarn as package manager!
 - Push new code only to feature branches!
+- Install the recommended extensions by vs code in extension.json
+- Regularly run Type checking task in vscode by double clicking shift key and typing ">" then select Run task "Type Checking"
 - Don't stage non compiling code e.g code editor configs...
