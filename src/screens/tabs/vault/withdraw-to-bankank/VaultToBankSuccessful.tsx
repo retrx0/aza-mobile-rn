@@ -6,7 +6,6 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../../types";
-import { TopBar } from "../../../../common/navigation/CommonStackNavigator";
 
 const VaultToBankSuccessfull = ({
   navigation,

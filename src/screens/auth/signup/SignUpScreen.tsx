@@ -38,7 +38,9 @@ const SignUpScreen = (
       </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
+        <Text style={[CommonStyles.bodyText]}>
+          Enter your phone number to continue
+        </Text>
         <Text style={[CommonStyles.phoneText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
@@ -55,7 +57,7 @@ const SignUpScreen = (
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry="ng"
+        initialCountry='ng'
         autoFormat
         textStyle={[CommonStyles.textStyle]}
         textProps={{
@@ -63,12 +65,15 @@ const SignUpScreen = (
         }}
         style={[CommonStyles.phoneStyle]}
       />
-      <Button title="Continue" onPressButton={() => navigation.navigate("SignUpOTP")} />
+      <Button
+        title='Continue'
+        onPressButton={() => navigation.navigate("SignUpOTP")}
+      />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <CancelButtonWithUnderline
-          title="Login"
-          style={CommonStyles.resendBox}
+          title='Login'
+          style={{ borderBottomColor: Colors.general.black }}
           styleText={CommonStyles.resend}
           onPressButton={() => navigation.getParent()?.navigate("SignIn")}
         />
@@ -76,22 +81,22 @@ const SignUpScreen = (
 
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
-        iconName="apple"
-        title="Connect Apple Account"
+        iconName='apple'
+        title='Connect Apple Account'
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
       />
       <ButtonLg
         iconName={"facebook"}
-        title="Connect with Facebook"
+        title='Connect with Facebook'
         color={Colors.general.facebook}
         onPress={() => console.log("connecting with facebook...")}
         alt={false}
       />
       <ButtonLg
         iconName={"google"}
-        title="Connect Google Account"
+        title='Connect Google Account'
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}

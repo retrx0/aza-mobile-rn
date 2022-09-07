@@ -12,7 +12,6 @@ import {
   PercentageList,
 } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";

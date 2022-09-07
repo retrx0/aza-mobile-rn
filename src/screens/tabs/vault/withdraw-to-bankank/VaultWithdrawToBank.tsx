@@ -4,19 +4,19 @@ import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
-import { VaultStyles } from "../styles";
+import { vaultStyles } from "../styles";
 import { Image, TouchableOpacity } from "react-native";
-import styles from "../../../onboarding/OnboardingStyles";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { hp } from "../../../../common/util/LayoutUtil";
+import Colors from "../../../../constants/Colors";
 
-const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [click, setClick] = useState(false);
 
   return (
     <SpacerWrapper>
-      <View style={VaultStyles.container}>
+      <View style={vaultStyles.container}>
         <View style={[CommonStyles.topTab]}>
           <View style={{ marginLeft: 20 }}>
             <BackButton
@@ -74,7 +74,7 @@ const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <CancelButtonWithUnderline
             title='Cancel'
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
-            style={{ marginTop: 5 }}
+            style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>
@@ -83,4 +83,4 @@ const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
   );
 };
 
-export default VaulToBank;
+export default VaultToBank;

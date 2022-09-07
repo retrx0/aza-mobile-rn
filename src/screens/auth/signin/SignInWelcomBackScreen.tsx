@@ -1,5 +1,5 @@
 import React from "react";
-import { SigninStyles as styles } from "./styles";
+import { signinStyles as styles } from "./styles";
 import Button from "../../../components/buttons/Button";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";

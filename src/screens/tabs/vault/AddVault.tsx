@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
@@ -9,9 +9,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
-
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import Colors from "../../../constants/Colors";
+import { hp } from "../../../common/util/LayoutUtil";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
