@@ -38,11 +38,7 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<'FaceId'>) => {
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => (
-        <View style={{ marginLeft: -25 }}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
-      ),
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     })
   }, [])
 

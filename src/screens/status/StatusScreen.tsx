@@ -69,7 +69,7 @@ const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) 
             {statusMessage2}
           </Text>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(50) }]}>
+        <View style={[CommonStyles.col, { marginBottom: hp(50), width: '100%' }]}>
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
@@ -96,6 +96,7 @@ const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) 
               fontSize: 14,
             }}
             style={{
+              marginBottom: hp(25),
               backgroundColor: Colors[colorScheme].button,
             }}
           />

@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { CommonScreenProps } from '../../../../common/navigation/types'
 import BackButton from '../../../../components/buttons/BackButton'
@@ -34,11 +34,7 @@ const ContactsVisibilityScreen = ({
       //center it in android
       headerTitleAlign: 'center',
       headerShadowVisible: false,
-      headerLeft: () => (
-        <View style={{ marginLeft: -25 }}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
-      ),
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     })
   }, [])
 
