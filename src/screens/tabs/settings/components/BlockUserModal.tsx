@@ -42,7 +42,7 @@ export default function BlockUserModal({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: '90%',
+          width: "90%",
           justifyContent: "space-between",
         }}
       >
@@ -99,7 +99,11 @@ export default function BlockUserModal({
             backgroundColor: Colors[colorScheme].button,
           }}
         />
-        <ButtonWithUnderline color="#FF361A" title="Cancel" onPressButton={toggleModal} />
+        <ButtonWithUnderline
+          color="#FF361A"
+          title="Cancel"
+          onPressButton={toggleModal}
+        />
       </View>
     </View>
   );
