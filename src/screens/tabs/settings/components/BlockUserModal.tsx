@@ -37,12 +37,12 @@ export default function BlockUserModal({
         style={{
           backgroundColor: Colors[colorScheme].backgroundSecondary,
           borderRadius: 20,
-          paddingHorizontal: 25,
           paddingBottom: 20,
           paddingTop: 30,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          width: "90%",
           justifyContent: "space-between",
         }}
       >
@@ -62,6 +62,7 @@ export default function BlockUserModal({
           style={{
             fontSize: 14,
             marginVertical: 15,
+            maxWidth: 300,
             textAlign: "center",
           }}
         >
@@ -94,10 +95,15 @@ export default function BlockUserModal({
           }}
           style={{
             marginTop: hp(40),
+            marginBottom: hp(20),
             backgroundColor: Colors[colorScheme].button,
           }}
         />
-        <ButtonWithUnderline color="#FF361A" title="Cancel" onPressButton={toggleModal} />
+        <ButtonWithUnderline
+          color="#FF361A"
+          title="Cancel"
+          onPressButton={toggleModal}
+        />
       </View>
     </View>
   );

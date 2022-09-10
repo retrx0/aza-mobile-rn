@@ -33,9 +33,7 @@ const BvnVerificationScreen = ({ navigation }: CommonScreenProps<"BvnVerificatio
       //center it in android
       headerTitleAlign: "center",
       headerLeft: () => (
-        <View style={{ marginLeft: -25 }}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
+        <BackButton onPress={() => navigation.goBack()} />
       ),
     });
   }, []);

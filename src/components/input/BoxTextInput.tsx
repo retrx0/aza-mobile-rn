@@ -15,14 +15,14 @@ const BoxTextInput = (props: {
   const colorScheme = useColorScheme();
   return (
     <View>
-      <Text style={[CommonStyles.setUpText, { marginHorizontal: 15, marginTop: 20 }]}>
+      <Text style={[{paddingBottom: 5, marginTop: 20 }]}>
         {props.placeHolder}
         <Text style={{ color: "red" }}>{props.required ? "*" : ""}</Text>
       </Text>
       <TextInput
         style={[
           {
-            width: "90%",
+            width: "100%",
             alignSelf: "center",
             borderWidth: 0.5,
             borderColor: Colors[colorScheme].border,

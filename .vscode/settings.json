@@ -16,5 +16,8 @@
   },
   "prettier.singleQuote": false,
   "prettier.enable": true,
-  "task.allowAutomaticTasks": true
+  "task.allowAutomaticTasks": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

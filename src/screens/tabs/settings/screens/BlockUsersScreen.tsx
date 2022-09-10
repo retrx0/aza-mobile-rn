@@ -34,11 +34,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
-      headerLeft: () => (
-        <View style={{ marginLeft: -25 }}>
-          <BackButton onPress={() => navigation.goBack()} />
-        </View>
-      ),
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />
     });
   }, []);
 
@@ -78,7 +74,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             You have not blocked anyone
           </Text>
         </View>
-        <View style={[CommonStyles.col, { width: "100%" }]}>
+        <View style={[CommonStyles.col, { width: "100%", marginBottom: hp(25) }]}>
           <Button
             title="Block New User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
@@ -88,7 +84,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontSize: 14,
             }}
             style={{
-              marginTop: 10,
+              marginVertical: 10,
               width: "100%",
               backgroundColor: Colors[colorScheme].button,
             }}
