@@ -7,25 +7,10 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
-import { CountriesType } from "../../../../types";
-import { CountryBox } from "./components/CountryInput";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
-// type StageOneProp = {
-//   onCountryPress: () => void;
-//   country: CountriesType;
-//   onChangeText: (text: string) => void;
-//   onSendOtp: () => void;
-//   phoneNumber: string;
-// };
-
-const SignUpScreen = (
-  // props: StageOneProp,
-  { navigation }: SignUpScreenProps<"SignUpRoot">
-) => {
+const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const [phone, setPhone] = useState<string>("");
-  // const { onCountryPress, country, onChangeText, onSendOtp, phoneNumber } =
-  //   props;
 
   return (
     <SpacerWrapper>
@@ -38,20 +23,14 @@ const SignUpScreen = (
       </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
+        <Text style={[CommonStyles.bodyText]}>
+          Enter your phone number to continue
+        </Text>
         <Text style={[CommonStyles.phoneText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
 
-      {/* <CountryBox
-        onPress={onCountryPress}
-        short_name={country.short_name}
-        code={country.code}
-        value={phoneNumber}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSendOtp}
-      /> */}
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
@@ -63,7 +42,10 @@ const SignUpScreen = (
         }}
         style={[CommonStyles.phoneStyle]}
       />
-      <Button title="Continue" onPressButton={() => navigation.navigate("SignUpOTP")} />
+      <Button
+        title="Continue"
+        onPressButton={() => navigation.navigate("SignUpOTP")}
+      />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <CancelButtonWithUnderline
