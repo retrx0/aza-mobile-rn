@@ -23,7 +23,7 @@ const VaultWithdrawConfirmation = ({
           </View>
           <View>
             <Header
-              heading='Confirmation'
+              heading="Confirmation"
               description={""}
               headerStyle={CommonStyles.confirmation}
               descriptionStyle={undefined}
@@ -36,11 +36,11 @@ const VaultWithdrawConfirmation = ({
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
-            keyboardType='phone-pad'
+            keyboardType="phone-pad"
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
-            label='To'
-            placeholder='Access bank (140...)'
+            label="To"
+            placeholder="Access bank (140...)"
             placeholderTextColor={"black"}
             containerStyle={undefined}
           />
@@ -48,11 +48,11 @@ const VaultWithdrawConfirmation = ({
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
-            keyboardType='phone-pad'
+            keyboardType="phone-pad"
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
-            label='Amount'
-            placeholder='#80,000'
+            label="Amount"
+            placeholder="#80,000"
             placeholderTextColor={"black"}
             containerStyle={undefined}
           />
@@ -68,7 +68,7 @@ const VaultWithdrawConfirmation = ({
             style={CommonStyles.button}
           />
           <CancelButtonWithUnderline
-            title='Cancel Transaction'
+            title="Cancel Transaction"
             onPressButton={() =>
               navigation.getParent()?.navigate("VaultToBank")
             }

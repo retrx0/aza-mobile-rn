@@ -14,7 +14,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../assets/images/Caution.png")}
-          resizeMode='cover'
+          resizeMode="cover"
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
@@ -27,7 +27,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", {
                 screen: "VaultSuccessful",
@@ -37,7 +37,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
 
           <CancelButtonWithUnderline
-            title='Cancel'
+            title="Cancel"
             onPressButton={() => navigation.getParent()?.navigate("NewVault")}
             style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}

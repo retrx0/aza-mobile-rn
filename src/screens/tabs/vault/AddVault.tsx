@@ -17,7 +17,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={CommonStyles.vaultcontainer}>
         <View style={[CommonStyles.addVault]}>
           <Header
-            heading='Vault'
+            heading="Vault"
             description={""}
             headerStyle={[CommonStyles.vaultAdd]}
             descriptionStyle={undefined}
@@ -30,7 +30,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <ArchievedComponents />
         <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <CancelButtonWithUnderline
-            title='Archived Vaults'
+            title="Archived Vaults"
             onPressButton={() =>
               navigation.getParent()?.navigate("ArchievedVault")
             }
@@ -38,7 +38,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={CommonStyles.archived}
           />
           <Button
-            title='New Vault'
+            title="New Vault"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
             }

@@ -34,7 +34,7 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
               source={require("../../../../../assets/images/AccessBank.png")}
-              resizeMode='cover'
+              resizeMode="cover"
               style={[CommonStyles.accessBank]}
             />
             <Text style={CommonStyles.accountNumber}>
@@ -56,13 +56,13 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(50) }]}>
           <CancelButtonWithUnderline
-            title='Add another Bank Account'
+            title="Add another Bank Account"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
             style={CommonStyles.archivedBox}
             styleText={CommonStyles.addAccount}
           />
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", {
                 screen: "VaultWithdrawConfirmation",
@@ -72,7 +72,7 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
 
           <CancelButtonWithUnderline
-            title='Cancel'
+            title="Cancel"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
             style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}

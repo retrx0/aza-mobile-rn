@@ -155,7 +155,7 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
         <View style={CommonStyles.archievedContainer}>
           <BackButton onPress={() => navigation.goBack()} />
           <Header
-            heading='Archived Vaults'
+            heading="Archived Vaults"
             description={""}
             descriptionStyle={undefined}
             headerStyle={CommonStyles.archieved}

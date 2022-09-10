@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 export type showBackgroundcolorProp = {

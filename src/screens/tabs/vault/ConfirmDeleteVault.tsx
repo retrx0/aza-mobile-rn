@@ -14,7 +14,7 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../assets/images/Caution.png")}
-          resizeMode='cover'
+          resizeMode="cover"
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
@@ -27,7 +27,7 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
-            title='Delete'
+            title="Delete"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
             }
@@ -35,7 +35,7 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
 
           <CancelButtonWithUnderline
-            title='Cancel'
+            title="Cancel"
             onPressButton={() => navigation.getParent()?.navigate("AddVault")}
             style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}

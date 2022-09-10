@@ -43,7 +43,7 @@ const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
             { bottom: insets.bottom || hp(45) },
           ]}>
           <Button
-            title='New Vault'
+            title="New Vault"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "VaultToAza" })
             }

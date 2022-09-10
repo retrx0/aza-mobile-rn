@@ -29,13 +29,13 @@ const SignInWelcomeBackScreen = ({
       <SegmentedInput
         value={otpCode}
         onValueChanged={onOtpChanged}
-        headerText='Password'
+        headerText="Password"
         secureInput={true}
       />
       <View
         style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
         <Button
-          title='Forget Me'
+          title="Forget Me"
           style={{}}
           styleText={styles.welcomeOTPButton}
           onPressButton={onVerify}

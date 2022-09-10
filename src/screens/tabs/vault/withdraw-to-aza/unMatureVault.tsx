@@ -39,7 +39,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
           <Input
             label={"Top up Vault"}
             labelStyle={undefined}
-            placeholder='Add more funds from your Aza balance'
+            placeholder="Add more funds from your Aza balance"
             style={CommonStyles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
@@ -60,7 +60,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() => setMatured()}
             style={[CommonStyles.button]}
           />

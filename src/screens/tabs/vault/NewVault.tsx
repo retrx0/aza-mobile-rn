@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Switch, TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
 import {
@@ -33,16 +33,16 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <Header
           headerStyle={CommonStyles.vault}
           descriptionStyle={CommonStyles.descriptionStyle}
-          heading='Vault'
-          description='Save and lock part of your Aza funds temporarily,
-        for future use.'
+          heading="Vault"
+          description="Save and lock part of your Aza funds temporarily,
+        for future use."
         />
 
         <View style={CommonStyles.vaultInputContainer}>
           <Input
             label={"Vault Name"}
             labelStyle={undefined}
-            placeholder='Give your vault a name'
+            placeholder="Give your vault a name"
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
             containerStyle={undefined}
@@ -52,7 +52,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Input
             label={"Amount"}
             labelStyle={undefined}
-            placeholder='Enter an amount you wish to save'
+            placeholder="Enter an amount you wish to save"
             style={CommonStyles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}

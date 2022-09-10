@@ -21,7 +21,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           </View>
           <View>
             <Header
-              heading='Confirmation'
+              heading="Confirmation"
               description={""}
               headerStyle={CommonStyles.confirmation}
               descriptionStyle={undefined}
@@ -34,11 +34,11 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
-            keyboardType='phone-pad'
+            keyboardType="phone-pad"
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
-            label='To'
-            placeholder='Aza Account'
+            label="To"
+            placeholder="Aza Account"
             placeholderTextColor={"black"}
             containerStyle={undefined}
           />
@@ -46,18 +46,18 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
-            keyboardType='phone-pad'
+            keyboardType="phone-pad"
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
-            label='Amount'
-            placeholder='#80,000'
+            label="Amount"
+            placeholder="#80,000"
             placeholderTextColor={"black"}
             containerStyle={undefined}
           />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", {
                 screen: "VaultWithdrawsuccessful",
@@ -67,7 +67,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
 
           <CancelButtonWithUnderline
-            title='Cancel Transaction'
+            title="Cancel Transaction"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
             style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}

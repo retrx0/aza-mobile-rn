@@ -15,7 +15,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../assets/images/Successful.png")}
-          resizeMode='cover'
+          resizeMode="cover"
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
@@ -31,7 +31,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
             { bottom: insets.bottom || hp(45) },
           ]}>
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "AddVault" })
             }

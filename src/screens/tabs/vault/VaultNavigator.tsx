@@ -61,9 +61,9 @@ export const VaultTabs = () => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName='VaultDetails'>
-        <Tab.Screen name='VaultDetails' component={VaultDetails} />
-        <Tab.Screen name='VaultActivity' component={VaultActivity} />
+        initialRouteName="VaultDetails">
+        <Tab.Screen name="VaultDetails" component={VaultDetails} />
+        <Tab.Screen name="VaultActivity" component={VaultActivity} />
       </Tab.Navigator>
     </SafeAreaView>
   );
@@ -76,77 +76,77 @@ const VaultNavigator = () => {
         options={{
           headerShown: false,
         }}
-        name='Vault'
+        name="Vault"
         component={Vault}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='newvault'
+        name="newvault"
         component={NewVault}
       />
 
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='lockVault'
+        name="lockVault"
         component={LockVault}
       />
 
       <VaultStack.Screen
         options={{ title: "Details & Activity" }}
-        name='VaultDetails'
+        name="VaultDetails"
         component={VaultTabs}
       />
 
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='vaultToBankSuccessfull'
+        name="vaultToBankSuccessfull"
         component={VaultToBankSuccessfull}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='addVault'
+        name="addVault"
         component={AddVault}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='confirmDeleteVault'
+        name="confirmDeleteVault"
         component={ConfirmDeleteVault}
       />
 
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='archievedVault'
+        name="archievedVault"
         component={ArchievedVault}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='vaultToAza'
+        name="vaultToAza"
         component={VaultToAza}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='vaultWithdrawsuccessful'
+        name="vaultWithdrawsuccessful"
         component={VaultWithdrawsuccessful}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='vaultToBank'
+        name="vaultToBank"
         component={VaultToBank}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='vaultWithdrawConfirmation'
+        name="vaultWithdrawConfirmation"
         component={VaultWithdrawConfirmation}
       />
 
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='maturedVault'
+        name="maturedVault"
         component={MaturedVault}
       />
       <VaultStack.Screen
         options={{ headerShown: false }}
-        name='unMatureVault'
+        name="unMatureVault"
         component={UnMatureVault}
       />
     </VaultStack.Navigator>

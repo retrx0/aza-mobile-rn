@@ -28,7 +28,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(155) }]}>
           <Button
-            title='Withdraw to Aza'
+            title="Withdraw to Aza"
             onPressButton={() =>
               navigation
                 .getParent()
@@ -40,7 +40,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
-            title='Withdraw to Bank'
+            title="Withdraw to Bank"
             onPressButton={() =>
               navigation
                 .getParent()

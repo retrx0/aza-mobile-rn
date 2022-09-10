@@ -8,15 +8,14 @@ import Colors from "../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
 import { hp, wp } from "../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import RNPickerSelect from "react-native-picker-select";
 import { GENDER } from "../../../constants/Gender";
 import { TextHeader } from "../../../components/text/textHeader";
 import { SelectIcon } from "../../../../assets/svg";
 
-const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
-  const insets = useSafeAreaInsets();
-
+const SignUpProfileSetupScreen = ({
+  navigation,
+}: SignUpScreenProps<"SignUpProfileSetup">) => {
   const [gender, setGender] = useState(GENDER);
   const placeholder = {
     label: "Select Gender",
@@ -33,11 +32,22 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
         <Text style={[CommonStyles.headerText]}>Profile setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <BoxTextInput placeHolder="Full Name" required value="Chiazondu Joseph" onChange={() => {}} />
-      <BoxTextInput placeHolder="Email" required value="chiazo@examplemail.com" onChange={() => {}} />
+      <BoxTextInput
+        placeHolder="Full Name"
+        required
+        value="Chiazondu Joseph"
+        onChange={() => {}}
+      />
+      <BoxTextInput
+        placeHolder="Email"
+        required
+        value="chiazo@examplemail.com"
+        onChange={() => {}}
+      />
       <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
 
-      <View style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
+      <View
+        style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
         <RNPickerSelect
           placeholder={placeholder}
           onValueChange={(value) => {

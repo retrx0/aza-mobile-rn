@@ -34,21 +34,21 @@ const OtpScreen = (props: OtpProp) => {
       <SegmentedInput
         value={otpCode}
         onValueChanged={onOtpChanged}
-        headerText='OTP'
+        headerText="OTP"
         secureInput={false}
       />
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
         <TouchableOpacity>
           <CancelButtonWithUnderline
-            title='Resend code'
+            title="Resend code"
             style={{ borderBottomColor: Colors.general.black }}
             styleText={CommonStyles.resend}
           />
         </TouchableOpacity>
       </View>
       <Button
-        title='Continue'
+        title="Continue"
         onPressButton={onVerify}
         style={styles.otpbutton}
       />

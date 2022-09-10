@@ -17,7 +17,7 @@ const VaultWithdrawsuccessful = ({
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../../assets/images/Successful.png")}
-          resizeMode='cover'
+          resizeMode="cover"
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
@@ -32,7 +32,7 @@ const VaultWithdrawsuccessful = ({
             { bottom: insets.bottom || hp(45) },
           ]}>
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() => navigation.getParent()?.navigate("Vault")}
             style={[CommonStyles.button, { bottom: hp(45) }]}
           />

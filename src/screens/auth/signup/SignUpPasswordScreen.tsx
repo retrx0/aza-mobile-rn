@@ -42,7 +42,7 @@ const SignUpPasswordScreen = ({
       <SegmentedInput
         value={passcode}
         secureInput
-        headerText=''
+        headerText=""
         onValueChanged={(code) => setPasscode(code)}
       />
       <View style={[CommonStyles.container, { bottom: hp(400) }]}>
@@ -64,7 +64,7 @@ const SignUpPasswordScreen = ({
         </View>
         <Separator />
         <Button
-          title='Continue'
+          title="Continue"
           onPressButton={() => {
             passwordScreenType === "Create"
               ? navigation.navigate("SignUpConfirmPassword", {
