@@ -93,6 +93,3 @@ const SignUpProfileSetupScreen = ({
 };
 
 export default SignUpProfileSetupScreen;
-function useSafeAreaInsets(): any {
-  throw new Error("Function not implemented.");
-}
