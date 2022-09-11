@@ -32,18 +32,22 @@ const SignUpProfileSetupScreen = ({
         <Text style={[CommonStyles.headerText]}>Profile setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <BoxTextInput
-        placeHolder="Full Name"
-        required
-        value="Chiazondu Joseph"
-        onChange={() => {}}
-      />
-      <BoxTextInput
-        placeHolder="Email"
-        required
-        value="chiazo@examplemail.com"
-        onChange={() => {}}
-      />
+      <View style={{ width: "90%", alignSelf: "center" }}>
+        <BoxTextInput
+          placeHolder="Full Name"
+          required
+          value="Chiazondu Joseph"
+          onChange={() => {}}
+        />
+      </View>
+      <View style={{ width: "90%", alignSelf: "center" }}>
+        <BoxTextInput
+          placeHolder="Email"
+          required
+          value="chiazo@examplemail.com"
+          onChange={() => {}}
+        />
+      </View>
       <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
 
       <View
