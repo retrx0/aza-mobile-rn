@@ -19,7 +19,7 @@ import React from "react";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "@react-navigation/core";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { VautListProps } from "../../../../types";
+import { VaultListProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
@@ -50,7 +50,7 @@ const ListItem = ({
   closeIcon,
   stage,
   onPress,
-}: VautListProps) => {
+}: VaultListProps) => {
   const navigation = useNavigation();
   return (
     <Swipeable
@@ -155,7 +155,7 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
         <View style={CommonStyles.archievedContainer}>
           <BackButton onPress={() => navigation.goBack()} />
           <Header
-            heading='Archived Vaults'
+            heading="Archived Vaults"
             description={""}
             descriptionStyle={undefined}
             headerStyle={CommonStyles.archieved}

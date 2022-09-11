@@ -4,19 +4,19 @@ import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
-import { VaultStyles } from "../styles";
+import { vaultStyles } from "../styles";
 import { Image, TouchableOpacity } from "react-native";
-import styles from "../../../onboarding/OnboardingStyles";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { hp } from "../../../../common/util/LayoutUtil";
+import Colors from "../../../../constants/Colors";
 
-const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [click, setClick] = useState(false);
 
   return (
     <SpacerWrapper>
-      <View style={VaultStyles.container}>
+      <View style={vaultStyles.container}>
         <View style={[CommonStyles.topTab]}>
           <View style={{ marginLeft: 20 }}>
             <BackButton
@@ -34,7 +34,7 @@ const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
               source={require("../../../../../assets/images/AccessBank.png")}
-              resizeMode='cover'
+              resizeMode="cover"
               style={[CommonStyles.accessBank]}
             />
             <Text style={CommonStyles.accountNumber}>
@@ -56,13 +56,13 @@ const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(50) }]}>
           <CancelButtonWithUnderline
-            title='Add another Bank Account'
+            title="Add another Bank Account"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
             style={CommonStyles.archivedBox}
             styleText={CommonStyles.addAccount}
           />
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", {
                 screen: "VaultWithdrawConfirmation",
@@ -72,9 +72,9 @@ const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
 
           <CancelButtonWithUnderline
-            title='Cancel'
+            title="Cancel"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
-            style={{ marginTop: 5 }}
+            style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>
@@ -83,4 +83,4 @@ const VaulToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
   );
 };
 
-export default VaulToBank;
+export default VaultToBank;

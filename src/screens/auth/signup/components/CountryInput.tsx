@@ -26,7 +26,7 @@ export const CountryBox = ({
         <Image
           source={{ uri: imageLink }}
           style={styles.flag}
-          resizeMode='contain'
+          resizeMode="contain"
         />
         <View style={styles.country}>
           <Text style={styles.countryName}>{short_name}</Text>
@@ -36,8 +36,8 @@ export const CountryBox = ({
         <Text style={styles.countryName}>{code}</Text>
         <TextInput
           style={styles.textInput}
-          placeholder='phone number'
-          keyboardType='number-pad'
+          placeholder="phone number"
+          keyboardType="number-pad"
           {...rest}
         />
       </View>

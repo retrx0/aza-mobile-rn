@@ -22,7 +22,7 @@ export const CountriesCard = ({
               },
             }}
             style={styles.flag}
-            resizeMode='contain'
+            resizeMode="contain"
           />
         )}
         <Text style={styles.countryName}>{code}</Text>

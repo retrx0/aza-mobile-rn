@@ -5,13 +5,12 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { NairaIcon, UnlockIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { VaultStyles } from "../styles";
-import { useNavigation } from "@react-navigation/core";
+import { vaultStyles } from "../styles";
 
 const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
-      <View style={VaultStyles.container}>
+      <View style={vaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -30,7 +29,11 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View style={[CommonStyles.passwordContainer, { bottom: hp(155) }]}>
           <Button
             title="Withdraw to Aza"
-            onPressButton={() => navigation.getParent()?.navigate("Common", { screen: "VaultToAza" })}
+            onPressButton={() =>
+              navigation
+                .getParent()
+                ?.navigate("Common", { screen: "VaultToAza" })
+            }
             style={[CommonStyles.maturebutton]}
             styleText={CommonStyles.buttonText}
           />
@@ -38,7 +41,11 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
             title="Withdraw to Bank"
-            onPressButton={() => navigation.getParent()?.navigate("Common", { screen: "VaulToBank" })}
+            onPressButton={() =>
+              navigation
+                .getParent()
+                ?.navigate("Common", { screen: "VaultToBank" })
+            }
             style={[CommonStyles.button]}
           />
         </View>

@@ -2,22 +2,19 @@ import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View, Text } from "../../../components/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import { useState } from "react";
+import Colors from "../../../constants/Colors";
 
 const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const insets = useSafeAreaInsets();
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
         <Image
           source={require("../../../../assets/images/Caution.png")}
-          resizeMode='cover'
+          resizeMode="cover"
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
@@ -30,7 +27,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
-            title='Continue'
+            title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", {
                 screen: "VaultSuccessful",
@@ -40,9 +37,9 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
 
           <CancelButtonWithUnderline
-            title='Cancel'
+            title="Cancel"
             onPressButton={() => navigation.getParent()?.navigate("NewVault")}
-            style={{ marginTop: 5 }}
+            style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>

@@ -5,14 +5,14 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { LockIcon, NairaIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { VaultStyles } from "../styles";
+import { vaultStyles } from "../styles";
 import { Input } from "../../../../components/input/input";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
 
 const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
   return (
     <SpacerWrapper>
-      <View style={VaultStyles.container}>
+      <View style={vaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -48,12 +48,22 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
-            return <PercentageCard key={index} percentage={item.percentage} onPress={() => {}} />;
+            return (
+              <PercentageCard
+                key={index}
+                percentage={item.percentage}
+                onPress={() => {}}
+              />
+            );
           })}
         </View>
 
         <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
-          <Button title="Continue" onPressButton={() => setMatured()} style={[CommonStyles.button]} />
+          <Button
+            title="Continue"
+            onPressButton={() => setMatured()}
+            style={[CommonStyles.button]}
+          />
         </View>
       </View>
     </SpacerWrapper>

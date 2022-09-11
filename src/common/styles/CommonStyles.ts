@@ -266,7 +266,7 @@ const CommonStyles = StyleSheet.create({
   actionContainer: {
     alignSelf: "center",
     alignItems: "center",
-    marginTop: 26,
+    marginTop: hp(26),
   },
   lockupStyle: {
     fontSize: hp(14),
@@ -758,14 +758,9 @@ const CommonStyles = StyleSheet.create({
   },
   resend: {
     fontWeight: "400",
-    fontFamily: "Euclid-Circular-A-Bold",
+    fontFamily: "Euclid-Circular-A",
     fontSize: hp(16),
-    color: Colors.general.grey,
-  },
-  resendBox: {
-    borderBottomColor: "#121212",
-    paddingBottom: 1,
-    borderBottomWidth: 1,
+    color: Colors.general.black,
   },
 
   verification: {

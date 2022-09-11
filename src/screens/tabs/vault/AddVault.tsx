@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
@@ -9,9 +9,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
-
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import Colors from "../../../constants/Colors";
+import { hp } from "../../../common/util/LayoutUtil";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
@@ -19,7 +17,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={CommonStyles.vaultcontainer}>
         <View style={[CommonStyles.addVault]}>
           <Header
-            heading='Vault'
+            heading="Vault"
             description={""}
             headerStyle={[CommonStyles.vaultAdd]}
             descriptionStyle={undefined}
@@ -32,7 +30,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <ArchievedComponents />
         <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <CancelButtonWithUnderline
-            title='Archived Vaults'
+            title="Archived Vaults"
             onPressButton={() =>
               navigation.getParent()?.navigate("ArchievedVault")
             }
@@ -40,7 +38,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={CommonStyles.archived}
           />
           <Button
-            title='New Vault'
+            title="New Vault"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
             }

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import Colors from "../../../constants/Colors";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 
-export const SigninStyles = StyleSheet.create({
+export const signinStyles = StyleSheet.create({
   sentCode: {
     fontSize: hp(14),
     fontWeight: "400",

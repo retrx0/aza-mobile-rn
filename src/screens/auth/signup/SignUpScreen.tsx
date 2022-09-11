@@ -50,7 +50,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <CancelButtonWithUnderline
           title="Login"
-          style={CommonStyles.resendBox}
+          style={{ borderBottomColor: Colors.general.black }}
           styleText={CommonStyles.resend}
           onPressButton={() => navigation.getParent()?.navigate("SignIn")}
         />

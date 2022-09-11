@@ -17,7 +17,7 @@ import {
   TrashIcon,
   UnlockIcon,
 } from "../../../../../assets/svg";
-import { VautListProps } from "../../../../../types";
+import { VaultListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 
@@ -55,7 +55,7 @@ const ListItem = ({
   closeIcon,
   stage,
   onPress,
-}: VautListProps) => {
+}: VaultListProps) => {
   const navigation = useNavigation();
   return (
     <Swipeable

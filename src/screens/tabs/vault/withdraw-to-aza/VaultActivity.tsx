@@ -1,22 +1,13 @@
-import { Image, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
-import { Header } from "../../../../components/text/header";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import {
-  ArrowDownIcon,
-  FlightIcon,
-  ReceivedIcon,
-  SendIcon,
-  WithdrawIcon,
-} from "../../../../../assets/svg";
-import BackButton from "../../../../components/buttons/BackButton";
+import { FlightIcon } from "../../../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { ActiivityCard, ActiivityList } from "../components/ActivityComponents";
-import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { ActivityCard, ActivityList } from "../components/ActivityComponents";
 
 const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
@@ -24,9 +15,9 @@ const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
         <View>
-          {ActiivityList.map((item, index) => {
+          {ActivityList.map((item, index) => {
             return (
-              <ActiivityCard
+              <ActivityCard
                 key={index}
                 send={item.send}
                 onPress={() => {}}
@@ -52,7 +43,7 @@ const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
             { bottom: insets.bottom || hp(45) },
           ]}>
           <Button
-            title='New Vault'
+            title="New Vault"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "VaultToAza" })
             }

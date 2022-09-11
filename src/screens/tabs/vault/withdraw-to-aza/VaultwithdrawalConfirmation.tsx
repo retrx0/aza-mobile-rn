@@ -1,4 +1,3 @@
-import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../components/Themed";
 import { Header } from "../../../../components/text/header";
@@ -9,8 +8,8 @@ import BackButton from "../../../../components/buttons/BackButton";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { Input } from "../../../../components/input/input";
-import { VaultStyles as styles } from "../styles";
-import { useState } from "react";
+import { vaultStyles as styles } from "../styles";
+import Colors from "../../../../constants/Colors";
 
 const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
@@ -29,7 +28,9 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             />
           </View>
         </View>
-        <Text style={CommonStyles.confirmDetails}>Kindly confirm the details of this transaction</Text>
+        <Text style={CommonStyles.confirmDetails}>
+          Kindly confirm the details of this transaction
+        </Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
@@ -68,7 +69,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <CancelButtonWithUnderline
             title="Cancel Transaction"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
-            style={{ marginTop: 10 }}
+            style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>

@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { SigninStyles as styles } from "../signin/styles";
+import { signinStyles as styles } from "../signin/styles";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -8,6 +8,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import Colors from "../../../constants/Colors";
 
 type OtpProp = {
   onWrongNumber: () => void;
@@ -19,7 +20,7 @@ type OtpProp = {
   onBackButtonPressed: () => void;
 };
 
-const OtpScreen = (props: OtpProp, { navigation }: { navigation: any }) => {
+const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onVerify } = props;
   return (
     <SpacerWrapper>
@@ -27,19 +28,30 @@ const OtpScreen = (props: OtpProp, { navigation }: { navigation: any }) => {
         <BackButton onPress={() => props.onBackButtonPressed()} />
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>Please enter the 6-digit code sent to your mobile number</Text>
-      <SegmentedInput value={otpCode} onValueChanged={onOtpChanged} headerText="OTP" secureInput={false} />
+      <Text style={styles.verification}>
+        Please enter the 6-digit code sent to your mobile number
+      </Text>
+      <SegmentedInput
+        value={otpCode}
+        onValueChanged={onOtpChanged}
+        headerText="OTP"
+        secureInput={false}
+      />
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
         <TouchableOpacity>
           <CancelButtonWithUnderline
             title="Resend code"
-            style={CommonStyles.resendBox}
+            style={{ borderBottomColor: Colors.general.black }}
             styleText={CommonStyles.resend}
           />
         </TouchableOpacity>
       </View>
-      <Button title="Continue" onPressButton={onVerify} style={styles.otpbutton} />
+      <Button
+        title="Continue"
+        onPressButton={onVerify}
+        style={styles.otpbutton}
+      />
     </SpacerWrapper>
   );
 };

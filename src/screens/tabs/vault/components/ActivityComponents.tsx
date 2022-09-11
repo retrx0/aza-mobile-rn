@@ -1,17 +1,12 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import {
-  CurrencyIcon,
-  FlightIcon,
-  ReceiveIcon,
-  WithDrawIcon,
-} from "../../../../../assets/svg";
-import { VautActivitytProps } from "../../../../../types";
+import { ReceiveIcon, WithDrawIcon } from "../../../../../assets/svg";
+import { VaultActivitytProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 
-export const ActiivityList = [
+export const ActivityList = [
   {
     send: <WithDrawIcon />,
     status: "Withdrawal to Bank",
@@ -56,13 +51,13 @@ export const ActiivityList = [
   },
 ];
 
-export const ActiivityCard = ({
+export const ActivityCard = ({
   send,
   status,
   price,
   due,
   onPress,
-}: VautActivitytProps) => {
+}: VaultActivitytProps) => {
   return (
     <View>
       <View style={styles.activityContainer}>
