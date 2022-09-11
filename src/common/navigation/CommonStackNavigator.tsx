@@ -86,9 +86,9 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName='details'>
-        <Tab.Screen component={VaultDetails} name='details' />
-        <Tab.Screen component={VaultActivity} name='activity' />
+        initialRouteName="details">
+        <Tab.Screen component={VaultDetails} name="details" />
+        <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
     </SpacerWrapper>
   );
@@ -101,12 +101,12 @@ const CommonStack = () => {
       <Stack.Group screenOptions={{ headerShown: false }}>
         <Stack.Screen
           component={BvnVerificationNavigator}
-          name='BvnVerificationRoot'
+          name="BvnVerificationRoot"
         />
         <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>
           <Stack.Screen
             component={StatusScreen}
-            name='StatusScreen'
+            name="StatusScreen"
             options={() => ({ headerShown: false })}
           />
         </Stack.Group>
@@ -114,102 +114,102 @@ const CommonStack = () => {
 
       {/* Settings */}
       <Stack.Group>
-        <Stack.Screen name='ChangePassword' component={ChangePasswordScreen} />
-        <Stack.Screen name='NewPassword' component={NewPasswordScreen} />
+        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+        <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
         <Stack.Screen
-          name='ChangePhoneNumber'
+          name="ChangePhoneNumber"
           component={ChangePhoneNumberScreen}
         />
         <Stack.Screen
-          name='ChangePhoneNumberOTP'
+          name="ChangePhoneNumberOTP"
           component={ChangePhoneNumberOTPScreen}
         />
-        <Stack.Screen name='ChangeEmail' component={ChangeEmailScreen} />
+        <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
         <Stack.Screen
-          name='PrivacySettings'
+          name="PrivacySettings"
           component={PrivacySettingsScreen}
         />
-        <Stack.Screen name='NameVisibility' component={NameVisibilityScreen} />
+        <Stack.Screen name="NameVisibility" component={NameVisibilityScreen} />
         <Stack.Screen
-          name='ContactVisibility'
+          name="ContactVisibility"
           component={ContactsVisibilityScreen}
         />
         <Stack.Screen
-          name='SplitAndMoneyRequests'
+          name="SplitAndMoneyRequests"
           component={SplitAndMoneyRequestsScreen}
         />
-        <Stack.Screen name='BlockUsers' component={BlockUsersScreen} />
-        <Stack.Screen name='BlockNewUser' component={BlockNewUserScreen} />
+        <Stack.Screen name="BlockUsers" component={BlockUsersScreen} />
+        <Stack.Screen name="BlockNewUser" component={BlockNewUserScreen} />
         <Stack.Screen
-          name='NotificationSettings'
+          name="NotificationSettings"
           component={NorificationSettingsScreen}
         />
-        <Stack.Screen name='FaceId' component={LoginWithFaceIdScreen} />
-        <Stack.Screen name='LoginOptions' component={LoginOptionsScreen} />
-        <Stack.Screen name='Appearance' component={AppearanceScreen} />
-        <Stack.Screen name='AppLanguage' component={AppLanguageScreen} />
+        <Stack.Screen name="FaceId" component={LoginWithFaceIdScreen} />
+        <Stack.Screen name="LoginOptions" component={LoginOptionsScreen} />
+        <Stack.Screen name="Appearance" component={AppearanceScreen} />
+        <Stack.Screen name="AppLanguage" component={AppLanguageScreen} />
       </Stack.Group>
 
       {/* Vault */}
       <Stack.Group screenOptions={{ headerShown: false }}>
-        <Stack.Screen component={NewVault} name='NewVault' />
+        <Stack.Screen component={NewVault} name="NewVault" />
 
         <Stack.Screen
           options={{ headerShown: false }}
-          name='LockVault'
+          name="LockVault"
           component={LockVault}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='VaultSuccessful'
+          name="VaultSuccessful"
           component={VaultSuccessful}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='AddVault'
+          name="AddVault"
           component={AddVault}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='ConfirmDeleteVault'
+          name="ConfirmDeleteVault"
           component={ConfirmDeleteVault}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='VaultToBank'
+          name="VaultToBank"
           component={VaultToBank}
         />
 
         <Stack.Screen
           options={{ headerShown: false }}
-          name='VaultToAza'
+          name="VaultToAza"
           component={VaultToAza}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='ArchievedVault'
+          name="ArchievedVault"
           component={ArchievedVault}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='VaultWithdrawsuccessful'
+          name="VaultWithdrawsuccessful"
           component={VaultWithdrawsuccessful}
         />
 
         <Stack.Screen
           options={{ headerShown: false }}
-          name='TopBar'
+          name="TopBar"
           component={TopBar}
         />
 
         <Stack.Screen
           options={{ headerShown: false }}
-          name='VaultWithdrawConfirmation'
+          name="VaultWithdrawConfirmation"
           component={VaultWithdrawConfirmation}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name='VaultToBankSuccessfull'
+          name="VaultToBankSuccessfull"
           component={VaultToBankSuccessfull}
         />
       </Stack.Group>
@@ -244,45 +244,45 @@ const CommonStack = () => {
         })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
-          name='AirtimeData'
+          name="AirtimeData"
           component={AirtimeTabs}
         />
         <Stack.Screen
           options={{ presentation: "fullScreenModal", title: "" }}
-          name='Pie'
+          name="Pie"
           component={Pie}
         />
         <Stack.Screen
           options={{ title: "Confirmation" }}
-          name='Confirm'
+          name="Confirm"
           component={ConfirmTransaction}
         />
         <Stack.Screen
           options={{ title: "Internet" }}
-          name='InternetPlans'
+          name="InternetPlans"
           component={InternetPlans}
         />
         <Stack.Screen
           options={{ title: "Electricity" }}
-          name='Electricity'
+          name="Electricity"
           component={ElectricityIndex}
         />
         <Stack.Screen
           options={{ title: "Cable TV" }}
-          name='CableTV'
+          name="CableTV"
           component={CableTvIndex}
         />
         <Stack.Screen
           options={{ title: "Water" }}
-          name='Water'
+          name="Water"
           component={WaterScreen}
         />
-        <Stack.Screen name='Charity' component={CharityIndexScreen} />
+        <Stack.Screen name="Charity" component={CharityIndexScreen} />
         <Stack.Screen
           options={({ route }: { route: any }) => ({
             title: route.params.name,
           })}
-          name='CharityDetail'
+          name="CharityDetail"
           component={CharityTabs}
         />
 
@@ -290,7 +290,7 @@ const CommonStack = () => {
           options={({ route }: { route: any }) => ({
             title: route.params.name,
           })}
-          name='InternetPlanDetail'
+          name="InternetPlanDetail"
           component={InternetDetail}
         />
 
@@ -298,7 +298,7 @@ const CommonStack = () => {
           options={{
             headerShown: false,
           }}
-          name='CompleteTransaction'
+          name="CompleteTransaction"
           component={StatusScreen}
         />
       </Stack.Group>

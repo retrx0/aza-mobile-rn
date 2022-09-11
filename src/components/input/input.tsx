@@ -41,11 +41,18 @@ export const Input = ({
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
           <View style={styles.divider} />
-          <TextInput placeholder="Your 10-digit phone number" style={styles.phoneInput} keyboardType="number-pad" />
+          <TextInput
+            placeholder="Your 10-digit phone number"
+            style={styles.phoneInput}
+            keyboardType="number-pad"
+          />
         </View>
       ) : (
         <View>
-          <TextInput placeholder={placeholder} {...rest} style={[inputStyle]}></TextInput>
+          <TextInput
+            placeholder={placeholder}
+            {...rest}
+            style={[inputStyle]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}

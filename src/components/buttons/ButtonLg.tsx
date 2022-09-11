@@ -21,7 +21,7 @@ const ButtonLg = (props: {
 }) => {
   return (
     <TouchableOpacity
-    {...props}
+      {...props}
       style={[styles.button, { backgroundColor: props.color }, props.style]}
       onPress={props.onPress}>
       <View
