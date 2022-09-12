@@ -1,6 +1,16 @@
 import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from "react-native-svg";
+import Svg, {
+  Path,
+  Circle,
+  Image,
+  Defs,
+  Use,
+  Pattern,
+  G,
+  Rect,
+  ClipPath,
+} from "react-native-svg";
 
 type SvgIconProps = {
   color: string;
@@ -66,10 +76,21 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
       <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
       <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
       <Defs>
-        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <Use href="#image0_1093_6630" transform="translate(-0.25) scale(0.003125)" />
+        <Pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1">
+          <Use
+            href="#image0_1093_6630"
+            transform="translate(-0.25) scale(0.003125)"
+          />
         </Pattern>
-        <Image href={require("../assets/images/logo/lightning-bolt.png")} width="480" height="320" />
+        <Image
+          href={require("../assets/images/logo/lightning-bolt.png")}
+          width="480"
+          height="320"
+        />
       </Defs>
     </Svg>
   );
@@ -380,8 +401,15 @@ export const FlagIcon = () => {
     <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
       <Circle cx="7.5" cy="7.5" r="7.5" fill="url(#pattern0)" />
       <Defs>
-        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <Use xlinkHref="#image0_295_18064" transform="translate(-0.124378) scale(0.00497512)" />
+        <Pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1">
+          <Use
+            xlinkHref="#image0_295_18064"
+            transform="translate(-0.124378) scale(0.00497512)"
+          />
         </Pattern>
         <Image id="image0_295_18064" width="251" height="201" />
       </Defs>
@@ -511,7 +539,13 @@ export const InfoIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path d="M10 6.66602V10.8327" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <Path
+        d="M10 6.66602V10.8327"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
       <Path
         d="M9.99536 13.334H10.0028"
         stroke="black"
@@ -530,7 +564,7 @@ export const LockIcon = () => {
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M8.87244 5.14047e-05C11.7265 5.14047e-05 14.0544 2.25667 14.169 5.08262L14.1734 5.3011V6.87696C15.95 7.49361 17.2252 9.18206 17.2252 11.1689V15.4579C17.2252 17.9668 15.1918 19.9999 12.6832 19.9999H5.04224C2.53372 19.9999 0.500244 17.9668 0.500244 15.4579V11.1689C0.500244 9.18191 1.77569 7.49335 3.55245 6.87682L3.55245 5.27781C3.56526 2.34982 5.9483 -0.0127036 8.87244 5.14047e-05ZM12.6734 5.3011V6.6269H5.05244V5.2811L5.05824 5.08578C5.16879 3.08056 6.83579 1.49118 8.86917 1.50004C10.9712 1.50005 12.6734 3.2023 12.6734 5.3011ZM12.6832 8.1269H5.04224C3.36208 8.1269 2.00024 9.48849 2.00024 11.1689V15.4579C2.00024 17.1383 3.36208 18.4999 5.04224 18.4999H12.6832C14.3634 18.4999 15.7252 17.1383 15.7252 15.4579V11.1689C15.7252 9.48849 14.3634 8.1269 12.6832 8.1269ZM9.6061 12.1012C9.55643 11.7351 9.24264 11.453 8.86294 11.453C8.44873 11.453 8.11294 11.7888 8.11294 12.203V14.424L8.11979 14.5258C8.16945 14.8918 8.48325 15.174 8.86294 15.174C9.27716 15.174 9.61294 14.8382 9.61294 14.424V12.203L9.6061 12.1012Z"
-        fill="#200E32"
+        fill="black"
       />
     </Svg>
   );
@@ -589,7 +623,12 @@ export const WithdrawIcon = () => (
 export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={24} height={24} fill="none">
-      <Path d="M3 7h18M3 12h18M3 17h18" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+      <Path
+        d="M3 7h18M3 12h18M3 17h18"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
     </Svg>
   );
 };
@@ -947,7 +986,12 @@ export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
         stroke={color}
         strokeMiterlimit={10}
       />
-      <Path d="M1.333 1.667h13.334" stroke={color} strokeMiterlimit={10} strokeLinecap="round" />
+      <Path
+        d="M1.333 1.667h13.334"
+        stroke={color}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+      />
       <Path
         d="M5.333 5.333h5.334M5.333 8.667h5.334"
         stroke={color}
@@ -1023,7 +1067,13 @@ export const TrashIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path d="M9.5 12.5H14.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <Path
+        d="M9.5 12.5H14.5"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </Svg>
   );
 };
@@ -1045,7 +1095,13 @@ export const ArchieveIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path d="M10.1799 14H13.8199" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <Path
+        d="M10.1799 14H13.8199"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </Svg>
   );
 };
@@ -1059,7 +1115,12 @@ export const DownLoadIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path d="M8 1.33398V9.92065" stroke="#A6A6A6" stroke-linecap="round" stroke-linejoin="round" />
+      <Path
+        d="M8 1.33398V9.92065"
+        stroke="#A6A6A6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
       <Path
         d="M10.2333 8.43359L8 10.6669L5.76666 8.43359"
         stroke="#A6A6A6"
@@ -1081,9 +1142,24 @@ export const CaptionIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path d="M7.99823 5.5H8.00272" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
-      <Path d="M5.99774 5.5H6.00223" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
-      <Path d="M3.99725 5.5H4.00174" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
+      <Path
+        d="M7.99823 5.5H8.00272"
+        stroke="#292D32"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M5.99774 5.5H6.00223"
+        stroke="#292D32"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M3.99725 5.5H4.00174"
+        stroke="#292D32"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </Svg>
   );
 };
@@ -1102,8 +1178,16 @@ export const FlightIcon = () => {
         stroke="#292D32"
         stroke-miterlimit="10"
       />
-      <Path d="M14.6676 7.27344H9.56763" stroke="#292D32" stroke-miterlimit="10" />
-      <Path d="M6.43325 7.27344H1.33325" stroke="#292D32" stroke-miterlimit="10" />
+      <Path
+        d="M14.6676 7.27344H9.56763"
+        stroke="#292D32"
+        stroke-miterlimit="10"
+      />
+      <Path
+        d="M6.43325 7.27344H1.33325"
+        stroke="#292D32"
+        stroke-miterlimit="10"
+      />
     </Svg>
   );
 };
@@ -1268,7 +1352,11 @@ export const MoonIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const NotificationSettingsIcon = ({ color, size, style }: SvgIconProps) => {
+export const NotificationSettingsIcon = ({
+  color,
+  size,
+  style,
+}: SvgIconProps) => {
   return (
     <Svg width={size} height={size} fill="none">
       <Path
@@ -1364,7 +1452,10 @@ export const UndrawCancelIcon = ({ color, size, style }: SvgIconProps) => {
           d="M58.87 225.599h11.44v-.144c0-2.448-1.994-4.432-4.454-4.432l-2.09-1.578-3.898 1.578h-.999v4.576Z"
           fill="#2F2E41"
         />
-        <Path d="m29.188 211.482 2.975 2.222 10.027-10.366-4.392-3.279-8.61 11.423Z" fill="#A0616A" />
+        <Path
+          d="m29.188 211.482 2.975 2.222 10.027-10.366-4.392-3.279-8.61 11.423Z"
+          fill="#A0616A"
+        />
         <Path
           d="m26.753 214.494 9.151 6.833.087-.116a4.418 4.418 0 0 0-.89-6.204l-.72-2.51-4.07-1.067-.799-.596-2.759 3.66ZM41.553 154.719s.206 5.575.465 10.046c.042.733-1.684 1.53-1.64 2.328.03.529.355 1.043.385 1.595.032.583-.416 1.098-.384 1.7.031.589.542 1.264.573 1.866.332 6.482 1.534 14.242.33 16.411-.593 1.069-8.158 15.879-8.158 15.879s4.215 6.292 5.419 4.195c1.59-2.77 13.848-15.73 13.848-18.205 0-2.471 2.836-20.997 2.836-20.997l1.977 10.963.907 2.172-.285 1.276.586 1.721.032 1.703.57 3.162s-1.716 24.641-.75 25.327c.97.689 5.663 1.926 6.217.689.551-1.238 4.137-25.716 4.137-25.716s.578-11.218 1.204-21.644c.036-.605.464-1.336.497-1.933.039-.692-.232-1.591-.196-2.262.04-.77.382-1.312.416-2.049.255-5.696-1.181-12.632-1.639-13.315-1.381-2.061-2.625-3.709-2.625-3.709s-18.611-6.086-23.584.098l-1.138 8.699Z"
           fill="#2F2E41"
@@ -1409,7 +1500,10 @@ export const UndrawCancelIcon = ({ color, size, style }: SvgIconProps) => {
           d="m50.33 107.027-1.395 1.171a4.764 4.764 0 0 0-.96 6.187l.002.004a4.804 4.804 0 0 0 4.853 2.136l7.67-1.317c7.332.936 15.897-2.283 24.918-7.038l3.678-17.267-8.346-.62-3.158 11.238-19.215 2.839-.011.001-6.766 1.603-1.27 1.063Z"
           fill="#3F3D56"
         />
-        <Path d="M94.007 225.894.41 226a.41.41 0 0 1 0-.817l93.598-.105a.408.408 0 1 1 0 .816Z" fill="#CACACA" />
+        <Path
+          d="M94.007 225.894.41 226a.41.41 0 0 1 0-.817l93.598-.105a.408.408 0 1 1 0 .816Z"
+          fill="#CACACA"
+        />
         <Path
           d="M19.556 31.093c1.608 0 2.912-1.327 2.912-2.963 0-1.637-1.304-2.964-2.912-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM29.618 31.093c1.608 0 2.913-1.327 2.913-2.963 0-1.637-1.305-2.964-2.913-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM39.68 31.093c1.608 0 2.913-1.327 2.913-2.963 0-1.637-1.305-2.964-2.913-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM51.153 30.471a.344.344 0 0 1-.246-.103l-1.965-2a.341.341 0 0 1 0-.479l1.965-1.999a.346.346 0 0 1 .487-.005c.136.132.138.35.005.484l-1.73 1.76 1.73 1.76a.342.342 0 0 1-.246.582ZM54.456 30.472a.344.344 0 0 1-.246-.583l1.73-1.76-1.73-1.76a.342.342 0 0 1 .005-.484.345.345 0 0 1 .487.005l1.965 2a.342.342 0 0 1 0 .479l-1.965 2a.344.344 0 0 1-.246.103ZM157.271 25.51h-3.654a.753.753 0 0 0-.755.75v3.64c0 .416.338.752.755.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM148.316 25.51h-3.654a.753.753 0 0 0-.755.75v3.64c0 .416.338.752.755.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM165.709 25.68h-3.654a.752.752 0 0 0-.754.75v3.64c0 .416.337.752.754.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM110.628 27.064h-29.21c-.51 0-.92.412-.92.916s.41.915.92.915h29.21a.92.92 0 0 0 .92-.915.92.92 0 0 0-.92-.916Z"
           fill="#3F3D56"
