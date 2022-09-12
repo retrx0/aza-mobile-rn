@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    marginBottom: hp(11),
+    marginBottom: hp(10),
     fontFamily: "Euclid-Circular-A",
   },
   container: {
-    marginTop: hp(20),
-    marginBottom: hp(20),
+    marginTop: hp(15),
+    marginBottom: hp(10),
   },
   textInput: {
     borderRadius: 9,
