@@ -90,7 +90,7 @@ const SignUpProfileSetupScreen = ({
             passwordScreenType: "Create",
           })
         }
-        style={[CommonStyles.container, { bottom: hp(45) }]}
+        style={[CommonStyles.container, { bottom: hp(60) }]}
       />
     </SpacerWrapper>
   );
