@@ -15,10 +15,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
       <View style={vaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <NairaIcon color={"black"} size={0} />
-            <Text style={CommonStyles.flightAmount}>2,000</Text>
-          </View>
+          <Text style={CommonStyles.flightAmount}> {"\u20A6"}2,000</Text>
         </View>
 
         <View>
@@ -58,7 +55,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
           })}
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
           <Button
             title="Continue"
             onPressButton={() => setMatured()}
