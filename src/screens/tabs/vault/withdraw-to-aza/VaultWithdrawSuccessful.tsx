@@ -23,7 +23,7 @@ const VaultWithdrawsuccessful = ({
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>
-            You have successfully withdrawn #80,000 to your Aza Account
+            You have successfully withdrawn {"\u20A6"}80,000 to your Aza Account
           </Text>
         </View>
         <View
@@ -34,7 +34,7 @@ const VaultWithdrawsuccessful = ({
           <Button
             title="Continue"
             onPressButton={() => navigation.getParent()?.navigate("Vault")}
-            style={[CommonStyles.button, { bottom: hp(45) }]}
+            style={[CommonStyles.button, { bottom: hp(20) }]}
           />
         </View>
       </View>

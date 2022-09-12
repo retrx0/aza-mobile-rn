@@ -34,7 +34,7 @@ const VaultToBankSuccessfull = ({
           <Button
             title="Continue"
             onPressButton={() => navigation.getParent()?.navigate("Vault")}
-            style={[CommonStyles.button, { bottom: hp(45) }]}
+            style={[CommonStyles.button, { bottom: hp(20) }]}
           />
         </View>
       </View>

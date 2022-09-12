@@ -28,7 +28,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={CommonStyles.lineDivider} />
         <ArchievedComponents />
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
           <CancelButtonWithUnderline
             title="Archived Vaults"
             onPressButton={() =>

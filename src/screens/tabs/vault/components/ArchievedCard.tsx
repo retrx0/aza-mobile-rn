@@ -157,13 +157,11 @@ const ListItem = ({
 const ArchievedComponents = () => {
   return (
     <>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={ArchieveList}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem {...item} />}
-        />
-      </SafeAreaView>
+      <FlatList
+        data={ArchieveList}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <ListItem {...item} />}
+      />
     </>
   );
 };

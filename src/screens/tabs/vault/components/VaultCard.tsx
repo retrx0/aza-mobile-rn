@@ -8,7 +8,6 @@ import {
 } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
-import Colors from "../../../../constants/Colors";
 
 export const PercentageList = [
   {
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
     borderWidth: hp(0.3),
     borderColor: "#EAEAEC",
     marginBottom: hp(10),
-    width: wp(335),
+    width: wp(345),
     alignSelf: "center",
   },
   daysStyle: {

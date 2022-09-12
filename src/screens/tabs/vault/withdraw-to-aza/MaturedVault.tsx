@@ -13,10 +13,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
       <View style={vaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <NairaIcon color={"black"} size={0} />
-            <Text style={CommonStyles.flightAmount}>80,000</Text>
-          </View>
+          <Text style={CommonStyles.flightAmount}> {"\u20A6"}80,000</Text>
         </View>
         <View style={CommonStyles.matureContainer}>
           <UnlockIcon />
@@ -26,7 +23,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           Your funds have successfully matured and can now be withdrawn.
         </Text>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(155) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(130) }]}>
           <Button
             title="Withdraw to Aza"
             onPressButton={() =>
@@ -38,7 +35,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={CommonStyles.buttonText}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
           <Button
             title="Withdraw to Bank"
             onPressButton={() =>

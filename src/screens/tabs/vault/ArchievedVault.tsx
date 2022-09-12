@@ -19,7 +19,11 @@ import React from "react";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "@react-navigation/core";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { VaultListProps } from "../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+  VaultListProps,
+} from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
@@ -148,7 +152,7 @@ const ListItem = ({
   );
 };
 
-const ArchievedVault = ({ navigation }: { navigation: any }) => {
+const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>

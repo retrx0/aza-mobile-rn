@@ -48,7 +48,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "NewVault" })
             }
-            style={[CommonStyles.button, { bottom: hp(10) }]}
+            style={[CommonStyles.button, { bottom: hp(20) }]}
           />
         </View>
       </View>

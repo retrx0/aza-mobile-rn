@@ -21,7 +21,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>
-            You have successfully locked away {`#${2000}`} to Flight Ticket
+            You have successfully locked away {"\u20A6"}2,000 to Flight Ticket
             vault
           </Text>
         </View>
@@ -35,7 +35,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "AddVault" })
             }
-            style={[CommonStyles.button, { bottom: hp(35) }]}
+            style={[CommonStyles.button, { bottom: hp(20) }]}
           />
         </View>
       </View>

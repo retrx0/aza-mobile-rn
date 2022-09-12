@@ -10,22 +10,26 @@ import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
+import { Header } from "../../../../components/text/header";
 
 const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [click, setClick] = useState(false);
 
   return (
     <SpacerWrapper>
-      <View style={vaultStyles.container}>
-        <View style={[CommonStyles.topTab]}>
-          <View style={{ marginLeft: 20 }}>
-            <BackButton
-              onPress={() => {
-                navigation.getParent()?.navigate("TopBar");
-              }}
+      <View style={CommonStyles.vaultcontainer}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ marginLeft: 15 }}>
+            <BackButton onPress={() => navigation.goBack()} />
+          </View>
+          <View>
+            <Header
+              heading="Confirmation"
+              description={""}
+              headerStyle={CommonStyles.confirmation}
+              descriptionStyle={undefined}
             />
           </View>
-          <Text style={CommonStyles.withdraw}>Withdraw</Text>
         </View>
         <Text style={CommonStyles.selectStyle}>
           Select the bank you wish to withdraw to
@@ -54,11 +58,11 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(50) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
           <CancelButtonWithUnderline
             title="Add another Bank Account"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
-            style={CommonStyles.archivedBox}
+            style={{ borderBottomColor: Colors.general.black }}
             styleText={CommonStyles.addAccount}
           />
           <Button
