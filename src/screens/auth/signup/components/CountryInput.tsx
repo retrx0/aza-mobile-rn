@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  TextInputProps,
-} from "react-native";
+import { Text, View, Image, TouchableOpacity, TextInput, StyleSheet, TextInputProps } from "react-native";
 import { DropIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
@@ -23,27 +15,18 @@ export const CountryBox = ({
   return (
     <View style={styles.container}>
       <View style={styles.countryContainer}>
-        <Image
-          source={{ uri: imageLink }}
-          style={styles.flag}
-          resizeMode="contain"
-        />
+        <Image source={{ uri: imageLink }} style={styles.flag} resizeMode="contain" />
         <View style={styles.country}>
           <Text style={styles.countryName}>{short_name}</Text>
         </View>
 
         <View style={styles.divider} />
         <Text style={styles.countryName}>{code}</Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder="phone number"
-          keyboardType="number-pad"
-          {...rest}
-        />
+        <TextInput style={styles.textInput} placeholder="phone number" keyboardType="number-pad" {...rest} />
       </View>
 
       <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-        <DropIcon />
+        <DropIcon color={""} />
       </TouchableOpacity>
     </View>
   );
