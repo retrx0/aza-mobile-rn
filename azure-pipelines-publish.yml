@@ -1,5 +1,5 @@
 trigger:
-  - release/*
+  - develop
 
 pool:
   vmImage: ubuntu-latest
@@ -16,3 +16,6 @@ steps:
 
   - script: yarn run test
     displayName: "Run Jest tests"
+
+  - script: eas upadate
+    displayName: "Deploy to Expo"
