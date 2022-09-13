@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 1,
     backgroundColor: "#EAEAEC",
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom:20
   },
 });

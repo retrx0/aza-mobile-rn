@@ -53,6 +53,7 @@ import CharityIndexScreen from "../../screens/tabs/payments/charity-screens/Char
 import InternetDetail from "../../screens/tabs/payments/internet-screens/InternetDetail";
 import ConfirmTransaction from "../../screens/tabs/payments/ConfirmTransaction";
 import VaultToBank from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBank";
+import Colors from "../../constants/Colors";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -234,7 +235,7 @@ const CommonStack = () => {
             </TouchableOpacity>
           ),
           headerStyle: {
-            backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
+            backgroundColor: scheme == "light" ? '#ffffff':Colors.dark.background,
 
             
             

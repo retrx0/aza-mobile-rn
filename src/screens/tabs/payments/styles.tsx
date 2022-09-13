@@ -62,7 +62,7 @@ export const CharityStyles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    // width: "90%",
+    width: "90%",
     // marginLeft: "auto",
     // marginRight: "auto",
     // justifyContent:'space-between',
@@ -112,6 +112,7 @@ export const CharityStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    
   },
   btn: {
     marginBottom: 10,
