@@ -62,13 +62,16 @@ export const CharityStyles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    // width: "90%",
+    // marginLeft: "auto",
+    // marginRight: "auto",
+    // justifyContent:'space-between',
     marginTop: 40,
+    paddingHorizontal:10,
   },
   text: {
     textAlign: "justify",
+    marginLeft:10,
     marginRight:10
     
   },
@@ -122,9 +125,7 @@ export const CharityStyles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  cancelContainer: {
-    marginTop:10
-  },
+ 
   mainInput: {
     marginTop: 0,
   },
