@@ -15,7 +15,7 @@ import VaultWithdrawConfirmation from "./withdraw-to-bankank/VaultWithdrawToBank
 import VaultToAza from "./withdraw-to-aza/VaultwithdrawalConfirmation";
 import VaultToBankSuccessfull from "./withdraw-to-bankank/VaultToBankSuccessful";
 import MaturedVault from "./withdraw-to-aza/MaturedVault";
-import UnMatureVault from "./withdraw-to-aza/UnMatureVault";
+import UnMatureVault from "./withdraw-to-aza/unMatureVault";
 import LockVault from "./LockVault";
 import ArchievedVault from "./ArchievedVault";
 import VaultToBank from "./withdraw-to-bankank/VaultWithdrawToBank";

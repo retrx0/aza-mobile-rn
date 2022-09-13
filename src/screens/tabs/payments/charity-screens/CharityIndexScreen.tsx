@@ -43,7 +43,7 @@ export default function CharityIndexScreen({ navigation }: RootTabScreenProps<"P
 
 const styles2 = StyleSheet.create({
   container: {
-    paddingTop: 100,
+    paddingTop: 80,
     padding: 20,
   },
   input: {

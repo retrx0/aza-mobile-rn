@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UnMatureVault from "./UnMatureVault";
+import UnMatureVault from "./unMatureVault";
 import MaturedVault from "../../vault/withdraw-to-aza/MaturedVault";
 import { RootTabScreenProps } from "../../../../../types";
 

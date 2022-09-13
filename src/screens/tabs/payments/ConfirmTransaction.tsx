@@ -6,11 +6,12 @@ import ImageInput from "./sub-components/ImageInput";
 import MyButton from "./sub-components/MyButton";
 import { SafeAreaView, Text, View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 export default function Confirmation({ navigation }: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
   return (
     <SafeAreaView
-      style={[CommonStyles.parentContainer, styles.container, { paddingTop: Platform.OS == "android" ? 100 : 20 }]}
+      style={[styles.container, { paddingTop: Platform.OS == "android" ? 100 : 20 }]}
     >
       <Text style={styles.txt}>Kindly confirm the details of this transaction</Text>
       <ImageInput />
@@ -53,10 +54,14 @@ export default function Confirmation({ navigation }: RootTabScreenProps<"Payment
              });
         }}
       />
-      <TouchableOpacity style={styles.cancelContainer}>
-        <Text style={styles.cancel}>Cancel Transaction</Text>
-      </TouchableOpacity>
-
+  
+    <CancelButtonWithUnderline 
+    onPressButton={()=>{
+      navigation.goBack()
+    }}
+    style={styles.cancelContainer} 
+    title="Cancel Transaction" color="red"/>
+  
     </SafeAreaView>
   );
 }
@@ -64,6 +69,8 @@ export default function Confirmation({ navigation }: RootTabScreenProps<"Payment
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    flex:1,
+    paddingHorizontal:20
   },
   txt: {
     color: "#4D4D4D",
@@ -80,19 +87,7 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     marginBottom: 0,
   },
-  cancel: {
-    textAlign: "center",
-    color: "#FF361A",
-    borderBottomColor: "#FF361A",
-    borderBottomWidth: 1,
-    width: 140,
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   cancelContainer: {
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: 20,
+   marginTop:5
   },
 });

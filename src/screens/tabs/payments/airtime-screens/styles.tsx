@@ -8,6 +8,7 @@ export const AIrtimeStyles = StyleSheet.create({
   },
   label: {
     marginLeft: 20,
+    marginTop:10
   },
   input: {
     marginLeft: 20,
@@ -15,6 +16,7 @@ export const AIrtimeStyles = StyleSheet.create({
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     height: 40,
+  
   },
   button: {
     marginTop: "auto",

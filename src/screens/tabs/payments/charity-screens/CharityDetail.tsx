@@ -9,6 +9,8 @@ import Divider from "../sub-components/Divider";
 import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
 import { RootTabScreenProps } from "../../../../../types";
+import CustomSwitch from "../../../../components/input/CustomSwitch";
+import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 
 export default function CharityDetail({ navigation }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -19,7 +21,8 @@ export default function CharityDetail({ navigation }: RootTabScreenProps<"Paymen
       <View style={styles.detailContainer}>
         <InfoIcon />
         <Text style={styles.text}>
-          The Chess in Slums, Africa is reimagining education using chess as a tool/framework to aid cognition and
+          The Chess in Slums, Africa is reimagining education using chess 
+          as a tool/framework to aid cognition and
           empower the minds of children in impoverished areas of Nigeria.
         </Text>
       </View>
@@ -73,8 +76,7 @@ export default function CharityDetail({ navigation }: RootTabScreenProps<"Paymen
 
       <View style={styles.buttons}>
         <View style={styles.check}>
-          <Text>Recurring monthly donation</Text>
-          <MySwitch title="" onValueChange={toggleSwitch} isEnabled={isEnabled} />
+          <CustomSwitch title="Recurring monthly donation" onValueChange={toggleSwitch} isEnabled={isEnabled} />
         </View>
         <Divider />
         <MyButton
@@ -85,9 +87,12 @@ export default function CharityDetail({ navigation }: RootTabScreenProps<"Paymen
             navigation.navigate("Common", { screen: "Confirm" });
           }}
         />
-        <TouchableOpacity style={styles.cancelContainer}>
-          <Text style={styles.cancel}>Cancel</Text>
-        </TouchableOpacity>
+     <CancelButtonWithUnderline 
+    onPressButton={()=>{
+      navigation.goBack()
+    }}
+    style={{marginBottom:5}} 
+    title="Cancel" color="red"/>
       </View>
     </View>
   );

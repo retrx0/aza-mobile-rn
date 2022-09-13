@@ -3,6 +3,7 @@ import React from "react";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import Button from "../../../../components/buttons/Button";
 export default function MyButton({
   disabled,
   title,
@@ -14,7 +15,6 @@ export default function MyButton({
   onPress: any;
   style?: {};
 }) {
-  const scheme = useColorScheme();
   return (
     <View
       style={[
@@ -26,12 +26,10 @@ export default function MyButton({
         style,
       ]}
     >
-      <ButtonLg
+      <Button
         disabled={disabled}
-        color={scheme == "light" ? "black" : "#E7E9EA"}
         title={title}
-        alt={scheme == "dark" ? true : false}
-        onPress={onPress}
+        onPressButton={onPress}
       />
     </View>
   );

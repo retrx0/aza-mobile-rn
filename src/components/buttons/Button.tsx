@@ -15,6 +15,7 @@ type ButtonPropsType = {
   isNext?: boolean;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
+  disabled?:boolean;
 };
 
 export const Button: FC<ButtonPropsType> = ({
@@ -23,9 +24,11 @@ export const Button: FC<ButtonPropsType> = ({
   isNext,
   style,
   styleText,
+  disabled
 }) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       activeOpacity={0.8}
       onPress={onPressButton}
       style={[styles.doneButton, isNext && styles.nextButton, style]}>

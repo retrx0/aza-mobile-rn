@@ -62,14 +62,15 @@ export const CharityStyles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    width: "85%",
+    width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 40,
   },
   text: {
     textAlign: "justify",
-    marginLeft: 10,
+    marginRight:10
+    
   },
   input: {
     marginLeft: 20,
@@ -122,10 +123,7 @@ export const CharityStyles = StyleSheet.create({
     marginRight: "auto",
   },
   cancelContainer: {
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: 40,
+    marginTop:10
   },
   mainInput: {
     marginTop: 0,

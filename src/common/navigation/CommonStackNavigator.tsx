@@ -235,15 +235,24 @@ const CommonStack = () => {
           ),
           headerStyle: {
             backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
+
+            
+            
           },
-          headerTransparent: true,
+          headerTransparent:true,
           headerTitleStyle: {
             fontSize: 16,
             fontWeight: "600",
           },
+          
         })}>
         <Stack.Screen
-          options={{ title: "Airtime & Data" }}
+          
+          options={{ title: "Airtime & Data",headerStyle:{
+            backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
+            
+          } }}
+          
           name="AirtimeData"
           component={AirtimeTabs}
         />
