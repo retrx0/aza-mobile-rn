@@ -16,3 +16,6 @@ steps:
 
   - script: yarn run test
     displayName: "Run Jest tests"
+
+  - script: yarn run lint
+  displayName: "Code Analysis"

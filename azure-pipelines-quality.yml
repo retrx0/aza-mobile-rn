@@ -18,6 +18,9 @@ steps:
 
   - script: yarn run test
     displayName: "Run Jest test"
+
+  - script: yarn run lint
+    displayName: "Code Analysis"
 # image: node:alpine
 # definitions:
 #   caches:

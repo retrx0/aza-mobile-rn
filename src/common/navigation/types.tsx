@@ -60,10 +60,24 @@ export type CommonStackParamList = {
   LoginOptions: undefined;
   Appearance: undefined;
   AppLanguage: undefined;
+
+  // Profile
+  AccountDetails: undefined;
+  TransactionHistory: undefined;
+  BankAccounts: undefined;
+  SelectBank: undefined;
+  AddBankAccount: AddBankAccountParamsType;
+  AddBankAccountConfirmation: AddBankAccountConfirmationParamsType;
+  DebitCreditCards: undefined;
+  ManageCard: undefined;
+  AddNewCard: undefined;
+  ScanCard: undefined;
 };
 
-export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
-  NativeStackScreenProps<CommonStackParamList, Screen>;
+export type CommonScreenProps<Screen extends keyof CommonStackParamList> = NativeStackScreenProps<
+  CommonStackParamList,
+  Screen
+>;
 
 /* BVN */
 
@@ -71,9 +85,10 @@ export type BvnVerificationStackParamList = {
   BvnVerificationScreen: undefined;
 };
 
-export type BvnVerificationScreenProps<
-  Screen extends keyof BvnVerificationStackParamList
-> = NativeStackScreenProps<BvnVerificationStackParamList, Screen>;
+export type BvnVerificationScreenProps<Screen extends keyof BvnVerificationStackParamList> = NativeStackScreenProps<
+  BvnVerificationStackParamList,
+  Screen
+>;
 
 // Status screen
 export type StatusScreenParamsType = {
@@ -104,6 +119,19 @@ export type PaymentsStackParamList = {
   CharityDetail: undefined;
 };
 
-export type PaymentsTabScreenProps<
-  Screen extends keyof PaymentsStackParamList
-> = NativeStackScreenProps<PaymentsStackParamList, Screen>;
+export type PaymentsTabScreenProps<Screen extends keyof PaymentsStackParamList> = NativeStackScreenProps<
+  PaymentsStackParamList,
+  Screen
+>;
+
+/* Profile */
+
+export type AddBankAccountParamsType = {
+  bankName: string;
+};
+
+export type AddBankAccountConfirmationParamsType = {
+  bankName: string;
+  accountNumber: string;
+  accountName: string;
+};

@@ -1,16 +1,6 @@
 import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import Svg, {
-  Path,
-  Circle,
-  Image,
-  Defs,
-  Use,
-  Pattern,
-  G,
-  Rect,
-  ClipPath,
-} from "react-native-svg";
+import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from "react-native-svg";
 
 type SvgIconProps = {
   color: string;
@@ -76,21 +66,10 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
       <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
       <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
       <Defs>
-        <Pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1">
-          <Use
-            href="#image0_1093_6630"
-            transform="translate(-0.25) scale(0.003125)"
-          />
+        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <Use href="#image0_1093_6630" transform="translate(-0.25) scale(0.003125)" />
         </Pattern>
-        <Image
-          href={require("../assets/images/logo/lightning-bolt.png")}
-          width="480"
-          height="320"
-        />
+        <Image href={require("../assets/images/logo/lightning-bolt.png")} width="480" height="320" />
       </Defs>
     </Svg>
   );
@@ -227,12 +206,7 @@ export const AppleIcon = () => {
 
 export const DataIcon = ({ style, color }: SvgIconProps) => {
   return (
-    <Svg
-      style={style}
-      width="14"
-      height="12"
-      viewBox="0 0 14 12"
-      fill="#000000">
+    <Svg style={style} width="14" height="12" viewBox="0 0 14 12" fill="#000000">
       <Path
         d="M10.1 0.573242H5.60667V2.58658C5.60667 2.84658 5.39334 3.05324 5.14001 3.05324C4.88667 3.05324 4.67334 2.84658 4.67334 2.58658V0.573242H3.90001C1.26667 0.573242 0.400007 1.35991 0.340007 3.81991C0.333341 3.93991 0.386674 4.06658 0.473341 4.15324C0.560007 4.24658 0.673341 4.29324 0.806674 4.29324C1.74001 4.29324 2.50667 5.06658 2.50667 5.99991C2.50667 6.93324 1.74001 7.70658 0.806674 7.70658C0.680007 7.70658 0.560007 7.75324 0.473341 7.84658C0.386674 7.93324 0.333341 8.05991 0.340007 8.17991C0.400007 10.6399 1.26667 11.4266 3.90001 11.4266H4.67334V9.41324C4.67334 9.15324 4.88667 8.94658 5.14001 8.94658C5.39334 8.94658 5.60667 9.15324 5.60667 9.41324V11.4266H10.1C12.8333 11.4266 13.6667 10.5932 13.6667 7.85991V4.13991C13.6667 1.40658 12.8333 0.573242 10.1 0.573242ZM11.3133 5.93324L10.6933 6.53324C10.6667 6.55324 10.66 6.59324 10.6667 6.62658L10.8133 7.47324C10.84 7.62658 10.78 7.78658 10.6467 7.87991C10.52 7.97324 10.3533 7.98658 10.2133 7.91324L9.44667 7.51324C9.42001 7.49991 9.38001 7.49991 9.35334 7.51324L8.58667 7.91324C8.52667 7.94658 8.46001 7.95991 8.39334 7.95991C8.30667 7.95991 8.22667 7.93324 8.15334 7.87991C8.02667 7.78658 7.96001 7.63324 7.98667 7.47324L8.13334 6.62658C8.14001 6.59324 8.12667 6.55991 8.10667 6.53324L7.48667 5.93324C7.37334 5.82658 7.33334 5.65991 7.38001 5.51324C7.42667 5.35991 7.55334 5.25324 7.71334 5.23324L8.56667 5.10658C8.60001 5.09991 8.62667 5.07991 8.64667 5.05324L9.02667 4.27991C9.10001 4.13991 9.24001 4.05324 9.40001 4.05324C9.56001 4.05324 9.70001 4.13991 9.76667 4.27991L10.1467 5.05324C10.16 5.08658 10.1867 5.10658 10.22 5.10658L11.0733 5.23324C11.2333 5.25324 11.36 5.36658 11.4067 5.51324C11.4667 5.65991 11.4267 5.81991 11.3133 5.93324Z"
         fill={color}
@@ -241,7 +215,7 @@ export const DataIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const TickIcon = ({ style }: { style?: {} }) => {
+export const TickIcon = ({ style }: SvgIconProps) => {
   return (
     <Svg style={style} width="28" height="28" viewBox="0 0 28 28" fill="none">
       <Path
@@ -252,7 +226,7 @@ export const TickIcon = ({ style }: { style?: {} }) => {
   );
 };
 
-export const PieIcon = ({ style }: { style?: {} }) => {
+export const PieIcon = ({ style }: SvgIconProps) => {
   return (
     <Svg style={style} width="28" height="28" viewBox="0 0 24 24" fill="none">
       <Path
@@ -303,7 +277,7 @@ export const WifiIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const ArrowFowardIcon = ({ style }: { style?: {} }) => {
+export const ArrowFowardIcon = ({ style }: SvgIconProps) => {
   return (
     <Svg style={style} width="8" height="14" viewBox="0 0 8 14" fill="none">
       <Path
@@ -406,15 +380,8 @@ export const FlagIcon = () => {
     <Svg width="15" height="15" viewBox="0 0 15 15" fill="none">
       <Circle cx="7.5" cy="7.5" r="7.5" fill="url(#pattern0)" />
       <Defs>
-        <Pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1">
-          <Use
-            xlinkHref="#image0_295_18064"
-            transform="translate(-0.124378) scale(0.00497512)"
-          />
+        <Pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <Use xlinkHref="#image0_295_18064" transform="translate(-0.124378) scale(0.00497512)" />
         </Pattern>
         <Image id="image0_295_18064" width="251" height="201" />
       </Defs>
@@ -511,12 +478,12 @@ export const SelectIcon = () => {
   );
 };
 
-export const ArrowDownIcon = () => {
+export const ArrowDownIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path
         d="M12.0467 9.61914L8 13.6658L3.95333 9.61914"
-        stroke="black"
+        stroke={color}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -524,7 +491,7 @@ export const ArrowDownIcon = () => {
       />
       <Path
         d="M8 2.33398V13.554"
-        stroke="black"
+        stroke={color}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -534,7 +501,7 @@ export const ArrowDownIcon = () => {
   );
 };
 
-export const InfoIcon = ({ style }: { style?: {} }) => {
+export const InfoIcon = ({ style }: SvgIconProps) => {
   return (
     <Svg style={style} width="16" height="16" viewBox="0 0 16 16" fill="none">
       <Path
@@ -544,12 +511,7 @@ export const InfoIcon = ({ style }: { style?: {} }) => {
         stroke-linejoin="round"
       />
 
-      <Path
-        d="M7.99866 10.333V6.99967"
-        stroke="#A6A6A6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <Path d="M7.99866 10.333V6.99967" stroke="#A6A6A6" stroke-linecap="round" stroke-linejoin="round" />
 
       <Path
         d="M8.00232 4.99902H7.99633"
@@ -628,12 +590,7 @@ export const WithdrawIcon = () => (
 export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={24} height={24} fill="none">
-      <Path
-        d="M3 7h18M3 12h18M3 17h18"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-      />
+      <Path d="M3 7h18M3 12h18M3 17h18" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
     </Svg>
   );
 };
@@ -991,12 +948,7 @@ export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
         stroke={color}
         strokeMiterlimit={10}
       />
-      <Path
-        d="M1.333 1.667h13.334"
-        stroke={color}
-        strokeMiterlimit={10}
-        strokeLinecap="round"
-      />
+      <Path d="M1.333 1.667h13.334" stroke={color} strokeMiterlimit={10} strokeLinecap="round" />
       <Path
         d="M5.333 5.333h5.334M5.333 8.667h5.334"
         stroke={color}
@@ -1041,44 +993,38 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const TrashIcon = () => {
+export const TrashIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
         d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047"
-        stroke="white"
+        stroke={color}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97"
-        stroke="white"
+        stroke={color}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M18.8499 9.14062L18.1999 19.2106C18.0899 20.7806 17.9999 22.0006 15.2099 22.0006H8.7899C5.9999 22.0006 5.9099 20.7806 5.7999 19.2106L5.1499 9.14062"
-        stroke="white"
+        stroke={color}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M10.3301 16.5H13.6601"
-        stroke="white"
+        stroke={color}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path
-        d="M9.5 12.5H14.5"
-        stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <Path d="M9.5 12.5H14.5" stroke={color} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </Svg>
   );
 };
@@ -1100,35 +1046,24 @@ export const ArchieveIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path
-        d="M10.1799 14H13.8199"
-        stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <Path d="M10.1799 14H13.8199" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </Svg>
   );
 };
 
-export const DownLoadIcon = () => {
+export const DownLoadIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path
         d="M10.96 5.93359C13.36 6.14026 14.34 7.37359 14.34 10.0736V10.1603C14.34 13.1403 13.1467 14.3336 10.1667 14.3336H5.82667C2.84667 14.3336 1.65334 13.1403 1.65334 10.1603V10.0736C1.65334 7.39359 2.62 6.16026 4.98 5.94026"
-        stroke="#A6A6A6"
+        stroke={color}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path
-        d="M8 1.33398V9.92065"
-        stroke="#A6A6A6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <Path d="M8 1.33398V9.92065" stroke={color} stroke-linecap="round" stroke-linejoin="round" />
       <Path
         d="M10.2333 8.43359L8 10.6669L5.76666 8.43359"
-        stroke="#A6A6A6"
+        stroke={color}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -1147,24 +1082,9 @@ export const CaptionIcon = () => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
-      <Path
-        d="M7.99823 5.5H8.00272"
-        stroke="#292D32"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M5.99774 5.5H6.00223"
-        stroke="#292D32"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M3.99725 5.5H4.00174"
-        stroke="#292D32"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+      <Path d="M7.99823 5.5H8.00272" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
+      <Path d="M5.99774 5.5H6.00223" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
+      <Path d="M3.99725 5.5H4.00174" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round" />
     </Svg>
   );
 };
@@ -1183,16 +1103,8 @@ export const FlightIcon = () => {
         stroke="#292D32"
         stroke-miterlimit="10"
       />
-      <Path
-        d="M14.6676 7.27344H9.56763"
-        stroke="#292D32"
-        stroke-miterlimit="10"
-      />
-      <Path
-        d="M6.43325 7.27344H1.33325"
-        stroke="#292D32"
-        stroke-miterlimit="10"
-      />
+      <Path d="M14.6676 7.27344H9.56763" stroke="#292D32" stroke-miterlimit="10" />
+      <Path d="M6.43325 7.27344H1.33325" stroke="#292D32" stroke-miterlimit="10" />
     </Svg>
   );
 };
@@ -1357,11 +1269,7 @@ export const MoonIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const NotificationSettingsIcon = ({
-  color,
-  size,
-  style,
-}: SvgIconProps) => {
+export const NotificationSettingsIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} fill="none">
       <Path
@@ -1457,10 +1365,7 @@ export const UndrawCancelIcon = ({ color, size, style }: SvgIconProps) => {
           d="M58.87 225.599h11.44v-.144c0-2.448-1.994-4.432-4.454-4.432l-2.09-1.578-3.898 1.578h-.999v4.576Z"
           fill="#2F2E41"
         />
-        <Path
-          d="m29.188 211.482 2.975 2.222 10.027-10.366-4.392-3.279-8.61 11.423Z"
-          fill="#A0616A"
-        />
+        <Path d="m29.188 211.482 2.975 2.222 10.027-10.366-4.392-3.279-8.61 11.423Z" fill="#A0616A" />
         <Path
           d="m26.753 214.494 9.151 6.833.087-.116a4.418 4.418 0 0 0-.89-6.204l-.72-2.51-4.07-1.067-.799-.596-2.759 3.66ZM41.553 154.719s.206 5.575.465 10.046c.042.733-1.684 1.53-1.64 2.328.03.529.355 1.043.385 1.595.032.583-.416 1.098-.384 1.7.031.589.542 1.264.573 1.866.332 6.482 1.534 14.242.33 16.411-.593 1.069-8.158 15.879-8.158 15.879s4.215 6.292 5.419 4.195c1.59-2.77 13.848-15.73 13.848-18.205 0-2.471 2.836-20.997 2.836-20.997l1.977 10.963.907 2.172-.285 1.276.586 1.721.032 1.703.57 3.162s-1.716 24.641-.75 25.327c.97.689 5.663 1.926 6.217.689.551-1.238 4.137-25.716 4.137-25.716s.578-11.218 1.204-21.644c.036-.605.464-1.336.497-1.933.039-.692-.232-1.591-.196-2.262.04-.77.382-1.312.416-2.049.255-5.696-1.181-12.632-1.639-13.315-1.381-2.061-2.625-3.709-2.625-3.709s-18.611-6.086-23.584.098l-1.138 8.699Z"
           fill="#2F2E41"
@@ -1505,10 +1410,7 @@ export const UndrawCancelIcon = ({ color, size, style }: SvgIconProps) => {
           d="m50.33 107.027-1.395 1.171a4.764 4.764 0 0 0-.96 6.187l.002.004a4.804 4.804 0 0 0 4.853 2.136l7.67-1.317c7.332.936 15.897-2.283 24.918-7.038l3.678-17.267-8.346-.62-3.158 11.238-19.215 2.839-.011.001-6.766 1.603-1.27 1.063Z"
           fill="#3F3D56"
         />
-        <Path
-          d="M94.007 225.894.41 226a.41.41 0 0 1 0-.817l93.598-.105a.408.408 0 1 1 0 .816Z"
-          fill="#CACACA"
-        />
+        <Path d="M94.007 225.894.41 226a.41.41 0 0 1 0-.817l93.598-.105a.408.408 0 1 1 0 .816Z" fill="#CACACA" />
         <Path
           d="M19.556 31.093c1.608 0 2.912-1.327 2.912-2.963 0-1.637-1.304-2.964-2.912-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM29.618 31.093c1.608 0 2.913-1.327 2.913-2.963 0-1.637-1.305-2.964-2.913-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM39.68 31.093c1.608 0 2.913-1.327 2.913-2.963 0-1.637-1.305-2.964-2.913-2.964-1.609 0-2.913 1.327-2.913 2.963 0 1.637 1.304 2.964 2.913 2.964ZM51.153 30.471a.344.344 0 0 1-.246-.103l-1.965-2a.341.341 0 0 1 0-.479l1.965-1.999a.346.346 0 0 1 .487-.005c.136.132.138.35.005.484l-1.73 1.76 1.73 1.76a.342.342 0 0 1-.246.582ZM54.456 30.472a.344.344 0 0 1-.246-.583l1.73-1.76-1.73-1.76a.342.342 0 0 1 .005-.484.345.345 0 0 1 .487.005l1.965 2a.342.342 0 0 1 0 .479l-1.965 2a.344.344 0 0 1-.246.103ZM157.271 25.51h-3.654a.753.753 0 0 0-.755.75v3.64c0 .416.338.752.755.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM148.316 25.51h-3.654a.753.753 0 0 0-.755.75v3.64c0 .416.338.752.755.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM165.709 25.68h-3.654a.752.752 0 0 0-.754.75v3.64c0 .416.337.752.754.752h3.654a.755.755 0 0 0 .758-.751v-3.64a.755.755 0 0 0-.758-.751ZM110.628 27.064h-29.21c-.51 0-.92.412-.92.916s.41.915.92.915h29.21a.92.92 0 0 0 .92-.915.92.92 0 0 0-.92-.916Z"
           fill="#3F3D56"
@@ -1610,6 +1512,120 @@ export const SuccessIcon = ({ style }: SvgIconProps) => {
         stroke-linecap="round"
         stroke-linejoin="round"
       />
+    </Svg>
+  );
+};
+
+export const CameraIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M4.507 14.667h6.986c1.84 0 2.574-1.126 2.66-2.5l.347-5.506A2.502 2.502 0 0 0 12 4c-.407 0-.78-.234-.967-.594l-.48-.966c-.306-.607-1.106-1.107-1.786-1.107H7.24c-.687 0-1.487.5-1.793 1.107l-.48.966c-.187.36-.56.594-.967.594a2.502 2.502 0 0 0-2.5 2.66l.347 5.506c.08 1.374.82 2.5 2.66 2.5ZM7 5.334h2"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8 12a2.17 2.17 0 0 0 2.167-2.167A2.17 2.17 0 0 0 8 7.666a2.17 2.17 0 0 0-2.167 2.167A2.17 2.17 0 0 0 8 11.999Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const UndrawAccountIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={301} height={161} fill="none">
+      <G clipPath="url(#a)">
+        <Path
+          d="M299.052 160.584H131.45a1.945 1.945 0 0 1-1.377-.575 1.973 1.973 0 0 1-.571-1.386V1.961c.001-.52.206-1.018.571-1.386A1.945 1.945 0 0 1 131.45 0h167.602c.516 0 1.011.207 1.377.575.365.368.57.866.571 1.386v156.662a1.973 1.973 0 0 1-.571 1.386 1.949 1.949 0 0 1-1.377.575ZM131.45.783c-.31 0-.606.124-.825.345-.219.22-.342.519-.343.83v156.665c.001.311.124.61.343.83.219.221.515.345.825.345h167.602c.309 0 .606-.124.825-.345.219-.22.342-.519.343-.83V1.961a1.183 1.183 0 0 0-.343-.83 1.168 1.168 0 0 0-.825-.346L131.45.783Z"
+          fill="#E6E6E6"
+        />
+        <Path
+          d="M210.645 40.709c-.351 0-.687.14-.935.39a1.336 1.336 0 0 0 0 1.882c.248.25.584.39.935.39h72.569c.351 0 .687-.14.935-.39a1.336 1.336 0 0 0 0-1.882 1.317 1.317 0 0 0-.935-.39h-72.569ZM210.645 48.697c-.351 0-.687.14-.935.39a1.336 1.336 0 0 0 0 1.883c.248.25.584.39.935.39h37.048c.351 0 .687-.14.935-.39a1.335 1.335 0 0 0 0-1.883 1.317 1.317 0 0 0-.935-.39h-37.048ZM147.217 87.357c-.351 0-.687.14-.935.39a1.335 1.335 0 0 0 0 1.883c.248.25.584.39.935.39h136.068c.35 0 .687-.14.935-.39a1.335 1.335 0 0 0 0-1.883 1.32 1.32 0 0 0-.935-.39H147.217ZM147.217 95.346c-.351 0-.687.14-.935.39a1.335 1.335 0 0 0 0 1.882c.248.25.584.39.935.39h100.547c.35 0 .687-.14.935-.39a1.335 1.335 0 0 0 0-1.882 1.32 1.32 0 0 0-.935-.39H147.217ZM147.217 103.152a1.32 1.32 0 0 0-.935.39 1.335 1.335 0 0 0 .935 2.273h136.068c.35 0 .687-.141.935-.39a1.336 1.336 0 0 0 0-1.883 1.322 1.322 0 0 0-.935-.39H147.217ZM147.217 111.141c-.351 0-.687.14-.935.39a1.334 1.334 0 0 0 0 1.882c.248.25.584.39.935.39h100.547c.35 0 .687-.14.935-.39a1.335 1.335 0 0 0 0-1.882 1.318 1.318 0 0 0-.935-.39H147.217Z"
+          fill="#E6E6E6"
+        />
+        <Path
+          d="M192.305 68.754H87.106a1.944 1.944 0 0 1-1.377-.574 1.97 1.97 0 0 1-.57-1.386V20.326c0-.52.205-1.018.57-1.386.366-.367.86-.574 1.377-.575h105.199c.516 0 1.012.208 1.377.575.365.368.57.866.571 1.386v46.468a1.972 1.972 0 0 1-.571 1.386 1.945 1.945 0 0 1-1.377.574ZM282.444 142.217h-39.876a1.942 1.942 0 0 1-1.377-.575 1.97 1.97 0 0 1-.571-1.385v-6.431c.001-.52.206-1.018.571-1.386a1.95 1.95 0 0 1 1.377-.575h39.876a1.95 1.95 0 0 1 1.377.575c.365.368.57.866.571 1.386v6.431a1.97 1.97 0 0 1-.571 1.385 1.942 1.942 0 0 1-1.377.575Z"
+          fill={color}
+        />
+        <Path
+          d="M46.14 78.647c-1.718-1.292-2.222-3.705-1.126-5.39.11-.165.232-.32.368-.463l.11-34.33 5.07.953.223 33.764c1.155 1.349 1.388 3.314.453 4.752-1.097 1.685-3.379 2.005-5.097.713ZM72.506 155.485h5.227l2.486-20.292-7.714.001.001 20.291Z"
+          fill="#FFB8B8"
+        />
+        <Path
+          d="M71.173 153.766h10.293c1.74 0 3.408.695 4.639 1.933a6.628 6.628 0 0 1 1.921 4.669v.214l-16.853.001v-6.817Z"
+          fill="#2F2E41"
+        />
+        <Path d="M23.905 155.485h5.227l2.487-20.292-7.714.001v20.291Z" fill="#FFB8B8" />
+        <Path
+          d="M22.572 153.766h10.293c1.74 0 3.409.695 4.639 1.933a6.628 6.628 0 0 1 1.921 4.669v.214l-16.852.001v-6.817ZM72.201 149.816l-.438-2.645a2.083 2.083 0 0 1-1.083-.875c-.47-.748-.546-1.801-.223-3.13L66.93 113.19 48.52 93.964l-11.812 28.674-4.676 22.691v3.278l-9.335 1.207.425-3.09a1.79 1.79 0 0 1-.848-.761c-.536-.898-.529-2.291.022-4.139l.024-.08-.03-.276c-.022-.193.118-18.727 5.592-27.91l5.483-27.88c-.143-.393-.846-2.679.444-6.542 1.272-3.812 4.83-9.953 14.555-17.562l.034-.026.041-.008c.108-.023 10.835-2.17 16.383 5.133l.037.049v.062c0 .452-.01 10.957-.835 13.288l13.164 24.364c.257.273 2.558 2.948 1.74 9.981l2.127 23.974c.244.468 2.445 4.871.019 6.614l.435 3.027-9.308 1.784Z"
+          fill="#2F2E41"
+        />
+        <Path
+          d="M50.179 49.074c-2.472 0-5.757-.88-7.767-4.933l-.04-.08 4.954-10.569a5.772 5.772 0 0 1 3.2-2.959 5.723 5.723 0 0 1 4.344.136 5.778 5.778 0 0 1 3.012 3.153 5.83 5.83 0 0 1-.036 4.374L53.563 48.53l-.074.027c-1.07.346-2.187.52-3.31.517Z"
+          fill={color}
+        />
+        <Path
+          d="m63.9 70.028-15.616-7.422 2.147-26.36 3.913-4.813.758-.164a19.831 19.831 0 0 1 10.485.585l.074.025L72.09 45.68c.04.07 4.676 8.307-1.732 12.65L63.9 70.028Z"
+          fill={color}
+        />
+        <Path
+          d="M85.369 61.628a3.845 3.845 0 0 0-.538.278l-16.456-7.577-.422-4.404-6.687-.228-.006 7.87c0 .636.204 1.255.583 1.764.379.509.911.88 1.517 1.058l19.761 5.813c.203.756.63 1.432 1.223 1.937a3.809 3.809 0 0 0 4.334.427c.68-.38 1.229-.959 1.574-1.66a3.877 3.877 0 0 0-.63-4.337 3.807 3.807 0 0 0-4.253-.941Z"
+          fill="#FFB8B8"
+        />
+        <Path
+          d="M65.24 51.804c-1.874 0-3.99-.653-6.022-2.697l-.062-.063 1.372-11.604a5.804 5.804 0 0 1 2.105-3.827 5.731 5.731 0 0 1 8.011.774 5.82 5.82 0 0 1 1.343 4.16l-.81 11.167-.062.05c-.04.032-2.586 2.04-5.874 2.04Z"
+          fill={color}
+        />
+        <Path
+          d="M70.259 22.25c2.774-5.108.909-11.511-4.165-14.303-5.075-2.792-11.437-.915-14.21 4.192-2.775 5.107-.91 11.511 4.165 14.303 5.074 2.792 11.436.915 14.21-4.192Z"
+          fill="#FFB8B8"
+        />
+        <Path
+          d="M71.728 11.61c-.52-3.04-2.946-5.562-5.836-6.594s-6.149-.696-8.979.492c-.47.199-.932.422-1.38.668-1.035-1.985-3.57-3.135-5.89-3.011-2.802.15-5.333 1.642-7.767 3.049-2.433 1.406-5.045 2.806-7.85 2.74-5.07-.118-8.843-4.85-13.718-6.255a10.903 10.903 0 0 0-6.613.18 10.976 10.976 0 0 0-5.307 3.976 11.09 11.09 0 0 0-2.07 6.324 11.093 11.093 0 0 0 1.917 6.372c2.08-3.752 6.965-5.02 11.204-4.508 4.239.51 8.189 2.38 12.342 3.377 4.152.996 8.962.953 12.178-1.872 1.825-1.602 2.896-3.892 4.484-5.732 1.075-1.244 2.605-2.295 4.168-2.542a12.734 12.734 0 0 0-3.423 5.11c-1.253 3.583-.583 7.886 2.017 10.641 2.787 2.953 7.161 3.74 11.208 3.693l.084-.087c-1.239-1.867-2.216-4.455-.852-6.23 1.346-1.754 4.002-1.496 6.064-2.271 2.872-1.08 4.538-4.477 4.019-7.52Z"
+          fill="#2F2E41"
+        />
+        <Path
+          d="M99.992 161H.365a.363.363 0 0 1-.365-.367.363.363 0 0 1 .365-.367h99.627a.363.363 0 0 1 .365.367.363.363 0 0 1-.365.367Z"
+          fill="#CCC"
+        />
+        <Path
+          d="M134.985 34.664c-.457.002-.826.599-.825 1.334.001.733.37 1.327.825 1.328h39.001c.456-.001.826-.598.825-1.333-.001-.733-.37-1.328-.825-1.329h-39.001ZM134.985 42.377c-.457.001-.826.599-.825 1.334.001.733.37 1.327.825 1.328h39.001c.456-.001.826-.598.825-1.334-.001-.733-.37-1.327-.825-1.328h-39.001ZM134.985 49.998c-.457.002-.826.599-.825 1.334.001.733.37 1.327.825 1.328h16.782c.457-.001.827-.598.826-1.333-.001-.734-.37-1.328-.826-1.329h-16.782ZM115.183 54.212c5.845 0 10.583-4.769 10.583-10.652 0-5.883-4.738-10.652-10.583-10.652S104.6 37.678 104.6 43.56c0 5.883 4.738 10.652 10.583 10.652Z"
+          fill="#fff"
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Path fill="#fff" d="M0 0h301v161H0z" />
+        </ClipPath>
+      </Defs>
+    </Svg>
+  );
+};
+
+export const SearchIcon = ({ color, size, style }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M7.667 14a6.333 6.333 0 1 0 0-12.666 6.333 6.333 0 0 0 0 12.667ZM14.666 14.667l-1.333-1.333"
+        stroke={color}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const DebitCreditCardCurvesDesign = () => {
+  return (
+    <Svg width={47} height={50} fill="none">
+      <Circle cy={50} r={24.25} stroke="#7A7A7A" strokeWidth={1.5} />
+      <Circle cy={50} r={34.25} stroke="#7A7A7A" strokeWidth={1.5} />
+      <Circle cx={-3} cy={50} r={49.25} stroke="#7A7A7A" strokeWidth={1.5} />
     </Svg>
   );
 };

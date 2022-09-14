@@ -11,7 +11,7 @@ import WelcomeScrollIndicator from "../../components/indicators/WelcomeScrollInd
 import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
-import { carousel_data, logo } from "./OnboardingUtil";
+import { carousel_data } from "./OnboardingUtil";
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
@@ -37,7 +37,7 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
         style={[{ height: "70%" }]}
         data={carousel_data}
         onSlideChange={(index) => {
-          let tmpArray = [...carouselIndicatorState];
+          const tmpArray = [...carouselIndicatorState];
           if (!tmpArray[index].active) tmpArray[index].active = true;
           setCarouselIndicatorState([...tmpArray]);
         }}
