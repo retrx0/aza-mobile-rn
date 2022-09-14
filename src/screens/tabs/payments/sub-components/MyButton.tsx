@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleProp, TextStyle, ViewStyle } from "react-native";
 import React from "react";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
@@ -9,11 +9,13 @@ export default function MyButton({
   title,
   onPress,
   style,
+  styleText,
 }: {
   disabled: boolean;
   title: string;
   onPress: any;
-  style?: {};
+  style?: StyleProp<ViewStyle>;
+  styleText?: StyleProp<TextStyle>;
 }) {
   return (
     <View
@@ -24,12 +26,12 @@ export default function MyButton({
           opacity: disabled ? 0.3 : 1,
         },
         style,
-      ]}
-    >
+      ]}>
       <Button
         disabled={disabled}
         title={title}
         onPressButton={onPress}
+        styleText={styleText}
       />
     </View>
   );
