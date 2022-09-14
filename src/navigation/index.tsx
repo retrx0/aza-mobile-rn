@@ -52,34 +52,7 @@ const RootNavigator = () => {
         }}
       />
       <Stack.Screen name="Common" component={CommonStack} options={{ headerShown: false }} />
-
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
-
-      {/* Auth Stack */}
-      {/* <Stack.Group navigationKey={isSignedIn ? "Home" : "Login"} screenOptions={{ headerShown: false }}>
-        <Stack.Group>
-          <Stack.Screen component={SignInScreen} name="SignInRoot" options={{ headerShown: false }} />
-          <Stack.Screen component={LoginOTPScreen} name="SignInOTP" options={{ headerShown: false }} />
-          <Stack.Screen component={WelcomeScreen} name="SignInWelcomeBack" options={{ headerShown: false }} />
-        </Stack.Group>
-        <Stack.Group>
-          <Stack.Screen component={SignUpScreen} name="SignUpRoot" options={{ headerShown: false, title: "Sign Up" }} />
-          <Stack.Screen component={SignUpEmailScreen} name="SignUpProfileSetup" options={{ headerShown: false }} />
-          <Stack.Screen component={SignUpOTPScreen} name="SignUpOTP" options={{ headerShown: false }} />
-          <Stack.Screen
-            component={SignUpPasswordScreen}
-            initialParams={create}
-            name="SignUpPassword"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            component={SignUpPasswordScreen}
-            initialParams={confirm}
-            name="SignUpConfirmPassword"
-            options={{ headerShown: false }}
-          />
-        </Stack.Group>
-      </Stack.Group> */}
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

@@ -3,8 +3,8 @@ import { StyleProp, ViewStyle } from "react-native";
 import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from "react-native-svg";
 
 type SvgIconProps = {
-  color: string;
-  size: number;
+  color?: string;
+  size?: number;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -478,7 +478,7 @@ export const SelectIcon = () => {
   );
 };
 
-export const ArrowDownIcon = ({ color, size, style }: SvgIconProps{ color, size, style }: SvgIconProps) => {
+export const ArrowDownIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path
@@ -993,7 +993,7 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const TrashIcon = ({ color, size, style }: SvgIconProps{ color, size, style }: SvgIconProps) => {
+export const TrashIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
@@ -1051,7 +1051,7 @@ export const ArchieveIcon = () => {
   );
 };
 
-export const DownLoadIcon = ({ color, size, style }: SvgIconProps{ color, size, style }: SvgIconProps) => {
+export const DownLoadIcon = ({ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path

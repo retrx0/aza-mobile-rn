@@ -4,10 +4,7 @@
  */
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import {
-  CompositeScreenProps,
-  NavigatorScreenParams,
-} from "@react-navigation/native";
+import { CompositeScreenProps, NavigatorScreenParams } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { CommonStackParamList } from "./src/common/navigation/types";
@@ -31,8 +28,10 @@ export type RootStackParamList = {
   TopBar: NavigatorScreenParams<CommonStackParamList>;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, Screen>;
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
+  RootStackParamList,
+  Screen
+>;
 
 /* Tabs */
 
@@ -42,7 +41,7 @@ export type RootTabParamList = {
   Payments: undefined;
   Settings: undefined;
   Profile: undefined;
-  StatusScreen:any
+  StatusScreen: any;
 };
 
 export type PaymentsStackParamList = {
@@ -59,7 +58,6 @@ export type PaymentsStackParamList = {
   water: undefined;
   Charity: undefined;
   charity_detail: undefined;
-  
 };
 
 export type TopTabParamList = {
@@ -67,11 +65,10 @@ export type TopTabParamList = {
   activity: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
-  CompositeScreenProps<
-    BottomTabScreenProps<RootTabParamList, Screen>,
-    NativeStackScreenProps<RootStackParamList>
-  >;
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
+  BottomTabScreenProps<RootTabParamList, Screen>,
+  NativeStackScreenProps<RootStackParamList>
+>;
 
 /* Sign In */
 
@@ -81,8 +78,10 @@ export type SignInStackParamList = {
   SignInOTP: undefined;
 };
 
-export type SignInScreenProps<Screen extends keyof SignInStackParamList> =
-  NativeStackScreenProps<SignInStackParamList, Screen>;
+export type SignInScreenProps<Screen extends keyof SignInStackParamList> = NativeStackScreenProps<
+  SignInStackParamList,
+  Screen
+>;
 
 /* Sign Up */
 
@@ -99,8 +98,10 @@ export type SignUpStackParamList = {
   SignUpConfirmPassword: PasswordScreenParamsType;
 };
 
-export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> =
-  NativeStackScreenProps<SignUpStackParamList, Screen>;
+export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> = NativeStackScreenProps<
+  SignUpStackParamList,
+  Screen
+>;
 
 /* Other Types */
 
@@ -114,7 +115,7 @@ export type DaysProps = {
   onPress?: () => void;
 };
 
-export type VautListProps = {
+export type VaultListProps = {
   item: string;
   lockIcon: any;
   onPress?: () => void;
@@ -122,7 +123,7 @@ export type VautListProps = {
   amount: string;
   stage: string;
 };
-export type VautActivitytProps = {
+export type VaultActivitytProps = {
   send: any;
   status: string;
   price: string;

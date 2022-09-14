@@ -1,22 +1,11 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  I18nManager,
-} from "react-native";
-import { Text, View } from "../../../../components/Themed";
+import { StyleSheet, FlatList, TouchableOpacity, I18nManager } from "react-native";
+import { SafeAreaView, Text, View } from "../../../../components/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import {
-  ArchieveIcon,
-  CloseIcon,
-  LockIcon,
-  TrashIcon,
-  UnlockIcon,
-} from "../../../../../assets/svg";
-import { VautListProps } from "../../../../../types";
+import { ArchieveIcon, CloseIcon, LockIcon, TrashIcon, UnlockIcon } from "../../../../../assets/svg";
+import { VaultListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 
@@ -55,7 +44,7 @@ const ListItem = ({
   stage,
 
   onPress,
-}: VautListProps) => {
+}: VaultListProps) => {
   const navigation = useNavigation();
   return (
     <Swipeable
@@ -65,7 +54,8 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}>
+          }}
+        >
           <TouchableOpacity
             style={{
               width: 77,
@@ -74,9 +64,8 @@ const ListItem = ({
               alignItems: "center",
               justifyContent: "center",
             }}
-            onPress={() =>
-              navigation.navigate("Common", { screen: "ArchievedVault" })
-            }>
+            onPress={() => navigation.navigate("Common", { screen: "ArchievedVault" })}
+          >
             <ArchieveIcon />
             <Text
               style={{
@@ -86,7 +75,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Archive
             </Text>
           </TouchableOpacity>
@@ -98,9 +88,8 @@ const ListItem = ({
               alignItems: "center",
               justifyContent: "center",
             }}
-            onPress={() =>
-              navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }>
+            onPress={() => navigation.navigate("Common", { screen: "ConfirmDeleteVault" })}
+          >
             <TrashIcon />
             <Text
               style={{
@@ -110,7 +99,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Delete
             </Text>
           </TouchableOpacity>
@@ -118,7 +108,8 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}>
+      rightThreshold={40}
+    >
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
@@ -128,7 +119,8 @@ const ListItem = ({
                 {
                   backgroundColor: amount === "200,000" ? "#EBFCE9" : "#f4f4f4",
                 },
-              ]}>
+              ]}
+            >
               <TouchableOpacity onPress={onPress} style={{}}>
                 {lockIcon}
               </TouchableOpacity>

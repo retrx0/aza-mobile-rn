@@ -18,8 +18,10 @@ import {
 } from "../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../types";
 import { Mtn } from "../../../../assets/images";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 export default function Payments({ navigation }: RootTabScreenProps<"Payments">) {
+  const scheme = useColorScheme();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -52,7 +54,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "AirtimeData" });
           }}
-          Icon={() => <DataIcon />}
+          Icon={() => <DataIcon color={scheme == "dark" ? "white" : "#753FF6"} />}
           title="Airtime & Data"
           route=""
         />
@@ -62,7 +64,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "InternetPlans" });
           }}
-          Icon={() => <WifiIcon />}
+          Icon={() => <WifiIcon color={scheme == "dark" ? "white" : "#2A9E17"} />}
           title="Internet"
           route=""
         />
@@ -72,7 +74,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "CableTV" });
           }}
-          Icon={() => <CableTvIcon />}
+          Icon={() => <CableTvIcon color={scheme == "dark" ? "white" : "#FFD200"} />}
           title="Cable TV"
           route=""
         />
@@ -82,7 +84,7 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "Electricity" });
           }}
-          Icon={() => <ElectricIcon />}
+          Icon={() => <ElectricIcon color={scheme == "dark" ? "white" : "#ED8A0A"} />}
           title="Electricity"
           route=""
         />
@@ -92,19 +94,25 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
           onPress={() => {
             navigation.navigate("Common", { screen: "Water" });
           }}
-          Icon={() => <DropIcon />}
+          Icon={() => <DropIcon color={scheme == "dark" ? "white" : "#1198F6"} />}
           title="Water"
           route=""
         />
 
-        <ListItem index={5} onPress={() => {}} Icon={() => <GiftIcon />} title="Gift Cards" route="" />
+        <ListItem
+          index={5}
+          onPress={() => {}}
+          Icon={() => <GiftIcon color={scheme == "dark" ? "white" : "#BED600"} />}
+          title="Gift Cards"
+          route=""
+        />
 
         <ListItem
           index={6}
           onPress={() => {
             navigation.navigate("Common", { screen: "Charity" });
           }}
-          Icon={() => <LoveIcon />}
+          Icon={() => <LoveIcon color={scheme == "dark" ? "white" : "#FF361A"} />}
           title="Charity"
           route=""
         />
