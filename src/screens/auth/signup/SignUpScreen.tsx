@@ -8,9 +8,11 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const [phone, setPhone] = useState<string>("");
+  const colorScheme = useColorScheme();
 
   return (
     <SpacerWrapper>
@@ -45,6 +47,15 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       <Button
         title="Continue"
         onPressButton={() => navigation.navigate("SignUpOTP")}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+        }}
+        style={[
+          {
+            backgroundColor: Colors[colorScheme].button,
+          },
+          CommonStyles.otpbutton,
+        ]}
       />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>

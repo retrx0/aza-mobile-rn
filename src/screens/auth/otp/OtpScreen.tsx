@@ -9,6 +9,8 @@ import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
+import { hp } from "../../../common/util/LayoutUtil";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 type OtpProp = {
   onWrongNumber: () => void;
@@ -22,6 +24,8 @@ type OtpProp = {
 
 const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onVerify } = props;
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={styles.Container}>
@@ -49,7 +53,16 @@ const OtpScreen = (props: OtpProp) => {
       <Button
         title="Continue"
         onPressButton={onVerify}
-        style={styles.otpbutton}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+        }}
+        style={[
+          {
+            backgroundColor: Colors[colorScheme].button,
+            marginBottom: hp(10),
+          },
+          CommonStyles.otpbutton,
+        ]}
       />
     </SpacerWrapper>
   );

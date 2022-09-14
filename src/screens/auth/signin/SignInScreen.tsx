@@ -7,9 +7,12 @@ import { PhoneInput, Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
+import useColorScheme from "../../../hooks/useColorScheme";
+import { hp } from "../../../common/util/LayoutUtil";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
+  const colorScheme = useColorScheme();
   return (
     <SpacerWrapper>
       <View style={{ marginLeft: 20 }}>
@@ -43,6 +46,15 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       <Button
         title="Continue"
         onPressButton={() => navigation.navigate("SignInOTP")}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+        }}
+        style={[
+          {
+            backgroundColor: Colors[colorScheme].button,
+          },
+          CommonStyles.button,
+        ]}
       />
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg

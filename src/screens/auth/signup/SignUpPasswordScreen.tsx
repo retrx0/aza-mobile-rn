@@ -72,7 +72,16 @@ const SignUpPasswordScreen = ({
                 })
               : navigation.getParent()?.navigate("Root");
           }}
-          style={[CommonStyles.button]}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+              marginTop: 5,
+            },
+            CommonStyles.button,
+          ]}
         />
       </View>
     </SpacerWrapper>

@@ -12,6 +12,7 @@ import RNPickerSelect from "react-native-picker-select";
 import { GENDER } from "../../../constants/Gender";
 import { TextHeader } from "../../../components/text/textHeader";
 import { SelectIcon } from "../../../../assets/svg";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const SignUpProfileSetupScreen = ({
   navigation,
@@ -23,6 +24,8 @@ const SignUpProfileSetupScreen = ({
     color: Colors.general.black,
     icon: { SelectIcon },
   };
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={{ marginLeft: 20 }}>
@@ -90,7 +93,16 @@ const SignUpProfileSetupScreen = ({
             passwordScreenType: "Create",
           })
         }
-        style={[CommonStyles.container, { bottom: hp(60) }]}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+        }}
+        style={[
+          {
+            backgroundColor: Colors[colorScheme].button,
+          },
+          CommonStyles.container,
+          { bottom: hp(60) },
+        ]}
       />
     </SpacerWrapper>
   );
