@@ -51,6 +51,7 @@ export default function Confirmation({ navigation }: RootTabScreenProps<"Payment
               statusIcon: "Success",
               status: "Successful",
               statusMessage:"Your internet purchase was successful",
+              navigateTo:'Common'
              });
         }}
       />

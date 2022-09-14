@@ -1,6 +1,6 @@
 import { StyleSheet, StatusBar, Platform, Appearance } from "react-native";
 import useColorScheme from "../../../hooks/useColorScheme";
-import Colors from "../../../constants/Colors";
+
 
 export const PaymentStyles = StyleSheet.create({
   container: {

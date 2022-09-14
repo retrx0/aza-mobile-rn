@@ -249,10 +249,7 @@ const CommonStack = () => {
         })}>
         <Stack.Screen
           
-          options={{ title: "Airtime & Data",headerStyle:{
-            backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
-            
-          } }}
+          options={{ title: "Airtime & Data"}}
           
           name="AirtimeData"
           component={AirtimeTabs}

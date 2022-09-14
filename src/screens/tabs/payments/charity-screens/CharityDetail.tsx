@@ -78,7 +78,11 @@ export default function CharityDetail({ navigation }: RootTabScreenProps<"Paymen
         <View style={styles.check}>
           <CustomSwitch title="Recurring monthly donation" onValueChange={toggleSwitch} isEnabled={isEnabled} />
         </View>
-        <Divider />
+        <Divider style={{
+          marginTop:10,
+          marginBottom:20,
+          width:'90%'
+        }}/>
         <MyButton
           style={styles.btn}
           disabled={false}
