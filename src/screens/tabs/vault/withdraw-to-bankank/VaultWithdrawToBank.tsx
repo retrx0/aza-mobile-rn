@@ -10,9 +10,11 @@ import CancelButtonWithUnderline from "../../../../components/buttons/CancelButt
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import { Header } from "../../../../components/text/header";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [click, setClick] = useState(false);
+  const colorScheme = useColorScheme();
 
   return (
     <SpacerWrapper>
@@ -71,7 +73,16 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 screen: "VaultWithdrawConfirmation",
               })
             }
-            style={CommonStyles.button}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+                marginBottom: hp(10),
+              },
+              CommonStyles.button,
+            ]}
           />
 
           <CancelButtonWithUnderline

@@ -610,13 +610,22 @@ const CommonStyles = StyleSheet.create({
   wrapperContainer: {
     flex: hp(1),
   },
-  buttonText: {
+  toAzabuttonText: {
+    color: Colors.general.white,
+  },
+  toBankbuttonText: {
     color: Colors.general.black,
   },
-  maturebutton: {
+  toBankbutton: {
     width: wp(338),
     backgroundColor: Colors.general.white,
+    borderColor: Colors.general.black,
     borderWidth: 1,
+  },
+  toAzabutton: {
+    width: wp(338),
+    borderWidth: 1,
+    borderColor: Colors.general.white,
   },
 
   button: {

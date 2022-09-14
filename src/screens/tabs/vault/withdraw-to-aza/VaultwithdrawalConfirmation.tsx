@@ -10,8 +10,11 @@ import CancelButtonWithUnderline from "../../../../components/buttons/CancelButt
 import { Input } from "../../../../components/input/input";
 import { vaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -61,7 +64,16 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 screen: "VaultWithdrawsuccessful",
               })
             }
-            style={CommonStyles.button}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+                marginBottom: hp(10),
+              },
+              CommonStyles.button,
+            ]}
           />
 
           <CancelButtonWithUnderline

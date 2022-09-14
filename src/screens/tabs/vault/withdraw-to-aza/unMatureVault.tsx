@@ -1,15 +1,18 @@
-import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { LockIcon, NairaIcon } from "../../../../../assets/svg";
+import { LockIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { vaultStyles } from "../styles";
 import { Input } from "../../../../components/input/input";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import Colors from "../../../../constants/Colors";
 
 const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={vaultStyles.container}>
@@ -59,7 +62,15 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
           <Button
             title="Continue"
             onPressButton={() => setMatured()}
-            style={[CommonStyles.button]}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

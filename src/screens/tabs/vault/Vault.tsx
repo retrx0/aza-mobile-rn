@@ -55,10 +55,13 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-              width: hp(338),
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              { bottom: hp(20) },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

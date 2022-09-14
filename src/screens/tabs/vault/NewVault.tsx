@@ -110,7 +110,15 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 screen: "LockVault",
               })
             }
-            style={[CommonStyles.button]}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

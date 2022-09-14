@@ -6,11 +6,14 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../../types";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import Colors from "../../../../constants/Colors";
 
 const VaultWithdrawsuccessful = ({
   navigation,
 }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
 
   return (
     <SpacerWrapper>
@@ -34,7 +37,16 @@ const VaultWithdrawsuccessful = ({
           <Button
             title="Continue"
             onPressButton={() => navigation.getParent()?.navigate("Vault")}
-            style={[CommonStyles.button, { bottom: hp(20) }]}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              { marginBottom: hp(10) },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

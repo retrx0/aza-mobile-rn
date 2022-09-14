@@ -3,7 +3,7 @@ import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { UnlockIcon } from "../../../../../assets/svg";
+import { NairaIcon, UnlockIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { vaultStyles } from "../styles";
 import Colors from "../../../../constants/Colors";
@@ -32,8 +32,8 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "VaultToAza" })
             }
-            style={[CommonStyles.maturebutton]}
-            styleText={CommonStyles.buttonText}
+            style={[CommonStyles.toAzabutton]}
+            styleText={CommonStyles.toAzabuttonText}
           />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
@@ -44,7 +44,8 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "VaultToBank" })
             }
-            style={[CommonStyles.button]}
+            style={[CommonStyles.toBankbutton]}
+            styleText={CommonStyles.toBankbuttonText}
           />
         </View>
       </View>

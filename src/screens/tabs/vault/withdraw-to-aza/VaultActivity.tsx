@@ -1,6 +1,5 @@
 import { TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
-import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -11,6 +10,7 @@ import { ActivityCard, ActivityList } from "../components/ActivityComponents";
 
 const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -41,15 +41,8 @@ const VaultActivity = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
-          <Button
-            title="New Vault"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "VaultToAza" })
-            }
-            style={[CommonStyles.button, { bottom: hp(20) }]}
-          />
-        </View>
+          ]}
+        />
       </View>
     </SpacerWrapper>
   );

@@ -7,8 +7,11 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -31,7 +34,16 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
             }
-            style={CommonStyles.button}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+                marginBottom: hp(10),
+              },
+              CommonStyles.button,
+            ]}
           />
 
           <CancelButtonWithUnderline

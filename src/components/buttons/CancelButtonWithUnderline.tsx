@@ -30,6 +30,7 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
           paddingBottom: 2,
           borderBottomWidth: 1,
           alignSelf: "center",
+          marginTop: 3,
         },
         style,
       ]}>

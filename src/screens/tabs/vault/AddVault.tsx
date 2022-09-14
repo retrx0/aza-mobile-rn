@@ -10,8 +10,12 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
 import { hp } from "../../../common/util/LayoutUtil";
+import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -40,7 +44,15 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
             }
-            style={CommonStyles.button}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

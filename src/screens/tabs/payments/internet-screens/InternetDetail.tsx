@@ -1,6 +1,6 @@
-import { View, Text, ScrollView, Switch, StyleSheet } from "react-native";
+import { Text, ScrollView, Switch, StyleSheet } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView } from "../../../../components/Themed";
+import { SafeAreaView, View } from "../../../../components/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -12,16 +12,30 @@ import MySwitch from "../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
 import SelectInput from "../../../../components/input/SelectInput";
 import { RootTabScreenProps } from "../../../../../types";
+import Button from "../../../../components/buttons/Button";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Colors from "../../../../constants/Colors";
 
-export default function InternetDetail({ navigation }: RootTabScreenProps<"Payments">) {
+export default function InternetDetail({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const bundles = ["100mb", "200mb", "500mb"];
+  const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
-      <Header description="" descriptionStyle={null} headerStyle={null} heading="Subscribe to an internet plan" />
+      <Header
+        description=""
+        descriptionStyle={null}
+        headerStyle={null}
+        heading="Subscribe to an internet plan"
+      />
 
       <Input
         icon={null}
@@ -45,13 +59,28 @@ export default function InternetDetail({ navigation }: RootTabScreenProps<"Payme
         label="Amount"
         placeholder="Enter an amount"
       />
-      <MyButton
-        disabled={false}
-        title="Continue"
-        onPress={() => {
-          navigation.navigate("Common", { screen: "Confirm" });
-        }}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || 45 },
+        ]}>
+        <Button
+          title="Continue"
+          onPressButton={() =>
+            navigation.navigate("Common", { screen: "Confirm" })
+          }
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+            },
+            { bottom: 20 },
+            CommonStyles.button,
+          ]}
+        />
+      </View>
     </SafeAreaView>
   );
 }

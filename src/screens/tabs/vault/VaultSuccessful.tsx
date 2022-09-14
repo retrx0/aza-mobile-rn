@@ -6,8 +6,12 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../types";
+import useColorScheme from "../../../hooks/useColorScheme";
+import Colors from "../../../constants/Colors";
 
 const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const colorScheme = useColorScheme();
+
   const insets = useSafeAreaInsets();
 
   return (
@@ -35,7 +39,16 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "AddVault" })
             }
-            style={[CommonStyles.button, { bottom: hp(20) }]}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              { bottom: hp(20) },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>
