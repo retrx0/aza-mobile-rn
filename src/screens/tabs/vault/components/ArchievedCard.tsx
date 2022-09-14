@@ -1,14 +1,13 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import {
-  SafeAreaView,
   StyleSheet,
-  View,
-  Text,
   FlatList,
   TouchableOpacity,
   I18nManager,
 } from "react-native";
+import { Text, View } from "../../../../components/Themed";
+
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {
   ArchieveIcon,
@@ -40,7 +39,7 @@ const ArchieveList = [
   },
   {
     id: "3",
-    lockIcon: <UnlockIcon />,
+    lockIcon: <UnlockIcon color={Colors.general.green} />,
     item: "New Phone",
     amount: "200,000",
     closeIcon: <CloseIcon />,
@@ -54,6 +53,7 @@ const ListItem = ({
   amount,
   closeIcon,
   stage,
+
   onPress,
 }: VaultListProps) => {
   const navigation = useNavigation();
@@ -122,22 +122,21 @@ const ListItem = ({
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
-            <TouchableOpacity onPress={onPress} style={{}}>
-              {lockIcon}
-            </TouchableOpacity>
+            <View
+              style={[
+                styles.flightContainer,
+                {
+                  backgroundColor: amount === "200,000" ? "#EBFCE9" : "#f4f4f4",
+                },
+              ]}>
+              <TouchableOpacity onPress={onPress} style={{}}>
+                {lockIcon}
+              </TouchableOpacity>
+            </View>
+
             <View style={styles.list}>
               <Text style={styles.item}>{item}</Text>
-              <Text
-                style={[
-                  styles.amount,
-                  {
-                    color:
-                      amount === "200,000"
-                        ? Colors.general.green
-                        : Colors.general.black,
-                  },
-                ]}>
-                {" "}
+              <Text style={[styles.amount]}>
                 {"\u20A6"}
                 {amount}
               </Text>
@@ -166,6 +165,14 @@ const ArchievedComponents = () => {
   );
 };
 const styles = StyleSheet.create({
+  flightContainer: {
+    width: 36,
+    height: 36,
+    backgroundColor: "#3A3D42",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 18,
+  },
   stage: {
     fontSize: hp(12),
     fontWeight: "400",

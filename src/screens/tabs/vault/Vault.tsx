@@ -9,8 +9,12 @@ import { ArrowDownIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Undraw } from "../../../../assets/images";
+import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const colorScheme = useColorScheme();
+
   const insets = useSafeAreaInsets();
 
   return (
@@ -48,7 +52,13 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "NewVault" })
             }
-            style={[CommonStyles.button, { bottom: hp(20) }]}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={{
+              backgroundColor: Colors[colorScheme].button,
+              width: hp(338),
+            }}
           />
         </View>
       </View>

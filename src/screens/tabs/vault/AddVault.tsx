@@ -34,8 +34,6 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.getParent()?.navigate("ArchievedVault")
             }
-            style={CommonStyles.archivedBox}
-            styleText={CommonStyles.archived}
           />
           <Button
             title="New Vault"

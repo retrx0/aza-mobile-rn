@@ -1,4 +1,5 @@
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
@@ -31,8 +32,7 @@ export default function BlockUserModal({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-      }}
-    >
+      }}>
       <View
         style={{
           backgroundColor: Colors[colorScheme].backgroundSecondary,
@@ -44,16 +44,14 @@ export default function BlockUserModal({
           alignItems: "center",
           width: "90%",
           justifyContent: "space-between",
-        }}
-      >
+        }}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Block User
         </Text>
         <Text
@@ -64,15 +62,13 @@ export default function BlockUserModal({
             marginVertical: 15,
             maxWidth: 300,
             textAlign: "center",
-          }}
-        >
+          }}>
           The user{" "}
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 15,
-            }}
-          >
+            }}>
             {user}
           </Text>{" "}
           will be blocked. Do you confirm?
@@ -100,9 +96,10 @@ export default function BlockUserModal({
           }}
         />
         <ButtonWithUnderline
-          color="#FF361A"
-          title="Cancel"
           onPressButton={toggleModal}
+          style={{ borderBottomColor: Colors.general.red }}
+          title="Cancel"
+          styleText={CommonStyles.cancelStyle}
         />
       </View>
     </View>

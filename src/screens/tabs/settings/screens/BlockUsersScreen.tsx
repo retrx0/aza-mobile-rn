@@ -24,8 +24,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Block Users
         </Text>
       ),
@@ -34,7 +33,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
 
@@ -45,9 +44,9 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-          >
-            Blocked users won't be able to send you money, request money from you or split payments with you.
+            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+            Blocked users won't be able to send you money, request money from
+            you or split payments with you.
           </Text>
           <Text
             lightColor={Colors.light.text}
@@ -55,13 +54,15 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={{
               fontSize: 14,
               marginTop: hp(30),
-            }}
-          >
+            }}>
             You can unblock these users anytime
           </Text>
         </View>
         <View style={[CommonStyles.col]}>
-          <UndrawCancelIcon color={colorScheme === "dark" ? "#2AD168" : "#000000"} size={30} />
+          <UndrawCancelIcon
+            color={colorScheme === "dark" ? "#2AD168" : "#000000"}
+            size={30}
+          />
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -69,12 +70,12 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontSize: 16,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: 30,
-            }}
-          >
+            }}>
             You have not blocked anyone
           </Text>
         </View>
-        <View style={[CommonStyles.col, { width: "100%", marginBottom: hp(25) }]}>
+        <View
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(25) }]}>
           <Button
             title="Block New User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
@@ -89,7 +90,12 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               backgroundColor: Colors[colorScheme].button,
             }}
           />
-          <ButtonWithUnderline title="Cancel" color="#FF361A" onPressButton={() => navigation.goBack()} />
+          <ButtonWithUnderline
+            title="Cancel"
+            onPressButton={() => navigation.goBack()}
+            style={{ borderBottomColor: Colors.general.red }}
+            styleText={CommonStyles.cancelStyle}
+          />
         </View>
       </View>
     </SpacerWrapper>

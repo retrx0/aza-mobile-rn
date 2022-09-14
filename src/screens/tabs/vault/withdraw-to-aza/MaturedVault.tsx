@@ -3,9 +3,10 @@ import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { NairaIcon, UnlockIcon } from "../../../../../assets/svg";
+import { UnlockIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { vaultStyles } from "../styles";
+import Colors from "../../../../constants/Colors";
 
 const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
@@ -16,7 +17,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Text style={CommonStyles.flightAmount}> {"\u20A6"}80,000</Text>
         </View>
         <View style={CommonStyles.matureContainer}>
-          <UnlockIcon />
+          <UnlockIcon color={Colors.general.green} />
           <Text style={CommonStyles.matured}>Matured</Text>
         </View>
         <Text style={CommonStyles.withdrawSuccessfull}>

@@ -1,11 +1,10 @@
 import {
   TouchableOpacity,
   StyleSheet,
-  Text,
   FlatList,
   I18nManager,
 } from "react-native";
-import { View } from "../../../components/Themed";
+import { View, Text } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import {
@@ -19,11 +18,7 @@ import React from "react";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "@react-navigation/core";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import {
-  RootStackScreenProps,
-  RootTabScreenProps,
-  VaultListProps,
-} from "../../../../types";
+import { RootTabScreenProps, VaultListProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";

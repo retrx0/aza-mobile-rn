@@ -1,32 +1,32 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import SettingsListItem from './SettingsListItem'
-import Colors from '../../../../constants/Colors'
-import useColorScheme from '../../../../hooks/useColorScheme'
+import { View, Text } from "react-native";
+import React from "react";
+import SettingsListItem from "./SettingsListItem";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
-import { hp } from '../../../../common/util/LayoutUtil'
+import { hp } from "../../../../common/util/LayoutUtil";
 import {
   FaceIdIcon,
   HeartSlashIcon,
   MoonIcon,
   NotificationSettingsIcon,
   AppLanguageIcon,
-} from '../../../../../assets/svg'
-import { RootTabScreenProps } from '../../../../../types'
+} from "../../../../../assets/svg";
+import { RootTabScreenProps } from "../../../../../types";
 
 export default function ApplicationSettings({
   navigation,
-}: RootTabScreenProps<'Settings'>) {
-  const colorScheme = useColorScheme()
+}: RootTabScreenProps<"Settings">) {
+  const colorScheme = useColorScheme();
   const applicationSettings = [
     {
       icon: <MoonIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: 'Appearance',
-      detail: 'Change appearance as light/dark/system',
+      name: "Appearance",
+      detail: "Change appearance as light/dark/system",
       disabled: false,
       disabledIcon: <MoonIcon size={36} color={Colors[colorScheme].disabled} />,
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'Appearance' }),
+        navigation.navigate("Common", { screen: "Appearance" }),
     },
     {
       icon: (
@@ -35,8 +35,8 @@ export default function ApplicationSettings({
           color={Colors[colorScheme].mainText}
         />
       ),
-      name: 'Notification Settings',
-      detail: 'Change your notification preferences',
+      name: "Notification Settings",
+      detail: "Change your notification preferences",
       disabled: false,
       disabledIcon: (
         <NotificationSettingsIcon
@@ -45,52 +45,52 @@ export default function ApplicationSettings({
         />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'NotificationSettings' }),
+        navigation.navigate("Common", { screen: "NotificationSettings" }),
     },
     {
       icon: <AppLanguageIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: 'App Language',
-      detail: 'Change the app language',
+      name: "App Language",
+      detail: "Change the app language",
       disabled: false,
       disabledIcon: (
         <AppLanguageIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'AppLanguage' }),
+        navigation.navigate("Common", { screen: "AppLanguage" }),
     },
     {
       icon: <FaceIdIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: 'Face ID',
-      detail: 'Login and confrim transactions with Face ID',
+      name: "Face ID",
+      detail: "Login and confrim transactions with Face ID",
       disabled: false,
       disabledIcon: (
         <FaceIdIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'FaceId' }),
+        navigation.navigate("Common", { screen: "FaceId" }),
     },
     {
       icon: <HeartSlashIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: 'Close Aza account',
-      detail: 'You can close your Aza account',
+      name: "Close Aza account",
+      detail: "You can close your Aza account",
       disabled: false,
       disabledIcon: (
         <HeartSlashIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', {
-          screen: 'StatusScreen',
+        navigation.navigate("Common", {
+          screen: "StatusScreen",
           params: {
-            status: 'Do you want to close your Aza account?',
-            statusIcon: 'Warning',
+            status: "Do you want to close your Aza account?",
+            statusIcon: "Warning",
             statusMessage:
-              'Are you sure you want to go back to a life without Aza?',
+              "Are you sure you want to go back to a life without Aza?",
             cancelButton: true,
-            navigateTo: 'Settings'
+            navigateTo: "Settings",
           },
         }),
     },
-  ]
+  ];
 
   return (
     <View style={{ marginTop: hp(25) }}>
@@ -99,13 +99,12 @@ export default function ApplicationSettings({
           style={{
             color: Colors[colorScheme].secondaryText,
             fontSize: 14,
-          }}
-        >
+          }}>
           Application Settings
         </Text>
         <View
           style={{
-            backgroundColor: 'transparent',
+            backgroundColor: "transparent",
             marginTop: hp(10),
             borderBottomWidth: 0.6,
             borderBottomColor: Colors[colorScheme].separator,
@@ -116,7 +115,7 @@ export default function ApplicationSettings({
       {applicationSettings.map(
         (
           { icon, detail, name, handleNavigation, disabled, disabledIcon },
-          i,
+          i
         ) => (
           <SettingsListItem
             detail={detail}
@@ -127,8 +126,8 @@ export default function ApplicationSettings({
             handleNavigation={handleNavigation}
             key={i}
           />
-        ),
+        )
       )}
     </View>
-  )
+  );
 }

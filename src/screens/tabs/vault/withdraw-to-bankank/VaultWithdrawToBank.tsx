@@ -4,7 +4,6 @@ import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
-import { vaultStyles } from "../styles";
 import { Image, TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";

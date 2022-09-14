@@ -1,10 +1,9 @@
-import { StyleSheet, Image, TouchableOpacity, Pressable } from "react-native";
-import React, { useEffect } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
 import Divider from "./Divider";
-import { ArrowFowardIcon, DataIcon } from "../../../../../assets/svg";
-import Animated, { FadeInDown, SlideInDown } from "react-native-reanimated";
+import { ArrowFowardIcon } from "../../../../../assets/svg";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { Text, View } from "../../../../components/Themed";
-import useColorScheme from "../../../../hooks/useColorScheme";
 
 type Props = {
   Icon: any;
@@ -18,7 +17,10 @@ export default function ListItem({ Icon, title, onPress, index }: Props) {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
-    <TouchableAnimated entering={FadeInDown.delay(200 * (index + 1))} onPress={onPress} style={styles.listContainer}>
+    <TouchableAnimated
+      entering={FadeInDown.delay(200 * (index + 1))}
+      onPress={onPress}
+      style={styles.listContainer}>
       <View style={styles.mainItem}>
         <View style={styles.item}>
           <Icon />

@@ -12,7 +12,9 @@ import { Ie } from "../../../../../assets/images";
 import HeaderImage from "../sub-components/HeaderImage";
 import { RootTabScreenProps } from "../../../../../types";
 
-export default function ElectricityIndex({ navigation }: RootTabScreenProps<"Payments">) {
+export default function ElectricityIndex({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const bundles = ["100mb", "200mb", "500mb"];
   return (
@@ -29,7 +31,12 @@ export default function ElectricityIndex({ navigation }: RootTabScreenProps<"Pay
         <HeaderImage selected index={0} image={Ie} title="IE" />
       </ScrollView>
 
-      <SelectInput items={bundles} title="Meter Type" placeHolder="Choose a bundle" style={styles.select} />
+      <SelectInput
+        items={bundles}
+        title="Meter Type"
+        placeHolder="Choose a bundle"
+        style={styles.select}
+      />
       <Input
         icon={null}
         keyboardType="phone-pad"

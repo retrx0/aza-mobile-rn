@@ -122,7 +122,6 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     fontSize: hp(24),
     fontWeight: "500",
-    color: Colors.general.green,
   },
   time: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -144,7 +143,6 @@ const CommonStyles = StyleSheet.create({
     borderStyle: "dashed",
     alignItems: "center",
     paddingVertical: hp(25),
-    backgroundColor: Colors.general.lightGreen,
     marginBottom: hp(20),
     alignSelf: "center",
   },
@@ -195,7 +193,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17),
   },
   archived: {
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontFamily: "Euclid-Circular-A",
     fontSize: hp(12),
     fontWeight: "500",
     lineHeight: hp(17),
@@ -251,7 +249,6 @@ const CommonStyles = StyleSheet.create({
   },
   cancelStyle: {
     textAlign: "center",
-    marginTop: hp(10),
     color: Colors.general.red,
     fontSize: hp(14),
     fontWeight: "500",
@@ -754,7 +751,6 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "400",
     fontFamily: "Euclid-Circular-A",
     fontSize: hp(16),
-    color: Colors.general.black,
   },
 
   verification: {
