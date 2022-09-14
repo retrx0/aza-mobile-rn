@@ -1,9 +1,9 @@
-import { FlatList } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { SendIcon } from "../../../../../assets/svg";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import RecentTransactionListItem from "./RecentTransactionListItem";
+import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
+import { RootTabScreenProps } from "../../../../../types";
 
 const recentTransactions = [
   {
@@ -11,9 +11,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "incoming",
-    transferTitle: "Incoming Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "incoming",
+    transactionTitle: "Incoming Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -22,9 +22,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Transfer to Bank",
-    transferMessage: "",
+    transactionType: "outgoing",
+    transactionTitle: "Transfer to Bank",
+    transactionMessage: "",
     amount: "328,000.00",
     date: "4 July 2022 04:26",
   },
@@ -33,9 +33,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "incoming",
-    transferTitle: "Incoming Transfer",
-    transferMessage: "",
+    transactionType: "incoming",
+    transactionTitle: "Incoming Transfer",
+    transactionMessage: "",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -44,9 +44,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Swift Networks",
-    transferType: "outgoing",
-    transferTitle: "Internet Payment",
-    transferMessage: "",
+    transactionType: "outgoing",
+    transactionTitle: "Internet Payment",
+    transactionMessage: "",
     amount: "328,000.00",
     date: "4 July 2022 04:26",
   },
@@ -55,9 +55,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Outgoing Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "outgoing",
+    transactionTitle: "Outgoing Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -67,9 +67,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Outgoing Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "outgoing",
+    transactionTitle: "Outgoing Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -79,9 +79,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Outgoing Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "outgoing",
+    transactionTitle: "Outgoing Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -91,9 +91,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Outgoing Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "outgoing",
+    transactionTitle: "Outgoing Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -103,9 +103,9 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Outgoing Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "outgoing",
+    transactionTitle: "Outgoing Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
@@ -115,16 +115,17 @@ const recentTransactions = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
     name: "Adewale Adeyesufu",
-    transferType: "outgoing",
-    transferTitle: "Outgoing Transfer",
-    transferMessage: "Chop life my gee ",
+    transactionType: "outgoing",
+    transactionTitle: "Outgoing Transfer",
+    transactionMessage: "Chop life my gee ",
     amount: "28,000.00",
     date: "4 July 2022 04:26",
   },
 ];
 
-export default function RecentTransactions() {
-
+export default function RecentTransactions({
+  navigation,
+}: RootTabScreenProps<"Home">) {
   return (
     <View style={{ display: "flex", marginTop: 50 }}>
       <View
@@ -133,13 +134,21 @@ export default function RecentTransactions() {
           marginBottom: 25,
           flexDirection: "row",
           alignItems: "center",
-        }}>
-        <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
-          style={{ marginRight: 3 }}>
-          Recent Transactions
-        </Text>
+        }}
+      >
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Common", { screen: "TransactionHistory" })
+          }
+        >
+          <Text
+            lightColor={Colors.light.mainText}
+            darkColor={Colors.dark.mainText}
+            style={{ marginRight: 3 }}
+          >
+            Recent Transactions
+          </Text>
+        </TouchableOpacity>
         <SendIcon />
       </View>
       <FlatList
@@ -156,7 +165,27 @@ export default function RecentTransactions() {
             />
           );
         }}
-        renderItem={({ item }) => <RecentTransactionListItem item={item} />}
+        renderItem={({
+          item: {
+            amount,
+            date,
+            image,
+            name,
+            transactionMessage,
+            transactionTitle,
+            transactionType,
+          },
+        }) => (
+          <TransactionListItem
+            amount={amount}
+            date={date}
+            image={image}
+            name={name}
+            transactionMessage={transactionMessage}
+            transactionTitle={transactionTitle}
+            transactionType={transactionType}
+          />
+        )}
       />
     </View>
   );

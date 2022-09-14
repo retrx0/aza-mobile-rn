@@ -35,7 +35,7 @@ export function AirtimeTabs() {
             marginTop: Platform.OS == "android" ? 50 : 0,
           },
           tabBarIndicatorStyle: {
-            borderWidth:1,
+            borderWidth: 2,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
           },
           tabBarLabelStyle: {
@@ -63,7 +63,7 @@ export function CharityTabs() {
             marginTop: Platform.OS == "android" ? 50 : 0,
           },
           tabBarIndicatorStyle: {
-            borderWidth: 1,
+            borderWidth: 2,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
           },
           tabBarLabelStyle: {

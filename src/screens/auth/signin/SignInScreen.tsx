@@ -34,7 +34,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry="ng"
+        initialCountry='ng'
         autoFormat
         textStyle={[CommonStyles.textStyle]}
         textProps={{
@@ -44,7 +44,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       />
 
       <Button
-        title="Continue"
+        title='Continue'
         onPressButton={() => navigation.navigate("SignInOTP")}
         styleText={{
           color: Colors[colorScheme].buttonText,
@@ -58,22 +58,22 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       />
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
-        iconName="apple"
-        title="Connect Apple Account"
+        iconName='apple'
+        title='Connect Apple Account'
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
       />
       <ButtonLg
         iconName={"facebook"}
-        title="Connect with Facebook"
+        title='Connect with Facebook'
         color={Colors.general.facebook}
         onPress={() => console.log("connecting with facebook...")}
         alt={false}
       />
       <ButtonLg
         iconName={"google"}
-        title="Connect Google Account"
+        title='Connect Google Account'
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}

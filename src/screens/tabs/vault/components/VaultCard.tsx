@@ -4,10 +4,11 @@ import { CloseIcon, LockIcon } from "../../../../../assets/svg";
 import {
   DaysProps,
   PercentageProps,
-  VaultListProps,
+  VautListProps,
 } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
 
 export const PercentageList = [
   {
@@ -73,7 +74,7 @@ export const ListCard = ({
   amount,
   stage,
   onPress,
-}: VaultListProps) => {
+}: VautListProps) => {
   return (
     <View>
       <View style={styles.vaultContainer}>
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     borderWidth: hp(0.3),
     borderColor: "#EAEAEC",
     marginBottom: hp(10),
-    width: wp(345),
+    width: wp(335),
     alignSelf: "center",
   },
   daysStyle: {

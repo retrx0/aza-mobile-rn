@@ -7,7 +7,8 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
-import { hp } from "../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
 
@@ -18,6 +19,7 @@ const SignUpPasswordScreen = ({
   const { passwordScreenType } = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
+  const insets = useSafeAreaInsets();
 
   const colorScheme = useColorScheme();
 
@@ -42,7 +44,7 @@ const SignUpPasswordScreen = ({
       <SegmentedInput
         value={passcode}
         secureInput
-        headerText=""
+        headerText=''
         onValueChanged={(code) => setPasscode(code)}
       />
       <View style={[CommonStyles.container, { bottom: hp(400) }]}>
@@ -64,7 +66,7 @@ const SignUpPasswordScreen = ({
         </View>
         <Separator />
         <Button
-          title="Continue"
+          title='Continue'
           onPressButton={() => {
             passwordScreenType === "Create"
               ? navigation.navigate("SignUpConfirmPassword", {

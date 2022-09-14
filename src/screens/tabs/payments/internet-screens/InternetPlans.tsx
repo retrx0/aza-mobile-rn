@@ -42,7 +42,7 @@ export default function InternetPlans({ navigation }: RootTabScreenProps<"Paymen
 
 const styles2 = StyleSheet.create({
   container: {
-    paddingTop: 80,
+    paddingTop: 100,
     padding: 20,
   },
   input: {
@@ -50,7 +50,7 @@ const styles2 = StyleSheet.create({
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     height: 40,
-    marginBottom: 10,
+    marginBottom: 40,
   },
   img: {
     width: 20,

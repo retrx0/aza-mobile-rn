@@ -82,14 +82,17 @@ const BvnVerificationScreen = ({ navigation }: CommonScreenProps<"BvnVerificatio
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(50) }]}>
+        <View
+          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
+        >
           <Button
             title="Verify"
             onPressButton={() =>
               navigation.navigate("StatusScreen", {
                 statusIcon: "Success",
                 status: "Successful",
-                statusMessage: "You have successfully added your BVN to your Aza account",
+                statusMessage:
+                  "You have successfully added your BVN to your Aza account",
                 navigateTo: "Home",
               })
             }
@@ -98,10 +101,14 @@ const BvnVerificationScreen = ({ navigation }: CommonScreenProps<"BvnVerificatio
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
             }}
-            style={[CommonStyles.button]}
+            style={{
+              marginBottom: hp(25),
+              backgroundColor: Colors[colorScheme].button,
+            }}
           />
           <CancelButtonWithUnderline
             title="Cancel"
+            color={Colors.general.red}
             onPressButton={() => navigation.getParent()?.navigate("Home")}
             style={{ marginTop: 5 }}
           />

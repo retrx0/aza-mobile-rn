@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../components/Themed";
 import { Header } from "../../../../components/text/header";
@@ -8,8 +9,9 @@ import BackButton from "../../../../components/buttons/BackButton";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { Input } from "../../../../components/input/input";
-import { vaultStyles as styles } from "../styles";
+import { VaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
+import { useState } from "react";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
@@ -31,9 +33,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             />
           </View>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Kindly confirm the details of this transaction
-        </Text>
+        <Text style={CommonStyles.confirmDetails}>Kindly confirm the details of this transaction</Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
@@ -42,6 +42,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             labelStyle={styles.label}
             label="To"
             placeholder="Aza Account"
+            placeholderTextColor={"black"}
             containerStyle={undefined}
           />
         </View>
@@ -52,11 +53,12 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
             label="Amount"
-            placeholder={"\u20A680,000"}
+            placeholder="#80,000"
+            placeholderTextColor={"black"}
             containerStyle={undefined}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -79,7 +81,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <CancelButtonWithUnderline
             title="Cancel Transaction"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
-            style={{ borderBottomColor: Colors.general.red }}
+            style={{ marginTop: 10 }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>

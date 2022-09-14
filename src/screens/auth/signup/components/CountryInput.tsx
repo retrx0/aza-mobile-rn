@@ -26,7 +26,7 @@ export const CountryBox = ({
       </View>
 
       <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-        <DropIcon color={""} />
+        <DropIcon color={""} size={0} />
       </TouchableOpacity>
     </View>
   );

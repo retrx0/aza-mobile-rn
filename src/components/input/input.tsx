@@ -39,18 +39,11 @@ export const Input = ({
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
           <View style={styles.divider} />
-          <TextInput
-            placeholder="Your 10-digit phone number"
-            style={styles.phoneInput}
-            keyboardType="number-pad"
-          />
+          <TextInput placeholder="Your 10-digit phone number" style={styles.phoneInput} keyboardType="number-pad" />
         </View>
       ) : (
         <View>
-          <TextInput
-            placeholder={placeholder}
-            {...rest}
-            style={[inputStyle]}></TextInput>
+          <TextInput placeholder={placeholder} {...rest} style={[inputStyle]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}
@@ -63,12 +56,12 @@ const styles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    marginBottom: hp(10),
+    marginBottom: hp(11),
     fontFamily: "Euclid-Circular-A",
   },
   container: {
-    marginTop: hp(15),
-    marginBottom: hp(10),
+    marginTop: hp(20),
+    marginBottom: hp(20),
   },
   textInput: {
     borderRadius: 9,

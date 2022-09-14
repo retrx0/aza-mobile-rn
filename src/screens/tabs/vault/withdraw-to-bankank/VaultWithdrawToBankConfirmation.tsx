@@ -1,3 +1,4 @@
+import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../components/Themed";
 import { Header } from "../../../../components/text/header";
@@ -8,13 +9,12 @@ import BackButton from "../../../../components/buttons/BackButton";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { Input } from "../../../../components/input/input";
-import { vaultStyles as styles } from "../styles";
-import Colors from "../../../../constants/Colors";
+import { VaultStyles as styles } from "../styles";
+import { useState } from "react";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
-const VaultWithdrawConfirmation = ({
-  navigation,
-}: RootTabScreenProps<"Vault">) => {
+const VaultWithdrawConfirmation = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const [confirm, setConfirm] = useState(false);
   const colorScheme = useColorScheme();
 
   return (
@@ -33,9 +33,7 @@ const VaultWithdrawConfirmation = ({
             />
           </View>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Kindly confirm the details of this transaction
-        </Text>
+        <Text style={CommonStyles.confirmDetails}>Kindly confirm the details of this transaction</Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
@@ -44,6 +42,7 @@ const VaultWithdrawConfirmation = ({
             labelStyle={styles.label}
             label="To"
             placeholder="Access bank (140...)"
+            placeholderTextColor={"black"}
             containerStyle={undefined}
           />
         </View>
@@ -54,11 +53,12 @@ const VaultWithdrawConfirmation = ({
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
             label="Amount"
-            placeholder={"\u20A680,000"}
+            placeholder="#80,000"
+            placeholderTextColor={"black"}
             containerStyle={undefined}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
           <Button
             onPressButton={() =>
               navigation.navigate("Common", {
@@ -79,10 +79,8 @@ const VaultWithdrawConfirmation = ({
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"
-            onPressButton={() =>
-              navigation.getParent()?.navigate("VaultToBank")
-            }
-            style={{ borderBottomColor: Colors.general.red }}
+            onPressButton={() => navigation.getParent()?.navigate("VaulToBank")}
+            style={{ marginTop: 10 }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>

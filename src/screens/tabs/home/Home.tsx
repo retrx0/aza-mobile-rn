@@ -14,7 +14,7 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
       <LinkBVN navigation={navigation} route={route} isBvnLinked={true} />
-      <RecentTransactions />
+      <RecentTransactions navigation={navigation} route={route} />
     </View>
   );
 };

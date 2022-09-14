@@ -17,17 +17,17 @@ const LoginNavigator = () => {
     <LogInStack.Navigator>
       <LogInStack.Screen
         component={SignInScreen}
-        name="SignInRoot"
+        name='SignInRoot'
         options={{ headerShown: false }}
       />
       <LogInStack.Screen
         component={LoginOTPScreen}
-        name="SignInOTP"
+        name='SignInOTP'
         options={{ headerShown: false }}
       />
       <LogInStack.Screen
         component={SignInWelcomeBackScreen}
-        name="SignInWelcomeBack"
+        name='SignInWelcomeBack'
         options={{ headerShown: false }}
       />
     </LogInStack.Navigator>

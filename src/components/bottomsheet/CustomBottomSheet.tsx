@@ -18,7 +18,16 @@ export default function CustomBottomSheet({
         key={index}
         itemName={item.itemName}
         itemIcon={item.itemIcon}
-        onPress={item.onPress}
+        onPress={() => {
+          if (
+            item.itemName !== "Choose Profile Photo" &&
+            item.itemName !== "Take Photo" &&
+            item.itemName !== "Select from Gallery"
+          ) {
+            toggleModal();
+          }
+          item.onPress();
+        }}
       />
     ));
   };

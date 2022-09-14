@@ -4,7 +4,7 @@ import Svg, { Path, Circle, Image, Defs, Use, Pattern, G, Rect, ClipPath } from 
 
 type SvgIconProps = {
   color: string;
-  size?: number;
+  size: number;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -478,7 +478,7 @@ export const SelectIcon = () => {
   );
 };
 
-export const ArrowDownIcon = ({ color, size, style }: SvgIconProps) => {
+export const ArrowDownIcon = ({ color, size, style }: SvgIconProps{ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path
@@ -531,7 +531,7 @@ export const LockIcon = () => {
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M8.87244 5.14047e-05C11.7265 5.14047e-05 14.0544 2.25667 14.169 5.08262L14.1734 5.3011V6.87696C15.95 7.49361 17.2252 9.18206 17.2252 11.1689V15.4579C17.2252 17.9668 15.1918 19.9999 12.6832 19.9999H5.04224C2.53372 19.9999 0.500244 17.9668 0.500244 15.4579V11.1689C0.500244 9.18191 1.77569 7.49335 3.55245 6.87682L3.55245 5.27781C3.56526 2.34982 5.9483 -0.0127036 8.87244 5.14047e-05ZM12.6734 5.3011V6.6269H5.05244V5.2811L5.05824 5.08578C5.16879 3.08056 6.83579 1.49118 8.86917 1.50004C10.9712 1.50005 12.6734 3.2023 12.6734 5.3011ZM12.6832 8.1269H5.04224C3.36208 8.1269 2.00024 9.48849 2.00024 11.1689V15.4579C2.00024 17.1383 3.36208 18.4999 5.04224 18.4999H12.6832C14.3634 18.4999 15.7252 17.1383 15.7252 15.4579V11.1689C15.7252 9.48849 14.3634 8.1269 12.6832 8.1269ZM9.6061 12.1012C9.55643 11.7351 9.24264 11.453 8.86294 11.453C8.44873 11.453 8.11294 11.7888 8.11294 12.203V14.424L8.11979 14.5258C8.16945 14.8918 8.48325 15.174 8.86294 15.174C9.27716 15.174 9.61294 14.8382 9.61294 14.424V12.203L9.6061 12.1012Z"
-        fill="black"
+        fill="#200E32"
       />
     </Svg>
   );
@@ -993,7 +993,7 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const TrashIcon = ({ color, size, style }: SvgIconProps) => {
+export const TrashIcon = ({ color, size, style }: SvgIconProps{ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
@@ -1051,7 +1051,7 @@ export const ArchieveIcon = () => {
   );
 };
 
-export const DownLoadIcon = ({ color, size, style }: SvgIconProps) => {
+export const DownLoadIcon = ({ color, size, style }: SvgIconProps{ color, size, style }: SvgIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path

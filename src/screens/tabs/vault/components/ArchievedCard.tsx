@@ -16,7 +16,7 @@ import {
   TrashIcon,
   UnlockIcon,
 } from "../../../../../assets/svg";
-import { VaultListProps } from "../../../../../types";
+import { VautListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 
@@ -55,7 +55,7 @@ const ListItem = ({
   stage,
 
   onPress,
-}: VaultListProps) => {
+}: VautListProps) => {
   const navigation = useNavigation();
   return (
     <Swipeable
@@ -156,11 +156,13 @@ const ListItem = ({
 const ArchievedComponents = () => {
   return (
     <>
-      <FlatList
-        data={ArchieveList}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ListItem {...item} />}
-      />
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={ArchieveList}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <ListItem {...item} />}
+        />
+      </SafeAreaView>
     </>
   );
 };

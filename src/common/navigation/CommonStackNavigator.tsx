@@ -17,6 +17,7 @@ import { Text, View } from "../../components/Themed";
 import CommonStyles from "../styles/CommonStyles";
 import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
+import VaulToBank from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBank";
 import VaultWithdrawConfirmation from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBankConfirmation";
 import VaultToAza from "../../screens/tabs/vault/withdraw-to-aza/VaultwithdrawalConfirmation";
 import VaultToBankSuccessfull from "../../screens/tabs/vault/withdraw-to-bankank/VaultToBankSuccessful";
@@ -52,8 +53,18 @@ import WaterScreen from "../../screens/tabs/payments/water-screens/WaterScreen";
 import CharityIndexScreen from "../../screens/tabs/payments/charity-screens/CharityIndexScreen";
 import InternetDetail from "../../screens/tabs/payments/internet-screens/InternetDetail";
 import ConfirmTransaction from "../../screens/tabs/payments/ConfirmTransaction";
-import VaultToBank from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBank";
-import Colors from "../../constants/Colors";
+
+// Profile
+import AccountDetailsScreen from "../../screens/tabs/profile/screens/AccountDetailsScreen";
+import TransactionHistoryScreen from "../../screens/tabs/profile/screens/TransactionHistoryScreen";
+import BankAccountsScreen from "../../screens/tabs/profile/screens/BankAccountsScreen";
+import SelectBankScreen from "../../screens/tabs/profile/screens/SelectBankScreen";
+import AddBankAccountScreen from "../../screens/tabs/profile/screens/AddBankAccountScreen";
+import AddBankAccountConfirmationScreen from "../../screens/tabs/profile/screens/AddBankAccountConfirmationScreen";
+import DebitCreditCardsScreen from "../../screens/tabs/profile/screens/DebitCreditCardsScreen";
+import ManageCardScreen from "../../screens/tabs/profile/screens/ManageCardScreen";
+import AddNewCardScreen from "../../screens/tabs/profile/screens/AddNewCardScreen";
+import ScanCardScreen from "../../screens/tabs/profile/screens/ScanCardScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -87,7 +98,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName="details">
+        initialRouteName="details"
+      >
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -100,16 +112,9 @@ const CommonStack = () => {
   return (
     <Stack.Navigator defaultScreenOptions={{ headerShown: false }}>
       <Stack.Group screenOptions={{ headerShown: false }}>
-        <Stack.Screen
-          component={BvnVerificationNavigator}
-          name="BvnVerificationRoot"
-        />
+        <Stack.Screen component={BvnVerificationNavigator} name="BvnVerificationRoot" />
         <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>
-          <Stack.Screen
-            component={StatusScreen}
-            name="StatusScreen"
-            options={() => ({ headerShown: false })}
-          />
+          <Stack.Screen component={StatusScreen} name="StatusScreen" options={() => ({ headerShown: false })} />
         </Stack.Group>
       </Stack.Group>
 
@@ -117,34 +122,16 @@ const CommonStack = () => {
       <Stack.Group>
         <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
         <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-        <Stack.Screen
-          name="ChangePhoneNumber"
-          component={ChangePhoneNumberScreen}
-        />
-        <Stack.Screen
-          name="ChangePhoneNumberOTP"
-          component={ChangePhoneNumberOTPScreen}
-        />
+        <Stack.Screen name="ChangePhoneNumber" component={ChangePhoneNumberScreen} />
+        <Stack.Screen name="ChangePhoneNumberOTP" component={ChangePhoneNumberOTPScreen} />
         <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
-        <Stack.Screen
-          name="PrivacySettings"
-          component={PrivacySettingsScreen}
-        />
+        <Stack.Screen name="PrivacySettings" component={PrivacySettingsScreen} />
         <Stack.Screen name="NameVisibility" component={NameVisibilityScreen} />
-        <Stack.Screen
-          name="ContactVisibility"
-          component={ContactsVisibilityScreen}
-        />
-        <Stack.Screen
-          name="SplitAndMoneyRequests"
-          component={SplitAndMoneyRequestsScreen}
-        />
+        <Stack.Screen name="ContactVisibility" component={ContactsVisibilityScreen} />
+        <Stack.Screen name="SplitAndMoneyRequests" component={SplitAndMoneyRequestsScreen} />
         <Stack.Screen name="BlockUsers" component={BlockUsersScreen} />
         <Stack.Screen name="BlockNewUser" component={BlockNewUserScreen} />
-        <Stack.Screen
-          name="NotificationSettings"
-          component={NorificationSettingsScreen}
-        />
+        <Stack.Screen name="NotificationSettings" component={NorificationSettingsScreen} />
         <Stack.Screen name="FaceId" component={LoginWithFaceIdScreen} />
         <Stack.Screen name="LoginOptions" component={LoginOptionsScreen} />
         <Stack.Screen name="Appearance" component={AppearanceScreen} />
@@ -155,53 +142,21 @@ const CommonStack = () => {
       <Stack.Group screenOptions={{ headerShown: false }}>
         <Stack.Screen component={NewVault} name="NewVault" />
 
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="LockVault"
-          component={LockVault}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="VaultSuccessful"
-          component={VaultSuccessful}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="AddVault"
-          component={AddVault}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="ConfirmDeleteVault"
-          component={ConfirmDeleteVault}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="VaultToBank"
-          component={VaultToBank}
-        />
+        <Stack.Screen options={{ headerShown: false }} name="LockVault" component={LockVault} />
+        <Stack.Screen options={{ headerShown: false }} name="VaultSuccessful" component={VaultSuccessful} />
+        <Stack.Screen options={{ headerShown: false }} name="AddVault" component={AddVault} />
+        <Stack.Screen options={{ headerShown: false }} name="ConfirmDeleteVault" component={ConfirmDeleteVault} />
+        <Stack.Screen options={{ headerShown: false }} name="VaulToBank" component={VaulToBank} />
 
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="VaultToAza"
-          component={VaultToAza}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="ArchievedVault"
-          component={ArchievedVault}
-        />
+        <Stack.Screen options={{ headerShown: false }} name="VaultToAza" component={VaultToAza} />
+        <Stack.Screen options={{ headerShown: false }} name="ArchievedVault" component={ArchievedVault} />
         <Stack.Screen
           options={{ headerShown: false }}
           name="VaultWithdrawsuccessful"
           component={VaultWithdrawsuccessful}
         />
 
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="TopBar"
-          component={TopBar}
-        />
+        <Stack.Screen options={{ headerShown: false }} name="TopBar" component={TopBar} />
 
         <Stack.Screen
           options={{ headerShown: false }}
@@ -226,77 +181,38 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}>
-              <BackIcon
-                color={scheme == "light" ? "#000000" : "#ffffff"}
-                size={24}
-              />
+              }}
+            >
+              <BackIcon color={scheme == "light" ? "#000000" : "#ffffff"} size={24} />
               <Text style={{ marginLeft: 5 }}>Back</Text>
             </TouchableOpacity>
           ),
           headerStyle: {
-            backgroundColor: scheme == "light" ? '#ffffff':Colors.dark.background,
-
-            
-            
+            backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
           },
-          headerTransparent:true,
+          headerTransparent: true,
           headerTitleStyle: {
             fontSize: 16,
             fontWeight: "600",
           },
-          
-        })}>
-        <Stack.Screen
-          
-          options={{ title: "Airtime & Data"}}
-          
-          name="AirtimeData"
-          component={AirtimeTabs}
-        />
-        <Stack.Screen
-          options={{ presentation: "fullScreenModal", title: "" }}
-          name="Pie"
-          component={Pie}
-        />
-        <Stack.Screen
-          options={{ title: "Confirmation" }}
-          name="Confirm"
-          component={ConfirmTransaction}
-        />
-        <Stack.Screen
-          options={{ title: "Internet" }}
-          name="InternetPlans"
-          component={InternetPlans}
-        />
-        <Stack.Screen
-          options={{ title: "Electricity" }}
-          name="Electricity"
-          component={ElectricityIndex}
-        />
-        <Stack.Screen
-          options={{ title: "Cable TV" }}
-          name="CableTV"
-          component={CableTvIndex}
-        />
-        <Stack.Screen
-          options={{ title: "Water" }}
-          name="Water"
-          component={WaterScreen}
-        />
+        })}
+      >
+        <Stack.Screen options={{ title: "Airtime & Data" }} name="AirtimeData" component={AirtimeTabs} />
+        <Stack.Screen options={{ presentation: "fullScreenModal", title: "" }} name="Pie" component={Pie} />
+        <Stack.Screen options={{ title: "Confirmation" }} name="Confirm" component={ConfirmTransaction} />
+        <Stack.Screen options={{ title: "Internet" }} name="InternetPlans" component={InternetPlans} />
+        <Stack.Screen options={{ title: "Electricity" }} name="Electricity" component={ElectricityIndex} />
+        <Stack.Screen options={{ title: "Cable TV" }} name="CableTV" component={CableTvIndex} />
+        <Stack.Screen options={{ title: "Water" }} name="Water" component={WaterScreen} />
         <Stack.Screen name="Charity" component={CharityIndexScreen} />
         <Stack.Screen
-          options={({ route }: { route: any }) => ({
-            title: route.params.name,
-          })}
+          options={({ route }: { route: any }) => ({ title: route.params.name })}
           name="CharityDetail"
           component={CharityTabs}
         />
 
         <Stack.Screen
-          options={({ route }: { route: any }) => ({
-            title: route.params.name,
-          })}
+          options={({ route }: { route: any }) => ({ title: route.params.name })}
           name="InternetPlanDetail"
           component={InternetDetail}
         />
@@ -308,6 +224,20 @@ const CommonStack = () => {
           name="CompleteTransaction"
           component={StatusScreen}
         />
+      </Stack.Group>
+
+      {/* Profile */}
+      <Stack.Group>
+        <Stack.Screen name="AccountDetails" component={AccountDetailsScreen} />
+        <Stack.Screen name="TransactionHistory" component={TransactionHistoryScreen} />
+        <Stack.Screen name="BankAccounts" component={BankAccountsScreen} />
+        <Stack.Screen name="SelectBank" component={SelectBankScreen} />
+        <Stack.Screen name="AddBankAccount" component={AddBankAccountScreen} />
+        <Stack.Screen name="AddBankAccountConfirmation" component={AddBankAccountConfirmationScreen} />
+        <Stack.Screen name="DebitCreditCards" component={DebitCreditCardsScreen} />
+        <Stack.Screen name="ManageCard" component={ManageCardScreen} />
+        <Stack.Screen name="AddNewCard" component={AddNewCardScreen} />
+        <Stack.Screen name="ScanCard" component={ScanCardScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

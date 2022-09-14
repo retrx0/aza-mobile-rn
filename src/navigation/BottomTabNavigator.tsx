@@ -18,7 +18,6 @@ import {
   SettingsIcon,
   ProfileIcon,
   MenuIcon,
-  AZALogo,
   AZALightningLogo,
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
@@ -26,7 +25,9 @@ import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetTyp
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
-const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">) => {
+const BottomTabNavigator = (
+  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
+) => {
   const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
   const colorScheme = useColorScheme();
@@ -40,7 +41,10 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
   };
 
   const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
-  const profileBottomSheetListItems = useBottomSheetType("profile", _navigation);
+  const {profileBottomSheetListItems, setChoosePhoto}: any = useBottomSheetType(
+    "profile",
+    _navigation
+  );
 
   return (
     <>
@@ -56,7 +60,9 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           options={({ navigation }: RootTabScreenProps<"Home">) => ({
             //center it in android
             headerTitleAlign: "center",
-            headerTitle: () => <AZALightningLogo size={25} color={Colors[colorScheme].text} />,
+            headerTitle: () => (
+              <AZALightningLogo size={25} color={Colors[colorScheme].text} />
+            ),
             title: "Home",
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
             headerRight: () => (
@@ -66,7 +72,11 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
                   opacity: pressed ? 0.5 : 1,
                 })}
               >
-                <QRCodeIcon size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+                <QRCodeIcon
+                  size={25}
+                  color={Colors[colorScheme].text}
+                  style={{ marginRight: 15 }}
+                />
               </Pressable>
             ),
             headerLeft: () => (
@@ -117,6 +127,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
               // to prevent the click from going to the profile screen and instead show a bottomsheet modal
               {
                 e.preventDefault();
+                setChoosePhoto(false)
                 toggleProfileModal();
               },
           }}
@@ -142,7 +153,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
       )}
     </>
   );
-};
+};;
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/

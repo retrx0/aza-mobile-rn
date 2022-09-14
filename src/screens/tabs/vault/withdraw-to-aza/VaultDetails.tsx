@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UnMatureVault from "./UnMatureVault";
-import MaturedVault from "../../vault/withdraw-to-aza/MaturedVault";
+import MaturedVault from "./MaturedVault";
 import { RootTabScreenProps } from "../../../../../types";
 
 const VaultDetails = ({ navigation, route }: RootTabScreenProps<"Vault">) => {

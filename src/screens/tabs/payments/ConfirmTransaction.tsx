@@ -13,9 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 
-export default function Confirmation({
-  navigation,
-}: RootTabScreenProps<"Payments">) {
+export default function Confirmation({ navigation }: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
@@ -23,9 +21,7 @@ export default function Confirmation({
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <Text style={styles.txt}>
-          Kindly confirm the details of this transaction
-        </Text>
+        <Text style={styles.txt}>Kindly confirm the details of this transaction</Text>
         <ImageInput />
         <Input
           icon={null}
@@ -51,11 +47,7 @@ export default function Confirmation({
           label="Payment Method"
           placeholder="Aza Account"
         />
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || 45 },
-          ]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: insets.bottom || 45 }]}>
           <Button
             title="Confirm"
             onPressButton={() => {
@@ -94,6 +86,7 @@ export default function Confirmation({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
   },
   txt: {
     color: "#4D4D4D",
@@ -110,7 +103,20 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     marginBottom: 0,
   },
+  cancel: {
+    textAlign: "center",
+    color: "#FF361A",
+    borderBottomColor: "#FF361A",
+    borderBottomWidth: 1,
+    width: 140,
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
   cancelContainer: {
+    width: "100%",
     marginTop: 5,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 20,
   },
 });

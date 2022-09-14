@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar, Platform, Appearance } from "react-native";
+import useColorScheme from "../../../hooks/useColorScheme";
+import Colors from "../../../constants/Colors";
 
-export const vaultStyles = StyleSheet.create({
+export const VaultStyles = StyleSheet.create({
   container: {
     flex: 1,
   },

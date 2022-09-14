@@ -12,10 +12,10 @@ export default function CustomSwitch({
 }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{title}</Text>
+    <Text style={styles.text}>{title}</Text>
       <Switch
         trackColor={{ false: "#767577", true: "#2A9E17" }}
-        thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+        thumbColor={isEnabled ? "#2A9E17" : "#f4f3f4"}
         ios_backgroundColor="#f4f3f4"
         onValueChange={onValueChange}
         value={isEnabled}
@@ -33,6 +33,5 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#A6A6A6",
-    marginRight:10
   },
 });

@@ -39,7 +39,7 @@ export type CommonStackParamList = {
   TopBar: undefined;
   mature: undefined;
   MatureTab: undefined;
-  VaultToBank: undefined;
+  VaulToBank: undefined;
   VaultWithdrawConfirmation: undefined;
   VaultToBankSuccessfull: undefined;
 

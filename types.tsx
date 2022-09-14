@@ -42,7 +42,7 @@ export type RootTabParamList = {
   Payments: undefined;
   Settings: undefined;
   Profile: undefined;
-  StatusScreen: any;
+  StatusScreen:any
 };
 
 export type PaymentsStackParamList = {
@@ -59,6 +59,7 @@ export type PaymentsStackParamList = {
   water: undefined;
   Charity: undefined;
   charity_detail: undefined;
+  
 };
 
 export type TopTabParamList = {
@@ -113,7 +114,7 @@ export type DaysProps = {
   onPress?: () => void;
 };
 
-export type VaultListProps = {
+export type VautListProps = {
   item: string;
   lockIcon: any;
   onPress?: () => void;
@@ -121,7 +122,7 @@ export type VaultListProps = {
   amount: string;
   stage: string;
 };
-export type VaultActivitytProps = {
+export type VautActivitytProps = {
   send: any;
   status: string;
   price: string;

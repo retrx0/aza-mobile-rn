@@ -5,45 +5,41 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { NairaIcon, UnlockIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { vaultStyles } from "../styles";
+import { VaultStyles } from "../styles";
+import { useNavigation } from "@react-navigation/core";
 import Colors from "../../../../constants/Colors";
 
 const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
-      <View style={vaultStyles.container}>
+      <View style={VaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
-          <Text style={CommonStyles.flightAmount}> {"\u20A6"}80,000</Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <NairaIcon color={"black"} size={0} />
+            <Text style={CommonStyles.flightAmount}>80,000</Text>
+          </View>
         </View>
         <View style={CommonStyles.matureContainer}>
-          <UnlockIcon color={Colors.general.green} />
+          <UnlockIcon color={Colors.general.green} size={0} />
           <Text style={CommonStyles.matured}>Matured</Text>
         </View>
         <Text style={CommonStyles.withdrawSuccessfull}>
           Your funds have successfully matured and can now be withdrawn.
         </Text>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(130) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(155) }]}>
           <Button
             title="Withdraw to Aza"
-            onPressButton={() =>
-              navigation
-                .getParent()
-                ?.navigate("Common", { screen: "VaultToAza" })
-            }
+            onPressButton={() => navigation.getParent()?.navigate("Common", { screen: "VaultToAza" })}
             style={[CommonStyles.toAzabutton]}
             styleText={CommonStyles.toAzabuttonText}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
           <Button
             title="Withdraw to Bank"
-            onPressButton={() =>
-              navigation
-                .getParent()
-                ?.navigate("Common", { screen: "VaultToBank" })
-            }
+            onPressButton={() => navigation.getParent()?.navigate("Common", { screen: "VaultToBank" })}
             style={[CommonStyles.toBankbutton]}
             styleText={CommonStyles.toBankbuttonText}
           />

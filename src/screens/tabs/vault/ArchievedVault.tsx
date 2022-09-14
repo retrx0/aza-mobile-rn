@@ -1,19 +1,8 @@
-import {
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-  I18nManager,
-} from "react-native";
+import { TouchableOpacity, StyleSheet, FlatList, I18nManager } from "react-native";
 import { View, Text } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { hp, wp } from "../../../common/util/LayoutUtil";
-import {
-  CloseIcon,
-  UnlockIcon,
-  TrashIcon,
-  InfoIcon,
-  UnarchiveIcon,
-} from "../../../../assets/svg";
+import { CloseIcon, UnlockIcon, TrashIcon, InfoIcon, UnarchiveIcon } from "../../../../assets/svg";
 import React from "react";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "@react-navigation/core";
@@ -26,7 +15,7 @@ import BackButton from "../../../components/buttons/BackButton";
 const ArchieveList = [
   {
     id: "1",
-    lockIcon: <UnlockIcon />,
+    lockIcon: <UnlockIcon color={""} size={0} />,
     item: "New Phone",
     amount: "200,000",
     closeIcon: <CloseIcon />,
@@ -34,7 +23,7 @@ const ArchieveList = [
   },
   {
     id: "2",
-    lockIcon: <UnlockIcon />,
+    lockIcon: <UnlockIcon color={""} size={0} />,
     item: "New Phone",
     amount: "200,000",
     closeIcon: <CloseIcon />,
@@ -42,14 +31,7 @@ const ArchieveList = [
   },
 ];
 const swipeFromRightOpen = () => {};
-const ListItem = ({
-  lockIcon,
-  item,
-  amount,
-  closeIcon,
-  stage,
-  onPress,
-}: VaultListProps) => {
+const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultListProps) => {
   const navigation = useNavigation();
   return (
     <Swipeable
@@ -59,7 +41,8 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}>
+          }}
+        >
           <TouchableOpacity
             style={{
               width: 77,
@@ -68,9 +51,8 @@ const ListItem = ({
               alignItems: "center",
               justifyContent: "center",
             }}
-            onPress={() =>
-              navigation.navigate("Common", { screen: "AddVault" })
-            }>
+            onPress={() => navigation.navigate("Common", { screen: "AddVault" })}
+          >
             <UnarchiveIcon />
             <Text
               style={{
@@ -80,7 +62,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Unarchive
             </Text>
           </TouchableOpacity>
@@ -92,10 +75,9 @@ const ListItem = ({
               alignItems: "center",
               justifyContent: "center",
             }}
-            onPress={() =>
-              navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }>
-            <TrashIcon />
+            onPress={() => navigation.navigate("Common", { screen: "ConfirmDeleteVault" })}
+          >
+            <TrashIcon color={""} size={0} />
             <Text
               style={{
                 color: Colors.general.white,
@@ -104,7 +86,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Delete
             </Text>
           </TouchableOpacity>
@@ -112,7 +95,8 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}>
+      rightThreshold={40}
+    >
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
@@ -125,12 +109,10 @@ const ListItem = ({
                 style={[
                   styles.amount,
                   {
-                    color:
-                      amount === "200,000"
-                        ? Colors.general.green
-                        : Colors.general.black,
+                    color: amount === "200,000" ? Colors.general.green : Colors.general.black,
                   },
-                ]}>
+                ]}
+              >
                 {"\u20A6"}
                 {amount}
               </Text>
@@ -147,7 +129,7 @@ const ListItem = ({
   );
 };
 
-const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const ArchievedVault = ({ navigation }: { navigation: any }) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -160,7 +142,7 @@ const ArchievedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             headerStyle={CommonStyles.archieved}
           />
           <TouchableOpacity>
-            <InfoIcon />
+            <InfoIcon color={""} size={0} />
           </TouchableOpacity>
         </View>
         <View style={CommonStyles.lineDivider} />

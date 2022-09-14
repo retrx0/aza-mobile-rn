@@ -8,7 +8,6 @@ export const AIrtimeStyles = StyleSheet.create({
   },
   label: {
     marginLeft: 20,
-    marginTop: 10,
   },
   input: {
     marginLeft: 20,

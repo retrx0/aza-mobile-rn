@@ -1,5 +1,5 @@
 import React from "react";
-import { signinStyles as styles } from "./styles";
+import { SigninStyles as styles } from "./styles";
 import Button from "../../../components/buttons/Button";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -29,13 +29,13 @@ const SignInWelcomeBackScreen = ({
       <SegmentedInput
         value={otpCode}
         onValueChanged={onOtpChanged}
-        headerText="Password"
+        headerText='Password'
         secureInput={true}
       />
       <View
         style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
         <Button
-          title="Forget Me"
+          title='Forget Me'
           style={{}}
           styleText={styles.welcomeOTPButton}
           onPressButton={onVerify}

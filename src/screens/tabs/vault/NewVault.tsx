@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Switch, TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
-import { hp } from "../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
 import {
@@ -12,6 +12,7 @@ import {
   PercentageList,
 } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -33,16 +34,16 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <Header
           headerStyle={CommonStyles.vault}
           descriptionStyle={CommonStyles.descriptionStyle}
-          heading="Vault"
-          description="Save and lock part of your Aza funds temporarily,
-        for future use."
+          heading='Vault'
+          description='Save and lock part of your Aza funds temporarily,
+        for future use.'
         />
 
         <View style={CommonStyles.vaultInputContainer}>
           <Input
             label={"Vault Name"}
             labelStyle={undefined}
-            placeholder="Give your vault a name"
+            placeholder='Give your vault a name'
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
             containerStyle={undefined}
@@ -52,7 +53,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Input
             label={"Amount"}
             labelStyle={undefined}
-            placeholder="Enter an amount you wish to save"
+            placeholder='Enter an amount you wish to save'
             style={CommonStyles.vaultInput}
             inputStyle={CommonStyles.inputStyle}
             icon={undefined}
@@ -86,7 +87,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             return <DaysCard key={index} days={item.days} onPress={() => {}} />;
           })}
         </View>
-        <View style={[CommonStyles.SwitchContainer, { bottom: hp(20) }]}>
+        <View style={[CommonStyles.SwitchContainer, { bottom: hp(30) }]}>
           <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month

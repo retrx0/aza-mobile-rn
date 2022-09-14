@@ -2,9 +2,9 @@ import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { LockIcon } from "../../../../../assets/svg";
+import { LockIcon, NairaIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { vaultStyles } from "../styles";
+import { VaultStyles } from "../styles";
 import { Input } from "../../../../components/input/input";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -15,10 +15,13 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
 
   return (
     <SpacerWrapper>
-      <View style={vaultStyles.container}>
+      <View style={VaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
-          <Text style={CommonStyles.flightAmount}> {"\u20A6"}2,000</Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <NairaIcon color={"black"} size={0} />
+            <Text style={CommonStyles.flightAmount}>2,000</Text>
+          </View>
         </View>
 
         <View>
@@ -48,13 +51,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
-            return (
-              <PercentageCard
-                key={index}
-                percentage={item.percentage}
-                onPress={() => {}}
-              />
-            );
+            return <PercentageCard key={index} percentage={item.percentage} onPress={() => {}} />;
           })}
         </View>
 
