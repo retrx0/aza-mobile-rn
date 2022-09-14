@@ -1,18 +1,16 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
   TextInput,
   TextInputProps,
   StyleProp,
   ViewStyle,
-  View,
   TextStyle,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
+import { Text, View } from "../../components/Themed";
 
 export type InputProps = {
   label: string;

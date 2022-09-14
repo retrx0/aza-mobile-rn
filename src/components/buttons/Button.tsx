@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import Colors from "../../constants/Colors";
-import { hp, wp } from "../../common/util/LayoutUtil";
+import { hp } from "../../common/util/LayoutUtil";
 
 type ButtonPropsType = {
   title: string;
@@ -15,7 +15,7 @@ type ButtonPropsType = {
   isNext?: boolean;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
-  disabled?:boolean;
+  disabled?: boolean;
 };
 
 export const Button: FC<ButtonPropsType> = ({
@@ -24,7 +24,7 @@ export const Button: FC<ButtonPropsType> = ({
   isNext,
   style,
   styleText,
-  disabled
+  disabled,
 }) => {
   return (
     <TouchableOpacity
@@ -44,7 +44,7 @@ const styles = {
     color: Colors.general.secondary,
     fontWeight: "500",
     letterSpacing: hp(0.5),
-    fontSize: hp(16),
+    fontSize: hp(14),
     lineHeight: hp(18),
     fontFamily: "Euclid-Circular-A",
   },

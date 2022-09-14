@@ -42,7 +42,6 @@ const OtpScreen = (props: OtpProp) => {
         <TouchableOpacity>
           <CancelButtonWithUnderline
             title="Resend code"
-            style={{ borderBottomColor: Colors.general.black }}
             styleText={CommonStyles.resend}
           />
         </TouchableOpacity>
