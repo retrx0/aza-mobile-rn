@@ -10,7 +10,9 @@ import { TopBar } from "../../../../common/navigation/CommonStackNavigator";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
 
-const VaultWithdrawsuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultWithdrawsuccessful = ({
+  navigation,
+}: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
 
@@ -24,9 +26,15 @@ const VaultWithdrawsuccessful = ({ navigation }: RootTabScreenProps<"Vault">) =>
         />
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
-          <Text style={CommonStyles.successStyle}>You have successfully withdrawn #80,000 to your Aza Account</Text>
+          <Text style={CommonStyles.successStyle}>
+            You have successfully withdrawn {"\u20A680,000"} to your Aza Account
+          </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: insets.bottom || hp(45) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() => navigation.getParent()?.navigate("Vault")}
@@ -37,7 +45,7 @@ const VaultWithdrawsuccessful = ({ navigation }: RootTabScreenProps<"Vault">) =>
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              { marginBottom: hp(45) },
+              { bottom: hp(20) },
               CommonStyles.button,
             ]}
           />

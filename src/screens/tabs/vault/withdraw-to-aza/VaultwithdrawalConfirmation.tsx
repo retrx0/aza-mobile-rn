@@ -11,7 +11,6 @@ import CancelButtonWithUnderline from "../../../../components/buttons/CancelButt
 import { Input } from "../../../../components/input/input";
 import { VaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
-import { useState } from "react";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
@@ -33,7 +32,9 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             />
           </View>
         </View>
-        <Text style={CommonStyles.confirmDetails}>Kindly confirm the details of this transaction</Text>
+        <Text style={CommonStyles.confirmDetails}>
+          Kindly confirm the details of this transaction
+        </Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
@@ -42,8 +43,8 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             labelStyle={styles.label}
             label="To"
             placeholder="Aza Account"
-            placeholderTextColor={"black"}
             containerStyle={undefined}
+            placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
         <View style={CommonStyles.vaultInputcontainer}>
@@ -53,12 +54,12 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             inputStyle={CommonStyles.inputStyle}
             labelStyle={styles.label}
             label="Amount"
-            placeholder="#80,000"
-            placeholderTextColor={"black"}
+            placeholder={"\u20A6 80,000"}
             containerStyle={undefined}
+            placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -81,8 +82,8 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <CancelButtonWithUnderline
             title="Cancel Transaction"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
-            style={{ marginTop: 10 }}
             styleText={CommonStyles.cancelStyle}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>

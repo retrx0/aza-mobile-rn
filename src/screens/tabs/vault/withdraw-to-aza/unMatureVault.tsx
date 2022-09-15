@@ -19,15 +19,23 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         <View style={CommonStyles.flightContainer}>
           <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <NairaIcon color={"black"} size={0} />
-            <Text style={CommonStyles.flightAmount}>2,000</Text>
+            <NairaIcon color={Colors[colorScheme].text} size={0} />
+            <Text style={CommonStyles.flightAmount}> 2,000</Text>
           </View>
         </View>
 
         <View>
-          <View style={CommonStyles.lockContainer}>
-            <LockIcon />
-            <View style={CommonStyles.timeContainer}>
+          <View
+            style={[
+              CommonStyles.lockContainer,
+              { backgroundColor: Colors[colorScheme].disabled },
+            ]}>
+            <LockIcon color={Colors[colorScheme].button} />
+            <View
+              style={[
+                CommonStyles.timeContainer,
+                { backgroundColor: Colors[colorScheme].disabled },
+              ]}>
               <Text style={CommonStyles.time}>06</Text>
               <Text style={CommonStyles.seconds}>Days : </Text>
               <Text style={CommonStyles.time}>14</Text>
@@ -37,7 +45,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             </View>
           </View>
         </View>
-
+        <Text style={CommonStyles.maturity}>until maturity</Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             label={"Top up Vault"}
@@ -51,11 +59,11 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         </View>
         <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
-            return <PercentageCard key={index} percentage={item.percentage} onPress={() => {}} />;
+            return <PercentageCard key={index} percentage={item.percentage} />;
           })}
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <Button
             title="Continue"
             onPressButton={() => setMatured()}
@@ -64,7 +72,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             }}
             style={[
               {
-                backgroundColor: Colors[colorScheme].button,
+                backgroundColor: "#262626",
               },
               CommonStyles.button,
             ]}

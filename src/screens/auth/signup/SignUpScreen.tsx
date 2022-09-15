@@ -25,7 +25,9 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       </View>
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
+        <Text style={[CommonStyles.bodyText]}>
+          Enter your phone number to continue
+        </Text>
         <Text style={[CommonStyles.phoneText]}>
           Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
@@ -59,9 +61,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <CancelButtonWithUnderline
           title="Login"
-          style={{ borderBottomColor: Colors.general.black }}
-          styleText={CommonStyles.resend}
           onPressButton={() => navigation.getParent()?.navigate("SignIn")}
+          color={Colors[colorScheme].text}
         />
       </View>
 

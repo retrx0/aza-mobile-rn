@@ -1,4 +1,3 @@
-import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../components/Themed";
 import { Header } from "../../../../components/text/header";
@@ -10,12 +9,12 @@ import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { Input } from "../../../../components/input/input";
 import { VaultStyles as styles } from "../styles";
-import { useState } from "react";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
 
-const VaultWithdrawConfirmation = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const [confirm, setConfirm] = useState(false);
+const VaultWithdrawConfirmation = ({
+  navigation,
+}: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -34,17 +33,19 @@ const VaultWithdrawConfirmation = ({ navigation }: RootTabScreenProps<"Vault">) 
             />
           </View>
         </View>
-        <Text style={CommonStyles.confirmDetails}>Kindly confirm the details of this transaction</Text>
+        <Text style={CommonStyles.confirmDetails}>
+          Kindly confirm the details of this transaction
+        </Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
             keyboardType="phone-pad"
             inputStyle={CommonStyles.inputStyle}
-            labelStyle={styles.label}
+            labelStyle={[styles.label, { color: Colors[colorScheme].Text }]}
             label="To"
             placeholder="Access bank (140...)"
-            placeholderTextColor={"black"}
             containerStyle={undefined}
+            placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
         <View style={CommonStyles.vaultInputcontainer}>
@@ -52,18 +53,18 @@ const VaultWithdrawConfirmation = ({ navigation }: RootTabScreenProps<"Vault">) 
             icon={null}
             keyboardType="phone-pad"
             inputStyle={CommonStyles.inputStyle}
-            labelStyle={styles.label}
+            labelStyle={[styles.label, { color: Colors[colorScheme].Text }]}
             label="Amount"
-            placeholder="#80,000"
-            placeholderTextColor={"black"}
+            placeholder={"\u20A6 80,000"}
             containerStyle={undefined}
+            placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <Button
             onPressButton={() =>
               navigation.navigate("Common", {
-                screen: "VaultToBankSuccessfull",
+                screen: "VaultToBankSuccessful",
               })
             }
             title={"Confirm"}
@@ -73,15 +74,16 @@ const VaultWithdrawConfirmation = ({ navigation }: RootTabScreenProps<"Vault">) 
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"
-            onPressButton={() => navigation.getParent()?.navigate("VaulToBank")}
-            style={{ marginTop: 10 }}
+            onPressButton={() =>
+              navigation.getParent()?.navigate("VaultToBank")
+            }
+            style={{ borderBottomColor: Colors.general.red }}
             styleText={CommonStyles.cancelStyle}
           />
         </View>

@@ -11,7 +11,7 @@ import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 
-export const ActiivityList = [
+export const ActivityList = [
   {
     send: <WithDrawIcon />,
     status: "Withdrawal to Bank",
@@ -56,7 +56,7 @@ export const ActiivityList = [
   },
 ];
 
-export const ActiivityCard = ({
+export const ActivityCard = ({
   send,
   status,
   price,

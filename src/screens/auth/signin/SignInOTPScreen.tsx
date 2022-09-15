@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import { SignInScreenProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";

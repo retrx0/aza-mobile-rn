@@ -2,7 +2,6 @@ import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View, Text } from "../../../components/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
@@ -13,8 +12,6 @@ import useColorScheme from "../../../hooks/useColorScheme";
 const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
 
-  const insets = useSafeAreaInsets();
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -24,10 +21,14 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
-          <Text style={CommonStyles.actionStyle}>This action cannot be undone</Text>
-          <Text style={CommonStyles.lockupStyle}>You are about to lock up {`#${2000}`} for 2 Weeks</Text>
+          <Text style={CommonStyles.actionStyle}>
+            This action cannot be undone
+          </Text>
+          <Text style={CommonStyles.lockupStyle}>
+            You are about to lock up {`#${2000}`} for 2 Weeks
+          </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(75) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -41,7 +42,6 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}
@@ -50,8 +50,8 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <CancelButtonWithUnderline
             title="Cancel"
             onPressButton={() => navigation.getParent()?.navigate("NewVault")}
-            style={{ marginTop: 5 }}
             styleText={CommonStyles.cancelStyle}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>
