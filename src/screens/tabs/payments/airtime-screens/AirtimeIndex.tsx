@@ -81,27 +81,13 @@ export default function AirtimeIndex({
           label="Amount"
           placeholder="Enter an amount"
         />
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || 45 },
-          ]}>
-          <Button
-            title="Continue"
-            onPressButton={() => {
-              navigation.navigate("Common", { screen: "Confirm" });
-            }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
-          />
-        </View>
+        <MyButton title="Continue" 
+        onPress={() => {
+          navigation.navigate("Common", { screen: "Confirm" });
+        }}
+        disabled={false}
+        />
+        
       </View>
     </SpacerWrapper>
   );

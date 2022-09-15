@@ -14,17 +14,20 @@ import CancelButtonWithUnderline from "../../../../components/buttons/CancelButt
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
 
-export default function CharityDetail({ navigation }: RootTabScreenProps<"Payments">) {
+export default function CharityDetail({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const route = useRoute();
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
-        <InfoIcon color={""} size={0} />
+        <InfoIcon />
         <Text style={styles.text}>
-          The Chess in Slums, Africa is reimagining education using chess as a tool/framework to aid cognition and
-          empower the minds of children in impoverished areas of Nigeria.
+          The Chess in Slums, Africa is reimagining education using chess as a
+          tool/framework to aid cognition and empower the minds of children in
+          impoverished areas of Nigeria.
         </Text>
       </View>
       {route.name == "For Someone Else" && (
@@ -77,7 +80,11 @@ export default function CharityDetail({ navigation }: RootTabScreenProps<"Paymen
 
       <View style={styles.buttons}>
         <View style={styles.check}>
-          <CustomSwitch title="Recurring monthly donation" onValueChange={toggleSwitch} isEnabled={isEnabled} />
+          <CustomSwitch
+            title="Recurring monthly donation"
+            onValueChange={toggleSwitch}
+            isEnabled={isEnabled}
+          />
         </View>
         <Divider
           style={{
@@ -98,7 +105,7 @@ export default function CharityDetail({ navigation }: RootTabScreenProps<"Paymen
           onPressButton={() => {
             navigation.goBack();
           }}
-          style={{ borderBottomColor: Colors.general.red }}
+          style={{ borderBottomColor: Colors.general.red,marginBottom:20 }}
           title="Cancel"
           styleText={CommonStyles.cancelStyle}
         />

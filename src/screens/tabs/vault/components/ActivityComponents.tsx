@@ -6,7 +6,7 @@ import {
   ReceiveIcon,
   WithDrawIcon,
 } from "../../../../../assets/svg";
-import { VautActivitytProps } from "../../../../../types";
+import { VaultActivitytProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
@@ -62,7 +62,7 @@ export const ActiivityCard = ({
   price,
   due,
   onPress,
-}: VautActivitytProps) => {
+}: VaultActivitytProps) => {
   return (
     <View>
       <View style={styles.activityContainer}>

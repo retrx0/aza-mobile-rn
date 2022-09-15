@@ -62,14 +62,18 @@ export const CharityStyles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    width: "85%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    width: "90%",
+    // marginLeft: "auto",
+    // marginRight: "auto",
+    // justifyContent:'space-between',
     marginTop: 40,
+    paddingHorizontal:10,
   },
   text: {
     textAlign: "justify",
-    marginLeft: 10,
+    marginLeft:10,
+    marginRight:10
+    
   },
   input: {
     marginLeft: 20,
@@ -108,6 +112,7 @@ export const CharityStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    
   },
   btn: {
     marginBottom: 10,
@@ -121,12 +126,7 @@ export const CharityStyles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  cancelContainer: {
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: 40,
-  },
+ 
   mainInput: {
     marginTop: 0,
   },

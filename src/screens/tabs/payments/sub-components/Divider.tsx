@@ -1,8 +1,8 @@
 import { View, StyleSheet, ViewStyle } from "react-native";
 import React from "react";
 
-export default function Divider({ style }: { style?: ViewStyle }) {
-  return <View style={[styles.divider, style]}></View>;
+export default function Divider({style}:{style?:ViewStyle}) {
+  return <View style={[styles.divider,style]}></View>;
 }
 const styles = StyleSheet.create({
   divider: {
@@ -10,5 +10,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: "#EAEAEC",
     marginTop: 20,
+    marginLeft:'auto',
+    marginRight:'auto'
   },
 });

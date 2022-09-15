@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   container: {
-    marginTop: hp(20),
-    marginBottom: hp(20),
+    marginTop: hp(10),
+    marginBottom: hp(10),
   },
   textInput: {
     borderRadius: 9,

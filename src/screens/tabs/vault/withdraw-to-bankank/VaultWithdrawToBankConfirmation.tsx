@@ -12,6 +12,7 @@ import { Input } from "../../../../components/input/input";
 import { VaultStyles as styles } from "../styles";
 import { useState } from "react";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import Colors from "../../../../constants/Colors";
 
 const VaultWithdrawConfirmation = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [confirm, setConfirm] = useState(false);

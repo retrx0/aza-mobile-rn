@@ -65,6 +65,7 @@ import DebitCreditCardsScreen from "../../screens/tabs/profile/screens/DebitCred
 import ManageCardScreen from "../../screens/tabs/profile/screens/ManageCardScreen";
 import AddNewCardScreen from "../../screens/tabs/profile/screens/AddNewCardScreen";
 import ScanCardScreen from "../../screens/tabs/profile/screens/ScanCardScreen";
+import Colors from "../../constants/Colors";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -188,7 +189,7 @@ const CommonStack = () => {
             </TouchableOpacity>
           ),
           headerStyle: {
-            backgroundColor: scheme == "light" ? "#ffffff" : "#000000",
+            backgroundColor: scheme == "light" ? "#ffffff" :Colors.dark.background,
           },
           headerTransparent: true,
           headerTitleStyle: {

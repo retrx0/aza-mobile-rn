@@ -21,7 +21,7 @@ import { Mtn } from "../../../../assets/images";
 import useColorScheme from "../../../hooks/useColorScheme";
 
 export default function Payments({ navigation }: RootTabScreenProps<"Payments">) {
-  const scheme = useColorScheme();
+  const scheme=useColorScheme()
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -50,72 +50,69 @@ export default function Payments({ navigation }: RootTabScreenProps<"Payments">)
         <Divider />
 
         <ListItem
-          index={0}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "AirtimeData" });
-          }}
-          Icon={() => <DataIcon color={scheme == "dark" ? "white" : "#753FF6"} />}
-          title="Airtime & Data"
-          route=""
-        />
+     index={0} 
+    onPress={()=>{
+      navigation.navigate("Common", { screen: "AirtimeData" })
+    }}
+    Icon={()=><DataIcon color={scheme=='dark'?'white':'#753FF6'}/>} 
+    title='Airtime & Data' 
+    route=''/>
 
-        <ListItem
-          index={1}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "InternetPlans" });
-          }}
-          Icon={() => <WifiIcon color={scheme == "dark" ? "white" : "#2A9E17"} />}
-          title="Internet"
-          route=""
-        />
+   <ListItem
+    index={1} 
+    onPress={()=>{
+      navigation.navigate("Common", { screen: "InternetPlans" })
+    }}
+    Icon={()=><WifiIcon color={scheme=='dark'?'white':'#2A9E17'}/>} 
+    title='Internet' 
+    route=''/>
 
-        <ListItem
-          index={2}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "CableTV" });
-          }}
-          Icon={() => <CableTvIcon color={scheme == "dark" ? "white" : "#FFD200"} />}
-          title="Cable TV"
-          route=""
-        />
+   <ListItem
+    index={2}
+   onPress={()=>{
+    navigation.navigate("Common", { screen: "CableTV" })
+    
+   }} 
+    Icon={()=><CableTvIcon color={scheme=='dark'?'white':'#FFD200'}/>} 
+    title='Cable TV' 
+    route=''/>
 
-        <ListItem
-          index={3}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "Electricity" });
-          }}
-          Icon={() => <ElectricIcon color={scheme == "dark" ? "white" : "#ED8A0A"} />}
-          title="Electricity"
-          route=""
-        />
 
-        <ListItem
-          index={4}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "Water" });
-          }}
-          Icon={() => <DropIcon color={scheme == "dark" ? "white" : "#1198F6"} />}
-          title="Water"
-          route=""
-        />
+  <ListItem
+   index={3}
+  onPress={()=>{
+    navigation.navigate("Common", { screen: "Electricity" })
+  }} 
+    Icon={()=><ElectricIcon color={scheme=='dark'?'white':'#ED8A0A'}/>} 
+    title='Electricity' 
+    route=''/>
 
-        <ListItem
-          index={5}
-          onPress={() => {}}
-          Icon={() => <GiftIcon color={scheme == "dark" ? "white" : "#BED600"} />}
-          title="Gift Cards"
-          route=""
-        />
+  
+<ListItem
+ index={4}
+onPress={()=>{
+  navigation.navigate("Common", { screen: "Water" })
+}} 
+    Icon={()=><DropIcon color={scheme=='dark'?'white':'#1198F6'}/>} 
+    title='Water' 
+    route=''/>
 
-        <ListItem
-          index={6}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "Charity" });
-          }}
-          Icon={() => <LoveIcon color={scheme == "dark" ? "white" : "#FF361A"} />}
-          title="Charity"
-          route=""
-        />
+
+<ListItem
+ index={5}
+onPress={()=>{}} 
+    Icon={()=><GiftIcon color={scheme=='dark'?'white':'#BED600'}/>} 
+    title='Gift Cards' 
+    route=''/>
+
+<ListItem
+ index={6}
+onPress={()=>{
+  navigation.navigate("Common", { screen: "Charity" })
+}} 
+    Icon={()=><LoveIcon color={scheme=='dark'?'white':'#FF361A'}/>} 
+    title='Charity' 
+    route=''/>
       </ScrollView>
     </SafeAreaView>
   );

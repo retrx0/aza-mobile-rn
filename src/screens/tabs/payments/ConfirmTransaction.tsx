@@ -11,17 +11,20 @@ import Colors from "../../../constants/Colors";
 import Button from "../../../components/buttons/Button";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../hooks/useColorScheme";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
 
-export default function Confirmation({ navigation }: RootTabScreenProps<"Payments">) {
+
+export default function Confirmation({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
-    <SpacerWrapper>
-      <View style={styles.container}>
-        <Text style={styles.txt}>Kindly confirm the details of this transaction</Text>
+      <SafeAreaView style={[styles.container,{paddingTop:Platform.OS=='android'?100:20}]}>
+        <Text style={styles.txt}>
+          Kindly confirm the details of this transaction
+        </Text>
         <ImageInput />
         <Input
           icon={null}
@@ -47,46 +50,36 @@ export default function Confirmation({ navigation }: RootTabScreenProps<"Payment
           label="Payment Method"
           placeholder="Aza Account"
         />
-        <View style={[CommonStyles.passwordContainer, { bottom: insets.bottom || 45 }]}>
-          <Button
-            title="Confirm"
-            onPressButton={() => {
+
+        <MyButton disabled={false} title="Confirm" onPress={() => {
               navigation.navigate("StatusScreen", {
                 statusIcon: "Success",
                 status: "Successful",
                 statusMessage: "Your internet purchase was successful",
-                navigateTo: "Common",
+                navigateTo: "Payments",
               });
-            }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-                marginBottom: 10,
-              },
-              CommonStyles.button,
-            ]}
-          />
+            }}/>
+       
           <CancelButtonWithUnderline
             onPressButton={() => {
               navigation.goBack();
             }}
             title="Cancel Transaction"
-            style={{ borderBottomColor: Colors.general.red }}
+            style={{ borderBottomColor: Colors.general.red}}
             styleText={CommonStyles.cancelStyle}
           />
-        </View>
-      </View>
-    </SpacerWrapper>
+      
+      </SafeAreaView>
+  
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal:20,
+    paddingBottom:20
+
   },
   txt: {
     color: "#4D4D4D",
@@ -103,20 +96,7 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     marginBottom: 0,
   },
-  cancel: {
-    textAlign: "center",
-    color: "#FF361A",
-    borderBottomColor: "#FF361A",
-    borderBottomWidth: 1,
-    width: 140,
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
   cancelContainer: {
-    width: "100%",
     marginTop: 5,
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: 20,
   },
 });

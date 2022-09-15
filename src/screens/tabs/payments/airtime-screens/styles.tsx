@@ -8,6 +8,7 @@ export const AIrtimeStyles = StyleSheet.create({
   },
   label: {
     marginLeft: 20,
+    marginTop: 10,
   },
   input: {
     marginLeft: 20,
@@ -18,7 +19,7 @@ export const AIrtimeStyles = StyleSheet.create({
   },
   button: {
     marginTop: "auto",
-    marginBottom: 50,
+    marginBottom: 20,
     opacity: 0,
   },
   select: {
