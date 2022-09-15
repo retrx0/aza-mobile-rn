@@ -22,7 +22,7 @@ type OtpProp = {
   onBackButtonPressed: () => void;
 };
 
-const OtpScreen = (props: OtpProp, { navigation }: { navigation: any }) => {
+const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onVerify } = props;
   const colorScheme = useColorScheme();
 
@@ -32,15 +32,22 @@ const OtpScreen = (props: OtpProp, { navigation }: { navigation: any }) => {
         <BackButton onPress={() => props.onBackButtonPressed()} />
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>Please enter the 6-digit code sent to your mobile number</Text>
-      <SegmentedInput value={otpCode} onValueChanged={onOtpChanged} headerText="OTP" secureInput={false} />
+      <Text style={styles.verification}>
+        Please enter the 6-digit code sent to your mobile number
+      </Text>
+      <SegmentedInput
+        value={otpCode}
+        onValueChanged={onOtpChanged}
+        headerText="OTP"
+        secureInput={false}
+      />
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
         <TouchableOpacity>
           <CancelButtonWithUnderline
             title="Resend code"
-            style={CommonStyles.resendBox}
             styleText={CommonStyles.resend}
+            color={Colors[colorScheme].text}
           />
         </TouchableOpacity>
       </View>
