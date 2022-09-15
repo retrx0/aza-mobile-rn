@@ -63,9 +63,9 @@ import ManageCardScreen from "../../screens/tabs/profile/screens/ManageCardScree
 import AddNewCardScreen from "../../screens/tabs/profile/screens/AddNewCardScreen";
 import ScanCardScreen from "../../screens/tabs/profile/screens/ScanCardScreen";
 import Colors from "../../constants/Colors";
-import VaultToBank from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBank";
-import VaultWithdrawConfirmation from "../../screens/tabs/vault/withdraw-to-bankank/VaultWithdrawToBankConfirmation";
-import VaultToBankSuccessful from "../../screens/tabs/vault/withdraw-to-bankank/VaultToBankSuccessful";
+import VaultToBank from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBank";
+import VaultWithdrawConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
+import VaultToBankSuccessful from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankSuccessful";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
