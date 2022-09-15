@@ -248,9 +248,9 @@ const CommonStack = () => {
           ),
           headerStyle: {
             backgroundColor:
-              scheme == "light" ? "#ffffff" : Colors.dark.background,
+              scheme == "light" ? Colors.light.background : Colors.dark.background,
           },
-          headerTransparent: true,
+          headerTransparent:true,
           headerTitleStyle: {
             fontSize: 16,
             fontWeight: "600",

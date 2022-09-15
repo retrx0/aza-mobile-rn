@@ -89,9 +89,10 @@ export const CharityStyles = StyleSheet.create({
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
-    marginTop: 21,
+    marginTop:10,
     marginLeft: "auto",
     marginRight: "auto",
+    marginBottom:10
   },
   mainSuggestion: {
     width: 70,
