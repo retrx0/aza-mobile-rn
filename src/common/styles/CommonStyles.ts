@@ -1,4 +1,4 @@
-import { Appearance, Platform, StyleSheet, StatusBar } from "react-native";
+import { Platform, StyleSheet, StatusBar } from "react-native";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../util/LayoutUtil";
 
@@ -17,7 +17,6 @@ const CommonStyles = StyleSheet.create({
     backgroundColor: Colors.light.backgroundSecondary,
   },
   flightText: {
-    color: Colors.general.black,
     marginLeft: hp(15),
     fontSize: hp(12),
     fontWeight: "600",
@@ -133,20 +132,26 @@ const CommonStyles = StyleSheet.create({
     flexDirection: "row",
     marginTop: hp(10),
     alignItems: "center",
-    backgroundColor: "#F2F2F2",
   },
   matureContainer: {
     width: wp(355),
     height: hp(100),
-    borderColor: "grey",
     borderWidth: hp(1),
     marginTop: hp(40),
     borderRadius: hp(10),
-    borderStyle: "dashed",
     alignItems: "center",
     paddingVertical: hp(25),
     marginBottom: hp(20),
     alignSelf: "center",
+    borderStyle: "dashed",
+  },
+  maturity: {
+    fontFamily: "Euclid-Circular-A",
+    fontSize: hp(12),
+    fontWeight: "400",
+    lineHeight: hp(15),
+    textAlign: "center",
+    marginBottom: hp(30),
   },
   lockContainer: {
     width: wp(355),
@@ -158,8 +163,7 @@ const CommonStyles = StyleSheet.create({
     borderStyle: "dashed",
     alignItems: "center",
     paddingVertical: hp(25),
-    backgroundColor: Colors.light.backgroundSecondary,
-    marginBottom: hp(40),
+    marginBottom: hp(10),
     alignSelf: "center",
   },
   flightContainer: {
@@ -254,7 +258,7 @@ const CommonStyles = StyleSheet.create({
   },
   cancelStyle: {
     textAlign: "center",
-    marginTop: hp(20),
+    marginTop: hp(5),
     color: Colors.general.red,
     fontSize: hp(14),
     fontWeight: "500",
@@ -341,7 +345,6 @@ const CommonStyles = StyleSheet.create({
     alignItems: "center",
     height: hp(200),
     borderRadius: hp(10),
-    backgroundColor: "white",
   },
 
   percentageContainer: {
@@ -354,13 +357,11 @@ const CommonStyles = StyleSheet.create({
     paddingHorizontal: hp(5),
   },
   inputStyle: {
-    color: Colors.light.secondaryText,
     paddingRight: wp(10),
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    // marginBottom: hp(5),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Bold",
     borderBottomWidth: hp(0.3),
     borderColor: Colors.light.secondaryText,
     paddingVertical: hp(8),
@@ -374,7 +375,7 @@ const CommonStyles = StyleSheet.create({
   //   borderColor: "#EAEAEC",
   // },
   vaultInputcontainer: {
-    paddingHorizontal: hp(25),
+    paddingHorizontal: hp(20),
   },
   vaultInputContainer: {
     paddingHorizontal: hp(20),
@@ -765,14 +766,8 @@ const CommonStyles = StyleSheet.create({
   },
   resend: {
     fontWeight: "400",
-    fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(16),
-    color: Colors.general.grey,
-  },
-  resendBox: {
-    borderBottomColor: "#121212",
-    paddingBottom: 1,
-    borderBottomWidth: 1,
+    fontFamily: "Euclid-Circular-A",
+    fontSize: hp(14),
   },
 
   verification: {
