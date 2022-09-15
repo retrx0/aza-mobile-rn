@@ -60,7 +60,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
             headerRight: () => (
               <Pressable
-                onPress={() => navigation.navigate("Modal")}
+                onPress={() => navigation.navigate("QRCodeModal")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                 })}

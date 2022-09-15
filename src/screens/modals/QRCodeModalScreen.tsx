@@ -8,7 +8,7 @@ import { hp } from "../../common/util/LayoutUtil";
 
 import { Text, View } from "../../components/Themed";
 
-const ModalScreen = ({ navigation }: RootStackScreenProps<"Modal">) => {
+const ModalScreen = ({ navigation }: RootStackScreenProps<"QRCodeModal">) => {
   const [cameraPermission, setCameraPermission] = useState<PermissionResponse>();
 
   useEffect(() => {
@@ -20,7 +20,6 @@ const ModalScreen = ({ navigation }: RootStackScreenProps<"Modal">) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Scan the code</Text>
       {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}

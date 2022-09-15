@@ -10,7 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 
-import ModalScreen from "../screens/modals/ModalScreen";
+import ModalScreen from "../screens/modals/QRCodeModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -54,7 +54,7 @@ const RootNavigator = () => {
       <Stack.Screen name="Common" component={CommonStack} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="QRCodeModal" component={ModalScreen} options={{ title: "Scan QR Code" }} />
       </Stack.Group>
     </Stack.Navigator>
   );
