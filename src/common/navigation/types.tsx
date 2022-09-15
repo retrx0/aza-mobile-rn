@@ -39,9 +39,9 @@ export type CommonStackParamList = {
   TopBar: undefined;
   mature: undefined;
   MatureTab: undefined;
-  VaulToBank: undefined;
+  VaultToBank: undefined;
   VaultWithdrawConfirmation: undefined;
-  VaultToBankSuccessfull: undefined;
+  VaultToBankSuccessful: undefined;
 
   // Settings
   ChangePassword: undefined;
@@ -74,10 +74,8 @@ export type CommonStackParamList = {
   ScanCard: undefined;
 };
 
-export type CommonScreenProps<Screen extends keyof CommonStackParamList> = NativeStackScreenProps<
-  CommonStackParamList,
-  Screen
->;
+export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
+  NativeStackScreenProps<CommonStackParamList, Screen>;
 
 /* BVN */
 
@@ -85,10 +83,9 @@ export type BvnVerificationStackParamList = {
   BvnVerificationScreen: undefined;
 };
 
-export type BvnVerificationScreenProps<Screen extends keyof BvnVerificationStackParamList> = NativeStackScreenProps<
-  BvnVerificationStackParamList,
-  Screen
->;
+export type BvnVerificationScreenProps<
+  Screen extends keyof BvnVerificationStackParamList
+> = NativeStackScreenProps<BvnVerificationStackParamList, Screen>;
 
 // Status screen
 export type StatusScreenParamsType = {
@@ -119,10 +116,9 @@ export type PaymentsStackParamList = {
   CharityDetail: undefined;
 };
 
-export type PaymentsTabScreenProps<Screen extends keyof PaymentsStackParamList> = NativeStackScreenProps<
-  PaymentsStackParamList,
-  Screen
->;
+export type PaymentsTabScreenProps<
+  Screen extends keyof PaymentsStackParamList
+> = NativeStackScreenProps<PaymentsStackParamList, Screen>;
 
 /* Profile */
 

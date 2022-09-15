@@ -2,7 +2,6 @@ import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View, Text } from "../../../components/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
@@ -12,9 +11,6 @@ import useColorScheme from "../../../hooks/useColorScheme";
 
 const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
-
-  const insets = useSafeAreaInsets();
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -24,13 +20,19 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[CommonStyles.caution]}
         />
         <View style={CommonStyles.actionContainer}>
-          <Text style={CommonStyles.actionStyle}>This action cannot be undone</Text>
-          <Text style={CommonStyles.lockupStyle}>You are about to delete this Vault</Text>
+          <Text style={CommonStyles.actionStyle}>
+            This action cannot be undone
+          </Text>
+          <Text style={CommonStyles.lockupStyle}>
+            You are about to delete this Vault
+          </Text>
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Delete"
-            onPressButton={() => navigation.navigate("Common", { screen: "TopBar" })}
+            onPressButton={() =>
+              navigation.navigate("Common", { screen: "TopBar" })
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}

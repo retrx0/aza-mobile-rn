@@ -21,20 +21,48 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
         <View style={[CommonStyles.vaultContainer]}>
-          <Header heading="Vault" description={""} headerStyle={[CommonStyles.vault]} descriptionStyle={undefined} />
-          <Image source={Undraw} resizeMode="cover" style={[CommonStyles.undraw]} />
+          <Header
+            heading="Vault"
+            description={""}
+            headerStyle={[CommonStyles.vault]}
+            descriptionStyle={undefined}
+          />
+          <Image
+            source={Undraw}
+            resizeMode="cover"
+            style={[CommonStyles.undraw]}
+          />
           <Text style={[CommonStyles.vaultText]}>You dont have any vaults</Text>
           <View style={CommonStyles.createVaultContainer}>
-            <Text style={[CommonStyles.createNewVault]}>Click New Vault to create a new vault</Text>
+            <Text
+              style={[
+                CommonStyles.createNewVault,
+                { color: Colors[colorScheme].Text },
+              ]}>
+              Click New Vault to create a new vault
+            </Text>
             <TouchableOpacity>
-              <ArrowDownIcon color={colorScheme === "dark" ? Colors.dark.secondaryText : Colors.light.text} size={16} />
+              <ArrowDownIcon
+                color={
+                  colorScheme === "dark"
+                    ? Colors.dark.secondaryText
+                    : Colors.light.text
+                }
+                size={16}
+              />
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: insets.bottom || hp(45) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(20) },
+          ]}>
           <Button
             title="New Vault"
-            onPressButton={() => navigation.navigate("Common", { screen: "NewVault" })}
+            onPressButton={() =>
+              navigation.navigate("Common", { screen: "NewVault" })
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -42,7 +70,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              { bottom: hp(20) },
+
               CommonStyles.button,
             ]}
           />

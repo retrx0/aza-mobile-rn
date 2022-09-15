@@ -28,8 +28,7 @@ const BankAccountsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Bank Accounts
         </Text>
       ),
@@ -49,8 +48,7 @@ const BankAccountsScreen = ({
           style={[
             CommonStyles.col,
             { marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+          ]}>
           <UndrawAccountIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
             size={30}
@@ -64,8 +62,7 @@ const BankAccountsScreen = ({
               marginTop: hp(30),
               maxWidth: 300,
               textAlign: "center",
-            }}
-          >
+            }}>
             There is no bank account registered to your Aza account
           </Text>
           <View style={[CommonStyles.row, { marginTop: hp(15) }]}>
@@ -77,8 +74,7 @@ const BankAccountsScreen = ({
                 maxWidth: 300,
                 marginRight: 5,
                 textAlign: "center",
-              }}
-            >
+              }}>
               Click ‘Add Bank Account’ to link your bank account to aza
             </Text>
             <ArrowDownIcon
@@ -92,8 +88,7 @@ const BankAccountsScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(50) }]}
-        >
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
           <Button
             title="Add Bank Account"
             onPressButton={() => navigation.navigate("SelectBank")}
@@ -110,8 +105,9 @@ const BankAccountsScreen = ({
           />
           <ButtonWithUnderline
             title="Cancel"
-            color="#FF361A"
             onPressButton={() => navigation.goBack()}
+            styleText={CommonStyles.cancelStyle}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>

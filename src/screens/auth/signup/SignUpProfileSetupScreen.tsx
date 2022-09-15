@@ -15,9 +15,9 @@ import { TextHeader } from "../../../components/text/textHeader";
 import { SelectIcon } from "../../../../assets/svg";
 import useColorScheme from "../../../hooks/useColorScheme";
 
-const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
-  const insets = useSafeAreaInsets();
-
+const SignUpProfileSetupScreen = ({
+  navigation,
+}: SignUpScreenProps<"SignUpProfileSetup">) => {
   const [gender, setGender] = useState(GENDER);
   const placeholder = {
     label: "Select Gender",
@@ -37,14 +37,29 @@ const SignUpProfileSetupScreen = ({ navigation }: SignUpScreenProps<"SignUpProfi
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
       <View style={{ width: "90%", alignSelf: "center" }}>
-        <BoxTextInput placeHolder="Full Name" required value="Chiazondu Joseph" onChange={() => {}} />
+        <BoxTextInput
+          placeHolder="Full Name"
+          required
+          value="Chiazondu Joseph"
+          onChange={() => {
+            undefined;
+          }}
+        />
       </View>
       <View style={{ width: "90%", alignSelf: "center" }}>
-        <BoxTextInput placeHolder="Email" required value="chiazo@examplemail.com" onChange={() => {}} />
+        <BoxTextInput
+          placeHolder="Email"
+          required
+          value="chiazo@examplemail.com"
+          onChange={() => {
+            undefined;
+          }}
+        />
       </View>
       <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
 
-      <View style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
+      <View
+        style={{ flexDirection: "row", alignItems: "center", width: "100%" }}>
         <RNPickerSelect
           placeholder={placeholder}
           onValueChange={(value) => {

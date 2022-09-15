@@ -18,7 +18,10 @@ export default {
     border: "#121212",
     button: "#121212",
     buttonText: "#fff",
-    disabled: "#A6A6A6",
+    disabled: "#E7E9EA",
+    unlock: "#2A9E17",
+    mature: "#EBFCE9",
+    Text: "#000000",
   },
   dark: {
     text: "#fff",
@@ -36,6 +39,9 @@ export default {
     button: "#E7E9EA",
     buttonText: "#000000",
     disabled: "#3A3D42",
+    unlock: "#E7E9EA",
+    mature: "#3A3D42",
+    Text: "#999999",
   },
   general: {
     text: "#FFFFFF",

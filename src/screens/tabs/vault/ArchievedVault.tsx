@@ -1,13 +1,24 @@
-import { TouchableOpacity, StyleSheet, FlatList, I18nManager } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  I18nManager,
+} from "react-native";
 import { View, Text } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { hp, wp } from "../../../common/util/LayoutUtil";
-import { CloseIcon, UnlockIcon, TrashIcon, InfoIcon, UnarchiveIcon } from "../../../../assets/svg";
+import {
+  CloseIcon,
+  UnlockIcon,
+  TrashIcon,
+  InfoIcon,
+  UnarchiveIcon,
+} from "../../../../assets/svg";
 import React from "react";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "@react-navigation/core";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { RootTabScreenProps, VaultListProps } from "../../../../types";
+import { VaultListProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
@@ -15,7 +26,7 @@ import BackButton from "../../../components/buttons/BackButton";
 const ArchieveList = [
   {
     id: "1",
-    lockIcon: <UnlockIcon color={""} size={0} />,
+    lockIcon: <UnlockIcon color={Colors.general.green} />,
     item: "New Phone",
     amount: "200,000",
     closeIcon: <CloseIcon />,
@@ -23,15 +34,24 @@ const ArchieveList = [
   },
   {
     id: "2",
-    lockIcon: <UnlockIcon color={""} size={0} />,
+    lockIcon: <UnlockIcon color={Colors.general.green} />,
     item: "New Phone",
     amount: "200,000",
     closeIcon: <CloseIcon />,
     stage: "Matured",
   },
 ];
-const swipeFromRightOpen = () => {};
-const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultListProps) => {
+const swipeFromRightOpen = () => {
+  /* TODO document why this arrow function is empty */
+};
+const ListItem = ({
+  lockIcon,
+  item,
+  amount,
+  closeIcon,
+  stage,
+  onPress,
+}: VaultListProps) => {
   const navigation = useNavigation();
   return (
     <Swipeable
@@ -41,8 +61,7 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}
-        >
+          }}>
           <TouchableOpacity
             style={{
               width: 77,
@@ -51,8 +70,9 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
               alignItems: "center",
               justifyContent: "center",
             }}
-            onPress={() => navigation.navigate("Common", { screen: "AddVault" })}
-          >
+            onPress={() =>
+              navigation.navigate("Common", { screen: "AddVault" })
+            }>
             <UnarchiveIcon />
             <Text
               style={{
@@ -62,8 +82,7 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}
-            >
+              }}>
               Unarchive
             </Text>
           </TouchableOpacity>
@@ -75,9 +94,10 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
               alignItems: "center",
               justifyContent: "center",
             }}
-            onPress={() => navigation.navigate("Common", { screen: "ConfirmDeleteVault" })}
-          >
-            <TrashIcon color={""} size={0} />
+            onPress={() =>
+              navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
+            }>
+            <TrashIcon color="white" size={24} />
             <Text
               style={{
                 color: Colors.general.white,
@@ -86,8 +106,7 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}
-            >
+              }}>
               Delete
             </Text>
           </TouchableOpacity>
@@ -95,12 +114,11 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}
-    >
+      rightThreshold={40}>
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
-            <TouchableOpacity onPress={onPress} style={{}}>
+            <TouchableOpacity onPress={onPress} style={styles.flightContainer}>
               {lockIcon}
             </TouchableOpacity>
             <View style={styles.list}>
@@ -109,10 +127,12 @@ const ListItem = ({ lockIcon, item, amount, closeIcon, stage, onPress }: VaultLi
                 style={[
                   styles.amount,
                   {
-                    color: amount === "200,000" ? Colors.general.green : Colors.general.black,
+                    color:
+                      amount === "200,000"
+                        ? Colors.general.green
+                        : Colors.general.black,
                   },
-                ]}
-              >
+                ]}>
                 {"\u20A6"}
                 {amount}
               </Text>
@@ -157,6 +177,14 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
 };
 
 const styles = StyleSheet.create({
+  flightContainer: {
+    width: 36,
+    height: 36,
+    backgroundColor: "#EBFCE9",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 18,
+  },
   stage: {
     fontSize: hp(12),
     fontWeight: "400",

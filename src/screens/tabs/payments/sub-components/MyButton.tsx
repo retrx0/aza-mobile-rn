@@ -18,7 +18,7 @@ export default function MyButton({
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
 }) {
-  const colorScheme=useColorScheme()
+  const colorScheme = useColorScheme();
   return (
     <View
       style={[
@@ -34,9 +34,8 @@ export default function MyButton({
         disabled={disabled}
         title={title}
         onPressButton={onPress}
-        styleText={[styleText,{color: Colors[colorScheme].buttonText}]}
-        style={{backgroundColor: Colors[colorScheme].button}}
-        
+        styleText={[styleText, { color: Colors[colorScheme].buttonText }]}
+        style={{ backgroundColor: Colors[colorScheme].button }}
       />
     </View>
   );
