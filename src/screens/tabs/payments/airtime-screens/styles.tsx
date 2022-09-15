@@ -20,7 +20,7 @@ export const AIrtimeStyles = StyleSheet.create({
   button: {
     marginTop: "auto",
     marginBottom: 20,
-    opacity: 0,
+    
   },
   select: {
     width: "90%",

@@ -32,7 +32,6 @@ export default function AirtimeIndex({
   const insets = useSafeAreaInsets();
 
   return (
-    <SpacerWrapper>
       <View style={styles.container}>
         <Header
           description=""
@@ -89,6 +88,6 @@ export default function AirtimeIndex({
         />
         
       </View>
-    </SpacerWrapper>
+ 
   );
 }

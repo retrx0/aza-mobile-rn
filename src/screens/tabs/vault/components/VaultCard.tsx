@@ -4,7 +4,8 @@ import { CloseIcon, LockIcon } from "../../../../../assets/svg";
 import {
   DaysProps,
   PercentageProps,
-  VautListProps,
+  VaultListProps,
+
 } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
@@ -74,7 +75,7 @@ export const ListCard = ({
   amount,
   stage,
   onPress,
-}: VautListProps) => {
+}: VaultListProps) => {
   return (
     <View>
       <View style={styles.vaultContainer}>

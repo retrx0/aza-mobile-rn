@@ -4,13 +4,15 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { Input } from "../../../components/input/input";
 import ImageInput from "./sub-components/ImageInput";
 import MyButton from "./sub-components/MyButton";
-import { SafeAreaView, Text, View } from "../../../components/Themed";
+import { SafeAreaView, ScrollView, Text, View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import Button from "../../../components/buttons/Button";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../hooks/useColorScheme";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+
 
 
 export default function Confirmation({
@@ -21,7 +23,7 @@ export default function Confirmation({
   const insets = useSafeAreaInsets();
 
   return (
-      <SafeAreaView style={[styles.container,{paddingTop:Platform.OS=='android'?100:20}]}>
+        <ScrollView style={[styles.container,{paddingTop:Platform.OS=='android'?100:70}]}>
         <Text style={styles.txt}>
           Kindly confirm the details of this transaction
         </Text>
@@ -50,7 +52,6 @@ export default function Confirmation({
           label="Payment Method"
           placeholder="Aza Account"
         />
-
         <MyButton disabled={false} title="Confirm" onPress={() => {
               navigation.navigate("StatusScreen", {
                 statusIcon: "Success",
@@ -59,7 +60,6 @@ export default function Confirmation({
                 navigateTo: "Payments",
               });
             }}/>
-       
           <CancelButtonWithUnderline
             onPressButton={() => {
               navigation.goBack();
@@ -68,8 +68,8 @@ export default function Confirmation({
             style={{ borderBottomColor: Colors.general.red}}
             styleText={CommonStyles.cancelStyle}
           />
-      
-      </SafeAreaView>
+    </ScrollView>
+     
   
   );
 }
