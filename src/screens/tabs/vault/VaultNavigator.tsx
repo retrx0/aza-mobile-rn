@@ -11,10 +11,10 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { SafeAreaView } from "../../../components/Themed";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import VaulToBank from "./withdraw-to-bankank/VaultWithdrawToBank";
-import VaultWithdrawConfirmation from "./withdraw-to-bankank/VaultWithdrawToBankConfirmation";
+import VaulToBank from "./withdraw-to-bank/VaultWithdrawToBank";
+import VaultWithdrawConfirmation from "./withdraw-to-bank/VaultWithdrawToBankConfirmation";
 import VaultToAza from "./withdraw-to-aza/VaultwithdrawalConfirmation";
-import VaultToBankSuccessfull from "./withdraw-to-bankank/VaultToBankSuccessful";
+import VaultToBankSuccessfull from "./withdraw-to-bank/VaultToBankSuccessful";
 import MaturedVault from "./withdraw-to-aza/MaturedVault";
 import UnMatureVault from "./withdraw-to-aza/UnMatureVault";
 import LockVault from "./LockVault";
