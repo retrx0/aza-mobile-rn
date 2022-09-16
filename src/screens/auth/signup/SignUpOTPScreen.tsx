@@ -9,7 +9,9 @@ const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
     <SpacerWrapper>
       <OtpScreen
         onBackButtonPressed={() => navigation.goBack()}
-        onWrongNumber={function (): void {}}
+        onWrongNumber={function (): void {
+          "wrong number";
+        }}
         otpCode={signUpOtp}
         onOtpChanged={() => setSignUpOtp}
         onVerify={function (): void {
