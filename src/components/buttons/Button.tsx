@@ -1,7 +1,8 @@
 import React, { FC } from "react";
-import { TouchableOpacity, Text, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { Text, StyleProp, TextStyle, ViewStyle, Pressable } from "react-native";
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
+import useColorScheme from "../../hooks/useColorScheme";
 
 type ButtonPropsType = {
   title: string;
@@ -9,19 +10,39 @@ type ButtonPropsType = {
   isNext?: boolean;
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
-  disabled?:boolean
+  disabled?: boolean;
 };
 
-export const Button: FC<ButtonPropsType> = ({ title, onPressButton, isNext, style, styleText,disabled }) => {
+export const Button: FC<ButtonPropsType> = ({
+  title,
+  onPressButton,
+  isNext,
+  style,
+  styleText,
+  disabled,
+}) => {
+  const colorScheme = useColorScheme();
+
   return (
-    <TouchableOpacity
-     disabled={disabled}
-      activeOpacity={0.8}
+    <Pressable
+      disabled={disabled}
       onPress={onPressButton}
-      style={[styles.doneButton, isNext && styles.nextButton, style]}
-    >
-      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>{title}</Text>
-    </TouchableOpacity>
+      style={({ pressed }) => [
+        styles.doneButton,
+        isNext && styles.nextButton,
+        style,
+        disabled && {
+          backgroundColor: Colors[colorScheme].text,
+        },
+        {
+          opacity: pressed ? 0.8 : 1,
+        },
+        style,
+      ]}>
+      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
+        {title}
+      </Text>
+    </Pressable>
   );
 };
 

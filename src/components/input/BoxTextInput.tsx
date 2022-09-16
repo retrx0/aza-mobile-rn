@@ -15,7 +15,7 @@ const BoxTextInput = (props: {
   const colorScheme = useColorScheme();
   return (
     <View>
-      <Text style={[{paddingBottom: 5, marginTop: 20 }]}>
+      <Text style={[{ paddingBottom: 5, marginTop: 20 }]}>
         {props.placeHolder}
         <Text style={{ color: "red" }}>{props.required ? "*" : ""}</Text>
       </Text>
