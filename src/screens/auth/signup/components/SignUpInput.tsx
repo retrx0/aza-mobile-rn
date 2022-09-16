@@ -30,7 +30,11 @@ const SignUpProfile = ({
     <>
       <Formik
         validationSchema={signUpValidationSchema}
-        initialValues={{ Firstname: "", Lastname: "", email: "" }}
+        initialValues={{
+          Firstname: "Chiazondu",
+          Lastname: "Joseph",
+          email: "chiazo@examplemail.com",
+        }}
         onSubmit={(values) => console.log(values)}>
         {({
           handleChange,
@@ -49,7 +53,6 @@ const SignUpProfile = ({
                 <Text style={{ color: "red" }}>*</Text>
               </View>
               <TextInput
-                placeholder="Chiazondu"
                 style={[
                   styles.textInput,
                   { backgroundColor: Colors[colorScheme].backgroundSecondary },
@@ -73,7 +76,6 @@ const SignUpProfile = ({
                 <Text style={{ color: "red" }}>*</Text>
               </View>
               <TextInput
-                placeholder="Joseph"
                 style={[
                   styles.textInput,
                   { backgroundColor: Colors[colorScheme].backgroundSecondary },
@@ -97,7 +99,6 @@ const SignUpProfile = ({
                 <Text style={{ color: "red" }}>*</Text>
               </View>
               <TextInput
-                placeholder=""
                 style={[
                   styles.textInput,
                   { backgroundColor: Colors[colorScheme].backgroundSecondary },
