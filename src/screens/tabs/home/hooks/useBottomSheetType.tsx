@@ -31,14 +31,14 @@ export const useBottomSheetType = (
   const [image, setImage] = useState("");
 
   const selectImageFromGallaery = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       aspect: [4, 3],
       quality: 1,
     });
 
     if (!result.cancelled) {
-      const { uri } = result as ImagePicker.ImageInfo;
+      const { uri } = result;
       setImage(uri);
     }
   };
@@ -46,14 +46,14 @@ export const useBottomSheetType = (
   const takePhoto = async () => {
     const permissionStatus = await ImagePicker.requestCameraPermissionsAsync();
     if (permissionStatus.status === "granted") {
-      let result = await ImagePicker.launchCameraAsync({
+      const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         aspect: [4, 3],
         quality: 1,
       });
 
       if (!result.cancelled) {
-        const { uri } = result as ImagePicker.ImageInfo;
+        const { uri } = result;
         setImage(uri);
       }
     }
@@ -144,11 +144,7 @@ export const useBottomSheetType = (
         itemIcon: (
           <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
         ),
-        onPress: () =>
-          navigation.navigate("Common", {
-            screen: "BvnVerificationRoot",
-            params: { screen: "BvnVerificationScreen" },
-          }),
+        onPress: () => console.log("called"),
       },
       {
         itemName: "Request Money",

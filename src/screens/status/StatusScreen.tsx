@@ -11,7 +11,10 @@ import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 import { CommonScreenProps } from "../../common/navigation/types";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
-const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) => {
+const StatusScreen = ({
+  navigation,
+  route,
+}: CommonScreenProps<"StatusScreen">) => {
   const colorScheme = useColorScheme();
   const {
     statusIcon,
@@ -32,11 +35,21 @@ const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) 
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View style={[CommonStyles.col, { alignItems: "center", marginTop: "auto", marginBottom: "auto" }]}>
-          {statusIcon === "Success" ? <StatusSuccessIcon /> : <StatusWarningIcon />}
+        <View
+          style={[
+            CommonStyles.col,
+            { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
+          ]}
+        >
+          {statusIcon === "Success" ? (
+            <StatusSuccessIcon />
+          ) : (
+            <StatusWarningIcon />
+          )}
           <Text
             style={{
-              color: statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
+              color:
+                statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
               fontSize: 24,
               marginVertical: 20,
               textAlign: "center",
@@ -69,7 +82,9 @@ const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) 
             {statusMessage2}
           </Text>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(50), width: '100%' }]}>
+        <View
+          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
+        >
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
@@ -96,7 +111,7 @@ const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) 
               fontSize: 14,
             }}
             style={{
-              marginBottom: hp(25),
+              marginBottom: hp(20),
               backgroundColor: Colors[colorScheme].button,
             }}
           />
@@ -110,6 +125,7 @@ const StatusScreen = ({ navigation, route }: CommonScreenProps<"StatusScreen">) 
           {cancelButton && (
             <ButtonWithUnderline
               title="Cancel"
+              styleText={CommonStyles.cancelStyle}
               color={Colors[colorScheme].error}
               onPressButton={() => navigation.goBack()}
             />

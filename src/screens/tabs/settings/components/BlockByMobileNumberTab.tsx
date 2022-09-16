@@ -1,26 +1,26 @@
-import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
-import Colors from '../../../../constants/Colors'
-import { hp } from '../../../../common/util/LayoutUtil'
-import useColorScheme from '../../../../hooks/useColorScheme'
-import { Text, View } from '../../../../components/Themed'
-import ContactListItem from '../../../../components/ListItem/ContactListItem'
-import { AZALightningLogo } from '../../../../../assets/svg'
+import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { Text, TextInput, View } from "../../../../components/Themed";
+import ContactListItem from "../../../../components/ListItem/ContactListItem";
+import { AZALightningLogo } from "../../../../../assets/svg";
 
 interface IProps {
-  toggleModal: () => void
+  toggleModal: () => void;
 }
 
-const BlockByMobileNumberTab = ({ toggleModal = () => {} }: IProps) => {
-  const colorScheme = useColorScheme()
+const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
+  const colorScheme = useColorScheme();
 
   return (
-    <View style={[styles.container, { justifyContent: 'space-between' }]}>
+    <View style={[styles.container, { justifyContent: "space-between" }]}>
       <View>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
-          style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
+          style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
         >
           Blocked users won't be able to send you money, request money from you
           or split payments with you.
@@ -36,22 +36,19 @@ const BlockByMobileNumberTab = ({ toggleModal = () => {} }: IProps) => {
           You can unblock these users anytime
         </Text>
         <View style={{ marginTop: hp(50) }}>
-          <Text
+          <TextInput
+            lightColor={Colors.light.mainText}
+            darkColor={Colors.dark.mainText}
+            placeholderTextColor={Colors[colorScheme].secondaryText}
             style={{
-              color: Colors[colorScheme].secondaryText,
-              fontFamily: 'Euclid-Circular-A-Medium',
-              fontSize: 16,
-            }}
-          >
-            Mobile Number
-          </Text>
-          <View
-            style={{
-              backgroundColor: 'transparent',
-              marginTop: hp(10),
-              borderBottomWidth: 0.6,
+              backgroundColor: "transparent",
+              fontFamily: "Euclid-Circular-A",
+              paddingBottom: 10,
+              marginTop: hp(15),
+              borderBottomWidth: 1,
               borderBottomColor: Colors[colorScheme].separator,
             }}
+            placeholder="Mobile Number"
           />
         </View>
         <Text
@@ -65,17 +62,17 @@ const BlockByMobileNumberTab = ({ toggleModal = () => {} }: IProps) => {
           Your Aza Contacts
         </Text>
         <ScrollView
-          contentContainerStyle={{ paddingBottom: hp(250) }}
+          contentContainerStyle={{ paddingBottom: hp(300) }}
           showsVerticalScrollIndicator={false}
         >
           {Array(20)
-            .fill('')
+            .fill("")
             .map((_, i) => (
               <TouchableOpacity key={i} onPress={toggleModal}>
                 <ContactListItem
                   image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-                  name={'Adewale Adeyesufu'}
-                  phoneNumber={'8012345678'}
+                  name={"Adewale Adeyesufu"}
+                  phoneNumber={"8012345678"}
                   suffixIcon={
                     <AZALightningLogo
                       size={25}
@@ -88,9 +85,9 @@ const BlockByMobileNumberTab = ({ toggleModal = () => {} }: IProps) => {
         </ScrollView>
       </View>
     </View>
-  )
-}
-export default BlockByMobileNumberTab
+  );
+};
+export default BlockByMobileNumberTab;
 
 const styles = StyleSheet.create({
   container: {
@@ -98,4 +95,4 @@ const styles = StyleSheet.create({
     paddingVertical: hp(20),
     paddingHorizontal: 15,
   },
-})
+});

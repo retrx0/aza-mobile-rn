@@ -11,7 +11,9 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 
-const BvnVerificationScreen = ({ navigation }: CommonScreenProps<"BvnVerificationScreen">) => {
+const BvnVerificationScreen = ({
+  navigation,
+}: CommonScreenProps<"BvnVerificationScreen">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -32,9 +34,7 @@ const BvnVerificationScreen = ({ navigation }: CommonScreenProps<"BvnVerificatio
       headerBackVisible: false,
       //center it in android
       headerTitleAlign: "center",
-      headerLeft: () => (
-        <BackButton onPress={() => navigation.goBack()} />
-      ),
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
 
@@ -102,13 +102,14 @@ const BvnVerificationScreen = ({ navigation }: CommonScreenProps<"BvnVerificatio
               fontSize: 14,
             }}
             style={{
-              marginBottom: hp(25),
+              marginBottom: hp(20),
               backgroundColor: Colors[colorScheme].button,
             }}
           />
           <CancelButtonWithUnderline
             title="Cancel"
             color={Colors.general.red}
+            styleText={CommonStyles.cancelStyle}
             onPressButton={() => navigation.getParent()?.navigate("Home")}
             style={{ marginTop: 5 }}
           />

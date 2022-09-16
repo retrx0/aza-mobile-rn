@@ -26,6 +26,7 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
     <View
       style={[
         {
+          backgroundColor: "transparent",
           borderBottomColor: color,
           paddingBottom: 2,
           borderBottomWidth: 1,
@@ -33,7 +34,8 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
           marginTop: 3,
         },
         style,
-      ]}>
+      ]}
+    >
       <TouchableOpacity activeOpacity={0.8} onPress={onPressButton}>
         <Text style={[{ fontSize: 14 }, styleText]}>{title}</Text>
       </TouchableOpacity>

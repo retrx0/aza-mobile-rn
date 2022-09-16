@@ -34,7 +34,7 @@ import NameVisibilityScreen from "../../screens/tabs/settings/screens/NameVisibi
 import ContactsVisibilityScreen from "../../screens/tabs/settings/screens/ContactsVisibilityScreen";
 import SplitAndMoneyRequestsScreen from "../../screens/tabs/settings/screens/SplitAndMoneyRequests";
 import BlockUsersScreen from "../../screens/tabs/settings/screens/BlockUsersScreen";
-import NorificationSettingsScreen from "../../screens/tabs/settings/screens/NorificationSettingsScreen";
+import NotificationSettingsScreen from "../../screens/tabs/settings/screens/NotificationSettingsScreen";
 import LoginWithFaceIdScreen from "../../screens/tabs/settings/screens/LoginWithFaceIdScreen";
 import LoginOptionsScreen from "../../screens/tabs/settings/screens/LoginOptionsScreen";
 import AppearanceScreen from "../../screens/tabs/settings/screens/AppearanceScreen";
@@ -99,7 +99,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName="details">
+        initialRouteName="details"
+      >
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -155,7 +156,7 @@ const CommonStack = () => {
         <Stack.Screen name="BlockNewUser" component={BlockNewUserScreen} />
         <Stack.Screen
           name="NotificationSettings"
-          component={NorificationSettingsScreen}
+          component={NotificationSettingsScreen}
         />
         <Stack.Screen name="FaceId" component={LoginWithFaceIdScreen} />
         <Stack.Screen name="LoginOptions" component={LoginOptionsScreen} />
@@ -238,7 +239,8 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={24}
@@ -248,14 +250,17 @@ const CommonStack = () => {
           ),
           headerStyle: {
             backgroundColor:
-              scheme == "light" ? Colors.light.background : Colors.dark.background,
+              scheme == "light"
+                ? Colors.light.background
+                : Colors.dark.background,
           },
-          headerTransparent:true,
+          headerTransparent: true,
           headerTitleStyle: {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}>
+        })}
+      >
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
