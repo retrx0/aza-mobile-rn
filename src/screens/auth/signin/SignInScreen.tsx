@@ -24,9 +24,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       </View>
       <View style={CommonStyles.phoneContainer}>
         <Text style={[CommonStyles.headerText]}>Login</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to continue
-        </Text>
+        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
         <Text style={[CommonStyles.bodyText]}>
           Phone Number <Text style={{ color: "red" }}>*</Text>
         </Text>
@@ -40,6 +38,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
         textProps={{
           placeholder: "Enter a phone number...",
         }}
+        pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
         style={[CommonStyles.phoneStyle]}
       />
 

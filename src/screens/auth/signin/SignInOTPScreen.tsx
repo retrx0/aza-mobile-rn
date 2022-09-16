@@ -10,12 +10,12 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
     <SpacerWrapper>
       <OtpScreen
         onBackButtonPressed={() => navigation.goBack()}
-        onWrongNumber={function (): void {
-          throw new Error("Function not implemented.");
+        onWrongNumber={() => {
+          console.log("wrong otp");
         }}
         otpCode={LoginOtp}
-        onOtpChanged={() => setLoginUpOtp}
-        onVerify={function (): void {
+        onOtpChanged={(code) => setLoginUpOtp(code)}
+        onVerify={() => {
           navigation.getParent()?.navigate("Root");
         }}
         onResend={() => {
