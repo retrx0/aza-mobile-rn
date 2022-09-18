@@ -14,9 +14,7 @@ import { StyleSheet, TextInput } from "react-native";
 import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
 
-const SignUpProfile = ({
-  navigation,
-}: SignUpScreenProps<"SignUpProfileSetup">) => {
+const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
   const [gender, setGender] = useState(GENDER);
   const placeholder = {
     label: "Select Gender",
@@ -35,19 +33,11 @@ const SignUpProfile = ({
           Lastname: "Joseph",
           email: "chiazo@examplemail.com",
         }}
-        onSubmit={(values) => console.log(values)}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          isValid,
-          touched,
-        }) => (
+        onSubmit={(values) => console.log(values)}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, touched }) => (
           <>
-            <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+            <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>First name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -64,13 +54,10 @@ const SignUpProfile = ({
                 value={values.Firstname}
                 placeholderTextColor={Colors[colorScheme].text}
               />
-              {errors.Firstname && touched.Firstname && (
-                <Text style={styles.errorText}>{errors.Firstname}</Text>
-              )}
+              {errors.Firstname && touched.Firstname && <Text style={styles.errorText}>{errors.Firstname}</Text>}
             </View>
 
-            <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+            <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Last name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -87,13 +74,10 @@ const SignUpProfile = ({
                 value={values.Lastname}
                 placeholderTextColor={Colors[colorScheme].text}
               />
-              {errors.Lastname && touched.Lastname && (
-                <Text style={styles.errorText}>{errors.Lastname}</Text>
-              )}
+              {errors.Lastname && touched.Lastname && <Text style={styles.errorText}>{errors.Lastname}</Text>}
             </View>
 
-            <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+            <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Email</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -111,24 +95,17 @@ const SignUpProfile = ({
                 keyboardType="email-address"
                 placeholderTextColor={Colors[colorScheme].text}
               />
-              {errors.email && touched.email && (
-                <Text style={styles.errorText}>{errors.email}</Text>
-              )}
+              {errors.email && touched.email && <Text style={styles.errorText}>{errors.email}</Text>}
             </View>
 
-            <TextHeader
-              label="Gender"
-              style={[
-                CommonStyles.genderstyle,
-                { color: Colors[colorScheme].text },
-              ]}
-            />
+            <TextHeader label="Gender" style={[CommonStyles.genderstyle, { color: Colors[colorScheme].text }]} />
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
-              }}>
+              }}
+            >
               <RNPickerSelect
                 placeholder={placeholder}
                 onValueChange={(value) => {
@@ -137,6 +114,10 @@ const SignUpProfile = ({
                 }}
                 value={gender}
                 items={GENDER}
+                pickerProps={{
+                  style: { backgroundColor: Colors[colorScheme].backgroundSecondary },
+                  itemStyle: { color: Colors[colorScheme].text },
+                }}
                 style={{
                   viewContainer: {
                     paddingHorizontal: wp(10),

@@ -88,6 +88,7 @@ export type SignInScreenProps<Screen extends keyof SignInStackParamList> = Nativ
 export type PasswordScreenParamsType = {
   passwordScreenType: "Create" | "Confirm";
   password?: string;
+  usePasscodeAsPin?: boolean;
 };
 
 export type SignUpStackParamList = {

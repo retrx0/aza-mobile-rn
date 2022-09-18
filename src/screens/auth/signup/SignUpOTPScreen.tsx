@@ -13,7 +13,7 @@ const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
           "wrong number";
         }}
         otpCode={signUpOtp}
-        onOtpChanged={() => setSignUpOtp}
+        onOtpChanged={(code) => setSignUpOtp(code)}
         onVerify={function (): void {
           navigation.navigate("SignUpProfileSetup");
         }}
