@@ -32,7 +32,9 @@ const OtpScreen = (props: OtpProp) => {
         <BackButton onPress={() => props.onBackButtonPressed()} />
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>Please enter the 6-digit code sent to your mobile number</Text>
+      <Text style={styles.verification}>
+        Please enter the 6-digit code sent to your mobile number
+      </Text>
       <SegmentedInput
         value={otpCode}
         onValueChanged={(code) => onOtpChanged(code)}
@@ -62,6 +64,7 @@ const OtpScreen = (props: OtpProp) => {
           },
           CommonStyles.otpbutton,
         ]}
+        disabled={otpCode.length < 6 ? true : false}
       />
     </SpacerWrapper>
   );

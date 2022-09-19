@@ -22,7 +22,6 @@ const SignUpPasswordScreen = ({
   );
 
   const colorScheme = useColorScheme();
-
   const [passcode, setPasscode] = useState("123456");
 
   const switchColor = Colors[colorScheme].backgroundSecondary;

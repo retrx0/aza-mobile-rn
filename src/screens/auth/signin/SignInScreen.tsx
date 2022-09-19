@@ -58,6 +58,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           },
           CommonStyles.button,
         ]}
+        disabled={phone.length < 10 ? true : false}
       />
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg

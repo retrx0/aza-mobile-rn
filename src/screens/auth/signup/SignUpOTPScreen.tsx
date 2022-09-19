@@ -4,7 +4,7 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import OtpScreen from "../otp/OtpScreen";
 
 const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
-  const [signUpOtp, setSignUpOtp] = useState("");
+  const [signUpOtp, setSignUpOtp] = useState("123456");
   return (
     <SpacerWrapper>
       <OtpScreen

@@ -54,8 +54,10 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           {
             backgroundColor: Colors[colorScheme].button,
           },
+
           CommonStyles.otpbutton,
         ]}
+        disabled={phone.length < 10 ? true : false}
       />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>

@@ -27,15 +27,15 @@ export const Button: FC<ButtonPropsType> = ({
     <Pressable
       disabled={disabled}
       onPress={onPressButton}
-      style={({ pressed }) => [
+      style={[
         styles.doneButton,
         isNext && styles.nextButton,
         style,
         disabled && {
-          backgroundColor: Colors[colorScheme].text,
+          backgroundColor: Colors[colorScheme].secondaryText,
         },
         {
-          opacity: pressed ? 0.8 : 1,
+          opacity: disabled ? 0.3 : 1,
         },
         style,
       ]}>
