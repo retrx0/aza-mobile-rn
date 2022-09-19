@@ -73,6 +73,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
               CommonStyles.button,
             ]}
+            disabled={false}
           />
         </View>
       </View>
