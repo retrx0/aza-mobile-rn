@@ -7,8 +7,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
 
@@ -16,14 +15,15 @@ const SignUpPasswordScreen = ({
   navigation,
   route,
 }: SignUpScreenProps<"SignUpPassword">) => {
-  const { passwordScreenType } = route.params;
+  const { passwordScreenType, password, usePasscodeAsPin } = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const [isEnabled, setIsEnabled] = useState(false);
-  const insets = useSafeAreaInsets();
+  const [isUsePasscodeAsPin, setIsEnabled] = useState(
+    passwordScreenType === "Create" ? false : usePasscodeAsPin
+  );
 
   const colorScheme = useColorScheme();
 
-  const [passcode, setPasscode] = useState("");
+  const [passcode, setPasscode] = useState("123456");
 
   const switchColor = Colors[colorScheme].backgroundSecondary;
   const switchOnColor = Colors[colorScheme].success;
@@ -44,7 +44,7 @@ const SignUpPasswordScreen = ({
       <SegmentedInput
         value={passcode}
         secureInput
-        headerText=''
+        headerText=""
         onValueChanged={(code) => setPasscode(code)}
       />
       <View style={[CommonStyles.container, { bottom: hp(400) }]}>
@@ -55,10 +55,10 @@ const SignUpPasswordScreen = ({
 
           <Switch
             trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isEnabled ? "white" : "grey"}
+            thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
             ios_backgroundColor={switchColor}
             onValueChange={toggleSwitch}
-            value={isEnabled}
+            value={isUsePasscodeAsPin}
             style={{
               marginLeft: hp(13),
             }}
@@ -66,13 +66,21 @@ const SignUpPasswordScreen = ({
         </View>
         <Separator />
         <Button
-          title='Continue'
+          title="Continue"
           onPressButton={() => {
-            passwordScreenType === "Create"
-              ? navigation.navigate("SignUpConfirmPassword", {
-                  passwordScreenType: "Confirm",
-                })
-              : navigation.getParent()?.navigate("Root");
+            if (passwordScreenType === "Create") {
+              navigation.navigate("SignUpConfirmPassword", {
+                passwordScreenType: "Confirm",
+                password: passcode,
+                usePasscodeAsPin: isUsePasscodeAsPin,
+              });
+            } else {
+              if (passcode === password) {
+                navigation.getParent()?.navigate("Root");
+              } else {
+                alert("Password does not match");
+              }
+            }
           }}
           styleText={{
             color: Colors[colorScheme].buttonText,
@@ -84,6 +92,7 @@ const SignUpPasswordScreen = ({
             },
             CommonStyles.button,
           ]}
+          disabled={passcode.length < 6 ? true : false}
         />
       </View>
     </SpacerWrapper>

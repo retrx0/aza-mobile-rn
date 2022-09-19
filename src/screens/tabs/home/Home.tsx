@@ -7,8 +7,12 @@ import AccountDetails from "./components/AccountDetails";
 import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
+import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
+import { useAppSelector } from "../../../hooks/redux";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  console.log("Logged in state: " + isLoggedIn);
   return (
     <View style={styles.container}>
       <AccountDetails />

@@ -40,12 +40,15 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
         textProps={{
           placeholder: "Enter a phone number...",
         }}
+        pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
         style={[CommonStyles.phoneStyle]}
       />
 
       <Button
         title="Continue"
-        onPressButton={() => navigation.navigate("SignInOTP")}
+        onPressButton={() => {
+          navigation.navigate("SignInOTP");
+        }}
         styleText={{
           color: Colors[colorScheme].buttonText,
         }}

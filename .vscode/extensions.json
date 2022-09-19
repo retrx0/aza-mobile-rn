@@ -6,6 +6,7 @@
     "dbaeumer.vscode-eslint",
     "dsznajder.es7-react-js-snippets",
     "formulahendry.auto-rename-tag",
-    "msjsdiag.vscode-react-native"
+    "msjsdiag.vscode-react-native",
+    "EditorConfig.EditorConfig"
   ]
 }

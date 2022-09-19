@@ -550,7 +550,7 @@ const CommonStyles = StyleSheet.create({
     marginLeft: hp(18),
     fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    marginTop: hp(40),
+    marginTop: hp(10),
     fontWeight: "500",
   },
 
@@ -564,7 +564,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(18),
   },
   phoneContainer: {
-    marginTop: hp(50),
+    marginTop: hp(30),
   },
   iconStyle: {
     marginLeft: 26,

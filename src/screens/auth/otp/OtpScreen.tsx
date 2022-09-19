@@ -15,7 +15,7 @@ import useColorScheme from "../../../hooks/useColorScheme";
 type OtpProp = {
   onWrongNumber: () => void;
   otpCode: string;
-  onOtpChanged: () => void;
+  onOtpChanged: (code: string) => void;
   onVerify: () => void;
   onResend: () => void;
   phoneNumber: string;
@@ -32,12 +32,10 @@ const OtpScreen = (props: OtpProp) => {
         <BackButton onPress={() => props.onBackButtonPressed()} />
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>
-        Please enter the 6-digit code sent to your mobile number
-      </Text>
+      <Text style={styles.verification}>Please enter the 6-digit code sent to your mobile number</Text>
       <SegmentedInput
         value={otpCode}
-        onValueChanged={onOtpChanged}
+        onValueChanged={(code) => onOtpChanged(code)}
         headerText="OTP"
         secureInput={false}
       />
