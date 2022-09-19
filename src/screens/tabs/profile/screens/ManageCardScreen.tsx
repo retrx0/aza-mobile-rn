@@ -91,7 +91,7 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
         >
           <CancelButtonWithUnderline
             title="Delete Card"
-            color="#FF361A"
+            styleText={[CommonStyles.cancelStyle]}
             onPressButton={() => navigation.goBack()}
           />
         </View>

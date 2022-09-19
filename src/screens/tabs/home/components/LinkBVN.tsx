@@ -9,7 +9,10 @@ interface IProps {
   isBvnLinked: boolean;
 }
 
-const LinkBVN = ( { navigation, isBvnLinked }:  RootTabScreenProps<"Home"> & IProps ) => {
+const LinkBVN = ({
+  navigation,
+  isBvnLinked,
+}: RootTabScreenProps<"Home"> & IProps) => {
   return (
     <View
       style={{
@@ -18,7 +21,7 @@ const LinkBVN = ( { navigation, isBvnLinked }:  RootTabScreenProps<"Home"> & IPr
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderRadius: 10,
-        display: isBvnLinked ? 'none' : "flex",
+        display: isBvnLinked ? "none" : "flex",
         justifyContent: "center",
         alignItems: "flex-start",
         flexDirection: "row",
@@ -50,13 +53,16 @@ const LinkBVN = ( { navigation, isBvnLinked }:  RootTabScreenProps<"Home"> & IPr
             marginTop: 5,
           }}
         >
-          Link your BVN to upgrade your account as there are certain limits on it.
+          Link your BVN to upgrade your account as there are certain limits on
+          it.
         </Text>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", {
-              screen: "BvnVerificationRoot",
-              params: { screen: "BvnVerificationScreen" },
+              screen: "BvnVerification",
+              params: {
+                onVerifyNavigateBackTo: "Home",
+              },
             })
           }
         >

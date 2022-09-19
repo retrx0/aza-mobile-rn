@@ -22,6 +22,8 @@ export default {
     unlock: "#2A9E17",
     mature: "#EBFCE9",
     Text: "#000000",
+    disabledButton: "#A6A6A6",
+    disabledButtonText: "#CCCCCC",
   },
   dark: {
     text: "#fff",
@@ -42,6 +44,8 @@ export default {
     unlock: "#E7E9EA",
     mature: "#3A3D42",
     Text: "#999999",
+    disabledButton: "#262626",
+    disabledButtonText: "#999999",
   },
   general: {
     text: "#FFFFFF",

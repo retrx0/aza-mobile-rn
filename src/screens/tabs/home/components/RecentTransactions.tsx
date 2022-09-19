@@ -1,9 +1,12 @@
 import { FlatList, TouchableOpacity } from "react-native";
-import { SendIcon } from "../../../../../assets/svg";
+
 import { Text, View } from "../../../../components/Themed";
-import Colors from "../../../../constants/Colors";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
+
+import Colors from "../../../../constants/Colors";
 import { RootTabScreenProps } from "../../../../../types";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { SendIcon } from "../../../../../assets/svg";
 
 const recentTransactions = [
   {
@@ -126,6 +129,8 @@ const recentTransactions = [
 export default function RecentTransactions({
   navigation,
 }: RootTabScreenProps<"Home">) {
+  const colorScheme = useColorScheme();
+
   return (
     <View style={{ display: "flex", marginTop: 50 }}>
       <View
@@ -149,7 +154,7 @@ export default function RecentTransactions({
             Recent Transactions
           </Text>
         </TouchableOpacity>
-        <SendIcon />
+        <SendIcon color={Colors[colorScheme].secondaryText} />
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}

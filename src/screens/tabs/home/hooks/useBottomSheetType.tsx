@@ -66,19 +66,21 @@ export const useBottomSheetType = (
       {
         itemName: "Split",
         itemIcon: <SplitIcon size={16} color={Colors[colorScheme].mainText} />,
-        onPress: () => console.log("called"),
+        onPress: () => navigation.navigate("Common", { screen: "Split" }),
       },
       {
         itemName: "Monthly Summary",
         itemIcon: <GraphIcon size={16} color={Colors[colorScheme].mainText} />,
-        onPress: () => console.log("called"),
+        onPress: () =>
+          navigation.navigate("Common", { screen: "MonthlySummary" }),
       },
       {
         itemName: "Fees & Limits",
         itemIcon: (
           <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />
         ),
-        onPress: () => console.log("called"),
+        onPress: () =>
+          navigation.navigate("Common", { screen: "FeesAndLimits" }),
       },
       {
         itemName: "Frequently Asked Questions (FAQs)",
