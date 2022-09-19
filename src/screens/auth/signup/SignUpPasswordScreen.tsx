@@ -7,8 +7,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
 
@@ -21,7 +20,6 @@ const SignUpPasswordScreen = ({
   const [isUsePasscodeAsPin, setIsEnabled] = useState(
     passwordScreenType === "Create" ? false : usePasscodeAsPin
   );
-  const insets = useSafeAreaInsets();
 
   const colorScheme = useColorScheme();
 
