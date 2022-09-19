@@ -1,30 +1,30 @@
-import React from 'react'
-import { Image } from 'react-native'
-import CommonStyles from '../../common/styles/CommonStyles'
-import { hp } from '../../common/util/LayoutUtil'
-import Colors from '../../constants/Colors'
-import { Text, View } from '../Themed'
+import React, { memo } from "react";
+import { Image } from "react-native";
+import CommonStyles from "../../common/styles/CommonStyles";
+import { hp } from "../../common/util/LayoutUtil";
+import Colors from "../../constants/Colors";
+import { Text, View } from "../Themed";
 
 interface IContact {
-  image: string
-  name: string
-  phoneNumber: string
-  suffixIcon?: JSX.Element
+  image: string;
+  name: string;
+  phoneNumber: string;
+  suffixIcon?: JSX.Element;
 }
 
 const ContactListItem = ({
   name,
   phoneNumber,
   suffixIcon,
-  image ,
+  image,
 }: IContact) => {
   return (
     <View
       style={[
         CommonStyles.row,
         {
-          alignSelf: 'stretch',
-          justifyContent: 'space-between',
+          alignSelf: "stretch",
+          justifyContent: "space-between",
           marginTop: hp(25),
         },
       ]}
@@ -35,11 +35,11 @@ const ContactListItem = ({
           uri: image,
         }}
       />
-      <View style={[CommonStyles.col, { marginLeft: 20, marginRight: 'auto' }]}>
+      <View style={[CommonStyles.col, { marginLeft: 20, marginRight: "auto" }]}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
-          style={{ fontSize: 16, fontFamily: 'Euclid-Circular-A-Medium' }}
+          style={{ fontSize: 16, fontFamily: "Euclid-Circular-A-Medium" }}
         >
           {name}
         </Text>
@@ -53,7 +53,7 @@ const ContactListItem = ({
       </View>
       {suffixIcon}
     </View>
-  )
-}
+  );
+};
 
-export default ContactListItem
+export default memo(ContactListItem);

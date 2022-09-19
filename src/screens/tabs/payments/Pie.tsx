@@ -5,7 +5,13 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { PieChart } from "react-native-gifted-charts";
 import RegularText from "../../../components/text/RegularText";
 import { AIrtimeStyles } from "./airtime-screens/styles";
-import { ArrowFowardIcon, ArrowLeftIcon, ArrowRightIcon, BackIcon, LoveIcon } from "../../../../assets/svg";
+import {
+  ArrowFowardIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  BackIcon,
+  LoveIcon,
+} from "../../../../assets/svg";
 import useColorScheme from "../../../hooks/useColorScheme";
 
 const data = [
@@ -20,12 +26,18 @@ export default function Pie() {
       <View style={styles.container}>
         <View style={styles.month}>
           <TouchableOpacity>
-            <ArrowLeftIcon color={scheme == "light" ? "#292D32" : "white"} size={0} />
+            <ArrowLeftIcon
+              color={scheme == "light" ? "#292D32" : "white"}
+              size={0}
+            />
           </TouchableOpacity>
 
           <Text style={styles.monthText}>Jun 2022</Text>
           <TouchableOpacity>
-            <ArrowRightIcon color={scheme == "light" ? "#292D32" : "white"} size={0} />
+            <ArrowRightIcon
+              color={scheme == "light" ? "#292D32" : "white"}
+              size={16}
+            />
           </TouchableOpacity>
         </View>
         <PieChart
@@ -45,7 +57,9 @@ export default function Pie() {
         <View style={styles.labels}>
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
-              <View style={[styles.colors, { backgroundColor: item.color }]}></View>
+              <View
+                style={[styles.colors, { backgroundColor: item.color }]}
+              ></View>
               <Text>{item.text}</Text>
             </View>
           ))}

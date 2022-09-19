@@ -1,11 +1,11 @@
-import { NavigatorScreenParams } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Contact } from "expo-contacts";
 
 /* Common screens */
 
 export type CommonStackParamList = {
-  BvnVerificationRoot: NavigatorScreenParams<BvnVerificationStackParamList>;
-  BvnVerificationScreen: undefined;
+  //bvn
+  BvnVerification: BvnScreenParamsType;
 
   // Status
   StatusScreen: StatusScreenParamsType;
@@ -72,20 +72,30 @@ export type CommonStackParamList = {
   ManageCard: undefined;
   AddNewCard: undefined;
   ScanCard: undefined;
+
+  // Home Menu
+  Split: undefined;
+  ChooseSplit: undefined;
+  SplitSelectContacts: SplitSelectContactsParamsType;
+  SplitEditContacts: SplitEditContactsParamsType;
+  SplitEditContact: SplitEditContactParamsType;
+  SplitConfirmation: SplitConfirmationParamsType;
+  IncomingSplitRequests: undefined;
+  IncomingSplitRequestAcceptance: undefined;
+  CompletedSplitRequestDetails: undefined;
+  OutgoingSplitRequests: undefined;
+  MonthlySummary: undefined;
+  FeesAndLimits: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
   NativeStackScreenProps<CommonStackParamList, Screen>;
 
-/* BVN */
+// bvn screen
 
-export type BvnVerificationStackParamList = {
-  BvnVerificationScreen: undefined;
+export type BvnScreenParamsType = {
+  onVerifyNavigateBackTo: string;
 };
-
-export type BvnVerificationScreenProps<
-  Screen extends keyof BvnVerificationStackParamList
-> = NativeStackScreenProps<BvnVerificationStackParamList, Screen>;
 
 // Status screen
 export type StatusScreenParamsType = {
@@ -130,4 +140,33 @@ export type AddBankAccountConfirmationParamsType = {
   bankName: string;
   accountNumber: string;
   accountName: string;
+};
+
+// Home menu
+export type SplitSelectContactsParamsType = {
+  amount: string;
+  date: string;
+  splitImage: string;
+  name: string;
+};
+
+export type SplitEditContactsParamsType = {
+  amount: string;
+  date: string;
+  splitImage: string;
+  name: string;
+  contacts: Contact[];
+};
+
+export type SplitEditContactParamsType = {
+  contactSplitAmount: string;
+  contactImage: string;
+  contactName: string;
+};
+
+export type SplitConfirmationParamsType = {
+  amount: string;
+  splitImage: string;
+  name: string;
+  contacts: Contact[];
 };

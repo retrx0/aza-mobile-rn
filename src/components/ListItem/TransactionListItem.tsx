@@ -65,9 +65,9 @@ export default function TransactionListItem({
           ]}
         >
           {transactionType === "incoming" ? (
-            <ReceivedIcon />
+            <ReceivedIcon color="#2A9E17" />
           ) : (
-            <SendIcon iconColor={Colors.light.error} />
+            <SendIcon color={Colors.light.error} />
           )}
           <Text
             lightColor={Colors.light.mainText}
@@ -102,6 +102,7 @@ export default function TransactionListItem({
       <View
         style={{
           display: "flex",
+          alignItems: "flex-end",
         }}
       >
         <Text
