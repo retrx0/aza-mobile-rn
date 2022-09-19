@@ -11,6 +11,7 @@ import {
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import { Text, View } from "../../components/Themed";
+import useColorScheme from "../../hooks/useColorScheme";
 
 export type InputProps = {
   label: string;
@@ -33,6 +34,8 @@ export const Input = ({
   containerStyle,
   ...rest
 }: InputProps & TextInputProps) => {
+  const colorScheme = useColorScheme();
+
   return (
     <View style={[styles.container, style, containerStyle]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
@@ -50,7 +53,10 @@ export const Input = ({
           <TextInput
             placeholder={placeholder}
             {...rest}
-            style={[inputStyle]}></TextInput>
+            style={[
+              inputStyle,
+              { color: Colors[colorScheme].text },
+            ]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}

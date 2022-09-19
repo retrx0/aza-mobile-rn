@@ -72,7 +72,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             }}
             style={[
               {
-                backgroundColor: "#262626",
+                backgroundColor: Colors[colorScheme].button,
               },
               CommonStyles.button,
             ]}
