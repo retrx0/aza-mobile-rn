@@ -35,7 +35,7 @@ export const Button: FC<ButtonPropsType> = ({
           backgroundColor: Colors[colorScheme].text,
         },
         {
-          opacity: pressed ? 0.8 : 1,
+          opacity: pressed ? 0.8 : 0.6,
         },
         style,
       ]}>

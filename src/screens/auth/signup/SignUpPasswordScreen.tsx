@@ -25,7 +25,7 @@ const SignUpPasswordScreen = ({
 
   const colorScheme = useColorScheme();
 
-  const [passcode, setPasscode] = useState("");
+  const [passcode, setPasscode] = useState("123456");
 
   const switchColor = Colors[colorScheme].backgroundSecondary;
   const switchOnColor = Colors[colorScheme].success;
@@ -94,6 +94,7 @@ const SignUpPasswordScreen = ({
             },
             CommonStyles.button,
           ]}
+          disabled={passcode.length < 6 ? true : false}
         />
       </View>
     </SpacerWrapper>
