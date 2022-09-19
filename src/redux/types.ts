@@ -1,13 +1,16 @@
-export type User = {
-  azaId: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: number;
-  paymentMethods: PaymentMethod[];
-  accountStatus: UserAccountStatus;
-  transactions: [];
-};
+export interface User {
+  azaId?: string;
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+  phone?: number;
+  gender?: Gender;
+  paymentMethods?: PaymentMethod[];
+  accountStatus?: UserAccountStatus;
+  transactions?: [];
+}
+
+export type Gender = "Male" | "Female" | "Unknown";
 
 type PaymentMethodCardType = "Master Card" | "Visa";
 

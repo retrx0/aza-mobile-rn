@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { SignUpScreenProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { useAppDispatch } from "../../../hooks/redux";
+import { setIsVerified } from "../../../redux/slice/newUserSlice";
 import OtpScreen from "../otp/OtpScreen";
 
 const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
-  const [signUpOtp, setSignUpOtp] = useState("123456");
+  const [signUpOtp, setSignUpOtp] = useState("");
+
+  const dispatch = useAppDispatch();
+
   return (
     <SpacerWrapper>
       <OtpScreen
@@ -14,7 +19,8 @@ const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
         }}
         otpCode={signUpOtp}
         onOtpChanged={(code) => setSignUpOtp(code)}
-        onVerify={function (): void {
+        onVerify={() => {
+          dispatch(setIsVerified(true));
           navigation.navigate("SignUpProfileSetup");
         }}
         onResend={() => {

@@ -6,16 +6,20 @@ import { SignUpScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import RNPickerSelect from "react-native-picker-select";
-import { GENDER } from "../../../../constants/Gender";
+import { Gender } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
 import { SelectIcon } from "../../../../../assets/svg";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet, TextInput } from "react-native";
 import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
+import { useAppDispatch } from "../../../../hooks/redux";
+import { setNewUser } from "../../../../redux/slice/newUserSlice";
 
-const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) => {
-  const [gender, setGender] = useState(GENDER);
+const SignUpProfile = ({
+  navigation,
+}: SignUpScreenProps<"SignUpProfileSetup">) => {
+  const [gender, setGender] = useState(Gender);
   const placeholder = {
     label: "Select Gender",
     value: null,
@@ -24,20 +28,32 @@ const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) 
   };
   const colorScheme = useColorScheme();
 
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <Formik
         validationSchema={signUpValidationSchema}
         initialValues={{
-          Firstname: "Chiazondu",
-          Lastname: "Joseph",
-          email: "chiazo@examplemail.com",
+          firstname: "",
+          lastname: "",
+          email: "",
         }}
         onSubmit={(values) => console.log(values)}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, touched }) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          isValid,
+          touched,
+        }) => (
           <>
-            <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+            <View
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>First name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -49,15 +65,19 @@ const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) 
                   { borderColor: Colors[colorScheme].border },
                   { color: Colors[colorScheme].text },
                 ]}
-                onChangeText={handleChange("Firstname")}
-                onBlur={handleBlur("Firstname")}
-                value={values.Firstname}
+                onChangeText={handleChange("firstname")}
+                onBlur={handleBlur("firstname")}
+                value={values.firstname}
                 placeholderTextColor={Colors[colorScheme].text}
               />
-              {errors.Firstname && touched.Firstname && <Text style={styles.errorText}>{errors.Firstname}</Text>}
+              {errors.firstname && touched.firstname && (
+                <Text style={styles.errorText}>{errors.firstname}</Text>
+              )}
             </View>
 
-            <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+            <View
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Last name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -69,15 +89,19 @@ const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) 
                   { borderColor: Colors[colorScheme].border },
                   { color: Colors[colorScheme].text },
                 ]}
-                onChangeText={handleChange("Lastname")}
-                onBlur={handleBlur("Lastname")}
-                value={values.Lastname}
+                onChangeText={handleChange("lastname")}
+                onBlur={handleBlur("lastname")}
+                value={values.lastname}
                 placeholderTextColor={Colors[colorScheme].text}
               />
-              {errors.Lastname && touched.Lastname && <Text style={styles.errorText}>{errors.Lastname}</Text>}
+              {errors.lastname && touched.lastname && (
+                <Text style={styles.errorText}>{errors.lastname}</Text>
+              )}
             </View>
 
-            <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+            <View
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Email</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -89,16 +113,25 @@ const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) 
                   { borderColor: Colors[colorScheme].border },
                   { color: Colors[colorScheme].text },
                 ]}
+                autoCapitalize="none"
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
                 value={values.email}
                 keyboardType="email-address"
                 placeholderTextColor={Colors[colorScheme].text}
               />
-              {errors.email && touched.email && <Text style={styles.errorText}>{errors.email}</Text>}
+              {errors.email && touched.email && (
+                <Text style={styles.errorText}>{errors.email}</Text>
+              )}
             </View>
 
-            <TextHeader label="Gender" style={[CommonStyles.genderstyle, { color: Colors[colorScheme].text }]} />
+            <TextHeader
+              label="Gender"
+              style={[
+                CommonStyles.genderstyle,
+                { color: Colors[colorScheme].text },
+              ]}
+            />
             <View
               style={{
                 flexDirection: "row",
@@ -113,9 +146,11 @@ const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) 
                   console.log(value);
                 }}
                 value={gender}
-                items={GENDER}
+                items={Gender}
                 pickerProps={{
-                  style: { backgroundColor: Colors[colorScheme].backgroundSecondary },
+                  style: {
+                    backgroundColor: Colors[colorScheme].backgroundSecondary,
+                  },
                   itemStyle: { color: Colors[colorScheme].text },
                 }}
                 style={{
@@ -144,6 +179,15 @@ const SignUpProfile = ({ navigation }: SignUpScreenProps<"SignUpProfileSetup">) 
               title="Continue"
               onPressButton={() => {
                 console.log(values);
+                console.log(gender);
+                dispatch(
+                  setNewUser({
+                    firstname: values.firstname,
+                    lastname: values.lastname,
+                    email: values.email,
+                    gender: "Unknown",
+                  })
+                );
                 handleSubmit(),
                   navigation.navigate("SignUpPassword", {
                     passwordScreenType: "Create",
