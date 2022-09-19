@@ -1,9 +1,10 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity, Platform } from "react-native";
-import { BackIcon } from "../../../assets/svg";
+
 import { AirtimeTabs, CharityTabs } from "../../navigation/PaymensNavigation";
-import BvnVerificationNavigator from "../../screens/bvn/BvnVerificationNavigator";
+
+// Vault
 import AddVault from "../../screens/tabs/vault/AddVault";
 import ConfirmDeleteVault from "../../screens/tabs/vault/ConfirmDeleteVault";
 import NewVault from "../../screens/tabs/vault/NewVault";
@@ -11,15 +12,21 @@ import VaultActivity from "../../screens/tabs/vault/withdraw-to-aza/VaultActivit
 import VaultDetails from "../../screens/tabs/vault/withdraw-to-aza/VaultDetails";
 import VaultSuccessful from "../../screens/tabs/vault/VaultSuccessful";
 import VaultWithdrawsuccessful from "../../screens/tabs/vault/withdraw-to-aza/VaultWithdrawSuccessful";
+import VaultToBank from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBank";
+import VaultWithdrawConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
+import VaultToBankSuccessful from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankSuccessful";
+import VaultToAza from "../../screens/tabs/vault/withdraw-to-aza/VaultwithdrawalConfirmation";
+import LockVault from "../../screens/tabs/vault/LockVault";
+import ArchievedVault from "../../screens/tabs/vault/ArchievedVault";
+
 import { CommonStackParamList } from "./types";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text, View } from "../../components/Themed";
 import CommonStyles from "../styles/CommonStyles";
 import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
-import VaultToAza from "../../screens/tabs/vault/withdraw-to-aza/VaultwithdrawalConfirmation";
-import LockVault from "../../screens/tabs/vault/LockVault";
-import ArchievedVault from "../../screens/tabs/vault/ArchievedVault";
+import Colors from "../../constants/Colors";
+import { BackIcon } from "../../../assets/svg";
 
 import StatusScreen from "../../screens/status/StatusScreen";
 
@@ -62,10 +69,23 @@ import DebitCreditCardsScreen from "../../screens/tabs/profile/screens/DebitCred
 import ManageCardScreen from "../../screens/tabs/profile/screens/ManageCardScreen";
 import AddNewCardScreen from "../../screens/tabs/profile/screens/AddNewCardScreen";
 import ScanCardScreen from "../../screens/tabs/profile/screens/ScanCardScreen";
-import Colors from "../../constants/Colors";
-import VaultToBank from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBank";
-import VaultWithdrawConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
-import VaultToBankSuccessful from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankSuccessful";
+
+//bvn
+import BvnVerificationScreen from "../../screens/bvn/BvnVerificationScreen";
+
+// Home menu
+import SplitScreen from "../../screens/menu/SplitScreen";
+import ChooseSplitScreen from "../../screens/menu/ChooseSplitScreen";
+import SplitSelectContactsScreen from "../../screens/menu/SplitSelectContactsScreen";
+import SplitEditContactsScreen from "../../screens/menu/SplitEditContactsScreen";
+import SplitEditContactScreen from "../../screens/menu/SplitEditContactScreen";
+import SplitConfirmationScreen from "../../screens/menu/SplitConfirmationScreen";
+import IncomingSplitRequestsScreen from "../../screens/menu/IncomingSplitRequestsScreen";
+import IncomingSplitRequestAcceptanceScreen from "../../screens/menu/IncomingSplitRequestAcceptanceScreen";
+import CompletedSplitRequestDetailsScreen from "../../screens/menu/CompletedSplitRequestDetailsScreen";
+import OutgoingSplitRequestsScreen from "../../screens/menu/OutgoingSplitRequestsScreen";
+import MonthlySummaryScreen from "../../screens/menu/MonthlySummaryScreen";
+import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -112,18 +132,20 @@ const CommonStack = () => {
   const scheme = useColorScheme();
   return (
     <Stack.Navigator defaultScreenOptions={{ headerShown: false }}>
-      <Stack.Group screenOptions={{ headerShown: false }}>
+      <Stack.Group>
         <Stack.Screen
-          component={BvnVerificationNavigator}
-          name="BvnVerificationRoot"
+          component={BvnVerificationScreen}
+          name="BvnVerification"
         />
-        <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>
-          <Stack.Screen
-            component={StatusScreen}
-            name="StatusScreen"
-            options={() => ({ headerShown: false })}
-          />
-        </Stack.Group>
+      </Stack.Group>
+
+      {/* status screen */}
+      <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>
+        <Stack.Screen
+          component={StatusScreen}
+          name="StatusScreen"
+          options={() => ({ headerShown: false })}
+        />
       </Stack.Group>
 
       {/* Settings */}
@@ -343,6 +365,46 @@ const CommonStack = () => {
         <Stack.Screen name="ManageCard" component={ManageCardScreen} />
         <Stack.Screen name="AddNewCard" component={AddNewCardScreen} />
         <Stack.Screen name="ScanCard" component={ScanCardScreen} />
+      </Stack.Group>
+
+      {/* Home menu */}
+      <Stack.Group>
+        <Stack.Screen name="Split" component={SplitScreen} />
+        <Stack.Screen name="ChooseSplit" component={ChooseSplitScreen} />
+        <Stack.Screen
+          name="SplitSelectContacts"
+          component={SplitSelectContactsScreen}
+        />
+        <Stack.Screen
+          name="SplitEditContacts"
+          component={SplitEditContactsScreen}
+        />
+        <Stack.Screen
+          name="SplitEditContact"
+          component={SplitEditContactScreen}
+        />
+        <Stack.Screen
+          name="SplitConfirmation"
+          component={SplitConfirmationScreen}
+        />
+        <Stack.Screen
+          name="IncomingSplitRequests"
+          component={IncomingSplitRequestsScreen}
+        />
+        <Stack.Screen
+          name="IncomingSplitRequestAcceptance"
+          component={IncomingSplitRequestAcceptanceScreen}
+        />
+        <Stack.Screen
+          name="CompletedSplitRequestDetails"
+          component={CompletedSplitRequestDetailsScreen}
+        />
+        <Stack.Screen
+          name="OutgoingSplitRequests"
+          component={OutgoingSplitRequestsScreen}
+        />
+        <Stack.Screen name="FeesAndLimits" component={FeesAndLimitsScreen} />
+        <Stack.Screen name="MonthlySummary" component={MonthlySummaryScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
