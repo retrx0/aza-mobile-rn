@@ -1,15 +1,15 @@
 import { Camera, CameraType } from "expo-camera";
 import { PermissionResponse } from "expo-image-picker";
-import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { Alert, Platform, StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { RootStackScreenProps } from "../../../types";
 import { hp } from "../../common/util/LayoutUtil";
 
-import { Text, View } from "../../components/Themed";
+import { View } from "../../components/Themed";
 
 const ModalScreen = ({ navigation }: RootStackScreenProps<"QRCodeModal">) => {
-  const [cameraPermission, setCameraPermission] = useState<PermissionResponse>();
+  const [cameraPermission, setCameraPermission] =
+    useState<PermissionResponse>();
 
   useEffect(() => {
     (async () => {

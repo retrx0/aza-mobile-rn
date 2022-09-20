@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch } from "react-native";
 import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -10,22 +10,36 @@ import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
 
 const SignUpPasswordScreen = ({
   navigation,
   route,
 }: SignUpScreenProps<"SignUpPassword">) => {
-  const { passwordScreenType, password, usePasscodeAsPin } = route.params;
+  const { passwordScreenType } = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const [isUsePasscodeAsPin, setIsEnabled] = useState(
-    passwordScreenType === "Create" ? false : usePasscodeAsPin
+  const [isUsePasscodeAsPin, setIsEnabled] = useState<boolean | undefined>(
+    false
   );
+  const newUserData = useAppSelector(selectNewUser);
+  const [isConfirmScreen, setIsConfirmScreen] = useState(false);
+
+  useEffect(() => {
+    if (passwordScreenType !== "Create") {
+      setIsConfirmScreen(true);
+      setIsEnabled(newUserData.isUsePasscodeAsPin);
+    }
+  }, []);
 
   const colorScheme = useColorScheme();
-  const [passcode, setPasscode] = useState("123456");
+
+  const [passcode, setPasscode] = useState("");
 
   const switchColor = Colors[colorScheme].backgroundSecondary;
   const switchOnColor = Colors[colorScheme].success;
+
+  const dispatch = useAppDispatch();
 
   return (
     <SpacerWrapper>
@@ -67,14 +81,21 @@ const SignUpPasswordScreen = ({
         <Button
           title="Continue"
           onPressButton={() => {
-            if (passwordScreenType === "Create") {
+            // dispatch changes
+            // TODO replace with expo-secure-store or react-native-encrypted-storage
+            dispatch(
+              setNewUser({
+                isUsePasscodeAsPin: isUsePasscodeAsPin,
+                createdPasscode: passcode,
+              })
+            );
+
+            if (!isConfirmScreen) {
               navigation.navigate("SignUpConfirmPassword", {
                 passwordScreenType: "Confirm",
-                password: passcode,
-                usePasscodeAsPin: isUsePasscodeAsPin,
               });
             } else {
-              if (passcode === password) {
+              if (passcode === newUserData.createdPasscode) {
                 navigation.getParent()?.navigate("Root");
               } else {
                 alert("Password does not match");

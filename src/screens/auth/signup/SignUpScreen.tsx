@@ -9,10 +9,14 @@ import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { useAppDispatch } from "../../../hooks/redux";
+import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const [phone, setPhone] = useState<string>("");
   const colorScheme = useColorScheme();
+
+  const dispatch = useAppDispatch();
 
   return (
     <SpacerWrapper>
@@ -46,7 +50,10 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       />
       <Button
         title="Continue"
-        onPressButton={() => navigation.navigate("SignUpOTP")}
+        onPressButton={() => {
+          dispatch(setReduxStorePhone(Number(phone)));
+          navigation.navigate("SignUpOTP");
+        }}
         styleText={{
           color: Colors[colorScheme].buttonText,
         }}
