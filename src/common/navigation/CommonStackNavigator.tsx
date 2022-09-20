@@ -27,7 +27,6 @@ import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
 import Colors from "../../constants/Colors";
 import { BackIcon } from "../../../assets/svg";
-
 import StatusScreen from "../../screens/status/StatusScreen";
 
 // settings
@@ -119,8 +118,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -261,8 +259,7 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={24}
@@ -281,8 +278,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
