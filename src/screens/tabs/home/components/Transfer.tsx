@@ -11,7 +11,7 @@ import Colors from "../../../../constants/Colors";
 import { ExitIcon } from "../../../../../assets/svg";
 import BackButton from "../../../../components/buttons/BackButton";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import AccountBalance from "../../home/components/AccountBalance";
+import AccountBalance from "./AccountBalance";
 
 const Transfer = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
