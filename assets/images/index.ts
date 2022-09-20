@@ -19,3 +19,4 @@ export const ZenithBankLogoWithName = require("./zenithBankLogoWithName.png");
 export const FidelityBankLogoWithName = require("./fidelityBankLogoWithName.png");
 export const FirstBankLogoWithName = require("./firstBankLogoWithName.png");
 export const ScanCardBackground = require("./scanCardBackground.png");
+export const Joseph = require("./Joseph.png");
