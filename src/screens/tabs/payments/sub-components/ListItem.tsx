@@ -11,9 +11,10 @@ type Props = {
   route: string;
   onPress: any;
   index: number;
+  IconComponent?:any;
 };
 
-export default function ListItem({ Icon, title, onPress, index }: Props) {
+export default function ListItem({ Icon, title, onPress, index,IconComponent=null }: Props) {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
@@ -26,9 +27,14 @@ export default function ListItem({ Icon, title, onPress, index }: Props) {
           <Icon />
           <Text style={styles.text}>{title}</Text>
         </View>
-        <TouchableOpacity>
-          <ArrowFowardIcon />
-        </TouchableOpacity>
+        
+          {
+            IconComponent==null?
+            <ArrowFowardIcon />
+            :<IconComponent/>
+          }
+          
+       
       </View>
       <Divider />
     </TouchableAnimated>

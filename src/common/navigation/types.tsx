@@ -86,6 +86,9 @@ export type CommonStackParamList = {
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
+  WithdrawDepositTabs:undefined;
+  Withdraw:undefined;
+  Deposit:undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =

@@ -35,6 +35,7 @@ export default function Confirmation({
           labelStyle={null}
           label="Phone Number"
           placeholder="08164942224"
+          
         />
         <Input
           icon={null}
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     height: 40,
     marginBottom: 20,
+    
   },
   btn: {
     marginTop: "auto",

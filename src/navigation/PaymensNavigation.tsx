@@ -41,6 +41,11 @@ export function AirtimeTabs() {
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
+          tabBarStyle:{
+            borderBottomColor:'#A6A6A6',
+            borderBottomWidth:1
+          }
+          
         }}
         initialRouteName="airtime"
       >
@@ -69,6 +74,10 @@ export function CharityTabs() {
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
+          tabBarStyle:{
+            borderBottomColor:'#A6A6A6',
+            borderBottomWidth:1
+          }
         }}
         initialRouteName="For Myself"
       >

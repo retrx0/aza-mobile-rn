@@ -85,6 +85,8 @@ import CompletedSplitRequestDetailsScreen from "../../screens/menu/CompletedSpli
 import OutgoingSplitRequestsScreen from "../../screens/menu/OutgoingSplitRequestsScreen";
 import MonthlySummaryScreen from "../../screens/menu/MonthlySummaryScreen";
 import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
+import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
+import Withdraw from "../../screens/tabs/home/withdraw-deposit/withdraw/Withdraw";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -395,12 +397,61 @@ const CommonStack = () => {
           name="CompletedSplitRequestDetails"
           component={CompletedSplitRequestDetailsScreen}
         />
+
         <Stack.Screen
           name="OutgoingSplitRequests"
           component={OutgoingSplitRequestsScreen}
         />
         <Stack.Screen name="FeesAndLimits" component={FeesAndLimitsScreen} />
         <Stack.Screen name="MonthlySummary" component={MonthlySummaryScreen} />
+        
+        
+        <Stack.Group
+        screenOptions={(props) => ({
+          headerTitleAlign: "center",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => props.navigation.goBack()}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}>
+              <BackIcon
+                color={scheme == "light" ? "#000000" : "#ffffff"}
+                size={24}
+              />
+              <Text style={{ marginLeft: 5 }}>Back</Text>
+            </TouchableOpacity>
+          ),
+          headerStyle: {
+            backgroundColor:
+              scheme == "light"
+                ? Colors.light.background
+                : Colors.dark.background,
+          },
+          headerTransparent: true,
+          headerTitleStyle: {
+            fontSize: 16,
+            fontWeight: "600",
+          },
+          
+        })
+      }
+        >
+        <Stack.Screen
+          name="WithdrawDepositTabs"
+          component={WithdrawDepositTabs}
+          options={{
+            title:'Withdraw/Deposit'
+          }} 
+        />
+
+       <Stack.Screen
+        component={Withdraw}
+        name='Withdraw'
+        />
+
+        </Stack.Group>
       </Stack.Group>
     </Stack.Navigator>
   );

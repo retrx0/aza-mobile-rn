@@ -38,7 +38,7 @@ const TransactionOptions = ({
           marginTop: 25,
         }}
       >
-        <View style={{ display: "flex", alignItems: "center" }}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Common',{screen:'WithdrawDepositTabs'})} style={{ display: "flex", alignItems: "center" }}>
           <WithdrawIcon size={40} color="#FF361A" />
           <Text
             lightColor={Colors.light.mainText}
@@ -47,7 +47,7 @@ const TransactionOptions = ({
           >
             Withdraw
           </Text>
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
