@@ -103,7 +103,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17),
     marginLeft: hp(24),
     marginTop: hp(30),
-    marginBottom: hp(40),
+    marginBottom: hp(30),
   },
   withdrawSuccessfull: {
     fontFamily: "Euclid-Circular-A",

@@ -32,7 +32,11 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <Text style={CommonStyles.selectStyle}>
           Select the bank you wish to withdraw to
         </Text>
-        <View style={CommonStyles.accessContainer}>
+        <View
+          style={[
+            CommonStyles.accessContainer,
+            { borderColor: Colors[colorScheme].disabledButton },
+          ]}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
               source={require("../../../../../assets/images/AccessBank.png")}

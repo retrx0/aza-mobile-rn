@@ -27,7 +27,6 @@ import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
 import Colors from "../../constants/Colors";
 import { BackIcon } from "../../../assets/svg";
-
 import StatusScreen from "../../screens/status/StatusScreen";
 
 // settings
@@ -86,16 +85,21 @@ import CompletedSplitRequestDetailsScreen from "../../screens/menu/CompletedSpli
 import OutgoingSplitRequestsScreen from "../../screens/menu/OutgoingSplitRequestsScreen";
 import MonthlySummaryScreen from "../../screens/menu/MonthlySummaryScreen";
 import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
+import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
+import Withdraw from "../../screens/tabs/home/withdraw-deposit/withdraw/Withdraw";
 
-// transfer bottomsheet screens
-import SendMoneyScreen from "../../screens/transferBottomSheet/SendMoneyScreen";
-import RequestMoneyScreen from "../../screens/transferBottomSheet/RequestMoneyScreen";
-import RequestMoneyConfirmationScreen from "../../screens/transferBottomSheet/RequestMoneyConfirmationScreen";
-import SendMoneyConfirmationScreen from "../../screens/transferBottomSheet/SendMoneyConfirmationScreen";
-import RecurringTransferScreen from "../../screens/transferBottomSheet/RecurringTransferScreen";
-import SelectNewRecurringTransferScreen from "../../screens/transferBottomSheet/SelectNewRecurringTransferScreen";
-import SetupRecurringTransferScreen from "../../screens/transferBottomSheet/SetupRecurringTransferScreen";
-import RecurringTransferConfirmationScreen from "../../screens/transferBottomSheet/RecurringTransferConfirmationScreen";
+// transfer modal screens
+import SendMoneyScreen from "../../screens/transferModal/SendMoneyScreen";
+import RequestMoneyScreen from "../../screens/transferModal/RequestMoneyScreen";
+import RequestMoneyConfirmationScreen from "../../screens/transferModal/RequestMoneyConfirmationScreen";
+import SendMoneyConfirmationScreen from "../../screens/transferModal/SendMoneyConfirmationScreen";
+import RecurringTransferScreen from "../../screens/transferModal/RecurringTransferScreen";
+import SelectNewRecurringTransferScreen from "../../screens/transferModal/SelectNewRecurringTransferScreen";
+import SetupRecurringTransferScreen from "../../screens/transferModal/SetupRecurringTransferScreen";
+import RecurringTransferConfirmationScreen from "../../screens/transferModal/RecurringTransferConfirmationScreen";
+
+// transaction keypad screen
+import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -155,6 +159,14 @@ const CommonStack = () => {
           component={StatusScreen}
           name="StatusScreen"
           options={() => ({ headerShown: false })}
+        />
+      </Stack.Group>
+
+      {/* Transaction keypad screen */}
+      <Stack.Group>
+        <Stack.Screen
+          name="TransactionKeypad"
+          component={TransactionKeypadScreen}
         />
       </Stack.Group>
 
@@ -409,12 +421,55 @@ const CommonStack = () => {
           name="CompletedSplitRequestDetails"
           component={CompletedSplitRequestDetailsScreen}
         />
+
         <Stack.Screen
           name="OutgoingSplitRequests"
           component={OutgoingSplitRequestsScreen}
         />
         <Stack.Screen name="FeesAndLimits" component={FeesAndLimitsScreen} />
         <Stack.Screen name="MonthlySummary" component={MonthlySummaryScreen} />
+
+        <Stack.Group
+          screenOptions={(props) => ({
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.goBack()}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <BackIcon
+                  color={scheme == "light" ? "#000000" : "#ffffff"}
+                  size={24}
+                />
+                <Text style={{ marginLeft: 5 }}>Back</Text>
+              </TouchableOpacity>
+            ),
+            headerStyle: {
+              backgroundColor:
+                scheme == "light"
+                  ? Colors.light.background
+                  : Colors.dark.background,
+            },
+            headerTransparent: true,
+            headerTitleStyle: {
+              fontSize: 16,
+              fontWeight: "600",
+            },
+          })}
+        >
+          <Stack.Screen
+            name="WithdrawDepositTabs"
+            component={WithdrawDepositTabs}
+            options={{
+              title: "Withdraw/Deposit",
+            }}
+          />
+
+          <Stack.Screen component={Withdraw} name="Withdraw" />
+        </Stack.Group>
       </Stack.Group>
 
       {/* transfer bottomsheet screens */}

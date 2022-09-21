@@ -1,15 +1,18 @@
-import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
+import { StyleSheet } from "react-native";
+
 import { CommonScreenProps } from "../../common/navigation/types";
+
 import BackButton from "../../components/buttons/BackButton";
 import { Text, View } from "../../components/Themed";
+import Button from "../../components/buttons/Button";
+
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { UndrawCalendarIcon } from "../../../assets/svg";
-import Button from "../../components/buttons/Button";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
+import { UndrawCalendarIcon } from "../../../assets/svg";
 
 const RecurringTransferScreen = ({
   navigation,

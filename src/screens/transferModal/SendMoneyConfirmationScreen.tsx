@@ -4,6 +4,7 @@ import { StyleSheet, Image } from "react-native";
 import BackButton from "../../components/buttons/BackButton";
 import { Text, TextInput, View } from "../../components/Themed";
 import Button from "../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -11,11 +12,10 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
-const RequestMoneyConfirmationScreen = ({
+const SendMoneyConfirmationScreen = ({
   navigation,
-}: CommonScreenProps<"RequestMoneyConfirmation">) => {
+}: CommonScreenProps<"SendMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
@@ -65,7 +65,7 @@ const RequestMoneyConfirmationScreen = ({
                 fontSize: 14,
               }}
             >
-              From?
+              To
             </Text>
             <TextInput
               lightColor={Colors.light.mainText}
@@ -180,9 +180,12 @@ const RequestMoneyConfirmationScreen = ({
               navigation.navigate("StatusScreen", {
                 status: "Successful",
                 statusIcon: "Success",
-                statusMessage:
-                  "Your bank account has been successfully linked to your Aza",
-                navigateTo: "BankAccounts",
+                statusMessage: "Your money transfer has been successful.",
+                statusMessage2:
+                  "You can perform this transaction automatically by giving a Recurring Transfer order",
+                receiptButton: true,
+                setupRecurringTransfer: true,
+                navigateTo: "SendMoney",
               })
             }
             styleText={{
@@ -208,7 +211,7 @@ const RequestMoneyConfirmationScreen = ({
   );
 };
 
-export default RequestMoneyConfirmationScreen;
+export default SendMoneyConfirmationScreen;
 
 const styles = StyleSheet.create({
   container: {

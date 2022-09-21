@@ -4,6 +4,9 @@ import { Contact } from "expo-contacts";
 /* Common screens */
 
 export type CommonStackParamList = {
+  // page with virtual keyboard
+  TransactionKeypad: TransactionKeypadParamsType;
+
   //bvn
   BvnVerification: BvnScreenParamsType;
 
@@ -87,7 +90,12 @@ export type CommonStackParamList = {
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
 
-  // Transfer bottomsheet
+  //withdraw and deposit
+  WithdrawDepositTabs: undefined;
+  Withdraw: undefined;
+  Deposit: undefined;
+
+  // Transfer modal screens
   SendMoney: undefined;
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
@@ -101,6 +109,12 @@ export type CommonStackParamList = {
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
   NativeStackScreenProps<CommonStackParamList, Screen>;
+
+// page with virtual keyboard
+export type TransactionKeypadParamsType = {
+  headerTitle: string;
+  openDescriptionModal: boolean;
+};
 
 // bvn screen
 

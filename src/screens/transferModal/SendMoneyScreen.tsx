@@ -1,3 +1,4 @@
+import React, { useLayoutEffect, useState } from "react";
 import {
   Image,
   ScrollView,
@@ -5,22 +6,22 @@ import {
   TouchableOpacity,
   useWindowDimensions,
 } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import { TabView, TabBar } from "react-native-tab-view";
+
 import { CommonScreenProps } from "../../common/navigation/types";
+
 import BackButton from "../../components/buttons/BackButton";
 import { Text, TextInput, View } from "../../components/Themed";
+import ContactListItem from "../../components/ListItem/ContactListItem";
+
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { TabView, TabBar } from "react-native-tab-view";
-import ContactListItem from "../../components/ListItem/ContactListItem";
 import { AZALightningLogo } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 
-const RequestMoneyScreen = ({
-  navigation,
-}: CommonScreenProps<"RequestMoney">) => {
+const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },
@@ -40,7 +41,7 @@ const RequestMoneyScreen = ({
             fontSize: 16,
           }}
         >
-          Request Money
+          Send Money
         </Text>
       ),
       // hide default back button which only shows in android
@@ -58,6 +59,57 @@ const RequestMoneyScreen = ({
         return (
           <View style={[styles.container, { justifyContent: "space-between" }]}>
             <View>
+              <Text
+                style={{
+                  color: Colors[colorScheme].mainText,
+                  fontSize: 14,
+                }}
+              >
+                Quick contacts
+              </Text>
+              <View
+                style={[
+                  CommonStyles.row,
+                  {
+                    marginTop: hp(20),
+                  },
+                ]}
+              >
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <View style={[CommonStyles.row]}>
+                    {Array(3)
+                      .fill("")
+                      .map((_, i) => (
+                        <View
+                          key={i}
+                          style={[
+                            CommonStyles.col,
+                            { alignItems: "center", marginRight: 20 },
+                          ]}
+                        >
+                          <Image
+                            style={{
+                              borderRadius: 50,
+                              width: 45,
+                              height: 45,
+                            }}
+                            source={{
+                              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                            }}
+                          />
+                          <Text
+                            lightColor={Colors.light.text}
+                            darkColor={Colors.dark.mainText}
+                            style={{ fontSize: 10, marginTop: 5 }}
+                          >
+                            Chiazo
+                          </Text>
+                        </View>
+                      ))}
+                  </View>
+                </ScrollView>
+              </View>
+
               <TextInput
                 lightColor={Colors.light.mainText}
                 darkColor={Colors.dark.mainText}
@@ -66,12 +118,11 @@ const RequestMoneyScreen = ({
                   backgroundColor: "transparent",
                   fontFamily: "Euclid-Circular-A",
                   paddingBottom: 10,
-                  marginTop: hp(15),
-                  marginBottom: hp(35),
+                  marginVertical: hp(35),
                   borderBottomWidth: 1,
                   borderBottomColor: Colors[colorScheme].separator,
                 }}
-                placeholder="From?"
+                placeholder="To (Search for a contact)"
               />
 
               <ScrollView
@@ -113,7 +164,10 @@ const RequestMoneyScreen = ({
                       <TouchableOpacity
                         key={i}
                         onPress={() =>
-                          navigation.navigate("RequestMoneyConfirmation")
+                          navigation.navigate("TransactionKeypad", {
+                            headerTitle: "Send Money",
+                            openDescriptionModal: true,
+                          })
                         }
                       >
                         <ContactListItem
@@ -254,7 +308,7 @@ const RequestMoneyScreen = ({
   );
 };
 
-export default RequestMoneyScreen;
+export default SendMoneyScreen;
 
 const styles = StyleSheet.create({
   container: {

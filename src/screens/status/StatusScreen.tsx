@@ -88,7 +88,9 @@ const StatusScreen = ({
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
-              onPressButton={() => console.log("Setup Recurring Transfer")}
+              onPressButton={() =>
+                navigation.navigate("SetupRecurringTransfer")
+              }
               styleText={{
                 color: Colors[colorScheme].text,
                 fontFamily: "Euclid-Circular-A-Medium",
