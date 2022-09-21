@@ -34,6 +34,7 @@ const ModalScreen = ({ navigation }: RootStackScreenProps<"QRCodeModal">) => {
           paddingBottom: hp(50),
         }}
       >
+        {/* TODO fix camera not shuting down after closing modal */}
         {cameraPermission?.granted && (
           <Camera
             style={{ width: "90%", height: "50%" }}
