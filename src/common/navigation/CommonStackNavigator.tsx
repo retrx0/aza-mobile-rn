@@ -87,6 +87,16 @@ import OutgoingSplitRequestsScreen from "../../screens/menu/OutgoingSplitRequest
 import MonthlySummaryScreen from "../../screens/menu/MonthlySummaryScreen";
 import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
 
+// transfer bottomsheet screens
+import SendMoneyScreen from "../../screens/transferBottomSheet/SendMoneyScreen";
+import RequestMoneyScreen from "../../screens/transferBottomSheet/RequestMoneyScreen";
+import RequestMoneyConfirmationScreen from "../../screens/transferBottomSheet/RequestMoneyConfirmationScreen";
+import SendMoneyConfirmationScreen from "../../screens/transferBottomSheet/SendMoneyConfirmationScreen";
+import RecurringTransferScreen from "../../screens/transferBottomSheet/RecurringTransferScreen";
+import SelectNewRecurringTransferScreen from "../../screens/transferBottomSheet/SelectNewRecurringTransferScreen";
+import SetupRecurringTransferScreen from "../../screens/transferBottomSheet/SetupRecurringTransferScreen";
+import RecurringTransferConfirmationScreen from "../../screens/transferBottomSheet/RecurringTransferConfirmationScreen";
+
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
 
@@ -405,6 +415,36 @@ const CommonStack = () => {
         />
         <Stack.Screen name="FeesAndLimits" component={FeesAndLimitsScreen} />
         <Stack.Screen name="MonthlySummary" component={MonthlySummaryScreen} />
+      </Stack.Group>
+
+      {/* transfer bottomsheet screens */}
+      <Stack.Group>
+        <Stack.Screen name="SendMoney" component={SendMoneyScreen} />
+        <Stack.Screen name="RequestMoney" component={RequestMoneyScreen} />
+        <Stack.Screen
+          name="SendMoneyConfirmation"
+          component={SendMoneyConfirmationScreen}
+        />
+        <Stack.Screen
+          name="RequestMoneyConfirmation"
+          component={RequestMoneyConfirmationScreen}
+        />
+        <Stack.Screen
+          name="RecurringTransfer"
+          component={RecurringTransferScreen}
+        />
+        <Stack.Screen
+          name="SelectNewRecurringTransfer"
+          component={SelectNewRecurringTransferScreen}
+        />
+        <Stack.Screen
+          name="SetupRecurringTransfer"
+          component={SetupRecurringTransferScreen}
+        />
+        <Stack.Screen
+          name="RecurringTransferConfirmation"
+          component={RecurringTransferConfirmationScreen}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

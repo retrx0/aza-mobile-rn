@@ -146,14 +146,15 @@ export const useBottomSheetType = (
         itemIcon: (
           <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
         ),
-        onPress: () => console.log("called"),
+        onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
       },
       {
         itemName: "Request Money",
         itemIcon: (
           <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />
         ),
-        onPress: () => console.log("called"),
+        onPress: () =>
+          navigation.navigate("Common", { screen: "RequestMoney" }),
       },
       {
         itemName: "Recurring Transfer",
@@ -163,7 +164,8 @@ export const useBottomSheetType = (
             color={Colors[colorScheme].mainText}
           />
         ),
-        onPress: () => console.log("called"),
+        onPress: () =>
+          navigation.navigate("Common", { screen: "RecurringTransfer" }),
       },
     ],
     choosePhotoBottomSheetListItems: [

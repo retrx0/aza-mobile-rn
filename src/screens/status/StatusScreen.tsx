@@ -111,7 +111,7 @@ const StatusScreen = ({
               fontSize: 14,
             }}
             style={{
-              marginBottom: hp(20),
+              marginVertical: hp(20),
               backgroundColor: Colors[colorScheme].button,
             }}
           />

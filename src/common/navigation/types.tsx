@@ -86,6 +86,17 @@ export type CommonStackParamList = {
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
+
+  // Transfer bottomsheet
+  SendMoney: undefined;
+  RequestMoney: undefined;
+  RequestMoneyConfirmation: undefined;
+  SendMoneyConfirmation: undefined;
+
+  SetupRecurringTransfer: undefined;
+  RecurringTransfer: undefined;
+  SelectNewRecurringTransfer: undefined;
+  RecurringTransferConfirmation: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
