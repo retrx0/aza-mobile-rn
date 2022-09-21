@@ -1,20 +1,24 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
-import { View } from "../../../../components/Themed";
-import { Header } from "../../../../components/text/header";
+import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import { ExitIcon } from "../../../../../assets/svg";
 import BackButton from "../../../../components/buttons/BackButton";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import AccountBalance from "./AccountBalance";
+import { useNavigation } from "@react-navigation/core";
 
-const Transfer = ({ navigation }: RootTabScreenProps<"Vault">) => {
+type TransferPropsType = {
+  title: string;
+};
+
+const Transfer = ({ title }: TransferPropsType) => {
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
 
   return (
     <SpacerWrapper>
@@ -29,12 +33,7 @@ const Transfer = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
-          <Header
-            heading="Recurring Transfer"
-            description={""}
-            descriptionStyle={undefined}
-            headerStyle={{ marginTop: 10 }}
-          />
+          <Text>{title}</Text>
           <TouchableOpacity>
             <ExitIcon />
           </TouchableOpacity>
