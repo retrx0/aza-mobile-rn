@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { SafeAreaView } from "../../../../components/Themed";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import DepositIndex from "./deposit/DepositIndex";
 import WithdrawIndex from "./withdraw/WithdrawIndex";
 
 
@@ -33,7 +34,7 @@ export function WithdrawDepositTabs() {
         initialRouteName="WithdrawIndex"
       >
         <Tab.Screen options={{title:'Withdraw'}} name="WithdrawIndex" component={WithdrawIndex} />
-        <Tab.Screen options={{title:'Deposit'}} name="DepositIndex" component={WithdrawIndex} />
+        <Tab.Screen options={{title:'Deposit'}} name="DepositIndex" component={DepositIndex} />
       </Tab.Navigator>
     </SafeAreaView>
   );

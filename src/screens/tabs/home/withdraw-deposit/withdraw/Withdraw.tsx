@@ -16,7 +16,7 @@ export default function Withdraw({
   route,
 }: CommonScreenProps<"BankAccounts">) {
   const colorScheme = useColorScheme();
-  const [accountAvailable, setAccountAvailability] = useState(true);
+  const [accountAvailable, setAccountAvailability] = useState(false);
   const sharedValue = useSharedValue(0);
   const [click, setClick] = useState(false);
 
@@ -31,7 +31,7 @@ export default function Withdraw({
           },
         ]}
       >
-        <Text style={CommonStyles.selectStyle}>
+        <Text style={styles.text}>
           Select the bank you wish to withdraw to
         </Text>
         <View
@@ -67,7 +67,7 @@ export default function Withdraw({
         <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <CancelButtonWithUnderline
             title="Add another Bank Account"
-            onPressButton={() => console.log("called")}
+            onPressButton={() => navigation.navigate("SelectBank")}
             color={Colors[colorScheme].text}
           />
           <Button
@@ -192,4 +192,9 @@ const styles = StyleSheet.create({
   cancel: {
     marginBottom: 50,
   },
+  text:{
+    marginTop:30,
+    marginBottom:40,
+    fontWeight:'500'
+  }
 });

@@ -67,7 +67,11 @@ const TransactionOptions = ({
           </View>
         </TouchableOpacity>
 
-        <View style={{ display: "flex", alignItems: "center" }}>
+        <TouchableOpacity
+         onPress={() =>
+          navigation.navigate("Common", { screen: "WithdrawDepositTabs"})
+        }
+         style={{ display: "flex", alignItems: "center" }}>
           <DepositIcon color="#2AD168" size={40} />
           <Text
             lightColor={Colors.light.mainText}
@@ -76,7 +80,7 @@ const TransactionOptions = ({
           >
             Deposit
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <CustomBottomSheet
         isModalVisible={isModalVisible}

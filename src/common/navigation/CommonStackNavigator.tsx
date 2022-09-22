@@ -100,6 +100,7 @@ import RecurringTransferConfirmationScreen from "../../screens/transferModal/Rec
 
 // transaction keypad screen
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
+import Deposit from "../../screens/tabs/home/withdraw-deposit/deposit/Deposit";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -469,6 +470,7 @@ const CommonStack = () => {
           />
 
           <Stack.Screen component={Withdraw} name="Withdraw" />
+          <Stack.Screen component={Deposit} name="Deposit" />
         </Stack.Group>
       </Stack.Group>
 
