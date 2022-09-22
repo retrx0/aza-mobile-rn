@@ -97,7 +97,7 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(10),
   },
   selectStyle: {
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontFamily: "Euclid-Circular-A",
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17),
