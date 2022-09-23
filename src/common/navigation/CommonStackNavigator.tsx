@@ -87,6 +87,7 @@ import CompletedSplitRequestDetailsScreen from "../../screens/menu/CompletedSpli
 import OutgoingSplitRequestsScreen from "../../screens/menu/OutgoingSplitRequestsScreen";
 import MonthlySummaryScreen from "../../screens/menu/MonthlySummaryScreen";
 import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
+import ContactUsScreen from "../../screens/menu/ContactUsScreen";
 
 // transfer modal screens
 import SendMoneyScreen from "../../screens/transferModal/SendMoneyScreen";
@@ -436,6 +437,7 @@ const CommonStack = () => {
         />
         <Stack.Screen name="FeesAndLimits" component={FeesAndLimitsScreen} />
         <Stack.Screen name="MonthlySummary" component={MonthlySummaryScreen} />
+        <Stack.Screen name="ContactUs" component={ContactUsScreen} />
 
         <Stack.Group
           screenOptions={(props) => ({

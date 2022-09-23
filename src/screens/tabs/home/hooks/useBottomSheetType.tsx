@@ -90,11 +90,11 @@ export const useBottomSheetType = (
         onPress: () => console.log("called"),
       },
       {
-        itemName: "Customer Support",
+        itemName: "Contact Us",
         itemIcon: (
           <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />
         ),
-        onPress: () => console.log("called"),
+        onPress: () => navigation.navigate("Common", { screen: "ContactUs" }),
       },
     ],
     profileBottomSheetListItems: [

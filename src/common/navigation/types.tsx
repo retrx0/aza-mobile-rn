@@ -91,6 +91,7 @@ export type CommonStackParamList = {
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
+  ContactUs: undefined;
 
   //withdraw and deposit
   WithdrawDepositTabs: { screen: string };
