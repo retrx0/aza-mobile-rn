@@ -18,7 +18,7 @@ const AddBankAccountScreen = ({
 }: CommonScreenProps<"AddBankAccount">) => {
   const colorScheme = useColorScheme();
 
-  const { bankName } = route.params;
+  const { bankName, screenType } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -97,6 +97,7 @@ const AddBankAccountScreen = ({
                 accountName: "Abdullah Gumi",
                 accountNumber: "0000100010",
                 bankName: bankName,
+                screenType,
               })
             }
             styleText={{

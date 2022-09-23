@@ -4,6 +4,7 @@ import { StyleSheet, Image } from "react-native";
 import BackButton from "../../../../components/buttons/BackButton";
 import { Text, TextInput, View } from "../../../../components/Themed";
 import Button from "../../../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -12,12 +13,10 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const AddBankAccountConfirmationScreen = ({
+const EditBankAccountDetailsScreen = ({
   navigation,
-  route,
-}: CommonScreenProps<"AddBankAccountConfirmation">) => {
+}: CommonScreenProps<"EditBankAccountDetails">) => {
   const colorScheme = useColorScheme();
-  const { bankName, accountName, accountNumber, screenType } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,7 +29,7 @@ const AddBankAccountConfirmationScreen = ({
             fontSize: 16,
           }}
         >
-          Confirmation
+          Bank Account
         </Text>
       ),
       // hide default back button which only shows in android
@@ -50,12 +49,12 @@ const AddBankAccountConfirmationScreen = ({
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
               marginVertical: hp(30),
             }}
           >
-            Kindly confirm the details of your bank account
+            Details of your bank account
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
@@ -80,8 +79,7 @@ const AddBankAccountConfirmationScreen = ({
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
               }}
-              showSoftInputOnFocus={false}
-              value={bankName}
+              value={"Access"}
             />
             <Image
               source={{
@@ -122,8 +120,7 @@ const AddBankAccountConfirmationScreen = ({
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
               }}
-              showSoftInputOnFocus={false}
-              value={accountNumber}
+              value={"123456789"}
             />
           </View>
           <View style={{ marginBottom: hp(30) }}>
@@ -149,8 +146,7 @@ const AddBankAccountConfirmationScreen = ({
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
               }}
-              showSoftInputOnFocus={false}
-              value={accountName}
+              value={"james bond"}
             />
           </View>
         </View>
@@ -158,28 +154,23 @@ const AddBankAccountConfirmationScreen = ({
           style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
         >
           <Button
-            title="Continue"
-            onPressButton={() =>
-              navigation.navigate("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                statusMessage:
-                  "Your bank account has been successfully linked to your Aza",
-                navigateTo: "BankAccounts",
-                navigateToParams: {
-                  screenType,
-                },
-              })
-            }
+            title="Edit Account Details"
+            onPressButton={() => navigation.goBack()}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
             }}
             style={{
-              marginBottom: hp(25),
+              marginBottom: hp(15),
               backgroundColor: Colors[colorScheme].button,
             }}
+          />
+          <CancelButtonWithUnderline
+            title="Delete Account"
+            onPressButton={() => console.log("called")}
+            styleText={CommonStyles.cancelStyle}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>
@@ -187,7 +178,7 @@ const AddBankAccountConfirmationScreen = ({
   );
 };
 
-export default AddBankAccountConfirmationScreen;
+export default EditBankAccountDetailsScreen;
 
 const styles = StyleSheet.create({
   container: {

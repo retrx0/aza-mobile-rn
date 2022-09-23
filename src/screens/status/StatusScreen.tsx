@@ -1,15 +1,18 @@
 import React, { useLayoutEffect } from "react";
-import { Text, View } from "../../components/Themed";
-import Colors from "../../constants/Colors";
 import { StyleSheet } from "react-native";
+
+import { Text, View } from "../../components/Themed";
+import Button from "../../components/buttons/Button";
+import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+
+import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
-import Button from "../../components/buttons/Button";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 import { CommonScreenProps } from "../../common/navigation/types";
-import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+
+import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 
 const StatusScreen = ({
   navigation,
@@ -25,6 +28,7 @@ const StatusScreen = ({
     setupRecurringTransfer,
     cancelButton,
     navigateTo,
+    navigateToParams,
   } = route.params;
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -106,7 +110,9 @@ const StatusScreen = ({
 
           <Button
             title="Continue"
-            onPressButton={() => navigation.getParent()?.navigate(navigateTo)}
+            onPressButton={() =>
+              navigation.getParent()?.navigate(navigateTo, navigateToParams)
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",

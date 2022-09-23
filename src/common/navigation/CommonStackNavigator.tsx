@@ -27,6 +27,7 @@ import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
 import Colors from "../../constants/Colors";
 import { BackIcon } from "../../../assets/svg";
+
 import StatusScreen from "../../screens/status/StatusScreen";
 
 // settings
@@ -64,6 +65,7 @@ import BankAccountsScreen from "../../screens/tabs/profile/screens/BankAccountsS
 import SelectBankScreen from "../../screens/tabs/profile/screens/SelectBankScreen";
 import AddBankAccountScreen from "../../screens/tabs/profile/screens/AddBankAccountScreen";
 import AddBankAccountConfirmationScreen from "../../screens/tabs/profile/screens/AddBankAccountConfirmationScreen";
+import EditBankAccountDetailsScreen from "../../screens/tabs/profile/screens/EditBankAccountDetailsScreen";
 import DebitCreditCardsScreen from "../../screens/tabs/profile/screens/DebitCreditCardsScreen";
 import ManageCardScreen from "../../screens/tabs/profile/screens/ManageCardScreen";
 import AddNewCardScreen from "../../screens/tabs/profile/screens/AddNewCardScreen";
@@ -85,8 +87,6 @@ import CompletedSplitRequestDetailsScreen from "../../screens/menu/CompletedSpli
 import OutgoingSplitRequestsScreen from "../../screens/menu/OutgoingSplitRequestsScreen";
 import MonthlySummaryScreen from "../../screens/menu/MonthlySummaryScreen";
 import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
-import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
-import Withdraw from "../../screens/tabs/home/withdraw-deposit/withdraw/Withdraw";
 
 // transfer modal screens
 import SendMoneyScreen from "../../screens/transferModal/SendMoneyScreen";
@@ -100,7 +100,10 @@ import RecurringTransferConfirmationScreen from "../../screens/transferModal/Rec
 
 // transaction keypad screen
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
-import Deposit from "../../screens/tabs/home/withdraw-deposit/deposit/Deposit";
+
+// withdraw/deposit
+import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
+import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -382,6 +385,10 @@ const CommonStack = () => {
           component={AddBankAccountConfirmationScreen}
         />
         <Stack.Screen
+          name="EditBankAccountDetails"
+          component={EditBankAccountDetailsScreen}
+        />
+        <Stack.Screen
           name="DebitCreditCards"
           component={DebitCreditCardsScreen}
         />
@@ -468,9 +475,7 @@ const CommonStack = () => {
               title: "Withdraw/Deposit",
             }}
           />
-
-          <Stack.Screen component={Withdraw} name="Withdraw" />
-          <Stack.Screen component={Deposit} name="Deposit" />
+          <Stack.Screen component={DepositScreen} name="Deposit" />
         </Stack.Group>
       </Stack.Group>
 

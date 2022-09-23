@@ -121,7 +121,12 @@ export const useBottomSheetType = (
         itemName: "Bank Accounts",
         itemIcon: <BankIcon size={16} color={Colors[colorScheme].mainText} />,
         onPress: () =>
-          navigation.navigate("Common", { screen: "BankAccounts" }),
+          navigation.navigate("Common", {
+            screen: "BankAccounts",
+            params: {
+              screenType: "Bank Account",
+            },
+          }),
       },
       {
         itemName: "Debit/Credit Cards",
