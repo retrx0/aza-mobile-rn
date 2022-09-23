@@ -113,9 +113,29 @@ export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
   NativeStackScreenProps<CommonStackParamList, Screen>;
 
 // page with virtual keyboard
-export type TransactionKeypadParamsType = {
-  headerTitle: string;
+interface RecurringTransaction {
+  type: "recurring";
+  beneficiary: {
+    beneficiaryImage: string;
+    beneficiaryName: string;
+    beneficiaryAccount: string;
+  };
+  period: string;
+  day: string;
+}
+interface NormalTransaction {
+  type: "normal transaction";
+  beneficiary: {
+    beneficiaryImage: string;
+    beneficiaryName: string;
+    beneficiaryAccount: string;
+  };
   openDescriptionModal?: boolean;
+}
+
+export type TransactionKeypadParamsType = {
+  transactionType: RecurringTransaction | NormalTransaction;
+  headerTitle: string;
 };
 
 // bvn screen
