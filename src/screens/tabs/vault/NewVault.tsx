@@ -20,11 +20,11 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [periodValue, setPeriodValue] = useState("");
 
   const period = [
-    { label: "2 Days", value: "" },
-    { label: "4 Days", value: "" },
-    { label: "1 Week", value: "" },
-    { label: "2 Weeks", value: "" },
-    { label: "1 Month", value: "" },
+    { label: "2 Days", value: "1" },
+    { label: "4 Days", value: "1" },
+    { label: "1 Week", value: "1" },
+    { label: "2 Weeks", value: "1" },
+    { label: "1 Month", value: "1" },
   ];
 
   const colorScheme = useColorScheme();
