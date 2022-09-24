@@ -1,5 +1,3 @@
-import { SelectIcon } from "../../assets/svg";
-
 export const Gender = [
   {
     label: "Male",

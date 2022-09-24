@@ -13,7 +13,7 @@ interface NewUser extends User {
 
 // Define the initial state using that type
 const initialState: NewUser = {
-  phone: 0,
+  phone: "",
   firstname: "",
   lastname: "",
   email: "",
@@ -27,7 +27,7 @@ export const newUserSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setPhone: (state, action: PayloadAction<number>) => {
+    setPhone: (state, action: PayloadAction<string>) => {
       state.phone = action.payload;
     },
     setFirstName: (state, action: PayloadAction<string>) => {
@@ -40,7 +40,7 @@ export const newUserSlice = createSlice({
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
-    setGender: (state, action: PayloadAction<Gender>) => {
+    setGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
     },
     setIsVerified: (state, action: PayloadAction<boolean>) => {
@@ -52,6 +52,7 @@ export const newUserSlice = createSlice({
       state.email = action.payload.email;
       state.isUsePasscodeAsPin = action.payload.isUsePasscodeAsPin;
       state.createdPasscode = action.payload.createdPasscode;
+      state.gender = action.payload.gender;
     },
   },
 });

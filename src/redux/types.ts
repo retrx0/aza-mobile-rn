@@ -3,8 +3,8 @@ export interface User {
   firstname?: string;
   lastname?: string;
   email?: string;
-  phone?: number;
-  gender?: Gender;
+  phone?: string;
+  gender?: string;
   paymentMethods?: PaymentMethod[];
   accountStatus?: UserAccountStatus;
   transactions?: [];

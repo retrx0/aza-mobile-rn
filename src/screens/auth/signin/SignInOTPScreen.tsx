@@ -7,7 +7,7 @@ import { logIn, selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
 import OtpScreen from "../otp/OtpScreen";
 
 const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
-  const [LoginOtp, setLoginUpOtp] = useState("123456");
+  const [LoginOtp, setLoginUpOtp] = useState("");
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
   const dispatch = useAppDispatch();
 

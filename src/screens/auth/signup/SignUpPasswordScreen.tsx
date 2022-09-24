@@ -41,6 +41,8 @@ const SignUpPasswordScreen = ({
 
   const dispatch = useAppDispatch();
 
+  const newUser = useAppSelector(selectNewUser);
+
   return (
     <SpacerWrapper>
       <View style={{ marginLeft: 20 }}>
@@ -85,6 +87,11 @@ const SignUpPasswordScreen = ({
             // TODO replace with expo-secure-store or react-native-encrypted-storage
             dispatch(
               setNewUser({
+                firstname: newUser.firstname,
+                lastname: newUser.lastname,
+                email: newUser.email,
+                phone: newUser.phone,
+                gender: newUser.gender,
                 isUsePasscodeAsPin: isUsePasscodeAsPin,
                 createdPasscode: passcode,
               })
