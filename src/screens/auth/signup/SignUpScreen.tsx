@@ -1,67 +1,84 @@
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import ButtonLg from "../../../components/buttons/ButtonLg";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { SignUpStackProps } from "./SignUpNavigator";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
+import Button from "../../../components/buttons/Button";
+import { SignUpScreenProps } from "../../../../types";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import useColorScheme from "../../../hooks/useColorScheme";
+import { useAppDispatch } from "../../../hooks/redux";
+import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 
-const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) => {
+const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const [phone, setPhone] = useState<string>("");
+  const colorScheme = useColorScheme();
+
+  const dispatch = useAppDispatch();
 
   return (
     <SpacerWrapper>
-      <BackButton
-        onPress={() => {
-          navigation.getParent()?.navigate("Welcome");
-        }}
-      />
-      <View>
-        <Text style={[CommonStyles.headerText]}>Sign up for AZA</Text>
-        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
+      <View style={{ marginLeft: 20 }}>
+        <BackButton
+          onPress={() => {
+            navigation.getParent()?.navigate("Welcome");
+          }}
+        />
+      </View>
+      <View style={[CommonStyles.phoneContainer]}>
+        <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
         <Text style={[CommonStyles.bodyText]}>
-          Phone Number <Text style={{ color: "red" }}>*</Text>
+          Enter your phone number to continue
+        </Text>
+        <Text style={[CommonStyles.phoneText]}>
+          Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
+
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry="ng"
         autoFormat
-        textStyle={{ fontSize: 16, padding: 3 }}
+        textStyle={[CommonStyles.textStyle]}
         textProps={{
           placeholder: "Enter a phone number...",
         }}
+        style={[CommonStyles.phoneStyle]}
+      />
+      <Button
+        title="Continue"
+        onPressButton={() => {
+          dispatch(setReduxStorePhone(phone));
+          navigation.navigate("SignUpOTP");
+        }}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+        }}
         style={[
           {
-            alignSelf: "center",
-            height: 50,
-            width: "90%",
-            padding: 10,
-            borderWidth: 1,
-            borderStyle: "solid",
-            borderRadius: 5,
+            backgroundColor: Colors[colorScheme].button,
           },
+
+          CommonStyles.otpbutton,
         ]}
+        disabled={phone.length < 10 ? true : false}
       />
-      <View style={[CommonStyles.row, { justifyContent: "center", marginVertical: 20 }]}>
-        <Text style={{}}>Already have an account? </Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.getParent()?.navigate("SignIn");
-          }}
-        >
-          <Text style={[{ fontWeight: "bold", textDecorationLine: "underline" }]}>Login</Text>
-        </TouchableOpacity>
+      <View style={[CommonStyles.row, CommonStyles.user]}>
+        <Text style={[CommonStyles.account]}>Already have an account? </Text>
+        <CancelButtonWithUnderline
+          title="Login"
+          onPressButton={() => navigation.getParent()?.navigate("SignIn")}
+          color={Colors[colorScheme].text}
+        />
       </View>
-      <ButtonLg title="Continue" color={"#000"} onPress={() => navigation.navigate("SignUpOTP")} alt={false} />
-      <Text style={[CommonStyles.bodyText, CommonStyles.centerText, { fontSize: 18 }]}>OR</Text>
+
+      <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
         iconName="apple"
-        title="Connect with Apple"
+        title="Connect Apple Account"
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
@@ -75,7 +92,7 @@ const SignUpScreen = ({ navigation }: NativeStackScreenProps<SignUpStackProps>) 
       />
       <ButtonLg
         iconName={"google"}
-        title="Connect with Google"
+        title="Connect Google Account"
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}

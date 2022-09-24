@@ -7,14 +7,21 @@ import AccountDetails from "./components/AccountDetails";
 import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
+import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
+import { useAppSelector } from "../../../hooks/redux";
+import { selectNewUser } from "../../../redux/slice/newUserSlice";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  console.log("Logged in state: " + isLoggedIn);
+  const newUserData = useAppSelector(selectNewUser);
+  console.log(newUserData);
   return (
     <View style={styles.container}>
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
       <LinkBVN navigation={navigation} route={route} isBvnLinked={true} />
-      <RecentTransactions />
+      <RecentTransactions navigation={navigation} route={route} />
     </View>
   );
 };

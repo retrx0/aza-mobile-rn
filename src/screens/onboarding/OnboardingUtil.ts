@@ -1,5 +1,4 @@
 import { ImageSourcePropType } from "react-native";
-import { AZALightningLogo } from "../../../assets/svg";
 
 export type CarouselItem = {
   id: number;
@@ -7,8 +6,6 @@ export type CarouselItem = {
   heading: string;
   description: string;
 };
-
-export const logo = require("../../../assets/images/logo/AZA-logo-4.png");
 
 export const carousel_data: CarouselItem[] = [
   {

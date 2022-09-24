@@ -57,6 +57,8 @@ export const SigninStyles = StyleSheet.create({
   resend: {
     fontWeight: "500",
     fontSize: hp(14),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    lineHeight: hp(17.75),
   },
   noOtp: {
     marginTop: hp(40),
@@ -72,12 +74,15 @@ export const SigninStyles = StyleSheet.create({
   otpText: {
     fontWeight: "500",
     fontSize: hp(14),
+    fontFamily: "Euclid-Circular-A",
+    lineHeight: hp(17.75),
   },
   otp: {
-    marginLeft: hp(90),
+    marginLeft: hp(100),
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 20.29,
+    fontFamily: "Euclid-Circular-A-Bold",
   },
   back: {
     marginLeft: hp(10),
@@ -92,6 +97,7 @@ export const SigninStyles = StyleSheet.create({
   Container: {
     alignItems: "center",
     flexDirection: "row",
+    marginLeft: hp(20),
   },
 
   verification: {

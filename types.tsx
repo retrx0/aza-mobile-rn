@@ -4,7 +4,10 @@
  */
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps, NavigatorScreenParams } from "@react-navigation/native";
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { CommonStackParamList } from "./src/common/navigation/types";
@@ -19,18 +22,17 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
+  QRCodeModal: undefined;
   NotFound: undefined;
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;
   SignUp: undefined;
   SignIn: undefined;
+  TopBar: NavigatorScreenParams<CommonStackParamList>;
 };
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
 
 /* Tabs */
 
@@ -40,12 +42,35 @@ export type RootTabParamList = {
   Payments: undefined;
   Settings: undefined;
   Profile: undefined;
+  StatusScreen: any;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type PaymentsStackParamList = {
+  PaymentIndex: undefined;
+  airtimeData: undefined;
+  confirm: undefined;
+  confirm_transaction: undefined;
+  complete_transaction: undefined;
+  internet_plans: undefined;
+  internet_plan_detail: undefined;
+  electricity: undefined;
+  cabletv: undefined;
+  pie: undefined;
+  water: undefined;
+  Charity: undefined;
+  charity_detail: undefined;
+};
+
+export type TopTabParamList = {
+  details: undefined;
+  activity: undefined;
+};
+
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
 
 /* Sign In */
 
@@ -55,16 +80,13 @@ export type SignInStackParamList = {
   SignInOTP: undefined;
 };
 
-export type SignInScreenProps<Screen extends keyof SignInStackParamList> = NativeStackScreenProps<
-  SignInStackParamList,
-  Screen
->;
+export type SignInScreenProps<Screen extends keyof SignInStackParamList> =
+  NativeStackScreenProps<SignInStackParamList, Screen>;
 
 /* Sign Up */
 
 export type PasswordScreenParamsType = {
   passwordScreenType: "Create" | "Confirm";
-  password?: string;
 };
 
 export type SignUpStackParamList = {
@@ -75,10 +97,8 @@ export type SignUpStackParamList = {
   SignUpConfirmPassword: PasswordScreenParamsType;
 };
 
-export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> = NativeStackScreenProps<
-  SignUpStackParamList,
-  Screen
->;
+export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> =
+  NativeStackScreenProps<SignUpStackParamList, Screen>;
 
 /* Other Types */
 
@@ -92,12 +112,19 @@ export type DaysProps = {
   onPress?: () => void;
 };
 
-export type CountryProps = {
-  code: string;
-  shortName: string;
-  name?: string;
-  id?: string;
-  imageLink?: string;
+export type VaultListProps = {
+  item: string;
+  lockIcon: any;
+  onPress?: () => void;
+  closeIcon: any;
+  amount: string;
+  stage: string;
+};
+export type VaultActivitytProps = {
+  send: any;
+  status: string;
+  price: string;
+  due: string;
   onPress?: () => void;
 };
 
@@ -108,3 +135,14 @@ export type SocialSignInProps = {
   connect: string;
   styleText?: StyleProp<TextStyle>;
 };
+
+export type CountryProps = {
+  code: string;
+  name?: string;
+  id?: string;
+  imageLink?: string;
+  onPress?: () => void;
+  short_name: string;
+};
+
+export type CountriesType = Omit<CountryProps, "onPress">;

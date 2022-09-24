@@ -1,17 +1,29 @@
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
-import { DepositIcon, TransferIcon, WithdrawIcon } from "../../../../../assets/svg";
+import {
+  DepositIcon,
+  TransferIcon,
+  WithdrawIcon,
+} from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
+
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
 import { Text, View } from "../../../../components/Themed";
+
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useBottomSheetType } from "../hooks/useBottomSheetType";
 
-const TransactionOptions = ({ navigation, route }: RootTabScreenProps<"Home">) => {
+const TransactionOptions = ({
+  navigation,
+  route,
+}: RootTabScreenProps<"Home">) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const transferBottomSheetListItems = useBottomSheetType("transfer", { navigation, route });
+  const transferBottomSheetListItems = useBottomSheetType("transfer", {
+    navigation,
+    route,
+  });
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -28,8 +40,18 @@ const TransactionOptions = ({ navigation, route }: RootTabScreenProps<"Home">) =
           marginTop: 25,
         }}
       >
-        <View style={{ display: "flex", alignItems: "center" }}>
-          <WithdrawIcon />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Common", {
+              screen: "WithdrawDepositTabs",
+              params: {
+                screen: "WithdrawIndex",
+              },
+            })
+          }
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <WithdrawIcon size={40} color="#FF361A" />
           <Text
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
@@ -37,7 +59,7 @@ const TransactionOptions = ({ navigation, route }: RootTabScreenProps<"Home">) =
           >
             Withdraw
           </Text>
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
@@ -52,8 +74,18 @@ const TransactionOptions = ({ navigation, route }: RootTabScreenProps<"Home">) =
           </View>
         </TouchableOpacity>
 
-        <View style={{ display: "flex", alignItems: "center" }}>
-          <DepositIcon />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Common", {
+              screen: "WithdrawDepositTabs",
+              params: {
+                screen: "DepositIndex",
+              },
+            })
+          }
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <DepositIcon color="#2AD168" size={40} />
           <Text
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
@@ -61,7 +93,7 @@ const TransactionOptions = ({ navigation, route }: RootTabScreenProps<"Home">) =
           >
             Deposit
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <CustomBottomSheet
         isModalVisible={isModalVisible}

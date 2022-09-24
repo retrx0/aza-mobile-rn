@@ -1,32 +1,84 @@
-import { StyleSheet } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
-
+import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
+import { Header } from "../../../components/text/header";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import { ArrowDownIcon } from "../../../../assets/svg";
+import { hp } from "../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Undraw } from "../../../../assets/images";
+import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const colorScheme = useColorScheme();
+
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Vault</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-    </View>
+    <SpacerWrapper>
+      <View style={CommonStyles.vaultcontainer}>
+        <View style={[CommonStyles.vaultContainer]}>
+          <Header
+            heading="Vault"
+            description={""}
+            headerStyle={[CommonStyles.vault]}
+            descriptionStyle={undefined}
+          />
+          <Image
+            source={Undraw}
+            resizeMode="cover"
+            style={[CommonStyles.undraw]}
+          />
+          <Text style={[CommonStyles.vaultText]}>You dont have any vaults</Text>
+          <View style={CommonStyles.createVaultContainer}>
+            <Text
+              style={[
+                CommonStyles.createNewVault,
+                { color: Colors[colorScheme].Text },
+              ]}>
+              Click New Vault to create a new vault
+            </Text>
+            <TouchableOpacity>
+              <ArrowDownIcon
+                color={
+                  colorScheme === "dark"
+                    ? Colors.dark.secondaryText
+                    : Colors.light.text
+                }
+                size={16}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(20) },
+          ]}>
+          <Button
+            title="New Vault"
+            onPressButton={() =>
+              navigation.navigate("Common", { screen: "NewVault" })
+            }
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+
+              CommonStyles.button,
+            ]}
+            disabled={false}
+          />
+        </View>
+      </View>
+    </SpacerWrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
 
 export default Vault;

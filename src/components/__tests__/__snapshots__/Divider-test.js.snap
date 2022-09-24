@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders divider correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "borderBottomColor": "#EAEAEC",
+      "borderBottomWidth": 0.6,
+    }
+  }
+/>
+`;

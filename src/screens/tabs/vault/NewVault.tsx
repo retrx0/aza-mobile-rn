@@ -1,0 +1,149 @@
+import React, { useState } from "react";
+import { StyleSheet, Switch } from "react-native";
+import Button from "../../../components/buttons/Button";
+import { Text, View } from "../../../components/Themed";
+import { hp } from "../../../common/util/LayoutUtil";
+import { Header } from "../../../components/text/header";
+import { Input } from "../../../components/input/input";
+import CustomDropdown from "../../../components/dropdown/CustomDropdown";
+
+import { PercentageCard, PercentageList } from "./components/VaultCard";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import { RootTabScreenProps } from "../../../../types";
+
+const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [periodValue, setPeriodValue] = useState("");
+
+  const period = [
+    { label: "2 Days", value: "1" },
+    { label: "4 Days", value: "1" },
+    { label: "1 Week", value: "1" },
+    { label: "2 Weeks", value: "1" },
+    { label: "1 Month", value: "1" },
+  ];
+
+  const colorScheme = useColorScheme();
+
+  const switchColor = Colors[colorScheme].backgroundSecondary;
+  const switchOnColor = Colors[colorScheme].success;
+
+  return (
+    <SpacerWrapper>
+      <View style={CommonStyles.vaultcontainer}>
+        <Header
+          headerStyle={CommonStyles.vault}
+          descriptionStyle={CommonStyles.descriptionStyle}
+          heading="Vault"
+          description="Save and lock part of your Aza funds temporarily,
+        for future use."
+        />
+
+        <View style={CommonStyles.vaultInputContainer}>
+          <Input
+            label={"Vault Name"}
+            labelStyle={undefined}
+            placeholder="Give your vault a name"
+            inputStyle={CommonStyles.inputStyle}
+            icon={undefined}
+            containerStyle={undefined}
+          />
+        </View>
+        <View style={CommonStyles.vaultInputcontainer}>
+          <Input
+            label={"Amount"}
+            labelStyle={undefined}
+            placeholder="Enter an amount you wish to save"
+            style={CommonStyles.vaultInput}
+            inputStyle={CommonStyles.inputStyle}
+            icon={undefined}
+            containerStyle={{ marginBottom: 2 }}
+          />
+        </View>
+        <View style={CommonStyles.percentageContainer}>
+          {PercentageList.map((item, index) => {
+            return <PercentageCard key={index} percentage={item.percentage} />;
+          })}
+        </View>
+
+        <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
+          <Text
+            lightColor={Colors.light.secondaryText}
+            darkColor={Colors.dark.secondaryText}
+            style={{
+              fontSize: 14,
+            }}
+          >
+            Period
+          </Text>
+          <CustomDropdown
+            data={period}
+            placeholder="Choose a period to lock funds away"
+            setValue={setPeriodValue}
+            value={periodValue}
+          />
+        </View>
+
+        <View style={[CommonStyles.SwitchContainer, { bottom: hp(30) }]}>
+          <View style={CommonStyles.periodContainer}>
+            <Text style={CommonStyles.everyMonth}>
+              Save this amount every month
+            </Text>
+            <Switch
+              trackColor={{ false: switchColor, true: switchOnColor }}
+              thumbColor={isEnabled ? "white" : "grey"}
+              ios_backgroundColor={switchColor}
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+              style={{
+                marginLeft: hp(13),
+              }}
+            />
+          </View>
+          <Separator />
+          <Button
+            title={"Continue"}
+            onPressButton={() =>
+              navigation.navigate("Common", {
+                screen: "LockVault",
+              })
+            }
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
+          />
+        </View>
+      </View>
+    </SpacerWrapper>
+  );
+};
+
+const Separator = () => {
+  return (
+    <View
+      lightColor={Colors.light.separator}
+      darkColor={Colors.dark.separator}
+      style={[CommonStyles.separator]}
+    />
+  );
+};
+
+const styles = StyleSheet.create({
+  separator: {
+    borderWidth: hp(0.3),
+    borderColor: "#EAEAEC",
+    width: "100%",
+  },
+});
+
+export default NewVault;

@@ -11,7 +11,13 @@ export type HeaderProps = {
   descriptionStyle: StyleProp<TextStyle>;
 };
 
-export const Header = ({ heading, description, style, headerStyle, descriptionStyle }: HeaderProps) => {
+export const Header = ({
+  heading,
+  description,
+  style,
+  headerStyle,
+  descriptionStyle,
+}: HeaderProps) => {
   return (
     <View style={[styles.container, style]}>
       <Text style={[styles.heading, headerStyle]}>{heading}</Text>

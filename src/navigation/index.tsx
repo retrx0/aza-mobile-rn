@@ -5,36 +5,31 @@
  */
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 
-import ModalScreen from "../screens/modals/ModalScreen";
+import ModalScreen from "../screens/modals/QRCodeModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-  SignInStackParamList,
-  SignUpStackParamList,
-} from "../../types";
+import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
-import SignInScreen from "../screens/auth/signin/SignInScreen";
-import LoginOTPScreen from "../screens/auth/signin/SignInOTPScreen";
-import SignUpScreen from "../screens/auth/signup/SignUpScreen";
-import SignUpEmailScreen from "../screens/auth/signup/SignUpProfileSetupScreen";
-import SignUpOTPScreen from "../screens/auth/signup/SignUpOTPScreen";
-import SignUpPasswordScreen from "../screens/auth/signup/SignUpPasswordScreen";
 import CommonStack from "../common/navigation/CommonStackNavigator";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
-    <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <NavigationContainer
+      linking={LinkingConfiguration}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -53,9 +48,21 @@ type PasswordScreenParamsType = {
 const RootNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="SignUp" component={SignUpRoot} options={{ headerShown: false }} />
-      <Stack.Screen name="SignIn" component={LoginNavigator} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUpRoot}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignIn"
+        component={LoginNavigator}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
@@ -63,36 +70,22 @@ const RootNavigator = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Common" component={CommonStack} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
-
-      {/* Auth Stack */}
-      {/* <Stack.Group navigationKey={isSignedIn ? "Home" : "Login"} screenOptions={{ headerShown: false }}>
-        <Stack.Group>
-          <Stack.Screen component={SignInScreen} name="SignInRoot" options={{ headerShown: false }} />
-          <Stack.Screen component={LoginOTPScreen} name="SignInOTP" options={{ headerShown: false }} />
-          <Stack.Screen component={WelcomeScreen} name="SignInWelcomeBack" options={{ headerShown: false }} />
-        </Stack.Group>
-        <Stack.Group>
-          <Stack.Screen component={SignUpScreen} name="SignUpRoot" options={{ headerShown: false, title: "Sign Up" }} />
-          <Stack.Screen component={SignUpEmailScreen} name="SignUpProfileSetup" options={{ headerShown: false }} />
-          <Stack.Screen component={SignUpOTPScreen} name="SignUpOTP" options={{ headerShown: false }} />
-          <Stack.Screen
-            component={SignUpPasswordScreen}
-            initialParams={create}
-            name="SignUpPassword"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            component={SignUpPasswordScreen}
-            initialParams={confirm}
-            name="SignUpConfirmPassword"
-            options={{ headerShown: false }}
-          />
-        </Stack.Group>
-      </Stack.Group> */}
+      <Stack.Screen
+        name="Common"
+        component={CommonStack}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="NotFound"
+        component={NotFoundScreen}
+        options={{ title: "Oops!" }}
+      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen
+          name="QRCodeModal"
+          component={ModalScreen}
+          options={{ title: "Scan QR Code" }}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -107,7 +100,10 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 

@@ -1,17 +1,17 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
   TextInput,
   TextInputProps,
   StyleProp,
   ViewStyle,
-  View,
   TextStyle,
   TouchableOpacity,
 } from "react-native";
-import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
+import Colors from "../../constants/Colors";
+import { Text, View } from "../../components/Themed";
+import useColorScheme from "../../hooks/useColorScheme";
 
 export type InputProps = {
   label: string;
@@ -20,6 +20,7 @@ export type InputProps = {
   inputStyle: StyleProp<TextStyle>;
   icon: any;
   isPhone?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
 export const Input = ({
@@ -30,21 +31,32 @@ export const Input = ({
   inputStyle,
   icon,
   isPhone,
+  containerStyle,
   ...rest
 }: InputProps & TextInputProps) => {
+  const colorScheme = useColorScheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style, containerStyle]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
           <View style={styles.divider} />
-          <TextInput placeholder="Your 10-digit phone number" style={styles.phoneInput} keyboardType="number-pad" />
+          <TextInput
+            placeholder="Your 10-digit phone number"
+            style={styles.phoneInput}
+            keyboardType="number-pad"
+          />
         </View>
       ) : (
         <View>
-          <TextInput {...rest} style={[inputStyle]}>
-            {placeholder}
-          </TextInput>
+          <TextInput
+            placeholder={placeholder}
+            {...rest}
+            style={[
+              inputStyle,
+              { color: Colors[colorScheme].text },
+            ]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}
@@ -54,11 +66,15 @@ export const Input = ({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 15,
-    color: Colors.general.darkGrey,
+    fontSize: hp(14),
+    fontWeight: "500",
+    lineHeight: hp(17.75),
+    marginBottom: hp(11),
+    fontFamily: "Euclid-Circular-A",
   },
   container: {
-    marginTop: hp(20),
+    marginTop: hp(10),
+    marginBottom: hp(10),
   },
   textInput: {
     borderRadius: 9,
@@ -86,5 +102,10 @@ const styles = StyleSheet.create({
   isPhone: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  image: {
+    height: 36,
+    width: 36,
+    borderRadius: 36,
   },
 });

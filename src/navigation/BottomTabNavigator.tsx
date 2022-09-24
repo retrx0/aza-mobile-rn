@@ -39,7 +39,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
   };
 
   const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
-  const profileBottomSheetListItems = useBottomSheetType("profile", _navigation);
+  const { profileBottomSheetListItems, setChoosePhoto }: any = useBottomSheetType("profile", _navigation);
 
   return (
     <>
@@ -53,8 +53,6 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           name="Home"
           component={Home}
           options={({ navigation }: RootTabScreenProps<"Home">) => ({
-            headerStatusBarHeight: 70,
-
             //center it in android
             headerTitleAlign: "center",
             headerTitle: () => <AZALightningLogo size={25} color={Colors[colorScheme].text} />,
@@ -62,7 +60,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
             headerRight: () => (
               <Pressable
-                onPress={() => navigation.navigate("Modal")}
+                onPress={() => navigation.navigate("QRCodeModal")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                 })}
@@ -89,6 +87,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           component={Vault}
           options={{
             title: "Vault",
+            headerShown: false,
             tabBarIcon: ({ color }) => <VaultIcon color={color} size={24} />,
           }}
         />
@@ -97,6 +96,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           component={Payments}
           options={{
             title: "Payments",
+            headerShown: false,
             tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={24} />,
           }}
         />
@@ -106,6 +106,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           options={{
             title: "Settings",
             tabBarIcon: ({ color }) => <SettingsIcon color={color} size={24} />,
+            headerShadowVisible: false,
           }}
         />
         <BottomTab.Screen
@@ -115,6 +116,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
               // to prevent the click from going to the profile screen and instead show a bottomsheet modal
               {
                 e.preventDefault();
+                setChoosePhoto(false);
                 toggleProfileModal();
               },
           }}

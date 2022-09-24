@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch } from "react-native";
 import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -7,16 +7,30 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
 
-const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPassword">) => {
+const SignUpPasswordScreen = ({
+  navigation,
+  route,
+}: SignUpScreenProps<"SignUpPassword">) => {
   const { passwordScreenType } = route.params;
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const [isEnabled, setIsEnabled] = useState(false);
-  const insets = useSafeAreaInsets();
+  const [isUsePasscodeAsPin, setIsEnabled] = useState<boolean | undefined>(
+    false
+  );
+  const newUserData = useAppSelector(selectNewUser);
+  const [isConfirmScreen, setIsConfirmScreen] = useState(false);
+
+  useEffect(() => {
+    if (passwordScreenType !== "Create") {
+      setIsConfirmScreen(true);
+      setIsEnabled(newUserData.isUsePasscodeAsPin);
+    }
+  }, []);
 
   const colorScheme = useColorScheme();
 
@@ -25,35 +39,87 @@ const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPa
   const switchColor = Colors[colorScheme].backgroundSecondary;
   const switchOnColor = Colors[colorScheme].success;
 
+  const dispatch = useAppDispatch();
+
+  const newUser = useAppSelector(selectNewUser);
+
   return (
     <SpacerWrapper>
-      <View>
+      <View style={{ marginLeft: 20 }}>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <Text style={[CommonStyles.headerText]}>{passwordScreenType} AZA Passcode</Text>
-      <Text style={[CommonStyles.bodyText]}>The passcode will be used to access your account</Text>
-      <SegmentedInput value={passcode} secureInput headerText="" onValueChanged={(code) => setPasscode(code)} />
-      <View style={[CommonStyles.container, { bottom: insets.bottom || hp(15) }]}>
+      <View style={[CommonStyles.phoneContainer]}>
+        <Text style={[CommonStyles.headerText]}>
+          {passwordScreenType} Aza Password
+        </Text>
+      </View>
+      <Text style={[CommonStyles.bodyText]}>
+        The password will be used to access your account
+      </Text>
+      <SegmentedInput
+        value={passcode}
+        secureInput
+        headerText=""
+        onValueChanged={(code) => setPasscode(code)}
+      />
+      <View style={[CommonStyles.container, { bottom: hp(400) }]}>
         <View style={[CommonStyles.row]}>
-          <Text style={{ marginRight: 20 }}>Use as transaction pin?</Text>
+          <Text style={[CommonStyles.transaction]}>
+            Use as transaction pin?
+          </Text>
+
           <Switch
             trackColor={{ false: switchColor, true: switchOnColor }}
-            thumbColor={isEnabled ? "white" : "grey"}
+            thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
             ios_backgroundColor={switchColor}
             onValueChange={toggleSwitch}
-            value={isEnabled}
+            value={isUsePasscodeAsPin}
+            style={{
+              marginLeft: hp(13),
+            }}
           />
         </View>
         <Separator />
         <Button
           title="Continue"
-          style={{}}
-          styleText={{}}
           onPressButton={() => {
-            passwordScreenType === "Create"
-              ? navigation.navigate("SignUpConfirmPassword", { passwordScreenType: "Confirm" })
-              : navigation.getParent()?.navigate("Root");
+            // dispatch changes
+            // TODO replace with expo-secure-store or react-native-encrypted-storage
+            dispatch(
+              setNewUser({
+                firstname: newUser.firstname,
+                lastname: newUser.lastname,
+                email: newUser.email,
+                phone: newUser.phone,
+                gender: newUser.gender,
+                isUsePasscodeAsPin: isUsePasscodeAsPin,
+                createdPasscode: passcode,
+              })
+            );
+
+            if (!isConfirmScreen) {
+              navigation.navigate("SignUpConfirmPassword", {
+                passwordScreenType: "Confirm",
+              });
+            } else {
+              if (passcode === newUserData.createdPasscode) {
+                navigation.getParent()?.navigate("Root");
+              } else {
+                alert("Password does not match");
+              }
+            }
           }}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+              marginTop: 5,
+            },
+            CommonStyles.button,
+          ]}
+          disabled={passcode.length < 6 ? true : false}
         />
       </View>
     </SpacerWrapper>
@@ -62,7 +128,11 @@ const SignUpPasswordScreen = ({ navigation, route }: SignUpScreenProps<"SignUpPa
 
 const Separator = () => {
   return (
-    <View lightColor={Colors.light.separator} darkColor={Colors.dark.separator} style={[CommonStyles.separator]}></View>
+    <View
+      lightColor={Colors.light.separator}
+      darkColor={Colors.dark.separator}
+      style={[CommonStyles.separator]}
+    />
   );
 };
 

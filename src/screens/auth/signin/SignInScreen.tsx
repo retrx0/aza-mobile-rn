@@ -1,25 +1,32 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
-import { SigninStyles as styles } from "./styles";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
+import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
+  const colorScheme = useColorScheme();
   return (
     <SpacerWrapper>
-      <BackButton
-        onPress={() => {
-          navigation.getParent()?.navigate("Welcome");
-        }}
-      />
-      <View>
+      <View style={{ marginLeft: 20 }}>
+        <BackButton
+          onPress={() => {
+            navigation.getParent()?.navigate("Welcome");
+          }}
+        />
+      </View>
+      <View style={CommonStyles.phoneContainer}>
         <Text style={[CommonStyles.headerText]}>Login</Text>
-        <Text style={[CommonStyles.bodyText]}>Enter your phone number to continue</Text>
+        <Text style={[CommonStyles.bodyText]}>
+          Enter your phone number to continue
+        </Text>
         <Text style={[CommonStyles.bodyText]}>
           Phone Number <Text style={{ color: "red" }}>*</Text>
         </Text>
@@ -29,17 +36,34 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry="ng"
         autoFormat
-        textStyle={styles.textStyle}
+        textStyle={[CommonStyles.textStyle]}
         textProps={{
           placeholder: "Enter a phone number...",
         }}
-        style={styles.phoneStyle}
+        pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
+        style={[CommonStyles.phoneStyle]}
       />
-      <ButtonLg title="Continue" color={"#000"} onPress={() => navigation.navigate("SignInOTP")} alt={false} />
-      <Text style={[CommonStyles.bodyText, CommonStyles.centerText, { fontSize: 18 }]}>OR</Text>
+
+      <Button
+        title="Continue"
+        onPressButton={() => {
+          navigation.navigate("SignInOTP");
+        }}
+        styleText={{
+          color: Colors[colorScheme].buttonText,
+        }}
+        style={[
+          {
+            backgroundColor: Colors[colorScheme].button,
+          },
+          CommonStyles.button,
+        ]}
+        disabled={phone.length < 10 ? true : false}
+      />
+      <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
         iconName="apple"
-        title="Connect with Apple"
+        title="Connect Apple Account"
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
@@ -53,7 +77,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       />
       <ButtonLg
         iconName={"google"}
-        title="Connect with Google"
+        title="Connect Google Account"
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}
         alt={false}
