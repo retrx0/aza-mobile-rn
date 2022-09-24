@@ -148,6 +148,7 @@ const BankAccountsScreen = ({
               navigation.navigate("TransactionKeypad", {
                 headerTitle: "Amount",
                 transactionType: {
+                  transaction:'withdraw',
                   type: "normal transaction",
                   beneficiary: {
                     beneficiaryAccount: "",

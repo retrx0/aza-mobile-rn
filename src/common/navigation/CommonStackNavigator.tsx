@@ -159,7 +159,8 @@ const CommonStack = () => {
       </Stack.Group>
 
       {/* status screen */}
-      <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>
+      {/* TODO fix status screen not navigating to SetupRecurringTransferScreen on ios when presentation mode is modal  */}
+      <Stack.Group screenOptions={{ presentation: "card" }}>
         <Stack.Screen
           component={StatusScreen}
           name="StatusScreen"

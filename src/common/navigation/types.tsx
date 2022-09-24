@@ -125,6 +125,7 @@ interface RecurringTransaction {
 }
 interface NormalTransaction {
   type: "normal transaction";
+  transaction: 'withdraw' | 'deposit' | 'send' | 'request'
   beneficiary: {
     beneficiaryImage: string;
     beneficiaryName: string;

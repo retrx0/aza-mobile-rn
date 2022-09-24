@@ -117,6 +117,7 @@ const RequestMoneyScreen = ({
                           navigation.navigate("TransactionKeypad", {
                             headerTitle: "Request Money",
                             transactionType: {
+                              transaction: 'request',
                               type: "normal transaction",
                               beneficiary: {
                                 beneficiaryAccount: "",
