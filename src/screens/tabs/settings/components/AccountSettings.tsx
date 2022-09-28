@@ -1,86 +1,86 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import SettingsListItem from './SettingsListItem'
-import Colors from '../../../../constants/Colors'
-import useColorScheme from '../../../../hooks/useColorScheme'
+import { View, Text } from "react-native";
+import React from "react";
+import SettingsListItem from "./SettingsListItem";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 import {
   ChangeEmailIcon,
   ChangePasswordIcon,
   ChangePhoneNumberIcon,
   LoginOptionsIcon,
   PrivacySettingsIcon,
-} from '../../../../../assets/svg'
-import { hp } from '../../../../common/util/LayoutUtil'
-import { RootTabScreenProps } from '../../../../../types'
+} from "../../../../../assets/svg";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { RootTabScreenProps } from "../../../../../types";
 
 export default function AccountSettings({
   navigation,
-}: RootTabScreenProps<'Settings'>) {
-  const colorScheme = useColorScheme()
+}: RootTabScreenProps<"Settings">) {
+  const colorScheme = useColorScheme();
 
   const accountSettings = [
     {
       icon: (
         <ChangePasswordIcon size={36} color={Colors[colorScheme].mainText} />
       ),
-      name: 'Change Password',
-      detail: 'Change your Aza account password',
+      name: "Change Password",
+      detail: "Change your Aza account password",
       disabled: false,
       disabledIcon: (
         <ChangePasswordIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'ChangePassword' }),
+        navigation.navigate("Common", { screen: "ChangePassword" }),
     },
     {
       icon: (
         <ChangePhoneNumberIcon size={36} color={Colors[colorScheme].mainText} />
       ),
-      name: 'Change Mobile Phone Number',
-      detail: 'Change your mobile number',
+      name: "Change Mobile Phone Number",
+      detail: "Change your mobile number",
       disabled: false,
       disabledIcon: (
         <ChangePhoneNumberIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'ChangePhoneNumber' }),
+        navigation.navigate("Common", { screen: "ChangePhoneNumber" }),
     },
     {
       icon: <ChangeEmailIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: 'Change Email Address',
-      detail: 'Change your email address',
+      name: "Change Email Address",
+      detail: "Change your email address",
       disabled: false,
       disabledIcon: (
         <ChangeEmailIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'ChangeEmail' }),
+        navigation.navigate("Common", { screen: "ChangeEmail" }),
     },
     {
       icon: (
         <PrivacySettingsIcon size={36} color={Colors[colorScheme].mainText} />
       ),
-      name: 'Privacy Settings',
-      detail: 'Change your privacy settings',
+      name: "Privacy Settings",
+      detail: "Change your privacy settings",
       disabled: false,
       disabledIcon: (
         <PrivacySettingsIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'PrivacySettings' }),
+        navigation.navigate("Common", { screen: "PrivacySettings" }),
     },
     {
       icon: <LoginOptionsIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: 'Login Options',
-      detail: 'Connect your social media accounts',
+      name: "Login Options",
+      detail: "Connect your social media accounts",
       disabled: false,
       disabledIcon: (
         <LoginOptionsIcon size={36} color={Colors[colorScheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate('Common', { screen: 'LoginOptions' }),
+        navigation.navigate("Common", { screen: "LoginOptions" }),
     },
-  ]
+  ];
 
   return (
     <View>
@@ -95,7 +95,7 @@ export default function AccountSettings({
         </Text>
         <View
           style={{
-            backgroundColor: 'transparent',
+            backgroundColor: "transparent",
             marginTop: hp(10),
             borderBottomWidth: 0.6,
             borderBottomColor: Colors[colorScheme].separator,
@@ -103,17 +103,22 @@ export default function AccountSettings({
         />
       </View>
 
-      {accountSettings.map(({ icon, detail, name, handleNavigation, disabled, disabledIcon }, i) => (
-        <SettingsListItem
-          detail={detail}
-          icon={icon}
-          name={name}
-          disabled={disabled}
-          disabledIcon={disabledIcon}
-          handleNavigation={handleNavigation}
-          key={i}
-        />
-      ))}
+      {accountSettings.map(
+        (
+          { icon, detail, name, handleNavigation, disabled, disabledIcon },
+          i
+        ) => (
+          <SettingsListItem
+            detail={detail}
+            icon={icon}
+            name={name}
+            disabled={disabled}
+            disabledIcon={disabledIcon}
+            handleNavigation={handleNavigation}
+            key={i}
+          />
+        )
+      )}
     </View>
-  )
+  );
 }

@@ -144,7 +144,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 navigation.navigate("TransactionKeypad", {
                   headerTitle: "Amount",
                   transactionType: {
-                    transaction: 'deposit',
+                    transaction: "deposit",
                     type: "normal transaction",
                     beneficiary: {
                       beneficiaryAccount: "",

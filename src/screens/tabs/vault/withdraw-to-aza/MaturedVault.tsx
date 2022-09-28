@@ -27,13 +27,15 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             CommonStyles.matureContainer,
             { backgroundColor: Colors[colorScheme].mature },
             { borderColor: Colors[colorScheme].unlock },
-          ]}>
+          ]}
+        >
           <UnlockIcon color={Colors[colorScheme].unlock} size={0} />
           <Text
             style={[
               CommonStyles.matured,
               { color: Colors[colorScheme].unlock },
-            ]}>
+            ]}
+          >
             Matured
           </Text>
         </View>

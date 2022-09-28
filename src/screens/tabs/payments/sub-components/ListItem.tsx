@@ -11,30 +11,31 @@ type Props = {
   route: string;
   onPress: any;
   index: number;
-  IconComponent?:any;
+  IconComponent?: any;
 };
 
-export default function ListItem({ Icon, title, onPress, index,IconComponent=null }: Props) {
+export default function ListItem({
+  Icon,
+  title,
+  onPress,
+  index,
+  IconComponent = null,
+}: Props) {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
     <TouchableAnimated
       entering={FadeInDown.delay(200 * (index + 1))}
       onPress={onPress}
-      style={styles.listContainer}>
+      style={styles.listContainer}
+    >
       <View style={styles.mainItem}>
         <View style={styles.item}>
           <Icon />
           <Text style={styles.text}>{title}</Text>
         </View>
-        
-          {
-            IconComponent==null?
-            <ArrowFowardIcon />
-            :<IconComponent/>
-          }
-          
-       
+
+        {IconComponent == null ? <ArrowFowardIcon /> : <IconComponent />}
       </View>
       <Divider />
     </TouchableAnimated>

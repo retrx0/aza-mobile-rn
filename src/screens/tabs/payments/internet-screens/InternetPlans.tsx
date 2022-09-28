@@ -8,7 +8,9 @@ import ListItem from "../sub-components/ListItem";
 import { BackIcon, LoveIcon } from "../../../../../assets/svg";
 import { Ntel, Spectranet } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
-export default function InternetPlans({ navigation }: RootTabScreenProps<"Payments">) {
+export default function InternetPlans({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <Input
@@ -21,7 +23,10 @@ export default function InternetPlans({ navigation }: RootTabScreenProps<"Paymen
 
       <ListItem
         onPress={() => {
-          navigation.navigate("Common", { screen: "InternetPlanDetail", params: { name: "Spectranet" } });
+          navigation.navigate("Common", {
+            screen: "InternetPlanDetail",
+            params: { name: "Spectranet" },
+          });
         }}
         route=""
         index={0}

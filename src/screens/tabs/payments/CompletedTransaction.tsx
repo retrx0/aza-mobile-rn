@@ -6,7 +6,9 @@ import { SuccessIcon } from "../../../../assets/svg";
 import MyButton from "./sub-components/MyButton";
 import { RootTabScreenProps } from "../../../../types";
 
-export default function CompletedTransaction({ navigation }: RootTabScreenProps<"Payments">) {
+export default function CompletedTransaction({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles.container]}>
       <SuccessIcon style={styles.icon} color={""} size={0} />

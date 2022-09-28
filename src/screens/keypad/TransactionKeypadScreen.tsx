@@ -34,7 +34,6 @@ const TransactionKeypadScreen = ({
 
   const { headerTitle, transactionType } = route.params;
 
-
   const normalTransaction = transactionType.type === "normal transaction";
   const recurringTransaction = transactionType.type === "recurring";
 
@@ -172,11 +171,11 @@ const TransactionKeypadScreen = ({
           onPressButton={() => {
             // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
             if (normalTransaction) {
-              // This checks if the transactions are send or request money which have optional description message 
+              // This checks if the transactions are send or request money which have optional description message
               transactionType.openDescriptionModal && setDescModalOpen(true);
             } else {
               // TODO create and pass required params
-              navigation.navigate('RecurringTransferConfirmation')
+              navigation.navigate("RecurringTransferConfirmation");
             }
           }}
           styleText={{
@@ -191,7 +190,7 @@ const TransactionKeypadScreen = ({
           }}
         />
       </View>
-      
+
       {/* description modal */}
       <Modal
         isVisible={descModal}
@@ -266,10 +265,16 @@ const TransactionKeypadScreen = ({
               title="Continue"
               onPressButton={() => {
                 setDescModalOpen(false);
-                if (normalTransaction && transactionType.transaction === 'send') {
+                if (
+                  normalTransaction &&
+                  transactionType.transaction === "send"
+                ) {
                   // TODO create and pass required params
                   navigation.navigate("SendMoneyConfirmation");
-                } else if (normalTransaction && transactionType.transaction === 'request') {
+                } else if (
+                  normalTransaction &&
+                  transactionType.transaction === "request"
+                ) {
                   // TODO create and pass required params
                   navigation.navigate("RequestMoneyConfirmation");
                 }
