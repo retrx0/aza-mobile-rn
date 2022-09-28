@@ -147,9 +147,9 @@ export default function RecentTransactions({
           }
         >
           <Text
-            lightColor={Colors.light.mainText}
+            lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ marginRight: 3 }}
+            style={{ marginRight: 3, fontFamily: "Euclid-Circular-A-Medium" }}
           >
             Recent Transactions
           </Text>

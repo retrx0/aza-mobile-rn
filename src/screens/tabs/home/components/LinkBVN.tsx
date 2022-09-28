@@ -48,8 +48,7 @@ const LinkBVN = ({
         <Text
           style={{
             fontSize: 10,
-            fontFamily: "Euclid-Circular-A",
-            color: Colors.general.darkGrey,
+            color: "black",
             marginTop: 5,
           }}
         >

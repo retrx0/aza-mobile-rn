@@ -15,7 +15,7 @@ import Colors from "../../constants/Colors";
 import { CommonScreenProps } from "../../common/navigation/types";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { AZALightningLogo } from "../../../assets/svg";
+import { AZALargeLightningLogo } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 
@@ -117,7 +117,7 @@ const RequestMoneyScreen = ({
                           navigation.navigate("TransactionKeypad", {
                             headerTitle: "Request Money",
                             transactionType: {
-                              transaction: 'request',
+                              transaction: "request",
                               type: "normal transaction",
                               beneficiary: {
                                 beneficiaryAccount: "",
@@ -134,7 +134,7 @@ const RequestMoneyScreen = ({
                           name={"Adewale Adeyesufu"}
                           phoneNumber={"8012345678"}
                           suffixIcon={
-                            <AZALightningLogo
+                            <AZALargeLightningLogo
                               size={25}
                               color={Colors[colorScheme].text}
                             />

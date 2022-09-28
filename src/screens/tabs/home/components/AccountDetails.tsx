@@ -12,8 +12,8 @@ export default function AccountDetails() {
   return (
     <View style={[CommonStyles.col, { alignItems: "center" }]}>
       <View
-        lightColor='#eaeaec'
-        darkColor='#1D1D20'
+        lightColor="#eaeaec"
+        darkColor="#1D1D20"
         style={[
           CommonStyles.row,
           {
@@ -23,11 +23,13 @@ export default function AccountDetails() {
             justifyContent: "center",
             borderRadius: 50,
           },
-        ]}>
+        ]}
+      >
         <Text
-          lightColor={Colors.general.darkGrey}
-          darkColor={Colors.dark.tabIconDefault}
-          style={{ fontSize: 12, fontFamily: "Euclid-Circular-A" }}>
+          lightColor={"#000000"}
+          darkColor={"#CCCCCC"}
+          style={{ fontSize: 12 }}
+        >
           Nigerian Naira
         </Text>
         <Image
@@ -37,45 +39,50 @@ export default function AccountDetails() {
         <Text
           lightColor={Colors.general.darkGrey}
           darkColor={Colors.dark.tabIconDefault}
-          style={{ fontSize: 12, fontFamily: "Euclid-Circular-A" }}>
+          style={{ fontSize: 12 }}
+        >
           NGN
         </Text>
       </View>
       <View style={[CommonStyles.row]}>
         <NairaIcon
           size={25}
-          color={Colors[colorScheme].mainText}
+          color={
+            colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text
+          }
           style={{ marginRight: 2 }}
         />
         <Text
-          lightColor={Colors.light.mainText}
+          lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 24,
-            marginVertical: 15,
-          }}>
+            marginVertical: 10,
+          }}
+        >
           2,239,290.00
         </Text>
       </View>
       <View style={[CommonStyles.row]}>
         <Text
-          lightColor={Colors.light.mainText}
+          lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
             fontSize: 12,
-            fontFamily: "Euclid-Circular-A",
-          }}>
+          }}
+        >
           Aza Number:
         </Text>
         <Text
-          lightColor={Colors.light.mainText}
+          lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
             marginLeft: 3,
             fontSize: 12,
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-          }}>
+          }}
+        >
           1234567890
         </Text>
       </View>

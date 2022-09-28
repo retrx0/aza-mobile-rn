@@ -17,7 +17,7 @@ import ContactListItem from "../../components/ListItem/ContactListItem";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { AZALightningLogo } from "../../../assets/svg";
+import { AZALargeLightningLogo } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 
@@ -61,7 +61,10 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             <View>
               <Text
                 style={{
-                  color: Colors[colorScheme].mainText,
+                  color:
+                    colorScheme === "dark"
+                      ? Colors.dark.mainText
+                      : Colors.light.text,
                   fontSize: 14,
                 }}
               >
@@ -167,7 +170,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                           navigation.navigate("TransactionKeypad", {
                             headerTitle: "Send Money",
                             transactionType: {
-                              transaction:'send',
+                              transaction: "send",
                               type: "normal transaction",
                               beneficiary: {
                                 beneficiaryAccount: "",
@@ -184,7 +187,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                           name={"Adewale Adeyesufu"}
                           phoneNumber={"8012345678"}
                           suffixIcon={
-                            <AZALightningLogo
+                            <AZALargeLightningLogo
                               size={25}
                               color={Colors[colorScheme].text}
                             />

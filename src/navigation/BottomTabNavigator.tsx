@@ -8,7 +8,11 @@ import Payments from "../screens/tabs/payments/Payments";
 import Profile from "../screens/tabs/profile/Profile";
 import Vault from "../screens/tabs/vault/Vault";
 import Settings from "../screens/tabs/settings/Settings";
-import { RootStackScreenProps, RootTabParamList, RootTabScreenProps } from "../../types";
+import {
+  RootStackScreenProps,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../../types";
 import useColorScheme from "../hooks/useColorScheme";
 import {
   HomeIcon,
@@ -19,13 +23,16 @@ import {
   ProfileIcon,
   MenuIcon,
   AZALightningLogo,
+  QRCodeDarkModeIcon,
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
 import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
-const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">) => {
+const BottomTabNavigator = (
+  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
+) => {
   const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
   const colorScheme = useColorScheme();
@@ -39,7 +46,8 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
   };
 
   const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
-  const { profileBottomSheetListItems, setChoosePhoto }: any = useBottomSheetType("profile", _navigation);
+  const { profileBottomSheetListItems, setChoosePhoto }: any =
+    useBottomSheetType("profile", _navigation);
 
   return (
     <>
@@ -55,7 +63,16 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
           options={({ navigation }: RootTabScreenProps<"Home">) => ({
             //center it in android
             headerTitleAlign: "center",
-            headerTitle: () => <AZALightningLogo size={25} color={Colors[colorScheme].text} />,
+            headerTitle: () => (
+              <AZALightningLogo
+                size={25}
+                color={
+                  colorScheme === "dark"
+                    ? Colors.dark.mainText
+                    : Colors.light.text
+                }
+              />
+            ),
             title: "Home",
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
             headerRight: () => (
@@ -65,7 +82,15 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
                   opacity: pressed ? 0.5 : 1,
                 })}
               >
-                <QRCodeIcon size={25} color={Colors[colorScheme].text} style={{ marginRight: 15 }} />
+                {colorScheme === "dark" ? (
+                  <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
+                ) : (
+                  <QRCodeIcon
+                    size={24}
+                    color={Colors.light.text}
+                    style={{ marginRight: 15 }}
+                  />
+                )}
               </Pressable>
             ),
             headerLeft: () => (
@@ -147,7 +172,10 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root"> & RootTabS
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) => {
+const TabBarIcon = (props: {
+  name: React.ComponentProps<typeof FontAwesome>["name"];
+  color: string;
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 };
 export default BottomTabNavigator;
