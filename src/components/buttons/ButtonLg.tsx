@@ -1,10 +1,12 @@
-import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import {
   ColorValue,
   GestureResponderEvent,
+  StyleProp,
   StyleSheet,
+  TextStyle,
   TouchableOpacity,
+  ViewStyle,
 } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
@@ -14,14 +16,15 @@ const ButtonLg = (props: {
   title: string;
   color: ColorValue;
   alt: boolean;
-  style?: {};
-  disabled?: boolean;
-  iconName?: typeof FontAwesome["defaultProps"];
+  icon: any;
   onPress: (event: GestureResponderEvent) => void;
+  style?: StyleProp<ViewStyle>;
+  styleText?: StyleProp<TextStyle>;
+  disabled?: boolean;
 }) => {
   return (
     <TouchableOpacity
-    {...props}
+      {...props}
       style={[styles.button, { backgroundColor: props.color }, props.style]}
       onPress={props.onPress}>
       <View
@@ -34,21 +37,18 @@ const ButtonLg = (props: {
           },
         ]}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
-          {props.iconName ? (
-            <FontAwesome
-              name={props.iconName}
-              style={[
-                CommonStyles.iconStyle,
-                {
-                  color: "#FFFFFF",
-                  fontSize: 18,
-                  flex: 1,
-                },
-              ]}
-            />
-          ) : (
-            <></>
-          )}
+          <View
+            style={[
+              CommonStyles.iconStyle,
+              {
+                flex: 1,
+                alignItems: "center",
+                height: 0,
+                width: 0,
+              },
+            ]}>
+            {props.icon}
+          </View>
           <Text
             adjustsFontSizeToFit
             style={[
