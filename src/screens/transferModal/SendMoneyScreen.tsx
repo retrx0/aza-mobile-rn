@@ -166,7 +166,16 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                         onPress={() =>
                           navigation.navigate("TransactionKeypad", {
                             headerTitle: "Send Money",
-                            openDescriptionModal: true,
+                            transactionType: {
+                              transaction:'send',
+                              type: "normal transaction",
+                              beneficiary: {
+                                beneficiaryAccount: "",
+                                beneficiaryImage: "",
+                                beneficiaryName: "",
+                              },
+                              openDescriptionModal: true,
+                            },
                           })
                         }
                       >

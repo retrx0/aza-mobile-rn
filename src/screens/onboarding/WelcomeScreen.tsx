@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +12,7 @@ import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data } from "./OnboardingUtil";
+
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([

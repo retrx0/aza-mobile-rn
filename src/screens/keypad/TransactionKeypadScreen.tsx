@@ -28,11 +28,15 @@ const TransactionKeypadScreen = ({
 }: CommonScreenProps<"TransactionKeypad">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [openModal, setModalOpen] = useState(false);
+  const [descModal, setDescModalOpen] = useState(false);
 
   const colorScheme = useColorScheme();
 
-  const { headerTitle, openDescriptionModal } = route.params;
+  const { headerTitle, transactionType } = route.params;
+
+
+  const normalTransaction = transactionType.type === "normal transaction";
+  const recurringTransaction = transactionType.type === "recurring";
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -166,7 +170,14 @@ const TransactionKeypadScreen = ({
           title="Continue"
           disabled={!amount}
           onPressButton={() => {
-            openDescriptionModal && setModalOpen(true);
+            // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
+            if (normalTransaction) {
+              // This checks if the transactions are send or request money which have optional description message 
+              transactionType.openDescriptionModal && setDescModalOpen(true);
+            } else {
+              // TODO create and pass required params
+              navigation.navigate('RecurringTransferConfirmation')
+            }
           }}
           styleText={{
             color: Colors[colorScheme].buttonText,
@@ -180,8 +191,10 @@ const TransactionKeypadScreen = ({
           }}
         />
       </View>
+      
+      {/* description modal */}
       <Modal
-        isVisible={openModal}
+        isVisible={descModal}
         style={{ justifyContent: "flex-end", margin: 0 }}
       >
         <KeyboardAvoidingView
@@ -189,7 +202,7 @@ const TransactionKeypadScreen = ({
           keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}
         >
           <TouchableOpacity
-            onPress={() => setModalOpen(false)}
+            onPress={() => setDescModalOpen(false)}
             style={{
               backgroundColor: "transparent",
               alignItems: "flex-end",
@@ -252,8 +265,14 @@ const TransactionKeypadScreen = ({
             <Button
               title="Continue"
               onPressButton={() => {
-                setModalOpen(false);
-                navigation.navigate("SendMoneyConfirmation");
+                setDescModalOpen(false);
+                if (normalTransaction && transactionType.transaction === 'send') {
+                  // TODO create and pass required params
+                  navigation.navigate("SendMoneyConfirmation");
+                } else if (normalTransaction && transactionType.transaction === 'request') {
+                  // TODO create and pass required params
+                  navigation.navigate("RequestMoneyConfirmation");
+                }
               }}
               styleText={{
                 color: Colors[colorScheme].buttonText,

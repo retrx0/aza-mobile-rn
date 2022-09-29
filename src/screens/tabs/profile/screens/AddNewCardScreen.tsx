@@ -13,9 +13,12 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const AddNewCardScreen = ({ navigation }: CommonScreenProps<"AddNewCard">) => {
+const AddNewCardScreen = ({
+  navigation,
+  route,
+}: CommonScreenProps<"AddNewCard">) => {
   const colorScheme = useColorScheme();
-
+  const { navigateBackTo } = route.params;
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -151,7 +154,7 @@ const AddNewCardScreen = ({ navigation }: CommonScreenProps<"AddNewCard">) => {
                 statusIcon: "Success",
                 statusMessage:
                   "Your card has been successfully added to your Aza",
-                navigateTo: "DebitCreditCards",
+                navigateTo: navigateBackTo,
               })
             }
             styleText={{

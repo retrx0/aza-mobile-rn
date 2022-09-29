@@ -180,9 +180,10 @@ const RequestMoneyConfirmationScreen = ({
               navigation.navigate("StatusScreen", {
                 status: "Successful",
                 statusIcon: "Success",
+                //TODO update message to accept JSX
                 statusMessage:
-                  "Your bank account has been successfully linked to your Aza",
-                navigateTo: "BankAccounts",
+                  "You have successfully requested for 80,000 from Chiazondu Joseph",
+                navigateTo: "Home",
               })
             }
             styleText={{

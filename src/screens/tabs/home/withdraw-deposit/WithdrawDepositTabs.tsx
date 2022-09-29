@@ -6,7 +6,6 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import DepositIndex from "./deposit/DepositIndex";
 import WithdrawIndex from "./withdraw/WithdrawIndex";
 
-
 export function WithdrawDepositTabs() {
   const scheme = useColorScheme();
   const Tab = createMaterialTopTabNavigator();
@@ -19,7 +18,7 @@ export function WithdrawDepositTabs() {
             marginTop: Platform.OS == "android" ? 50 : 0,
           },
           tabBarIndicatorStyle: {
-            borderWidth:1,
+            borderWidth: 1,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
           },
           tabBarLabelStyle: {
@@ -29,13 +28,21 @@ export function WithdrawDepositTabs() {
             borderBottomColor:'#A6A6A6',
             borderBottomWidth:1
           },  
-          
+
         }}
         initialRouteName="WithdrawIndex"
         
       >
-        <Tab.Screen options={{title:'Withdraw'}} name="WithdrawIndex" component={WithdrawIndex} />
-        <Tab.Screen options={{title:'Deposit'}} name="DepositIndex" component={DepositIndex} />
+        <Tab.Screen
+          options={{ title: "Withdraw" }}
+          name="WithdrawIndex"
+          component={WithdrawIndex}
+        />
+        <Tab.Screen
+          options={{ title: "Deposit" }}
+          name="DepositIndex"
+          component={DepositIndex}
+        />
       </Tab.Navigator>
     </SafeAreaView>
   );

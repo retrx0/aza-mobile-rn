@@ -21,16 +21,26 @@ const SetupRecurringTransferScreen = ({
   const [dayValue, setDayValue] = useState("");
   const colorScheme = useColorScheme();
 
-  const periodData = [
+  const period = [
     { label: "Monthly", value: "monthly" },
     { label: "Weekly", value: "weekly" },
     { label: "Daily", value: "daily" },
   ];
 
-  const dayData = [
+  const dayMonthly = [
     { label: "First Day of the Month", value: "1" },
     { label: "2nd", value: "2" },
     { label: "3rd", value: "3" },
+  ];
+
+  const dayWeekly = [
+    { label: "Sunday", value: "sunday" },
+    { label: "Monday", value: "monday" },
+    { label: "Tuesday", value: "tuesday" },
+    { label: "Wednesday", value: "wednesday" },
+    { label: "Thursday", value: "thursday" },
+    { label: "Friday", value: "friday" },
+    { label: "Saturday", value: "saturday" },
   ];
 
   useLayoutEffect(() => {
@@ -83,36 +93,50 @@ const SetupRecurringTransferScreen = ({
               Period
             </Text>
             <CustomDropdown
-              data={periodData}
+              data={period}
               placeholder="Choose a period"
               setValue={setPeriodValue}
               value={periodValue}
             />
           </View>
-          <View style={{ marginBottom: hp(40) }}>
-            <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
-              style={{
-                fontSize: 14,
-              }}
-            >
-              Day
-            </Text>
-            <CustomDropdown
-              data={dayData}
-              placeholder="Choose a day"
-              setValue={setDayValue}
-              value={dayValue}
-            />
-          </View>
+          {periodValue !== 'daily' &&
+            <View style={{ marginBottom: hp(40) }}>
+              <Text
+                lightColor={Colors.light.secondaryText}
+                darkColor={Colors.dark.secondaryText}
+                style={{
+                  fontSize: 14,
+                }}
+              >
+                Day
+              </Text>
+              <CustomDropdown
+                data={periodValue === 'weekly' ? dayWeekly : dayMonthly}
+                placeholder="Choose a day"
+                setValue={setDayValue}
+                value={dayValue}
+              />
+            </View>
+          }
         </View>
         <View
           style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
         >
           <Button
             title="Continue"
-            onPressButton={() => console.log("called")}
+            onPressButton={() => navigation.push('TransactionKeypad',{
+              headerTitle:'Recurring Transfer',
+              transactionType: {
+                type: 'recurring',
+                beneficiary: {
+                  beneficiaryAccount:'',
+                  beneficiaryImage:'',
+                  beneficiaryName:'',
+                },
+                period: periodValue,
+                day: dayValue
+              }
+            })}
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",

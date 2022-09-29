@@ -1,25 +1,19 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
-import Button from "../../../../components/buttons/Button";
+import BackButton from "../../components/buttons/BackButton";
+import { Text, TextInput, View } from "../../components/Themed";
 
-import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import { hp } from "../../../../common/util/LayoutUtil";
-import CommonStyles from "../../../../common/styles/CommonStyles";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../constants/Colors";
+import useColorScheme from "../../hooks/useColorScheme";
+import { hp } from "../../common/util/LayoutUtil";
+import CommonStyles from "../../common/styles/CommonStyles";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
+import { CommonScreenProps } from "../../common/navigation/types";
+import { WhatsappLogo } from "../../../assets/images";
 
-const AddBankAccountScreen = ({
-  navigation,
-  route,
-}: CommonScreenProps<"AddBankAccount">) => {
+const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const colorScheme = useColorScheme();
-
-  const { bankName, screenType } = route.params;
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -31,7 +25,7 @@ const AddBankAccountScreen = ({
             fontSize: 16,
           }}
         >
-          Add Bank Account
+          Contact Us
         </Text>
       ),
       // hide default back button which only shows in android
@@ -51,23 +45,24 @@ const AddBankAccountScreen = ({
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-              marginVertical: hp(30),
+              marginTop: hp(20),
+              marginBottom: hp(40),
             }}
           >
-            Add your bank account to receive withdrawals from your Aza account
+            Contact us with any questions. We are ready to help
           </Text>
-          <View>
+          <View style={{ marginBottom: hp(40) }}>
             <Text
               lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: 14,
               }}
             >
-              Account Number
+              Email
             </Text>
             <TextInput
               lightColor={Colors.light.mainText}
@@ -81,42 +76,52 @@ const AddBankAccountScreen = ({
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
               }}
-              placeholder="Enter your account number"
-              keyboardType="number-pad"
-              returnKeyType="done"
+              placeholder="Enter your Email"
             />
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
+          style={[
+            CommonStyles.col,
+            {
+              marginBottom: hp(50),
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+          ]}
         >
-          <Button
-            title="Continue"
-            onPressButton={() =>
-              navigation.navigate("AddBankAccountConfirmation", {
-                accountName: "Abdullah Gumi",
-                accountNumber: "0000100010",
-                bankName: bankName,
-                screenType,
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
+          <TouchableOpacity
+            activeOpacity={0.7}
             style={{
-              marginBottom: hp(25),
-              backgroundColor: Colors[colorScheme].button,
+              borderWidth: 1,
+              borderColor: Colors[colorScheme].text,
+              width: "100%",
+              height: hp(50),
+              borderRadius: hp(10),
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "center",
             }}
-          />
+          >
+            <Image source={WhatsappLogo} style={{ marginRight: 10 }} />
+            <Text
+              style={{
+                color: Colors[colorScheme].text,
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: 14,
+              }}
+            >
+              Whatsapp Customer Support
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SpacerWrapper>
   );
 };
 
-export default AddBankAccountScreen;
+export default ContactUsScreen;
 
 const styles = StyleSheet.create({
   container: {

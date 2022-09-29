@@ -29,7 +29,8 @@ const DebitCreditCardsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           Debit/Credit Cards
         </Text>
       ),
@@ -53,7 +54,8 @@ const DebitCreditCardsScreen = ({
               fontFamily: "Euclid-Circular-A",
               fontSize: 14,
               marginVertical: hp(30),
-            }}>
+            }}
+          >
             Securely manage all your debit and credit cards connected to Aza
             right here. Tap a card for more options.
           </Text>
@@ -65,7 +67,8 @@ const DebitCreditCardsScreen = ({
                 style={[
                   CommonStyles.row,
                   { alignSelf: "stretch", paddingVertical: 15 },
-                ]}>
+                ]}
+              >
                 <Image
                   source={{
                     uri: "https://download.logo.wine/logo/Visa_Inc./Visa_Inc.-Logo.wine.png",
@@ -85,7 +88,8 @@ const DebitCreditCardsScreen = ({
                     marginLeft: 20,
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: 14,
-                  }}>
+                  }}
+                >
                   Visa (**** **** **** 1234)
                 </Text>
               </View>
@@ -94,10 +98,15 @@ const DebitCreditCardsScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}>
+          style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}
+        >
           <Button
             title="Add New Card"
-            onPressButton={() => navigation.navigate("AddNewCard")}
+            onPressButton={() =>
+              navigation.navigate("AddNewCard", {
+                navigateBackTo: "DebitCreditCards",
+              })
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",

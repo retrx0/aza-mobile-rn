@@ -205,11 +205,11 @@ const RecurringTransferConfirmationScreen = ({
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("StatusScreen", {
+              navigation.push("StatusScreen", {
                 status: "Successful",
                 statusIcon: "Success",
                 statusMessage: "Your recurring transfer was setup successfully",
-                navigateTo: "RecurringTransfer",
+                navigateTo: "Home",
               })
             }
             styleText={{

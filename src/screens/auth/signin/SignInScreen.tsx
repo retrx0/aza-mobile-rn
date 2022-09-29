@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonLg from "../../../components/buttons/ButtonLg";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -9,6 +9,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
+
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");

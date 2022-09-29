@@ -116,7 +116,16 @@ const RequestMoneyScreen = ({
                         onPress={() =>
                           navigation.navigate("TransactionKeypad", {
                             headerTitle: "Request Money",
-                            openDescriptionModal: true,
+                            transactionType: {
+                              transaction: 'request',
+                              type: "normal transaction",
+                              beneficiary: {
+                                beneficiaryAccount: "",
+                                beneficiaryImage: "",
+                                beneficiaryName: "",
+                              },
+                              openDescriptionModal: true,
+                            },
                           })
                         }
                       >

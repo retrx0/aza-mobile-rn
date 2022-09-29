@@ -23,9 +23,14 @@ import {
   ZenithBankLogoWithName,
 } from "../../../../../assets/images";
 
-const SelectBankScreen = ({ navigation }: CommonScreenProps<"SelectBank">) => {
+const SelectBankScreen = ({
+  navigation,
+  route,
+}: CommonScreenProps<"SelectBank">) => {
   const colorScheme = useColorScheme();
   const [search, setSearch] = useState("");
+
+  const { screenType } = route.params;
 
   const banks = [
     { name: "access", logo: AccessBankLogoWithName },
@@ -97,6 +102,7 @@ const SelectBankScreen = ({ navigation }: CommonScreenProps<"SelectBank">) => {
                   onPress={() =>
                     navigation.navigate("AddBankAccount", {
                       bankName: name,
+                      screenType,
                     })
                   }
                   style={[

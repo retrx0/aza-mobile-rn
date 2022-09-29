@@ -7,8 +7,10 @@ import {
   WithdrawIcon,
 } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
+
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
 import { Text, View } from "../../../../components/Themed";
+
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useBottomSheetType } from "../hooks/useBottomSheetType";
@@ -40,7 +42,12 @@ const TransactionOptions = ({
       >
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Common", { screen: "WithdrawDepositTabs" })
+            navigation.navigate("Common", {
+              screen: "WithdrawDepositTabs",
+              params: {
+                screen: "WithdrawIndex",
+              },
+            })
           }
           style={{ display: "flex", alignItems: "center" }}
         >
@@ -68,10 +75,16 @@ const TransactionOptions = ({
         </TouchableOpacity>
 
         <TouchableOpacity
-         onPress={() =>
-          navigation.navigate("Common", { screen: "WithdrawDepositTabs"})
-        }
-         style={{ display: "flex", alignItems: "center" }}>
+          onPress={() =>
+            navigation.navigate("Common", {
+              screen: "WithdrawDepositTabs",
+              params: {
+                screen: "DepositIndex",
+              },
+            })
+          }
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <DepositIcon color="#2AD168" size={40} />
           <Text
             lightColor={Colors.light.mainText}

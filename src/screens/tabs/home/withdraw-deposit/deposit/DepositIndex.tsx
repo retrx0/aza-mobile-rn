@@ -1,8 +1,7 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { View } from "../../../../../components/Themed";
 import Divider from "../../../payments/sub-components/Divider";
-import TransactionListItem from "../../../../../components/ListItem/TransactionListItem";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import { RootTabScreenProps } from "../../../../../../types";
 import Button from "../../../../../components/buttons/Button";
@@ -18,7 +17,7 @@ export default function DepositIndex({
         heading="Card deposit"
         subHeading="Deposit via Debit/Credit card"
         onPress={() => {
-          navigation.navigate("Common", { screen: 'Deposit' });
+          navigation.navigate("Common", { screen: "Deposit" });
         }}
       />
       <Divider style={styles.divider} />

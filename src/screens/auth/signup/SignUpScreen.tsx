@@ -51,7 +51,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       <Button
         title="Continue"
         onPressButton={() => {
-          dispatch(setReduxStorePhone(Number(phone)));
+          dispatch(setReduxStorePhone(phone));
           navigation.navigate("SignUpOTP");
         }}
         styleText={{

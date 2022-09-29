@@ -67,13 +67,15 @@ export type CommonStackParamList = {
   // Profile
   AccountDetails: undefined;
   TransactionHistory: undefined;
-  BankAccounts: undefined;
-  SelectBank: undefined;
-  AddBankAccount: AddBankAccountParamsType;
-  AddBankAccountConfirmation: AddBankAccountConfirmationParamsType;
+  BankAccounts: BankAccountsParamsType;
+  SelectBank: BankAccountsParamsType;
+  AddBankAccount: AddBankAccountParamsType & BankAccountsParamsType;
+  AddBankAccountConfirmation: AddBankAccountConfirmationParamsType &
+    BankAccountsParamsType;
+  EditBankAccountDetails: undefined;
   DebitCreditCards: undefined;
   ManageCard: undefined;
-  AddNewCard: undefined;
+  AddNewCard: { navigateBackTo: string };
   ScanCard: undefined;
 
   // Home Menu
@@ -89,10 +91,10 @@ export type CommonStackParamList = {
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
+  ContactUs: undefined;
 
   //withdraw and deposit
-  WithdrawDepositTabs: undefined;
-  Withdraw: undefined;
+  WithdrawDepositTabs: { screen: string };
   Deposit: undefined;
 
   // Transfer modal screens
@@ -111,9 +113,30 @@ export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
   NativeStackScreenProps<CommonStackParamList, Screen>;
 
 // page with virtual keyboard
+interface RecurringTransaction {
+  type: "recurring";
+  beneficiary: {
+    beneficiaryImage: string;
+    beneficiaryName: string;
+    beneficiaryAccount: string;
+  };
+  period: string;
+  day: string;
+}
+interface NormalTransaction {
+  type: "normal transaction";
+  transaction: 'withdraw' | 'deposit' | 'send' | 'request'
+  beneficiary: {
+    beneficiaryImage: string;
+    beneficiaryName: string;
+    beneficiaryAccount: string;
+  };
+  openDescriptionModal?: boolean;
+}
+
 export type TransactionKeypadParamsType = {
+  transactionType: RecurringTransaction | NormalTransaction;
   headerTitle: string;
-  openDescriptionModal: boolean;
 };
 
 // bvn screen
@@ -132,6 +155,7 @@ export type StatusScreenParamsType = {
   setupRecurringTransfer?: boolean;
   cancelButton?: boolean;
   navigateTo: string;
+  navigateToParams?: Record<string, unknown>;
 };
 
 /* Payments Tab */
@@ -165,6 +189,10 @@ export type AddBankAccountConfirmationParamsType = {
   bankName: string;
   accountNumber: string;
   accountName: string;
+};
+
+export type BankAccountsParamsType = {
+  screenType: "Withdraw" | "Bank Account";
 };
 
 // Home menu

@@ -13,13 +13,16 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet, TextInput } from "react-native";
 import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
-import { useAppDispatch } from "../../../../hooks/redux";
-import { setNewUser } from "../../../../redux/slice/newUserSlice";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import {
+  selectNewUser,
+  setNewUser,
+} from "../../../../redux/slice/newUserSlice";
 
 const SignUpProfile = ({
   navigation,
 }: SignUpScreenProps<"SignUpProfileSetup">) => {
-  const [gender, setGender] = useState(Gender);
+  const [gender, setGender] = useState("unknown");
   const placeholder = {
     label: "Select Gender",
     value: null,
@@ -29,6 +32,8 @@ const SignUpProfile = ({
   const colorScheme = useColorScheme();
 
   const dispatch = useAppDispatch();
+
+  const newUser = useAppSelector(selectNewUser);
 
   return (
     <>
@@ -143,7 +148,6 @@ const SignUpProfile = ({
                 placeholder={placeholder}
                 onValueChange={(value) => {
                   setGender(value);
-                  console.log(value);
                 }}
                 value={gender}
                 items={Gender}
@@ -178,20 +182,20 @@ const SignUpProfile = ({
             <Button
               title="Continue"
               onPressButton={() => {
-                console.log(values);
-                console.log(gender);
+                handleSubmit();
                 dispatch(
                   setNewUser({
                     firstname: values.firstname,
                     lastname: values.lastname,
                     email: values.email,
-                    gender: "Unknown",
+                    gender: gender,
+                    isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
+                    createdPasscode: newUser.createdPasscode,
                   })
                 );
-                handleSubmit(),
-                  navigation.navigate("SignUpPassword", {
-                    passwordScreenType: "Create",
-                  });
+                navigation.navigate("SignUpPassword", {
+                  passwordScreenType: "Create",
+                });
               }}
               styleText={{
                 color: Colors[colorScheme].buttonText,

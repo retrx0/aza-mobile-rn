@@ -1,26 +1,31 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch, TouchableOpacity } from "react-native";
+import { StyleSheet, Switch } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
-import {
-  DaysCard,
-  DaysList,
-  PercentageCard,
-  PercentageList,
-} from "./components/VaultCard";
+import CustomDropdown from "../../../components/dropdown/CustomDropdown";
+
+import { PercentageCard, PercentageList } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
-import { SelectIcon } from "../../../../assets/svg";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
+  const [periodValue, setPeriodValue] = useState("");
+
+  const period = [
+    { label: "2 Days", value: "1" },
+    { label: "4 Days", value: "1" },
+    { label: "1 Week", value: "1" },
+    { label: "2 Weeks", value: "1" },
+    { label: "1 Month", value: "1" },
+  ];
 
   const colorScheme = useColorScheme();
 
@@ -64,22 +69,25 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             return <PercentageCard key={index} percentage={item.percentage} />;
           })}
         </View>
-        <View style={CommonStyles.Container}>
-          <Text style={CommonStyles.period}>Period</Text>
-          <View style={CommonStyles.chooseContainer}>
-            <Text style={CommonStyles.choose}>
-              Choose a period to lock funds away
-            </Text>
-            <TouchableOpacity>
-              <SelectIcon />
-            </TouchableOpacity>
-          </View>
+
+        <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
+          <Text
+            lightColor={Colors.light.secondaryText}
+            darkColor={Colors.dark.secondaryText}
+            style={{
+              fontSize: 14,
+            }}
+          >
+            Period
+          </Text>
+          <CustomDropdown
+            data={period}
+            placeholder="Choose a period to lock funds away"
+            setValue={setPeriodValue}
+            value={periodValue}
+          />
         </View>
-        <View style={CommonStyles.daysContainer}>
-          {DaysList.map((item, index) => {
-            return <DaysCard key={index} days={item.days} />;
-          })}
-        </View>
+
         <View style={[CommonStyles.SwitchContainer, { bottom: hp(30) }]}>
           <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>

@@ -1,11 +1,12 @@
-import { StyleSheet, Text } from "react-native";
 import React from "react";
+import { StyleSheet } from "react-native";
+
 import { View } from "../../../../../components/Themed";
 import Divider from "../../../payments/sub-components/Divider";
-import TransactionListItem from "../../../../../components/ListItem/TransactionListItem";
 import MenuList from "../../../../../components/ListItem/MenuList";
-import { RootTabScreenProps } from "../../../../../../types";
 import Button from "../../../../../components/buttons/Button";
+
+import { RootTabScreenProps } from "../../../../../../types";
 import Colors from "../../../../../constants/Colors";
 
 export default function WithdrawIndex({
@@ -18,7 +19,10 @@ export default function WithdrawIndex({
         heading="Withdraw money to your own bank account"
         subHeading="Bank Account"
         onPress={() => {
-          navigation.navigate("Common", { screen: "Withdraw" });
+          navigation.navigate("Common", {
+            screen: "BankAccounts",
+            params: { screenType: "Withdraw" },
+          });
         }}
       />
       <Divider style={styles.divider} />
