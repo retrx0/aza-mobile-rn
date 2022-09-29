@@ -29,13 +29,15 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             style={[
               CommonStyles.lockContainer,
               { backgroundColor: Colors[colorScheme].disabled },
-            ]}>
+            ]}
+          >
             <LockIcon color={Colors[colorScheme].button} />
             <View
               style={[
                 CommonStyles.timeContainer,
                 { backgroundColor: Colors[colorScheme].disabled },
-              ]}>
+              ]}
+            >
               <Text style={CommonStyles.time}>06</Text>
               <Text style={CommonStyles.seconds}>Days : </Text>
               <Text style={CommonStyles.time}>14</Text>

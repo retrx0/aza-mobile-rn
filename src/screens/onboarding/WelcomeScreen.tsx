@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,6 +12,7 @@ import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data } from "./OnboardingUtil";
+
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
@@ -47,7 +48,17 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
         }}
       />
       <View style={[CommonStyles.row]}>
-        <View style={[{ marginLeft: 10, marginRight: 7.5, marginTop: 0, marginBottom: hp(100) }, CommonStyles.col]}>
+        <View
+          style={[
+            {
+              marginLeft: 10,
+              marginRight: 7.5,
+              marginTop: 0,
+              marginBottom: hp(100),
+            },
+            CommonStyles.col,
+          ]}
+        >
           <ButtonMd
             title="Login"
             color={Colors.general.white}
@@ -57,7 +68,17 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
             }}
           />
         </View>
-        <View style={[{ marginLeft: 7.5, marginRight: 10, marginTop: 0, marginBottom: hp(100) }, CommonStyles.col]}>
+        <View
+          style={[
+            {
+              marginLeft: 7.5,
+              marginRight: 10,
+              marginTop: 0,
+              marginBottom: hp(100),
+            },
+            CommonStyles.col,
+          ]}
+        >
           <ButtonMd
             title="Sign Up"
             color={Colors.general.black}

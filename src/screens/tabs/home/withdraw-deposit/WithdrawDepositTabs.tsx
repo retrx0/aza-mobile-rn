@@ -24,12 +24,14 @@ export function WithdrawDepositTabs() {
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
-          tabBarStyle: {
-            borderBottomColor: "#A6A6A6",
-            borderBottomWidth: 1,
-          },
+          tabBarStyle:{
+            borderBottomColor:'#A6A6A6',
+            borderBottomWidth:1
+          },  
+
         }}
         initialRouteName="WithdrawIndex"
+        
       >
         <Tab.Screen
           options={{ title: "Withdraw" }}

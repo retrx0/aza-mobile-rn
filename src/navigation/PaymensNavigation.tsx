@@ -35,17 +35,16 @@ export function AirtimeTabs() {
             marginTop: Platform.OS == "android" ? 50 : 0,
           },
           tabBarIndicatorStyle: {
-            borderWidth:1,
+            borderWidth: 1,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
-          tabBarStyle:{
-            borderBottomColor:'#A6A6A6',
-            borderBottomWidth:1
-          }
-          
+          tabBarStyle: {
+            borderBottomColor: "#A6A6A6",
+            borderBottomWidth: 1,
+          },
         }}
         initialRouteName="airtime"
       >
@@ -74,10 +73,10 @@ export function CharityTabs() {
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
-          tabBarStyle:{
-            borderBottomColor:'#A6A6A6',
-            borderBottomWidth:1
-          }
+          tabBarStyle: {
+            borderBottomColor: "#A6A6A6",
+            borderBottomWidth: 1,
+          },
         }}
         initialRouteName="For Myself"
       >
@@ -102,7 +101,10 @@ const PaymentNavigator = () => {
               alignItems: "center",
             }}
           >
-            <BackIcon color={scheme == "light" ? "#000000" : "#ffffff"} size={24} />
+            <BackIcon
+              color={scheme == "light" ? "#000000" : "#ffffff"}
+              size={24}
+            />
             <Text style={{ marginLeft: 5 }}>Back</Text>
           </TouchableOpacity>
         ),
@@ -123,14 +125,46 @@ const PaymentNavigator = () => {
         name="PaymentIndex"
         component={PaymentIndexScreen}
       />
-      <Stack.Screen options={{ title: "Airtime & Data" }} name="airtimeData" component={AirtimeTabs} />
-      <Stack.Screen options={{ presentation: "fullScreenModal", title: "" }} name="pie" component={Pie} />
-      <Stack.Screen options={{ title: "Confirmation" }} name="confirm" component={Confirmation} />
-      <Stack.Screen options={{ title: "Password" }} name="confirm_transaction" component={ConfirmTransaction} />
-      <Stack.Screen options={{ title: "Internet" }} name="internet_plans" component={InternetPlans} />
-      <Stack.Screen options={{ title: "Electricity" }} name="electricity" component={ElectricityIndex} />
-      <Stack.Screen options={{ title: "Cable TV" }} name="cabletv" component={CableTvIndex} />
-      <Stack.Screen options={{ title: "Water" }} name="water" component={WaterScreen} />
+      <Stack.Screen
+        options={{ title: "Airtime & Data" }}
+        name="airtimeData"
+        component={AirtimeTabs}
+      />
+      <Stack.Screen
+        options={{ presentation: "fullScreenModal", title: "" }}
+        name="pie"
+        component={Pie}
+      />
+      <Stack.Screen
+        options={{ title: "Confirmation" }}
+        name="confirm"
+        component={Confirmation}
+      />
+      <Stack.Screen
+        options={{ title: "Password" }}
+        name="confirm_transaction"
+        component={ConfirmTransaction}
+      />
+      <Stack.Screen
+        options={{ title: "Internet" }}
+        name="internet_plans"
+        component={InternetPlans}
+      />
+      <Stack.Screen
+        options={{ title: "Electricity" }}
+        name="electricity"
+        component={ElectricityIndex}
+      />
+      <Stack.Screen
+        options={{ title: "Cable TV" }}
+        name="cabletv"
+        component={CableTvIndex}
+      />
+      <Stack.Screen
+        options={{ title: "Water" }}
+        name="water"
+        component={WaterScreen}
+      />
       <Stack.Screen name="Charity" component={CharityIndexScreen} />
       <Stack.Screen
         options={({ route }: { route: any }) => ({ title: route.params.name })}

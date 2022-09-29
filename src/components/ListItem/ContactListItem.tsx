@@ -35,7 +35,7 @@ const ContactListItem = ({
           uri: image,
         }}
       />
-      <View style={[CommonStyles.col, { marginLeft: 20, marginRight: "auto" }]}>
+      <View style={[CommonStyles.col, { marginLeft: 10, marginRight: "auto" }]}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}

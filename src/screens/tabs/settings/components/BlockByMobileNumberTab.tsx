@@ -5,7 +5,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { Text, TextInput, View } from "../../../../components/Themed";
 import ContactListItem from "../../../../components/ListItem/ContactListItem";
-import { AZALightningLogo } from "../../../../../assets/svg";
+import { AZALargeLightningLogo } from "../../../../../assets/svg";
 
 interface IProps {
   toggleModal: () => void;
@@ -74,7 +74,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
                   name={"Adewale Adeyesufu"}
                   phoneNumber={"8012345678"}
                   suffixIcon={
-                    <AZALightningLogo
+                    <AZALargeLightningLogo
                       size={25}
                       color={Colors[colorScheme].text}
                     />
