@@ -79,7 +79,8 @@ export const ActivityCard = ({
                     ? Colors.general.lightGreen
                     : Colors.light.backgroundSecondary,
               },
-            ]}>
+            ]}
+          >
             {send}
           </TouchableOpacity>
           <Text style={styles.status}>{status}</Text>
@@ -95,7 +96,8 @@ export const ActivityCard = ({
                       ? Colors.general.red
                       : Colors.general.green,
                 },
-              ]}>
+              ]}
+            >
               {"\u20A6"} {price}
             </Text>
           </View>

@@ -9,6 +9,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
@@ -63,21 +64,21 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       />
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg
-        iconName="apple"
+        icon={<AppleIcon />}
         title="Connect Apple Account"
         color={Colors.general.apple}
         onPress={() => console.log("connecting with apple...")}
         alt={false}
       />
       <ButtonLg
-        iconName={"facebook"}
+        icon={<FacebookIcon />}
         title="Connect with Facebook"
         color={Colors.general.facebook}
         onPress={() => console.log("connecting with facebook...")}
         alt={false}
       />
       <ButtonLg
-        iconName={"google"}
+        icon={<GoogleIcon />}
         title="Connect Google Account"
         color={Colors.general.google}
         onPress={() => console.log("connecting with google...")}

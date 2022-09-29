@@ -88,7 +88,7 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
           />
         </Pattern>
         <Image
-          href={require("../assets/images/logo/lightning-bolt.png")}
+          href={require("../../assets/images/logo/lightning-bolt.png")}
           width="480"
           height="320"
         />
@@ -99,68 +99,28 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
 
 export const QRCodeIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg
-      style={style}
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-    >
+    <Svg style={style} width={size} height={size} fill="none">
       <Path
-        d="M2 9V6.5C2 4.01 4.01 2 6.5 2H9"
+        d="M2 9V6.5C2 4.01 4.01 2 6.5 2H9M15 2h2.5C19.99 2 22 4.01 22 6.5V9M22 16v1.5c0 2.49-2.01 4.5-4.5 4.5H16M9 22H6.5C4.01 22 2 19.99 2 17.5V15M10.5 7v2c0 1-.5 1.5-1.5 1.5H7c-1 0-1.5-.5-1.5-1.5V7C5.5 6 6 5.5 7 5.5h2c1 0 1.5.5 1.5 1.5ZM18.5 7v2c0 1-.5 1.5-1.5 1.5h-2c-1 0-1.5-.5-1.5-1.5V7c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5ZM10.5 15v2c0 1-.5 1.5-1.5 1.5H7c-1 0-1.5-.5-1.5-1.5v-2c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5ZM18.5 15v2c0 1-.5 1.5-1.5 1.5h-2c-1 0-1.5-.5-1.5-1.5v-2c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5Z"
         stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const QRCodeDarkModeIcon = ({ style }: SvgIconProps) => {
+  return (
+    <Svg style={style} width={24} height={24} fill="none">
+      <Path
+        d="M2 9.75c-.41 0-.75-.34-.75-.75V6.5c0-2.9 2.36-5.25 5.25-5.25H9c.41 0 .75.34.75.75s-.34.75-.75.75H6.5c-2.07 0-3.75 1.68-3.75 3.75V9c0 .41-.34.75-.75.75ZM22 9.75c-.41 0-.75-.34-.75-.75V6.5c0-2.07-1.68-3.75-3.75-3.75H15c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h2.5c2.89 0 5.25 2.35 5.25 5.25V9c0 .41-.34.75-.75.75ZM17.5 22.75H16c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h1.5c2.07 0 3.75-1.68 3.75-3.75V16c0-.41.34-.75.75-.75s.75.34.75.75v1.5c0 2.9-2.36 5.25-5.25 5.25ZM9 22.75H6.5c-2.89 0-5.25-2.35-5.25-5.25V15c0-.41.34-.75.75-.75s.75.34.75.75v2.5c0 2.07 1.68 3.75 3.75 3.75H9c.41 0 .75.34.75.75s-.34.75-.75.75Z"
+        fill="#CCC"
       />
       <Path
-        d="M15 2H17.5C19.99 2 22 4.01 22 6.5V9"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M22 16V17.5C22 19.99 19.99 22 17.5 22H16"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M9 22H6.5C4.01 22 2 19.99 2 17.5V15"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M10.5 7V9C10.5 10 10 10.5 9 10.5H7C6 10.5 5.5 10 5.5 9V7C5.5 6 6 5.5 7 5.5H9C10 5.5 10.5 6 10.5 7Z"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M18.5 7V9C18.5 10 18 10.5 17 10.5H15C14 10.5 13.5 10 13.5 9V7C13.5 6 14 5.5 15 5.5H17C18 5.5 18.5 6 18.5 7Z"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M10.5 15V17C10.5 18 10 18.5 9 18.5H7C6 18.5 5.5 18 5.5 17V15C5.5 14 6 13.5 7 13.5H9C10 13.5 10.5 14 10.5 15Z"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M18.5 15V17C18.5 18 18 18.5 17 18.5H15C14 18.5 13.5 18 13.5 17V15C13.5 14 14 13.5 15 13.5H17C18 13.5 18.5 14 18.5 15Z"
-        stroke={color}
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        d="M9 5.25H7c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75V7c0-1.15-.61-1.75-1.75-1.75ZM17 5.25h-2c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75V7c0-1.15-.61-1.75-1.75-1.75ZM9 13.25H7c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75v-2c0-1.15-.61-1.75-1.75-1.75ZM17 13.25h-2c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75v-2c0-1.15-.61-1.75-1.75-1.75Z"
+        fill="#CCC"
       />
     </Svg>
   );
@@ -198,11 +158,36 @@ export const AZALogo = ({ color, size, style }: SvgIconProps) => {
 
 export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
   return (
-    <Svg width="8" height={size} viewBox="0 0 8 22" fill="none">
-      <Path
-        d="M0.0078125 21.9968L2.65615 12.7984H0.0078125V0.00318909H5.39392L2.69003 9.71971H7.993L0.0078125 21.9968Z"
-        fill={color}
-      />
+    <Svg width={10} height={24} fill="none">
+      <G clipPath="url(#a)">
+        <Path
+          d="m.01 23.997 3.31-10.035H.01V.003h6.732l-3.38 10.6h6.629L.009 23.997Z"
+          fill={color}
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Path fill="#fff" d="M0 0h10v24H0z" />
+        </ClipPath>
+      </Defs>
+    </Svg>
+  );
+};
+
+export const AZALargeLightningLogo = ({ color }: SvgIconProps) => {
+  return (
+    <Svg width={12} height={30} fill="none">
+      <G clipPath="url(#a)">
+        <Path
+          d="m.011 29.996 3.973-12.543H.01V.003h8.08l-4.057 13.25h7.955L.01 29.996Z"
+          fill={color}
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Path fill="#fff" d="M0 0h12v30H0z" />
+        </ClipPath>
+      </Defs>
     </Svg>
   );
 };
@@ -375,42 +360,38 @@ export const ArrowRightIcon = ({ style, color, size }: SvgIconProps) => {
 
 export const GoogleIcon = () => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <Path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M22.8859 12.2613C22.8859 11.4459 22.8128 10.6618 22.6769 9.90906H11.8459V14.3575H18.035C17.7684 15.795 16.9582 17.0129 15.7403 17.8284V20.7138H19.4569C21.6314 18.7118 22.8859 15.7636 22.8859 12.2613Z"
-        fill="#4285F4"
-      />
-      <Path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M11.8459 23.4998C14.9509 23.4998 17.5541 22.47 19.4568 20.7137L15.7402 17.8282C14.7105 18.5182 13.3932 18.9259 11.8459 18.9259C8.85068 18.9259 6.31546 16.903 5.41114 14.1848H1.56909V17.1644C3.46136 20.9228 7.35046 23.4998 11.8459 23.4998Z"
-        fill="#34A853"
-      />
-      <Path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M5.41117 14.1851C5.18117 13.4951 5.05049 12.7581 5.05049 12.0001C5.05049 11.2422 5.18117 10.5051 5.41117 9.81512V6.83557H1.56913C0.790265 8.38807 0.345947 10.1444 0.345947 12.0001C0.345947 13.8558 0.790265 15.6122 1.56913 17.1647L5.41117 14.1851Z"
-        fill="#FBBC05"
-      />
-      <Path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M11.8459 5.07386C13.5343 5.07386 15.0502 5.65409 16.242 6.79364L19.5405 3.49523C17.5489 1.63955 14.9457 0.5 11.8459 0.5C7.35046 0.5 3.46136 3.07705 1.56909 6.83545L5.41114 9.815C6.31546 7.09682 8.85068 5.07386 11.8459 5.07386Z"
-        fill="#EA4335"
-      />
+    <Svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <G clip-path="url(#clip0_295_18049)">
+        <Path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M12.6327 4.91089C11.7034 4.02461 10.4633 3.54179 9.18017 3.56163C6.83221 3.56163 4.83809 5.14567 4.12708 7.27867C3.75008 8.39644 3.75008 9.60685 4.12708 10.7246H4.13038C4.84469 12.8543 6.83551 14.4384 9.18348 14.4384C10.3955 14.4384 11.436 14.1284 12.2425 13.5808V13.5786C13.1916 12.9502 13.8397 11.9614 14.0415 10.8437H9.18018V7.37794H17.6693C17.7751 7.97982 17.8247 8.59492 17.8247 9.20671C17.8247 11.9441 16.8464 14.2584 15.1442 15.8259L15.146 15.8273C13.6545 17.203 11.6075 18 9.18017 18C5.77726 18 2.66538 16.0819 1.13754 13.0428C-0.13895 10.4997 -0.138947 7.50359 1.13755 4.96052C2.66539 1.91808 5.77726 -3.85207e-06 9.18017 -3.85207e-06C11.4157 -0.0264599 13.5752 0.813518 15.2022 2.34135L12.6327 4.91089Z"
+          fill="white"
+        />
+      </G>
+      <Defs>
+        <ClipPath id="clip0_295_18049">
+          <Rect width="18" height="18" fill="white" />
+        </ClipPath>
+      </Defs>
     </Svg>
   );
 };
 
 export const FacebookIcon = () => {
   return (
-    <Svg width="25" height="20" viewBox="0 0 25 20" fill="none">
-      <Path
-        d="M15.438 3.32083H17.3226V0.140833C16.9974 0.0975 15.8793 0 14.577 0C11.8598 0 9.99846 1.65583 9.99846 4.69917V7.5H7V11.055H9.99846V20H13.6747V11.0558H16.5519L17.0086 7.50083H13.6739V5.05167C13.6747 4.02417 13.9603 3.32083 15.438 3.32083Z"
-        fill="#007AFF"
-      />
+    <Svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <G clip-path="url(#clip0_295_18047)">
+        <Path
+          d="M18 9C18 4.02943 13.9706 0 9 0C4.02943 0 0 4.02943 0 9C0 13.4921 3.29115 17.2155 7.59375 17.8907V11.6016H5.30859V9H7.59375V7.01719C7.59375 4.76156 8.93742 3.51562 10.9932 3.51562C11.9776 3.51562 13.0078 3.69141 13.0078 3.69141V5.90625H11.873C10.755 5.90625 10.4062 6.60006 10.4062 7.3125V9H12.9023L12.5033 11.6016H10.4062V17.8907C14.7088 17.2155 18 13.4921 18 9Z"
+          fill="white"
+        />
+      </G>
+      <Defs>
+        <ClipPath id="clip0_295_18047">
+          <Rect width="18" height="18" fill="white" />
+        </ClipPath>
+      </Defs>
     </Svg>
   );
 };

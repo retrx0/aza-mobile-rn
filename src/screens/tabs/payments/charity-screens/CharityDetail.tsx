@@ -105,7 +105,7 @@ export default function CharityDetail({
           onPressButton={() => {
             navigation.goBack();
           }}
-          style={{ borderBottomColor: Colors.general.red,marginBottom:20 }}
+          style={{ borderBottomColor: Colors.general.red, marginBottom: 20 }}
           title="Cancel"
           styleText={CommonStyles.cancelStyle}
         />

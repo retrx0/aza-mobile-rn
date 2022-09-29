@@ -11,6 +11,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Undraw } from "../../../../assets/images";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
+import VaultUndrawSVG from "../../../../assets/svg/VaultUndraw";
 
 const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
@@ -27,18 +28,23 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             headerStyle={[CommonStyles.vault]}
             descriptionStyle={undefined}
           />
-          <Image
+          {/* <Image
             source={Undraw}
             resizeMode="cover"
             style={[CommonStyles.undraw]}
-          />
+          /> */}
+          <View style={[CommonStyles.undraw]}>
+            <VaultUndrawSVG />
+          </View>
+
           <Text style={[CommonStyles.vaultText]}>You dont have any vaults</Text>
           <View style={CommonStyles.createVaultContainer}>
             <Text
               style={[
                 CommonStyles.createNewVault,
                 { color: Colors[colorScheme].Text },
-              ]}>
+              ]}
+            >
               Click New Vault to create a new vault
             </Text>
             <TouchableOpacity>
@@ -57,7 +63,8 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(20) },
-          ]}>
+          ]}
+        >
           <Button
             title="New Vault"
             onPressButton={() =>

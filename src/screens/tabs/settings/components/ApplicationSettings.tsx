@@ -99,7 +99,8 @@ export default function ApplicationSettings({
           style={{
             color: Colors[colorScheme].secondaryText,
             fontSize: 14,
-          }}>
+          }}
+        >
           Application Settings
         </Text>
         <View

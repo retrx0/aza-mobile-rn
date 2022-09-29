@@ -70,7 +70,8 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}>
+          }}
+        >
           <TouchableOpacity
             style={{
               width: 77,
@@ -81,7 +82,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ArchievedVault" })
-            }>
+            }
+          >
             <ArchieveIcon />
             <Text
               style={{
@@ -91,7 +93,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Archive
             </Text>
           </TouchableOpacity>
@@ -105,7 +108,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }>
+            }
+          >
             <TrashIcon color="white" size={24} />
             <Text
               style={{
@@ -115,7 +119,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Delete
             </Text>
           </TouchableOpacity>
@@ -123,7 +128,8 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}>
+      rightThreshold={40}
+    >
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
@@ -136,7 +142,8 @@ const ListItem = ({
                       ? "#EBFCE9"
                       : Colors[colorScheme].disabled,
                 },
-              ]}>
+              ]}
+            >
               <TouchableOpacity onPress={onPress} style={{}}>
                 {lockIcon}
               </TouchableOpacity>
@@ -153,7 +160,8 @@ const ListItem = ({
                         ? "#2A9E17"
                         : Colors[colorScheme].text,
                   },
-                ]}>
+                ]}
+              >
                 {"\u20A6"}
                 {amount}
               </Text>

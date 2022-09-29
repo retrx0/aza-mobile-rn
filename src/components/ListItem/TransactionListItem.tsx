@@ -38,12 +38,12 @@ export default function TransactionListItem({
       ]}
     >
       <Image
-        style={{ borderRadius: 50, width: 36, height: 36 }}
+        style={{ borderRadius: 50, width: 45, height: 45 }}
         source={{
           uri: image,
         }}
       />
-      <View style={{ display: "flex", marginRight: "auto", marginLeft: 20 }}>
+      <View style={{ display: "flex", marginRight: "auto", marginLeft: 15 }}>
         <Text
           lightColor={Colors.light.mainText}
           darkColor={Colors.dark.mainText}
@@ -59,7 +59,7 @@ export default function TransactionListItem({
             CommonStyles.row,
             {
               marginTop: 3,
-              marginBottom: 8,
+              marginBottom: 10,
               alignSelf: "flex-start",
             },
           ]}
@@ -70,12 +70,11 @@ export default function TransactionListItem({
             <SendIcon color={Colors.light.error} />
           )}
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            lightColor={Colors.light.text}
+            darkColor={Colors.dark.secondaryText}
             style={{
               marginLeft: 3,
               fontSize: 12,
-              fontFamily: "Euclid-Circular-A",
             }}
           >
             {transactionTitle}
@@ -86,7 +85,7 @@ export default function TransactionListItem({
             <MessageIcon color={Colors[colorScheme].text} size={12} />
             <Text
               lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              darkColor={Colors.dark.secondaryText}
               style={{
                 marginLeft: 3,
                 fontSize: 10,
@@ -116,8 +115,8 @@ export default function TransactionListItem({
           {"\u20A6"} {amount}
         </Text>
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.secondaryText}
           style={{
             fontSize: 10,
             marginTop: 3,

@@ -24,7 +24,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           Block Users
         </Text>
       ),
@@ -44,7 +45,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
+          >
             Blocked users won't be able to send you money, request money from
             you or split payments with you.
           </Text>
@@ -54,7 +56,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={{
               fontSize: 14,
               marginTop: hp(30),
-            }}>
+            }}
+          >
             You can unblock these users anytime
           </Text>
         </View>
@@ -70,12 +73,14 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontSize: 16,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: 30,
-            }}>
+            }}
+          >
             You have not blocked anyone
           </Text>
         </View>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(25) }]}>
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(25) }]}
+        >
           <Button
             title="Block New User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
