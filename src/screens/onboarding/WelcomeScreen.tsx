@@ -13,7 +13,6 @@ import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data } from "./OnboardingUtil";
 
-
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
     { id: 1, active: true },
@@ -22,6 +21,10 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
     { id: 4, active: false },
     { id: 5, active: false },
   ]);
+
+  // useEffect(() => {
+  //   throw new Error("My first Sentry error!");
+  // }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.general.white }}>
