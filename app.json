@@ -8,7 +8,6 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "owner": "retro1",
-    "primaryColor": "#000000",
     "splash": {
       "image": "./assets/images/app/aza-splash.jpeg",
       "resizeMode": "contain",
@@ -18,20 +17,15 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "notification": {},
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "usesAppleSignIn": "false",
-      "usesIcloudStorage": "false"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/app/aza-app-icon-light.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.aza.azaapp",
-      "android.googleServicesFile": "/google-services.json"
+      }
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-light.png"
@@ -43,16 +37,6 @@
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
-    },
-    "plugins": [
-      "sentry-expo",
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/images/app/aza-app-icon-light.png",
-          "color": "#ffffff"
-        }
-      ]
-    ]
+    }
   }
 }
