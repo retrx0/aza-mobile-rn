@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "323832028739",
+    "project_id": "project-aza",
+    "storage_bucket": "project-aza.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323832028739:android:b6c97104a6f5c56591bef6",
+        "android_client_info": {
+          "package_name": "com.aza.azaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323832028739-9c78ldonqnd1d0altnabgcf0h8lnbb1a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aza.azaapp",
+            "certificate_hash": "fcb5947966466f666d0f0424addfc9c6bd1977bc"
+          }
+        },
+        {
+          "client_id": "323832028739-lv5fi56u3oh3rl78itctljbackutb9d2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdUq4z3xc2iTLzh8dU8fYpeMgxy5Sm-Mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323832028739-lv5fi56u3oh3rl78itctljbackutb9d2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
