@@ -21,8 +21,7 @@ const LoginOptionsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Login Options
         </Text>
       ),
@@ -42,8 +41,7 @@ const LoginOptionsScreen = ({
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-          >
+            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
             Login quickly by connecting your Aza account to your social media
             account.
           </Text>

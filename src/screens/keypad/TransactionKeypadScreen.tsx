@@ -21,6 +21,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { CloseCircleLargeIcon, NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
+import { UserData } from "../../constants/userData";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -46,8 +47,7 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           {headerTitle}
         </Text>
       ),
@@ -77,9 +77,8 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 14,
               marginTop: 15,
-            }}
-          >
-            Chiazondu Joseph
+            }}>
+            {UserData.userFullName}
           </Text>
           <View
             lightColor="#eaeaec"
@@ -94,13 +93,11 @@ const TransactionKeypadScreen = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}
-          >
+            ]}>
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}
-            >
+              style={{ fontSize: 12 }}>
               Nigerian Naira
             </Text>
             <Image
@@ -115,8 +112,7 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}
-            >
+              style={{ fontSize: 12 }}>
               NGN
             </Text>
           </View>
@@ -136,8 +132,7 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 15,
-              }}
-            >
+              }}>
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -147,8 +142,7 @@ const TransactionKeypadScreen = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}
-            >
+              }}>
               Aza Balance:
             </Text>
             <Text
@@ -158,9 +152,8 @@ const TransactionKeypadScreen = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}
-            >
-              {"\u20A6"} 10,239,290.00
+              }}>
+              {"\u20A6"} {UserData.userAzaBalance}
             </Text>
           </View>
         </View>
@@ -194,12 +187,10 @@ const TransactionKeypadScreen = ({
       {/* description modal */}
       <Modal
         isVisible={descModal}
-        style={{ justifyContent: "flex-end", margin: 0 }}
-      >
+        style={{ justifyContent: "flex-end", margin: 0 }}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}
-        >
+          keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}>
           <TouchableOpacity
             onPress={() => setDescModalOpen(false)}
             style={{
@@ -207,8 +198,7 @@ const TransactionKeypadScreen = ({
               alignItems: "flex-end",
               marginBottom: 20,
               marginRight: 15,
-            }}
-          >
+            }}>
             <CloseCircleLargeIcon
               color={Colors[colorScheme].backgroundSecondary}
             />
@@ -223,16 +213,14 @@ const TransactionKeypadScreen = ({
               paddingBottom: 50,
               display: "flex",
               justifyContent: "space-between",
-            }}
-          >
+            }}>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 16,
-              }}
-            >
+              }}>
               Description
             </Text>
             <Text
@@ -241,8 +229,7 @@ const TransactionKeypadScreen = ({
               style={{
                 marginTop: 10,
                 fontSize: 14,
-              }}
-            >
+              }}>
               You can add a note to this transaction
             </Text>
             <TextInput

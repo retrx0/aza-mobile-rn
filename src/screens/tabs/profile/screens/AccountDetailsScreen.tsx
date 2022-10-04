@@ -12,6 +12,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
+import { UserData } from "../../../../constants/userData";
 
 interface Detail {
   title: string;
@@ -31,8 +32,7 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
             justifyContent: "space-between",
             paddingVertical: hp(20),
           },
-        ]}
-      >
+        ]}>
         <View style={[CommonStyles.col]}>
           <Text
             lightColor={Colors[colorScheme].text}
@@ -40,15 +40,13 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-            }}
-          >
+            }}>
             {title}
           </Text>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
-            style={{ fontSize: 10, marginTop: 2 }}
-          >
+            style={{ fontSize: 10, marginTop: 2 }}>
             {subText}
           </Text>
         </View>
@@ -57,8 +55,7 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
           darkColor={Colors[colorScheme].mainText}
           style={{
             fontSize: 14,
-          }}
-        >
+          }}>
           {detail}
         </Text>
       </View>
@@ -81,8 +78,7 @@ const AccountDetailsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Account Details
         </Text>
       ),
@@ -159,9 +155,8 @@ const AccountDetailsScreen = ({
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: 14,
-              }}
-            >
-              Chiazondu Joseph
+              }}>
+              {UserData.userFullName}
             </Text>
             <Text
               lightColor={Colors.light.text}
@@ -169,16 +164,14 @@ const AccountDetailsScreen = ({
               style={{
                 marginVertical: 5,
                 fontSize: 12,
-              }}
-            >
-              +9091234567
+              }}>
+              {UserData.userphoneNumber}
             </Text>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 10 }}
-            >
-              chiazo@samplemail.com
+              style={{ fontSize: 10 }}>
+              {UserData.userEmail}
             </Text>
           </View>
         </View>
@@ -186,8 +179,7 @@ const AccountDetailsScreen = ({
           style={[
             CommonStyles.col,
             { alignSelf: "stretch", marginTop: hp(20) },
-          ]}
-        >
+          ]}>
           {details.map(({ detail, subText, title }, i) => (
             <AccountDetailsListItem
               key={i}
@@ -204,8 +196,7 @@ const AccountDetailsScreen = ({
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-            }}
-          >
+            }}>
             Term of Use
           </Text>
         </TouchableOpacity>

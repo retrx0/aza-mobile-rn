@@ -22,8 +22,7 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Manage Card
         </Text>
       ),
@@ -48,22 +47,19 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
               height: hp(150),
               backgroundColor: "black",
             },
-          ]}
-        >
+          ]}>
           <View
             style={{
               marginLeft: 50,
               marginTop: "auto",
               backgroundColor: "transparent",
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: 16,
                 color: "white",
-              }}
-            >
+              }}>
               **** **** **** 1234
             </Text>
             <Text
@@ -71,8 +67,7 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
                 fontSize: 8,
                 marginTop: 8,
                 color: "white",
-              }}
-            >
+              }}>
               Visa - EXP Jul/2023
             </Text>
           </View>
@@ -81,18 +76,17 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
               marginTop: "auto",
               marginRight: "auto",
               backgroundColor: "transparent",
-            }}
-          >
+            }}>
             <DebitCreditCardCurvesDesign />
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}>
           <CancelButtonWithUnderline
             title="Delete Card"
             styleText={[CommonStyles.cancelStyle]}
             onPressButton={() => navigation.goBack()}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>
