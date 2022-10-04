@@ -146,3 +146,13 @@ export type CountryProps = {
 };
 
 export type CountriesType = Omit<CountryProps, "onPress">;
+
+export type UserData = {
+  userAzaAccountNumber: number;
+  userAzaBalance: number;
+  userFistName: string;
+  userLastName: string;
+  userFullName: string;
+  userPhoneNumber: number;
+  userEmail: string;
+};
