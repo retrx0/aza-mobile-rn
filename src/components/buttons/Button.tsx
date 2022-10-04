@@ -35,7 +35,7 @@ export const Button: FC<ButtonPropsType> = ({
           backgroundColor: Colors[colorScheme].secondaryText,
         },
         {
-          opacity: disabled ? 0.3 : 1,
+          opacity: disabled ? 0.5 : 1,
         },
         style,
       ]}>
