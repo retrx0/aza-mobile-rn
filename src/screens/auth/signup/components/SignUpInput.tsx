@@ -10,7 +10,7 @@ import { Gender } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
 import { SelectIcon } from "../../../../../assets/svg";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
@@ -29,7 +29,6 @@ const SignUpProfile = ({
     label: "Select Gender",
     value: null,
     color: Colors.general.black,
-    icon: { SelectIcon },
   };
   const colorScheme = useColorScheme();
 
@@ -140,10 +139,19 @@ const SignUpProfile = ({
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                width: "100%",
+                width: "90%",
+                backgroundColor: "#F2F2F2",
+                alignSelf: "center",
+                paddingHorizontal: wp(10),
+                borderRadius: 5,
+                marginTop: hp(7),
+                paddingVertical: hp(15),
+                justifyContent: "space-between",
               }}>
               <RNPickerSelect
                 placeholder={placeholder}
+                onUpArrow={() => true}
+                onDownArrow={() => true}
                 onValueChange={(value) => {
                   setGender(value);
                 }}
@@ -156,16 +164,6 @@ const SignUpProfile = ({
                   itemStyle: { color: Colors[colorScheme].text },
                 }}
                 style={{
-                  viewContainer: {
-                    paddingHorizontal: wp(10),
-                    width: "90%",
-                    borderRadius: 5,
-                    marginTop: hp(7),
-                    marginLeft: hp(20),
-                    paddingVertical: hp(15),
-                    alignSelf: "center",
-                    backgroundColor: "#F2F2F2",
-                  },
                   placeholder: {
                     fontSize: hp(16),
                     lineHeight: hp(20),
