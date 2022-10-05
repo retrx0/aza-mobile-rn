@@ -82,13 +82,13 @@ export const useBottomSheetType = (
         onPress: () =>
           navigation.navigate("Common", { screen: "FeesAndLimits" }),
       },
-      {
-        itemName: "Frequently Asked Questions (FAQs)",
-        itemIcon: (
-          <MessageQuestionIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
-        onPress: () => console.log("called"),
-      },
+      // {
+      //   itemName: "Frequently Asked Questions (FAQs)",
+      //   itemIcon: (
+      //     <MessageQuestionIcon size={16} color={Colors[colorScheme].mainText} />
+      //   ),
+      //   onPress: () => console.log("called"),
+      // },
       {
         itemName: "Contact Us",
         itemIcon: (
