@@ -10,7 +10,7 @@ import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { useAppDispatch } from "../../../hooks/redux";
-import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
+import { requestOtp, setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
@@ -52,7 +52,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       <Button
         title="Continue"
         onPressButton={() => {
-          dispatch(setReduxStorePhone(phone));
+          dispatch(setReduxStorePhone(phone))
+          dispatch(requestOtp({phone,email:''}));
           navigation.navigate("SignUpOTP");
         }}
         styleText={{

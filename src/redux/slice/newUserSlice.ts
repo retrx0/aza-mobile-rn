@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 import { Gender, User } from "../types";
-import { BASE_URL } from "@env";
 import api from "../../api";
 interface NewUser extends User {
   isVerified?: boolean;
@@ -11,6 +10,7 @@ interface NewUser extends User {
   isUsePasscodeAsPin?: boolean;
   createdPasscode?: string;
   loading?: boolean;
+  otp?:string;
 }
 
 // Define the initial state using that type
@@ -19,7 +19,7 @@ const initialState: NewUser = {
   firstname: "",
   lastname: "",
   email: "",
-  gender: "Unknown",
+  gender:'',
   isVerified: false,
   isUsePasscodeAsPin: false,
 };
@@ -34,14 +34,63 @@ export const requestOtp = createAsyncThunk(
     };
 
     api
-      .post("/api/auth/request-otp", {
+      .post("/api/v1/auth/request-otp", {
         phoneNumber: props.phone,
         email: props.email,
       })
       .then(
-        (response) => {
-          console.log(response);
-        },
+        (response) =>response,
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+);
+
+//Async function to verify otp
+export const verifyOtp = createAsyncThunk(
+  "user/verifyOtp",
+  async (props: NewUser) => {
+    const bodyData = {
+      phoneNumber: props.phone,
+      email: props.email,
+      otp:props.otp
+    };
+
+    api
+      .post("/api/v1/auth/verify-otp", {
+        phoneNumber: props.phone,
+        email: props.email,
+        otp:props.otp
+      })
+      .then(
+        (response) => response,
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+);
+
+
+
+export const registerUser = createAsyncThunk(
+  "user/registerUser",
+  async (props: NewUser) => {
+    api
+      .put("/api/v1/user/register", {
+        firstName:props.firstname,
+        lastName: props.lastname,
+        gender: 1,
+        email: "",
+        countryCode:props.phone?.split(' ')[0],
+        phoneNumber:props.phone,
+        dateOfBirth: "2022-10-05T06:49:36.196Z",
+        emailConfirmed: true,
+        phoneNumberConfirmed: true
+      })
+      .then(
+        (response) =>response,
         (error) => {
           console.log(error);
         }
@@ -93,8 +142,29 @@ export const newUserSlice = createSlice({
       builder.addCase(requestOtp.fulfilled, (state, action) => {
         state.otpSent = true;
         state.loading = false;
-      });
+      }),
+      builder.addCase(verifyOtp.pending,(state, action)=>{
+        state.loading=true
+      }),
+      builder.addCase(verifyOtp.rejected,(state, action)=>{
+        state.loading=false
+      }),
+      builder.addCase(verifyOtp.fulfilled,(state, action)=>{
+        state.loading=false
+        state.isVerified=true
+      })
+      builder.addCase(registerUser.pending,(state, action)=>{
+        state.loading=true
+      }),
+      builder.addCase(registerUser.rejected,(state, action)=>{
+        state.loading=false
+      }),
+      builder.addCase(registerUser.fulfilled,(state, action)=>{
+        state.loading=false
+      })
   },
+  
+
 });
 
 export const {
@@ -111,3 +181,5 @@ export const {
 export const selectNewUser = (state: RootState) => state.newUser;
 
 export default newUserSlice.reducer;
+
+

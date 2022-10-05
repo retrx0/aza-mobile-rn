@@ -15,9 +15,11 @@ import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import {
+  registerUser,
   selectNewUser,
   setNewUser,
 } from "../../../../redux/slice/newUserSlice";
+import { useSelector } from "react-redux";
 
 const SignUpProfile = ({
   navigation,
@@ -34,6 +36,7 @@ const SignUpProfile = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
+  const {phone}=useSelector(state=>state.newUser)
 
   return (
     <>
@@ -191,6 +194,17 @@ const SignUpProfile = ({
                     gender: gender,
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
+                  })
+                );
+                dispatch(
+                  registerUser({
+                    firstname: values.firstname,
+                    lastname: values.lastname,
+                    email: values.email,
+                    gender: gender,
+                    isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
+                    createdPasscode: newUser.createdPasscode,
+                    phone
                   })
                 );
                 navigation.navigate("SignUpPassword", {

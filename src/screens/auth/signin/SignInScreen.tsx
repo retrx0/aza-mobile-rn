@@ -10,11 +10,15 @@ import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
+import { useDispatch } from "react-redux";
+import { requestOtp } from "../../../redux/slice/newUserSlice";
+import { API_BASE_URL } from "@env";
 
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
   const colorScheme = useColorScheme();
+  const dispatch=useDispatch()
   return (
     <SpacerWrapper>
       <View style={{ marginLeft: 20 }}>
@@ -49,7 +53,9 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       <Button
         title="Continue"
         onPressButton={() => {
+          dispatch(requestOtp({phone,email:'mubarakibrahim2015@gmail.com'}))
           navigation.navigate("SignInOTP");
+          
         }}
         styleText={{
           color: Colors[colorScheme].buttonText,
