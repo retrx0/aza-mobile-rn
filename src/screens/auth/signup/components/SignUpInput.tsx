@@ -36,7 +36,7 @@ const SignUpProfile = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
-  const {phone}=useSelector(state=>state.newUser)
+  const { phone } = useSelector((state) => state.newUser);
 
   return (
     <>
@@ -47,8 +47,7 @@ const SignUpProfile = ({
           lastname: "",
           email: "",
         }}
-        onSubmit={(values) => console.log(values)}
-      >
+        onSubmit={(values) => console.log(values)}>
         {({
           handleChange,
           handleBlur,
@@ -60,8 +59,7 @@ const SignUpProfile = ({
         }) => (
           <>
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>First name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -84,8 +82,7 @@ const SignUpProfile = ({
             </View>
 
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Last name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -108,8 +105,7 @@ const SignUpProfile = ({
             </View>
 
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Email</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -145,8 +141,7 @@ const SignUpProfile = ({
                 flexDirection: "row",
                 alignItems: "center",
                 width: "100%",
-              }}
-            >
+              }}>
               <RNPickerSelect
                 placeholder={placeholder}
                 onValueChange={(value) => {
@@ -164,7 +159,6 @@ const SignUpProfile = ({
                   viewContainer: {
                     paddingHorizontal: wp(10),
                     width: "90%",
-                    height: hp(50),
                     borderRadius: 5,
                     marginTop: hp(7),
                     marginLeft: hp(20),
@@ -204,7 +198,7 @@ const SignUpProfile = ({
                     gender: gender,
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
-                    phone
+                    phone,
                   })
                 );
                 navigation.navigate("SignUpPassword", {
