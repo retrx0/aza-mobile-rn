@@ -53,7 +53,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         title="Continue"
         onPressButton={() => {
           dispatch(setReduxStorePhone(phone))
-          dispatch(requestOtp({phone,email:''}));
+          dispatch(requestOtp({phone:'',email:'mubarakibrahim2015@gmail.com'}));
           navigation.navigate("SignUpOTP");
         }}
         styleText={{

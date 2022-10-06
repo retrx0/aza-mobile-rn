@@ -22,9 +22,9 @@ const SignUpOTPScreen = ({ navigation }: SignUpScreenProps<"SignUpOTP">) => {
         onOtpChanged={(code) => setSignUpOtp(code)}
         onVerify={() => {
           dispatch(verifyOtp({
-            phone:phone,
-            email:'',
-            otp:signUpOtp
+            phone:'',
+            email:'mubarakibrahim2015@gmail.com',
+            otp:Number(signUpOtp)
           }));
           navigation.navigate("SignUpProfileSetup");
         }}

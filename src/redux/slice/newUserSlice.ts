@@ -10,7 +10,8 @@ interface NewUser extends User {
   isUsePasscodeAsPin?: boolean;
   createdPasscode?: string;
   loading?: boolean;
-  otp?:string;
+  otp?:number;
+  token?:string|void;
 }
 
 // Define the initial state using that type
@@ -22,6 +23,8 @@ const initialState: NewUser = {
   gender:'',
   isVerified: false,
   isUsePasscodeAsPin: false,
+  loading:false,
+  token:''
 };
 
 //Create async function fro requesting otp
@@ -39,7 +42,9 @@ export const requestOtp = createAsyncThunk(
         email: props.email,
       })
       .then(
-        (response) =>response,
+        (response) =>{
+          console.log(response.headers,"+++++")
+        },
         (error) => {
           console.log(error);
         }
@@ -50,21 +55,21 @@ export const requestOtp = createAsyncThunk(
 //Async function to verify otp
 export const verifyOtp = createAsyncThunk(
   "user/verifyOtp",
-  async (props: NewUser) => {
+  (props: NewUser) => {
     const bodyData = {
       phoneNumber: props.phone,
       email: props.email,
       otp:props.otp
     };
 
-    api
+return api
       .post("/api/v1/auth/verify-otp", {
         phoneNumber: props.phone,
         email: props.email,
         otp:props.otp
       })
       .then(
-        (response) => response,
+        (response) =>response.headers["access-token"],
         (error) => {
           console.log(error);
         }
@@ -77,20 +82,25 @@ export const verifyOtp = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (props: NewUser) => {
-    api
+    //The below code is where i embbed the bearer token
+    api.defaults.headers.common['Authorization']=`Bearer ${props.token}`;
+
+     api
       .put("/api/v1/user/register", {
         firstName:props.firstname,
         lastName: props.lastname,
         gender: 1,
         email: "",
-        countryCode:props.phone?.split(' ')[0],
+        countryCode:'Ng',
         phoneNumber:props.phone,
         dateOfBirth: "2022-10-05T06:49:36.196Z",
         emailConfirmed: true,
         phoneNumberConfirmed: true
       })
       .then(
-        (response) =>response,
+        (response) =>{
+          console.log(response)
+        },
         (error) => {
           console.log(error);
         }
@@ -152,6 +162,8 @@ export const newUserSlice = createSlice({
       builder.addCase(verifyOtp.fulfilled,(state, action)=>{
         state.loading=false
         state.isVerified=true
+        state.token=action.payload
+        console.log(action.payload,"++++++++++ACCC")
       })
       builder.addCase(registerUser.pending,(state, action)=>{
         state.loading=true
@@ -161,6 +173,8 @@ export const newUserSlice = createSlice({
       }),
       builder.addCase(registerUser.fulfilled,(state, action)=>{
         state.loading=false
+       
+        console.log(action.payload,"++++++++++Acc")
       })
   },
   

@@ -36,10 +36,11 @@ const SignUpProfile = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
-  const { phone } = useSelector((state) => state.newUser);
+  const { phone,token } = useSelector((state) => state.newUser);
 
   return (
     <>
+    {console.log(token,"my++++++")}
       <Formik
         validationSchema={signUpValidationSchema}
         initialValues={{
@@ -61,7 +62,7 @@ const SignUpProfile = ({
             <View
               style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ marginBottom: hp(5) }}>First name</Text>
+                <Text style={{ marginBottom: hp(100) }}>First name</Text>
                 <Text style={{ color: "red" }}>*</Text>
               </View>
               <TextInput
@@ -188,6 +189,7 @@ const SignUpProfile = ({
                     gender: gender,
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
+                    
                   })
                 );
                 dispatch(
@@ -199,6 +201,7 @@ const SignUpProfile = ({
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
                     phone,
+                    token
                   })
                 );
                 navigation.navigate("SignUpPassword", {
