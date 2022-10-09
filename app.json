@@ -2,16 +2,18 @@
   "expo": {
     "name": "aza",
     "slug": "aza",
+    "currentFullName": "@retro1/aza",
+    "originalFullName": "@retro1/aza",
     "version": "0.1.1",
     "orientation": "portrait",
     "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-light.png",
-    "scheme": "myapp",
+    "scheme": "com.aza.azaapp",
     "userInterfaceStyle": "automatic",
     "owner": "retro1",
     "notification": {},
     "splash": {
-      "image": "./assets/images/app/aza-splash.jpeg",
+      "image": "./assets/images/app/aza-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,10 +22,13 @@
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
     "assetBundlePatterns": ["**/*"],
+    "facebookScheme": "423467809816897",
     "ios": {
       "supportsTablet": true,
-      "usesAppleSignIn": false,
-      "usesIcloudStorage": false
+      "usesAppleSignIn": true,
+      "usesIcloudStorage": false,
+      "bundleIdentifier": "com.aza.azaapp",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,7 +36,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "android.googleServicesFile": "/google-services.json"
+      "googleServicesFile": "/google-services.json"
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-light.png"

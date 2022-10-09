@@ -26,11 +26,13 @@ export default function AccountDetails() {
               justifyContent: "center",
               borderRadius: 50,
             },
-          ]}>
+          ]}
+        >
           <Text
             lightColor={"#000000"}
             darkColor={"#CCCCCC"}
-            style={{ fontSize: 12 }}>
+            style={{ fontSize: 12 }}
+          >
             Nigerian Naira
           </Text>
           <Image
@@ -40,7 +42,8 @@ export default function AccountDetails() {
           <Text
             lightColor={Colors.general.darkGrey}
             darkColor={Colors.dark.tabIconDefault}
-            style={{ fontSize: 12 }}>
+            style={{ fontSize: 12 }}
+          >
             NGN
           </Text>
         </View>
@@ -64,8 +67,9 @@ export default function AccountDetails() {
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 24,
                 marginVertical: 10,
-              }}>
-              {UserData.userAzaBalance}
+              }}
+            >
+              {UserData.azaBalance}
             </Text>
           </>
         ) : (
@@ -76,7 +80,8 @@ export default function AccountDetails() {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 24,
               marginVertical: 10,
-            }}>
+            }}
+          >
             **********
           </Text>
         )}
@@ -87,7 +92,8 @@ export default function AccountDetails() {
           darkColor={Colors.dark.mainText}
           style={{
             fontSize: 12,
-          }}>
+          }}
+        >
           Aza Number:
         </Text>
         <Text
@@ -97,8 +103,9 @@ export default function AccountDetails() {
             marginLeft: 3,
             fontSize: 12,
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-          }}>
-          {UserData.userAzaAccountNumber}
+          }}
+        >
+          {UserData.azaAccountNumber}
         </Text>
       </View>
     </View>

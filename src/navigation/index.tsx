@@ -23,6 +23,8 @@ import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
+import { useAppSelector } from "../hooks/redux";
+import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -46,8 +48,13 @@ type PasswordScreenParamsType = {
 };
 
 const RootNavigator = () => {
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName={isLoggedIn ? "SignIn" : "Welcome"}
+      screenOptions={{ gestureEnabled: false }}
+    >
       <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}

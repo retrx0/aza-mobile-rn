@@ -10,8 +10,8 @@ interface NewUser extends User {
   isUsePasscodeAsPin?: boolean;
   createdPasscode?: string;
   loading?: boolean;
-  otp?:number;
-  token?:string|void;
+  otp?: number;
+  token?: string | void;
 }
 
 // Define the initial state using that type
@@ -20,11 +20,11 @@ const initialState: NewUser = {
   firstname: "",
   lastname: "",
   email: "",
-  gender:'',
+  gender: "",
   isVerified: false,
   isUsePasscodeAsPin: false,
-  loading:false,
-  token:''
+  loading: false,
+  token: "",
 };
 
 //Create async function fro requesting otp
@@ -42,8 +42,8 @@ export const requestOtp = createAsyncThunk(
         email: props.email,
       })
       .then(
-        (response) =>{
-          console.log(response.headers,"+++++")
+        (response) => {
+          console.log(response.headers, "+++++");
         },
         (error) => {
           console.log(error);
@@ -59,17 +59,17 @@ export const verifyOtp = createAsyncThunk(
     const bodyData = {
       phoneNumber: props.phone,
       email: props.email,
-      otp:props.otp
+      otp: props.otp,
     };
 
-return api
+    return api
       .post("/api/v1/auth/verify-otp", {
         phoneNumber: props.phone,
         email: props.email,
-        otp:props.otp
+        otp: props.otp,
       })
       .then(
-        (response) =>response.headers["access-token"],
+        (response) => response.headers["access-token"],
         (error) => {
           console.log(error);
         }
@@ -77,29 +77,27 @@ return api
   }
 );
 
-
-
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (props: NewUser) => {
     //The below code is where i embbed the bearer token
-    api.defaults.headers.common['Authorization']=`Bearer ${props.token}`;
+    api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
 
-     api
+    api
       .put("/api/v1/user/register", {
-        firstName:props.firstname,
+        firstName: props.firstname,
         lastName: props.lastname,
         gender: 1,
         email: "",
-        countryCode:'Ng',
-        phoneNumber:props.phone,
+        countryCode: "Ng",
+        phoneNumber: props.phone,
         dateOfBirth: "2022-10-05T06:49:36.196Z",
         emailConfirmed: true,
-        phoneNumberConfirmed: true
+        phoneNumberConfirmed: true,
       })
       .then(
-        (response) =>{
-          console.log(response)
+        (response) => {
+          console.log(response);
         },
         (error) => {
           console.log(error);
@@ -153,32 +151,30 @@ export const newUserSlice = createSlice({
         state.otpSent = true;
         state.loading = false;
       }),
-      builder.addCase(verifyOtp.pending,(state, action)=>{
-        state.loading=true
+      builder.addCase(verifyOtp.pending, (state, action) => {
+        state.loading = true;
       }),
-      builder.addCase(verifyOtp.rejected,(state, action)=>{
-        state.loading=false
+      builder.addCase(verifyOtp.rejected, (state, action) => {
+        state.loading = false;
       }),
-      builder.addCase(verifyOtp.fulfilled,(state, action)=>{
-        state.loading=false
-        state.isVerified=true
-        state.token=action.payload
-        console.log(action.payload,"++++++++++ACCC")
-      })
-      builder.addCase(registerUser.pending,(state, action)=>{
-        state.loading=true
+      builder.addCase(verifyOtp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isVerified = true;
+        state.token = action.payload;
+        console.log(action.payload, "++++++++++ACCC");
+      });
+    builder.addCase(registerUser.pending, (state, action) => {
+      state.loading = true;
+    }),
+      builder.addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
       }),
-      builder.addCase(registerUser.rejected,(state, action)=>{
-        state.loading=false
-      }),
-      builder.addCase(registerUser.fulfilled,(state, action)=>{
-        state.loading=false
-       
-        console.log(action.payload,"++++++++++Acc")
-      })
-  },
-  
+      builder.addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
 
+        console.log(action.payload, "++++++++++Acc");
+      });
+  },
 });
 
 export const {
@@ -195,5 +191,3 @@ export const {
 export const selectNewUser = (state: RootState) => state.newUser;
 
 export default newUserSlice.reducer;
-
-

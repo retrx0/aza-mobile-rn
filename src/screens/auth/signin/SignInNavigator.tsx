@@ -3,6 +3,8 @@ import React from "react";
 import LoginOTPScreen from "./SignInOTPScreen";
 import SignInWelcomeBackScreen from "./SignInWelcomBackScreen";
 import SignInScreen from "./SignInScreen";
+import { useAppSelector } from "../../../hooks/redux";
+import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
 
 const LogInStack = createNativeStackNavigator();
 
@@ -13,21 +15,25 @@ export type LogInStackProps = {
 };
 
 const LoginNavigator = () => {
+  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+
   return (
-    <LogInStack.Navigator>
+    <LogInStack.Navigator
+      initialRouteName={isLoggedIn ? "SignInWelcomeBack" : "SignInRoot"}
+    >
       <LogInStack.Screen
         component={SignInScreen}
-        name='SignInRoot'
+        name="SignInRoot"
         options={{ headerShown: false }}
       />
       <LogInStack.Screen
         component={LoginOTPScreen}
-        name='SignInOTP'
+        name="SignInOTP"
         options={{ headerShown: false }}
       />
       <LogInStack.Screen
         component={SignInWelcomeBackScreen}
-        name='SignInWelcomeBack'
+        name="SignInWelcomeBack"
         options={{ headerShown: false }}
       />
     </LogInStack.Navigator>
