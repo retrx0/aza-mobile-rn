@@ -15,14 +15,15 @@ import {
   setPhone as setReduxStorePhone,
 } from "../../../redux/slice/newUserSlice";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
-// import { API_BASE_URL } from "@env";
-import * as Google from "expo-auth-session/providers/google";
-import * as Facebook from "expo-auth-session/providers/facebook";
 import * as AuthSession from "expo-auth-session";
-import * as AppleAuthentication from "expo-apple-authentication";
 import * as WebBrowser from "expo-web-browser";
 import { Platform } from "react-native";
 import { ENV } from "@env";
+import {
+  signInWithApple,
+  signInWithFacebook,
+  signInWithGoogole,
+} from "../thirdPartyAuth";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -32,33 +33,17 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
 
   const dispatch = useAppDispatch();
 
-  const useProxy: boolean = ENV === "developement" ? true : false;
-
-  const [request, response, promptAsync] = Google.useAuthRequest(
-    {
-      expoClientId:
-        "323832028739-lv5fi56u3oh3rl78itctljbackutb9d2.apps.googleusercontent.com",
-      iosClientId:
-        "323832028739-24c0ke20u7pvufco57fcd6u6slnvi1ep.apps.googleusercontent.com",
-      androidClientId:
-        "323832028739-9c78ldonqnd1d0altnabgcf0h8lnbb1a.apps.googleusercontent.com",
-    },
-    { useProxy: useProxy }
-  );
-
-  const [f_request, f_response, f_promptAsync] = Facebook.useAuthRequest(
-    {
-      expoClientId: "423467809816897",
-      // redirectUri: AuthSession.makeRedirectUri({ useProxy: true }),
-    },
-    { useProxy: useProxy }
-  );
+  const { f_promptAsync, f_response } = signInWithFacebook();
+  const { g_promptAsync, g_response, g_request } = signInWithGoogole();
 
   React.useEffect(() => {
-    if (response?.type === "success") {
-      const { authentication } = response;
+    console.log(AuthSession.getDefaultReturnUrl());
+    console.log(g_response);
+    // TODO make calls to googleapis/facebook using the response to get the email and profile
+    if (g_response?.type === "success") {
+      const { authentication } = g_response;
     }
-  }, [response]);
+  }, [g_response]);
 
   return (
     <SpacerWrapper>
@@ -94,6 +79,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         title="Continue"
         onPressButton={() => {
           dispatch(setReduxStorePhone(phone));
+          // TDOD replace the below email with the one coming from google, apple or facebook!
           dispatch(
             requestOtp({ phone: "", email: "mubarakibrahim2015@gmail.com" })
           );
@@ -127,24 +113,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           title="Connect Apple Account"
           color={Colors.general.apple}
           onPress={() => {
-            console.log("connecting with apple...");
-            const credential = AppleAuthentication.signInAsync({
-              requestedScopes: [
-                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                AppleAuthentication.AppleAuthenticationScope.EMAIL,
-              ],
-            })
-              .then((response) => {
-                // signed in
-                console.log(response);
-              })
-              .catch((e) => {
-                if (e.code === "ERR_CANCELED") {
-                  // handle that the user canceled the sign-in flow
-                } else {
-                  // handle other errors
-                }
-              });
+            signInWithApple().then((r) => console.log(r?.email));
+            // pass the response to create account
           }}
           alt={false}
         />
@@ -157,8 +127,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         title="Connect with Facebook"
         color={Colors.general.facebook}
         onPress={() => {
-          console.log("connecting with facebook...");
-          f_promptAsync({ useProxy: useProxy });
+          f_promptAsync();
         }}
         alt={false}
       />
@@ -167,8 +136,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         title="Connect Google Account"
         color={Colors.general.google}
         onPress={() => {
-          console.log("connecting with google...");
-          promptAsync({ useProxy: useProxy });
+          g_promptAsync();
         }}
         alt={false}
       />

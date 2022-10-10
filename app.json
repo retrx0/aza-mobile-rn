@@ -22,7 +22,6 @@
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
     "assetBundlePatterns": ["**/*"],
-    "facebookScheme": "423467809816897",
     "ios": {
       "supportsTablet": true,
       "usesAppleSignIn": true,
