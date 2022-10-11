@@ -21,9 +21,8 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
         otpCode={LoginOtp}
         onOtpChanged={(code) => setLoginUpOtp(code)}
         onVerify={() => {
-          dispatch(logIn());
-          console.log(isLoggedIn);
-          navigation.getParent()?.navigate("Root");
+          // dispatch(logIn());
+          navigation.navigate("SignInWelcomeBack");
         }}
         onResend={() => {
           console.log("otp resend");

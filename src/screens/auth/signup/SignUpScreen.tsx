@@ -20,6 +20,7 @@ import * as WebBrowser from "expo-web-browser";
 import { Platform } from "react-native";
 import { ENV } from "@env";
 import {
+  fetchGoogleUserInfo,
   signInWithApple,
   signInWithFacebook,
   signInWithGoogole,
@@ -38,12 +39,19 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
 
   React.useEffect(() => {
     console.log(AuthSession.getDefaultReturnUrl());
-    console.log(g_response);
-    // TODO make calls to googleapis/facebook using the response to get the email and profile
+
     if (g_response?.type === "success") {
-      const { authentication } = g_response;
+      fetchGoogleUserInfo(g_response.authentication?.accessToken)
+        .then((r) => console.log(r.data))
+        .catch((e) => console.error(e));
     }
-  }, [g_response]);
+    // TODO make calls to googleapis/facebook using the response to get the email and profile
+    if (f_response?.type === "success") {
+      fetchGoogleUserInfo(f_response.authentication?.accessToken)
+        .then((r) => console.log(r.data))
+        .catch((e) => console.error(e));
+    }
+  }, [g_response, f_response]);
 
   return (
     <SpacerWrapper>
