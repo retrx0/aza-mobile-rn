@@ -1,15 +1,26 @@
-import { Camera, CameraType } from "expo-camera";
+import { Camera, CameraType, FlashMode } from "expo-camera";
 import { PermissionResponse } from "expo-image-picker";
 import { useEffect, useState } from "react";
-import { Alert, StyleSheet } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity } from "react-native";
 import { RootStackScreenProps } from "../../../types";
+import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
+import ButtonLg from "../../components/buttons/ButtonLg";
+import ButtonMd from "../../components/buttons/ButtonMd";
+import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
-import { View } from "../../components/Themed";
+import { Text, View } from "../../components/Themed";
+import Colors from "../../constants/Colors";
+import useColorScheme from "../../hooks/useColorScheme";
+import { Ionicons } from "@expo/vector-icons";
 
 const ModalScreen = ({ navigation }: RootStackScreenProps<"QRCodeModal">) => {
   const [cameraPermission, setCameraPermission] =
     useState<PermissionResponse>();
+
+  const theme = useColorScheme();
+
+  const [flashLight, setFlashLight] = useState(FlashMode.off);
 
   useEffect(() => {
     (async () => {
@@ -37,7 +48,8 @@ const ModalScreen = ({ navigation }: RootStackScreenProps<"QRCodeModal">) => {
         {/* TODO fix camera not shuting down after closing modal */}
         {cameraPermission?.granted && (
           <Camera
-            style={{ width: "90%", height: "50%" }}
+            flashMode={flashLight}
+            style={{ width: "95%", height: "70%" }}
             type={CameraType.back}
             onBarCodeScanned={(code) => {
               if (code.type === "org.iso.QRCode") {
@@ -47,6 +59,39 @@ const ModalScreen = ({ navigation }: RootStackScreenProps<"QRCodeModal">) => {
             }}
           />
         )}
+      </View>
+      <View
+        style={[
+          CommonStyles.row,
+          {
+            bottom: 150,
+            padding: 20,
+            borderRadius: 15,
+          },
+        ]}
+      >
+        <View style={[CommonStyles.col, { marginHorizontal: 20 }]}>
+          <CancelButtonWithUnderline
+            onPressButton={() => navigation.goBack()}
+            title="Close"
+            color={Colors[theme].text}
+          />
+        </View>
+        <View style={[CommonStyles.col, { marginHorizontal: 20 }]}>
+          <TouchableOpacity
+            onPress={() =>
+              flashLight === FlashMode.torch
+                ? setFlashLight(FlashMode.off)
+                : setFlashLight(FlashMode.torch)
+            }
+          >
+            <Ionicons
+              name="flashlight"
+              size={35}
+              style={{ color: Colors[theme].Text }}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
