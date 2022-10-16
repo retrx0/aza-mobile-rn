@@ -46,7 +46,7 @@ export const transferSlice = createSlice({
   },
 });
 
-export const _transfer = createAsyncThunk(
+export const transferThunk = createAsyncThunk(
   "transfer",
   async (props: TransferState) => {
     api
@@ -70,7 +70,32 @@ export const _transfer = createAsyncThunk(
   }
 );
 
-export const _recurring_transfer = createAsyncThunk(
+export const requestThunk = createAsyncThunk(
+  "transfer",
+  async (props: TransferState) => {
+    api
+      .post("/api/v1/payment/request", {
+        amount: props.amount,
+        sourceChannel: props.sourceChannel,
+        destinationChannel: props.destinationChannel,
+        currency: props.currency,
+        description: props.description,
+        intiatorAccount: "string",
+        receipientAccount: "string",
+        recepientPhoneNumber: "string",
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+);
+
+export const recurringTransferThunk = createAsyncThunk(
   "transfer",
   async (props: RecurringTransferState) => {
     api

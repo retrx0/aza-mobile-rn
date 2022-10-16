@@ -47,7 +47,8 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -77,7 +78,8 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 14,
               marginTop: 15,
-            }}>
+            }}
+          >
             {UserData.userFullName}
           </Text>
           <View
@@ -93,11 +95,13 @@ const TransactionKeypadScreen = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               Nigerian Naira
             </Text>
             <Image
@@ -112,7 +116,8 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               NGN
             </Text>
           </View>
@@ -132,7 +137,8 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 15,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -142,7 +148,8 @@ const TransactionKeypadScreen = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -152,8 +159,9 @@ const TransactionKeypadScreen = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}>
-              {"\u20A6"} {UserData.userAzaBalance}
+              }}
+            >
+              {"\u20A6"} {UserData.azaBalance}
             </Text>
           </View>
         </View>
@@ -165,6 +173,13 @@ const TransactionKeypadScreen = ({
             // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
             if (normalTransaction) {
               // This checks if the transactions are send or request money which have optional description message
+
+              //if(withraw){
+
+              //}else if(deposit){
+
+              //}
+
               transactionType.openDescriptionModal && setDescModalOpen(true);
             } else {
               // TODO create and pass required params
@@ -187,10 +202,12 @@ const TransactionKeypadScreen = ({
       {/* description modal */}
       <Modal
         isVisible={descModal}
-        style={{ justifyContent: "flex-end", margin: 0 }}>
+        style={{ justifyContent: "flex-end", margin: 0 }}
+      >
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}>
+          keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}
+        >
           <TouchableOpacity
             onPress={() => setDescModalOpen(false)}
             style={{
@@ -198,7 +215,8 @@ const TransactionKeypadScreen = ({
               alignItems: "flex-end",
               marginBottom: 20,
               marginRight: 15,
-            }}>
+            }}
+          >
             <CloseCircleLargeIcon
               color={Colors[colorScheme].backgroundSecondary}
             />
@@ -213,14 +231,16 @@ const TransactionKeypadScreen = ({
               paddingBottom: 50,
               display: "flex",
               justifyContent: "space-between",
-            }}>
+            }}
+          >
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 16,
-              }}>
+              }}
+            >
               Description
             </Text>
             <Text
@@ -229,7 +249,8 @@ const TransactionKeypadScreen = ({
               style={{
                 marginTop: 10,
                 fontSize: 14,
-              }}>
+              }}
+            >
               You can add a note to this transaction
             </Text>
             <TextInput
