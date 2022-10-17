@@ -35,7 +35,7 @@ const TransactionKeypadScreen = ({
 
   const { headerTitle, transactionType } = route.params;
 
-  const normalTransaction = transactionType.type === "normal transaction";
+  const normalTransaction = transactionType.type === "normal";
   const recurringTransaction = transactionType.type === "recurring";
 
   useLayoutEffect(() => {
