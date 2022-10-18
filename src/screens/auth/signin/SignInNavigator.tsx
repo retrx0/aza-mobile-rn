@@ -20,6 +20,7 @@ const LoginNavigator = () => {
   return (
     <LogInStack.Navigator
       initialRouteName={isLoggedIn ? "SignInWelcomeBack" : "SignInRoot"}
+      screenOptions={{ gestureEnabled: false }}
     >
       <LogInStack.Screen
         component={SignInScreen}

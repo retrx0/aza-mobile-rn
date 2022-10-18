@@ -10,6 +10,7 @@ import {
   FACEBOOK_EXPO_CLINET_ID,
 } from "@env";
 import { isEnvDevelopent } from "../../common/util/AppUtil";
+import axios from "axios";
 
 const useProxy: boolean = isEnvDevelopent;
 
@@ -79,4 +80,20 @@ export const signInWithApple = async () => {
   console.log(credential);
 
   return credential;
+};
+
+export const fetchGoogleUserInfo = async (access_token: string | undefined) => {
+  const result = await axios.get(
+    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
+  );
+  return result;
+};
+
+export const fetchFacebookUserInfo = async (
+  access_token: string | undefined
+) => {
+  const result = await axios.get(
+    `https://graph.facebook.com/me?fields=id,name,email&access_token=${access_token}`
+  );
+  return result;
 };

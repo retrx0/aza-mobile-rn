@@ -27,7 +27,8 @@
       "usesAppleSignIn": true,
       "usesIcloudStorage": false,
       "bundleIdentifier": "com.aza.azaapp",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {}
     },
     "android": {
       "adaptiveIcon": {
@@ -58,5 +59,8 @@
         }
       ]
     ]
+  },
+  "infoPlist": {
+    "NSFaceIDUsageDescription": "Authentication/authorization"
   }
 }
