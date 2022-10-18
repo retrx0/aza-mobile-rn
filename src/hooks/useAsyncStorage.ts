@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { PREFERENCE_STORAGE_KEY } from "../constants/AppConstants";
 
 export interface ISettings {
   nameVisibilitySwitch?: boolean;
@@ -13,14 +14,17 @@ export interface ISettings {
 
 export const useAsyncStorage = () => {
   const saveSettingsToStorage = async (settings: ISettings) => {
-    const entries = await AsyncStorage.getItem("settings");
+    const entries = await AsyncStorage.getItem(PREFERENCE_STORAGE_KEY);
     const parsedEntries = JSON.parse(entries as string);
     const updatedEntries = { ...parsedEntries, ...settings };
-    await AsyncStorage.setItem("settings", JSON.stringify(updatedEntries));
+    await AsyncStorage.setItem(
+      PREFERENCE_STORAGE_KEY,
+      JSON.stringify(updatedEntries)
+    );
   };
 
   const loadSettingsFromStorage = async () => {
-    const entry = await AsyncStorage.getItem("settings");
+    const entry = await AsyncStorage.getItem(PREFERENCE_STORAGE_KEY);
     if (entry == null) {
       return null;
     }
@@ -29,7 +33,7 @@ export const useAsyncStorage = () => {
   };
 
   const clearSettingsInStorage = async () => {
-    await AsyncStorage.removeItem("settings");
+    await AsyncStorage.removeItem(PREFERENCE_STORAGE_KEY);
   };
 
   return {

@@ -39,6 +39,7 @@ export const useNotifications = () => {
   const schedulePushNotification = async (
     title: string,
     body: string,
+    seconds: number,
     data: Record<any, string>
   ) => {
     await Notifications.scheduleNotificationAsync({
@@ -47,7 +48,7 @@ export const useNotifications = () => {
         body,
         data,
       },
-      trigger: { seconds: 2 },
+      trigger: { seconds: seconds },
     });
   };
 
