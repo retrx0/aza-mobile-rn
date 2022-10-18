@@ -70,7 +70,6 @@ const RootNavigator = () => {
     registerForPushNotificationsAsync().then((token) => {
       if (token !== undefined) {
         setExpoPushToken(token);
-        sendPushNotification(token, "testint", "bodud", { data: "ant" });
       }
     });
 
