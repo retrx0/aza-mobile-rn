@@ -13,6 +13,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
+import * as Notifications from "expo-notifications";
 
 import ModalScreen from "../screens/modals/QRCodeModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
@@ -23,6 +24,8 @@ import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
+
+import { useNotifications } from "../hooks/useNotifications";
 import { useAppSelector } from "../hooks/redux";
 import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
 
@@ -47,8 +50,47 @@ type PasswordScreenParamsType = {
   passWordScreenType: string;
 };
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 const RootNavigator = () => {
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  const { registerForPushNotificationsAsync, sendPushNotification } =
+    useNotifications();
+  const [expoPushToken, setExpoPushToken] = React.useState<string>("");
+  const notificationListener = React.useRef<any>();
+  const responseListener = React.useRef<any>();
+
+  React.useEffect(() => {
+    registerForPushNotificationsAsync().then((token) => {
+      if (token !== undefined) {
+        setExpoPushToken(token);
+        sendPushNotification(token, "testint", "bodud", { data: "ant" });
+      }
+    });
+
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        // handle notification
+      });
+
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
 
   return (
     <Stack.Navigator

@@ -1,29 +1,28 @@
-import React from 'react'
-import { Switch } from 'react-native'
-import Colors from '../../constants/Colors'
-import useColorScheme from '../../hooks/useColorScheme'
+import React from "react";
+import { Switch } from "react-native";
+import Colors from "../../constants/Colors";
+import useColorScheme from "../../hooks/useColorScheme";
 
 interface IProps {
-  isEnabled: boolean
-  setIsEnabled: (enabled: boolean) => void
+  isEnabled: boolean;
+  onSwitchToggle: () => void;
 }
 
-const CustomSwitch = ({ isEnabled, setIsEnabled }: IProps) => {
-  const colorScheme = useColorScheme()
+const CustomSwitch = ({ isEnabled, onSwitchToggle }: IProps) => {
+  const colorScheme = useColorScheme();
 
-  const switchColor = Colors[colorScheme].backgroundSecondary
-  const switchOnColor = Colors[colorScheme].success
-  const toggleSwitch = () => setIsEnabled(!isEnabled)
+  const switchColor = Colors[colorScheme].backgroundSecondary;
+  const switchOnColor = Colors[colorScheme].success;
 
   return (
     <Switch
       trackColor={{ false: switchColor, true: switchOnColor }}
-      thumbColor={isEnabled ? 'white' : 'grey'}
+      thumbColor={isEnabled ? "white" : "grey"}
       ios_backgroundColor={switchColor}
-      onValueChange={toggleSwitch}
+      onValueChange={onSwitchToggle}
       value={isEnabled}
     />
-  )
-}
+  );
+};
 
-export default CustomSwitch
+export default CustomSwitch;

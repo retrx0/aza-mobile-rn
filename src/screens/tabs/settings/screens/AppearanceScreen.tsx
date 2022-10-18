@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
 import { Text, View } from "../../../../components/Themed";
@@ -15,10 +15,13 @@ import {
 } from "../../../../../assets/svg";
 import Divider from "../../../../components/divider/Divider";
 
+import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+
 const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   const colorScheme = useColorScheme();
-
-  const [selectedAppearance, setSelectedAppearance] = useState("System Mode");
+  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const [selectedAppearance, setSelectedAppearance] =
+    useState<string>("System Mode");
 
   const options = [
     {
@@ -34,6 +37,17 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
       name: "System Mode",
     },
   ];
+
+  useEffect(() => {
+    loadSettingsFromStorage().then((setting) => {
+      setting?.appearance !== undefined &&
+        setSelectedAppearance(setting?.appearance);
+    });
+  }, []);
+
+  useEffect(() => {
+    saveSettingsToStorage({ appearance: selectedAppearance });
+  }, [selectedAppearance]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
