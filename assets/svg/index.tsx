@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, Text, ViewStyle } from "react-native";
 import Svg, {
   Path,
   Circle,
@@ -11,11 +11,27 @@ import Svg, {
   Rect,
   ClipPath,
 } from "react-native-svg";
+import { View } from "../../src/components/Themed";
 
 type SvgIconProps = {
   color?: string;
   size?: number;
   style?: StyleProp<ViewStyle>;
+};
+
+export const InviteIcon = () => {
+  return (
+    <View
+      style={{
+        backgroundColor: "#2A9E17",
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        paddingVertical: 2,
+      }}
+    >
+      <Text style={{ color: "white", fontSize: 10 }}>Invite</Text>
+    </View>
+  );
 };
 
 export const VaultIcon = ({ color, size }: SvgIconProps) => {
