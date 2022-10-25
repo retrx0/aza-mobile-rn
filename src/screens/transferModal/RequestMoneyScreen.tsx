@@ -1,23 +1,16 @@
 import React, { useLayoutEffect, useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native";
+import { StyleSheet, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
-import ContactListItem from "../../components/ListItem/ContactListItem";
+import { Text } from "../../components/Themed";
 
 import Colors from "../../constants/Colors";
 import { CommonScreenProps } from "../../common/navigation/types";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { AZALargeLightningLogo } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
-import CommonStyles from "../../common/styles/CommonStyles";
+import ContactsScene from "./ContactsScene";
 
 const RequestMoneyScreen = ({
   navigation,
@@ -53,179 +46,17 @@ const RequestMoneyScreen = ({
     });
   }, []);
 
-  const renderScene = ({ route }: any) => {
-    switch (route.key) {
-      case "first":
-        return (
-          <View style={[styles.container, { justifyContent: "space-between" }]}>
-            <View>
-              <TextInput
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
-                placeholderTextColor={Colors[colorScheme].secondaryText}
-                style={{
-                  backgroundColor: "transparent",
-                  fontFamily: "Euclid-Circular-A",
-                  paddingBottom: 10,
-                  marginTop: hp(15),
-                  marginBottom: hp(35),
-                  borderBottomWidth: 1,
-                  borderBottomColor: Colors[colorScheme].separator,
-                }}
-                placeholder="From?"
-              />
-
-              <ScrollView
-                contentContainerStyle={{ paddingBottom: hp(300) }}
-                showsVerticalScrollIndicator={false}
-              >
-                <View style={{ marginBottom: hp(20) }}>
-                  <View
-                    style={[
-                      CommonStyles.row,
-                      {
-                        alignItems: "flex-end",
-                        alignSelf: "flex-start",
-                        marginTop: hp(15),
-                      },
-                    ]}
-                  >
-                    <Text
-                      lightColor={Colors.light.text}
-                      darkColor={Colors.dark.secondaryText}
-                      style={{ fontSize: 14 }}
-                    >
-                      Contacts using Aza
-                    </Text>
-                    <Text
-                      style={{
-                        color: "#2A9E17",
-                        marginLeft: 10,
-                        fontSize: 12,
-                        fontFamily: "Euclid-Circular-A-Light",
-                      }}
-                    >
-                      +18
-                    </Text>
-                  </View>
-                  {Array(4)
-                    .fill("")
-                    .map((_, i) => (
-                      <TouchableOpacity
-                        key={i}
-                        onPress={() =>
-                          navigation.navigate("TransactionKeypad", {
-                            headerTitle: "Request Money",
-                            transactionType: {
-                              transaction: "request",
-                              type: "normal",
-                              beneficiary: {
-                                beneficiaryAccount: "",
-                                beneficiaryImage: "",
-                                beneficiaryName: "",
-                              },
-                              openDescriptionModal: true,
-                            },
-                          })
-                        }
-                      >
-                        <ContactListItem
-                          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-                          name={"Adewale Adeyesufu"}
-                          phoneNumber={"8012345678"}
-                          suffixIcon={
-                            <AZALargeLightningLogo
-                              size={25}
-                              color={Colors[colorScheme].text}
-                            />
-                          }
-                        />
-                      </TouchableOpacity>
-                    ))}
-                </View>
-                <View
-                  style={[
-                    CommonStyles.row,
-                    {
-                      alignItems: "flex-end",
-                      alignSelf: "flex-start",
-                    },
-                  ]}
-                >
-                  <Text
-                    lightColor={Colors.light.text}
-                    darkColor={Colors.dark.secondaryText}
-                    style={{ fontSize: 14 }}
-                  >
-                    Contacts not using Aza yet
-                  </Text>
-                  <Text
-                    style={{
-                      color: "#2A9E17",
-                      marginLeft: 10,
-                      fontSize: 12,
-                      fontFamily: "Euclid-Circular-A-Light",
-                    }}
-                  >
-                    +200
-                  </Text>
-                </View>
-                {Array(10)
-                  .fill("")
-                  .map((_, i) => (
-                    <TouchableOpacity key={i}>
-                      <ContactListItem
-                        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-                        name={"Adewale Adeyesufu"}
-                        phoneNumber={"8012345678"}
-                        suffixIcon={
-                          <View
-                            style={{
-                              backgroundColor: "#2A9E17",
-                              borderRadius: 5,
-                              paddingHorizontal: 10,
-                              paddingVertical: 2,
-                            }}
-                          >
-                            <Text style={{ color: "white", fontSize: 10 }}>
-                              Invite
-                            </Text>
-                          </View>
-                        }
-                      />
-                    </TouchableOpacity>
-                  ))}
-              </ScrollView>
-            </View>
-          </View>
-        );
-      case "second":
-        return (
-          <View style={[styles.container, { justifyContent: "space-between" }]}>
-            <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 10,
-                marginTop: hp(15),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-              }}
-              placeholder="Aza Number"
-            />
-          </View>
-        );
-    }
-  };
-
   return (
     <SpacerWrapper>
       <TabView
         navigationState={{ index, routes }}
-        renderScene={renderScene}
+        renderScene={({ route }) => (
+          <ContactsScene
+            route={route}
+            azaContactOnPress={() => null}
+            nonAzaContactOnPress={() => null}
+          />
+        )}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
         sceneContainerStyle={{ overflow: "visible" }}
@@ -268,11 +99,3 @@ const RequestMoneyScreen = ({
 };
 
 export default RequestMoneyScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: 15,
-  },
-});

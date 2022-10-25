@@ -178,9 +178,10 @@ const TransactionKeypadScreen = ({
               //}else if(deposit){
 
               //}
-
+              console.log("first");
               transactionType.openDescriptionModal && setDescModalOpen(true);
             } else {
+              console.log("Hh");
               // TODO create and pass required params
               navigation.navigate("RecurringTransferConfirmation");
             }

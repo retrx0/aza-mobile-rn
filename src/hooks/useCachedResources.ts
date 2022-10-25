@@ -1,8 +1,8 @@
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
-import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
-// import { useAppDispatch, useAppSelector } from "./redux";
+import * as SecureStore from "expo-secure-store";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
 const EuclidRegular = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A.ttf");
 const EuclidLight = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Light.ttf");
@@ -28,14 +28,20 @@ const useCachedResources = () => {
         SplashScreen.preventAutoHideAsync();
 
         // Check if user is already logged in
+        SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN)
+          .then((token) => {
+            if (token) setUserSignedIn(true);
+          })
+          .catch((e) => console.error(e));
 
         // do any api call here
 
-        // if(token exist)
-        //  then user is loggend in, get passcode and refresh tokens
-        // dispatch(login())
-        // else
-        // goto sign in screen
+        if (isUserSignedIn) {
+          //  then user is loggend in, get passcode and refresh tokens
+          // dispatch(login())
+        } else {
+          // goto sign in screen
+        }
 
         // Load fonts
         await Font.loadAsync({
@@ -59,7 +65,7 @@ const useCachedResources = () => {
     loadResourcesAndDataAsync();
   }, []);
 
-  return isLoadingComplete;
+  return { isLoadingComplete, isUserSignedIn };
 };
 
 export default useCachedResources;

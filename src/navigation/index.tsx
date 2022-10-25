@@ -29,6 +29,7 @@ import CommonStack from "../common/navigation/CommonStackNavigator";
 import { useNotifications } from "../hooks/useNotifications";
 import { useAppSelector } from "../hooks/redux";
 import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
+import useCachedResources from "../hooks/useCachedResources";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -60,7 +61,7 @@ Notifications.setNotificationHandler({
 });
 
 const RootNavigator = () => {
-  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  const { isUserSignedIn } = useCachedResources();
   const { registerForPushNotificationsAsync, sendPushNotification } =
     useNotifications();
   const [expoPushToken, setExpoPushToken] = React.useState<string>("");
@@ -94,7 +95,7 @@ const RootNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={isLoggedIn ? "SignIn" : "Welcome"}
+      initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
       screenOptions={{ gestureEnabled: false }}
     >
       <Stack.Screen
