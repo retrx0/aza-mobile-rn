@@ -13,6 +13,10 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
   const colorScheme = useColorScheme();
 
   const onKeyPress = (key: string) => {
+    if ((value === "" && key === "0") || (value === "" && key === ",")) {
+      //prevents '0' and ',' as first characters
+      return;
+    }
     let currentText = value;
     if (key !== "backIcon") {
       currentText += key;

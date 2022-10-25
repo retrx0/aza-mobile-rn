@@ -5,7 +5,8 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import { Text, View } from "../../components/Themed";
+
+import { Text } from "../../components/Themed";
 
 type ButtonPropsType = {
   title: string;
@@ -23,7 +24,8 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
   styleText,
 }) => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPressButton}
       style={[
         {
           backgroundColor: "transparent",
@@ -36,10 +38,8 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
         style,
       ]}
     >
-      <TouchableOpacity activeOpacity={0.8} onPress={onPressButton}>
-        <Text style={[{ fontSize: 14 }, styleText]}>{title}</Text>
-      </TouchableOpacity>
-    </View>
+      <Text style={[{ fontSize: 14 }, styleText]}>{title}</Text>
+    </TouchableOpacity>
   );
 };
 
