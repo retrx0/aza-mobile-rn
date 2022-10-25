@@ -12,15 +12,21 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { UserData } from "../../../../constants/userData";
+import { useAppSelector } from "../../../../hooks/redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import {
+  getCurrencyUnicode,
+  getInitialsAvatar,
+} from "../../../../common/util/AppUtil";
 
 interface Detail {
   title: string;
   subText: string;
-  detail: string;
+  data: string | number;
 }
 
-const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
+const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
   const colorScheme = useColorScheme();
   return (
     <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
@@ -60,7 +66,7 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
             fontSize: 14,
           }}
         >
-          {detail}
+          {data}
         </Text>
       </View>
       <Divider />
@@ -72,6 +78,9 @@ const AccountDetailsScreen = ({
   navigation,
 }: CommonScreenProps<"AccountDetails">) => {
   const colorScheme = useColorScheme();
+  const user = useAppSelector(selectUser);
+
+  const currencySymbol = getCurrencyUnicode(user.accountCurency);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -100,46 +109,46 @@ const AccountDetailsScreen = ({
     {
       title: "Account status",
       subText: "Unverified or Verified",
-      detail: "Verified",
+      data: user.accountVerified ? "Verified" : "Not Verified",
     },
     {
       title: "Aza Number",
       subText: "You can receive money transfe/payment \nby sharing.",
-      detail: "8081234567",
+      data: user.azaAccountNumber,
     },
     {
       title: "Available Balance",
       subText: "Available balance except for pending \ntransactions",
-      detail: "\u20A6 10,000,600",
+      data: `${currencySymbol} ${user.azaBalance}`,
     },
     {
       title: "Incoming transfer amount limit",
       subText: "Total amount limit that can be received per \nmonth",
-      detail: "\u20A6 100,000",
+      data: `${NAIRA_UNICODE} ${user.transfers.incommingTransferLimit}`,
     },
     {
       title: "Deposit amount limit",
       subText:
         "The amount that can be deposited to your \naccount during this month",
-      detail: "\u20A6 3,600",
+      data: `${NAIRA_UNICODE} ${user.transfers.depositAmountLimit}`,
     },
     {
       title: "Transfer received from different users",
       subText:
         "The number of people who transferred money to \nyour account this month",
-      detail: "6",
+      data: user.transfers.totalMonthlyReceivers,
     },
     {
       title: "Number of incoming transfers",
       subText:
         "The number of money transfers received in your \naccount this month",
-      detail: "6",
+      data: user.transfers.totalMonthlyIncomingTransfers,
     },
     {
       title: "Incoming transfer amount",
       subText:
         "The amount of incoming money transfers to your \naccount this month",
-      detail: "\u20A6 3,600",
+      data: `${NAIRA_UNICODE} ${user.transfers.totalMonthlyIncomingTransferAmount}`,
     },
   ];
 
@@ -150,7 +159,14 @@ const AccountDetailsScreen = ({
           <Image
             style={{ borderRadius: 50, width: 56, height: 56 }}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              uri: user.pictureUrl
+                ? user.pictureUrl
+                : getInitialsAvatar({
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    backgroundColor: Colors[colorScheme].backgroundSecondary,
+                    foreground: Colors[colorScheme].mainText,
+                  }),
             }}
           />
           <View style={[CommonStyles.col, { marginLeft: 20 }]}>
@@ -162,7 +178,7 @@ const AccountDetailsScreen = ({
                 fontSize: 14,
               }}
             >
-              {UserData.userFullName}
+              {user.fullName}
             </Text>
             <Text
               lightColor={Colors.light.text}
@@ -172,14 +188,14 @@ const AccountDetailsScreen = ({
                 fontSize: 12,
               }}
             >
-              {UserData.userphoneNumber}
+              {user.phoneNumber}
             </Text>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
               style={{ fontSize: 10 }}
             >
-              {UserData.userEmail}
+              {user.emailAddress}
             </Text>
           </View>
         </View>
@@ -190,10 +206,10 @@ const AccountDetailsScreen = ({
               { alignSelf: "stretch", marginTop: hp(20) },
             ]}
           >
-            {details.map(({ detail, subText, title }, i) => (
+            {details.map(({ data, subText, title }, i) => (
               <AccountDetailsListItem
                 key={i}
-                detail={detail}
+                data={data}
                 subText={subText}
                 title={title}
               />

@@ -4,12 +4,15 @@ import { NairaIcon } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
-import { UserData } from "../../../../constants/userData";
+import { useAppSelector } from "../../../../hooks/redux";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 export default function AccountDetails() {
   const colorScheme = useColorScheme();
   const [secure, setSecure] = useState(true);
+
+  const user = useAppSelector(selectUser);
 
   return (
     <View style={[CommonStyles.col, { alignItems: "center" }]}>
@@ -69,7 +72,7 @@ export default function AccountDetails() {
                 marginVertical: 10,
               }}
             >
-              {UserData.azaBalance}
+              {user.azaBalance}
             </Text>
           </>
         ) : (
@@ -105,7 +108,7 @@ export default function AccountDetails() {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
           }}
         >
-          {UserData.azaAccountNumber}
+          {user.azaAccountNumber}
         </Text>
       </View>
     </View>
