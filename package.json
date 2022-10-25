@@ -40,6 +40,7 @@
     "expo-camera": "~12.2.0",
     "expo-constants": "~13.1.1",
     "expo-contacts": "~10.2.0",
+    "expo-dev-client": "~1.0.1",
     "expo-device": "~4.2.0",
     "expo-facebook": "~12.2.0",
     "expo-font": "~10.1.0",
