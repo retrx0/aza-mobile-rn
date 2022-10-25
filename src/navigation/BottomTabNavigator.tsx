@@ -77,7 +77,7 @@ const BottomTabNavigator = (
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
             headerRight: () => (
               <Pressable
-                onPress={() => navigation.navigate("QRCodeModal")}
+                onPress={() => navigation.navigate("QRTransactions")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                 })}

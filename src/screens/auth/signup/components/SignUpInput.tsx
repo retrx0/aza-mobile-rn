@@ -10,14 +10,16 @@ import { Gender } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
 import { SelectIcon } from "../../../../../assets/svg";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import {
+  registerUser,
   selectNewUser,
   setNewUser,
 } from "../../../../redux/slice/newUserSlice";
+import { useSelector } from "react-redux";
 
 const SignUpProfile = ({
   navigation,
@@ -27,16 +29,17 @@ const SignUpProfile = ({
     label: "Select Gender",
     value: null,
     color: Colors.general.black,
-    icon: { SelectIcon },
   };
   const colorScheme = useColorScheme();
 
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
+  const { phone, token } = useSelector((state) => state.newUser);
 
   return (
     <>
+      {console.log(token, "my++++++")}
       <Formik
         validationSchema={signUpValidationSchema}
         initialValues={{
@@ -44,8 +47,7 @@ const SignUpProfile = ({
           lastname: "",
           email: "",
         }}
-        onSubmit={(values) => console.log(values)}
-      >
+        onSubmit={(values) => console.log(values)}>
         {({
           handleChange,
           handleBlur,
@@ -57,8 +59,7 @@ const SignUpProfile = ({
         }) => (
           <>
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>First name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -81,8 +82,7 @@ const SignUpProfile = ({
             </View>
 
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Last name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -105,8 +105,7 @@ const SignUpProfile = ({
             </View>
 
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Email</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -141,11 +140,19 @@ const SignUpProfile = ({
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                width: "100%",
-              }}
-            >
+                width: "90%",
+                backgroundColor: "#F2F2F2",
+                alignSelf: "center",
+                paddingHorizontal: wp(10),
+                borderRadius: 5,
+                marginTop: hp(7),
+                paddingVertical: hp(15),
+                justifyContent: "space-between",
+              }}>
               <RNPickerSelect
                 placeholder={placeholder}
+                onUpArrow={() => true}
+                onDownArrow={() => true}
                 onValueChange={(value) => {
                   setGender(value);
                 }}
@@ -158,17 +165,6 @@ const SignUpProfile = ({
                   itemStyle: { color: Colors[colorScheme].text },
                 }}
                 style={{
-                  viewContainer: {
-                    paddingHorizontal: wp(10),
-                    width: "90%",
-                    height: hp(50),
-                    borderRadius: 5,
-                    marginTop: hp(7),
-                    marginLeft: hp(20),
-                    paddingVertical: hp(15),
-                    alignSelf: "center",
-                    backgroundColor: "#F2F2F2",
-                  },
                   placeholder: {
                     fontSize: hp(16),
                     lineHeight: hp(20),
@@ -191,6 +187,18 @@ const SignUpProfile = ({
                     gender: gender,
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
+                  })
+                );
+                dispatch(
+                  registerUser({
+                    firstname: values.firstname,
+                    lastname: values.lastname,
+                    email: values.email,
+                    gender: gender,
+                    isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
+                    createdPasscode: newUser.createdPasscode,
+                    phone,
+                    token,
                   })
                 );
                 navigation.navigate("SignUpPassword", {

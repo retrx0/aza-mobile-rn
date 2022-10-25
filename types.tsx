@@ -22,7 +22,8 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  QRCodeModal: undefined;
+  QRTransactions: undefined;
+  QRCode: undefined;
   NotFound: undefined;
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;
@@ -146,3 +147,13 @@ export type CountryProps = {
 };
 
 export type CountriesType = Omit<CountryProps, "onPress">;
+
+export type UserData = {
+  userAzaAccountNumber: number;
+  userAzaBalance: number;
+  userFistName: string;
+  userLastName: string;
+  userFullName: string;
+  userPhoneNumber: number;
+  userEmail: string;
+};

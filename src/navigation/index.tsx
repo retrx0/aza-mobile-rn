@@ -13,8 +13,10 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
+import * as Notifications from "expo-notifications";
 
-import ModalScreen from "../screens/modals/QRCodeModalScreen";
+import QRTransactionsScreen from "../screens/qrTransactions/QRTransactionsScreen";
+import QRCodeScreen from "../screens/qrTransactions/QRCodeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -23,6 +25,11 @@ import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
+
+import { useNotifications } from "../hooks/useNotifications";
+import { useAppSelector } from "../hooks/redux";
+import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
+import useCachedResources from "../hooks/useCachedResources";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -45,9 +52,52 @@ type PasswordScreenParamsType = {
   passWordScreenType: string;
 };
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 const RootNavigator = () => {
+  const { isUserSignedIn } = useCachedResources();
+  const { registerForPushNotificationsAsync, sendPushNotification } =
+    useNotifications();
+  const [expoPushToken, setExpoPushToken] = React.useState<string>("");
+  const notificationListener = React.useRef<any>();
+  const responseListener = React.useRef<any>();
+
+  React.useEffect(() => {
+    registerForPushNotificationsAsync().then((token) => {
+      if (token !== undefined) {
+        setExpoPushToken(token);
+      }
+    });
+
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        // handle notification
+      });
+
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
+      screenOptions={{ gestureEnabled: false }}
+    >
       <Stack.Screen
         name="Welcome"
         component={WelcomeScreen}
@@ -80,13 +130,8 @@ const RootNavigator = () => {
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen
-          name="QRCodeModal"
-          component={ModalScreen}
-          options={{ title: "Scan QR Code" }}
-        />
-      </Stack.Group>
+      <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
+      <Stack.Screen name="QRCode" component={QRCodeScreen} />
     </Stack.Navigator>
   );
 };

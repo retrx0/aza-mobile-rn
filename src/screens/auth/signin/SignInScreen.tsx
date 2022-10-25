@@ -10,11 +10,23 @@ import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
-
+import { requestOtp } from "../../../redux/slice/newUserSlice";
+import { API_BASE_URL } from "@env";
+import { useAppDispatch } from "../../../hooks/redux";
+import {
+  signInWithApple,
+  signInWithFacebook,
+  signInWithGoogole,
+} from "../thirdPartyAuth";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
   const colorScheme = useColorScheme();
+  const dispatch = useAppDispatch();
+
+  const { f_promptAsync, f_response } = signInWithFacebook();
+  const { g_promptAsync, g_response } = signInWithGoogole();
+
   return (
     <SpacerWrapper>
       <View style={{ marginLeft: 20 }}>
@@ -49,6 +61,9 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       <Button
         title="Continue"
         onPressButton={() => {
+          dispatch(
+            requestOtp({ phone, email: "mubarakibrahim2015@gmail.com" })
+          );
           navigation.navigate("SignInOTP");
         }}
         styleText={{
@@ -67,21 +82,21 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
         icon={<AppleIcon />}
         title="Connect Apple Account"
         color={Colors.general.apple}
-        onPress={() => console.log("connecting with apple...")}
+        onPress={() => signInWithApple().then((r) => console.log(r))}
         alt={false}
       />
       <ButtonLg
         icon={<FacebookIcon />}
         title="Connect with Facebook"
         color={Colors.general.facebook}
-        onPress={() => console.log("connecting with facebook...")}
+        onPress={() => f_promptAsync()}
         alt={false}
       />
       <ButtonLg
         icon={<GoogleIcon />}
         title="Connect Google Account"
         color={Colors.general.google}
-        onPress={() => console.log("connecting with google...")}
+        onPress={() => g_promptAsync()}
         alt={false}
       />
     </SpacerWrapper>

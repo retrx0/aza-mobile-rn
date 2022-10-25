@@ -208,7 +208,12 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
   },
-
+  newvaultcontainer: {
+    alignItems: "center",
+    flexDirection: "row",
+    paddingHorizontal: hp(20),
+    marginBottom: hp(30),
+  },
   archievedContainer: {
     alignItems: "center",
     flexDirection: "row",
@@ -436,6 +441,13 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(20),
     textAlign: "center",
   },
+  vaultstyle: {
+    fontFamily: "Euclid-Circular-A-Bold",
+    fontSize: hp(16),
+    fontWeight: "400",
+    alignSelf: "center",
+    marginLeft: hp(100),
+  },
   vault: {
     fontFamily: "Euclid-Circular-A-Bold",
     fontSize: hp(16),
@@ -459,6 +471,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17.75),
     marginBottom: hp(5),
     fontFamily: "Euclid-Circular-A-Medium",
+    marginLeft: hp(20),
   },
   undraw: {
     marginTop: hp(130),

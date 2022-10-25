@@ -1,21 +1,27 @@
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+
 import { CommonScreenProps } from "../../../../common/navigation/types";
+
 import BackButton from "../../../../components/buttons/BackButton";
 import { Text, View } from "../../../../components/Themed";
+import Divider from "../../../../components/divider/Divider";
+
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
+
 import { CheckIcon } from "../../../../../assets/svg";
-import Divider from "../../../../components/divider/Divider";
+
+import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const AppLanguageScreen = ({
   navigation,
 }: CommonScreenProps<"AppLanguage">) => {
   const colorScheme = useColorScheme();
-
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
 
   const languages = [
     {
@@ -28,6 +34,17 @@ const AppLanguageScreen = ({
       name: "English",
     },
   ];
+
+  useEffect(() => {
+    loadSettingsFromStorage().then((setting) => {
+      setting?.appLanguage !== undefined &&
+        setSelectedLanguage(setting?.appLanguage);
+    });
+  }, []);
+
+  useEffect(() => {
+    saveSettingsToStorage({ appLanguage: selectedLanguage });
+  }, [selectedLanguage]);
 
   useLayoutEffect(() => {
     navigation.setOptions({

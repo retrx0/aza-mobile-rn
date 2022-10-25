@@ -13,6 +13,7 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
+import BackButton from "../../../components/buttons/BackButton";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -35,14 +36,20 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <Header
-          headerStyle={CommonStyles.vault}
-          descriptionStyle={CommonStyles.descriptionStyle}
-          heading="Vault"
-          description="Save and lock part of your Aza funds temporarily,
+        <View style={CommonStyles.newvaultcontainer}>
+          <BackButton onPress={() => navigation.goBack()} />
+          <Text style={CommonStyles.vaultstyle}>Vault</Text>
+          {/* <Header
+            headerStyle={CommonStyles.vaultstyle}
+            descriptionStyle={CommonStyles.descriptionStyle}
+            heading="Vault"
+            description="Save and lock part of your Aza funds temporarily,
         for future use."
-        />
-
+          /> */}
+        </View>
+        <Text style={CommonStyles.descriptionStyle}>
+          Save and lock part of your Aza funds temporarily, for future use
+        </Text>
         <View style={CommonStyles.vaultInputContainer}>
           <Input
             label={"Vault Name"}
@@ -76,8 +83,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             darkColor={Colors.dark.secondaryText}
             style={{
               fontSize: 14,
-            }}
-          >
+            }}>
             Period
           </Text>
           <CustomDropdown

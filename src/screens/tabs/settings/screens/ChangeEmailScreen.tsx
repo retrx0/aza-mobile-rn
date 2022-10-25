@@ -1,20 +1,21 @@
-import { StyleSheet } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
-import { CommonScreenProps } from '../../../../common/navigation/types'
-import BackButton from '../../../../components/buttons/BackButton'
-import { Text, View } from '../../../../components/Themed'
-import Colors from '../../../../constants/Colors'
-import { hp } from '../../../../common/util/LayoutUtil'
-import Button from '../../../../components/buttons/Button'
-import useColorScheme from '../../../../hooks/useColorScheme'
-import BoxTextInput from '../../../../components/input/BoxTextInput'
+import { StyleSheet } from "react-native";
+import React, { useLayoutEffect, useState } from "react";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import BackButton from "../../../../components/buttons/BackButton";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import Button from "../../../../components/buttons/Button";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import BoxTextInput from "../../../../components/input/BoxTextInput";
+import { UserData } from "../../../../constants/userData";
 
 const ChangeEmailScreen = ({
   navigation,
-}: CommonScreenProps<'ChangeEmail'>) => {
-  const colorScheme = useColorScheme()
-  const [currentEmail, _] = useState('chiazo@examplemail.com')
-  const [newEmail, setNewEmail] = useState('')
+}: CommonScreenProps<"ChangeEmail">) => {
+  const colorScheme = useColorScheme();
+  const [currentEmail, _] = useState(UserData.userEmail);
+  const [newEmail, setNewEmail] = useState("");
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,29 +24,27 @@ const ChangeEmailScreen = ({
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontFamily: 'Euclid-Circular-A-Semi-Bold',
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           New Email
         </Text>
       ),
       // hide default back button which only shows in android
       headerBackVisible: false,
       //center it in android
-      headerTitleAlign: 'center',
+      headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: 'Euclid-Circular-A-Medium' }}
-      >
+        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
         Change your email
       </Text>
       <View style={{ marginBottom: 10, marginTop: 10 }}>
@@ -53,7 +52,9 @@ const ChangeEmailScreen = ({
           placeHolder="Current Email"
           required={false}
           value={currentEmail}
-          onChange={() => {}}
+          onChange={() => {
+            undefined;
+          }}
         />
         <BoxTextInput
           placeHolder="New Email"
@@ -64,23 +65,23 @@ const ChangeEmailScreen = ({
       </View>
       <Button
         title="Continue"
-        onPressButton={() => navigation.getParent()?.navigate('Settings')}
+        onPressButton={() => navigation.getParent()?.navigate("Settings")}
         styleText={{
           color: Colors[colorScheme].buttonText,
-          fontFamily: 'Euclid-Circular-A-Medium',
+          fontFamily: "Euclid-Circular-A-Medium",
           fontSize: 14,
         }}
         style={{
-          width: '100%',
+          width: "100%",
           marginTop: 10,
           backgroundColor: Colors[colorScheme].button,
         }}
       />
     </View>
-  )
-}
+  );
+};
 
-export default ChangeEmailScreen
+export default ChangeEmailScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -88,4 +89,4 @@ const styles = StyleSheet.create({
     paddingVertical: hp(20),
     paddingHorizontal: 15,
   },
-})
+});

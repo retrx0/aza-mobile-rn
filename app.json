@@ -2,14 +2,18 @@
   "expo": {
     "name": "aza",
     "slug": "aza",
+    "currentFullName": "@retro1/aza",
+    "originalFullName": "@retro1/aza",
     "version": "0.1.1",
     "orientation": "portrait",
+    "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-light.png",
-    "scheme": "myapp",
+    "scheme": "com.aza.azaapp",
     "userInterfaceStyle": "automatic",
     "owner": "retro1",
+    "notification": {},
     "splash": {
-      "image": "./assets/images/app/aza-splash.jpeg",
+      "image": "./assets/images/app/aza-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,13 +23,20 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "usesAppleSignIn": true,
+      "usesIcloudStorage": false,
+      "bundleIdentifier": "com.aza.azaapp",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {}
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/app/aza-app-icon-light.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.aza.azaapp",
+      "googleServicesFile": "/google-services.json"
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-light.png"
@@ -37,6 +48,19 @@
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
-    }
+    },
+    "plugins": [
+      "sentry-expo",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/app/aza-app-icon-light.png",
+          "color": "#ffffff"
+        }
+      ]
+    ]
+  },
+  "infoPlist": {
+    "NSFaceIDUsageDescription": "Authentication/authorization"
   }
 }

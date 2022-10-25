@@ -33,11 +33,14 @@ export const SigninStyles = StyleSheet.create({
     marginTop: hp(340),
     width: wp(325),
   },
-  welcomeOTPButton: {
+  welcomeForgetMeButton: {
     // color: "white",
     fontSize: hp(14),
     lineHeight: hp(17.75),
     fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
   },
   otpContainer: {
     marginTop: hp(20),

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch } from "react-native";
+import { Platform, Switch } from "react-native";
 import { Text, View } from "../../../components/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
@@ -62,7 +62,7 @@ const SignUpPasswordScreen = ({
         headerText=""
         onValueChanged={(code) => setPasscode(code)}
       />
-      <View style={[CommonStyles.container, { bottom: hp(400) }]}>
+      <View style={[CommonStyles.container, { bottom: hp(Platform.OS=='android'?300:400) }]}>
         <View style={[CommonStyles.row]}>
           <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?

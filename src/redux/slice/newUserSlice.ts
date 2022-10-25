@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 import { Gender, User } from "../types";
-import {BASE_URL} from '@env'
+import api from "../../api";
 interface NewUser extends User {
   isVerified?: boolean;
   otpSent?: boolean;
@@ -9,9 +9,10 @@ interface NewUser extends User {
   otpSentCount?: number;
   isUsePasscodeAsPin?: boolean;
   createdPasscode?: string;
-  loading?:boolean;
+  loading?: boolean;
+  otp?: number;
+  token?: string | void;
 }
-
 
 // Define the initial state using that type
 const initialState: NewUser = {
@@ -19,34 +20,94 @@ const initialState: NewUser = {
   firstname: "",
   lastname: "",
   email: "",
-  gender: "Unknown",
+  gender: "",
   isVerified: false,
   isUsePasscodeAsPin: false,
+  loading: false,
+  token: "",
 };
 
 //Create async function fro requesting otp
-export const requestOtp=createAsyncThunk('user/requestOtp',async (props:NewUser)=>{
- const bodyData= {
-    phoneNumber:props.phone,
-    email:props.email
+export const requestOtp = createAsyncThunk(
+  "user/requestOtp",
+  async (props: NewUser) => {
+    const bodyData = {
+      phoneNumber: props.phone,
+      email: props.email,
+    };
+
+    api
+      .post("/api/v1/auth/request-otp", {
+        phoneNumber: props.phone,
+        email: props.email,
+      })
+      .then(
+        (response) => {
+          console.log(response.headers, "+++++");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
-  
- fetch(`${BASE_URL}/api/auth/request-otp`, {
-    method:'POST',
-    headers:{
-      "Content-Type":'application/json'
-    },
-    body:JSON.stringify(bodyData)
-    
-  })
-  .then(res=>res.json())
-  .catch(err=>console.log(err))
-})
+);
 
+//Async function to verify otp
+export const verifyOtp = createAsyncThunk(
+  "user/verifyOtp",
+  (props: NewUser) => {
+    const bodyData = {
+      phoneNumber: props.phone,
+      email: props.email,
+      otp: props.otp,
+    };
 
+    return api
+      .post("/api/v1/auth/verify-otp", {
+        phoneNumber: props.phone,
+        email: props.email,
+        otp: props.otp,
+      })
+      .then(
+        (response) => response.headers["access-token"],
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+);
+
+export const registerUser = createAsyncThunk(
+  "user/registerUser",
+  async (props: NewUser) => {
+    //The below code is where i embbed the bearer token
+    api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+
+    api
+      .put("/api/v1/user/register", {
+        firstName: props.firstname,
+        lastName: props.lastname,
+        gender: 1,
+        email: "",
+        countryCode: "Ng",
+        phoneNumber: props.phone,
+        dateOfBirth: "2022-10-05T06:49:36.196Z",
+        emailConfirmed: true,
+        phoneNumberConfirmed: true,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+);
 
 export const newUserSlice = createSlice({
-  name: "user",
+  name: "user/new",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
@@ -76,22 +137,44 @@ export const newUserSlice = createSlice({
       state.isUsePasscodeAsPin = action.payload.isUsePasscodeAsPin;
       state.createdPasscode = action.payload.createdPasscode;
       state.gender = action.payload.gender;
-    }
+    },
   },
-  extraReducers:(builder)=>{
+  extraReducers: (builder) => {
     builder.addCase(requestOtp.pending, (state, action) => {
-      state.loading=true
+      state.loading = true;
     }),
-    builder.addCase(requestOtp.rejected, (state, action) => {
-      state.otpSent=false
-      state.loading=false
+      builder.addCase(requestOtp.rejected, (state, action) => {
+        state.otpSent = false;
+        state.loading = false;
+      }),
+      builder.addCase(requestOtp.fulfilled, (state, action) => {
+        state.otpSent = true;
+        state.loading = false;
+      }),
+      builder.addCase(verifyOtp.pending, (state, action) => {
+        state.loading = true;
+      }),
+      builder.addCase(verifyOtp.rejected, (state, action) => {
+        state.loading = false;
+      }),
+      builder.addCase(verifyOtp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isVerified = true;
+        state.token = action.payload;
+        console.log(action.payload, "++++++++++ACCC");
+      });
+    builder.addCase(registerUser.pending, (state, action) => {
+      state.loading = true;
     }),
-    builder.addCase(requestOtp.fulfilled, (state, action) => {
-      state.otpSent=true
-      state.loading=false
-    })
-    
-  }
+      builder.addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+      }),
+      builder.addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+
+        console.log(action.payload, "++++++++++Acc");
+      });
+  },
 });
 
 export const {
@@ -108,5 +191,3 @@ export const {
 export const selectNewUser = (state: RootState) => state.newUser;
 
 export default newUserSlice.reducer;
-
-
