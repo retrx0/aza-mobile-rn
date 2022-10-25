@@ -1,17 +1,10 @@
 import React, { useLayoutEffect, useState } from "react";
-import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import Modal from "react-native-modal";
+import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { Text, View } from "../../components/Themed";
 import VirtualKeyboard from "../../components/input/VirtualKeyboard";
 import Button from "../../components/buttons/Button";
 
@@ -19,9 +12,11 @@ import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { CloseCircleLargeIcon, NairaLargeIcon } from "../../../assets/svg";
+import { NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import { UserData } from "../../constants/userData";
+
+import DescriptionModal from "./modal/DescriptionModal";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -126,14 +121,18 @@ const TransactionKeypadScreen = ({
               color={
                 !amount
                   ? Colors[colorScheme].secondaryText
-                  : Colors[colorScheme].mainText
+                  : colorScheme === "dark"
+                  ? Colors.dark.mainText
+                  : Colors.light.text
               }
             />
             <Text
               style={{
                 color: !amount
                   ? Colors[colorScheme].secondaryText
-                  : Colors[colorScheme].mainText,
+                  : colorScheme === "dark"
+                  ? Colors.dark.mainText
+                  : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 15,
@@ -200,107 +199,17 @@ const TransactionKeypadScreen = ({
       </View>
 
       {/* description modal */}
-      <Modal
-        isVisible={descModal}
-        style={{ justifyContent: "flex-end", margin: 0 }}
-      >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}
-        >
-          <TouchableOpacity
-            onPress={() => setDescModalOpen(false)}
-            style={{
-              backgroundColor: "transparent",
-              alignItems: "flex-end",
-              marginBottom: 20,
-              marginRight: 15,
-            }}
-          >
-            <CloseCircleLargeIcon
-              color={Colors[colorScheme].backgroundSecondary}
-            />
-          </TouchableOpacity>
-          <View
-            style={{
-              backgroundColor: Colors[colorScheme].backgroundSecondary,
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              paddingHorizontal: 15,
-              paddingTop: 20,
-              paddingBottom: 50,
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
-              style={{
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: 16,
-              }}
-            >
-              Description
-            </Text>
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
-              style={{
-                marginTop: 10,
-                fontSize: 14,
-              }}
-            >
-              You can add a note to this transaction
-            </Text>
-            <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
-              placeholder="Description (optional)"
-              placeholderTextColor={Colors[colorScheme].secondaryText}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginVertical: hp(35),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-              }}
-              onChangeText={(e) => setDescription(e)}
-              value={description}
-            />
-            <Button
-              title="Continue"
-              onPressButton={() => {
-                setDescModalOpen(false);
-                if (
-                  normalTransaction &&
-                  transactionType.transaction === "send"
-                ) {
-                  // TODO create and pass required params
-                  navigation.navigate("SendMoneyConfirmation");
-                } else if (
-                  normalTransaction &&
-                  transactionType.transaction === "request"
-                ) {
-                  // TODO create and pass required params
-                  navigation.navigate("RequestMoneyConfirmation");
-                }
-              }}
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
-              }}
-              style={{
-                marginVertical: 10,
-                width: "100%",
-                backgroundColor: Colors[colorScheme].button,
-              }}
-            />
-          </View>
-        </KeyboardAvoidingView>
-      </Modal>
+      <DescriptionModal
+        visible={descModal}
+        setModalVisible={setDescModalOpen}
+        description={description}
+        setDescription={setDescription}
+        navigation={navigation}
+        normalTransaction={normalTransaction}
+        recurringTransaction={recurringTransaction}
+        transactionType={transactionType}
+        // transactionParams={}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
@@ -30,9 +30,10 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
           {
             alignSelf: "stretch",
             justifyContent: "space-between",
-            paddingVertical: hp(20),
+            paddingVertical: hp(15),
           },
-        ]}>
+        ]}
+      >
         <View style={[CommonStyles.col]}>
           <Text
             lightColor={Colors[colorScheme].text}
@@ -40,13 +41,15 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-            }}>
+            }}
+          >
             {title}
           </Text>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
-            style={{ fontSize: 10, marginTop: 2 }}>
+            style={{ fontSize: 10, marginTop: 2 }}
+          >
             {subText}
           </Text>
         </View>
@@ -55,7 +58,8 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
           darkColor={Colors[colorScheme].mainText}
           style={{
             fontSize: 14,
-          }}>
+          }}
+        >
           {detail}
         </Text>
       </View>
@@ -78,7 +82,8 @@ const AccountDetailsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           Account Details
         </Text>
       ),
@@ -99,42 +104,42 @@ const AccountDetailsScreen = ({
     },
     {
       title: "Aza Number",
-      subText: "You can receive money transfe/payment by sharing.",
+      subText: "You can receive money transfe/payment \nby sharing.",
       detail: "8081234567",
     },
     {
       title: "Available Balance",
-      subText: "Available balance except for pending transactions",
-      detail: "10,000,600",
+      subText: "Available balance except for pending \ntransactions",
+      detail: "\u20A6 10,000,600",
     },
     {
       title: "Incoming transfer amount limit",
-      subText: "Total amount limit that can be received per month",
-      detail: "100,000",
+      subText: "Total amount limit that can be received per \nmonth",
+      detail: "\u20A6 100,000",
     },
     {
       title: "Deposit amount limit",
       subText:
-        "The amount that can be deposited to your account during this month",
-      detail: "3,600",
+        "The amount that can be deposited to your \naccount during this month",
+      detail: "\u20A6 3,600",
     },
     {
       title: "Transfer received from different users",
       subText:
-        "The number of people who transferred money to your account this month",
+        "The number of people who transferred money to \nyour account this month",
       detail: "6",
     },
     {
       title: "Number of incoming transfers",
       subText:
-        "The number of money transfers received in your account this month",
+        "The number of money transfers received in your \naccount this month",
       detail: "6",
     },
     {
       title: "Incoming transfer amount",
       subText:
-        "The amount of incoming money transfers to your account this month",
-      detail: "3,600",
+        "The amount of incoming money transfers to your \naccount this month",
+      detail: "\u20A6 3,600",
     },
   ];
 
@@ -155,7 +160,8 @@ const AccountDetailsScreen = ({
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: 14,
-              }}>
+              }}
+            >
               {UserData.userFullName}
             </Text>
             <Text
@@ -164,39 +170,47 @@ const AccountDetailsScreen = ({
               style={{
                 marginVertical: 5,
                 fontSize: 12,
-              }}>
+              }}
+            >
               {UserData.userphoneNumber}
             </Text>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 10 }}>
+              style={{ fontSize: 10 }}
+            >
               {UserData.userEmail}
             </Text>
           </View>
         </View>
-        <View
-          style={[
-            CommonStyles.col,
-            { alignSelf: "stretch", marginTop: hp(20) },
-          ]}>
-          {details.map(({ detail, subText, title }, i) => (
-            <AccountDetailsListItem
-              key={i}
-              detail={detail}
-              subText={subText}
-              title={title}
-            />
-          ))}
-        </View>
-        <TouchableOpacity style={{ alignSelf: "center", marginTop: hp(35) }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View
+            style={[
+              CommonStyles.col,
+              { alignSelf: "stretch", marginTop: hp(20) },
+            ]}
+          >
+            {details.map(({ detail, subText, title }, i) => (
+              <AccountDetailsListItem
+                key={i}
+                detail={detail}
+                subText={subText}
+                title={title}
+              />
+            ))}
+          </View>
+        </ScrollView>
+        <TouchableOpacity
+          style={{ alignSelf: "center", marginVertical: hp(35) }}
+        >
           <Text
             lightColor={Colors[colorScheme].text}
             darkColor={Colors[colorScheme].mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-            }}>
+            }}
+          >
             Term of Use
           </Text>
         </TouchableOpacity>

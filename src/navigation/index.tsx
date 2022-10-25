@@ -15,7 +15,8 @@ import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import * as Notifications from "expo-notifications";
 
-import ModalScreen from "../screens/modals/QRCodeModalScreen";
+import QRTransactionsScreen from "../screens/qrTransactions/QRTransactionsScreen";
+import QRCodeScreen from "../screens/qrTransactions/QRCodeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -128,13 +129,8 @@ const RootNavigator = () => {
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen
-          name="QRCodeModal"
-          component={ModalScreen}
-          options={{ title: "Scan QR Code" }}
-        />
-      </Stack.Group>
+      <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
+      <Stack.Screen name="QRCode" component={QRCodeScreen} />
     </Stack.Navigator>
   );
 };

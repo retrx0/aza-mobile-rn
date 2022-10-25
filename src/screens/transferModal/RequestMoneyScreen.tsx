@@ -118,7 +118,7 @@ const RequestMoneyScreen = ({
                             headerTitle: "Request Money",
                             transactionType: {
                               transaction: "request",
-                              type: "normal transaction",
+                              type: "normal",
                               beneficiary: {
                                 beneficiaryAccount: "",
                                 beneficiaryImage: "",

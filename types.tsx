@@ -22,7 +22,8 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  QRCodeModal: undefined;
+  QRTransactions: undefined;
+  QRCode: undefined;
   NotFound: undefined;
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;

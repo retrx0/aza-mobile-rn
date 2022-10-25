@@ -149,7 +149,7 @@ const BankAccountsScreen = ({
                 headerTitle: "Amount",
                 transactionType: {
                   transaction: "withdraw",
-                  type: "normal transaction",
+                  type: "normal",
                   beneficiary: {
                     beneficiaryAccount: "",
                     beneficiaryImage: "",

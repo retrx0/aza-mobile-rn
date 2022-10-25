@@ -171,7 +171,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                             headerTitle: "Send Money",
                             transactionType: {
                               transaction: "send",
-                              type: "normal transaction",
+                              type: "normal",
                               beneficiary: {
                                 beneficiaryAccount: "",
                                 beneficiaryImage: "",

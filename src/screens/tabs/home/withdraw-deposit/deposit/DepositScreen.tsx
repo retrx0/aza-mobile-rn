@@ -145,7 +145,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                   headerTitle: "Amount",
                   transactionType: {
                     transaction: "deposit",
-                    type: "normal transaction",
+                    type: "normal",
                     beneficiary: {
                       beneficiaryAccount: "",
                       beneficiaryImage: "",
