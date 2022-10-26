@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
@@ -12,15 +12,21 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { UserData } from "../../../../constants/userData";
+import { useAppSelector } from "../../../../hooks/redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import {
+  getCurrencyUnicode,
+  getInitialsAvatar,
+} from "../../../../common/util/AppUtil";
 
 interface Detail {
   title: string;
   subText: string;
-  detail: string;
+  data: string | number;
 }
 
-const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
+const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
   const colorScheme = useColorScheme();
   return (
     <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
@@ -30,9 +36,10 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
           {
             alignSelf: "stretch",
             justifyContent: "space-between",
-            paddingVertical: hp(20),
+            paddingVertical: hp(15),
           },
-        ]}>
+        ]}
+      >
         <View style={[CommonStyles.col]}>
           <Text
             lightColor={Colors[colorScheme].text}
@@ -40,13 +47,15 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-            }}>
+            }}
+          >
             {title}
           </Text>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
-            style={{ fontSize: 10, marginTop: 2 }}>
+            style={{ fontSize: 10, marginTop: 2 }}
+          >
             {subText}
           </Text>
         </View>
@@ -55,8 +64,9 @@ const AccountDetailsListItem = ({ title, subText, detail }: Detail) => {
           darkColor={Colors[colorScheme].mainText}
           style={{
             fontSize: 14,
-          }}>
-          {detail}
+          }}
+        >
+          {data}
         </Text>
       </View>
       <Divider />
@@ -68,6 +78,9 @@ const AccountDetailsScreen = ({
   navigation,
 }: CommonScreenProps<"AccountDetails">) => {
   const colorScheme = useColorScheme();
+  const user = useAppSelector(selectUser);
+
+  const currencySymbol = getCurrencyUnicode(user.accountCurency);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -78,7 +91,8 @@ const AccountDetailsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           Account Details
         </Text>
       ),
@@ -95,46 +109,46 @@ const AccountDetailsScreen = ({
     {
       title: "Account status",
       subText: "Unverified or Verified",
-      detail: "Verified",
+      data: user.accountVerified ? "Verified" : "Not Verified",
     },
     {
       title: "Aza Number",
-      subText: "You can receive money transfe/payment by sharing.",
-      detail: "8081234567",
+      subText: "You can receive money transfe/payment \nby sharing.",
+      data: user.azaAccountNumber,
     },
     {
       title: "Available Balance",
-      subText: "Available balance except for pending transactions",
-      detail: "10,000,600",
+      subText: "Available balance except for pending \ntransactions",
+      data: `${currencySymbol} ${user.azaBalance}`,
     },
     {
       title: "Incoming transfer amount limit",
-      subText: "Total amount limit that can be received per month",
-      detail: "100,000",
+      subText: "Total amount limit that can be received per \nmonth",
+      data: `${NAIRA_UNICODE} ${user.transfers.incommingTransferLimit}`,
     },
     {
       title: "Deposit amount limit",
       subText:
-        "The amount that can be deposited to your account during this month",
-      detail: "3,600",
+        "The amount that can be deposited to your \naccount during this month",
+      data: `${NAIRA_UNICODE} ${user.transfers.depositAmountLimit}`,
     },
     {
       title: "Transfer received from different users",
       subText:
-        "The number of people who transferred money to your account this month",
-      detail: "6",
+        "The number of people who transferred money to \nyour account this month",
+      data: user.transfers.totalMonthlyReceivers,
     },
     {
       title: "Number of incoming transfers",
       subText:
-        "The number of money transfers received in your account this month",
-      detail: "6",
+        "The number of money transfers received in your \naccount this month",
+      data: user.transfers.totalMonthlyIncomingTransfers,
     },
     {
       title: "Incoming transfer amount",
       subText:
-        "The amount of incoming money transfers to your account this month",
-      detail: "3,600",
+        "The amount of incoming money transfers to your \naccount this month",
+      data: `${NAIRA_UNICODE} ${user.transfers.totalMonthlyIncomingTransferAmount}`,
     },
   ];
 
@@ -145,7 +159,14 @@ const AccountDetailsScreen = ({
           <Image
             style={{ borderRadius: 50, width: 56, height: 56 }}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              uri: user.pictureUrl
+                ? user.pictureUrl
+                : getInitialsAvatar({
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    backgroundColor: Colors[colorScheme].backgroundSecondary,
+                    foreground: Colors[colorScheme].mainText,
+                  }),
             }}
           />
           <View style={[CommonStyles.col, { marginLeft: 20 }]}>
@@ -155,8 +176,9 @@ const AccountDetailsScreen = ({
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: 14,
-              }}>
-              {UserData.userFullName}
+              }}
+            >
+              {user.fullName}
             </Text>
             <Text
               lightColor={Colors.light.text}
@@ -164,39 +186,47 @@ const AccountDetailsScreen = ({
               style={{
                 marginVertical: 5,
                 fontSize: 12,
-              }}>
-              {UserData.userphoneNumber}
+              }}
+            >
+              {user.phoneNumber}
             </Text>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 10 }}>
-              {UserData.userEmail}
+              style={{ fontSize: 10 }}
+            >
+              {user.emailAddress}
             </Text>
           </View>
         </View>
-        <View
-          style={[
-            CommonStyles.col,
-            { alignSelf: "stretch", marginTop: hp(20) },
-          ]}>
-          {details.map(({ detail, subText, title }, i) => (
-            <AccountDetailsListItem
-              key={i}
-              detail={detail}
-              subText={subText}
-              title={title}
-            />
-          ))}
-        </View>
-        <TouchableOpacity style={{ alignSelf: "center", marginTop: hp(35) }}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View
+            style={[
+              CommonStyles.col,
+              { alignSelf: "stretch", marginTop: hp(20) },
+            ]}
+          >
+            {details.map(({ data, subText, title }, i) => (
+              <AccountDetailsListItem
+                key={i}
+                data={data}
+                subText={subText}
+                title={title}
+              />
+            ))}
+          </View>
+        </ScrollView>
+        <TouchableOpacity
+          style={{ alignSelf: "center", marginVertical: hp(35) }}
+        >
           <Text
             lightColor={Colors[colorScheme].text}
             darkColor={Colors[colorScheme].mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
-            }}>
+            }}
+          >
             Term of Use
           </Text>
         </TouchableOpacity>

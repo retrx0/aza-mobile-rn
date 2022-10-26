@@ -11,6 +11,7 @@ import {
 } from "@env";
 import { isEnvDevelopent } from "../../common/util/AppUtil";
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
 
 const useProxy: boolean = isEnvDevelopent;
 
@@ -82,18 +83,47 @@ export const signInWithApple = async () => {
   return credential;
 };
 
-export const fetchGoogleUserInfo = async (access_token: string | undefined) => {
-  const result = await axios.get(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
-  );
-  return result;
+const signOutAllAccount = () => {
+  // AppleAuthentication.signOutAsync()
+  //   .then((r) => console.debug("Apple account signed out"))
+  //   .catch((e) => console.error(e));
 };
 
-export const fetchFacebookUserInfo = async (
-  access_token: string | undefined
+export const fetchThirdPartyUserInfo = async (
+  access_token: string | undefined,
+  thirdParty: "Google" | "Facebook"
 ) => {
-  const result = await axios.get(
-    `https://graph.facebook.com/me?fields=id,name,email&access_token=${access_token}`
-  );
-  return result;
+  try {
+    const result = await axios.get(
+      thirdParty === "Google"
+        ? `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
+        : `https://graph.facebook.com/me?fields=id,name,first_name,last_name,email,picture&access_token=${access_token}`
+    );
+    return result;
+  } catch (e) {
+    console.error(e);
+  }
+
+  return null;
+};
+
+export const storeAuthSessionTokens = (
+  response: AuthSession.AuthSessionResult | null,
+  tokenKey: string,
+  refreshTokenKey: string
+) => {
+  if (response?.type === "success") {
+    // Store Tokens
+    if (response.authentication?.refreshToken) {
+      SecureStore.setItemAsync(tokenKey, response.authentication?.accessToken)
+        .then(() => console.log("token stored"))
+        .catch((e) => console.error(e));
+      SecureStore.setItemAsync(
+        refreshTokenKey,
+        response.authentication?.refreshToken
+      )
+        .then(() => console.log("Refresh token stored"))
+        .catch((e) => console.error(e));
+    }
+  }
 };

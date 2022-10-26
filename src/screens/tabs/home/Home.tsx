@@ -25,18 +25,18 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   } = useNotifications();
 
   // Testing notification
-  schedulePushNotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
+  // schedulePushNotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
 
-  registerForPushNotificationsAsync().then((token) => {
-    if (token) {
-      sendPushNotification(
-        token,
-        "Hello Again 👀",
-        "This is a push notification",
-        {}
-      );
-    }
-  });
+  // registerForPushNotificationsAsync().then((token) => {
+  //   if (token) {
+  //     sendPushNotification(
+  //       token,
+  //       "Hello Again 👀",
+  //       "This is a push notification",
+  //       {}
+  //     );
+  //   }
+  // });
 
   return (
     <View style={styles.container}>

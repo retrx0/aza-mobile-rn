@@ -10,7 +10,7 @@ interface AuthState {
 // Define the initial state using that type
 const initialState: AuthState = {
   azaId: "",
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 export const authSlice = createSlice({

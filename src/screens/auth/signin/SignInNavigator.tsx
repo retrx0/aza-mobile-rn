@@ -3,8 +3,7 @@ import React from "react";
 import LoginOTPScreen from "./SignInOTPScreen";
 import SignInWelcomeBackScreen from "./SignInWelcomBackScreen";
 import SignInScreen from "./SignInScreen";
-import { useAppSelector } from "../../../hooks/redux";
-import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
+import useCachedResources from "../../../hooks/useCachedResources";
 
 const LogInStack = createNativeStackNavigator();
 
@@ -15,11 +14,11 @@ export type LogInStackProps = {
 };
 
 const LoginNavigator = () => {
-  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  const { isUserSignedIn } = useCachedResources();
 
   return (
     <LogInStack.Navigator
-      initialRouteName={isLoggedIn ? "SignInWelcomeBack" : "SignInRoot"}
+      initialRouteName={isUserSignedIn ? "SignInWelcomeBack" : "SignInRoot"}
       screenOptions={{ gestureEnabled: false }}
     >
       <LogInStack.Screen

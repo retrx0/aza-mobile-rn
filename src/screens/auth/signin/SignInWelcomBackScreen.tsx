@@ -13,7 +13,7 @@ import api from "../../../api";
 import { TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_ACCESS_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
 type WelcomeOTProp = {
   otpCode: string;
@@ -28,7 +28,7 @@ const verifyPasscode = (code: string, navigation: any) => {
 
 const forgetUser = (navigation: any) => {
   console.log("forgetting user...");
-  SecureStore.deleteItemAsync(STORAGE_KEY_ACCESS_TOKEN, {
+  SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
     requireAuthentication: true,
   })
     .then(() => {

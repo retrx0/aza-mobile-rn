@@ -4182,6 +4182,11 @@ csstype@^3.0.2:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.0.tgz"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
+currency-symbol-map@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/currency-symbol-map/-/currency-symbol-map-5.1.0.tgz#59531fbe977ba95e8d358e90e3c9e9053efb75ad"
+  integrity sha512-LO/lzYRw134LMDVnLyAf1dHE5tyO6axEFkR3TXjQIOmMkAM9YL6QsiUwuXzZAmFnuDJcs4hayOgyIYtViXFrLw==
+
 dag-map@~1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/dag-map/-/dag-map-1.0.2.tgz"
@@ -4965,6 +4970,42 @@ expo-crypto@~10.2.0:
   resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-10.2.0.tgz#86d16e7e93b62af37d9ded3d344744e94d6ab4e4"
   integrity sha512-YVFp+DJXBtt4t6oZXepnzb+xwpKzFbXn3B9Oma1Tfh6J0rIlm/I20UW/5apdvEdbj44fxJ5DsiZeyADI3bcZkQ==
 
+expo-dev-client@~1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-1.0.1.tgz#88edb3a60b5a758c0cc57b0326bdcb1ad1573e5a"
+  integrity sha512-LMtMvappEyq0AvX3QXeq4CQ/dbdiBwUm6exjBz3dCM7KhMbjJ26TxbYvS0DfxAJDXBlyjCLi8O4HAUb0U811/Q==
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
+    expo-dev-launcher "1.0.1"
+    expo-dev-menu "1.0.1"
+    expo-dev-menu-interface "0.7.0"
+    expo-manifests "~0.3.0"
+    expo-updates-interface "~0.6.0"
+
+expo-dev-launcher@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/expo-dev-launcher/-/expo-dev-launcher-1.0.1.tgz#cb550399a23d7e4fcc34cc7f5fef20cff979c7c8"
+  integrity sha512-1JFhiqjZE67qVAg0tOqVC53/7dIefWgaJ7OQRdapWEiiqUeFFnWmwvaz8NcjsTJzsk5bepXrgW7QpIZYkUYniQ==
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
+    expo-dev-menu "1.0.1"
+    resolve-from "^5.0.0"
+    semver "^7.3.5"
+
+expo-dev-menu-interface@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/expo-dev-menu-interface/-/expo-dev-menu-interface-0.7.0.tgz#e141a671c7a34b921e7255653665d5e8489dab08"
+  integrity sha512-f/9gWLpuvXvQPeVBHH0T7qm4v2/Ynygs7dzebxqSWGDcCabfqRhuX+dv/t7CGu85m6waC9xYYnjLG7l8LC/i3Q==
+
+expo-dev-menu@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/expo-dev-menu/-/expo-dev-menu-1.0.1.tgz#7d64953d5304c794d47bfd5f3861a47c7eef9d03"
+  integrity sha512-npDfYQorhI/EaJb2LRLxI9WqzyIrM3AXhHnaA6qNBtEMb5IwAmg4I7//2FqbCtama+sUkc8mEFqyUa4/DbhJ2Q==
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
+    expo-dev-menu-interface "0.7.0"
+    semver "^7.3.5"
+
 expo-device@~4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/expo-device/-/expo-device-4.2.0.tgz#e6a883b6f74d78091d00e3c010f5ee59cdee79e0"
@@ -5052,6 +5093,13 @@ expo-manifests@~0.3.0:
   integrity sha512-zv2a4pzhbvxVjrTO4XEiP5THt4RwtxyJjfixFhDNfHtDQR7fS4h9sZSGX9ind+IS5SQJQ2ykfVAi8xnwP6zHaw==
   dependencies:
     expo-json-utils "~0.3.0"
+
+expo-media-library@~14.1.0:
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/expo-media-library/-/expo-media-library-14.1.0.tgz#45302a49444a03d9e6597824bd7295b7bcb38286"
+  integrity sha512-hGXa+4pe6G6WHuNVoGCyBJ6W3VTUg1R63ULIcpXN+mU8k1AfPen/eEFaA3G2FUxdeTvyXJdWZOQY48uDu6I3hg==
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
 
 expo-modules-autolinking@0.8.1:
   version "0.8.1"
@@ -8954,6 +9002,13 @@ react-native-codegen@^0.0.17:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-custom-qr-codes-expo@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-custom-qr-codes-expo/-/react-native-custom-qr-codes-expo-2.2.0.tgz#0286713160d9db13c82718ba3c4786ac7dfeb076"
+  integrity sha512-NWZqkdyZfdYlZcCqejshWRJJik7MVl+9r8AvsPPRxXsKfdEaqalQ2sb78Zyh3BELnyqr3ptP7CSxjtXiN77SjA==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-dotenv@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.3.1.tgz#8f399cf28ca77d860d8e7f7323e439fa60a8ca0b"
@@ -9079,6 +9134,11 @@ react-native-tab-view@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
   integrity sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw==
+
+react-native-view-shot@3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.1.2.tgz#8c8e84c67a4bc8b603e697dbbd59dbc9b4f84825"
+  integrity sha512-9u9fPtp6a52UMoZ/UCPrCjKZk8tnkI9To0Eh6yYnLKFEGkRZ7Chm6DqwDJbYJHeZrheCCopaD5oEOnRqhF4L2Q==
 
 react-native-web@0.17.7:
   version "0.17.7"

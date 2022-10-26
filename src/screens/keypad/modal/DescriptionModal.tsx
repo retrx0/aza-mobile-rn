@@ -8,15 +8,16 @@ import Modal from "react-native-modal";
 import { TransactionKeypadParamsType } from "../../../common/navigation/types";
 import { hp } from "../../../common/util/LayoutUtil";
 
-type DescriptiionModalProps = {
+type DescriptionModalProps = {
   visible: boolean;
   setModalVisible: (value: boolean) => void;
   setDescription: (value: string) => void;
   navigation: any;
   description: string;
-  transactionParams: TransactionKeypadParamsType;
+  // transactionParams: TransactionKeypadParamsType;
   normalTransaction?: boolean;
   recurringTransaction?: boolean;
+  // TODO fix to a proper type
   transactionType: any;
 };
 
@@ -26,11 +27,11 @@ const DescriptionModal = ({
   navigation,
   description,
   setDescription,
-  transactionParams,
+  // transactionParams,
   normalTransaction,
   recurringTransaction,
   transactionType,
-}: DescriptiionModalProps) => {
+}: DescriptionModalProps) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -107,6 +108,10 @@ const DescriptionModal = ({
             title="Continue"
             onPressButton={() => {
               setModalVisible(false);
+              // TODO create and pass proper type for qr transactions
+              if (transactionType === null) {
+                navigation.navigate("QRCode");
+              }
               if (normalTransaction && transactionType.transaction === "send") {
                 // TODO create and pass required params
                 navigation.navigate("SendMoneyConfirmation");
@@ -134,3 +139,5 @@ const DescriptionModal = ({
     </Modal>
   );
 };
+
+export default DescriptionModal;

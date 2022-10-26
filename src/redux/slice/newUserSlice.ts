@@ -107,7 +107,7 @@ export const registerUser = createAsyncThunk(
 );
 
 export const newUserSlice = createSlice({
-  name: "user",
+  name: "user/new",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {

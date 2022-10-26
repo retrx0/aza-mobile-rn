@@ -18,13 +18,21 @@ import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import { Platform } from "react-native";
-import { ENV } from "@env";
 import {
-  fetchGoogleUserInfo,
+  ENV,
+  STORAGE_KEY_FACEBOOK_REFRESH_TOKEN,
+  STORAGE_KEY_GOOGLE_REFRESH_TOKEN,
+  STORAGE_KEY_GOOGLE_TOKEN,
+  STORAGE_KEY_FACEBOOK_TOKEN,
+  STORAGE_KEY_APPLE_TOKEN,
+} from "@env";
+import {
+  fetchThirdPartyUserInfo,
   signInWithApple,
   signInWithFacebook,
   signInWithGoogole,
 } from "../thirdPartyAuth";
+import * as SecureStore from "expo-secure-store";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -37,18 +45,53 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const { f_promptAsync, f_response } = signInWithFacebook();
   const { g_promptAsync, g_response, g_request } = signInWithGoogole();
 
+  const storeAuthSessionTokens = (
+    response: AuthSession.AuthSessionResult | null,
+    tokenKey: string,
+    refreshTokenKey: string
+  ) => {
+    if (response?.type === "success") {
+      // Store Tokens
+      if (response.authentication?.refreshToken) {
+        SecureStore.setItemAsync(tokenKey, response.authentication?.accessToken)
+          .then(() => console.log("token stored"))
+          .catch((e) => console.error(e));
+        SecureStore.setItemAsync(
+          refreshTokenKey,
+          response.authentication?.refreshToken
+        )
+          .then(() => console.log("Refresh token stored"))
+          .catch((e) => console.error(e));
+      }
+    }
+  };
+
   React.useEffect(() => {
     console.log(AuthSession.getDefaultReturnUrl());
 
     if (g_response?.type === "success") {
-      fetchGoogleUserInfo(g_response.authentication?.accessToken)
-        .then((r) => console.log(r.data))
+      // Store Tokens
+      storeAuthSessionTokens(
+        g_response,
+        STORAGE_KEY_GOOGLE_TOKEN,
+        STORAGE_KEY_GOOGLE_REFRESH_TOKEN
+      );
+      fetchThirdPartyUserInfo(g_response.authentication?.accessToken, "Google")
+        .then((r) => console.log(r?.data))
         .catch((e) => console.error(e));
     }
     // TODO make calls to googleapis/facebook using the response to get the email and profile
     if (f_response?.type === "success") {
-      fetchGoogleUserInfo(f_response.authentication?.accessToken)
-        .then((r) => console.log(r.data))
+      storeAuthSessionTokens(
+        g_response,
+        STORAGE_KEY_GOOGLE_TOKEN,
+        STORAGE_KEY_GOOGLE_REFRESH_TOKEN
+      );
+      fetchThirdPartyUserInfo(
+        f_response.authentication?.accessToken,
+        "Facebook"
+      )
+        .then((r) => console.log(r?.data))
         .catch((e) => console.error(e));
     }
   }, [g_response, f_response]);
@@ -121,7 +164,14 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           title="Connect Apple Account"
           color={Colors.general.apple}
           onPress={() => {
-            signInWithApple().then((r) => console.log(r?.email));
+            signInWithApple().then((a_response) => {
+              if (a_response?.identityToken) {
+                SecureStore.setItemAsync(
+                  STORAGE_KEY_APPLE_TOKEN,
+                  a_response.identityToken
+                );
+              }
+            });
             // pass the response to create account
           }}
           alt={false}

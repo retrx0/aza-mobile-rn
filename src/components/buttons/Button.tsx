@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { Text, StyleProp, TextStyle, ViewStyle, Pressable } from "react-native";
+import {
+  Text,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+  TouchableOpacity,
+} from "react-native";
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -24,8 +30,9 @@ export const Button: FC<ButtonPropsType> = ({
   const colorScheme = useColorScheme();
 
   return (
-    <Pressable
+    <TouchableOpacity
       disabled={disabled}
+      activeOpacity={0.7}
       onPress={onPressButton}
       style={[
         styles.doneButton,
@@ -38,11 +45,12 @@ export const Button: FC<ButtonPropsType> = ({
           opacity: disabled ? 0.5 : 1,
         },
         style,
-      ]}>
+      ]}
+    >
       <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
         {title}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
