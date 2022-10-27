@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
-import { CommonScreenProps } from "../../common/navigation/types";
+import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
 import { Text } from "../../components/Themed";
@@ -11,10 +11,10 @@ import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
-import { getUserContacts } from "../../hooks/useContacts";
 import { Contact } from "expo-contacts";
 import { useAppSelector } from "../../hooks/redux";
 import ContactsScene from "./ContactsScene";
+import { getUserContacts } from "../../hooks/useContacts";
 import { sendInviteToNonAzaContact } from "../../api/notification";
 
 const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
@@ -61,18 +61,14 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
     });
   }, []);
 
-  const azaContactOnClick = () => {
+  const azaContactOnClick = (beneficiary: Beneficiary) => {
     //TODO replace with redux slice
     navigation.navigate("TransactionKeypad", {
       headerTitle: "Send Money",
       transactionType: {
         transaction: "send",
         type: "normal",
-        beneficiary: {
-          beneficiaryAccount: "",
-          beneficiaryImage: "",
-          beneficiaryName: "",
-        },
+        beneficiary: beneficiary,
         openDescriptionModal: true,
       },
     });
@@ -85,7 +81,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
         renderScene={({ route }) => (
           <ContactsScene
             route={route}
-            azaContactOnPress={azaContactOnClick}
+            azaContactOnPress={(beneficiary) => azaContactOnClick(beneficiary)}
             nonAzaContactOnPress={() => sendInviteToNonAzaContact()}
           />
         )}

@@ -12,11 +12,18 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useAppSelector } from "../../hooks/redux";
+import { selectTransferTo } from "../../redux/slice/transferToSlice";
+import { getInitialsAvatar } from "../../common/util/AppUtil";
 
 const SendMoneyConfirmationScreen = ({
   navigation,
 }: CommonScreenProps<"SendMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
+
+  const transferObject = useAppSelector(selectTransferTo);
+
+  console.log(transferObject);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -80,11 +87,19 @@ const SendMoneyConfirmationScreen = ({
                 borderBottomColor: Colors[colorScheme].separator,
               }}
               showSoftInputOnFocus={false}
-              value={"Chiazondu Joseph"}
+              value={transferObject.beneficairy.fullName}
             />
             <Image
               source={{
-                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                uri:
+                  transferObject.beneficairy.pictureUrl &&
+                  transferObject.beneficairy.pictureUrl !== ""
+                    ? transferObject.beneficairy.pictureUrl
+                    : getInitialsAvatar({
+                        firstName: transferObject.beneficairy.firstName!,
+                        lastName: transferObject.beneficairy.lastName,
+                        scheme: colorScheme,
+                      }),
               }}
               style={{
                 position: "absolute",
@@ -139,7 +154,7 @@ const SendMoneyConfirmationScreen = ({
                   borderBottomColor: Colors[colorScheme].separator,
                 }}
                 showSoftInputOnFocus={false}
-                value={"80,000"}
+                value={"" + transferObject.amount}
               />
             </View>
           </View>
@@ -167,7 +182,7 @@ const SendMoneyConfirmationScreen = ({
                 borderBottomColor: Colors[colorScheme].separator,
               }}
               showSoftInputOnFocus={false}
-              value={"Chop life my gee ❤️"}
+              value={transferObject.description}
             />
           </View>
         </View>
