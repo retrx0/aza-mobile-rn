@@ -1,17 +1,10 @@
 import React, { useLayoutEffect, useState } from "react";
-import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import Modal from "react-native-modal";
+import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { Text, View } from "../../components/Themed";
 import VirtualKeyboard from "../../components/input/VirtualKeyboard";
 import Button from "../../components/buttons/Button";
 
@@ -19,9 +12,16 @@ import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { CloseCircleLargeIcon, NairaLargeIcon } from "../../../assets/svg";
+import { NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
-import { UserData } from "../../constants/userData";
+
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { selectUser } from "../../redux/slice/userSlice";
+import { getInitialsAvatar } from "../../common/util/AppUtil";
+import DescriptionModal from "./modal/DescriptionModal";
+import transferToSlice, {
+  setTransferTo,
+} from "../../redux/slice/transferToSlice";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -31,12 +31,17 @@ const TransactionKeypadScreen = ({
   const [description, setDescription] = useState("");
   const [descModal, setDescModalOpen] = useState(false);
 
+  const user = useAppSelector(selectUser);
+
   const colorScheme = useColorScheme();
 
   const { headerTitle, transactionType } = route.params;
+  const { beneficiary, type } = transactionType;
 
-  const normalTransaction = transactionType.type === "normal transaction";
-  const recurringTransaction = transactionType.type === "recurring";
+  const normalTransaction = type === "normal";
+  const recurringTransaction = type === "recurring";
+
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -47,7 +52,8 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -67,7 +73,14 @@ const TransactionKeypadScreen = ({
           <Image
             style={{ borderRadius: 50, width: 50, height: 50 }}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              uri:
+                beneficiary.pictureUrl && beneficiary.pictureUrl !== ""
+                  ? beneficiary.pictureUrl
+                  : getInitialsAvatar({
+                      firstName: beneficiary.fullName,
+                      lastName: beneficiary.lastName,
+                      scheme: colorScheme,
+                    }),
             }}
           />
           <Text
@@ -77,8 +90,9 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 14,
               marginTop: 15,
-            }}>
-            {UserData.userFullName}
+            }}
+          >
+            {beneficiary.fullName}
           </Text>
           <View
             lightColor="#eaeaec"
@@ -93,11 +107,13 @@ const TransactionKeypadScreen = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               Nigerian Naira
             </Text>
             <Image
@@ -112,7 +128,8 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               NGN
             </Text>
           </View>
@@ -121,18 +138,23 @@ const TransactionKeypadScreen = ({
               color={
                 !amount
                   ? Colors[colorScheme].secondaryText
-                  : Colors[colorScheme].mainText
+                  : colorScheme === "dark"
+                  ? Colors.dark.mainText
+                  : Colors.light.text
               }
             />
             <Text
               style={{
                 color: !amount
                   ? Colors[colorScheme].secondaryText
-                  : Colors[colorScheme].mainText,
+                  : colorScheme === "dark"
+                  ? Colors.dark.mainText
+                  : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 15,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -142,7 +164,8 @@ const TransactionKeypadScreen = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -152,8 +175,9 @@ const TransactionKeypadScreen = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}>
-              {"\u20A6"} {UserData.userAzaBalance}
+              }}
+            >
+              {"\u20A6"} {user.azaBalance}
             </Text>
           </View>
         </View>
@@ -165,6 +189,33 @@ const TransactionKeypadScreen = ({
             // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
             if (normalTransaction) {
               // This checks if the transactions are send or request money which have optional description message
+
+              switch (transactionType.transaction) {
+                case "deposit":
+                  console.log("deposit");
+                  break;
+                case "request":
+                  console.log("request");
+                  break;
+                case "send":
+                  dispatch(
+                    setTransferTo({
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "normal",
+                    })
+                  );
+                  break;
+                case "withdraw":
+                  console.log("withdrawing");
+                  break;
+              }
+
+              //}else if(deposit){
+
+              //}
+
               transactionType.openDescriptionModal && setDescModalOpen(true);
             } else {
               // TODO create and pass required params
@@ -185,101 +236,17 @@ const TransactionKeypadScreen = ({
       </View>
 
       {/* description modal */}
-      <Modal
-        isVisible={descModal}
-        style={{ justifyContent: "flex-end", margin: 0 }}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}>
-          <TouchableOpacity
-            onPress={() => setDescModalOpen(false)}
-            style={{
-              backgroundColor: "transparent",
-              alignItems: "flex-end",
-              marginBottom: 20,
-              marginRight: 15,
-            }}>
-            <CloseCircleLargeIcon
-              color={Colors[colorScheme].backgroundSecondary}
-            />
-          </TouchableOpacity>
-          <View
-            style={{
-              backgroundColor: Colors[colorScheme].backgroundSecondary,
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-              paddingHorizontal: 15,
-              paddingTop: 20,
-              paddingBottom: 50,
-              display: "flex",
-              justifyContent: "space-between",
-            }}>
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
-              style={{
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: 16,
-              }}>
-              Description
-            </Text>
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
-              style={{
-                marginTop: 10,
-                fontSize: 14,
-              }}>
-              You can add a note to this transaction
-            </Text>
-            <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
-              placeholder="Description (optional)"
-              placeholderTextColor={Colors[colorScheme].secondaryText}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginVertical: hp(35),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-              }}
-              onChangeText={(e) => setDescription(e)}
-              value={description}
-            />
-            <Button
-              title="Continue"
-              onPressButton={() => {
-                setDescModalOpen(false);
-                if (
-                  normalTransaction &&
-                  transactionType.transaction === "send"
-                ) {
-                  // TODO create and pass required params
-                  navigation.navigate("SendMoneyConfirmation");
-                } else if (
-                  normalTransaction &&
-                  transactionType.transaction === "request"
-                ) {
-                  // TODO create and pass required params
-                  navigation.navigate("RequestMoneyConfirmation");
-                }
-              }}
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
-              }}
-              style={{
-                marginVertical: 10,
-                width: "100%",
-                backgroundColor: Colors[colorScheme].button,
-              }}
-            />
-          </View>
-        </KeyboardAvoidingView>
-      </Modal>
+      <DescriptionModal
+        visible={descModal}
+        setModalVisible={setDescModalOpen}
+        description={description}
+        setDescription={setDescription}
+        navigation={navigation}
+        normalTransaction={normalTransaction}
+        recurringTransaction={recurringTransaction}
+        transactionType={transactionType}
+        // transactionParams={}
+      />
     </>
   );
 };

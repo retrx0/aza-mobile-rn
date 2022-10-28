@@ -1,14 +1,17 @@
 import React, { memo } from "react";
 import { Image } from "react-native";
+import { AZALargeLightningLogo, InviteIcon } from "../../../assets/svg";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
+import useColorScheme from "../../hooks/useColorScheme";
 import { Text, View } from "../Themed";
 
 interface IContact {
   image: string;
   name: string;
   phoneNumber: string;
+  isContactOnAza: boolean;
   suffixIcon?: JSX.Element;
 }
 
@@ -17,7 +20,9 @@ const ContactListItem = ({
   phoneNumber,
   suffixIcon,
   image,
+  isContactOnAza,
 }: IContact) => {
+  const scheme = useColorScheme();
   return (
     <View
       style={[
@@ -51,7 +56,11 @@ const ContactListItem = ({
           {phoneNumber}
         </Text>
       </View>
-      {suffixIcon}
+      {isContactOnAza ? (
+        <AZALargeLightningLogo size={25} color={Colors[scheme].text} />
+      ) : (
+        <InviteIcon />
+      )}
     </View>
   );
 };

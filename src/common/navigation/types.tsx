@@ -112,25 +112,29 @@ export type CommonStackParamList = {
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
   NativeStackScreenProps<CommonStackParamList, Screen>;
 
-// page with virtual keyboard
-interface RecurringTransaction {
+// Page with virtual keyboard
+
+export interface Beneficiary {
+  fullName: string;
+  firstName?: string;
+  lastName?: string;
+  pictureUrl?: string;
+  azaAccountNumber: string;
+  currency?: string;
+  phone?: string;
+  email?: string;
+}
+
+export interface RecurringTransaction {
   type: "recurring";
-  beneficiary: {
-    beneficiaryImage: string;
-    beneficiaryName: string;
-    beneficiaryAccount: string;
-  };
+  beneficiary: Beneficiary;
   period: string;
   day: string;
 }
-interface NormalTransaction {
-  type: "normal transaction";
-  transaction: 'withdraw' | 'deposit' | 'send' | 'request'
-  beneficiary: {
-    beneficiaryImage: string;
-    beneficiaryName: string;
-    beneficiaryAccount: string;
-  };
+export interface NormalTransaction {
+  type: "normal";
+  transaction: "withdraw" | "deposit" | "send" | "request";
+  beneficiary: Beneficiary;
   openDescriptionModal?: boolean;
 }
 

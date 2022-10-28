@@ -1,6 +1,7 @@
 // `@expo/config` is installed with the `expo` package
 // ensuring the versioning is correct.
 import { ExpoConfig, ConfigContext } from "@expo/config";
+import useColorScheme from "./src/hooks/useColorScheme";
 // import Constants from 'expo-constants';
 // const appConfig = Constants.manifest;
 export default ({ config }: ConfigContext): ExpoConfig => ({

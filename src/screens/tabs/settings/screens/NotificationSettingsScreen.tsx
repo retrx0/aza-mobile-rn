@@ -1,17 +1,33 @@
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
-import { CommonScreenProps } from "../../../../common/navigation/types";
+
 import BackButton from "../../../../components/buttons/BackButton";
 import { Text, View } from "../../../../components/Themed";
-import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+
+import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const NotificationSettingsScreen = ({
   navigation,
 }: CommonScreenProps<"NotificationSettings">) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const [isEnabled, setIsEnabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    loadSettingsFromStorage().then((setting) => {
+      setting?.communicationPermitSwitch !== undefined &&
+        setIsEnabled(setting?.communicationPermitSwitch);
+    });
+  }, []);
+
+  useEffect(() => {
+    saveSettingsToStorage({ communicationPermitSwitch: isEnabled });
+  }, [isEnabled]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -73,7 +89,9 @@ const NotificationSettingsScreen = ({
         <SettingsSwitch
           text={"Communication Permit"}
           isEnabled={isEnabled}
-          setIsEnabled={setIsEnabled}
+          onSwitchToggle={() => {
+            setIsEnabled(!isEnabled);
+          }}
         />
       </View>
     </View>

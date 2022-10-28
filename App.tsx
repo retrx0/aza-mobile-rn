@@ -9,7 +9,7 @@ import { Store } from "./src/redux/Store";
 import * as Sentry from "sentry-expo";
 
 const App = () => {
-  const isLoadingComplete = useCachedResources();
+  const { isLoadingComplete } = useCachedResources();
   const colorScheme = useColorScheme();
   if (!isLoadingComplete) {
     return null;
