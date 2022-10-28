@@ -11,7 +11,7 @@ import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
+import { selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -103,6 +103,7 @@ const SignUpPasswordScreen = ({
               });
             } else {
               if (passcode === newUserData.createdPasscode) {
+                dispatch(setPassword({password:passcode}))
                 navigation.getParent()?.navigate("Root");
               } else {
                 alert("Password does not match");

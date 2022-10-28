@@ -197,7 +197,7 @@ const SignUpProfile = ({
                     gender: gender,
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
-                    phone,
+                    phone:'',
                     token,
                   })
                 );

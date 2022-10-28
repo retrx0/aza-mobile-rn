@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 import { Gender, User } from "../types";
 import api from "../../api";
+import {API_BASE_URL} from '@env'
 interface NewUser extends User {
   isVerified?: boolean;
   otpSent?: boolean;
@@ -32,14 +33,14 @@ export const requestOtp = createAsyncThunk(
   "user/requestOtp",
   async (props: NewUser) => {
     const bodyData = {
-      phoneNumber: props.phone,
+      phoneNumber:0,
       email: props.email,
     };
 
     api
       .post("/api/v1/auth/request-otp", {
-        phoneNumber: props.phone,
-        email: props.email,
+        phoneNumber:'',
+        email:'mubarakibrahim2015@gmail.com',
       })
       .then(
         (response) =>{
@@ -57,8 +58,8 @@ export const verifyOtp = createAsyncThunk(
   "user/verifyOtp",
   (props: NewUser) => {
     const bodyData = {
-      phoneNumber: props.phone,
-      email: props.email,
+      // phoneNumber: props.phone,
+      email:'mubarakibrahim2015@gmail.com',
       otp:props.otp
     };
 
@@ -82,29 +83,59 @@ return api
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (props: NewUser) => {
-    //The below code is where i embbed the bearer token
-    api.defaults.headers.common['Authorization']=`Bearer ${props.token}`;
+    const bodyData={
+          firstName:props.firstname,
+          lastName: props.lastname,
+          gender: 'Male',
+          email: "mubarakibrahim2015@gmail.com",
+          countryCode:'Ng',
+          phoneNumber:props.phone,
+          dateOfBirth: "2022-10-05T06:49:36.196Z",
+          emailConfirmed: true,
+          phoneNumberConfirmed: true
+    }
 
-     api
-      .put("/api/v1/user/register", {
-        firstName:props.firstname,
-        lastName: props.lastname,
-        gender: 1,
-        email: "",
-        countryCode:'Ng',
-        phoneNumber:props.phone,
-        dateOfBirth: "2022-10-05T06:49:36.196Z",
-        emailConfirmed: true,
-        phoneNumberConfirmed: true
-      })
-      .then(
-        (response) =>{
-          console.log(response)
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    return api({
+      method:'put',
+      data:bodyData,
+      headers:{
+        "Content-Type":'application/json',
+        'Authorization':`Bearer ${props.token}`
+      },
+      url:'/api/v1/user/register'
+    })
+    .then((response) =>response.headers["access-token"],
+    (error) => {
+      console.log(error);
+    })
+    
+  }
+);
+
+export const setPassword = createAsyncThunk(
+  "user/setPassword",
+  async (props: NewUser) => {
+    const bodyData={
+      newPassword:props.password,
+          
+    }
+
+    return api({
+      method:'patch',
+      data:bodyData,
+      headers:{
+        "Content-Type":'application/json',
+        'Authorization':`Bearer ${props.token}`
+      },
+      url:'/api/v1/user/set-password'
+    })
+    .then(response=>{
+      console.log(response)
+      
+     })
+     .catch(err=>{
+       console.log(err)
+     })
   }
 );
 
@@ -173,8 +204,8 @@ export const newUserSlice = createSlice({
       }),
       builder.addCase(registerUser.fulfilled,(state, action)=>{
         state.loading=false
-       
-        console.log(action.payload,"++++++++++Acc")
+        state.token=action.payload
+        
       })
   },
   
