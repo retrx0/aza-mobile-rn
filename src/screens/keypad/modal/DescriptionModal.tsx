@@ -9,9 +9,9 @@ import { TransactionKeypadParamsType } from "../../../common/navigation/types";
 import { hp } from "../../../common/util/LayoutUtil";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import {
-  selectTransferTo,
-  setTransferTo,
-} from "../../../redux/slice/transferToSlice";
+  selectTransaction,
+  setTransaction,
+} from "../../../redux/slice/transactionSlice";
 
 type DescriptionModalProps = {
   visible: boolean;

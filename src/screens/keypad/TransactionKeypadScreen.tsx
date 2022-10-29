@@ -19,9 +19,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import DescriptionModal from "./modal/DescriptionModal";
-import transferToSlice, {
-  setTransferTo,
-} from "../../redux/slice/transferToSlice";
+import transactionSlice, {
+  setTransaction,
+} from "../../redux/slice/transactionSlice";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -196,14 +196,22 @@ const TransactionKeypadScreen = ({
                   break;
                 case "request":
                   console.log("request");
-                  break;
-                case "send":
                   dispatch(
-                    setTransferTo({
+                    setTransaction({
                       amount: Number(amount),
                       beneficairy: beneficiary,
                       description: description,
-                      transferType: "normal",
+                      transferType: "request",
+                    })
+                  );
+                  break;
+                case "send":
+                  dispatch(
+                    setTransaction({
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "send",
                     })
                   );
                   break;

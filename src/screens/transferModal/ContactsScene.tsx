@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { verifyAzaNumber } from "../../api/aza";
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
@@ -215,7 +216,9 @@ const ContactsScene = ({
         <Button
           title="Send"
           style={{ marginVertical: hp(20) }}
-          onPressButton={function (): void {}}
+          onPressButton={() => {
+            sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
+          }}
           disabled={receipientAzaNumber.length < 5}
         />
       </View>
@@ -225,12 +228,17 @@ const ContactsScene = ({
   }
 };
 
-const sentToAzaNumber = () => {
+const sentToAzaNumber = (
+  azaNumber: string,
+  azaContactOnPress: (beneficiary: Beneficiary) => void
+) => {
   //do some check with aza number
-  const numberValid = true;
-  if (numberValid) {
-  } else {
-  }
+  verifyAzaNumber(azaNumber).then((verifiedUser) => {
+    if (verifiedUser) {
+      azaContactOnPress(verifiedUser);
+    } else {
+    }
+  });
 };
 
 const QuickContactView = ({

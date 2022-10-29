@@ -13,6 +13,9 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { RootStackScreenProps } from "../../../../types";
 
 import { NairaLargeIcon } from "../../../../assets/svg";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { setTransaction } from "../../../redux/slice/transactionSlice";
+import userSlice, { selectUser } from "../../../redux/slice/userSlice";
 
 const QRReceivePaymentTab = ({
   navigation,
@@ -22,6 +25,9 @@ const QRReceivePaymentTab = ({
   const [isDescModalVisible, setDescModalVisible] = useState(false);
 
   const colorScheme = useColorScheme();
+
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -90,7 +96,25 @@ const QRReceivePaymentTab = ({
         <Button
           title="Continue"
           disabled={!amount}
-          onPressButton={() => setDescModalVisible(true)}
+          onPressButton={() => {
+            dispatch(
+              setTransaction({
+                amount: Number(amount),
+                beneficairy: {
+                  fullName: user.fullName,
+                  azaAccountNumber: "" + user.azaAccountNumber,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  email: user.emailAddress,
+                  phone: user.phoneNumber,
+                  pictureUrl: user.pictureUrl,
+                },
+                transferType: "request",
+                description: description,
+              })
+            );
+            setDescModalVisible(true);
+          }}
           styleText={{
             color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",

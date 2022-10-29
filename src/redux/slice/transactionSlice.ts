@@ -6,26 +6,16 @@ import { RootState } from "../Store";
 //TODO to be replaced with api call only!
 
 // Define a type for the slice state
-interface TransferState {
-  sourceAccount?: string;
-  destinationAccount?: string;
-  amount: number;
-  destinationPhoneNumber?: string;
-  sourceChannel: number;
-  destinationChannel: number;
-  description?: string;
-  currency: string;
-}
 
-export interface TransferToState {
+export interface TransactionState {
   beneficairy: Beneficiary;
   amount: number;
   description?: string;
-  transferType: "normal" | "recurring";
+  transferType: "send" | "request";
 }
 
 // Define the initial state using that type
-const initialState: TransferToState = {
+const initialState: TransactionState = {
   amount: 0,
   description: "enjoy this",
   beneficairy: {
@@ -38,22 +28,22 @@ const initialState: TransferToState = {
     lastName: "User",
     pictureUrl: "",
   },
-  transferType: "normal",
+  transferType: "send",
 };
 
-export const transferToSlice = createSlice({
-  name: "transferTo",
+export const transactionSlice = createSlice({
+  name: "transaction",
   initialState,
   reducers: {
-    setTransferTo: (state, action: PayloadAction<TransferToState>) => {
+    setTransaction: (state, action: PayloadAction<TransactionState>) => {
       state = action.payload;
     },
   },
 });
 
-export const { setTransferTo } = transferToSlice.actions;
+export const { setTransaction: setTransaction } = transactionSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectTransferTo = (state: RootState) => state.transferTo;
+export const selectTransaction = (state: RootState) => state.transaction;
 
-export default transferToSlice.reducer;
+export default transactionSlice.reducer;

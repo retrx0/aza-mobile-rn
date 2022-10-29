@@ -13,7 +13,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useAppSelector } from "../../hooks/redux";
-import { selectTransferTo } from "../../redux/slice/transferToSlice";
+import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 
 const SendMoneyConfirmationScreen = ({
@@ -21,7 +21,7 @@ const SendMoneyConfirmationScreen = ({
 }: CommonScreenProps<"SendMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
 
-  const transferObject = useAppSelector(selectTransferTo);
+  const transferObject = useAppSelector(selectTransaction);
 
   console.log(transferObject);
 
