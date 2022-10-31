@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
 
   heading: {
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "500",
     lineHeight: hp(20.29),
   },
