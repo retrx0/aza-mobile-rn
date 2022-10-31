@@ -27,8 +27,7 @@ export const InviteIcon = () => {
         borderRadius: 5,
         paddingHorizontal: 10,
         paddingVertical: 2,
-      }}
-    >
+      }}>
       <Text style={{ color: "white", fontSize: 10 }}>Invite</Text>
     </View>
   );
@@ -96,8 +95,7 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1"
-        >
+          height="1">
           <Use
             href="#image0_1093_6630"
             transform="translate(-0.25) scale(0.003125)"
@@ -210,7 +208,7 @@ export const AZALargeLightningLogo = ({ color }: SvgIconProps) => {
 
 export const BackIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+    <Svg width="14" height="14" viewBox="0 0 8 14" fill="none">
       <Path
         d="M6.83333 12.6667L1 6.83333L6.83333 1"
         stroke={color}
@@ -240,8 +238,7 @@ export const DataIcon = ({ style, color }: SvgIconProps) => {
       width="14"
       height="12"
       viewBox="0 0 14 12"
-      fill="#000000"
-    >
+      fill="#000000">
       <Path
         d="M10.1 0.573242H5.60667V2.58658C5.60667 2.84658 5.39334 3.05324 5.14001 3.05324C4.88667 3.05324 4.67334 2.84658 4.67334 2.58658V0.573242H3.90001C1.26667 0.573242 0.400007 1.35991 0.340007 3.81991C0.333341 3.93991 0.386674 4.06658 0.473341 4.15324C0.560007 4.24658 0.673341 4.29324 0.806674 4.29324C1.74001 4.29324 2.50667 5.06658 2.50667 5.99991C2.50667 6.93324 1.74001 7.70658 0.806674 7.70658C0.680007 7.70658 0.560007 7.75324 0.473341 7.84658C0.386674 7.93324 0.333341 8.05991 0.340007 8.17991C0.400007 10.6399 1.26667 11.4266 3.90001 11.4266H4.67334V9.41324C4.67334 9.15324 4.88667 8.94658 5.14001 8.94658C5.39334 8.94658 5.60667 9.15324 5.60667 9.41324V11.4266H10.1C12.8333 11.4266 13.6667 10.5932 13.6667 7.85991V4.13991C13.6667 1.40658 12.8333 0.573242 10.1 0.573242ZM11.3133 5.93324L10.6933 6.53324C10.6667 6.55324 10.66 6.59324 10.6667 6.62658L10.8133 7.47324C10.84 7.62658 10.78 7.78658 10.6467 7.87991C10.52 7.97324 10.3533 7.98658 10.2133 7.91324L9.44667 7.51324C9.42001 7.49991 9.38001 7.49991 9.35334 7.51324L8.58667 7.91324C8.52667 7.94658 8.46001 7.95991 8.39334 7.95991C8.30667 7.95991 8.22667 7.93324 8.15334 7.87991C8.02667 7.78658 7.96001 7.63324 7.98667 7.47324L8.13334 6.62658C8.14001 6.59324 8.12667 6.55991 8.10667 6.53324L7.48667 5.93324C7.37334 5.82658 7.33334 5.65991 7.38001 5.51324C7.42667 5.35991 7.55334 5.25324 7.71334 5.23324L8.56667 5.10658C8.60001 5.09991 8.62667 5.07991 8.64667 5.05324L9.02667 4.27991C9.10001 4.13991 9.24001 4.05324 9.40001 4.05324C9.56001 4.05324 9.70001 4.13991 9.76667 4.27991L10.1467 5.05324C10.16 5.08658 10.1867 5.10658 10.22 5.10658L11.0733 5.23324C11.2333 5.25324 11.36 5.36658 11.4067 5.51324C11.4667 5.65991 11.4267 5.81991 11.3133 5.93324Z"
         fill={color}
@@ -354,8 +351,7 @@ export const ArrowRightIcon = ({ style, color, size }: SvgIconProps) => {
       width={size}
       height={size}
       viewBox="0 0 16 16"
-      fill="none"
-    >
+      fill="none">
       <Path
         d="M9.62 3.95337L13.6667 8.00004L9.62 12.0467"
         stroke={color}
@@ -421,8 +417,7 @@ export const FlagIcon = () => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1"
-        >
+          height="1">
           <Use
             xlinkHref="#image0_295_18064"
             transform="translate(-0.124378) scale(0.00497512)"
@@ -682,7 +677,7 @@ export const MessageIcon = ({ color, size, style }: SvgIconProps) => (
 );
 
 export const ReceivedIcon = ({ color }: SvgIconProps) => (
-  <Svg width={12} height={12} fill="none">
+  <Svg width={14} height={14} fill="none">
     <Path
       d="m2.5 8.75 7-7M2.5 3.615V8.75h5.135M1.75 11h8.5"
       stroke={color}
@@ -707,7 +702,7 @@ export const DepositIcon = ({ color, size, style }: SvgIconProps) => (
 );
 
 export const SendIcon = ({ color }: SvgIconProps) => (
-  <Svg width={12} height={12} fill="none">
+  <Svg width={14} height={14} fill="none">
     <Path
       d="M10.25 11h-8.5M9.5 1.75l-7 7M9.5 6.885V1.75H4.365"
       stroke={color}
