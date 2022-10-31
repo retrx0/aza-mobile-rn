@@ -4,7 +4,7 @@ export interface User {
   lastname?: string;
   email?: string;
   phone?: string;
-  gender?:string;
+  gender?: string;
   paymentMethods?: PaymentMethod[];
   accountStatus?: UserAccountStatus;
   transactions?: [];
