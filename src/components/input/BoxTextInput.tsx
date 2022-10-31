@@ -29,7 +29,7 @@ const BoxTextInput = (props: {
             borderRadius: 5,
             padding: 15,
             marginBottom: 20,
-            fontSize: 16,
+            fontSize: hp(18),
             fontFamily: "Euclid-Circular-A",
             height: hp(50),
           },

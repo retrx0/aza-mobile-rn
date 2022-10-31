@@ -43,20 +43,20 @@ const styles = StyleSheet.create({
   otpText: {
     marginBottom: 10,
     fontWeight: "500",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontFamily: "Euclid-Circular-A-Bold",
     lineHeight: hp(20),
   },
   otp: {
     marginLeft: hp(90),
-    fontSize: 16,
+    fontSize: hp(18),
     fontWeight: "600",
     lineHeight: 20.29,
   },
   underlineStyleBase: {
     width: wp(40),
     height: hp(40),
-    fontSize: hp(18),
+    fontSize: hp(20),
     borderRadius: hp(5),
     marginVertical: 50,
   },
