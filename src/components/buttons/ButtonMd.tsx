@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 5,
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: 16,
+    fontSize: hp(18),
     fontWeight: "500",
     lineHeight: hp(18),
   },

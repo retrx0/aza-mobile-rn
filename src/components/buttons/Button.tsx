@@ -45,8 +45,7 @@ export const Button: FC<ButtonPropsType> = ({
           opacity: disabled ? 0.5 : 1,
         },
         style,
-      ]}
-    >
+      ]}>
       <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
         {title}
       </Text>
@@ -59,7 +58,7 @@ const styles = {
     color: Colors.general.secondary,
     fontWeight: "500",
     letterSpacing: hp(0.5),
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(18),
     fontFamily: "Euclid-Circular-A-Medium",
   },

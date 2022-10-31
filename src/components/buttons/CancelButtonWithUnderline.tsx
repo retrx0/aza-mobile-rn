@@ -5,6 +5,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
+import { hp } from "../../common/util/LayoutUtil";
 
 import { Text } from "../../components/Themed";
 
@@ -36,9 +37,8 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
           marginTop: 3,
         },
         style,
-      ]}
-    >
-      <Text style={[{ fontSize: 14 }, styleText]}>{title}</Text>
+      ]}>
+      <Text style={[{ fontSize: hp(16) }, styleText]}>{title}</Text>
     </TouchableOpacity>
   );
 };
