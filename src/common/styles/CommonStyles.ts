@@ -18,7 +18,7 @@ const CommonStyles = StyleSheet.create({
   },
   flightText: {
     marginLeft: hp(15),
-    fontSize: hp(12),
+    fontSize: hp(14),
     fontWeight: "600",
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A",
@@ -33,12 +33,12 @@ const CommonStyles = StyleSheet.create({
   },
   transHistory: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "600",
     marginTop: hp(10),
   },
   download: {
-    fontSize: hp(12),
+    fontSize: hp(14),
     fontWeight: "600",
     lineHeight: hp(15),
     fontFamily: "Euclid-Circular-A",
@@ -53,7 +53,7 @@ const CommonStyles = StyleSheet.create({
   },
   accountNumber: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17),
     marginLeft: hp(15),
@@ -98,7 +98,7 @@ const CommonStyles = StyleSheet.create({
   },
   selectStyle: {
     fontFamily: "Euclid-Circular-A",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17),
     marginLeft: hp(24),
@@ -107,7 +107,7 @@ const CommonStyles = StyleSheet.create({
   },
   withdrawSuccessfull: {
     fontFamily: "Euclid-Circular-A",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
     lineHeight: hp(17),
     color: Colors.general.grey,
@@ -115,8 +115,8 @@ const CommonStyles = StyleSheet.create({
     width: wp(307),
   },
   seconds: {
-    fontSize: hp(12),
-    marginTop: 3,
+    fontSize: hp(14),
+    marginTop: hp(3),
   },
   matured: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -125,7 +125,7 @@ const CommonStyles = StyleSheet.create({
   },
   time: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(18),
+    fontSize: hp(20),
     fontWeight: "400",
   },
   timeContainer: {
@@ -147,7 +147,7 @@ const CommonStyles = StyleSheet.create({
   },
   maturity: {
     fontFamily: "Euclid-Circular-A",
-    fontSize: hp(12),
+    fontSize: hp(14),
     fontWeight: "400",
     lineHeight: hp(15),
     textAlign: "center",
@@ -173,18 +173,18 @@ const CommonStyles = StyleSheet.create({
   },
   ticket: {
     fontFamily: "Euclid-Circular-A",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "600",
     lineHeight: hp(17),
   },
   flightAmount: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(24),
+    fontSize: hp(26),
     fontWeight: "600",
     lineHeight: hp(30),
   },
   parentContainer: {
-    flex: 1,
+    flex: hp(1),
     paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
   },
 
@@ -197,14 +197,14 @@ const CommonStyles = StyleSheet.create({
   addAccount: {
     color: "#121212",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17),
   },
   archived: {
     color: "#121212",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(12),
+    fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17),
   },
@@ -223,7 +223,6 @@ const CommonStyles = StyleSheet.create({
   createVaultContainer: {
     flexDirection: "row",
     alignItems: "center",
-
     marginLeft: hp(30),
     justifyContent: "center",
   },
@@ -238,7 +237,7 @@ const CommonStyles = StyleSheet.create({
     justifyContent: "space-between",
   },
   Style: {
-    fontSize: hp(24),
+    fontSize: hp(26),
     fontWeight: "600",
     lineHeight: hp(30),
     fontFamily: "Euclid-Circular-A-Bold",
@@ -247,7 +246,7 @@ const CommonStyles = StyleSheet.create({
   },
   successStyle: {
     textAlign: "center",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A-Medium",
@@ -265,7 +264,7 @@ const CommonStyles = StyleSheet.create({
     textAlign: "center",
     marginTop: hp(5),
     color: Colors.general.red,
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -276,14 +275,14 @@ const CommonStyles = StyleSheet.create({
     marginTop: 26,
   },
   lockupStyle: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A-Medium",
     marginTop: hp(10),
   },
   actionStyle: {
-    fontSize: hp(24),
+    fontSize: hp(26),
     fontWeight: "600",
     lineHeight: hp(30),
     fontFamily: "Euclid-Circular-A-Bold",
@@ -297,7 +296,7 @@ const CommonStyles = StyleSheet.create({
     alignSelf: "center",
   },
   everyMonth: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(15.22),
     color: Colors.light.secondaryText,
@@ -319,7 +318,7 @@ const CommonStyles = StyleSheet.create({
     alignSelf: "center",
     color: "#A6A6A6",
     paddingRight: wp(10),
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A",
     marginBottom: hp(10),
@@ -327,7 +326,7 @@ const CommonStyles = StyleSheet.create({
   period: {
     color: "#4D4D4D",
     fontWeight: "400",
-    fontSize: 14,
+    fontSize: hp(16),
     lineHeight: hp(17.75),
     marginBottom: hp(12),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -363,7 +362,7 @@ const CommonStyles = StyleSheet.create({
   },
   inputStyle: {
     paddingRight: wp(10),
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Bold",
@@ -388,21 +387,21 @@ const CommonStyles = StyleSheet.create({
   },
   confirmation: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     alignSelf: "center",
     marginLeft: hp(40),
   },
   archieved: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     marginRight: hp(20),
   },
 
   vaultAdd: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     marginLeft: hp(150),
   },
@@ -415,7 +414,7 @@ const CommonStyles = StyleSheet.create({
   },
   withdraw: {
     fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: hp(20),
     textAlign: "center",
@@ -423,7 +422,7 @@ const CommonStyles = StyleSheet.create({
   },
   vaultTab: {
     fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: hp(20),
     textAlign: "center",
@@ -436,28 +435,28 @@ const CommonStyles = StyleSheet.create({
   headervault: {
     marginLeft: hp(80),
     fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: hp(20),
     textAlign: "center",
   },
   vaultstyle: {
     fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     alignSelf: "center",
     marginLeft: hp(100),
   },
   vault: {
     fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: hp(20),
     textAlign: "center",
     marginBottom: hp(30),
   },
   confirmDetails: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Medium",
@@ -466,7 +465,7 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(30),
   },
   descriptionStyle: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17.75),
     marginBottom: hp(5),
@@ -477,14 +476,14 @@ const CommonStyles = StyleSheet.create({
     marginTop: hp(130),
   },
   createVault: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
     lineHeight: hp(17.75),
     marginBottom: hp(158),
   },
   vaultcontainer: {
     marginTop: hp(20),
-    flex: 1,
+    flex: hp(1),
   },
 
   vaultContainer: {
@@ -493,14 +492,14 @@ const CommonStyles = StyleSheet.create({
   },
 
   createNewVault: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
     fontFamily: "Euclid-Circular-A-Medium",
     lineHeight: hp(18),
     marginRight: hp(10),
   },
   vaultText: {
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "600",
     lineHeight: hp(20),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -546,7 +545,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginTop: hp(35),
     marginLeft: hp(15),
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "500",
   },
 
@@ -555,13 +554,13 @@ const CommonStyles = StyleSheet.create({
     margin: hp(4),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginLeft: hp(15),
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "500",
     lineHeight: hp(20),
   },
   genderstyle: {
     marginLeft: hp(18),
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginTop: hp(10),
     fontWeight: "500",
@@ -572,7 +571,7 @@ const CommonStyles = StyleSheet.create({
     margin: hp(4),
     fontFamily: "Euclid-Circular-A",
     marginLeft: hp(15),
-    fontSize: hp(15.5),
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: hp(18),
   },
@@ -580,7 +579,7 @@ const CommonStyles = StyleSheet.create({
     marginTop: hp(30),
   },
   iconStyle: {
-    marginLeft: 26,
+    marginLeft: hp(26),
   },
   centerText: {
     width: wp(160),
@@ -602,8 +601,7 @@ const CommonStyles = StyleSheet.create({
   lineDivider: {
     borderWidth: 0.4,
     borderColor: "#EAEAEC",
-
-    width: wp(370),
+    width: wp(390),
     alignSelf: "center",
   },
   separator: {
@@ -663,7 +661,7 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(40),
   },
   account: {
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "100",
   },
   login: {
@@ -674,13 +672,13 @@ const CommonStyles = StyleSheet.create({
   },
 
   otherWise: {
-    fontSize: hp(18),
+    fontSize: hp(20),
   },
   user: {
     marginVertical: hp(20),
   },
   textStyle: {
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     fontFamily: "Euclid-Circular-A",
   },
@@ -691,7 +689,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   sentCode: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
     paddingHorizontal: hp(10),
     lineHeight: hp(17.75),
@@ -700,7 +698,7 @@ const CommonStyles = StyleSheet.create({
   },
   welcome: {
     marginTop: hp(50),
-    fontSize: hp(24),
+    fontSize: hp(26),
     fontWeight: "bold",
     // color: Primary,
     paddingHorizontal: hp(10),
@@ -712,7 +710,7 @@ const CommonStyles = StyleSheet.create({
   passwordText: {
     marginBottom: hp(10),
     fontWeight: "500",
-    fontSize: hp(16),
+    fontSize: hp(18),
     lineHeight: hp(20.29),
   },
   welcomebutton: {
@@ -722,7 +720,7 @@ const CommonStyles = StyleSheet.create({
   },
   welcomeOTPButton: {
     // color: "white",
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
     fontWeight: "500",
   },
@@ -742,7 +740,7 @@ const CommonStyles = StyleSheet.create({
     width: wp(40),
     height: hp(40),
     // color: Primary,
-    fontSize: hp(18),
+    fontSize: hp(20),
     borderRadius: hp(8),
     // borderColor: Primary,
   },
@@ -751,25 +749,25 @@ const CommonStyles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "500",
     // color: Primary,
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
   },
   otpText: {
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     color: Colors.general.primary,
   },
   otp: {
-    fontSize: hp(18),
+    fontSize: hp(20),
     fontWeight: "500",
     lineHeight: hp(20.29),
-    left: 100,
+    left: hp(100),
     textAlign: "center",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   back: {
     marginLeft: hp(10),
-    fontSize: hp(16),
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: hp(20.29),
   },
@@ -780,13 +778,13 @@ const CommonStyles = StyleSheet.create({
   resend: {
     fontWeight: "400",
     fontFamily: "Euclid-Circular-A",
-    fontSize: hp(14),
+    fontSize: hp(16),
   },
 
   verification: {
     width: wp(340),
     marginTop: hp(30),
-    fontSize: hp(16),
+    fontSize: hp(18),
     marginLeft: hp(20),
     marginBottom: hp(32),
     fontFamily: "Euclid-Circular-A-Medium",
@@ -812,7 +810,7 @@ const CommonStyles = StyleSheet.create({
   },
 
   OTPButton: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
     fontWeight: "500",
   },
@@ -835,7 +833,7 @@ const CommonStyles = StyleSheet.create({
   //   fontWeight: "500",
   // },
   orText: {
-    fontSize: hp(18),
+    fontSize: hp(20),
     alignSelf: "center",
     fontWeight: "500",
     marginTop: hp(30),
