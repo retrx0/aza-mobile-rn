@@ -164,8 +164,7 @@ const AccountDetailsScreen = ({
                 : getInitialsAvatar({
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    backgroundColor: Colors[colorScheme].backgroundSecondary,
-                    foreground: Colors[colorScheme].mainText,
+                    scheme: colorScheme,
                   }),
             }}
           />

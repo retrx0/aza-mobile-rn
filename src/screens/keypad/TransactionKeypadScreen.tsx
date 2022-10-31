@@ -14,9 +14,14 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
-import { UserData } from "../../constants/userData";
 
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { selectUser } from "../../redux/slice/userSlice";
+import { getInitialsAvatar } from "../../common/util/AppUtil";
 import DescriptionModal from "./modal/DescriptionModal";
+import transactionSlice, {
+  setTransaction,
+} from "../../redux/slice/transactionSlice";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -26,12 +31,17 @@ const TransactionKeypadScreen = ({
   const [description, setDescription] = useState("");
   const [descModal, setDescModalOpen] = useState(false);
 
+  const user = useAppSelector(selectUser);
+
   const colorScheme = useColorScheme();
 
   const { headerTitle, transactionType } = route.params;
+  const { beneficiary, type } = transactionType;
 
-  const normalTransaction = transactionType.type === "normal";
-  const recurringTransaction = transactionType.type === "recurring";
+  const normalTransaction = type === "normal";
+  const recurringTransaction = type === "recurring";
+
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -63,7 +73,14 @@ const TransactionKeypadScreen = ({
           <Image
             style={{ borderRadius: 50, width: 50, height: 50 }}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              uri:
+                beneficiary.pictureUrl && beneficiary.pictureUrl !== ""
+                  ? beneficiary.pictureUrl
+                  : getInitialsAvatar({
+                      firstName: beneficiary.fullName,
+                      lastName: beneficiary.lastName,
+                      scheme: colorScheme,
+                    }),
             }}
           />
           <Text
@@ -75,7 +92,7 @@ const TransactionKeypadScreen = ({
               marginTop: 15,
             }}
           >
-            {UserData.userFullName}
+            {beneficiary.fullName}
           </Text>
           <View
             lightColor="#eaeaec"
@@ -160,7 +177,7 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
               }}
             >
-              {"\u20A6"} {UserData.azaBalance}
+              {"\u20A6"} {user.azaBalance}
             </Text>
           </View>
         </View>
@@ -173,15 +190,42 @@ const TransactionKeypadScreen = ({
             if (normalTransaction) {
               // This checks if the transactions are send or request money which have optional description message
 
-              //if(withraw){
+              switch (transactionType.transaction) {
+                case "deposit":
+                  console.log("deposit");
+                  break;
+                case "request":
+                  console.log("request");
+                  dispatch(
+                    setTransaction({
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "request",
+                    })
+                  );
+                  break;
+                case "send":
+                  dispatch(
+                    setTransaction({
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "send",
+                    })
+                  );
+                  break;
+                case "withdraw":
+                  console.log("withdrawing");
+                  break;
+              }
 
               //}else if(deposit){
 
               //}
-              console.log("first");
+
               transactionType.openDescriptionModal && setDescModalOpen(true);
             } else {
-              console.log("Hh");
               // TODO create and pass required params
               navigation.navigate("RecurringTransferConfirmation");
             }

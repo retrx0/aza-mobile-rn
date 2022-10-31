@@ -7,16 +7,20 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { CommonScreenProps } from "../../common/navigation/types";
+import { verifyAzaNumber } from "../../api/aza";
+import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 import CommonStyles from "../../common/styles/CommonStyles";
+import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { hp } from "../../common/util/LayoutUtil";
 import Button from "../../components/buttons/Button";
 import ButtonLg from "../../components/buttons/ButtonLg";
 import ContactListItem from "../../components/ListItem/ContactListItem";
 import { Text, TextInput, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
+import { useAppSelector } from "../../hooks/redux";
 import useColorScheme from "../../hooks/useColorScheme";
 import { getUserContacts } from "../../hooks/useContacts";
+import { selectUser } from "../../redux/slice/userSlice";
 import SectionListSeparator from "../tabs/home/components/SectionListSeparator";
 
 const ContactsScene = ({
@@ -25,33 +29,27 @@ const ContactsScene = ({
   nonAzaContactOnPress,
 }: {
   route: any;
-  azaContactOnPress: () => void;
-  nonAzaContactOnPress: () => void;
+  azaContactOnPress: (beneficiary: Beneficiary) => void;
+  nonAzaContactOnPress: (beneficiary: Beneficiary) => void;
 }) => {
   const colorScheme = useColorScheme();
-  const [contacts, setContacts] = useState<Contact[]>([]);
-  const [userQuickContacts, setUserQuickContacts] = useState<Contact[]>([]);
-  const [userAzaContacts, setUserAzaContacts] = useState<Contact[]>([]);
+  const [contacts, setContacts] = useState<any[]>([]);
+  const [userQuickContacts, setUserQuickContacts] = useState<Beneficiary[]>([]);
+  const [userAzaContacts, setUserAzaContacts] = useState<Beneficiary[]>([]);
   const [searchContact, setSearchContact] = useState("");
   const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
+
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     getUserContacts().then((_contacts) => {
       if (_contacts) {
         setContacts(_contacts.filter((_c) => _c.contactType === "person"));
-        setUserQuickContacts(_contacts.slice(5, 8));
-        setUserAzaContacts(_contacts.slice(0, 3));
+        setUserQuickContacts(user.azaContacts);
+        setUserAzaContacts(user.azaContacts);
       }
     });
   }, []);
-
-  const getInitialsAvatar = (item: Contact) => {
-    return `https://ui-avatars.com/api/?name=${item.firstName}+${
-      item.lastName ? item.lastName : ""
-    }&background=${Colors[colorScheme].backgroundSecondary}&color=${
-      Colors[colorScheme].mainText
-    }`;
-  };
 
   if (route.key == "first") {
     return (
@@ -78,13 +76,16 @@ const ContactsScene = ({
           >
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={[CommonStyles.row]}>
-                {userQuickContacts.map((_contct, i) => (
+                {user.azaContacts.map((_contct, i) => (
                   <QuickContactView
-                    firstName={_contct.name}
+                    firstName={_contct.firstName!}
                     lastName=""
-                    photoUrl={getInitialsAvatar(_contct)}
+                    photoUrl={getInitialsAvatar({
+                      firstName: _contct.fullName!,
+                      scheme: colorScheme,
+                    })}
                     key={i}
-                    onPress={() => azaContactOnPress()}
+                    onPress={() => azaContactOnPress(_contct)}
                   />
                 ))}
               </View>
@@ -118,7 +119,7 @@ const ContactsScene = ({
             sections={[
               {
                 title: "Contacts using Aza",
-                data: userAzaContacts,
+                data: user.azaContacts,
                 azaContacts: true,
               },
               {
@@ -136,19 +137,47 @@ const ContactsScene = ({
               />
             )}
             renderItem={({ section, item }) => {
-              return item.contactType === "person" && item.phoneNumbers ? (
+              return section.azaContacts ? (
+                item.azaAccountNumber && item.phone ? (
+                  <TouchableOpacity
+                    onPress={() => {
+                      if (section.azaContacts) {
+                        azaContactOnPress(item);
+                      } else {
+                        nonAzaContactOnPress(item);
+                      }
+                    }}
+                  >
+                    <ContactListItem
+                      image={getInitialsAvatar({
+                        firstName: item?.fullName,
+                        lastName: item.lastName,
+                        scheme: colorScheme,
+                      })}
+                      name={item.fullName}
+                      phoneNumber={item.phone || ""}
+                      isContactOnAza={section.azaContacts}
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <></>
+                )
+              ) : item.firstName && item.phoneNumbers ? (
                 <TouchableOpacity
-                  key={item.id}
                   onPress={() => {
                     if (section.azaContacts) {
-                      azaContactOnPress();
+                      azaContactOnPress(item);
                     } else {
-                      nonAzaContactOnPress();
+                      nonAzaContactOnPress(item);
                     }
                   }}
                 >
                   <ContactListItem
-                    image={getInitialsAvatar(item)}
+                    image={getInitialsAvatar({
+                      firstName: item?.firstName,
+                      lastName: item.lastName,
+                      scheme: colorScheme,
+                    })}
                     name={item.name}
                     phoneNumber={item.phoneNumbers[0].number || ""}
                     isContactOnAza={section.azaContacts}
@@ -187,7 +216,9 @@ const ContactsScene = ({
         <Button
           title="Send"
           style={{ marginVertical: hp(20) }}
-          onPressButton={function (): void {}}
+          onPressButton={() => {
+            sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
+          }}
           disabled={receipientAzaNumber.length < 5}
         />
       </View>
@@ -197,12 +228,17 @@ const ContactsScene = ({
   }
 };
 
-const sentToAzaNumber = () => {
+const sentToAzaNumber = (
+  azaNumber: string,
+  azaContactOnPress: (beneficiary: Beneficiary) => void
+) => {
   //do some check with aza number
-  const numberValid = true;
-  if (numberValid) {
-  } else {
-  }
+  verifyAzaNumber(azaNumber).then((verifiedUser) => {
+    if (verifiedUser) {
+      azaContactOnPress(verifiedUser);
+    } else {
+    }
+  });
 };
 
 const QuickContactView = ({

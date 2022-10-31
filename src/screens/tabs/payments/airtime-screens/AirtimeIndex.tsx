@@ -18,12 +18,14 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import Button from "../../../../components/buttons/Button";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { fetchAirtimeOperators } from "../../../../api/airtime";
+import api from "../../../../api";
 
 export default function AirtimeIndex({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(-1);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -31,63 +33,88 @@ export default function AirtimeIndex({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
+  const [airtimeOperators, setAirtimeOperators] = useState<
+    {
+      name: string;
+      logoUrls: string[];
+      operatorId: number;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    fetchAirtimeOperators().then((r) => setAirtimeOperators(r.data.data));
+  }, []);
+
   return (
-      <View style={styles.container}>
-        <Header
-          description=""
-          descriptionStyle={null}
-          headerStyle={null}
-          heading="Select Network Provider"
+    <View style={styles.container}>
+      <Header
+        description=""
+        descriptionStyle={null}
+        headerStyle={null}
+        heading="Select Network Provider"
+      />
+      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
+        {airtimeOperators.map((op, i) => {
+          return (
+            <HeadrImage
+              selected={selected === i}
+              onSelect={() => {
+                setSelected(i);
+              }}
+              index={0}
+              image={{ uri: op.logoUrls[0] }}
+              title={op.name}
+            />
+          );
+        })}
+        {/* <HeadrImage
+          selected={selected}
+          onSelect={() => {
+            setSelected(true);
+          }}
+          index={0}
+          image={Mtn}
+          title="MTN"
+        /> */}
+        {/* <HeadrImage selected={false} index={1} image={Glo} title="Glo" /> */}
+      </ScrollView>
+      <Input
+        icon={null}
+        keyboardType="phone-pad"
+        inputStyle={styles.input}
+        labelStyle={styles.label}
+        style={{ marginTop: 0 }}
+        label="Phone Number"
+        placeholder="Enter a phone number"
+      />
+      <CustomSwitch
+        title="My number"
+        onValueChange={toggleSwitch}
+        isEnabled={isEnabled}
+      />
+      {route.name == "data" && (
+        <SelectInput
+          items={bundles}
+          title="Bundle"
+          placeHolder="Choose a bundle"
+          style={styles.select}
         />
-        <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-          <HeadrImage
-            selected={selected}
-            onSelect={() => {
-              setSelected(true);
-            }}
-            index={0}
-            image={Mtn}
-            title="MTN"
-          />
-          <HeadrImage selected={false} index={1} image={Glo} title="Glo" />
-        </ScrollView>
-        <Input
-          icon={null}
-          keyboardType="phone-pad"
-          inputStyle={styles.input}
-          labelStyle={styles.label}
-          style={{ marginTop: 0 }}
-          label="Phone Number"
-          placeholder="Enter a phone number"
-        />
-        <CustomSwitch
-          title="My number"
-          onValueChange={toggleSwitch}
-          isEnabled={isEnabled}
-        />
-        {route.name == "data" && (
-          <SelectInput
-            items={bundles}
-            title="Bundle"
-            placeHolder="Choose a bundle"
-            style={styles.select}
-          />
-        )}
-        <Input
-          icon={null}
-          inputStyle={styles.input}
-          labelStyle={styles.label}
-          label="Amount"
-          placeholder="Enter an amount"
-        />
-        <MyButton title="Continue" 
+      )}
+      <Input
+        icon={null}
+        inputStyle={styles.input}
+        labelStyle={styles.label}
+        label="Amount"
+        placeholder="Enter an amount"
+        keyboardType="number-pad"
+      />
+      <MyButton
+        title="Continue"
         onPress={() => {
           navigation.navigate("Common", { screen: "Confirm" });
         }}
         disabled={false}
-        />
-        
-      </View>
- 
+      />
+    </View>
   );
 }

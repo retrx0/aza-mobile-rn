@@ -32,7 +32,7 @@ const useCachedResources = () => {
           .then((token) => {
             if (token) setUserSignedIn(true);
           })
-          .catch((e) => console.error(e));
+          .catch((e) => console.info(e));
 
         // do any api call here
 

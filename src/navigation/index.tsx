@@ -26,10 +26,10 @@ import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
 
-import { useNotifications } from "../hooks/useNotifications";
 import { useAppSelector } from "../hooks/redux";
 import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
 import useCachedResources from "../hooks/useCachedResources";
+import { useNotifications } from "../hooks/useNotifications";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (

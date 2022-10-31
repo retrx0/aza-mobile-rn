@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getCurrencyUnicode } from "../../common/util/AppUtil";
+import { Beneficiary } from "../../common/navigation/types";
 import { RootState } from "../Store";
 
 // Define a type for the slice state
@@ -26,6 +26,7 @@ export interface UserState {
     totalMonthlyOutgoingTransferAmount: number;
   };
   transactions: [];
+  azaContacts: Beneficiary[];
 }
 
 // Define the initial state using that type
@@ -52,6 +53,38 @@ const initialState: UserState = {
   },
   transactions: [],
   accountCurency: "NGN",
+  azaContacts: [
+    {
+      azaAccountNumber: "12345678",
+      fullName: "Test User2",
+      firstName: "Test",
+      lastName: "User2",
+      phone: "234567890",
+      pictureUrl: "",
+      currency: "NGN",
+      email: "testuser2@aza.com",
+    },
+    {
+      azaAccountNumber: "12345679",
+      fullName: "Test User3",
+      firstName: "Test",
+      lastName: "User4",
+      phone: "234567890",
+      pictureUrl: "",
+      currency: "NGN",
+      email: "testuser4@aza.com",
+    },
+    {
+      azaAccountNumber: "12345610",
+      fullName: "Test User4",
+      firstName: "Test",
+      lastName: "User4",
+      phone: "234567890",
+      pictureUrl: "",
+      currency: "NGN",
+      email: "testuser4@aza.com",
+    },
+  ],
 };
 
 export const userSlice = createSlice({
