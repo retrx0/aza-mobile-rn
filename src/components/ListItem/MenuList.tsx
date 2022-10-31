@@ -28,8 +28,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    fontSize: 12,
+    fontSize: 15,
     color: "#A6A6A6",
   },
-  subHeading: {},
+  subHeading: {
+    fontSize: 15,
+  },
 });
