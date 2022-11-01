@@ -18,8 +18,12 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
-          style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-        >
+          style={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            marginLeft: hp(5),
+            fontWeight: "500",
+          }}>
           Blocked users won't be able to send you money, request money from you
           or split payments with you.
         </Text>
@@ -27,16 +31,18 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: 14,
+            fontSize: hp(14),
+            fontFamily: "Euclid-Circular-A",
+            marginLeft: hp(5),
+            fontWeight: "400",
             marginTop: hp(30),
-          }}
-        >
+          }}>
           You can unblock these users anytime
         </Text>
         <View style={{ marginTop: hp(50) }}>
           <TextInput
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             placeholderTextColor={Colors[colorScheme].secondaryText}
             style={{
               backgroundColor: "transparent",
@@ -45,6 +51,7 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
               marginTop: hp(15),
               borderBottomWidth: 1,
               borderBottomColor: Colors[colorScheme].separator,
+              fontSize: hp(16),
             }}
             placeholder="Aza Number"
           />

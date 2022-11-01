@@ -8,6 +8,7 @@ import { RootTabScreenProps } from "../../../../../types";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { SendIcon } from "../../../../../assets/svg";
 import { UserData } from "../../../../constants/userData";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function RecentTransactions({
   navigation,
@@ -15,25 +16,26 @@ export default function RecentTransactions({
   const colorScheme = useColorScheme();
 
   return (
-    <View style={{ display: "flex", marginTop: 50 }}>
+    <View style={{ display: "flex", marginTop: hp(30) }}>
       <View
         style={{
           display: "flex",
-          marginBottom: 25,
+          marginBottom: hp(20),
           flexDirection: "row",
           alignItems: "center",
-        }}
-      >
+        }}>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", { screen: "TransactionHistory" })
-          }
-        >
+          }>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ marginRight: 3, fontFamily: "Euclid-Circular-A-Medium" }}
-          >
+            style={{
+              marginRight: hp(3),
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(17),
+            }}>
             Recent Transactions
           </Text>
         </TouchableOpacity>

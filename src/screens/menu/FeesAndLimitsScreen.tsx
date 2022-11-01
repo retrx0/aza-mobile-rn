@@ -12,6 +12,7 @@ import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import AccountLimitsTab from "./components/AccountLimitsTab";
 import TransactionFeesTab from "./components/TransactionFeesTab";
+import { hp } from "../../common/util/LayoutUtil";
 
 const FeesAndLimitsScreen = ({
   navigation,
@@ -33,9 +34,9 @@ const FeesAndLimitsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Fees & Limits
         </Text>
       ),
@@ -89,10 +90,8 @@ const FeesAndLimitsScreen = ({
                       focused ? Colors.dark.mainText : Colors.dark.secondaryText
                     }
                     style={{
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 16,
-                    }}
-                  >
+                      fontSize: hp(16),
+                    }}>
                     {route.title}
                   </Text>
                 );

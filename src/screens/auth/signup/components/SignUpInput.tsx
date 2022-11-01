@@ -237,11 +237,11 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 5,
     padding: 15,
-    fontSize: 16,
+    fontSize: hp(18),
     fontFamily: "Euclid-Circular-A",
   },
   errorText: {
-    fontSize: 10,
+    fontSize: hp(14),
     color: "red",
     marginTop: 5,
   },

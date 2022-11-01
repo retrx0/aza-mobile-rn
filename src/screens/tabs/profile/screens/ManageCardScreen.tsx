@@ -17,11 +17,12 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Manage Card
         </Text>
@@ -57,8 +58,9 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 16,
+                fontSize: hp(16),
                 color: "white",
+                fontWeight: "500",
               }}>
               **** **** **** 1234
             </Text>

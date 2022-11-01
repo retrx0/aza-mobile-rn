@@ -1,5 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { ArrowRightIcon } from "../../../assets/svg";
+import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text, View } from "../Themed";
@@ -35,8 +36,7 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
         style={{
           flex: 1,
           justifyContent: "center",
-        }}
-      >
+        }}>
         {key === "backIcon" ? (
           <View
             style={{
@@ -44,8 +44,7 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
               justifyContent: "center",
               alignItems: "center",
               transform: [{ rotate: "180deg" }],
-            }}
-          >
+            }}>
             <ArrowRightIcon
               color={
                 colorScheme === "dark"
@@ -61,11 +60,10 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 16,
+              fontSize: hp(18),
               padding: 10,
               textAlign: "center",
-            }}
-          >
+            }}>
             {key}
           </Text>
         )}
@@ -81,8 +79,7 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
           marginTop: 30,
           alignItems: "center",
           justifyContent: "space-between",
-        }}
-      >
+        }}>
         {cells}
       </View>
     );

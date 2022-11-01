@@ -22,7 +22,7 @@ const BackButton: FC<BackButtonType> = ({ style, onPress }) => {
   );
   return (
     <TouchableOpacity style={[styles.backContainer, style]} onPress={onPress}>
-      <BackIcon color={color} size={14} />
+      <BackIcon color={color} size={16} />
       <Text style={styles.back}>Back</Text>
     </TouchableOpacity>
   );
@@ -30,10 +30,9 @@ const BackButton: FC<BackButtonType> = ({ style, onPress }) => {
 
 const styles = StyleSheet.create({
   back: {
-    marginLeft: hp(10),
-    fontSize: hp(16),
+    marginLeft: hp(5),
+    fontSize: hp(18),
     fontWeight: "400",
-    lineHeight: 20.29,
     fontFamily: "Euclid-Circular-A",
   },
   backContainer: {

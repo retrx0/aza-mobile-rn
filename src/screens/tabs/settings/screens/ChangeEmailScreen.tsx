@@ -25,7 +25,8 @@ const ChangeEmailScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "600",
           }}>
           New Email
         </Text>
@@ -44,7 +45,12 @@ const ChangeEmailScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}>
         Change your email
       </Text>
       <View style={{ marginBottom: 10, marginTop: 10 }}>
@@ -55,12 +61,28 @@ const ChangeEmailScreen = ({
           onChange={() => {
             undefined;
           }}
+          labelStyle={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            marginLeft: hp(5),
+            fontWeight: "500",
+          }}
+          inputStyle={undefined}
+          containerStyle={undefined}
         />
         <BoxTextInput
           placeHolder="New Email"
           required={false}
           value={newEmail}
           onChange={(e) => setNewEmail(e.nativeEvent.text)}
+          labelStyle={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            marginLeft: hp(5),
+            fontWeight: "500",
+          }}
+          inputStyle={undefined}
+          containerStyle={undefined}
         />
       </View>
       <Button

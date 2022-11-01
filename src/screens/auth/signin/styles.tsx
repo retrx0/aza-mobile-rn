@@ -4,7 +4,7 @@ import { hp, wp } from "../../../common/util/LayoutUtil";
 
 export const SigninStyles = StyleSheet.create({
   sentCode: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
     paddingHorizontal: hp(10),
     lineHeight: hp(17.75),
@@ -13,7 +13,7 @@ export const SigninStyles = StyleSheet.create({
   },
   welcome: {
     marginTop: hp(50),
-    fontSize: hp(24),
+    fontSize: hp(26),
     fontWeight: "bold",
     // color: Primary,
     paddingHorizontal: hp(10),
@@ -25,7 +25,7 @@ export const SigninStyles = StyleSheet.create({
   passwordText: {
     marginBottom: 10,
     fontWeight: "500",
-    fontSize: hp(16),
+    fontSize: hp(18),
     lineHeight: hp(20.29),
   },
   welcomebutton: {
@@ -35,7 +35,7 @@ export const SigninStyles = StyleSheet.create({
   },
   welcomeForgetMeButton: {
     // color: "white",
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
     fontWeight: "500",
     fontFamily: "Euclid-Circular-A",
@@ -52,14 +52,14 @@ export const SigninStyles = StyleSheet.create({
     width: wp(40),
     height: hp(40),
     // color: Primary,
-    fontSize: hp(18),
+    fontSize: hp(20),
     borderRadius: hp(8),
     borderColor: Colors.general.primary,
   },
 
   resend: {
     fontWeight: "500",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     lineHeight: hp(17.75),
   },
@@ -71,25 +71,25 @@ export const SigninStyles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "500",
     // color: Primary,
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
   },
   otpText: {
     fontWeight: "500",
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontFamily: "Euclid-Circular-A",
     lineHeight: hp(17.75),
   },
   otp: {
     marginLeft: hp(100),
-    fontSize: 16,
+    fontSize: hp(18),
     fontWeight: "600",
     lineHeight: 20.29,
     fontFamily: "Euclid-Circular-A-Bold",
   },
   back: {
     marginLeft: hp(10),
-    fontSize: 16,
+    fontSize: hp(18),
     fontWeight: "400",
     lineHeight: 20.29,
   },
@@ -106,7 +106,7 @@ export const SigninStyles = StyleSheet.create({
   verification: {
     width: wp(321),
     marginTop: hp(30),
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "400",
     marginLeft: hp(20),
   },
@@ -121,7 +121,7 @@ export const SigninStyles = StyleSheet.create({
     marginBottom: hp(40),
   },
   textStyle: {
-    fontSize: 16,
+    fontSize: hp(18),
     padding: 3,
   },
   header: {
@@ -134,7 +134,7 @@ export const SigninStyles = StyleSheet.create({
   },
 
   OTPButton: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     lineHeight: hp(17.75),
     fontWeight: "500",
   },
@@ -157,7 +157,7 @@ export const SigninStyles = StyleSheet.create({
   //   fontWeight: "500",
   // },
   orText: {
-    fontSize: 14,
+    fontSize: hp(16),
     alignSelf: "center",
     fontWeight: "500",
     marginTop: hp(20),

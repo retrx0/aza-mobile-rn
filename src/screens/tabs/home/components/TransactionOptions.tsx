@@ -7,6 +7,7 @@ import {
   WithdrawIcon,
 } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
 import { Text, View } from "../../../../components/Themed";
@@ -37,9 +38,9 @@ const TransactionOptions = ({
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-around",
-          marginTop: 25,
-        }}
-      >
+          marginTop: hp(20),
+          marginBottom: hp(10),
+        }}>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", {
@@ -49,26 +50,23 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <WithdrawIcon size={40} color="#FF361A" />
+          style={{ display: "flex", alignItems: "center" }}>
+          <WithdrawIcon size={50} color="#FF361A" />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
-            style={{ marginTop: 8, fontSize: 14 }}
-          >
+            style={{ fontSize: hp(17) }}>
             Withdraw
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
-            <TransferIcon size={40} color={Colors[colorScheme].text} />
+            <TransferIcon size={50} color={Colors[colorScheme].text} />
             <Text
               lightColor={Colors.light.text}
               darkColor={"#CCCCCC"}
-              style={{ marginTop: 8, fontSize: 14 }}
-            >
+              style={{ fontSize: hp(17) }}>
               Transfer
             </Text>
           </View>
@@ -83,14 +81,12 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <DepositIcon color="#2AD168" size={40} />
+          style={{ display: "flex", alignItems: "center" }}>
+          <DepositIcon color="#2AD168" size={50} />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
-            style={{ marginTop: 8, fontSize: 14 }}
-          >
+            style={{ fontSize: hp(17) }}>
             Deposit
           </Text>
         </TouchableOpacity>

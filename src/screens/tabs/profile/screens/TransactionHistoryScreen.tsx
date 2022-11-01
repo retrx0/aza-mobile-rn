@@ -26,9 +26,9 @@ const TransactionHistoryScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Transaction History
         </Text>
       ),
@@ -40,8 +40,7 @@ const TransactionHistoryScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-        >
+          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}>
           <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
           <Text
             style={{
@@ -49,8 +48,7 @@ const TransactionHistoryScreen = ({
               fontSize: 12,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               textAlign: "center",
-            }}
-          >
+            }}>
             Download
           </Text>
         </TouchableOpacity>
@@ -200,10 +198,11 @@ const TransactionHistoryScreen = ({
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: 14,
+                  fontSize: hp(14),
                   marginBottom: hp(10),
-                }}
-              >
+                  fontFamily: "Euclid-Circular-A",
+                  fontWeight: "500",
+                }}>
                 {dateOfTransactions}
               </Text>
               {transactions.map(

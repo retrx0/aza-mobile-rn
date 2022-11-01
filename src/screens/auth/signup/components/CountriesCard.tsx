@@ -22,7 +22,7 @@ export const CountriesCard = ({
               },
             }}
             style={styles.flag}
-            resizeMode='contain'
+            resizeMode="contain"
           />
         )}
         <Text style={styles.countryName}>{code}</Text>
@@ -37,7 +37,7 @@ export const CountriesCard = ({
 const styles = StyleSheet.create({
   countryName: {
     color: "black",
-    fontSize: 14,
+    fontSize: hp(16),
     marginRight: hp(5),
   },
   countryCard: {

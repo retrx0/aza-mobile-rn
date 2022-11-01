@@ -43,13 +43,13 @@ const SplitSelectContactsScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(18),
+            fontWeight: "500",
+          }}>
           Split
         </Text>
       ),
@@ -124,6 +124,9 @@ const SplitSelectContactsScreen = ({
             styles.input,
             {
               borderBottomColor: Colors[colorScheme].separator,
+              fontSize: hp(15),
+              fontFamily: "Euclid-Circular-A",
+              marginLeft: hp(5),
             },
           ]}
           value={search}
@@ -137,8 +140,7 @@ const SplitSelectContactsScreen = ({
               showsHorizontalScrollIndicator={false}
               style={{
                 marginTop: hp(15),
-              }}
-            >
+              }}>
               <View style={[CommonStyles.row]}>
                 <View style={[CommonStyles.col, { alignItems: "center" }]}>
                   <Image
@@ -148,10 +150,9 @@ const SplitSelectContactsScreen = ({
                     }}
                   />
                   <Text
-                    lightColor={Colors.light.text}
-                    darkColor={Colors.dark.mainText}
-                    style={{ fontSize: 10, marginTop: 5 }}
-                  >
+                    // lightColor={Colors.light.text}
+                    // darkColor={Colors.dark.mainText}
+                    style={{ fontSize: 10, marginTop: 5 }}>
                     Chiazo
                   </Text>
                 </View>
@@ -171,12 +172,13 @@ const SplitSelectContactsScreen = ({
         )}
         <Text
           style={{
-            color: Colors[colorScheme].secondaryText,
+            // color: Colors[colorScheme].secondaryText,
             marginTop: hp(40),
-            fontSize: 14,
-            marginBottom: 20,
-          }}
-        >
+            fontSize: hp(15),
+            marginBottom: hp(20),
+            fontFamily: "Euclid-Circular-A",
+            marginLeft: hp(5),
+          }}>
           {search.length > 0 ? "Contacts" : "Quick contacts"}
         </Text>
         <FlatList
@@ -186,8 +188,7 @@ const SplitSelectContactsScreen = ({
             return (
               <TouchableOpacity
                 activeOpacity={0.5}
-                onPress={() => addContact(item)}
-              >
+                onPress={() => addContact(item)}>
                 <ContactListItem
                   image={
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
@@ -210,8 +211,7 @@ const SplitSelectContactsScreen = ({
           style={[
             CommonStyles.col,
             { width: "100%", marginBottom: hp(35), marginTop: 5 },
-          ]}
-        >
+          ]}>
           <Button
             title="Continue"
             disabled={disabledButton}
@@ -225,19 +225,14 @@ const SplitSelectContactsScreen = ({
               })
             }
             styleText={{
-              color: disabledButton
-                ? Colors[colorScheme].disabledButtonText
-                : Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              color: Colors[colorScheme].buttonText,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: disabledButton
-                ? Colors[colorScheme].disabledButton
-                : Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

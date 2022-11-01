@@ -38,9 +38,9 @@ const NameVisibilityScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Name Visibility
         </Text>
       ),
@@ -58,8 +58,12 @@ const NameVisibilityScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-      >
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}>
         You can disable this setting if you want your name to appear masked when
         others send or receive money from you
       </Text>
@@ -81,21 +85,28 @@ const NameVisibilityScreen = ({
               paddingVertical: 30,
               alignItems: "center",
             },
-          ]}
-        >
+          ]}>
           <View style={[CommonStyles.col]}>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 14, marginBottom: 10 }}
-            >
+              style={{
+                fontSize: hp(14),
+                marginBottom: 10,
+                fontWeight: "400",
+                fontFamily: "Euclid-Circular-A",
+              }}>
               With whom?
             </Text>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
-              style={{ fontSize: 16, fontFamily: "Euclid-Circular-A-Medium" }}
-            >
+              style={{
+                fontSize: hp(16),
+                fontFamily: "Euclid-Circular-A-Medium",
+                marginLeft: hp(5),
+                fontWeight: "500",
+              }}>
               Chiazondu Joseph
             </Text>
           </View>

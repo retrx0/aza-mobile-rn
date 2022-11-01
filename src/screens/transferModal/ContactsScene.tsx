@@ -61,9 +61,9 @@ const ContactsScene = ({
                 colorScheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text,
-              fontSize: 14,
-            }}
-          >
+              fontSize: hp(15),
+              fontWeight: "500",
+            }}>
             Quick contacts
           </Text>
           <View
@@ -72,8 +72,7 @@ const ContactsScene = ({
               {
                 marginTop: hp(20),
               },
-            ]}
-          >
+            ]}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={[CommonStyles.row]}>
                 {user.azaContacts.map((_contct, i) => (
@@ -108,6 +107,7 @@ const ContactsScene = ({
               marginVertical: hp(35),
               borderBottomWidth: 1,
               borderBottomColor: Colors[colorScheme].separator,
+              marginLeft: hp(5),
             }}
             placeholder="To (Search for a contact)"
           />
@@ -146,8 +146,7 @@ const ContactsScene = ({
                       } else {
                         nonAzaContactOnPress(item);
                       }
-                    }}
-                  >
+                    }}>
                     <ContactListItem
                       image={getInitialsAvatar({
                         firstName: item?.fullName,
@@ -170,8 +169,7 @@ const ContactsScene = ({
                     } else {
                       nonAzaContactOnPress(item);
                     }
-                  }}
-                >
+                  }}>
                   <ContactListItem
                     image={getInitialsAvatar({
                       firstName: item?.firstName,
@@ -195,8 +193,8 @@ const ContactsScene = ({
     return (
       <View style={[styles.container, { justifyContent: "flex-start" }]}>
         <TextInput
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           placeholderTextColor={Colors[colorScheme].secondaryText}
           keyboardType={"number-pad"}
           returnKeyType={"send"}
@@ -210,6 +208,7 @@ const ContactsScene = ({
             marginTop: hp(15),
             borderBottomWidth: 1,
             borderBottomColor: Colors[colorScheme].separator,
+            marginLeft: hp(5),
           }}
           placeholder="Aza Number"
         />
@@ -257,8 +256,7 @@ const QuickContactView = ({
   return (
     <TouchableOpacity onPress={onPress}>
       <View
-        style={[CommonStyles.col, { alignItems: "center", marginRight: 20 }]}
-      >
+        style={[CommonStyles.col, { alignItems: "center", marginRight: 20 }]}>
         <Image
           style={{
             borderRadius: 50,
@@ -270,10 +268,9 @@ const QuickContactView = ({
           }}
         />
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{ fontSize: 10, marginTop: 5 }}
-        >
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
+          style={{ fontSize: hp(12), marginTop: 5 }}>
           {firstName}
         </Text>
       </View>

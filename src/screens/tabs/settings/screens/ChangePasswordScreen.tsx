@@ -19,11 +19,12 @@ const ChangePasswordScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Current Password
         </Text>
@@ -42,7 +43,12 @@ const ChangePasswordScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}>
         Please enter your current password
       </Text>
       <View style={{ marginBottom: 60, marginTop: 80, marginLeft: -20 }}>

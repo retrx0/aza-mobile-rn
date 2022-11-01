@@ -46,9 +46,9 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Login with Face ID
         </Text>
       ),
@@ -67,8 +67,12 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
-          style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-        >
+          style={{
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+            fontWeight: "400",
+            marginLeft: hp(5),
+          }}>
           You can access your account without entering a password by signing in
           with Face ID
         </Text>

@@ -16,6 +16,7 @@ import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import SplitListItem from "./components/SplitListItem";
+import { hp } from "../../common/util/LayoutUtil";
 
 const IncomingSplitRequestsScreen = ({
   navigation,
@@ -36,9 +37,9 @@ const IncomingSplitRequestsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Incoming Requests
         </Text>
       ),
@@ -90,8 +91,7 @@ const IncomingSplitRequestsScreen = ({
                   }}
                   onPress={() =>
                     navigation.navigate("IncomingSplitRequestAcceptance")
-                  }
-                >
+                  }>
                   <SplitListItem
                     amount={amount}
                     date={date}
@@ -119,8 +119,7 @@ const IncomingSplitRequestsScreen = ({
                   }}
                   onPress={() =>
                     navigation.navigate("CompletedSplitRequestDetails")
-                  }
-                >
+                  }>
                   <SplitListItem
                     amount={amount}
                     date={date}
@@ -171,8 +170,7 @@ const IncomingSplitRequestsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}
-                  >
+                    }}>
                     {route.title}
                   </Text>
                 );
