@@ -567,13 +567,12 @@ const CommonStyles = StyleSheet.create({
   },
 
   bodyText: {
-    padding: hp(5),
-    margin: hp(4),
+    padding: hp(3),
+    margin: hp(3),
     fontFamily: "Euclid-Circular-A",
     marginLeft: hp(15),
-    fontSize: hp(18),
-    fontWeight: "400",
-    lineHeight: hp(18),
+    fontSize: hp(16),
+    fontWeight: "600",
   },
   phoneContainer: {
     marginTop: hp(30),
