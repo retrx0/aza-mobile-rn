@@ -105,6 +105,7 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 // withdraw/deposit
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
+import { hp } from "../util/LayoutUtil";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -451,7 +452,15 @@ const CommonStack = () => {
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
                 />
-                <Text style={{ marginLeft: 5 }}>Back</Text>
+                <Text
+                  style={{
+                    marginLeft: 5,
+                    fontSize: hp(18),
+                    fontWeight: "400",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -462,8 +471,9 @@ const CommonStack = () => {
             },
             headerTransparent: true,
             headerTitleStyle: {
-              fontSize: 16,
-              fontWeight: "600",
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
             },
           })}>
           <Stack.Screen
