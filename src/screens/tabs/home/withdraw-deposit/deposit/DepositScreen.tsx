@@ -222,8 +222,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             />
           </View>
         </View>
-        <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -233,14 +232,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(15),
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <ButtonWithUnderline
             title="Cancel"

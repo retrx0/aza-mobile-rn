@@ -23,13 +23,13 @@ const RecurringTransferScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Recurring Money Transfer
         </Text>
       ),
@@ -47,10 +47,13 @@ const RecurringTransferScreen = ({
       <View style={[styles.container, { justifyContent: "space-between" }]}>
         <View>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-          >
+            // lightColor={Colors.light.text}
+            // darkColor={Colors.dark.mainText}
+            style={{
+              fontSize: hp(16),
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              marginLeft: hp(5),
+            }}>
             You can add and edit daily, weekly and monthly recurring money
             transfer orders.
           </Text>
@@ -61,9 +64,7 @@ const RecurringTransferScreen = ({
             size={30}
           />
         </View>
-        <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(35) }]}
-        >
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="New Recurring Transfer"
             onPressButton={() =>
@@ -71,14 +72,13 @@ const RecurringTransferScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

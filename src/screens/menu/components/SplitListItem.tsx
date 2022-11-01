@@ -8,6 +8,7 @@ import Colors from "../../../constants/Colors";
 
 import useColorScheme from "../../../hooks/useColorScheme";
 import { ArrowRightIcon, ChevronRightIcon } from "../../../../assets/svg";
+import { hp } from "../../../common/util/LayoutUtil";
 
 interface SplitItem {
   splitImage: string;
@@ -37,8 +38,7 @@ const SplitListItem = ({
           alignSelf: "stretch",
           paddingVertical: 10,
         },
-      ]}
-    >
+      ]}>
       <Image
         style={{
           borderRadius: 50,
@@ -56,16 +56,15 @@ const SplitListItem = ({
           marginRight: "auto",
 
           marginLeft: 20,
-        }}
-      >
+        }}>
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
-          }}
-        >
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           {name}
         </Text>
         <View
@@ -75,22 +74,21 @@ const SplitListItem = ({
               marginTop: 3,
               alignSelf: "flex-start",
             },
-          ]}
-        >
+          ]}>
           <Text
-            lightColor={Colors.light.secondaryText}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.secondaryText}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 12,
-            }}
-          >
+              fontSize: hp(14),
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "500",
+            }}>
             Payments
           </Text>
         </View>
         {showCreatorAndRecipients && (
           <View
-            style={[CommonStyles.row, { alignSelf: "stretch", marginTop: 8 }]}
-          >
+            style={[CommonStyles.row, { alignSelf: "stretch", marginTop: 8 }]}>
             <View style={[CommonStyles.row]}>
               <Image
                 style={{
@@ -157,8 +155,7 @@ const SplitListItem = ({
                   color: Colors[colorScheme].secondaryText,
                   marginLeft: 5,
                   fontSize: 10,
-                }}
-              >
+                }}>
                 +2 more
               </Text>
             </View>
@@ -171,34 +168,32 @@ const SplitListItem = ({
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-        }}
-      >
+        }}>
         <View
           style={{
             display: "flex",
             alignItems: "flex-end",
 
             marginRight: 10,
-          }}
-        >
+          }}>
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 14,
+              fontWeight: "500",
+              fontSize: hp(16),
               color: Colors.light.error,
-            }}
-          >
+            }}>
             {"\u20A6"} {numberWithCommas(amount)}
           </Text>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 10,
               marginTop: 3,
-              fontFamily: "Euclid-Circular-A-Light",
-            }}
-          >
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "500",
+              fontSize: hp(13),
+            }}>
             {date}
           </Text>
         </View>

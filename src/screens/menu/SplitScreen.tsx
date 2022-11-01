@@ -30,7 +30,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(18),
+            fontWeight: "500",
           }}>
           Split
         </Text>
@@ -48,17 +49,17 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
     {
       name: "Split",
       handleNavigation: () => navigation.navigate("ChooseSplit"),
-      icon: <SplitIcon size={16} color={Colors[colorScheme].mainText} />,
+      icon: <SplitIcon size={18} color={Colors[colorScheme].mainText} />,
     },
     {
       name: "Incoming Requests",
       handleNavigation: () => navigation.navigate("IncomingSplitRequests"),
-      icon: <ReceivedIcon size={16} color={Colors[colorScheme].mainText} />,
+      icon: <ReceivedIcon size={18} color={Colors[colorScheme].mainText} />,
     },
     {
       name: "Outgoing Requests",
       handleNavigation: () => navigation.navigate("OutgoingSplitRequests"),
-      icon: <SendIcon size={16} color={Colors[colorScheme].mainText} />,
+      icon: <SendIcon size={18} color={Colors[colorScheme].mainText} />,
     },
   ];
 
@@ -87,8 +88,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     { marginRight: "auto", marginLeft: 20 },
                   ]}>
                   <Text
-                    lightColor={Colors.light.text}
-                    darkColor={Colors.dark.mainText}
+                    // lightColor={Colors.light.text}
+                    // darkColor={Colors.dark.mainText}
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),

@@ -42,11 +42,12 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Send Money
         </Text>
@@ -111,7 +112,8 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                   }
                   style={{
                     fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 16,
+                    fontSize: hp(16),
+                    fontWeight: "500",
                   }}>
                   {route.title}
                 </Text>

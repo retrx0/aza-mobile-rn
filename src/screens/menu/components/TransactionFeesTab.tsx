@@ -51,46 +51,50 @@ const TransactionFeesTab = () => {
               {
                 alignSelf: "stretch",
                 justifyContent: "space-between",
-                paddingHorizontal: 15,
+                paddingHorizontal: hp(15),
               },
-            ]}
-          >
+            ]}>
             <View style={[CommonStyles.col, { maxWidth: wp(300) }]}>
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.mainText}
+                // lightColor={Colors.light.text}
+                // darkColor={Colors.dark.mainText}
                 style={{
-                  fontFamily: "Euclid-Circular-A-Medium",
-                  fontSize: 14,
-                }}
-              >
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontSize: hp(15),
+                  fontWeight: "500",
+                  marginLeft: hp(5),
+                }}>
                 {transaction}
               </Text>
               {detail && (
                 <Text
-                  lightColor={Colors.light.text}
-                  darkColor={Colors.dark.secondaryText}
-                  style={{ fontSize: 12, marginTop: hp(4) }}
-                >
+                  // lightColor={Colors.light.text}
+                  // darkColor={Colors.dark.secondaryText}
+                  style={{
+                    fontSize: hp(14),
+                    marginTop: hp(4),
+                    fontFamily: "Euclid-Circular-A",
+                    marginLeft: hp(5),
+                  }}>
                   {detail}
                 </Text>
               )}
             </View>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontWeight: "500",
+              }}>
               {charge}
             </Text>
           </View>
           <View
             style={{
               paddingVertical: hp(35),
-            }}
-          >
+            }}>
             <Divider />
           </View>
         </View>

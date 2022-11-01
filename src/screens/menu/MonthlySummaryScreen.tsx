@@ -48,9 +48,9 @@ const MonthlySummaryScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Monthly Summary
         </Text>
       ),
@@ -62,17 +62,15 @@ const MonthlySummaryScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-        >
+          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}>
           <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
           <Text
             style={{
               color: Colors[colorScheme].secondaryText,
-              fontSize: 12,
+              fontSize: hp(14),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               textAlign: "center",
-            }}
-          >
+            }}>
             Download
           </Text>
         </TouchableOpacity>
@@ -102,8 +100,7 @@ const MonthlySummaryScreen = ({
             backgroundColor: "#2AD168",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <DepositIcon size={40} color="#FFFFFF" />
         </View>
       ),
@@ -138,8 +135,7 @@ const MonthlySummaryScreen = ({
             backgroundColor: "#FF361A",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <WithdrawIcon size={40} color="#FFFFFF" />
         </View>
       ),
@@ -180,8 +176,7 @@ const MonthlySummaryScreen = ({
             backgroundColor: "#FF361A",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <DebitCardIcon size={30} color="#FFFFFF" />
         </View>
       ),
@@ -209,8 +204,7 @@ const MonthlySummaryScreen = ({
             backgroundColor: "#FF361A",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <BankLargeIcon size={30} color="#FFFFFF" />
         </View>
       ),
@@ -233,8 +227,7 @@ const MonthlySummaryScreen = ({
             backgroundColor: "#FF361A",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <VaultOutlinedIcon size={30} color="#FFFFFF" />
         </View>
       ),
@@ -262,8 +255,7 @@ const MonthlySummaryScreen = ({
             backgroundColor: "#FF361A",
             justifyContent: "center",
             alignItems: "center",
-          }}
-        >
+          }}>
           <DebitCardIcon size={30} color="#FFFFFF" />
         </View>
       ),
@@ -281,21 +273,20 @@ const MonthlySummaryScreen = ({
             {
               alignSelf: "stretch",
             },
-          ]}
-        >
+          ]}>
           <View style={[CommonStyles.row]}>
             <TouchableOpacity>
               <ArrowLeftIcon color={Colors[colorScheme].mainText} />
             </TouchableOpacity>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: 16,
+                fontSize: hp(16),
                 marginHorizontal: 20,
-              }}
-            >
+                fontWeight: "500",
+              }}>
               Jun 2022
             </Text>
             <TouchableOpacity>
@@ -305,20 +296,19 @@ const MonthlySummaryScreen = ({
           <ScrollView
             horizontal
             style={{ marginTop: hp(25) }}
-            showsHorizontalScrollIndicator={false}
-          >
+            showsHorizontalScrollIndicator={false}>
             {filterBy.map((filter, i) => (
               <View key={i}>
                 {i === 0 ? (
                   <Text
-                    lightColor={Colors.light.text}
-                    darkColor={Colors.dark.mainText}
+                    // lightColor={Colors.light.text}
+                    // darkColor={Colors.dark.mainText}
                     style={{
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 14,
+                      fontFamily: "Euclid-Circular-A-Semi-Bold",
+                      fontSize: hp(16),
                       marginRight: 25,
-                    }}
-                  >
+                      marginLeft: hp(5),
+                    }}>
                     {filter}
                   </Text>
                 ) : (
@@ -326,11 +316,11 @@ const MonthlySummaryScreen = ({
                     lightColor={Colors.light.secondaryText}
                     darkColor={Colors.dark.secondaryText}
                     style={{
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 14,
+                      fontFamily: "Euclid-Circular-A-Semi-Bold",
+                      fontSize: hp(16),
                       marginRight: 25,
-                    }}
-                  >
+                      marginLeft: hp(5),
+                    }}>
                     {filter}
                   </Text>
                 )}
@@ -339,8 +329,7 @@ const MonthlySummaryScreen = ({
           </ScrollView>
           <ScrollView
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 150 }}
-          >
+            contentContainerStyle={{ paddingBottom: 150 }}>
             {summaries.map(
               (
                 { icon, info, totalAmount, transactionType, transactions },
@@ -355,8 +344,7 @@ const MonthlySummaryScreen = ({
                       alignItems: "center",
                       paddingTop: hp(40),
                     },
-                  ]}
-                >
+                  ]}>
                   {icon}
                   <Text
                     lightColor={Colors.light.text}
@@ -365,22 +353,20 @@ const MonthlySummaryScreen = ({
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 14,
                       marginTop: 10,
-                    }}
-                  >
+                    }}>
                     {transactionType}
                   </Text>
                   {totalAmount && (
                     <Text
                       style={{
-                        fontFamily: "Euclid-Circular-A-Medium",
-                        fontSize: 14,
-                        marginTop: 10,
+                        fontFamily: "Euclid-Circular-A-Semi-Bold",
+                        fontSize: hp(17),
+                        marginTop: hp(10),
                         color:
                           transactionType === "Incoming"
                             ? "#2A9E17"
                             : "#FF361A",
-                      }}
-                    >
+                      }}>
                       {"\u20A6"} {numberWithCommas(totalAmount)}
                     </Text>
                   )}
@@ -388,11 +374,10 @@ const MonthlySummaryScreen = ({
                     <Text
                       style={{
                         fontFamily: "Euclid-Circular-A-Medium",
-                        fontSize: 14,
-                        marginTop: 3,
+                        fontSize: hp(16),
+                        marginTop: hp(3),
                         color: Colors[colorScheme].secondaryText,
-                      }}
-                    >
+                      }}>
                       {info}
                     </Text>
                   )}
@@ -410,8 +395,7 @@ const MonthlySummaryScreen = ({
                       style={[
                         CommonStyles.col,
                         { alignSelf: "stretch", alignItems: "center" },
-                      ]}
-                    >
+                      ]}>
                       <View
                         style={{
                           width: 36,
@@ -421,31 +405,30 @@ const MonthlySummaryScreen = ({
                           alignItems: "center",
                           backgroundColor:
                             colorScheme === "dark" ? "#3A3D42" : "black",
-                        }}
-                      >
+                        }}>
                         {transaction.transactionIcon}
                       </View>
                       <Text
                         style={{
-                          fontFamily: "Euclid-Circular-A-Medium",
-                          fontSize: 14,
-                          marginTop: 10,
+                          fontFamily: "Euclid-Circular-A-Semi-Bold",
+                          fontSize: hp(16),
+                          marginRight: 25,
+                          marginLeft: hp(5),
+                          marginTop: hp(10),
                           color:
                             transactionType === "Incoming"
                               ? "#2A9E17"
                               : "#FF361A",
-                        }}
-                      >
+                        }}>
                         {"\u20A6"} {numberWithCommas(transaction.amount)}
                       </Text>
                       <Text
                         style={{
                           fontFamily: "Euclid-Circular-A-Medium",
-                          fontSize: 14,
-                          marginTop: 3,
+                          fontSize: hp(16),
+                          marginTop: hp(3),
                           color: Colors[colorScheme].secondaryText,
-                        }}
-                      >
+                        }}>
                         {transaction.transactionInfo}
                       </Text>
                       {length - 1 !== i && (
@@ -466,8 +449,7 @@ const MonthlySummaryScreen = ({
                 alignItems: "center",
                 marginTop: 40,
                 paddingLeft: 20,
-              }}
-            >
+              }}>
               <PieChart
                 data={chartData}
                 innerCircleColor={"transparent"}
@@ -480,15 +462,13 @@ const MonthlySummaryScreen = ({
                         width: 130,
                         height: 130,
                         borderRadius: 150,
-                      }}
-                    >
+                      }}>
                       <Text
                         lightColor={Colors.light.text}
                         darkColor={Colors.dark.secondaryText}
                         style={{
                           fontSize: 14,
-                        }}
-                      >
+                        }}>
                         Total
                       </Text>
                       <Text
@@ -496,9 +476,8 @@ const MonthlySummaryScreen = ({
                         darkColor={Colors.dark.mainText}
                         style={{
                           fontFamily: "Euclid-Circular-A-Semi-Bold",
-                          fontSize: 16,
-                        }}
-                      >
+                          fontSize: hp(17),
+                        }}>
                         {"\u20A6"} {numberWithCommas(65000)}
                       </Text>
                     </View>
@@ -512,16 +491,14 @@ const MonthlySummaryScreen = ({
                   flexWrap: "wrap",
                   justifyContent: "center",
                   width: 300,
-                }}
-              >
+                }}>
                 {chartData.map(({ color, text }, i) => (
                   <View
                     key={i}
                     style={[
                       CommonStyles.row,
                       { marginRight: 10, marginTop: 15 },
-                    ]}
-                  >
+                    ]}>
                     <View
                       style={{
                         width: 15,
@@ -536,8 +513,7 @@ const MonthlySummaryScreen = ({
                       darkColor={Colors.dark.secondaryText}
                       style={{
                         fontSize: 14,
-                      }}
-                    >
+                      }}>
                       {text}
                     </Text>
                   </View>
@@ -548,8 +524,7 @@ const MonthlySummaryScreen = ({
               style={[
                 CommonStyles.col,
                 { alignSelf: "stretch", alignItems: "center", marginTop: 20 },
-              ]}
-            >
+              ]}>
               <View
                 style={{
                   width: 36,
@@ -558,28 +533,25 @@ const MonthlySummaryScreen = ({
                   justifyContent: "center",
                   alignItems: "center",
                   backgroundColor: colorScheme === "dark" ? "#3A3D42" : "black",
-                }}
-              >
+                }}>
                 <HeartIcon color="#FF361A" size={20} />
               </View>
               <Text
                 style={{
-                  fontFamily: "Euclid-Circular-A-Medium",
-                  fontSize: 14,
-                  marginTop: 10,
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontSize: hp(16),
+                  marginTop: hp(10),
                   color: "#FF361A",
-                }}
-              >
+                }}>
                 {"\u20A6"} {numberWithCommas(10000)}
               </Text>
               <Text
                 style={{
                   fontFamily: "Euclid-Circular-A-Medium",
-                  fontSize: 14,
-                  marginTop: 3,
+                  fontSize: hp(16),
+                  marginTop: hp(3),
                   color: Colors[colorScheme].secondaryText,
-                }}
-              >
+                }}>
                 Worth of donations made
               </Text>
             </View>

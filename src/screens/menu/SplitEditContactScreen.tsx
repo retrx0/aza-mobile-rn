@@ -30,9 +30,9 @@ const SplitEditContactScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Edit
         </Text>
       ),
@@ -50,29 +50,32 @@ const SplitEditContactScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
               marginBottom: hp(50),
-            }}
-          >
+              fontWeight: "500",
+              marginLeft: hp(5),
+            }}>
             You can edit the split amount
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(14),
+                marginLeft: hp(5),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+              }}>
               With whom?
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={[
                 styles.input1,
@@ -92,13 +95,14 @@ const SplitEditContactScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Amount
             </Text>
             <View
@@ -109,18 +113,16 @@ const SplitEditContactScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}
-            >
+              ]}>
               <Text
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}
-              >
+                // lightColor={Colors.light.mainText}
+                // darkColor={Colors.dark.mainText}
+                style={{ position: "absolute", paddingBottom: 5 }}>
                 {"\u20A6 "}
               </Text>
               <TextInput
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
+                // lightColor={Colors.light.mainText}
+                // darkColor={Colors.dark.mainText}
                 placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={[
                   styles.input2,
@@ -140,21 +142,19 @@ const SplitEditContactScreen = ({
           style={[
             CommonStyles.col,
             { width: "100%", marginBottom: hp(35), marginTop: 5 },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => navigation.goBack()}
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

@@ -30,9 +30,9 @@ const OutgoingSplitRequestsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Outgoing Requests
         </Text>
       ),
@@ -59,15 +59,16 @@ const OutgoingSplitRequestsScreen = ({
         <View
           style={{
             marginTop: hp(25),
-          }}
-        >
+          }}>
           <Text
-            lightColor={Colors.light.secondaryText}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.secondaryText}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 14,
-            }}
-          >
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              marginLeft: hp(5),
+            }}>
             Request Creator
           </Text>
           <View
@@ -78,8 +79,7 @@ const OutgoingSplitRequestsScreen = ({
                 justifyContent: "space-between",
                 marginTop: hp(15),
               },
-            ]}
-          >
+            ]}>
             <Image
               style={{ borderRadius: 50, width: 45, height: 45 }}
               source={{
@@ -90,19 +90,25 @@ const OutgoingSplitRequestsScreen = ({
               style={[
                 CommonStyles.col,
                 { marginLeft: 20, marginRight: "auto" },
-              ]}
-            >
+              ]}>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 16,
-                  fontFamily: "Euclid-Circular-A-Medium",
-                }}
-              >
+                  fontSize: hp(15),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontWeight: "500",
+                }}>
                 Chiazo
               </Text>
-              <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
+              <Text
+                style={{
+                  fontSize: hp(14),
+                  marginTop: 5,
+                  color: "#FF361A",
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontWeight: "500",
+                }}>
                 {"\u20A6"} {numberWithCommas(6666)}
               </Text>
             </View>
@@ -110,13 +116,15 @@ const OutgoingSplitRequestsScreen = ({
           </View>
         </View>
         <Text
-          lightColor={Colors.light.secondaryText}
-          darkColor={Colors.dark.secondaryText}
+          // lightColor={Colors.light.secondaryText}
+          // darkColor={Colors.dark.secondaryText}
           style={{
-            fontSize: 14,
+            fontSize: hp(16),
+            fontWeight: "500",
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            marginLeft: hp(5),
             marginTop: hp(25),
-          }}
-        >
+          }}>
           Request Recipients
         </Text>
         <ScrollView>
@@ -129,8 +137,7 @@ const OutgoingSplitRequestsScreen = ({
                   justifyContent: "space-between",
                   marginTop: hp(15),
                 },
-              ]}
-            >
+              ]}>
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
@@ -141,19 +148,25 @@ const OutgoingSplitRequestsScreen = ({
                 style={[
                   CommonStyles.col,
                   { marginLeft: 20, marginRight: "auto" },
-                ]}
-              >
+                ]}>
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
                   style={{
-                    fontSize: 16,
-                    fontFamily: "Euclid-Circular-A-Medium",
-                  }}
-                >
+                    fontSize: hp(15),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontWeight: "500",
+                  }}>
                   James
                 </Text>
-                <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
+                <Text
+                  style={{
+                    fontSize: hp(14),
+                    marginTop: 5,
+                    color: "#FF361A",
+                    fontFamily: "Euclid-Circular-A-Medium",
+                    fontWeight: "500",
+                  }}>
                   {"\u20A6"} {numberWithCommas(6666)}
                 </Text>
               </View>
@@ -167,8 +180,7 @@ const OutgoingSplitRequestsScreen = ({
                   justifyContent: "space-between",
                   marginTop: hp(15),
                 },
-              ]}
-            >
+              ]}>
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
@@ -179,19 +191,25 @@ const OutgoingSplitRequestsScreen = ({
                 style={[
                   CommonStyles.col,
                   { marginLeft: 20, marginRight: "auto" },
-                ]}
-              >
+                ]}>
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
                   style={{
-                    fontSize: 16,
-                    fontFamily: "Euclid-Circular-A-Medium",
-                  }}
-                >
+                    fontSize: hp(15),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontWeight: "500",
+                  }}>
                   James
                 </Text>
-                <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
+                <Text
+                  style={{
+                    fontSize: hp(14),
+                    marginTop: 5,
+                    color: "#FF361A",
+                    fontFamily: "Euclid-Circular-A-Medium",
+                    fontWeight: "500",
+                  }}>
                   {"\u20A6"} {numberWithCommas(6666)}
                 </Text>
               </View>
@@ -200,22 +218,19 @@ const OutgoingSplitRequestsScreen = ({
           </View>
         </ScrollView>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(35) }]}
-        >
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
           <Button
             title="Cancel Request"
             onPressButton={() => navigation.navigate("Split")}
             styleText={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              color: Colors[colorScheme].buttonText,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              marginBottom: hp(40),
-              marginTop: hp(40),
-              backgroundColor: Colors[colorScheme].error,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].error,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>
