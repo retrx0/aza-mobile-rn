@@ -38,7 +38,17 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
         },
         style,
       ]}>
-      <Text style={[{ fontSize: hp(16) }, styleText]}>{title}</Text>
+      <Text
+        style={[
+          {
+            fontSize: hp(14),
+            fontWeight: "500",
+            fontFamily: "Euclid-Circular-A",
+          },
+          styleText,
+        ]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
