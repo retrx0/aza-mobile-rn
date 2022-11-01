@@ -50,6 +50,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               marginTop: hp(20),
               marginBottom: hp(40),
               marginLeft: hp(5),
+              fontWeight: "600",
             }}>
             Contact us with any questions. We are ready to help
           </Text>
@@ -60,7 +61,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
-                fontWeight: "500",
+                fontWeight: "400",
                 marginLeft: hp(5),
               }}>
               Email

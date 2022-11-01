@@ -70,7 +70,7 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-            fontWeight: "400",
+            fontWeight: "500",
             marginLeft: hp(5),
           }}>
           You can access your account without entering a password by signing in

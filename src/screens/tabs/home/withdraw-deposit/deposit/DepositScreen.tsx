@@ -72,9 +72,9 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontSize: hp(16),
                 marginBottom: hp(30),
-                fontWeight: "600",
+                fontWeight: "500",
                 paddingLeft: hp(7),
               }}>
               Select the card you wish to deposit money to your Aza from
