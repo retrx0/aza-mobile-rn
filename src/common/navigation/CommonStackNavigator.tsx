@@ -292,9 +292,17 @@ const CommonStack = () => {
               }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
-                size={24}
+                size={16}
               />
-              <Text style={{ marginLeft: 5 }}>Back</Text>
+              <Text
+                style={{
+                  marginLeft: hp(5),
+                  fontSize: hp(18),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A",
+                }}>
+                Back
+              </Text>
             </TouchableOpacity>
           ),
           headerStyle: {
