@@ -231,12 +231,12 @@ export const AppleIcon = () => {
   );
 };
 
-export const DataIcon = ({ style, color }: SvgIconProps) => {
+export const DataIcon = ({ style, color, size }: SvgIconProps) => {
   return (
     <Svg
       style={style}
-      width="14"
-      height="12"
+      width={size}
+      height={size}
       viewBox="0 0 14 12"
       fill="#000000">
       <Path
@@ -277,9 +277,14 @@ export const PieIcon = ({ style }: SvgIconProps) => {
   );
 };
 
-export const WifiIcon = ({ style, color }: SvgIconProps) => {
+export const WifiIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="16" height="12" viewBox="0 0 16 12" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 16 12"
+      fill="none">
       <Path
         d="M3.27333 5.8934C6.14 3.68007 9.86667 3.68007 12.7333 5.8934"
         stroke={color}
@@ -429,9 +434,14 @@ export const FlagIcon = () => {
   );
 };
 
-export const CableTvIcon = ({ style, color }: SvgIconProps) => {
+export const CableTvIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 14 14"
+      fill="none">
       <Path
         d="M10.7067 0.333252H3.27333C1.65333 0.333252 0.333328 1.65325 0.333328 3.27325V7.60658V7.73992C0.333328 9.36658 1.65333 10.6799 3.27333 10.6799H5.83333C6.19999 10.6799 6.49999 10.9799 6.49999 11.3466V11.9933C6.49999 12.3599 6.19999 12.6599 5.83333 12.6599H4.21999C3.94666 12.6599 3.71999 12.8866 3.71999 13.1599C3.71999 13.4333 3.93999 13.6666 4.21999 13.6666H9.78666C10.06 13.6666 10.2867 13.4399 10.2867 13.1666C10.2867 12.8933 10.06 12.6666 9.78666 12.6666H8.17333C7.80666 12.6666 7.50666 12.3666 7.50666 11.9999V11.3533C7.50666 10.9866 7.80666 10.6866 8.17333 10.6866H10.7133C12.34 10.6866 13.6533 9.36658 13.6533 7.74658V7.61325V3.27992C13.6467 1.65325 12.3267 0.333252 10.7067 0.333252Z"
         fill={color}
@@ -440,9 +450,14 @@ export const CableTvIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const ElectricIcon = ({ style, color }: SvgIconProps) => {
+export const ElectricIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="10" height="14" viewBox="0 0 10 14" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 10 14"
+      fill="none">
       <Path
         d="M8.94001 6.14668H6.88001V1.34668C6.88001 0.22668 6.27334 1.29938e-05 5.53334 0.840013L5.00001 1.44668L0.486674 6.58001C-0.133326 7.28001 0.126674 7.85335 1.06001 7.85335H3.12001V12.6533C3.12001 13.7733 3.72667 14 4.46667 13.16L5.00001 12.5533L9.51334 7.42001C10.1333 6.72001 9.87334 6.14668 8.94001 6.14668Z"
         fill={color}
@@ -451,9 +466,14 @@ export const ElectricIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const DropIcon = ({ style, color }: SvgIconProps) => {
+export const DropIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none">
       <Path
         d="M11.06 4.93992L4.20666 11.7933C3.88666 12.1133 3.34 12.0399 3.14666 11.6333C2.8 10.9199 2.6 10.1133 2.6 9.26659C2.58666 5.58659 6.32 2.43992 7.58666 1.47325C7.83333 1.28659 8.16666 1.28659 8.40666 1.47325C8.98666 1.91325 10.0733 2.82659 11.0933 4.02659C11.32 4.29325 11.3067 4.69325 11.06 4.93992Z"
         fill={color}
@@ -466,9 +486,9 @@ export const DropIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const GiftIcon = ({ style, color }: SvgIconProps) => {
+export const GiftIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path
         d="M13.3333 7.99992V11.9999C13.3333 13.4733 12.14 14.6666 10.6667 14.6666H5.33334C3.86001 14.6666 2.66667 13.4733 2.66667 11.9999V7.99992C2.66667 7.63325 2.96667 7.33325 3.33334 7.33325H4.64667C5.01334 7.33325 5.31334 7.63325 5.31334 7.99992V10.0933C5.31334 10.5866 5.58667 11.0399 6.02 11.2733C6.21334 11.3799 6.42667 11.4333 6.64667 11.4333C6.90001 11.4333 7.15334 11.3599 7.37334 11.2133L8.00667 10.7999L8.59334 11.1933C9.00001 11.4666 9.52001 11.4999 9.95334 11.2666C10.3933 11.0333 10.6667 10.5866 10.6667 10.0866V7.99992C10.6667 7.63325 10.9667 7.33325 11.3333 7.33325H12.6667C13.0333 7.33325 13.3333 7.63325 13.3333 7.99992Z"
         fill={color}
@@ -493,9 +513,14 @@ export const GiftIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const LoveIcon = ({ style, color }: SvgIconProps) => {
+export const LoveIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="14" height="12" viewBox="0 0 14 12" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 14 12"
+      fill="none">
       <Path
         d="M9.95999 0.0668945C8.75333 0.0668945 7.67333 0.653561 6.99999 1.55356C6.32666 0.653561 5.24666 0.0668945 4.03999 0.0668945C1.99333 0.0668945 0.333328 1.73356 0.333328 3.79356C0.333328 4.58689 0.459995 5.32023 0.679995 6.00023C1.73333 9.33356 4.97999 11.3269 6.58666 11.8736C6.81333 11.9536 7.18666 11.9536 7.41333 11.8736C9.01999 11.3269 12.2667 9.33356 13.32 6.00023C13.54 5.32023 13.6667 4.58689 13.6667 3.79356C13.6667 1.73356 12.0067 0.0668945 9.95999 0.0668945Z"
         fill={color}

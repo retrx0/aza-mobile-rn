@@ -20,6 +20,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { fetchAirtimeOperators } from "../../../../api/airtime";
 import api from "../../../../api";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function AirtimeIndex({
   navigation,
@@ -50,10 +51,18 @@ export default function AirtimeIndex({
       <Header
         description=""
         descriptionStyle={null}
-        headerStyle={null}
+        headerStyle={{
+          fontFamily: "Euclid-Circular-A-Medium",
+          fontWeight: "600",
+          fontSize: hp(16),
+          marginTop: hp(30),
+        }}
         heading="Select Network Provider"
       />
-      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
+      <ScrollView
+        horizontal
+        style={CommonStyles.imageHeaderContainer}
+        showsHorizontalScrollIndicator={false}>
         {airtimeOperators.map((op, i) => {
           return (
             <HeadrImage
@@ -78,36 +87,39 @@ export default function AirtimeIndex({
         /> */}
         {/* <HeadrImage selected={false} index={1} image={Glo} title="Glo" /> */}
       </ScrollView>
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={styles.input}
-        labelStyle={styles.label}
-        style={{ marginTop: 0 }}
-        label="Phone Number"
-        placeholder="Enter a phone number"
-      />
-      <CustomSwitch
-        title="My number"
-        onValueChange={toggleSwitch}
-        isEnabled={isEnabled}
-      />
-      {route.name == "data" && (
-        <SelectInput
-          items={bundles}
-          title="Bundle"
-          placeHolder="Choose a bundle"
-          style={styles.select}
+      <View>
+        <Input
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={styles.input}
+          labelStyle={styles.label}
+          style={{ marginTop: hp(35) }}
+          label="Phone Number"
+          placeholder="Enter a phone number"
         />
-      )}
-      <Input
-        icon={null}
-        inputStyle={styles.input}
-        labelStyle={styles.label}
-        label="Amount"
-        placeholder="Enter an amount"
-        keyboardType="number-pad"
-      />
+        <CustomSwitch
+          title="My number"
+          onValueChange={toggleSwitch}
+          isEnabled={isEnabled}
+        />
+        {route.name == "data" && (
+          <SelectInput
+            items={bundles}
+            title="Bundle"
+            placeHolder="Choose a bundle"
+            style={styles.select}
+          />
+        )}
+        <Input
+          icon={null}
+          inputStyle={styles.input}
+          labelStyle={styles.label}
+          label="Amount"
+          placeholder="Enter an amount"
+          keyboardType="number-pad"
+        />
+      </View>
+
       <MyButton
         title="Continue"
         onPress={() => {

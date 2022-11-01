@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: "400",
     fontSize: hp(16),
-    color: "#4D4D4D",
+
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   selector: {
     width: "100%",
