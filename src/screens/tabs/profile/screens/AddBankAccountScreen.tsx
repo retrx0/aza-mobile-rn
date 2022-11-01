@@ -24,13 +24,13 @@ const AddBankAccountScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Add Bank Account
         </Text>
       ),
@@ -48,25 +48,27 @@ const AddBankAccountScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
               marginVertical: hp(30),
-            }}
-          >
+              marginLeft: hp(5),
+              fontWeight: "500",
+            }}>
             Add your bank account to receive withdrawals from your Aza account
           </Text>
           <View>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(15),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Account Number
             </Text>
             <TextInput
@@ -80,6 +82,7 @@ const AddBankAccountScreen = ({
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               placeholder="Enter your account number"
               keyboardType="number-pad"
@@ -87,9 +90,7 @@ const AddBankAccountScreen = ({
             />
           </View>
         </View>
-        <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -102,13 +103,13 @@ const AddBankAccountScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(25),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

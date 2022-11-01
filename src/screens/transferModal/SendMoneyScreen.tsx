@@ -47,8 +47,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Send Money
         </Text>
       ),
@@ -113,8 +112,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                   style={{
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: 16,
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );
