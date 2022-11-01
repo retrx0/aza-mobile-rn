@@ -20,7 +20,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { fetchAirtimeOperators } from "../../../../api/airtime";
 import api from "../../../../api";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
 
 export default function AirtimeIndex({
   navigation,
@@ -119,14 +119,24 @@ export default function AirtimeIndex({
           keyboardType="number-pad"
         />
       </View>
-
-      <MyButton
-        title="Continue"
-        onPress={() => {
-          navigation.navigate("Common", { screen: "Confirm" });
-        }}
-        disabled={false}
-      />
+      <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+        <Button
+          title="Continue"
+          onPressButton={() => {
+            navigation.navigate("Common", { screen: "Confirm" });
+          }}
+          disabled={false}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+              width: wp(335),
+            },
+          ]}
+        />
+      </View>
     </View>
   );
 }
