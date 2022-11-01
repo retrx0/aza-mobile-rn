@@ -53,7 +53,7 @@ const StatusScreen = ({
             style={{
               color:
                 statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
-              fontSize: hp(16),
+              fontSize: hp(24),
               marginVertical: hp(20),
               textAlign: "center",
               fontFamily: "Euclid-Circular-A-Semi-Bold",

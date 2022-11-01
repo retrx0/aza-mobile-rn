@@ -25,7 +25,7 @@ const AccountLimitsTab = ({
             // lightColor={Colors.light.text}
             // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: hp(16),
+              fontSize: hp(14),
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
             }}>
