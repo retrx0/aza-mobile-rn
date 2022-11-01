@@ -49,7 +49,7 @@ const MonthlySummaryScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-            fontWeight: "500",
+            fontWeight: "600",
           }}>
           Monthly Summary
         </Text>
@@ -67,9 +67,10 @@ const MonthlySummaryScreen = ({
           <Text
             style={{
               color: Colors[colorScheme].secondaryText,
-              fontSize: hp(14),
+              fontSize: hp(12),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               textAlign: "center",
+              fontWeight: "600",
             }}>
             Download
           </Text>
@@ -285,7 +286,7 @@ const MonthlySummaryScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(16),
                 marginHorizontal: 20,
-                fontWeight: "500",
+                fontWeight: "600",
               }}>
               Jun 2022
             </Text>
@@ -351,7 +352,7 @@ const MonthlySummaryScreen = ({
                     darkColor={Colors.dark.mainText}
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 14,
+                      fontSize: 16,
                       marginTop: 10,
                     }}>
                     {transactionType}
@@ -359,8 +360,8 @@ const MonthlySummaryScreen = ({
                   {totalAmount && (
                     <Text
                       style={{
-                        fontFamily: "Euclid-Circular-A-Semi-Bold",
-                        fontSize: hp(17),
+                        fontFamily: "Euclid-Circular-A-Medium",
+                        fontSize: hp(16),
                         marginTop: hp(10),
                         color:
                           transactionType === "Incoming"
@@ -476,7 +477,7 @@ const MonthlySummaryScreen = ({
                         darkColor={Colors.dark.mainText}
                         style={{
                           fontFamily: "Euclid-Circular-A-Semi-Bold",
-                          fontSize: hp(17),
+                          fontSize: hp(16),
                         }}>
                         {"\u20A6"} {numberWithCommas(65000)}
                       </Text>
@@ -512,7 +513,7 @@ const MonthlySummaryScreen = ({
                       lightColor={Colors.light.text}
                       darkColor={Colors.dark.secondaryText}
                       style={{
-                        fontSize: 14,
+                        fontSize: 16,
                       }}>
                       {text}
                     </Text>

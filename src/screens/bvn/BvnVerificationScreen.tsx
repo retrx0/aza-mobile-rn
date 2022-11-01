@@ -30,8 +30,7 @@ const BvnVerificationScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Tier 1 Verification
         </Text>
       ),
@@ -53,10 +52,10 @@ const BvnVerificationScreen = ({
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: 16,
               marginVertical: hp(30),
-            }}
-          >
+              fontWeight: "500",
+            }}>
             Verify your BVN
           </Text>
           <View>
@@ -65,9 +64,9 @@ const BvnVerificationScreen = ({
               darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontSize: 16,
+                fontWeight: "400",
+              }}>
               BVN
             </Text>
             <TextInput
@@ -89,8 +88,7 @@ const BvnVerificationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}>
           <Button
             title="Verify"
             onPressButton={() =>
