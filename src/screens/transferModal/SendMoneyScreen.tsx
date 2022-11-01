@@ -26,17 +26,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   const colorScheme = useColorScheme();
   const layout = useWindowDimensions();
 
-  const [searchContact, setSearchContact] = useState("");
-  const [contacts, setContacts] = useState<Contact[]>([]);
-
   // const user = useAppSelector(user)
-
-  useEffect(() => {
-    getUserContacts().then((_contacts) => {
-      if (_contacts)
-        setContacts(_contacts.filter((_c) => _c.contactType === "person"));
-    });
-  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -48,7 +38,8 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Send Money
         </Text>
       ),
@@ -116,7 +107,8 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

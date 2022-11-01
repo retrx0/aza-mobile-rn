@@ -52,7 +52,8 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -89,7 +90,8 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 14,
               marginTop: 15,
-            }}>
+            }}
+          >
             {beneficiary.fullName}
           </Text>
           <View
@@ -105,11 +107,13 @@ const TransactionKeypadScreen = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               Nigerian Naira
             </Text>
             <Image
@@ -124,7 +128,8 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               NGN
             </Text>
           </View>
@@ -148,7 +153,8 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 15,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -158,7 +164,8 @@ const TransactionKeypadScreen = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -168,7 +175,8 @@ const TransactionKeypadScreen = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}>
+              }}
+            >
               {"\u20A6"} {user.azaBalance}
             </Text>
           </View>
@@ -190,12 +198,14 @@ const TransactionKeypadScreen = ({
                   console.log("request");
                   dispatch(
                     setTransaction({
+                      ...{},
                       amount: Number(amount),
                       beneficairy: beneficiary,
                       description: description,
                       transferType: "request",
                     })
                   );
+                  navigation.navigate("RequestMoneyConfirmation");
                   break;
                 case "send":
                   dispatch(
@@ -206,6 +216,7 @@ const TransactionKeypadScreen = ({
                       transferType: "send",
                     })
                   );
+                  navigation.navigate("SendMoneyConfirmation");
                   break;
                 case "withdraw":
                   console.log("withdrawing");
@@ -235,7 +246,7 @@ const TransactionKeypadScreen = ({
       </View>
 
       {/* description modal */}
-      <DescriptionModal
+      {/* <DescriptionModal
         visible={descModal}
         setModalVisible={setDescModalOpen}
         description={description}
@@ -245,7 +256,7 @@ const TransactionKeypadScreen = ({
         recurringTransaction={recurringTransaction}
         transactionType={transactionType}
         // transactionParams={}
-      />
+      /> */}
     </>
   );
 };

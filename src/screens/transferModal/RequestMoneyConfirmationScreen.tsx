@@ -12,11 +12,15 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useAppSelector } from "../../redux";
+import { selectTransaction } from "../../redux/slice/transactionSlice";
 
 const RequestMoneyConfirmationScreen = ({
   navigation,
 }: CommonScreenProps<"RequestMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
+
+  console.log(useAppSelector(selectTransaction));
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,7 +32,8 @@ const RequestMoneyConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -54,7 +59,8 @@ const RequestMoneyConfirmationScreen = ({
               // marginVertical: hp(30),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -66,7 +72,8 @@ const RequestMoneyConfirmationScreen = ({
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               From?
             </Text>
             <TextInput
@@ -109,7 +116,8 @@ const RequestMoneyConfirmationScreen = ({
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Amount
             </Text>
             <View
@@ -120,11 +128,13 @@ const RequestMoneyConfirmationScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}>
+              ]}
+            >
               <Text
                 // lightColor={Colors.light.mainText}
                 // darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}>
+                style={{ position: "absolute", paddingBottom: 5 }}
+              >
                 {"\u20A6 "}
               </Text>
               <TextInput
@@ -151,11 +161,12 @@ const RequestMoneyConfirmationScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-medium",
+                fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Description
             </Text>
             <TextInput
