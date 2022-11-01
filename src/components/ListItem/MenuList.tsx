@@ -2,6 +2,7 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { Text, View } from "../Themed";
 import { ArrowFowardIcon } from "../../../assets/svg";
+import { hp } from "../../common/util/LayoutUtil";
 
 interface MenuItem {
   heading: string;
@@ -28,10 +29,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    fontSize: 15,
+    fontSize: hp(14),
     color: "#A6A6A6",
+    fontWeight: "400",
   },
   subHeading: {
-    fontSize: 15,
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
 });

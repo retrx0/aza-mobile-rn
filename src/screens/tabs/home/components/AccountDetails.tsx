@@ -25,10 +25,10 @@ export default function AccountDetails() {
             CommonStyles.row,
             {
               paddingHorizontal: 15,
-              paddingVertical: 10,
+              paddingVertical: hp(7),
               alignItems: "center",
               justifyContent: "center",
-              borderRadius: 50,
+              borderRadius: hp(50),
             },
           ]}>
           <Text
@@ -67,7 +67,7 @@ export default function AccountDetails() {
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 26,
-                marginVertical: hp(6),
+                marginVertical: hp(10),
               }}>
               {user.azaBalance}
             </Text>
@@ -78,8 +78,8 @@ export default function AccountDetails() {
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 24,
-              marginVertical: hp(6),
+              fontSize: hp(24),
+              marginVertical: hp(10),
             }}>
             **********
           </Text>

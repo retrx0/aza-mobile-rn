@@ -37,9 +37,9 @@ const SplitAndMoneyRequestsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Split and Money Requests
         </Text>
       ),
@@ -57,8 +57,12 @@ const SplitAndMoneyRequestsScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-      >
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}>
         You can disable this setting to reject all split and money requests from
         other users.
       </Text>

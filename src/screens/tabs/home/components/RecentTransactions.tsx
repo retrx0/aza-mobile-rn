@@ -16,11 +16,11 @@ export default function RecentTransactions({
   const colorScheme = useColorScheme();
 
   return (
-    <View style={{ display: "flex", marginTop: hp(45) }}>
+    <View style={{ display: "flex", marginTop: hp(30) }}>
       <View
         style={{
           display: "flex",
-          marginBottom: hp(45),
+          marginBottom: hp(20),
           flexDirection: "row",
           alignItems: "center",
         }}>
@@ -32,7 +32,7 @@ export default function RecentTransactions({
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
-              marginRight: 8,
+              marginRight: hp(3),
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(17),
             }}>

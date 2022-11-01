@@ -31,8 +31,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           Split
         </Text>
       ),
@@ -71,8 +70,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           <View key={i}>
             <TouchableOpacity
               onPress={handleNavigation}
-              style={[CommonStyles.col, { alignSelf: "stretch" }]}
-            >
+              style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <View
                 style={[
                   CommonStyles.row,
@@ -81,23 +79,20 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     justifyContent: "space-between",
                     marginVertical: hp(20),
                   },
-                ]}
-              >
+                ]}>
                 <View>{icon}</View>
                 <View
                   style={[
                     CommonStyles.col,
                     { marginRight: "auto", marginLeft: 20 },
-                  ]}
-                >
+                  ]}>
                   <Text
                     lightColor={Colors.light.text}
                     darkColor={Colors.dark.mainText}
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 14,
-                    }}
-                  >
+                      fontSize: hp(16),
+                    }}>
                     {name}
                   </Text>
                 </View>

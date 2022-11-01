@@ -14,7 +14,6 @@ export default function WithdrawIndex({
 }: RootTabScreenProps<"Home">) {
   return (
     <View style={styles.container}>
-      <Divider style={styles.divider} />
       <MenuList
         heading="Withdraw money to your own bank account"
         subHeading="Bank Account"

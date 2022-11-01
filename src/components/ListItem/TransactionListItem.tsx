@@ -38,7 +38,7 @@ export default function TransactionListItem({
         },
       ]}>
       <Image
-        style={{ borderRadius: 50, width: 45, height: 45 }}
+        style={{ borderRadius: 45, width: 45, height: 45 }}
         source={{
           uri: image,
         }}
@@ -47,7 +47,7 @@ export default function TransactionListItem({
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Bold",
-            fontSize: hp(16),
+            fontSize: hp(19),
             fontWeight: "600",
           }}>
           {name}
@@ -71,7 +71,7 @@ export default function TransactionListItem({
             darkColor={Colors.dark.secondaryText}
             style={{
               marginLeft: hp(3),
-              fontSize: hp(12),
+              fontSize: hp(14),
               fontWeight: "400",
               fontFamily: "Euclid-Circular-A-Medium",
             }}>
@@ -86,7 +86,7 @@ export default function TransactionListItem({
               darkColor={Colors.dark.secondaryText}
               style={{
                 marginLeft: 3,
-                fontSize: hp(10),
+                fontSize: hp(12),
                 fontFamily: "Euclid-Circular-A",
                 fontWeight: "300",
               }}>
@@ -115,7 +115,7 @@ export default function TransactionListItem({
           lightColor={Colors.light.text}
           darkColor={Colors.dark.secondaryText}
           style={{
-            fontSize: hp(10),
+            fontSize: hp(12),
             marginTop: 3,
             fontFamily: "Euclid-Circular-A",
             fontWeight: "300",
