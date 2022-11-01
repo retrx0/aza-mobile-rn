@@ -12,7 +12,7 @@ import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import { Contact } from "expo-contacts";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../redux";
 import ContactsScene from "./ContactsScene";
 import { getUserContacts } from "../../hooks/useContacts";
 import { sendInviteToNonAzaContact } from "../../api/notification";
@@ -82,7 +82,9 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
           <ContactsScene
             route={route}
             azaContactOnPress={(beneficiary) => azaContactOnClick(beneficiary)}
-            nonAzaContactOnPress={() => sendInviteToNonAzaContact()}
+            nonAzaContactOnPress={({ email, phone }) =>
+              sendInviteToNonAzaContact({ email: email!, phoneNumber: phone! })
+            }
           />
         )}
         onIndexChange={setIndex}

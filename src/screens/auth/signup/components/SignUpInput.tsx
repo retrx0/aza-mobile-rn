@@ -13,7 +13,7 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { signUpValidationSchema } from "../components/SignupValidation";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import {
   registerUser,
   selectNewUser,
@@ -47,7 +47,8 @@ const SignUpProfile = ({
           lastname: "",
           email: "",
         }}
-        onSubmit={(values) => console.log(values)}>
+        onSubmit={(values) => console.log(values)}
+      >
         {({
           handleChange,
           handleBlur,
@@ -59,7 +60,8 @@ const SignUpProfile = ({
         }) => (
           <>
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>First name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -82,7 +84,8 @@ const SignUpProfile = ({
             </View>
 
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Last name</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -105,7 +108,8 @@ const SignUpProfile = ({
             </View>
 
             <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
+              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
+            >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ marginBottom: hp(5) }}>Email</Text>
                 <Text style={{ color: "red" }}>*</Text>
@@ -148,7 +152,8 @@ const SignUpProfile = ({
                 marginTop: hp(7),
                 paddingVertical: hp(15),
                 justifyContent: "space-between",
-              }}>
+              }}
+            >
               <RNPickerSelect
                 placeholder={placeholder}
                 onUpArrow={() => true}

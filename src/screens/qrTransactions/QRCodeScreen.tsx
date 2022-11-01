@@ -17,7 +17,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { RootStackScreenProps } from "../../../types";
 
 import { NairaIcon } from "../../../assets/svg";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { selectTransaction } from "../../redux/slice/transactionSlice";

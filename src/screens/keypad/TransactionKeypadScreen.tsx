@@ -15,7 +15,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import { NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import DescriptionModal from "./modal/DescriptionModal";

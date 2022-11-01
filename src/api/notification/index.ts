@@ -3,14 +3,20 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import api from "..";
 import { Alert } from "react-native";
 
-export const sendInviteToNonAzaContact = () => {
+export const sendInviteToNonAzaContact = ({
+  email,
+  phoneNumber,
+}: {
+  phoneNumber: string;
+  email: string;
+}) => {
   SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN)
     .then((jwt) => {
       if (jwt) {
         api
           .post(
             "/api/v1/user/invite",
-            { phoneNumber: "", email: "" },
+            { phoneNumber: phoneNumber, email: email },
             { headers: { Authorization: `Bearer ${jwt}` } }
           )
           .then(() =>

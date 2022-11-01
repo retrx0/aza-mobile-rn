@@ -12,7 +12,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { useAppSelector } from "../../../../hooks/redux";
+import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import {

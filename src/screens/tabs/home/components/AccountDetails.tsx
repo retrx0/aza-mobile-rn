@@ -4,7 +4,7 @@ import { NairaIcon } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
-import { useAppSelector } from "../../../../hooks/redux";
+import { useAppSelector } from "../../../../redux";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { selectUser } from "../../../../redux/slice/userSlice";
 

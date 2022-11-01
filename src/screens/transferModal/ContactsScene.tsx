@@ -17,7 +17,7 @@ import ButtonLg from "../../components/buttons/ButtonLg";
 import ContactListItem from "../../components/ListItem/ContactListItem";
 import { Text, TextInput, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../redux";
 import useColorScheme from "../../hooks/useColorScheme";
 import { getUserContacts } from "../../hooks/useContacts";
 import { selectUser } from "../../redux/slice/userSlice";

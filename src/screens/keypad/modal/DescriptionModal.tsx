@@ -7,7 +7,7 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import Modal from "react-native-modal";
 import { TransactionKeypadParamsType } from "../../../common/navigation/types";
 import { hp } from "../../../common/util/LayoutUtil";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   selectTransaction,
   setTransaction,

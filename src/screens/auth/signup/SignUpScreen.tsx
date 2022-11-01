@@ -9,7 +9,7 @@ import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { useAppDispatch } from "../../../hooks/redux";
+import { useAppDispatch } from "../../../redux";
 import {
   requestOtp,
   setPhone as setReduxStorePhone,

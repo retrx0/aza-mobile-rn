@@ -14,7 +14,7 @@ import { TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
-import { useAppSelector } from "../../../hooks/redux";
+import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 
 type WelcomeOTProp = {

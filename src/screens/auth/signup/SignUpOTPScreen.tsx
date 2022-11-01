@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SignUpScreenProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import { setIsVerified, verifyOtp } from "../../../redux/slice/newUserSlice";
 import OtpScreen from "../otp/OtpScreen";
 

@@ -10,7 +10,7 @@ import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
 
 const SignUpPasswordScreen = ({
@@ -62,7 +62,12 @@ const SignUpPasswordScreen = ({
         headerText=""
         onValueChanged={(code) => setPasscode(code)}
       />
-      <View style={[CommonStyles.container, { bottom: hp(Platform.OS=='android'?300:400) }]}>
+      <View
+        style={[
+          CommonStyles.container,
+          { bottom: hp(Platform.OS == "android" ? 300 : 400) },
+        ]}
+      >
         <View style={[CommonStyles.row]}>
           <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?

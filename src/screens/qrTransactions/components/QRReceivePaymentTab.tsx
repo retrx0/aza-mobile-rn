@@ -13,7 +13,7 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { RootStackScreenProps } from "../../../../types";
 
 import { NairaLargeIcon } from "../../../../assets/svg";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import { setTransaction } from "../../../redux/slice/transactionSlice";
 import userSlice, { selectUser } from "../../../redux/slice/userSlice";
 

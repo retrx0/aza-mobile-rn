@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { SignInScreenProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { useAppSelector, useAppDispatch } from "../../../hooks/redux";
+import { useAppSelector, useAppDispatch } from "../../../redux";
 import { logIn, selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
 import OtpScreen from "../otp/OtpScreen";
 
