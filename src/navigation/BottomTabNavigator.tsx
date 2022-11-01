@@ -104,7 +104,7 @@ const BottomTabNavigator = (
             headerShadowVisible: false,
           })}
         />
-        {/* <BottomTab.Screen
+        <BottomTab.Screen
           name="Vault"
           component={Vault}
           options={{
@@ -112,7 +112,7 @@ const BottomTabNavigator = (
             headerShown: false,
             tabBarIcon: ({ color }) => <VaultIcon color={color} size={24} />,
           }}
-        /> */}
+        />
         <BottomTab.Screen
           name="Payments"
           component={Payments}
