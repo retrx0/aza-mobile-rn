@@ -20,7 +20,8 @@ const LoginOptionsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Login Options
         </Text>
@@ -41,7 +42,12 @@ const LoginOptionsScreen = ({
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+            style={{
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
+              fontWeight: "500",
+              marginLeft: hp(5),
+            }}>
             Login quickly by connecting your Aza account to your social media
             account.
           </Text>

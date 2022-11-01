@@ -67,7 +67,7 @@ export default function BlockUserModal({
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 15,
+              fontSize: hp(15),
             }}>
             {user}
           </Text>{" "}

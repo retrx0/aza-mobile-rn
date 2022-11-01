@@ -39,9 +39,9 @@ const ContactsVisibilityScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "600",
+          }}>
           Contacts Visibility
         </Text>
       ),
@@ -59,8 +59,12 @@ const ContactsVisibilityScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-      >
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}>
         You can disable this setting if you want to prevent other users from
         seeing you labeled as an Aza user in their contacts.
       </Text>
@@ -69,11 +73,12 @@ const ContactsVisibilityScreen = ({
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
         style={{
-          fontSize: 14,
+          fontSize: hp(16),
           fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(5),
+          fontWeight: "500",
           marginTop: hp(30),
-        }}
-      >
+        }}>
         In turn, Aza users in your contact won't be labeled as such.
       </Text>
       <View style={{ marginTop: hp(50) }}>
@@ -87,19 +92,24 @@ const ContactsVisibilityScreen = ({
         />
 
         <View
-          style={[CommonStyles.col, { alignSelf: "flex-start", marginTop: 30 }]}
-        >
+          style={[
+            CommonStyles.col,
+            { alignSelf: "flex-start", marginTop: 30 },
+          ]}>
           <View
             style={[
               CommonStyles.row,
               { alignItems: "flex-end", alignSelf: "flex-start" },
-            ]}
-          >
+            ]}>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 14 }}
-            >
+              style={{
+                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                marginLeft: hp(5),
+                fontWeight: "400",
+              }}>
               Contacts using Aza
             </Text>
             <Text
@@ -109,8 +119,7 @@ const ContactsVisibilityScreen = ({
                 marginLeft: 10,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Light",
-              }}
-            >
+              }}>
               +18
             </Text>
           </View>
@@ -118,6 +127,7 @@ const ContactsVisibilityScreen = ({
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
             name={"Adewale Adeyesufu"}
             phoneNumber={"8012345678"}
+            isContactOnAza={false}
           />
         </View>
       </View>
