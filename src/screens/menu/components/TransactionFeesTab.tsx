@@ -60,8 +60,8 @@ const TransactionFeesTab = () => {
                 // darkColor={Colors.dark.mainText}
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  fontSize: hp(15),
-                  fontWeight: "500",
+                  fontSize: hp(16),
+                  fontWeight: "600",
                   marginLeft: hp(5),
                 }}>
                 {transaction}
@@ -75,6 +75,7 @@ const TransactionFeesTab = () => {
                     marginTop: hp(4),
                     fontFamily: "Euclid-Circular-A",
                     marginLeft: hp(5),
+                    fontWeight: "400",
                   }}>
                   {detail}
                 </Text>
@@ -86,7 +87,7 @@ const TransactionFeesTab = () => {
               style={{
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A",
-                fontWeight: "500",
+                fontWeight: "400",
               }}>
               {charge}
             </Text>
