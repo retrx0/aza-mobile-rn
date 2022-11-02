@@ -11,6 +11,7 @@ import SelectInput from "../../../../components/input/SelectInput";
 import { Ie } from "../../../../../assets/images";
 import HeaderImage from "../sub-components/HeaderImage";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function ElectricityIndex({
   navigation,
@@ -23,7 +24,12 @@ export default function ElectricityIndex({
         style={styles.header}
         description=""
         descriptionStyle={null}
-        headerStyle={null}
+        headerStyle={{
+          fontSize: hp(14),
+          fontWeight: "500",
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(3),
+        }}
         heading="Select electricity provider"
       />
 

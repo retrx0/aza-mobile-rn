@@ -10,8 +10,11 @@ import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
 import { Ie } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 
-export default function WaterScreen({ navigation }: RootTabScreenProps<"Payments">) {
+export default function WaterScreen({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -23,7 +26,12 @@ export default function WaterScreen({ navigation }: RootTabScreenProps<"Payments
         style={styles.header}
         description=""
         descriptionStyle={null}
-        headerStyle={null}
+        headerStyle={{
+          fontSize: hp(16),
+          fontWeight: "500",
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(3),
+        }}
         heading="Select water provider"
       />
 

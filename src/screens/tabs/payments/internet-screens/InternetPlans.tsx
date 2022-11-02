@@ -8,6 +8,7 @@ import ListItem from "../sub-components/ListItem";
 import { BackIcon, LoveIcon } from "../../../../../assets/svg";
 import { Ntel, Spectranet } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 export default function InternetPlans({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -54,8 +55,10 @@ const styles2 = StyleSheet.create({
     width: "100%",
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
-    height: 40,
     marginBottom: 10,
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
   },
   img: {
     width: 20,

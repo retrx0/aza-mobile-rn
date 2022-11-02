@@ -13,8 +13,11 @@ import { useRoute } from "@react-navigation/native";
 import SelectInput from "../../../../components/input/SelectInput";
 import { Ie } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 
-export default function CableTvIndex({ navigation }: RootTabScreenProps<"Payments">) {
+export default function CableTvIndex({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -26,7 +29,12 @@ export default function CableTvIndex({ navigation }: RootTabScreenProps<"Payment
         style={styles.header}
         description=""
         descriptionStyle={null}
-        headerStyle={null}
+        headerStyle={{
+          fontSize: hp(14),
+          fontWeight: "500",
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(3),
+        }}
         heading="Select Cable TV"
       />
 

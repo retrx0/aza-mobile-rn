@@ -30,7 +30,7 @@ export default function Confirmation({
     <ScrollView
       style={[
         styles.container,
-        { paddingTop: Platform.OS == "android" ? 100 : 70 },
+        { paddingTop: Platform.OS == "android" ? 100 : 100 },
       ]}>
       <Text style={styles.txt}>
         Kindly confirm the details of this transaction
@@ -41,8 +41,8 @@ export default function Confirmation({
         keyboardType="phone-pad"
         inputStyle={styles.input}
         labelStyle={{
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "600",
+          fontFamily: "Euclid-Circular-A",
+          fontWeight: "400",
           fontSize: hp(16),
         }}
         label="Phone Number"
@@ -53,8 +53,8 @@ export default function Confirmation({
         keyboardType="phone-pad"
         inputStyle={styles.input}
         labelStyle={{
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "600",
+          fontFamily: "Euclid-Circular-A",
+          fontWeight: "400",
           fontSize: hp(16),
         }}
         label="Amount"
@@ -65,15 +65,15 @@ export default function Confirmation({
         keyboardType="phone-pad"
         inputStyle={styles.input}
         labelStyle={{
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "600",
+          fontFamily: "Euclid-Circular-A",
+          fontWeight: "400",
           fontSize: hp(16),
         }}
         label="Payment Method"
         placeholder="Aza Account"
       />
       <MyButton
-        style={{ width: wp(355), alignSelf: "center", marginTop: 123 }}
+        style={{ width: wp(355), alignSelf: "center", marginTop: 200 }}
         disabled={false}
         title="Confirm"
         onPress={() => {
@@ -105,16 +105,20 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   txt: {
-    marginBottom: 40,
-    fontSize: 20,
+    marginBottom: hp(40),
+    marginTop: hp(30),
+    marginLeft: hp(5),
+    fontFamily: "Euclid-Circular-A-Medium",
+    fontWeight: "500",
+    fontSize: hp(16),
   },
   input: {
     width: "100%",
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     marginBottom: 20,
-    fontFamily: "Euclid-Circular-A-Medium",
-    fontWeight: "600",
+    fontFamily: "Euclid-Circular-A",
+    fontWeight: "500",
     fontSize: hp(16),
   },
   btn: {

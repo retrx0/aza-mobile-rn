@@ -41,7 +41,7 @@ export default function SelectInput({
 
   return (
     <Animated.View style={[styles.container, style]}>
-      <RegularText style={styles.label} text={title} />
+      <RegularText text={title} />
       <TouchableOpacity
         onPress={() => {
           const value = scaleValue.value == 0 ? 1 : 0;
@@ -90,17 +90,16 @@ const styles = StyleSheet.create({
     width: "100%",
     zIndex: 200,
   },
-  label: {
-    fontWeight: "400",
-    fontSize: hp(16),
-
-    fontFamily: "Euclid-Circular-A-Medium",
-  },
+  // label: {
+  //   fontWeight: "400",
+  //   fontSize: hp(111),
+  //   fontFamily: "Euclid-Circular-A",
+  // },
   selector: {
     width: "100%",
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
-    height: 30,
+    height: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

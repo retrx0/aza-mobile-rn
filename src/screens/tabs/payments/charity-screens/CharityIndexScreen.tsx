@@ -7,8 +7,11 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
 import { Ntel, Spectranet } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 
-export default function CharityIndexScreen({ navigation }: RootTabScreenProps<"Payments">) {
+export default function CharityIndexScreen({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <Input
@@ -22,7 +25,10 @@ export default function CharityIndexScreen({ navigation }: RootTabScreenProps<"P
 
       <ListItem
         onPress={() => {
-          navigation.navigate("Common", { screen: "CharityDetail", params: { name: "Chess in Slums" } });
+          navigation.navigate("Common", {
+            screen: "CharityDetail",
+            params: { name: "Chess in Slums" },
+          });
         }}
         route=""
         index={0}
@@ -51,6 +57,9 @@ const styles2 = StyleSheet.create({
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     height: 40,
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
   },
   mainInput: {
     marginTop: 0,
