@@ -74,6 +74,9 @@ export const CharityStyles = StyleSheet.create({
     textAlign: "justify",
     marginLeft: 10,
     marginRight: 10,
+    fontSize: hp(16),
+    fontWeight: "400",
+    fontFamily: "Euclid-Circular-A",
   },
   input: {
     marginLeft: 20,
@@ -81,9 +84,14 @@ export const CharityStyles = StyleSheet.create({
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     height: 40,
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
   },
   label: {
     marginLeft: 20,
+    fontSize: hp(19),
+    fontWeight: "500",
   },
   suggestions: {
     flexDirection: "row",
@@ -104,6 +112,9 @@ export const CharityStyles = StyleSheet.create({
   },
   amount: {
     color: "#A6A6A6",
+    fontSize: hp(14),
+    fontWeight: "600",
+    fontFamily: "Euclid-Circular-A",
   },
   buttons: {
     marginTop: "auto",

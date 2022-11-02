@@ -12,8 +12,8 @@ export default function ImageInput() {
         keyboardType="phone-pad"
         inputStyle={styles.input}
         labelStyle={{
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "600",
+          fontFamily: "Euclid-Circular-A",
+          fontWeight: "400",
           fontSize: hp(16),
         }}
         label="To"
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     minWidth: "100%",
     fontFamily: "Euclid-Circular-A-Medium",
-    fontWeight: "600",
+    fontWeight: "500",
     fontSize: hp(16),
   },
   container: {

@@ -19,6 +19,7 @@ import WaterScreen from "../screens/tabs/payments/water-screens/WaterScreen";
 import CharityIndexScreen from "../screens/tabs/payments/charity-screens/CharityIndexScreen";
 import CharityDetail from "../screens/tabs/payments/charity-screens/CharityDetail";
 import useColorScheme from "../hooks/useColorScheme";
+import { hp } from "../common/util/LayoutUtil";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -41,11 +42,13 @@ export function AirtimeTabs() {
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
+            fontSize: hp(16),
+            fontWeight: "500",
           },
         }}
         initialRouteName="airtime">
         <Tab.Screen name="airtime" component={AirtimeIndex} />
-        <Tab.Screen name="data" component={AirtimeIndex} />
+        <Tab.Screen name="data bundle" component={AirtimeIndex} />
       </Tab.Navigator>
     </SafeAreaView>
   );
@@ -68,6 +71,8 @@ export function CharityTabs() {
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
+            fontSize: hp(16),
+            fontWeight: "500",
           },
           tabBarStyle: {
             borderBottomColor: "#A6A6A6",

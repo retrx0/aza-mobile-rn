@@ -16,6 +16,7 @@ import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function InternetDetail({
   navigation,
@@ -33,7 +34,12 @@ export default function InternetDetail({
       <Header
         description=""
         descriptionStyle={null}
-        headerStyle={null}
+        headerStyle={{
+          fontSize: hp(16),
+          fontWeight: "500",
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(3),
+        }}
         heading="Subscribe to an internet plan"
       />
 

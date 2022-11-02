@@ -9,8 +9,8 @@ export const AIrtimeStyles = StyleSheet.create({
   },
   label: {
     marginLeft: hp(20),
-    fontFamily: "Euclid-Circular-A-Medium",
-    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
+    fontWeight: "400",
     fontSize: hp(16),
     marginTop: hp(30),
   },
@@ -19,7 +19,7 @@ export const AIrtimeStyles = StyleSheet.create({
     width: "90%",
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
   },
@@ -30,7 +30,7 @@ export const AIrtimeStyles = StyleSheet.create({
   select: {
     width: "90%",
     marginLeft: hp(20),
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
   },
