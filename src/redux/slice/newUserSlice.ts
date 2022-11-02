@@ -36,11 +36,12 @@ export const requestOtp = createAsyncThunk(
       phoneNumber:0,
       email: props.email,
     };
-
-    api
+  
+   return api
       .post("/api/v1/auth/request-otp", {
         phoneNumber:'',
         email:'mubarakibrahim2015@gmail.com',
+        // 
       })
       .then(
         (response) => {
@@ -58,21 +59,20 @@ export const verifyOtp = createAsyncThunk(
   "user/verifyOtp",
   (props: NewUser) => {
     const bodyData = {
-<<<<<<< HEAD
+
       // phoneNumber: props.phone,
       email:'mubarakibrahim2015@gmail.com',
-      otp:props.otp
-=======
+      otp:props.otp,
       phoneNumber: props.phone,
       email: props.email,
       otp: props.otp,
->>>>>>> c33e4b8c6643e18cf8b27722500f5bb4c979f666
+
     };
 
     return api
       .post("/api/v1/auth/verify-otp", {
-        phoneNumber: props.phone,
-        email: props.email,
+        phoneNumber:'',
+        email: 'mubarakibrahim2015@gmail.com',
         otp: props.otp,
       })
       .then(
@@ -87,14 +87,14 @@ export const verifyOtp = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (props: NewUser) => {
-<<<<<<< HEAD
+
     const bodyData={
           firstName:props.firstname,
           lastName: props.lastname,
           gender: 'Male',
           email: "mubarakibrahim2015@gmail.com",
           countryCode:'Ng',
-          phoneNumber:props.phone,
+          phoneNumber:'',
           dateOfBirth: "2022-10-05T06:49:36.196Z",
           emailConfirmed: true,
           phoneNumberConfirmed: true
@@ -105,7 +105,7 @@ export const registerUser = createAsyncThunk(
       data:bodyData,
       headers:{
         "Content-Type":'application/json',
-        'Authorization':`Bearer ${props.token}`
+        'access-token':`Bearer ${props.token}`
       },
       url:'/api/v1/user/register'
     })
@@ -141,33 +141,35 @@ export const setPassword = createAsyncThunk(
      .catch(err=>{
        console.log(err)
      })
-=======
-    //The below code is where i embbed the bearer token
-    api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+    }
+)
 
-    api
-      .put("/api/v1/user/register", {
-        firstName: props.firstname,
-        lastName: props.lastname,
-        gender: 1,
-        email: "",
-        countryCode: "Ng",
-        phoneNumber: props.phone,
-        dateOfBirth: "2022-10-05T06:49:36.196Z",
-        emailConfirmed: true,
-        phoneNumberConfirmed: true,
-      })
-      .then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
->>>>>>> c33e4b8c6643e18cf8b27722500f5bb4c979f666
-  }
-);
+    //The below code is where i embbed the bearer token
+//     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
+
+//     api
+//       .put("/api/v1/user/register", {
+//         firstName: props.firstname,
+//         lastName: props.lastname,
+//         gender: 1,
+//         email: "",
+//         countryCode: "Ng",
+//         phoneNumber: props.phone,
+//         dateOfBirth: "2022-10-05T06:49:36.196Z",
+//         emailConfirmed: true,
+//         phoneNumberConfirmed: true,
+//       })
+//       .then(
+//         (response) => {
+//           console.log(response);
+//         },
+//         (error) => {
+//           console.log(error);
+//         }
+//       );
+
+//   }
+// );
 
 export const newUserSlice = createSlice({
   name: "user/new",
@@ -232,10 +234,6 @@ export const newUserSlice = createSlice({
       builder.addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
       }),
-<<<<<<< HEAD
-      builder.addCase(registerUser.rejected,(state, action)=>{
-        state.loading=false
-      }),
       builder.addCase(registerUser.fulfilled,(state, action)=>{
         state.loading=false
         state.token=action.payload
@@ -243,15 +241,8 @@ export const newUserSlice = createSlice({
       })
   },
   
-=======
-      builder.addCase(registerUser.fulfilled, (state, action) => {
-        state.loading = false;
->>>>>>> c33e4b8c6643e18cf8b27722500f5bb4c979f666
-
-        console.log(action.payload, "++++++++++Acc");
-      });
   },
-});
+);
 
 export const {
   setPhone,
