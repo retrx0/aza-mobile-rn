@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 import { Gender, User } from "../types";
 import api from "../../api";
-import {API_BASE_URL} from '@env'
+import { API_BASE_URL } from "@env";
 interface NewUser extends User {
   isVerified?: boolean;
   otpSent?: boolean;
@@ -13,7 +13,7 @@ interface NewUser extends User {
   loading?: boolean;
   otp?: number;
   token?: string | void;
-  password?:string
+  password?: string;
 }
 
 // Define the initial state using that type
@@ -34,15 +34,15 @@ export const requestOtp = createAsyncThunk(
   "user/requestOtp",
   async (props: NewUser) => {
     const bodyData = {
-      phoneNumber:0,
+      phoneNumber: 0,
       email: props.email,
     };
-  
-   return api
+
+    return api
       .post("/api/v1/auth/request-otp", {
-        phoneNumber:'',
-        email:'mubarakibrahim2015@gmail.com',
-        // 
+        phoneNumber: "",
+        email: "mubarakibrahim2015@gmail.com",
+        //
       })
       .then(
         (response) => {
@@ -60,20 +60,18 @@ export const verifyOtp = createAsyncThunk(
   "user/verifyOtp",
   (props: NewUser) => {
     const bodyData = {
-
       // phoneNumber: props.phone,
-      email:'mubarakibrahim2015@gmail.com',
-      otp:props.otp,
+      email: "mubarakibrahim2015@gmail.com",
+      otp: props.otp,
       phoneNumber: props.phone,
       email: props.email,
       otp: props.otp,
-
     };
 
     return api
       .post("/api/v1/auth/verify-otp", {
-        phoneNumber:'',
-        email: 'mubarakibrahim2015@gmail.com',
+        phoneNumber: "",
+        email: "mubarakibrahim2015@gmail.com",
         otp: props.otp,
       })
       .then(
@@ -88,34 +86,33 @@ export const verifyOtp = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (props: NewUser) => {
-
-    const bodyData={
-          firstName:props.firstname,
-          lastName: props.lastname,
-          gender:1,
-          email: "mubarakibrahim2015@gmail.com",
-          // countryCode:'Ng',
-          // phoneNumber:'',
-          // dateOfBirth: "2022-10-05T06:49:36.196Z",
-          // emailConfirmed: true,
-          // phoneNumberConfirmed: true,
-          newPassword:props.password
-    }
+    const bodyData = {
+      firstName: props.firstname,
+      lastName: props.lastname,
+      gender: "Male",
+      email: "mubarakibrahim2015@gmail.com",
+      // countryCode:'Ng',
+      // phoneNumber:'',
+      // dateOfBirth: "2022-10-05T06:49:36.196Z",
+      // emailConfirmed: true,
+      // phoneNumberConfirmed: true,
+      newPassword: props.password,
+    };
 
     return api({
-      method:'put',
-      data:bodyData,
-      headers:{
-        "Content-Type":'application/json',
-        'Authorization':`Bearer ${props.token}`
+      method: "put",
+      data: bodyData,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${props.token}`,
       },
-      url:'/api/v1/user/register'
-    })
-    .then((response) =>response,
-    (error) => {
-      console.log(error);
-    })
-    
+      url: "/api/v1/user/register",
+    }).then(
+      (response) => response,
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 );
 
@@ -124,7 +121,7 @@ export const registerUser = createAsyncThunk(
 //   async (props: NewUser) => {
 //     const bodyData={
 //       newPassword:props.password,
-          
+
 //     }
 
 //     return api({
@@ -138,7 +135,7 @@ export const registerUser = createAsyncThunk(
 //     })
 //     .then(response=>{
 //       console.log(response)
-      
+
 //      })
 //      .catch(err=>{
 //        console.log(err)
@@ -146,7 +143,7 @@ export const registerUser = createAsyncThunk(
 //     }
 // )
 
-    //The below code is where i embbed the bearer token
+//The below code is where i embbed the bearer token
 //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
 
 //     api
@@ -198,7 +195,7 @@ export const newUserSlice = createSlice({
       state.isVerified = action.payload;
     },
     setPassword: (state, action: PayloadAction<string>) => {
-      state.password=action.payload
+      state.password = action.payload;
     },
     setNewUser: (state, action: PayloadAction<NewUser>) => {
       state.firstname = action.payload.firstname;
@@ -239,15 +236,12 @@ export const newUserSlice = createSlice({
       builder.addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
       }),
-      builder.addCase(registerUser.fulfilled,(state, action)=>{
-        state.loading=false
-        console.log(state,'fulfilled')
-        
-      })
+      builder.addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(state, "fulfilled");
+      });
   },
-  
-  },
-);
+});
 
 export const {
   setPhone,
@@ -257,7 +251,7 @@ export const {
   setIsVerified,
   setGender,
   setNewUser,
-  setPassword
+  setPassword,
 } = newUserSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

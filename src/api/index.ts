@@ -2,8 +2,7 @@ import axios from "axios";
 import { API_BASE_URL } from "@env";
 
 const api = axios.create({
-  baseURL: "https:aza-backend-asp-dev.azurewebsites.net",
-  // baseURL: API_BASE_URL,
+  baseURL: API_BASE_URL,
   responseType: "json",
   headers: {
     "Content-Type": "application/json",
