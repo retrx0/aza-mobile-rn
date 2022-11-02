@@ -12,7 +12,6 @@ export default function DepositIndex({
 }: RootTabScreenProps<"Home">) {
   return (
     <View style={styles.container}>
-      <Divider />
       <MenuList
         heading="Card deposit"
         subHeading="Deposit via Debit/Credit card"

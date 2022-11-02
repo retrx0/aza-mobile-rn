@@ -12,7 +12,7 @@ import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import { Contact } from "expo-contacts";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../redux";
 import ContactsScene from "./ContactsScene";
 import { getUserContacts } from "../../hooks/useContacts";
 import { sendInviteToNonAzaContact } from "../../api/notification";
@@ -26,27 +26,18 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   const colorScheme = useColorScheme();
   const layout = useWindowDimensions();
 
-  const [searchContact, setSearchContact] = useState("");
-  const [contacts, setContacts] = useState<Contact[]>([]);
-
   // const user = useAppSelector(user)
-
-  useEffect(() => {
-    getUserContacts().then((_contacts) => {
-      if (_contacts)
-        setContacts(_contacts.filter((_c) => _c.contactType === "person"));
-    });
-  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}
         >
           Send Money
@@ -82,7 +73,9 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
           <ContactsScene
             route={route}
             azaContactOnPress={(beneficiary) => azaContactOnClick(beneficiary)}
-            nonAzaContactOnPress={() => sendInviteToNonAzaContact()}
+            nonAzaContactOnPress={({ email, phone }) =>
+              sendInviteToNonAzaContact({ email: email!, phoneNumber: phone! })
+            }
           />
         )}
         onIndexChange={setIndex}
@@ -112,7 +105,8 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                   }
                   style={{
                     fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 16,
+                    fontSize: hp(16),
+                    fontWeight: "500",
                   }}
                 >
                   {route.title}

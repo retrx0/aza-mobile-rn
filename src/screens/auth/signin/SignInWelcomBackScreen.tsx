@@ -14,6 +14,8 @@ import { TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { useAppSelector } from "../../../redux";
+import { selectUser } from "../../../redux/slice/userSlice";
 
 type WelcomeOTProp = {
   otpCode: string;
@@ -43,17 +45,30 @@ const SignInWelcomeBackScreen = ({
 }: WelcomeOTProp & SignInScreenProps<"SignInWelcomeBack">) => {
   const insets = useSafeAreaInsets();
 
+  const user = useAppSelector(selectUser);
+
   useEffect(() => {
-    LocalAuthentication.authenticateAsync({
-      promptMessage: "Authenticate to open AZA",
-    }).then((result) => {
-      console.log(result.success);
+    LocalAuthentication.hasHardwareAsync().then((hasBiometricHardware) => {
+      if (hasBiometricHardware) {
+        LocalAuthentication.isEnrolledAsync().then((enrolled) => {
+          if (enrolled) {
+            LocalAuthentication.authenticateAsync({
+              promptMessage: "Authenticate to open AZA",
+            }).then((result) => {
+              if (result.success) {
+                navigation.getParent()?.navigate("Root");
+              } else {
+              }
+            });
+          }
+        });
+      }
     });
   }, []);
 
   return (
     <SpacerWrapper>
-      <Text style={styles.welcome}>Welcome back, {UserData.userFullName}</Text>
+      <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
       <Text style={styles.sentCode}>Enter your Aza password to login</Text>
       <SegmentedInput
         value={otpCode}

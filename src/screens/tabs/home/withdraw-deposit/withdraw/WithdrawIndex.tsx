@@ -14,7 +14,6 @@ export default function WithdrawIndex({
 }: RootTabScreenProps<"Home">) {
   return (
     <View style={styles.container}>
-      <Divider />
       <MenuList
         heading="Withdraw money to your own bank account"
         subHeading="Bank Account"
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   divider: {
+    marginBottom: 10,
     marginTop: 10,
   },
   button: {

@@ -2,16 +2,18 @@ import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./slice/authSlice";
 import newUserSlice from "./slice/newUserSlice";
 import transferSlice from "./slice/transferSlice";
-import transferToSlice from "./slice/transferToSlice";
+import transactionSlice from "./slice/transactionSlice";
 import userSlice from "./slice/userSlice";
+import vaultSlice from "./slice/vaultslice";
 
 export const Store = configureStore({
   reducer: {
     user: userSlice,
     auth: authSlice,
     newUser: newUserSlice,
+    vault: vaultSlice,
     transfer: transferSlice,
-    transferTo: transferToSlice,
+    transaction: transactionSlice,
   },
 });
 

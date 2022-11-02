@@ -17,6 +17,7 @@ import Animated, {
 } from "react-native-reanimated";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text } from "../Themed";
+import { hp } from "../../common/util/LayoutUtil";
 
 type SelectProps = {
   style: StyleProp<ViewStyle>;
@@ -47,8 +48,7 @@ export default function SelectInput({
           scaleValue.value = withSpring(value);
           console.log(value);
         }}
-        style={styles.selector}
-      >
+        style={styles.selector}>
         <>
           <RegularText
             style={styles.selectorText}
@@ -62,8 +62,7 @@ export default function SelectInput({
           styles.selectList,
           listItemStyle,
           { backgroundColor: scheme == "light" ? "#ffffff" : "#3A3D42" },
-        ]}
-      >
+        ]}>
         {items.length > 0 &&
           items.map((item, index) => (
             <TouchableOpacity
@@ -72,8 +71,7 @@ export default function SelectInput({
                 scaleValue.value = withSpring(0);
               }}
               key={index.toString()}
-              style={styles.listItem}
-            >
+              style={styles.listItem}>
               <Text style={styles.listItemText}>{item}</Text>
             </TouchableOpacity>
           ))}
@@ -94,8 +92,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: "400",
-    fontSize: 14,
-    color: "#4D4D4D",
+    fontSize: hp(16),
+
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   selector: {
     width: "100%",

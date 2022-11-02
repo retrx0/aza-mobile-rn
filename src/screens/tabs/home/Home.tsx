@@ -8,7 +8,7 @@ import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
 import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
-import { useAppSelector } from "../../../hooks/redux";
+import { useAppSelector } from "../../../redux";
 import { selectNewUser } from "../../../redux/slice/newUserSlice";
 import { useNotifications } from "../../../hooks/useNotifications";
 

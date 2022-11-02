@@ -22,9 +22,9 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Contact Us
         </Text>
       ),
@@ -42,32 +42,34 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
               marginTop: hp(20),
               marginBottom: hp(40),
-            }}
-          >
+              marginLeft: hp(5),
+              fontWeight: "600",
+            }}>
             Contact us with any questions. We are ready to help
           </Text>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "400",
+                marginLeft: hp(5),
+              }}>
               Email
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
+              // placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
@@ -75,6 +77,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               placeholder="Enter your Email"
             />
@@ -85,33 +88,31 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             CommonStyles.col,
             {
               marginBottom: hp(50),
-              width: "100%",
+              width: "95%",
               alignItems: "center",
               justifyContent: "center",
             },
-          ]}
-        >
+          ]}>
           <TouchableOpacity
             activeOpacity={0.7}
             style={{
               borderWidth: 1,
               borderColor: Colors[colorScheme].text,
-              width: "100%",
+              width: "95%",
               height: hp(50),
               borderRadius: hp(10),
               alignItems: "center",
               flexDirection: "row",
               justifyContent: "center",
-            }}
-          >
+            }}>
             <Image source={WhatsappLogo} style={{ marginRight: 10 }} />
             <Text
               style={{
                 color: Colors[colorScheme].text,
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(14),
+                fontWeight: "500",
+              }}>
               Whatsapp Customer Support
             </Text>
           </TouchableOpacity>

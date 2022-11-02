@@ -10,8 +10,15 @@ import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux";
+import { registerUser, selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
+
+// import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+// import { selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
+
+// import { useAppDispatch, useAppSelector } from "../../../redux";
+// import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
+
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -42,6 +49,7 @@ const SignUpPasswordScreen = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
+  const {firstname,lastname}=useAppSelector(state=>state.newUser)
 
   return (
     <SpacerWrapper>
@@ -62,7 +70,12 @@ const SignUpPasswordScreen = ({
         headerText=""
         onValueChanged={(code) => setPasscode(code)}
       />
-      <View style={[CommonStyles.container, { bottom: hp(Platform.OS=='android'?300:400) }]}>
+      <View
+        style={[
+          CommonStyles.container,
+          { bottom: hp(Platform.OS == "android" ? 300 : 400) },
+        ]}
+      >
         <View style={[CommonStyles.row]}>
           <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?
@@ -103,7 +116,13 @@ const SignUpPasswordScreen = ({
               });
             } else {
               if (passcode === newUserData.createdPasscode) {
-                dispatch(setPassword({password:passcode}))
+                // dispatch(setPassword({password:passcode}))
+                console.log(firstname,lastname,"NAMEE")
+                dispatch(registerUser({
+                  firstname,
+                  lastname,
+                  password:passcode
+                }))
                 navigation.getParent()?.navigate("Root");
               } else {
                 alert("Password does not match");

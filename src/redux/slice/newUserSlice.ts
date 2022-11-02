@@ -13,6 +13,7 @@ interface NewUser extends User {
   loading?: boolean;
   otp?: number;
   token?: string | void;
+  password?:string
 }
 
 // Define the initial state using that type
@@ -91,13 +92,14 @@ export const registerUser = createAsyncThunk(
     const bodyData={
           firstName:props.firstname,
           lastName: props.lastname,
-          gender: 'Male',
+          gender:1,
           email: "mubarakibrahim2015@gmail.com",
-          countryCode:'Ng',
-          phoneNumber:'',
-          dateOfBirth: "2022-10-05T06:49:36.196Z",
-          emailConfirmed: true,
-          phoneNumberConfirmed: true
+          // countryCode:'Ng',
+          // phoneNumber:'',
+          // dateOfBirth: "2022-10-05T06:49:36.196Z",
+          // emailConfirmed: true,
+          // phoneNumberConfirmed: true,
+          newPassword:props.password
     }
 
     return api({
@@ -105,11 +107,11 @@ export const registerUser = createAsyncThunk(
       data:bodyData,
       headers:{
         "Content-Type":'application/json',
-        'access-token':`Bearer ${props.token}`
+        'Authorization':`Bearer ${props.token}`
       },
       url:'/api/v1/user/register'
     })
-    .then((response) =>response.headers["access-token"],
+    .then((response) =>response,
     (error) => {
       console.log(error);
     })
@@ -117,32 +119,32 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const setPassword = createAsyncThunk(
-  "user/setPassword",
-  async (props: NewUser) => {
-    const bodyData={
-      newPassword:props.password,
+// export const setPassword = createAsyncThunk(
+//   "user/setPassword",
+//   async (props: NewUser) => {
+//     const bodyData={
+//       newPassword:props.password,
           
-    }
+//     }
 
-    return api({
-      method:'patch',
-      data:bodyData,
-      headers:{
-        "Content-Type":'application/json',
-        'Authorization':`Bearer ${props.token}`
-      },
-      url:'/api/v1/user/set-password'
-    })
-    .then(response=>{
-      console.log(response)
+//     return api({
+//       method:'patch',
+//       data:bodyData,
+//       headers:{
+//         "Content-Type":'application/json',
+//         'Authorization':`Bearer ${props.token}`
+//       },
+//       url:'/api/v1/user/set-password'
+//     })
+//     .then(response=>{
+//       console.log(response)
       
-     })
-     .catch(err=>{
-       console.log(err)
-     })
-    }
-)
+//      })
+//      .catch(err=>{
+//        console.log(err)
+//      })
+//     }
+// )
 
     //The below code is where i embbed the bearer token
 //     api.defaults.headers.common["Authorization"] = `Bearer ${props.token}`;
@@ -195,6 +197,9 @@ export const newUserSlice = createSlice({
     setIsVerified: (state, action: PayloadAction<boolean>) => {
       state.isVerified = action.payload;
     },
+    setPassword: (state, action: PayloadAction<string>) => {
+      state.password=action.payload
+    },
     setNewUser: (state, action: PayloadAction<NewUser>) => {
       state.firstname = action.payload.firstname;
       state.lastname = action.payload.lastname;
@@ -236,7 +241,7 @@ export const newUserSlice = createSlice({
       }),
       builder.addCase(registerUser.fulfilled,(state, action)=>{
         state.loading=false
-        state.token=action.payload
+        console.log(state,'fulfilled')
         
       })
   },
@@ -252,6 +257,7 @@ export const {
   setIsVerified,
   setGender,
   setNewUser,
+  setPassword
 } = newUserSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

@@ -57,9 +57,9 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Appearance
         </Text>
       ),
@@ -87,8 +87,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
                   alignSelf: "stretch",
                   paddingVertical: 20,
                 },
-              ]}
-            >
+              ]}>
               <View>{icon}</View>
               <Text
                 lightColor={Colors.light.text}
@@ -98,8 +97,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
                   marginLeft: 15,
                   fontSize: 14,
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}
-              >
+                }}>
                 {name}
               </Text>
               {selectedAppearance === name && (

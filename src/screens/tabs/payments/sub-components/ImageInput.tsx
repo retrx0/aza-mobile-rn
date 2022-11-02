@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { Input } from "../../../../components/input/input";
 import { Mtn } from "../../../../../assets/images";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function ImageInput() {
   return (
@@ -10,7 +11,11 @@ export default function ImageInput() {
         icon={null}
         keyboardType="phone-pad"
         inputStyle={styles.input}
-        labelStyle={null}
+        labelStyle={{
+          fontFamily: "Euclid-Circular-A-Medium",
+          fontWeight: "600",
+          fontSize: hp(16),
+        }}
         label="To"
         placeholder="MTN"
       />
@@ -21,10 +26,12 @@ export default function ImageInput() {
 }
 const styles = StyleSheet.create({
   input: {
-    borderBottomColor: "#EAEAEC",
+    borderColor: "#EAEAEC",
     borderBottomWidth: 1,
-    height: 40,
     minWidth: "100%",
+    fontFamily: "Euclid-Circular-A-Medium",
+    fontWeight: "600",
+    fontSize: hp(16),
   },
   container: {
     flexDirection: "row",

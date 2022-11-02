@@ -47,13 +47,13 @@ const SetupRecurringTransferScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Recurring Transfer
         </Text>
       ),
@@ -71,25 +71,27 @@ const SetupRecurringTransferScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
               marginTop: hp(30),
               marginBottom: hp(40),
-            }}
-          >
+              marginLeft: hp(5),
+            }}>
             Setup a recurring money transfer
           </Text>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
+                fontFamily: "Euclid-Circular-A-Medium",
+              }}>
               Period
             </Text>
             <CustomDropdown
@@ -99,53 +101,56 @@ const SetupRecurringTransferScreen = ({
               value={periodValue}
             />
           </View>
-          {periodValue !== 'daily' &&
+          {periodValue !== "daily" && (
             <View style={{ marginBottom: hp(40) }}>
               <Text
-                lightColor={Colors.light.secondaryText}
-                darkColor={Colors.dark.secondaryText}
+                // lightColor={Colors.light.secondaryText}
+                // darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: 14,
-                }}
-              >
+                  fontSize: hp(14),
+                  fontWeight: "500",
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  marginLeft: hp(5),
+                }}>
                 Day
               </Text>
               <CustomDropdown
-                data={periodValue === 'weekly' ? dayWeekly : dayMonthly}
+                data={periodValue === "weekly" ? dayWeekly : dayMonthly}
                 placeholder="Choose a day"
                 setValue={setDayValue}
                 value={dayValue}
               />
             </View>
-          }
+          )}
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[CommonStyles.col, { marginBottom: hp(65), width: "100%" }]}>
           <Button
             title="Continue"
-            onPressButton={() => navigation.push('TransactionKeypad',{
-              headerTitle:'Recurring Transfer',
-              transactionType: {
-                type: 'recurring',
-                beneficiary: {
-                  beneficiaryAccount:'',
-                  beneficiaryImage:'',
-                  beneficiaryName:'',
+            onPressButton={() =>
+              navigation.push("TransactionKeypad", {
+                headerTitle: "Recurring Transfer",
+                transactionType: {
+                  type: "recurring",
+                  beneficiary: {
+                    beneficiaryAccount: "",
+                    beneficiaryImage: "",
+                    beneficiaryName: "",
+                  },
+                  period: periodValue,
+                  day: dayValue,
                 },
-                period: periodValue,
-                day: dayValue
-              }
-            })}
+              })
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: hp(15),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

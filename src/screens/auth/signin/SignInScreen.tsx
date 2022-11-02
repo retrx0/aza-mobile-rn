@@ -12,7 +12,7 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 import { requestOtp } from "../../../redux/slice/newUserSlice";
 import { API_BASE_URL } from "@env";
-import { useAppDispatch } from "../../../hooks/redux";
+import { useAppDispatch } from "../../../redux";
 import {
   signInWithApple,
   signInWithFacebook,

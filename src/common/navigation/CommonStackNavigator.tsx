@@ -105,6 +105,7 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 // withdraw/deposit
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
+import { hp } from "../util/LayoutUtil";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -131,15 +132,14 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             marginTop: Platform.OS == "android" ? 50 : 0,
           },
           tabBarIndicatorStyle: {
-            borderWidth: 1,
+            borderWidth: 0.9,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -289,13 +289,20 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
-                size={24}
+                size={16}
               />
-              <Text style={{ marginLeft: 5 }}>Back</Text>
+              <Text
+                style={{
+                  marginLeft: hp(5),
+                  fontSize: hp(18),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A",
+                }}>
+                Back
+              </Text>
             </TouchableOpacity>
           ),
           headerStyle: {
@@ -309,8 +316,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -449,13 +455,20 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
                 />
-                <Text style={{ marginLeft: 5 }}>Back</Text>
+                <Text
+                  style={{
+                    marginLeft: 5,
+                    fontSize: hp(18),
+                    fontWeight: "400",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -466,11 +479,11 @@ const CommonStack = () => {
             },
             headerTransparent: true,
             headerTitleStyle: {
-              fontSize: 16,
-              fontWeight: "600",
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}

@@ -29,9 +29,9 @@ const IncomingSplitRequestAcceptanceScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Incoming Request
         </Text>
       ),
@@ -63,8 +63,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   alignItems: "center",
                   alignSelf: "stretch",
                 },
-              ]}
-            >
+              ]}>
               <Image
                 style={{ borderRadius: 50, width: 36, height: 36 }}
                 source={{
@@ -75,38 +74,36 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 style={{
                   display: "flex",
                   marginRight: "auto",
-                  marginLeft: 20,
-                }}
-              >
+                  marginLeft: hp(20),
+                }}>
                 <Text
-                  lightColor={Colors.light.mainText}
-                  darkColor={Colors.dark.mainText}
+                  // lightColor={Colors.light.mainText}
+                  // darkColor={Colors.dark.mainText}
                   style={{
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 14,
-                  }}
-                >
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontSize: hp(16),
+                    fontWeight: "500",
+                  }}>
                   Genesis Cinemas
                 </Text>
                 <View
                   style={[
                     CommonStyles.row,
                     {
-                      marginTop: 3,
-                      marginBottom: 8,
+                      marginTop: hp(3),
+                      marginBottom: hp(8),
                       alignSelf: "flex-start",
                     },
-                  ]}
-                >
+                  ]}>
                   <Text
-                    lightColor={Colors.light.mainText}
-                    darkColor={Colors.dark.mainText}
+                    // lightColor={Colors.light.mainText}
+                    // darkColor={Colors.dark.mainText}
                     style={{
-                      marginLeft: 3,
-                      fontSize: 12,
+                      marginLeft: hp(3),
                       fontFamily: "Euclid-Circular-A",
-                    }}
-                  >
+                      fontSize: hp(14),
+                      fontWeight: "500",
+                    }}>
                     Payments
                   </Text>
                 </View>
@@ -116,26 +113,23 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 style={{
                   display: "flex",
                   alignItems: "flex-end",
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
-                    fontSize: 14,
+                    fontSize: hp(16),
                     color: Colors.light.error,
-                  }}
-                >
+                  }}>
                   {"\u20A6"} {numberWithCommas(20000)}
                 </Text>
                 <Text
                   lightColor={Colors.light.mainText}
                   darkColor={Colors.dark.mainText}
                   style={{
-                    fontSize: 10,
-                    marginTop: 3,
-                    fontFamily: "Euclid-Circular-A-Light",
-                  }}
-                >
+                    fontSize: hp(12),
+                    marginTop: hp(3),
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
                   4 July 2022 04:26
                 </Text>
               </View>
@@ -146,15 +140,15 @@ const IncomingSplitRequestAcceptanceScreen = ({
         <View
           style={{
             marginTop: hp(25),
-          }}
-        >
+          }}>
           <Text
-            lightColor={Colors.light.secondaryText}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.secondaryText}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 14,
-            }}
-          >
+              fontSize: hp(12),
+              fontFamily: "Euclid-Circular-A",
+              marginLeft: hp(5),
+            }}>
             Request Creator
           </Text>
           <View
@@ -165,8 +159,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 justifyContent: "space-between",
                 marginTop: hp(15),
               },
-            ]}
-          >
+            ]}>
             <Image
               style={{ borderRadius: 50, width: 45, height: 45 }}
               source={{
@@ -177,32 +170,38 @@ const IncomingSplitRequestAcceptanceScreen = ({
               style={[
                 CommonStyles.col,
                 { marginLeft: 20, marginRight: "auto" },
-              ]}
-            >
+              ]}>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 16,
-                  fontFamily: "Euclid-Circular-A-Medium",
-                }}
-              >
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontWeight: "500",
+                }}>
                 Chiazo
               </Text>
-              <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
+              <Text
+                style={{
+                  fontSize: hp(12),
+                  marginTop: 5,
+                  color: "#FF361A",
+                  fontFamily: "Euclid-Circular-A-Medium",
+                }}>
                 {"\u20A6"} {numberWithCommas(6666)}
               </Text>
             </View>
           </View>
         </View>
         <Text
-          lightColor={Colors.light.secondaryText}
-          darkColor={Colors.dark.secondaryText}
+          // lightColor={Colors.light.secondaryText}
+          // darkColor={Colors.dark.secondaryText}
           style={{
-            fontSize: 14,
+            fontSize: hp(12),
+            fontFamily: "Euclid-Circular-A",
+            marginLeft: hp(5),
             marginTop: hp(25),
-          }}
-        >
+          }}>
           Request Recipients
         </Text>
         <ScrollView>
@@ -215,8 +214,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   justifyContent: "space-between",
                   marginTop: hp(15),
                 },
-              ]}
-            >
+              ]}>
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
@@ -227,28 +225,31 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 style={[
                   CommonStyles.col,
                   { marginLeft: 20, marginRight: "auto" },
-                ]}
-              >
+                ]}>
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
                   style={{
-                    fontSize: 16,
-                    fontFamily: "Euclid-Circular-A-Medium",
-                  }}
-                >
+                    fontSize: hp(16),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontWeight: "500",
+                  }}>
                   James
                 </Text>
-                <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
+                <Text
+                  style={{
+                    fontSize: hp(12),
+                    marginTop: 5,
+                    color: "#FF361A",
+                    fontFamily: "Euclid-Circular-A-Medium",
+                  }}>
                   {"\u20A6"} {numberWithCommas(6666)}
                 </Text>
               </View>
             </View>
           </View>
         </ScrollView>
-        <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(35) }]}
-        >
+        <View style={[CommonStyles.col, { marginBottom: hp(35) }]}>
           <Button
             title="Accept Request"
             onPressButton={() =>
@@ -262,14 +263,13 @@ const IncomingSplitRequestAcceptanceScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Decline"

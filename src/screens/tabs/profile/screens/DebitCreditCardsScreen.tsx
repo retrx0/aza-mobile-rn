@@ -24,11 +24,12 @@ const DebitCreditCardsScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Debit/Credit Cards
         </Text>
@@ -47,12 +48,14 @@ const DebitCreditCardsScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
               marginVertical: hp(30),
+              fontWeight: "500",
+              marginLeft: hp(5),
             }}>
             Securely manage all your debit and credit cards connected to Aza
             right here. Tap a card for more options.
@@ -79,12 +82,12 @@ const DebitCreditCardsScreen = ({
                   }}
                 />
                 <Text
-                  lightColor={Colors.light.mainText}
-                  darkColor={Colors.dark.mainText}
+                  // lightColor={Colors.light.mainText}
+                  // darkColor={Colors.dark.mainText}
                   style={{
-                    marginLeft: 20,
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 14,
+                    marginLeft: hp(20),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontSize: hp(14),
                   }}>
                   Visa (**** **** **** 1234)
                 </Text>
@@ -93,8 +96,7 @@ const DebitCreditCardsScreen = ({
             <Divider />
           </View>
         </View>
-        <View
-          style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}>
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -104,13 +106,13 @@ const DebitCreditCardsScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(15),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

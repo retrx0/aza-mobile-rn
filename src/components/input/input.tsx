@@ -66,7 +66,7 @@ export const Input = ({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17.75),
     marginBottom: hp(11),
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderRadius: 9,
     marginTop: hp(7),
-    fontSize: 15,
+    fontSize: hp(17),
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   countryCode: {
     color: Colors.general.primary,
-    fontSize: 15,
+    fontSize: hp(17),
     marginRight: wp(7),
   },
 

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   country: {
     color: "black",
-    fontSize: 17,
+    fontSize: hp(19),
     paddingHorizontal: wp(2),
   },
   container: {
@@ -83,14 +83,14 @@ const styles = StyleSheet.create({
   },
   countryName: {
     color: "black",
-    fontSize: 17,
+    fontSize: hp(19),
     marginRight: wp(5),
   },
   textInput: {
     marginRight: wp(5),
     width: wp(140),
     paddingRight: wp(5),
-    fontSize: 18,
+    fontSize: hp(20),
     alignItems: "center",
   },
 });

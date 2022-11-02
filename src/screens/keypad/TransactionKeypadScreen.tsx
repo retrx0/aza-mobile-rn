@@ -15,13 +15,13 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import { NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import DescriptionModal from "./modal/DescriptionModal";
-import transferToSlice, {
-  setTransferTo,
-} from "../../redux/slice/transferToSlice";
+import transactionSlice, {
+  setTransaction,
+} from "../../redux/slice/transactionSlice";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -196,16 +196,27 @@ const TransactionKeypadScreen = ({
                   break;
                 case "request":
                   console.log("request");
-                  break;
-                case "send":
                   dispatch(
-                    setTransferTo({
+                    setTransaction({
+                      ...{},
                       amount: Number(amount),
                       beneficairy: beneficiary,
                       description: description,
-                      transferType: "normal",
+                      transferType: "request",
                     })
                   );
+                  navigation.navigate("RequestMoneyConfirmation");
+                  break;
+                case "send":
+                  dispatch(
+                    setTransaction({
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "send",
+                    })
+                  );
+                  navigation.navigate("SendMoneyConfirmation");
                   break;
                 case "withdraw":
                   console.log("withdrawing");
@@ -229,14 +240,13 @@ const TransactionKeypadScreen = ({
           }}
           style={{
             marginVertical: 10,
-            width: "100%",
             backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>
 
       {/* description modal */}
-      <DescriptionModal
+      {/* <DescriptionModal
         visible={descModal}
         setModalVisible={setDescModalOpen}
         description={description}
@@ -246,7 +256,7 @@ const TransactionKeypadScreen = ({
         recurringTransaction={recurringTransaction}
         transactionType={transactionType}
         // transactionParams={}
-      />
+      /> */}
     </>
   );
 };

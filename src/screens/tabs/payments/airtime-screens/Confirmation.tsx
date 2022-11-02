@@ -9,13 +9,20 @@ import MyButton from "../sub-components/MyButton";
 import { SafeAreaView, Text, View } from "../../../../components/Themed";
 import FaceIdAlert from "../sub-components/FaceIdAlert";
 import { RootTabScreenProps } from "../../../../../types";
-export default function Confirmation({ navigation }: RootTabScreenProps<"Payments">) {
+export default function Confirmation({
+  navigation,
+}: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
   return (
     <SafeAreaView
-      style={[CommonStyles.parentContainer, styles.container, { paddingTop: Platform.OS == "android" ? 100 : 0 }]}
-    >
-      <Text style={styles.txt}>Kindly confirm the details of this transaction</Text>
+      style={[
+        CommonStyles.parentContainer,
+        styles.container,
+        { paddingTop: Platform.OS == "android" ? 100 : 0 },
+      ]}>
+      <Text style={styles.txt}>
+        Kindly confirm the details of this transaction
+      </Text>
       <ImageInput />
       <Input
         icon={null}
@@ -83,6 +90,7 @@ const styles = StyleSheet.create({
   btn: {
     marginTop: "auto",
     marginBottom: 0,
+    width: "5%",
   },
   cancel: {
     textAlign: "center",

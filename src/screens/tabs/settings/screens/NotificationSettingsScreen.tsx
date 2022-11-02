@@ -37,9 +37,9 @@ const NotificationSettingsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Notification Settings
         </Text>
       ),
@@ -58,8 +58,12 @@ const NotificationSettingsScreen = ({
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
-          style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-        >
+          style={{
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+            fontWeight: "500",
+            marginLeft: hp(5),
+          }}>
           Do you want us to inform you about your account
         </Text>
 
@@ -67,20 +71,24 @@ const NotificationSettingsScreen = ({
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: 14,
+            fontFamily: "Euclid-Circular-A",
+            fontSize: hp(16),
+            fontWeight: "400",
+            marginLeft: hp(5),
             marginTop: hp(40),
-          }}
-        >
+          }}>
           You can receive notifications if you enable this setting.
         </Text>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: 14,
+            fontFamily: "Euclid-Circular-A",
+            fontSize: hp(16),
+            fontWeight: "400",
+            marginLeft: hp(5),
             marginTop: hp(10),
-          }}
-        >
+          }}>
           You can revoke this permission at any time.
         </Text>
       </View>

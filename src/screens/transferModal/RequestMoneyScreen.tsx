@@ -6,11 +6,12 @@ import BackButton from "../../components/buttons/BackButton";
 import { Text } from "../../components/Themed";
 
 import Colors from "../../constants/Colors";
-import { CommonScreenProps } from "../../common/navigation/types";
+import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import ContactsScene from "./ContactsScene";
+import { sendInviteToNonAzaContact } from "../../api/notification";
 
 const RequestMoneyScreen = ({
   navigation,
@@ -27,11 +28,12 @@ const RequestMoneyScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}
         >
           Request Money
@@ -46,6 +48,19 @@ const RequestMoneyScreen = ({
     });
   }, []);
 
+  const azaContactOnClick = (beneficiary: Beneficiary) => {
+    //TODO replace with redux slice
+    navigation.navigate("TransactionKeypad", {
+      headerTitle: "Send Money",
+      transactionType: {
+        transaction: "request",
+        type: "normal",
+        beneficiary: beneficiary,
+        openDescriptionModal: true,
+      },
+    });
+  };
+
   return (
     <SpacerWrapper>
       <TabView
@@ -53,8 +68,10 @@ const RequestMoneyScreen = ({
         renderScene={({ route }) => (
           <ContactsScene
             route={route}
-            azaContactOnPress={() => null}
-            nonAzaContactOnPress={() => null}
+            azaContactOnPress={(_b) => azaContactOnClick(_b)}
+            nonAzaContactOnPress={({ email, phone }) =>
+              sendInviteToNonAzaContact({ email: email!, phoneNumber: phone! })
+            }
           />
         )}
         onIndexChange={setIndex}
@@ -84,7 +101,8 @@ const RequestMoneyScreen = ({
                   }
                   style={{
                     fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 16,
+                    fontSize: hp(16),
+                    fontWeight: "500",
                   }}
                 >
                   {route.title}

@@ -22,22 +22,21 @@ const AccountLimitsTab = ({
       <View>
         <View style={[CommonStyles.col, { alignSelf: "flex-start" }]}>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.text}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 14,
-            }}
-          >
+              fontSize: hp(14),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+            }}>
             My Level:{" "}
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+              }}>
               Tier {isVerified ? "1" : "0"}
             </Text>
           </Text>
@@ -61,8 +60,7 @@ const AccountLimitsTab = ({
               alignItems: "flex-start",
               marginTop: hp(35),
             },
-          ]}
-        >
+          ]}>
           <VerifyIcon
             color={
               isVerified ? "#2A9E17" : Colors[colorScheme].backgroundSecondary
@@ -70,55 +68,57 @@ const AccountLimitsTab = ({
             size={34}
           />
           <View
-            style={[CommonStyles.col, { marginRight: "auto", marginLeft: 25 }]}
-          >
+            style={[CommonStyles.col, { marginRight: "auto", marginLeft: 25 }]}>
             <Text
               style={{
-                fontSize: 12,
+                fontSize: hp(15),
+                marginBottom: hp(5),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
                 color: isVerified
                   ? "#2A9E17"
                   : Colors[colorScheme].secondaryText,
-              }}
-            >
+              }}>
               {isVerified ? "Verified" : "Not verified"}
             </Text>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontSize: 16,
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontWeight: "600",
 
                 // color: Colors[colorScheme].secondaryText,
-              }}
-            >
+              }}>
               Tier 1
             </Text>
             <View
               style={{
                 marginTop: 10,
-              }}
-            >
+              }}>
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
+                // lightColor={Colors.light.text}
+                // darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: 14,
-                  marginBottom: 5,
+                  fontSize: hp(16),
+                  marginBottom: hp(5),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
 
                   // color: Colors[colorScheme].secondaryText,
-                }}
-              >
+                }}>
                 Daily Transaction Limit:
               </Text>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 14,
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                }}
-              >
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
+
+                  fontWeight: "600",
+                }}>
                 {"\u20A6 "}
                 50,000
               </Text>
@@ -126,26 +126,25 @@ const AccountLimitsTab = ({
             <View
               style={{
                 marginTop: 10,
-              }}
-            >
+              }}>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: 14,
-                  marginBottom: 5,
-                }}
-              >
+                  fontSize: hp(16),
+                  marginBottom: hp(5),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A-Medium",
+                }}>
                 Maximum Balance:
               </Text>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 14,
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                }}
-              >
+                  fontSize: hp(12),
+                  fontFamily: "Euclid-Circular-A--Semi-Bold",
+                }}>
                 {"\u20A6 "}
                 200,000
               </Text>
@@ -157,17 +156,16 @@ const AccountLimitsTab = ({
                   alignSelf: "flex-start",
                   marginTop: 20,
                 },
-              ]}
-            >
+              ]}>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 14,
+                  fontSize: hp(16),
+                  marginBottom: hp(5),
+                  fontWeight: "600",
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  marginRight: 5,
-                }}
-              >
+                }}>
                 Verify BVN
               </Text>
               {isVerified && <SmallVerifyIcon color={"#2A9E17"} />}

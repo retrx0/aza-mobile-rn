@@ -37,17 +37,13 @@ export function AirtimeTabs() {
           tabBarIndicatorStyle: {
             borderWidth: 1,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
+            borderBottomColor: "#A6A6A6",
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
           },
-          tabBarStyle: {
-            borderBottomColor: "#A6A6A6",
-            borderBottomWidth: 1,
-          },
         }}
-        initialRouteName="airtime"
-      >
+        initialRouteName="airtime">
         <Tab.Screen name="airtime" component={AirtimeIndex} />
         <Tab.Screen name="data" component={AirtimeIndex} />
       </Tab.Navigator>
@@ -78,8 +74,7 @@ export function CharityTabs() {
             borderBottomWidth: 1,
           },
         }}
-        initialRouteName="For Myself"
-      >
+        initialRouteName="For Myself">
         <Tab.Screen name="For Myself" component={CharityDetail} />
         <Tab.Screen name="For Someone Else" component={CharityDetail} />
       </Tab.Navigator>
@@ -99,8 +94,7 @@ const PaymentNavigator = () => {
             style={{
               flexDirection: "row",
               alignItems: "center",
-            }}
-          >
+            }}>
             <BackIcon
               color={scheme == "light" ? "#000000" : "#ffffff"}
               size={24}
@@ -116,8 +110,7 @@ const PaymentNavigator = () => {
           fontSize: 16,
           fontWeight: "600",
         },
-      })}
-    >
+      })}>
       <Stack.Screen
         options={{
           headerShown: false,

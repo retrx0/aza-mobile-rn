@@ -23,13 +23,13 @@ const AddNewCardScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Add New Card
         </Text>
       ),
@@ -47,26 +47,26 @@ const AddNewCardScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
               marginTop: hp(30),
               marginBottom: hp(40),
-            }}
-          >
+              fontWeight: "500",
+            }}>
             Add your card details to deposit money to your Aza wallet
           </Text>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+              }}>
               Card Number
             </Text>
             <TextInput
@@ -86,13 +86,13 @@ const AddNewCardScreen = ({
           </View>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+              }}>
               Expiry Date
             </Text>
             <TextInput
@@ -112,13 +112,13 @@ const AddNewCardScreen = ({
           </View>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+              }}>
               CVV
             </Text>
             <TextInput
@@ -137,9 +137,7 @@ const AddNewCardScreen = ({
             />
           </View>
         </View>
-        <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+        <View style={[CommonStyles.col, { marginBottom: hp(60) }]}>
           <CancelButtonWithUnderline
             title="Scan Card instead"
             color={Colors[colorScheme].mainText}
@@ -159,13 +157,13 @@ const AddNewCardScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: hp(25),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
         </View>
       </View>

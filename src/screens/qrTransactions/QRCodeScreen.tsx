@@ -17,10 +17,17 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { RootStackScreenProps } from "../../../types";
 
 import { NairaIcon } from "../../../assets/svg";
+import { useAppSelector } from "../../redux";
+import { selectUser } from "../../redux/slice/userSlice";
+import { getInitialsAvatar } from "../../common/util/AppUtil";
+import { selectTransaction } from "../../redux/slice/transactionSlice";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const colorScheme = useColorScheme();
   const [, requestPermission] = MediaLibrary.usePermissions();
+
+  const user = useAppSelector(selectUser);
+  const transaction = useAppSelector(selectTransaction);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -65,7 +72,14 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           <Image
             style={{ borderRadius: 50, width: 50, height: 50 }}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              uri:
+                user.pictureUrl && user.pictureUrl !== ""
+                  ? user.pictureUrl
+                  : getInitialsAvatar({
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      scheme: colorScheme,
+                    }),
             }}
           />
           <Text
@@ -77,7 +91,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               marginVertical: 15,
             }}
           >
-            Chiazondu Joseph
+            {user.fullName}
           </Text>
           <View style={[CommonStyles.row]}>
             <NairaIcon
@@ -98,13 +112,16 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 marginLeft: 5,
               }}
             >
-              80,000
+              {transaction.amount}
             </Text>
           </View>
         </View>
         <View style={{ alignSelf: "center" }}>
           <QRCode
-            content="https://google.com"
+            content={JSON.stringify({
+              azaNumber: user.azaAccountNumber,
+              amount: transaction.amount,
+            })}
             codeStyle="circle"
             color={
               colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text

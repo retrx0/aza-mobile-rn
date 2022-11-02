@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { NairaIcon } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
+import { hp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
-import { useAppSelector } from "../../../../hooks/redux";
+import { useAppSelector } from "../../../../redux";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { selectUser } from "../../../../redux/slice/userSlice";
 
@@ -24,29 +25,26 @@ export default function AccountDetails() {
             CommonStyles.row,
             {
               paddingHorizontal: 15,
-              paddingVertical: 10,
+              paddingVertical: hp(7),
               alignItems: "center",
               justifyContent: "center",
-              borderRadius: 50,
+              borderRadius: hp(50),
             },
-          ]}
-        >
+          ]}>
           <Text
             lightColor={"#000000"}
             darkColor={"#CCCCCC"}
-            style={{ fontSize: 12 }}
-          >
+            style={{ fontSize: 14 }}>
             Nigerian Naira
           </Text>
           <Image
-            style={{ width: 15, height: 15, marginHorizontal: 10 }}
+            style={{ width: 20, height: 20, marginHorizontal: 10 }}
             source={require("../../../../../assets/images/icons/NigerianFlag.png")}
           />
           <Text
             lightColor={Colors.general.darkGrey}
             darkColor={Colors.dark.tabIconDefault}
-            style={{ fontSize: 12 }}
-          >
+            style={{ fontSize: 14 }}>
             NGN
           </Text>
         </View>
@@ -68,10 +66,9 @@ export default function AccountDetails() {
               darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: 24,
-                marginVertical: 10,
-              }}
-            >
+                fontSize: 26,
+                marginVertical: hp(10),
+              }}>
               {user.azaBalance}
             </Text>
           </>
@@ -81,10 +78,9 @@ export default function AccountDetails() {
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 24,
-              marginVertical: 10,
-            }}
-          >
+              fontSize: hp(24),
+              marginVertical: hp(10),
+            }}>
             **********
           </Text>
         )}
@@ -94,9 +90,10 @@ export default function AccountDetails() {
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: 12,
-          }}
-        >
+            marginLeft: 3,
+            fontSize: hp(12),
+            fontFamily: "Euclid-Circular-A",
+          }}>
           Aza Number:
         </Text>
         <Text
@@ -104,10 +101,9 @@ export default function AccountDetails() {
           darkColor={Colors.dark.mainText}
           style={{
             marginLeft: 3,
-            fontSize: 12,
+            fontSize: hp(12),
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-          }}
-        >
+          }}>
           {user.azaAccountNumber}
         </Text>
       </View>

@@ -12,21 +12,26 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useAppSelector } from "../../redux";
+import { selectTransaction } from "../../redux/slice/transactionSlice";
 
 const RequestMoneyConfirmationScreen = ({
   navigation,
 }: CommonScreenProps<"RequestMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
 
+  console.log(useAppSelector(selectTransaction));
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}
         >
           Confirmation
@@ -46,30 +51,34 @@ const RequestMoneyConfirmationScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
-              marginVertical: hp(30),
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(14),
+              // marginVertical: hp(30),
+              fontWeight: "500",
+              marginLeft: hp(5),
             }}
           >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
               }}
             >
               From?
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -78,6 +87,7 @@ const RequestMoneyConfirmationScreen = ({
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
               value={"Chiazondu Joseph"}
@@ -99,11 +109,13 @@ const RequestMoneyConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
               }}
             >
               Amount
@@ -119,24 +131,25 @@ const RequestMoneyConfirmationScreen = ({
               ]}
             >
               <Text
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
+                // lightColor={Colors.light.mainText}
+                // darkColor={Colors.dark.mainText}
                 style={{ position: "absolute", paddingBottom: 5 }}
               >
                 {"\u20A6 "}
               </Text>
               <TextInput
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
+                // lightColor={Colors.light.mainText}
+                // darkColor={Colors.dark.mainText}
                 placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={{
                   flex: 1,
                   backgroundColor: "transparent",
-                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontFamily: "Euclid-Circular-A",
                   paddingBottom: 5,
                   paddingLeft: 20,
                   borderBottomWidth: 1,
                   borderBottomColor: Colors[colorScheme].separator,
+                  marginLeft: hp(5),
                 }}
                 showSoftInputOnFocus={false}
                 value={"80,000"}
@@ -145,18 +158,20 @@ const RequestMoneyConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
               }}
             >
               Description
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -165,15 +180,14 @@ const RequestMoneyConfirmationScreen = ({
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
               value={"Chop life my gee ❤️"}
             />
           </View>
         </View>
-        <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -188,13 +202,13 @@ const RequestMoneyConfirmationScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(10),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"

@@ -86,8 +86,10 @@ const QRMakePaymentTab = ({
           type={CameraType.back}
           onBarCodeScanned={(code) => {
             if (code.type === "org.iso.QRCode") {
-              Alert.alert("Code Scanned " + code.data);
-              navigation.navigate("Root");
+              console.log("Code Scanned " + code.data);
+              navigation.navigate("Common", {
+                screen: "SendMoneyConfirmation",
+              });
             }
           }}
         >

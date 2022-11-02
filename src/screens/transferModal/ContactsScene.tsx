@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { verifyAzaNumber } from "../../api/aza";
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
@@ -16,7 +17,7 @@ import ButtonLg from "../../components/buttons/ButtonLg";
 import ContactListItem from "../../components/ListItem/ContactListItem";
 import { Text, TextInput, View } from "../../components/Themed";
 import Colors from "../../constants/Colors";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../redux";
 import useColorScheme from "../../hooks/useColorScheme";
 import { getUserContacts } from "../../hooks/useContacts";
 import { selectUser } from "../../redux/slice/userSlice";
@@ -60,7 +61,8 @@ const ContactsScene = ({
                 colorScheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text,
-              fontSize: 14,
+              fontSize: hp(15),
+              fontWeight: "500",
             }}
           >
             Quick contacts
@@ -83,8 +85,8 @@ const ContactsScene = ({
                       firstName: _contct.fullName!,
                       scheme: colorScheme,
                     })}
-                    key={i}
                     onPress={() => azaContactOnPress(_contct)}
+                    key={i}
                   />
                 ))}
               </View>
@@ -107,6 +109,7 @@ const ContactsScene = ({
               marginVertical: hp(35),
               borderBottomWidth: 1,
               borderBottomColor: Colors[colorScheme].separator,
+              marginLeft: hp(5),
             }}
             placeholder="To (Search for a contact)"
           />
@@ -118,7 +121,11 @@ const ContactsScene = ({
             sections={[
               {
                 title: "Contacts using Aza",
-                data: user.azaContacts,
+                data: user.azaContacts.filter((_c) =>
+                  _c.fullName
+                    .toUpperCase()
+                    .includes(searchContact.toUpperCase())
+                ),
                 azaContacts: true,
               },
               {
@@ -194,8 +201,8 @@ const ContactsScene = ({
     return (
       <View style={[styles.container, { justifyContent: "flex-start" }]}>
         <TextInput
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           placeholderTextColor={Colors[colorScheme].secondaryText}
           keyboardType={"number-pad"}
           returnKeyType={"send"}
@@ -209,13 +216,16 @@ const ContactsScene = ({
             marginTop: hp(15),
             borderBottomWidth: 1,
             borderBottomColor: Colors[colorScheme].separator,
+            marginLeft: hp(5),
           }}
           placeholder="Aza Number"
         />
         <Button
           title="Send"
           style={{ marginVertical: hp(20) }}
-          onPressButton={function (): void {}}
+          onPressButton={() => {
+            sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
+          }}
           disabled={receipientAzaNumber.length < 5}
         />
       </View>
@@ -225,25 +235,28 @@ const ContactsScene = ({
   }
 };
 
-const sentToAzaNumber = () => {
+const sentToAzaNumber = (
+  azaNumber: string,
+  azaContactOnPress: (beneficiary: Beneficiary) => void
+) => {
   //do some check with aza number
-  const numberValid = true;
-  if (numberValid) {
-  } else {
-  }
+  verifyAzaNumber(azaNumber).then((verifiedUser) => {
+    if (verifiedUser) {
+      azaContactOnPress(verifiedUser);
+    } else {
+    }
+  });
 };
 
 const QuickContactView = ({
   firstName,
   lastName,
   photoUrl,
-  key,
   onPress,
 }: {
   firstName: string;
   lastName: string;
   photoUrl: string;
-  key: number;
   onPress: () => void;
 }) => {
   return (
@@ -262,9 +275,9 @@ const QuickContactView = ({
           }}
         />
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{ fontSize: 10, marginTop: 5 }}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
+          style={{ fontSize: hp(12), marginTop: 5 }}
         >
           {firstName}
         </Text>

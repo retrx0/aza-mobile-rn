@@ -25,8 +25,7 @@ const LinkBVN = ({
         justifyContent: "center",
         alignItems: "flex-start",
         flexDirection: "row",
-      }}
-    >
+      }}>
       <DangerIcon />
       <View
         style={{
@@ -34,15 +33,13 @@ const LinkBVN = ({
           display: "flex",
           justifyContent: "space-between",
           backgroundColor: "transparent",
-        }}
-      >
+        }}>
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 12,
             color: Colors.general.darkGrey,
-          }}
-        >
+          }}>
           Link your BVN to start using AZA
         </Text>
         <Text
@@ -50,8 +47,7 @@ const LinkBVN = ({
             fontSize: 10,
             color: "black",
             marginTop: 5,
-          }}
-        >
+          }}>
           Link your BVN to upgrade your account as there are certain limits on
           it.
         </Text>
@@ -63,8 +59,7 @@ const LinkBVN = ({
                 onVerifyNavigateBackTo: "Home",
               },
             })
-          }
-        >
+          }>
           <View
             style={{
               backgroundColor: "transparent",
@@ -72,15 +67,13 @@ const LinkBVN = ({
               paddingBottom: 1,
               marginTop: 10,
               alignSelf: "flex-start",
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontSize: 14,
                 fontFamily: "Euclid-Circular-A-Medium",
                 color: Colors.general.primary,
-              }}
-            >
+              }}>
               Link your BVN
             </Text>
           </View>

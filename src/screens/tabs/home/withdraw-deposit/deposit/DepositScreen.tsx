@@ -34,9 +34,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+          }}>
           Deposit
         </Text>
       ),
@@ -66,18 +65,18 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             {
               justifyContent: "space-between",
             },
-          ]}
-        >
+          ]}>
           <View>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(16),
                 marginBottom: hp(30),
-              }}
-            >
+                fontWeight: "500",
+                paddingLeft: hp(7),
+              }}>
               Select the card you wish to deposit money to your Aza from
             </Text>
             <Divider />
@@ -88,8 +87,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                     style={[
                       CommonStyles.row,
                       { alignSelf: "stretch", paddingVertical: 15 },
-                    ]}
-                  >
+                    ]}>
                     <Image
                       source={{ uri: image }}
                       style={{
@@ -99,14 +97,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                       }}
                     />
                     <Text
-                      lightColor={Colors.light.mainText}
-                      darkColor={Colors.dark.mainText}
+                      // lightColor={Colors.light.mainText}
+                      // darkColor={Colors.dark.mainText}
                       style={{
                         marginLeft: 20,
-                        fontFamily: "Euclid-Circular-A-Medium",
+                        fontFamily: "Euclid-Circular-A-Semi-Bold",
                         fontSize: 14,
-                      }}
-                    >
+                      }}>
                       {name}
                     </Text>
                     <View
@@ -122,8 +119,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                         alignItems: "center",
                         justifyContent: "center",
                         borderWidth: hp(1),
-                      }}
-                    >
+                      }}>
                       {selectedCard === name && (
                         <View style={CommonStyles.doneSelect} />
                       )}
@@ -134,9 +130,15 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               </View>
             ))}
           </View>
-          <View
-            style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}
-          >
+
+          <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+            <CancelButtonWithUnderline
+              title="Add New Card"
+              onPressButton={() =>
+                navigation.getParent()?.navigate("ArchievedVault")
+              }
+              color={Colors[colorScheme].text}
+            />
             <Button
               disabled={!selectedCard}
               title="Continue"
@@ -156,14 +158,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               }
               styleText={{
                 color: Colors[colorScheme].buttonText,
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
               }}
-              style={{
-                width: "100%",
-                marginBottom: hp(15),
-                backgroundColor: Colors[colorScheme].button,
-              }}
+              style={[
+                {
+                  backgroundColor: Colors[colorScheme].button,
+                },
+                CommonStyles.button,
+              ]}
             />
             <CancelButtonWithUnderline
               title="Cancel"
@@ -184,8 +185,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
           style={[
             CommonStyles.col,
             { marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+          ]}>
           <UndrawCreditCardIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />
@@ -197,8 +197,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: hp(30),
               textAlign: "center",
-            }}
-          >
+            }}>
             You do not have any credit/debit cards
           </Text>
           <View style={[CommonStyles.row, { marginTop: hp(10) }]}>
@@ -210,8 +209,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 maxWidth: 300,
                 marginRight: 5,
                 textAlign: "center",
-              }}
-            >
+              }}>
               Click ‘Add New Card’ to add a new card
             </Text>
             <ArrowDownIcon
@@ -224,9 +222,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             />
           </View>
         </View>
-        <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}
-        >
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -236,14 +232,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(15),
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <ButtonWithUnderline
             title="Cancel"

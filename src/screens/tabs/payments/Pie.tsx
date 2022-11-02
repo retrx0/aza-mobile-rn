@@ -13,6 +13,7 @@ import {
   LoveIcon,
 } from "../../../../assets/svg";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { hp } from "../../../common/util/LayoutUtil";
 
 const data = [
   { value: 54, color: "#753FF6", text: "Cable Tv" },
@@ -58,9 +59,8 @@ export default function Pie() {
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
-                style={[styles.colors, { backgroundColor: item.color }]}
-              ></View>
-              <Text>{item.text}</Text>
+                style={[styles.colors, { backgroundColor: item.color }]}></View>
+              <Text style={{ fontSize: hp(15) }}>{item.text}</Text>
             </View>
           ))}
         </View>
@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   monthText: {
-    fontWeight: "bold",
+    fontWeight: "600",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(16),
   },
 });

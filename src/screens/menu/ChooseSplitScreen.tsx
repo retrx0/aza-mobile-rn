@@ -18,13 +18,13 @@ const ChooseSplitScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Split
         </Text>
       ),
@@ -76,8 +76,7 @@ const ChooseSplitScreen = ({
                   splitImage,
                   name,
                 })
-              }
-            >
+              }>
               <SplitListItem
                 key={i}
                 amount={amount}
