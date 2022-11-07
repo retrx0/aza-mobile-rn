@@ -106,12 +106,17 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import { hp } from "../util/LayoutUtil";
-import NewUserVault from "../../screens/tabs/vault/NewuserVault";
+import NewUserVault from "../../screens/tabs/vault/NewUserVault";
 import AddCoverImage from "../../screens/tabs/vault/AddCoverImage";
 import AddCoverImageSuccessful from "../../screens/tabs/vault/SetVaultGoal";
 import SetVaultGoal from "../../screens/tabs/vault/SetVaultGoal";
 import ConfirmGoal from "../../screens/tabs/vault/GoalConfirmation";
 import UserVault from "../../screens/tabs/vault/UserVault";
+import ChangeVaultName from "../../screens/tabs/vault/ChangeVaultName";
+import ChangeGoalAmount from "../../screens/tabs/vault/ChangeGoalAmount";
+import VaultRecurringTransfer from "../../screens/tabs/vault/VaultRecurringTransfer";
+import VaultRecurringAmount from "../../screens/tabs/vault/VaultRecurringAmount";
+import RecurringMoneyConfirmationScreen from "../../screens/tabs/vault/RecurringMoneyConfirmationScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -122,7 +127,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.topTab]}>
-        <View style={{ marginLeft: 20 }}>
+        <View style={{ marginLeft: 10 }}>
           <BackButton
             onPress={() => {
               navigation.getParent()?.navigate("AddVault");
@@ -144,8 +149,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           tabBarLabelStyle: {
             textTransform: "capitalize",
             fontSize: hp(16),
-            fontWeight: "500",
-            lineHeight: hp(17.75),
+            fontWeight: "600",
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             marginTop: hp(30),
           },
@@ -311,6 +315,31 @@ const CommonStack = () => {
           options={{ headerShown: false }}
           name="UserVault"
           component={UserVault}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ChangeVaultName"
+          component={ChangeVaultName}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ChangeGoalAmount"
+          component={ChangeGoalAmount}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultRecurringTransfer"
+          component={VaultRecurringTransfer}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultRecurringAmount"
+          component={VaultRecurringAmount}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="RecurringMoneyConfirmationScreen"
+          component={RecurringMoneyConfirmationScreen}
         />
       </Stack.Group>
 
