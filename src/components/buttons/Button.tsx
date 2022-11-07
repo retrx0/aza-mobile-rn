@@ -58,9 +58,9 @@ const styles = {
     color: Colors.general.secondary,
     fontWeight: "500",
     letterSpacing: hp(0.5),
-    fontSize: hp(16),
+    fontSize: hp(14),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
   },
   nextText: {
     color: Colors.general.secondary,

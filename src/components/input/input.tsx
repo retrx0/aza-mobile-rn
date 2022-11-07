@@ -49,13 +49,15 @@ export const Input = ({
           />
         </View>
       ) : (
-        <View>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <TextInput
             placeholder={placeholder}
             {...rest}
             style={[
               inputStyle,
-              { color: Colors[colorScheme].text },
+              {
+                color: Colors[colorScheme].text,
+              },
             ]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
@@ -67,7 +69,7 @@ export const Input = ({
 const styles = StyleSheet.create({
   label: {
     fontSize: hp(16),
-    fontWeight: "500",
+    fontWeight: "400",
     lineHeight: hp(17.75),
     marginBottom: hp(11),
     fontFamily: "Euclid-Circular-A",
