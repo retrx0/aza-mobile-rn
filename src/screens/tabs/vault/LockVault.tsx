@@ -25,7 +25,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             This action cannot be undone
           </Text>
           <Text style={CommonStyles.lockupStyle}>
-            You are about to lock up {"\u20A62,000"} for 2 Weeks
+            You are about to lock up {"\u20A680,000"} for 2 Weeks
           </Text>
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
@@ -49,7 +49,9 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
           <CancelButtonWithUnderline
             title="Cancel"
-            onPressButton={() => navigation.getParent()?.navigate("NewVault")}
+            onPressButton={() =>
+              navigation.getParent()?.navigate("ConfirmGoal")
+            }
             styleText={CommonStyles.cancelStyle}
             style={{ borderBottomColor: Colors.general.red }}
           />

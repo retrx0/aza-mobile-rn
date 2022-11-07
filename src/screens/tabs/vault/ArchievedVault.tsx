@@ -169,7 +169,7 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
         <FlatList
           data={ArchieveList}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem {...item} />}
+          renderItem={({ item }) => <ListItem altamount={""} {...item} />}
         />
       </View>
     </SpacerWrapper>
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   separator: {
-    borderWidth: 0.4,
+    borderWidth: 0.5,
     borderColor: "#EAEAEC",
     width: wp(390),
     alignSelf: "center",

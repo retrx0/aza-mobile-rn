@@ -60,7 +60,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             containerStyle={undefined}
           />
         </View>
-        <View style={CommonStyles.vaultInputcontainer}>
+        {/* <View style={CommonStyles.vaultInputcontainer}>
           <Input
             label={"Amount"}
             labelStyle={undefined}
@@ -70,19 +70,23 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             icon={undefined}
             containerStyle={{ marginBottom: 2 }}
           />
-        </View>
-        <View style={CommonStyles.percentageContainer}>
+        </View> */}
+        {/* <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
             return <PercentageCard key={index} percentage={item.percentage} />;
           })}
-        </View>
+        </View> */}
 
         <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
           <Text
-            lightColor={Colors.light.secondaryText}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.secondaryText}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 14,
+              fontSize: hp(16),
+              fontWeight: "400",
+              lineHeight: hp(17.75),
+              marginBottom: hp(11),
+              fontFamily: "Euclid-Circular-A",
             }}>
             Period
           </Text>
@@ -95,7 +99,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
 
         <View style={[CommonStyles.SwitchContainer, { bottom: hp(30) }]}>
-          <View style={CommonStyles.periodContainer}>
+          {/* <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month
             </Text>
@@ -110,12 +114,12 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               }}
             />
           </View>
-          <Separator />
+          <Separator /> */}
           <Button
             title={"Continue"}
             onPressButton={() =>
               navigation.navigate("Common", {
-                screen: "LockVault",
+                screen: "AddCoverImage",
               })
             }
             styleText={{

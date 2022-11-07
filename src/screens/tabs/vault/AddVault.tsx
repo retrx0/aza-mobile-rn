@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../components/Themed";
+import { Text, View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
 import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -30,6 +30,16 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
         </View>
+        <Text
+          style={{
+            fontSize: hp(16),
+            fontWeight: "500",
+            fontFamily: "Euclid-Circular-A",
+            marginBottom: hp(40),
+            marginLeft: hp(15),
+          }}>
+          Choose a vault to view/edit details
+        </Text>
         <View style={CommonStyles.lineDivider} />
         <ArchievedComponents />
         <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>

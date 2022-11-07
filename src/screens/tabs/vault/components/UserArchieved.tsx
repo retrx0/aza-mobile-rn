@@ -41,23 +41,6 @@ const ArchieveList = [
 
     altamount: "/\u20A6280,000",
   },
-  {
-    id: "2",
-    lockIcon: <NewIcon />,
-    item: "New Phone",
-    amount: "2000",
-    closeIcon: <CloseIcon />,
-
-    altamount: "/\u20A6280,000",
-  },
-  {
-    id: "3",
-    lockIcon: <UnlockIcon color={Colors.general.green} />,
-    item: "New Phone",
-    amount: "200,000",
-    closeIcon: <CloseIcon />,
-    stage: "Matured",
-  },
 ];
 const swipeFromRightOpen = () => {
   /* TODO document why this arrow function is empty */
@@ -137,8 +120,7 @@ const ListItem = ({
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
       rightThreshold={40}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Common", { screen: "TopBar" })}>
+      <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
             <View
@@ -182,20 +164,20 @@ const ListItem = ({
             <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
       <View style={styles.separator} />
     </Swipeable>
   );
 };
 
-const ArchievedComponents = () => {
+const UserArchieved = () => {
   return (
     <>
       <SafeAreaView style={styles.container}>
         <FlatList
           data={ArchieveList}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem {...item} />}
+          renderItem={({ item }) => <ListItem stage={""} {...item} />}
         />
       </SafeAreaView>
     </>
@@ -217,9 +199,9 @@ const styles = StyleSheet.create({
     color: Colors.general.green,
     marginRight: hp(12),
   },
-  container: {
-    flex: 1,
-  },
+  // container: {
+  //   flex: 1,
+  // },
   itemSeparator: {
     flex: 1,
     height: 1,
@@ -260,4 +242,4 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
-export default ArchievedComponents;
+export default UserArchieved;

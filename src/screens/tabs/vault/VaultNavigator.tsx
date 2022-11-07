@@ -19,6 +19,10 @@ import MaturedVault from "./withdraw-to-aza/MaturedVault";
 import UnMatureVault from "./withdraw-to-aza/UnMatureVault";
 import LockVault from "./LockVault";
 import ArchievedVault from "./ArchievedVault";
+import AddCoverImage from "./AddCoverImage";
+import NewUserVault from "./NewuserVault";
+import AddCoverImageSuccessful from "./SetVaultGoal";
+import ConfirmGoal from "./GoalConfirmation";
 
 const VaultStack = createNativeStackNavigator<VaultStackProps>();
 const Tab = createMaterialTopTabNavigator();
@@ -41,6 +45,11 @@ export type VaultStackProps = {
   vaultToBankSuccessfull: undefined;
   unMatureVault: undefined;
   maturedVault: undefined;
+  NewUserVault: undefined;
+  AddCoverImage: undefined;
+  AddCoverImageSuccessful: undefined;
+  ConfirmGoal: undefined;
+  UserVault: undefined;
 };
 
 export const VaultTabs = () => {
@@ -148,6 +157,26 @@ const VaultNavigator = () => {
         options={{ headerShown: false }}
         name="unMatureVault"
         component={UnMatureVault}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="AddCoverImage"
+        component={AddCoverImage}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="NewUserVault"
+        component={NewUserVault}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="AddCoverImageSuccessful"
+        component={AddCoverImageSuccessful}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="ConfirmGoal"
+        component={ConfirmGoal}
       />
     </VaultStack.Navigator>
   );

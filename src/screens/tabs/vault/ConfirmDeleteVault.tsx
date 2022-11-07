@@ -31,7 +31,7 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title="Delete"
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
+              navigation.navigate("Common", { screen: "AddVault" })
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
