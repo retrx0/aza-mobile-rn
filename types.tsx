@@ -120,7 +120,9 @@ export type VaultListProps = {
   closeIcon: any;
   amount: string;
   stage: string;
+  altamount: string;
 };
+
 export type VaultActivitytProps = {
   send: any;
   status: string;
