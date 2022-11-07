@@ -106,6 +106,12 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import { hp } from "../util/LayoutUtil";
+import NewUserVault from "../../screens/tabs/vault/NewuserVault";
+import AddCoverImage from "../../screens/tabs/vault/AddCoverImage";
+import AddCoverImageSuccessful from "../../screens/tabs/vault/SetVaultGoal";
+import SetVaultGoal from "../../screens/tabs/vault/SetVaultGoal";
+import ConfirmGoal from "../../screens/tabs/vault/GoalConfirmation";
+import UserVault from "../../screens/tabs/vault/UserVault";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -123,7 +129,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             }}
           />
         </View>
-        <Text style={CommonStyles.vaultTab}>Vault</Text>
+        <Text style={CommonStyles.vaultTab}>Flight Ticket Vault</Text>
       </View>
       <Tab.Navigator
         screenOptions={{
@@ -137,6 +143,11 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
+            fontSize: hp(16),
+            fontWeight: "500",
+            lineHeight: hp(17.75),
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            marginTop: hp(30),
           },
         }}
         initialRouteName="details">
@@ -275,6 +286,31 @@ const CommonStack = () => {
           options={{ headerShown: false }}
           name="VaultToBankSuccessful"
           component={VaultToBankSuccessful}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="NewUserVault"
+          component={NewUserVault}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AddCoverImage"
+          component={AddCoverImage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SetVaultGoal"
+          component={SetVaultGoal}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ConfirmGoal"
+          component={ConfirmGoal}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="UserVault"
+          component={UserVault}
         />
       </Stack.Group>
 
