@@ -20,7 +20,7 @@ export default function Divider({ style }: { style?: ViewStyle }) {
 const styles = StyleSheet.create({
   divider: {
     width: "100%",
-    height: 0.4,
+    height: 0.5,
     marginTop: 20,
     marginLeft: "auto",
     marginRight: "auto",
