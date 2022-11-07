@@ -36,7 +36,8 @@ const SelectNewRecurringTransferScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Recurring Money Transfer
         </Text>
       ),
@@ -75,7 +76,8 @@ const SelectNewRecurringTransferScreen = ({
 
     {
       name: "Vault",
-      handleNavigation: () => navigation.getParent()?.navigate("Vault"),
+      handleNavigation: () =>
+        navigation.getParent()?.navigate("Common", { screen: "NewUserVault" }),
       icon: <VaultLargeIcon size={24} color={Colors[colorScheme].mainText} />,
     },
   ];
@@ -89,7 +91,8 @@ const SelectNewRecurringTransferScreen = ({
             <View key={i}>
               <TouchableOpacity
                 onPress={handleNavigation}
-                style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+                style={[CommonStyles.col, { alignSelf: "stretch" }]}
+              >
                 <View
                   style={[
                     CommonStyles.row,
@@ -98,13 +101,15 @@ const SelectNewRecurringTransferScreen = ({
                       justifyContent: "space-between",
                       marginVertical: hp(20),
                     },
-                  ]}>
+                  ]}
+                >
                   <View>{icon}</View>
                   <View
                     style={[
                       CommonStyles.col,
                       { marginRight: "auto", marginLeft: 20 },
-                    ]}>
+                    ]}
+                  >
                     <Text
                       // lightColor={Colors.light.text}
                       // darkColor={Colors.dark.mainText}
@@ -112,7 +117,8 @@ const SelectNewRecurringTransferScreen = ({
                         fontSize: hp(16),
                         fontFamily: "Euclid-Circular-A-Semi-Bold",
                         fontWeight: "500",
-                      }}>
+                      }}
+                    >
                       {name}
                     </Text>
                   </View>
