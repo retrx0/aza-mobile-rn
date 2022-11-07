@@ -31,7 +31,7 @@ const BackButton: FC<BackButtonType> = ({ style, onPress }) => {
 const styles = StyleSheet.create({
   back: {
     marginLeft: hp(5),
-    fontSize: hp(18),
+    fontSize: hp(16),
     fontWeight: "400",
     fontFamily: "Euclid-Circular-A",
   },

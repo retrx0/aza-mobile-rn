@@ -51,6 +51,11 @@ export type CommonStackParamList = {
   SetVaultGoal: undefined;
   ConfirmGoal: undefined;
   UserVault: undefined;
+  ChangeVaultName: undefined;
+  ChangeGoalAmount: undefined;
+  VaultRecurringTransfer: undefined;
+  VaultRecurringAmount: undefined;
+  RecurringMoneyConfirmationScreen: undefined;
 
   // Settings
   ChangePassword: undefined;
