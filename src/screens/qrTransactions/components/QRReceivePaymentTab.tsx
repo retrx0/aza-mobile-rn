@@ -38,14 +38,12 @@ const QRReceivePaymentTab = ({
           alignItems: "center",
           paddingVertical: hp(30),
           paddingHorizontal: 15,
-        }}
-      >
+        }}>
         <View
           style={{
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -54,8 +52,7 @@ const QRReceivePaymentTab = ({
               fontSize: 14,
               marginTop: 10,
               marginBottom: 15,
-            }}
-          >
+            }}>
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -77,8 +74,7 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}
-            >
+              }}>
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -88,8 +84,7 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: "auto",
             marginBottom: "auto",
-          }}
-        >
+          }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
 

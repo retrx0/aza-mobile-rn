@@ -34,7 +34,6 @@ export default function ListItem({
           <Icon />
           <Text style={styles.text}>{title}</Text>
         </View>
-
         {IconComponent == null ? <ArrowFowardIcon /> : <IconComponent />}
       </View>
       <Divider />

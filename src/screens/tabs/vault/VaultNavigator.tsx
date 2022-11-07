@@ -20,7 +20,7 @@ import UnMatureVault from "./withdraw-to-aza/UnMatureVault";
 import LockVault from "./LockVault";
 import ArchievedVault from "./ArchievedVault";
 import AddCoverImage from "./AddCoverImage";
-import NewUserVault from "./NewuserVault";
+import NewUserVault from "./NewUserVault";
 import AddCoverImageSuccessful from "./SetVaultGoal";
 import ConfirmGoal from "./GoalConfirmation";
 
@@ -50,6 +50,9 @@ export type VaultStackProps = {
   AddCoverImageSuccessful: undefined;
   ConfirmGoal: undefined;
   UserVault: undefined;
+  VaultRecurringTranser: undefined;
+  VaultRecurringAmount: undefined;
+  RecurringMoneyConfirmationScreen: undefined;
 };
 
 export const VaultTabs = () => {

@@ -37,7 +37,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "AddVault" })
+              navigation.navigate("Common", { screen: "UserVault" })
             }
             styleText={{
               color: Colors[colorScheme].buttonText,

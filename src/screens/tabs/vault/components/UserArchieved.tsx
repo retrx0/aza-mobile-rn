@@ -10,14 +10,7 @@ import {
 import { SafeAreaView, Text, View } from "../../../../components/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import {
-  ArchieveIcon,
-  CloseIcon,
-  NairaIcon,
-  NewIcon,
-  TrashIcon,
-  UnlockIcon,
-} from "../../../../../assets/svg";
+import { ArchieveIcon, CloseIcon, TrashIcon } from "../../../../../assets/svg";
 import { VaultListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
@@ -38,7 +31,6 @@ const ArchieveList = [
     item: "Flight Ticket",
     amount: "2000",
     closeIcon: <CloseIcon />,
-
     altamount: "/\u20A6280,000",
   },
 ];
@@ -52,7 +44,6 @@ const ListItem = ({
   closeIcon,
   stage,
   altamount,
-
   onPress,
 }: VaultListProps) => {
   const navigation = useNavigation();
@@ -173,7 +164,7 @@ const ListItem = ({
 const UserArchieved = () => {
   return (
     <>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <FlatList
           data={ArchieveList}
           keyExtractor={(item) => item.id}

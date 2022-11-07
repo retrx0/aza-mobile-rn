@@ -14,7 +14,9 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
 
-const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const RecurringMoneyConfirmationScreen = ({
+  navigation,
+}: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -26,7 +28,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             alignItems: "center",
             justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{ marginLeft: 15.5 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -35,7 +37,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               textAlign: "center",
-              marginRight: 180,
+              marginRight: 170,
             }}>
             Confirmation
           </Text>
@@ -48,7 +50,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             borderBottomWidth: 1,
             width: 370,
             marginLeft: 20,
-            marginBottom: 20,
+            marginBottom: 35,
             borderColor: "#EAEAEC",
             flexDirection: "row",
             justifyContent: "space-between",
@@ -58,14 +60,14 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             icon={null}
             keyboardType="default"
             labelStyle={styles.label}
-            label="Vault Name"
-            placeholder="Flight Ticket"
+            label="To"
+            placeholder="Flight Ticket vault"
             containerStyle={undefined}
             placeholderTextColor={Colors[colorScheme].text}
             inputStyle={{
               fontSize: hp(16),
               fontWeight: "500",
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
             }}
           />
           <Image
@@ -76,25 +78,76 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             source={require("../../../../assets/images/icons/CoverImage.png")}
           />
         </View>
-
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={CommonStyles.inputStyle}
+            inputStyle={{
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+              borderBottomWidth: hp(0.25),
+              borderColor: "#EAEAEC",
+              paddingVertical: hp(8),
+              width: 370,
+            }}
             labelStyle={styles.label}
-            label="Vault Goal"
+            label="Amount"
             placeholder={"\u20A6 80,000"}
+            containerStyle={undefined}
+            placeholderTextColor={Colors[colorScheme].text}
+          />
+        </View>
+        <View style={CommonStyles.vaultInputcontainer}>
+          <Input
+            icon={null}
+            keyboardType="phone-pad"
+            inputStyle={{
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+              borderBottomWidth: hp(0.25),
+              borderColor: "#EAEAEC",
+              paddingVertical: hp(8),
+              width: 370,
+            }}
+            labelStyle={styles.label}
+            label="Period"
+            placeholder="Weekly"
+            containerStyle={undefined}
+            placeholderTextColor={Colors[colorScheme].text}
+          />
+        </View>
+        <View style={CommonStyles.vaultInputcontainer}>
+          <Input
+            icon={null}
+            keyboardType="phone-pad"
+            inputStyle={{
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+              borderBottomWidth: hp(0.25),
+              borderColor: "#EAEAEC",
+              paddingVertical: hp(8),
+              width: 370,
+            }}
+            labelStyle={styles.label}
+            label="Day"
+            placeholder="Wednesday"
             containerStyle={undefined}
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
           <Button
-            title="Confirm"
+            title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "LockVault",
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage: "Your recurring transfer was setup successfully",
+                navigateTo: "Home",
               })
             }
             styleText={{
@@ -103,7 +156,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}
@@ -112,7 +164,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <CancelButtonWithUnderline
             title="Cancel Transaction"
             onPressButton={() =>
-              navigation.getParent()?.navigate("SetVaultGoal")
+              navigation.getParent()?.navigate("VaultRecurringAmount")
             }
             styleText={CommonStyles.cancelStyle}
             style={{ borderBottomColor: Colors.general.red }}
@@ -123,4 +175,4 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
   );
 };
 
-export default ConfirmGoal;
+export default RecurringMoneyConfirmationScreen;

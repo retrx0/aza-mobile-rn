@@ -9,6 +9,20 @@ import { Text, View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
+import * as ImagePicker from "expo-image-picker";
+
+const selectImageFromGallery = async () => {
+  const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    aspect: [4, 3],
+    quality: 1,
+  });
+
+  if (!result.cancelled) {
+    const { uri } = result;
+    console.log("selected");
+  }
+};
 
 const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
@@ -19,11 +33,21 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
+            marginBottom: hp(30),
           }}>
-          <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: 17 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
-          <Text style={CommonStyles.withdraw}>Add Cover Image</Text>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+              textAlign: "center",
+              marginRight: 160,
+            }}>
+            Add Cover Image
+          </Text>
         </View>
         <Text style={CommonStyles.selectStyle}>
           When you add a photo and set a vault goal in the next step, your
@@ -43,6 +67,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             // }
             style={[CommonStyles.toBankbutton]}
             styleText={CommonStyles.toBankbuttonText}
+            onPressButton={() => selectImageFromGallery()}
           />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>

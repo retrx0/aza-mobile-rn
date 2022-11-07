@@ -36,9 +36,8 @@ const QRTransactionsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
-          QR Transactions
+          }}>
+          QR Transactionsss
         </Text>
       ),
       // hide default back button which only shows in android
@@ -93,8 +92,7 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}
-                  >
+                    }}>
                     {route.title}
                   </Text>
                 );

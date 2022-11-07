@@ -1,37 +1,79 @@
-import { Image, TouchableOpacity } from "react-native";
-import Button from "../../../components/buttons/Button";
+import { FlatList, Image, TouchableOpacity, Pressable } from "react-native";
 import { View, Text } from "../../../components/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Colors from "../../../constants/Colors";
 import React, { useState } from "react";
 import {
   AddIcon,
-  ArrowDownIcon,
-  CloseIcon,
   NairaIcon,
   OpenIcon,
-  OutgoingTransferIcon,
   SendIcon,
+  AZALightningLogo,
+  MenuIcon,
+  QRCodeDarkModeIcon,
+  QRCodeIcon,
 } from "../../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
-import Divider from "../../../components/divider/Divider";
 import UserArchieved from "./components/UserArchieved";
+import TransactionListItem from "../../../components/ListItem/TransactionListItem";
+import { UserData } from "../../../constants/userData";
 
 const UserVault = () => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
   const [secure, setSecure] = useState(true);
   const user = useAppSelector(selectUser);
+  const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
+
+  const toggleMenuModal = () => {
+    setMenuModalVisible(!isMenuModalVisible);
+  };
 
   return (
     <SpacerWrapper>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 5,
+          marginTop: hp(20),
+          marginBottom: hp(10),
+        }}>
+        <Pressable
+          onPress={toggleMenuModal}
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.5 : 1,
+            marginLeft: 15,
+          })}>
+          <MenuIcon size={25} color={Colors[colorScheme].text} />
+        </Pressable>
+        <AZALightningLogo
+          size={25}
+          color={
+            colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text
+          }
+        />
+        <Pressable
+          onPress={() => navigation.navigate("QRTransactions")}
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.5 : 1,
+          })}>
+          {colorScheme === "dark" ? (
+            <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
+          ) : (
+            <QRCodeIcon
+              size={24}
+              color={Colors.light.text}
+              style={{ marginRight: 15 }}
+            />
+          )}
+        </Pressable>
+      </View>
       <View style={[CommonStyles.col, { alignItems: "center" }]}>
         <TouchableOpacity
           onPress={() => navigation.getParent()?.navigate("Home")}>
@@ -56,7 +98,7 @@ const UserVault = () => {
               lightColor={"#000000"}
               darkColor={"#CCCCCC"}
               style={{
-                fontSize: 12,
+                fontSize: hp(12),
                 fontWeight: "400",
                 fontFamily: "Euclid-Circular-A",
                 marginRight: hp(9),
@@ -231,17 +273,40 @@ const UserVault = () => {
         </TouchableOpacity>
         <SendIcon color={Colors[colorScheme].secondaryText} />
       </View>
-      <Text
-        style={{
-          fontFamily: "Euclid-Circular-A",
-          fontSize: hp(14),
-          fontWeight: "500",
-          textAlign: "center",
-          marginTop: hp(100),
-          color: Colors[colorScheme].secondaryText,
-        }}>
-        You have no recent transactions
-      </Text>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id.toString()}
+        data={UserData.vaultRecentTransactions}
+        contentContainerStyle={{ paddingBottom: 250, paddingHorizontal: 15 }}
+        ItemSeparatorComponent={() => {
+          return (
+            <View
+              style={{
+                height: 25,
+              }}
+            />
+          );
+        }}
+        renderItem={({
+          item: {
+            amount,
+            date,
+            image,
+            name,
+            transactionTitle,
+            transactionType,
+          },
+        }) => (
+          <TransactionListItem
+            amount={amount}
+            date={date}
+            image={image}
+            name={name}
+            transactionTitle={transactionTitle}
+            transactionType={transactionType}
+          />
+        )}
+      />
     </SpacerWrapper>
   );
 };

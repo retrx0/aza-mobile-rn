@@ -30,22 +30,29 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
   const colorScheme = useColorScheme();
 
-  const switchColor = Colors[colorScheme].backgroundSecondary;
-  const switchOnColor = Colors[colorScheme].success;
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={CommonStyles.newvaultcontainer}>
-          <BackButton onPress={() => navigation.goBack()} />
-          <Text style={CommonStyles.vaultstyle}>Vault</Text>
-          {/* <Header
-            headerStyle={CommonStyles.vaultstyle}
-            descriptionStyle={CommonStyles.descriptionStyle}
-            heading="Vault"
-            description="Save and lock part of your Aza funds temporarily,
-        for future use."
-          /> */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: hp(30),
+          }}>
+          <View style={{ marginLeft: 17 }}>
+            <BackButton onPress={() => navigation.goBack()} />
+          </View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+              textAlign: "center",
+              marginRight: 200,
+            }}>
+            Vault
+          </Text>
         </View>
         <Text style={CommonStyles.descriptionStyle}>
           Save and lock part of your Aza funds temporarily, for future use
@@ -77,7 +84,11 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           })}
         </View> */}
 
-        <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
+        <View
+          style={{
+            marginTop: hp(20),
+            paddingHorizontal: 20,
+          }}>
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}

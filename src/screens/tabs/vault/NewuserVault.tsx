@@ -5,23 +5,77 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../types";
+import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Colors from "../../../constants/Colors";
 import React, { useState } from "react";
-import { AddIcon, NairaIcon, OpenIcon } from "../../../../assets/svg";
+import {
+  AddIcon,
+  AZALightningLogo,
+  MenuIcon,
+  NairaIcon,
+  OpenIcon,
+  QRCodeDarkModeIcon,
+  QRCodeIcon,
+} from "../../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
+import { Pressable } from "react-native";
+import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
+import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
 
 const NewUserVault = () => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
   const [secure, setSecure] = useState(true);
   const user = useAppSelector(selectUser);
+  const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
 
+  const toggleMenuModal = () => {
+    setMenuModalVisible(!isMenuModalVisible);
+  };
   return (
     <SpacerWrapper>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingHorizontal: 10,
+          marginTop: hp(20),
+          marginBottom: hp(10),
+        }}>
+        <Pressable
+          onPress={toggleMenuModal}
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.5 : 1,
+            marginLeft: 15,
+          })}>
+          <MenuIcon size={25} color={Colors[colorScheme].text} />
+        </Pressable>
+        <AZALightningLogo
+          size={25}
+          color={
+            colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text
+          }
+        />
+        <Pressable
+          onPress={() => navigation.navigate("QRTransactions")}
+          style={({ pressed }) => ({
+            opacity: pressed ? 0.5 : 1,
+          })}>
+          {colorScheme === "dark" ? (
+            <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
+          ) : (
+            <QRCodeIcon
+              size={24}
+              color={Colors.light.text}
+              style={{ marginRight: 15 }}
+            />
+          )}
+        </Pressable>
+      </View>
+
       <View style={[CommonStyles.col, { alignItems: "center" }]}>
         <TouchableOpacity
           onPress={() => navigation.getParent()?.navigate("Home")}>

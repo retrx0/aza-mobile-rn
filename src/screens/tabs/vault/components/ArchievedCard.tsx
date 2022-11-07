@@ -13,7 +13,6 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 import {
   ArchieveIcon,
   CloseIcon,
-  NairaIcon,
   NewIcon,
   TrashIcon,
   UnlockIcon,
@@ -38,7 +37,6 @@ const ArchieveList = [
     item: "Flight Ticket",
     amount: "2000",
     closeIcon: <CloseIcon />,
-
     altamount: "/\u20A6280,000",
   },
   {

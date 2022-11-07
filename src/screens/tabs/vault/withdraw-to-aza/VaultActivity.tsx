@@ -1,9 +1,9 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image } from "react-native";
 import { Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { FlightIcon } from "../../../../../assets/svg";
 import { ActivityCard, ActivityList } from "../components/ActivityComponents";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 const VaultActivity = () => {
   return (
@@ -16,19 +16,34 @@ const VaultActivity = () => {
                 key={index}
                 send={item.send}
                 status={item.status}
-                price={item.price}
                 due={item.due}
+                amount={item.amount}
               />
             );
           })}
-          <View style={CommonStyles.flightcontainer}>
-            <TouchableOpacity style={CommonStyles.flightIconContainer}>
-              <FlightIcon />
-            </TouchableOpacity>
-            <Text style={CommonStyles.flightText}>
-              Flight Ticket vault created
+          <TouchableOpacity style={CommonStyles.flightcontainer}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Image
+                style={{
+                  width: 36,
+                  height: 36,
+                }}
+                source={require("../../../../../assets/images/icons/CoverImage.png")}
+              />
+              <Text style={CommonStyles.flightText}>
+                Flight Ticket vault created
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: hp(10),
+                fontWeight: "600",
+                fontFamily: "Euclid-Circular-A",
+                marginLeft: hp(103),
+              }}>
+              4 July 2022 04:26
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={CommonStyles.line} />
       </View>

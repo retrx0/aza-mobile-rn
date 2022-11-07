@@ -19,17 +19,29 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={[CommonStyles.addVault]}>
-          <Header
-            heading="Vault"
-            description={""}
-            headerStyle={[CommonStyles.vaultAdd]}
-            descriptionStyle={undefined}
-          />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: hp(20),
+            marginBottom: hp(30),
+          }}>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+              textAlign: "center",
+              marginLeft: 160,
+            }}>
+            Vault
+          </Text>
           <TouchableOpacity>
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
         </View>
+
         <Text
           style={{
             fontSize: hp(16),

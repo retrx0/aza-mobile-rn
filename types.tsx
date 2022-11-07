@@ -113,6 +113,13 @@ export type DaysProps = {
   onPress?: () => void;
 };
 
+export type UnmatureVaultListProps = {
+  onPress?: () => void;
+  closeIcon: any;
+  title: string;
+  subTitle: string;
+};
+
 export type VaultListProps = {
   item: string;
   lockIcon: any;
@@ -126,7 +133,7 @@ export type VaultListProps = {
 export type VaultActivitytProps = {
   send: any;
   status: string;
-  price: string;
+  amount: string;
   due: string;
   onPress?: () => void;
 };
