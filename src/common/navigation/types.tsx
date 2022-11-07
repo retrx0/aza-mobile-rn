@@ -45,6 +45,12 @@ export type CommonStackParamList = {
   VaultToBank: undefined;
   VaultWithdrawConfirmation: undefined;
   VaultToBankSuccessful: undefined;
+  NewUserVault: undefined;
+  AddCoverImage: undefined;
+  AddCoverImageSuccessful: undefined;
+  SetVaultGoal: undefined;
+  ConfirmGoal: undefined;
+  UserVault: undefined;
 
   // Settings
   ChangePassword: undefined;
