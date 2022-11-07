@@ -275,16 +275,14 @@ const CommonStyles = StyleSheet.create({
     marginTop: 26,
   },
   lockupStyle: {
-    fontSize: hp(16),
+    fontSize: hp(14),
     fontWeight: "500",
-    lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A-Medium",
     marginTop: hp(10),
   },
   actionStyle: {
-    fontSize: hp(26),
+    fontSize: hp(24),
     fontWeight: "600",
-    lineHeight: hp(30),
     fontFamily: "Euclid-Circular-A-Bold",
   },
   caution: {
@@ -361,7 +359,6 @@ const CommonStyles = StyleSheet.create({
     paddingHorizontal: hp(5),
   },
   inputStyle: {
-    paddingRight: wp(10),
     fontSize: hp(16),
     fontWeight: "500",
     fontFamily: "Euclid-Circular-A",
@@ -380,16 +377,16 @@ const CommonStyles = StyleSheet.create({
   // },
   vaultInputcontainer: {
     paddingHorizontal: hp(20),
+    marginBottom: 35,
   },
   vaultInputContainer: {
     paddingHorizontal: hp(20),
-    marginBottom: hp(10),
+    marginBottom: hp(35),
   },
   confirmation: {
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     fontSize: hp(18),
     fontWeight: "400",
-    alignSelf: "center",
     marginLeft: hp(40),
   },
   archieved: {
@@ -408,7 +405,7 @@ const CommonStyles = StyleSheet.create({
   topTab: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: hp(30),
+    marginTop: hp(25),
     paddingHorizontal: hp(5),
     justifyContent: "space-between",
   },
@@ -422,8 +419,8 @@ const CommonStyles = StyleSheet.create({
   },
   vaultTab: {
     fontFamily: "Euclid-Circular-A-Bold",
-    fontSize: hp(18),
-    fontWeight: "400",
+    fontSize: hp(16),
+    fontWeight: "600",
     lineHeight: hp(20),
     textAlign: "center",
     marginRight: hp(130),
@@ -461,7 +458,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Medium",
     marginLeft: hp(18),
-    marginTop: hp(20),
+    marginTop: hp(30),
     marginBottom: hp(30),
   },
   descriptionStyle: {
@@ -469,7 +466,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     marginBottom: hp(40),
     fontFamily: "Euclid-Circular-A-Medium",
-    marginLeft: hp(21),
+    marginLeft: hp(18),
     width: 335,
   },
   undraw: {
