@@ -6,6 +6,7 @@ import { Contact } from "expo-contacts";
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
+  VaultConfirmation: VaultConfirmationParamsType;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
@@ -56,6 +57,8 @@ export type CommonStackParamList = {
   VaultRecurringTransfer: undefined;
   VaultRecurringAmount: undefined;
   RecurringMoneyConfirmationScreen: undefined;
+  Vault: undefined;
+  VaultToBankAmount: undefined;
 
   // Settings
   ChangePassword: undefined;
@@ -150,6 +153,11 @@ export interface NormalTransaction {
 }
 
 export type TransactionKeypadParamsType = {
+  transactionType: RecurringTransaction | NormalTransaction;
+  headerTitle: string;
+};
+
+export type VaultConfirmationParamsType = {
   transactionType: RecurringTransaction | NormalTransaction;
   headerTitle: string;
 };

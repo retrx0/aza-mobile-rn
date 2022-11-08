@@ -117,6 +117,9 @@ import ChangeGoalAmount from "../../screens/tabs/vault/ChangeGoalAmount";
 import VaultRecurringTransfer from "../../screens/tabs/vault/VaultRecurringTransfer";
 import VaultRecurringAmount from "../../screens/tabs/vault/VaultRecurringAmount";
 import RecurringMoneyConfirmationScreen from "../../screens/tabs/vault/RecurringMoneyConfirmationScreen";
+import Vault from "../../screens/tabs/vault/Vault";
+import VaultToBankAmount from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankAmount";
+import VaultConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -189,6 +192,7 @@ const CommonStack = () => {
           name="TransactionKeypad"
           component={TransactionKeypadScreen}
         />
+        <Stack.Screen name="VaultConfirmation" component={VaultConfirmation} />
       </Stack.Group>
 
       {/* Settings */}
@@ -341,6 +345,16 @@ const CommonStack = () => {
           name="RecurringMoneyConfirmationScreen"
           component={RecurringMoneyConfirmationScreen}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Vault"
+          component={Vault}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultToBankAmount"
+          component={VaultToBankAmount}
+        />
       </Stack.Group>
 
       {/* Payments */}
@@ -362,7 +376,7 @@ const CommonStack = () => {
               <Text
                 style={{
                   marginLeft: hp(5),
-                  fontSize: hp(18),
+                  fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
                 }}>
@@ -528,7 +542,7 @@ const CommonStack = () => {
                 <Text
                   style={{
                     marginLeft: 5,
-                    fontSize: hp(18),
+                    fontSize: hp(16),
                     fontWeight: "400",
                     fontFamily: "Euclid-Circular-A",
                   }}>
