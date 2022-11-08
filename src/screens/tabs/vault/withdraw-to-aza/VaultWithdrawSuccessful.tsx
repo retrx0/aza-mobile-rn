@@ -37,7 +37,16 @@ const VaultWithdrawsuccessful = ({
           ]}>
           <Button
             title="Continue"
-            onPressButton={() => navigation.getParent()?.navigate("Vault")}
+            // onPressButton={() => navigation.getParent()?.navigate("Vault")}
+            onPressButton={() =>
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage: "Your recurring transfer was setup successfully",
+                navigateTo: "Vault",
+              })
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}

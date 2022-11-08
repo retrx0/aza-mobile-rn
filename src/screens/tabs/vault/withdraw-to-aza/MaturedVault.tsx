@@ -27,15 +27,13 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             CommonStyles.matureContainer,
             { backgroundColor: Colors[colorScheme].mature },
             { borderColor: Colors[colorScheme].unlock },
-          ]}
-        >
+          ]}>
           <UnlockIcon color={Colors[colorScheme].unlock} size={0} />
           <Text
             style={[
               CommonStyles.matured,
               { color: Colors[colorScheme].unlock },
-            ]}
-          >
+            ]}>
             Matured
           </Text>
         </View>
@@ -43,7 +41,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           Your funds have successfully matured and can now be withdrawn.
         </Text>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(135) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(140) }]}>
           <Button
             title="Withdraw to Aza"
             onPressButton={() =>
@@ -51,11 +49,11 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "VaultToAza" })
             }
-            style={[CommonStyles.toAzabutton]}
-            styleText={CommonStyles.toAzabuttonText}
+            style={[CommonStyles.toBankbutton]}
+            styleText={CommonStyles.toBankbuttonText}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(55) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Withdraw to Bank"
             onPressButton={() =>
@@ -63,8 +61,8 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "VaultToBank" })
             }
-            style={[CommonStyles.toBankbutton]}
-            styleText={CommonStyles.toBankbuttonText}
+            style={[CommonStyles.toAzabutton]}
+            styleText={CommonStyles.toAzabuttonText}
           />
         </View>
       </View>

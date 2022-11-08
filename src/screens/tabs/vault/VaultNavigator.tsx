@@ -53,6 +53,7 @@ export type VaultStackProps = {
   VaultRecurringTranser: undefined;
   VaultRecurringAmount: undefined;
   RecurringMoneyConfirmationScreen: undefined;
+  VaultToBankAmount: undefined;
 };
 
 export const VaultTabs = () => {

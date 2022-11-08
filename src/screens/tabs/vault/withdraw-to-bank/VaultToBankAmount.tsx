@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import BackButton from "../../../components/buttons/BackButton";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import useColorScheme from "../../../hooks/useColorScheme";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { Text, View } from "../../../components/Themed";
-import { RootTabScreenProps } from "../../../../types";
-import { hp } from "../../../common/util/LayoutUtil";
-import Button from "../../../components/buttons/Button";
-import Colors from "../../../constants/Colors";
-import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
-import { NairaLargeIcon } from "../../../../assets/svg";
-import { numberWithCommas } from "../../../common/util/NumberUtils";
+import { NairaLargeIcon } from "../../../../../assets/svg";
 
-const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
+import { RootTabScreenProps } from "../../../../../types";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { numberWithCommas } from "../../../../common/util/NumberUtils";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import BackButton from "../../../../components/buttons/BackButton";
+import Button from "../../../../components/buttons/Button";
+import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
+
+const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -76,7 +77,18 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
           <Button
-            disabled={!amount}
+            title="Continue"
+            onPressButton={() =>
+              navigation
+                .getParent()
+                ?.navigate("Common", { screen: "ConfirmGoal" })
+            }
+            style={[CommonStyles.toAzabutton]}
+            styleText={CommonStyles.toAzabuttonText}
+          />
+        </View>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
+          <Button
             title="Save Change"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
@@ -98,4 +110,4 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
   );
 };
 
-export default ChangeGoalAmount;
+export default VaultToBankAmount;

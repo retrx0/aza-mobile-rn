@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
+import { NairaLargeIcon } from "../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../types";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../common/util/LayoutUtil";
+import { numberWithCommas } from "../../../common/util/NumberUtils";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
@@ -10,6 +12,7 @@ import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonW
 import Divider from "../../../components/divider/Divider";
 import CustomDropdown from "../../../components/dropdown/CustomDropdown";
 import { Input } from "../../../components/input/input";
+import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import { Header } from "../../../components/text/header";
 import { Text, View } from "../../../components/Themed";
 import Colors from "../../../constants/Colors";
@@ -18,6 +21,8 @@ import { VaultStyles as styles } from "./styles";
 
 const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
 
   return (
     <SpacerWrapper>
@@ -69,6 +74,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: hp(50),
+                marginBottom: hp(37),
               },
             ]}>
             <Text
@@ -89,8 +95,64 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </Text>
           </View>
         </TouchableOpacity>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View style={[CommonStyles.row]}>
+          <NairaLargeIcon
+            color={
+              !amount
+                ? Colors[colorScheme].secondaryText
+                : colorScheme === "dark"
+                ? Colors.dark.mainText
+                : Colors.light.text
+            }
+          />
+          <Text
+            style={{
+              color: !amount
+                ? Colors[colorScheme].secondaryText
+                : colorScheme === "dark"
+                ? Colors.dark.mainText
+                : Colors.light.text,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: 36,
+            }}>
+            {!amount && " 0"} {numberWithCommas(amount)}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignSelf: "center",
+            marginTop: hp(5),
+          }}>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A",
+              fontSize: 12,
+              fontWeight: "400",
+              marginRight: hp(3),
+            }}>
+            Aza Balance:
+          </Text>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: 12,
+              fontWeight: "400",
+            }}>
+            {"\u20A610,239,290.00"}{" "}
+          </Text>
+        </View>
+        <View
+          style={{
+            width: "100%",
+            marginTop: 20,
+            marginBottom: "auto",
+          }}>
+          <VirtualKeyboard value={amount} setValue={setAmount} />
+        </View>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
+            disabled={!amount}
             title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", {

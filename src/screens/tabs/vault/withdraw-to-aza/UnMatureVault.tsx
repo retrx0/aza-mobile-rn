@@ -9,7 +9,7 @@ import { Input } from "../../../../components/input/input";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import ListItem from "../components/ListItem";
 
@@ -54,7 +54,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
           </View>
         </View>
 
-        <View>
+        <TouchableOpacity onPress={() => setMatured()}>
           <View
             style={[
               CommonStyles.lockContainer,
@@ -74,7 +74,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
               <Text style={CommonStyles.seconds}>Mins</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
         <Text style={CommonStyles.maturity}>until maturity</Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
@@ -147,7 +147,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         <View style={{ marginTop: hp(60) }}>
           <Button
             title="Continue"
-            onPressButton={() => setMatured()}
+            // onPressButton={() => setMatured()}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}

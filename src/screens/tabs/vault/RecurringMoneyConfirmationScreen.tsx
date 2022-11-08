@@ -138,7 +138,7 @@ const RecurringMoneyConfirmationScreen = ({
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Continue"
             onPressButton={() =>

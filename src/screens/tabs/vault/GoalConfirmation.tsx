@@ -35,7 +35,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               textAlign: "center",
-              marginRight: 180,
+              marginRight: hp(170),
             }}>
             Confirmation
           </Text>
@@ -46,9 +46,9 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             borderBottomWidth: 1,
-            width: 370,
-            marginLeft: 20,
-            marginBottom: 20,
+            width: wp(370),
+            marginLeft: hp(20),
+            marginBottom: hp(35),
             borderColor: "#EAEAEC",
             flexDirection: "row",
             justifyContent: "space-between",
@@ -89,7 +89,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Confirm"
             onPressButton={() =>

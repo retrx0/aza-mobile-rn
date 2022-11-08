@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import {
   StyleSheet,
@@ -15,6 +14,7 @@ import { VaultListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { useNavigation } from "@react-navigation/core";
 
 const ArchieveList = [
   {
@@ -36,6 +36,7 @@ const ArchieveList = [
 ];
 const swipeFromRightOpen = () => {
   /* TODO document why this arrow function is empty */
+  const navigation = useNavigation();
 };
 const ListItem = ({
   lockIcon,
@@ -112,7 +113,13 @@ const ListItem = ({
       friction={2}
       rightThreshold={40}>
       <View>
-        <View style={styles.vaultContainer}>
+        <TouchableOpacity
+          style={styles.vaultContainer}
+          onPress={() => {
+            navigation.navigate("Common", {
+              screen: "AddVault",
+            });
+          }}>
           <View style={styles.vaultItem}>
             <View
               style={[
@@ -154,7 +161,7 @@ const ListItem = ({
             <Text style={styles.stage}>{stage}</Text>
             <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.separator} />
     </Swipeable>

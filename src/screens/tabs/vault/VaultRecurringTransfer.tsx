@@ -32,11 +32,13 @@ const VaultRecurringTransfer = ({
   ];
 
   const day = [
-    { label: "2 Days", value: "1" },
-    { label: "4 Days", value: "1" },
-    { label: "1 Week", value: "1" },
-    { label: "2 Weeks", value: "1" },
-    { label: "1 Month", value: "1" },
+    { label: "Saturday", value: "1" },
+    { label: "Sunday", value: "1" },
+    { label: "Monday", value: "1" },
+    { label: "Tuesday", value: "1" },
+    { label: "Wednesday", value: "1" },
+    { label: "Thursday", value: "1" },
+    { label: "Friday", value: "1" },
   ];
 
   return (

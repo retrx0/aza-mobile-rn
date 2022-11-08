@@ -5,7 +5,8 @@ import { hp } from "../../../common/util/LayoutUtil";
 
 export const VaultStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: hp(20),
+    flex: hp(1),
   },
   label: {
     fontFamily: "Euclid-Circular-A",

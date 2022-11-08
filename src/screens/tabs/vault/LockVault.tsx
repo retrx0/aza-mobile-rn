@@ -25,15 +25,20 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             This action cannot be undone
           </Text>
           <Text style={CommonStyles.lockupStyle}>
-            You are about to lock up {"\u20A680,000"} for 2 Weeks
+            You are about to lock up {"\u20A680000"} for 2 Weeks
           </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "VaultSuccessful",
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage:
+                  " You have successfully locked away \u20A62000 to Flight Ticket vault",
+                navigateTo: "UserVault",
               })
             }
             styleText={{

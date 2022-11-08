@@ -19,18 +19,25 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}>
           <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
-          <View>
-            <Header
-              heading="Confirmation"
-              description={""}
-              headerStyle={CommonStyles.confirmation}
-              descriptionStyle={undefined}
-            />
-          </View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+              textAlign: "center",
+              marginRight: 170,
+            }}>
+            Confirmation
+          </Text>
         </View>
         <Text style={CommonStyles.confirmDetails}>
           Kindly confirm the details of this transaction
@@ -59,12 +66,17 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "VaultWithdrawsuccessful",
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage:
+                  "   You have successfully withdrawn \u20A6 80,000 to your Aza Account",
+                navigateTo: "Vault",
               })
             }
             styleText={{
