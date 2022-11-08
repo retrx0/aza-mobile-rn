@@ -83,10 +83,10 @@ const CommonStyles = StyleSheet.create({
     borderRadius: hp(10),
   },
   accessContainer: {
-    borderBottomWidth: hp(0.4),
-    borderColor: Colors.dark.separator,
-    width: wp(335),
-    borderTopWidth: hp(0.4),
+    borderBottomWidth: hp(0.3),
+    borderColor: "black",
+    width: wp(375),
+    borderTopWidth: hp(0.3),
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
@@ -103,7 +103,6 @@ const CommonStyles = StyleSheet.create({
     marginLeft: hp(20),
     marginTop: hp(30),
     marginBottom: hp(100),
-    width: 335,
   },
   withdrawSuccessfull: {
     fontFamily: "Euclid-Circular-A",
@@ -112,7 +111,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17),
     color: Colors.general.grey,
     marginLeft: hp(20),
-    width: wp(307),
+    textAlign: "center",
   },
   seconds: {
     fontSize: hp(14),
@@ -190,14 +189,14 @@ const CommonStyles = StyleSheet.create({
 
   archivedBox: {
     marginBottom: hp(10),
-    borderBottomColor: "#121212",
+    borderBottomColor: "#A6A6A6",
     paddingBottom: hp(1),
     borderBottomWidth: hp(1),
   },
   addAccount: {
     color: "#121212",
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontFamily: "Euclid-Circular-A",
+    fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17),
   },
@@ -459,7 +458,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Medium",
     marginLeft: hp(18),
     marginTop: hp(30),
-    marginBottom: hp(30),
+    marginBottom: hp(35),
   },
   descriptionStyle: {
     fontSize: hp(16),

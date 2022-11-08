@@ -59,8 +59,7 @@ const CustomDropdown = ({ data, value, setValue, placeholder }: IProps) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontSize: 14,
-          }}
-        >
+          }}>
           {item.label}
         </Text>
       )}
