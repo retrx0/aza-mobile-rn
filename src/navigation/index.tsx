@@ -15,8 +15,8 @@ import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import * as Notifications from "expo-notifications";
 
-import QRTransactionsScreen from "../screens/qrTransactions/QRTransactionsScreen";
-import QRCodeScreen from "../screens/qrTransactions/QRCodeScreen";
+import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
+import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";

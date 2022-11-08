@@ -90,14 +90,14 @@ import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
 import ContactUsScreen from "../../screens/menu/ContactUsScreen";
 
 // transfer modal screens
-import SendMoneyScreen from "../../screens/transferModal/SendMoneyScreen";
-import RequestMoneyScreen from "../../screens/transferModal/RequestMoneyScreen";
-import RequestMoneyConfirmationScreen from "../../screens/transferModal/RequestMoneyConfirmationScreen";
-import SendMoneyConfirmationScreen from "../../screens/transferModal/SendMoneyConfirmationScreen";
-import RecurringTransferScreen from "../../screens/transferModal/RecurringTransferScreen";
-import SelectNewRecurringTransferScreen from "../../screens/transferModal/SelectNewRecurringTransferScreen";
-import SetupRecurringTransferScreen from "../../screens/transferModal/SetupRecurringTransferScreen";
-import RecurringTransferConfirmationScreen from "../../screens/transferModal/RecurringTransferConfirmationScreen";
+import SendMoneyScreen from "../../screens/transfer-modal/SendMoneyScreen";
+import RequestMoneyScreen from "../../screens/transfer-modal/RequestMoneyScreen";
+import RequestMoneyConfirmationScreen from "../../screens/transfer-modal/RequestMoneyConfirmationScreen";
+import SendMoneyConfirmationScreen from "../../screens/transfer-modal/SendMoneyConfirmationScreen";
+import RecurringTransferScreen from "../../screens/transfer-modal/RecurringTransferScreen";
+import SelectNewRecurringTransferScreen from "../../screens/transfer-modal/SelectNewRecurringTransferScreen";
+import SetupRecurringTransferScreen from "../../screens/transfer-modal/SetupRecurringTransferScreen";
+import RecurringTransferConfirmationScreen from "../../screens/transfer-modal/RecurringTransferConfirmationScreen";
 
 // transaction keypad screen
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
@@ -157,7 +157,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             marginTop: hp(30),
           },
         }}
-        initialRouteName="details">
+        initialRouteName="details"
+      >
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -368,7 +369,8 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={16}
@@ -379,7 +381,8 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}>
+                }}
+              >
                 Back
               </Text>
             </TouchableOpacity>
@@ -395,7 +398,8 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}>
+        })}
+      >
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -534,7 +538,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -545,7 +550,8 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "400",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
@@ -562,7 +568,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
             },
-          })}>
+          })}
+        >
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}
