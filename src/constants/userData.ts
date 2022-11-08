@@ -129,8 +129,7 @@ export const UserData = {
   vaultRecentTransactions: [
     {
       id: 1,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+      image: "file:///Users/mac/Downloads/CoverImage.png",
       name: "Flight Ticket",
       transactionType: "incoming",
       transactionTitle: "Transfer to Bank",
@@ -193,7 +192,7 @@ export const UserData = {
       id: 7,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-      name: "Adewale Adeyesufu",
+      name: "Flight Ticket",
       transactionType: "outgoing",
       transactionTitle: "Outgoing Transfer",
       amount: "28,000.00",
@@ -204,7 +203,7 @@ export const UserData = {
       id: 8,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-      name: "Adewale Adeyesufu",
+      name: "Flight Ticket",
       transactionType: "outgoing",
       transactionTitle: "Outgoing Transfer",
       amount: "28,000.00",
@@ -215,7 +214,7 @@ export const UserData = {
       id: 9,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-      name: "Adewale Adeyesufu",
+      name: "Flight Ticket",
       transactionType: "outgoing",
       transactionTitle: "Outgoing Transfer",
       amount: "28,000.00",
@@ -226,7 +225,7 @@ export const UserData = {
       id: 10,
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-      name: "Adewale Adeyesufu",
+      name: "Flight Ticket",
       transactionType: "outgoing",
       transactionTitle: "Outgoing Transfer",
       amount: "28,000.00",

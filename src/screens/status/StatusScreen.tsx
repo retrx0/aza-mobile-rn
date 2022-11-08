@@ -84,7 +84,7 @@ const StatusScreen = ({
           </Text>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}>
+          style={[CommonStyles.col, { marginBottom: hp(70), width: "100%" }]}>
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
