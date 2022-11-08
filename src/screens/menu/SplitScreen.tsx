@@ -30,8 +30,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(18),
-            fontWeight: "500",
+            fontSize: hp(16),
+            fontWeight: "600",
           }}>
           Split
         </Text>
@@ -79,6 +79,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     alignSelf: "stretch",
                     justifyContent: "space-between",
                     marginVertical: hp(20),
+                    marginLeft: hp(3),
                   },
                 ]}>
                 <View>{icon}</View>
@@ -93,6 +94,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),
+                      fontWeight: "600",
                     }}>
                     {name}
                   </Text>

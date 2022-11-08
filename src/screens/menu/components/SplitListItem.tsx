@@ -54,7 +54,6 @@ const SplitListItem = ({
         style={{
           display: "flex",
           marginRight: "auto",
-
           marginLeft: 20,
         }}>
         <Text
@@ -63,7 +62,7 @@ const SplitListItem = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-            fontWeight: "500",
+            fontWeight: "600",
           }}>
           {name}
         </Text>
@@ -81,7 +80,7 @@ const SplitListItem = ({
             style={{
               fontSize: hp(14),
               fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
+              fontWeight: "400",
             }}>
             Payments
           </Text>
@@ -178,12 +177,13 @@ const SplitListItem = ({
           }}>
           <Text
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
               fontSize: hp(16),
               color: Colors.light.error,
             }}>
-            {"\u20A6"} {numberWithCommas(amount)}
+            {"\u20A6"}
+            {numberWithCommas(amount)}
           </Text>
           <Text
             // lightColor={Colors.light.mainText}
@@ -191,8 +191,8 @@ const SplitListItem = ({
             style={{
               marginTop: 3,
               fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
-              fontSize: hp(13),
+              fontWeight: "300",
+              fontSize: hp(10),
             }}>
             {date}
           </Text>

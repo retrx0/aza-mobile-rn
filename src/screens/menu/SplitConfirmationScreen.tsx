@@ -25,8 +25,8 @@ const SplitConfirmationScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -54,7 +54,7 @@ const SplitConfirmationScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               marginBottom: hp(20),
               marginLeft: hp(5),
@@ -69,7 +69,7 @@ const SplitConfirmationScreen = ({
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
-                fontWeight: "500",
+                fontWeight: "400",
                 marginLeft: hp(5),
               }}>
               To
@@ -83,7 +83,7 @@ const SplitConfirmationScreen = ({
                 {
                   borderBottomColor: Colors[colorScheme].separator,
                   fontFamily: "Euclid-Circular-A",
-                  fontSize: hp(14),
+                  fontSize: hp(16),
                   fontWeight: "500",
                   marginLeft: hp(5),
                 },
@@ -114,9 +114,9 @@ const SplitConfirmationScreen = ({
                 // lightColor={Colors.light.secondaryText}
                 // darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
-                  fontWeight: "500",
+                  fontWeight: "400",
                   marginLeft: hp(5),
                 }}>
                 Created By
@@ -137,7 +137,7 @@ const SplitConfirmationScreen = ({
                   // darkColor={Colors.dark.mainText}
                   style={{
                     fontFamily: "Euclid-Circular-A",
-                    fontSize: hp(14),
+                    fontSize: hp(16),
                     fontWeight: "500",
                     marginLeft: hp(10),
                   }}>
@@ -151,7 +151,7 @@ const SplitConfirmationScreen = ({
                     marginLeft: "auto",
                     color: "#FF361A",
                   }}>
-                  {"\u20A6"}{" "}
+                  {"\u20A6"}
                   {numberWithCommas(splitAmountForEachPerson.toFixed())}
                 </Text>
               </View>
@@ -165,9 +165,9 @@ const SplitConfirmationScreen = ({
                 // lightColor={Colors.light.secondaryText}
                 // darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
-                  fontWeight: "500",
+                  fontWeight: "400",
                   marginLeft: hp(5),
                 }}>
                 Shared With
@@ -204,7 +204,7 @@ const SplitConfirmationScreen = ({
                       marginLeft: "auto",
                       color: "#FF361A",
                     }}>
-                    {"\u20A6"}{" "}
+                    {"\u20A6"}
                     {numberWithCommas(splitAmountForEachPerson.toFixed())}
                   </Text>
                 </View>
@@ -216,9 +216,9 @@ const SplitConfirmationScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
-                fontWeight: "500",
+                fontWeight: "400",
                 marginLeft: hp(5),
               }}>
               Total Amount
@@ -234,7 +234,7 @@ const SplitConfirmationScreen = ({
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(14),
                   fontWeight: "500",
-                  marginLeft: hp(10),
+                  marginLeft: hp(5),
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -243,7 +243,7 @@ const SplitConfirmationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(65) }]}>
           <Button
             title="Confirm"
             onPressButton={() => navigation.navigate("ChooseSplit")}

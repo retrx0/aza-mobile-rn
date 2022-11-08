@@ -85,8 +85,8 @@ const AccountLimitsTab = ({
               // lightColor={Colors.light.text}
               // darkColor={Colors.dark.mainText}
               style={{
-                fontSize: hp(14),
-                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
+                fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "600",
 
                 // color: Colors[colorScheme].secondaryText,
@@ -102,9 +102,8 @@ const AccountLimitsTab = ({
                 // darkColor={Colors.dark.secondaryText}
                 style={{
                   fontSize: hp(16),
-                  marginBottom: hp(5),
                   fontWeight: "400",
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A",
 
                   // color: Colors[colorScheme].secondaryText,
                 }}>
@@ -116,11 +115,10 @@ const AccountLimitsTab = ({
                 style={{
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
-
                   fontWeight: "600",
+                  marginTop: hp(5),
                 }}>
-                {"\u20A6 "}
-                50,000
+                {"\u20A650,000"}
               </Text>
             </View>
             <View
@@ -132,9 +130,8 @@ const AccountLimitsTab = ({
                 darkColor={Colors.dark.secondaryText}
                 style={{
                   fontSize: hp(16),
-                  marginBottom: hp(5),
                   fontWeight: "400",
-                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontFamily: "Euclid-Circular-A",
                 }}>
                 Maximum Balance:
               </Text>
@@ -142,11 +139,12 @@ const AccountLimitsTab = ({
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: hp(12),
-                  fontFamily: "Euclid-Circular-A--Semi-Bold",
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontWeight: "600",
+                  marginTop: hp(5),
                 }}>
-                {"\u20A6 "}
-                200,000
+                {"\u20A6200,000"}
               </Text>
             </View>
             <View
@@ -164,7 +162,7 @@ const AccountLimitsTab = ({
                   fontSize: hp(16),
                   marginBottom: hp(5),
                   fontWeight: "600",
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A-Medium",
                 }}>
                 Verify BVN
               </Text>

@@ -18,8 +18,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -45,12 +45,12 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: hp(16),
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(14),
               marginTop: hp(20),
               marginBottom: hp(40),
               marginLeft: hp(5),
-              fontWeight: "600",
+              fontWeight: "400",
             }}>
             Contact us with any questions. We are ready to help
           </Text>
@@ -78,6 +78,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
                 marginLeft: hp(5),
+                fontSize: hp(14),
               }}
               placeholder="Enter your Email"
             />
@@ -87,7 +88,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
           style={[
             CommonStyles.col,
             {
-              marginBottom: hp(50),
+              marginBottom: hp(100),
               width: "95%",
               alignItems: "center",
               justifyContent: "center",

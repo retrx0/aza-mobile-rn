@@ -145,9 +145,10 @@ const IncomingSplitRequestAcceptanceScreen = ({
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: hp(12),
+              fontSize: hp(16),
               fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
+              fontWeight: "400",
             }}>
             Request Creator
           </Text>
@@ -176,7 +177,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 darkColor={Colors.dark.mainText}
                 style={{
                   fontSize: hp(16),
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
                 }}>
                 Chiazo
@@ -188,7 +189,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   color: "#FF361A",
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}>
-                {"\u20A6"} {numberWithCommas(6666)}
+                {"\u20A6"}
+                {numberWithCommas(6666)}
               </Text>
             </View>
           </View>
@@ -197,10 +199,11 @@ const IncomingSplitRequestAcceptanceScreen = ({
           // lightColor={Colors.light.secondaryText}
           // darkColor={Colors.dark.secondaryText}
           style={{
-            fontSize: hp(12),
+            fontSize: hp(16),
             fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
             marginTop: hp(25),
+            fontWeight: "400",
           }}>
           Request Recipients
         </Text>
@@ -231,7 +234,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   darkColor={Colors.dark.mainText}
                   style={{
                     fontSize: hp(16),
-                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
                   }}>
                   James
@@ -243,13 +246,14 @@ const IncomingSplitRequestAcceptanceScreen = ({
                     color: "#FF361A",
                     fontFamily: "Euclid-Circular-A-Medium",
                   }}>
-                  {"\u20A6"} {numberWithCommas(6666)}
+                  {"\u20A6"}
+                  {numberWithCommas(6666)}
                 </Text>
               </View>
             </View>
           </View>
         </ScrollView>
-        <View style={[CommonStyles.col, { marginBottom: hp(35) }]}>
+        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
           <Button
             title="Accept Request"
             onPressButton={() =>

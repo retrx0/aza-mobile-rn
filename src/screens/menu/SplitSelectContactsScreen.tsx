@@ -47,8 +47,8 @@ const SplitSelectContactsScreen = ({
           // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(18),
-            fontWeight: "500",
+            fontSize: hp(16),
+            fontWeight: "600",
           }}>
           Split
         </Text>
@@ -124,9 +124,10 @@ const SplitSelectContactsScreen = ({
             styles.input,
             {
               borderBottomColor: Colors[colorScheme].separator,
-              fontSize: hp(15),
+              fontSize: hp(16),
               fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
+              fontWeight: "500",
             },
           ]}
           value={search}
@@ -174,10 +175,11 @@ const SplitSelectContactsScreen = ({
           style={{
             // color: Colors[colorScheme].secondaryText,
             marginTop: hp(40),
-            fontSize: hp(15),
+            fontSize: hp(14),
             marginBottom: hp(20),
             fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
+            fontWeight: "400",
           }}>
           {search.length > 0 ? "Contacts" : "Quick contacts"}
         </Text>

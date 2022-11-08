@@ -65,8 +65,8 @@ const OutgoingSplitRequestsScreen = ({
             // darkColor={Colors.dark.secondaryText}
             style={{
               fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontWeight: "400",
+              fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
             }}>
             Request Creator
@@ -96,7 +96,7 @@ const OutgoingSplitRequestsScreen = ({
                 darkColor={Colors.dark.mainText}
                 style={{
                   fontSize: hp(15),
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
                 }}>
                 Chiazo
@@ -109,7 +109,8 @@ const OutgoingSplitRequestsScreen = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
                 }}>
-                {"\u20A6"} {numberWithCommas(6666)}
+                {"\u20A6"}
+                {numberWithCommas(6666)}
               </Text>
             </View>
             <SplitPaymentStatus paid={true} />
@@ -120,8 +121,8 @@ const OutgoingSplitRequestsScreen = ({
           // darkColor={Colors.dark.secondaryText}
           style={{
             fontSize: hp(16),
-            fontWeight: "500",
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontWeight: "400",
+            fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
             marginTop: hp(25),
           }}>
@@ -154,7 +155,7 @@ const OutgoingSplitRequestsScreen = ({
                   darkColor={Colors.dark.mainText}
                   style={{
                     fontSize: hp(15),
-                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
                   }}>
                   James
@@ -167,7 +168,8 @@ const OutgoingSplitRequestsScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
                   }}>
-                  {"\u20A6"} {numberWithCommas(6666)}
+                  {"\u20A6"}
+                  {numberWithCommas(6666)}
                 </Text>
               </View>
               <SplitPaymentStatus paid={true} />
@@ -197,7 +199,7 @@ const OutgoingSplitRequestsScreen = ({
                   darkColor={Colors.dark.mainText}
                   style={{
                     fontSize: hp(15),
-                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
                   }}>
                   James
@@ -210,7 +212,8 @@ const OutgoingSplitRequestsScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
                   }}>
-                  {"\u20A6"} {numberWithCommas(6666)}
+                  {"\u20A6"}
+                  {numberWithCommas(6666)}
                 </Text>
               </View>
               <SplitPaymentStatus paid={false} />
@@ -218,7 +221,7 @@ const OutgoingSplitRequestsScreen = ({
           </View>
         </ScrollView>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(65) }]}>
           <Button
             title="Cancel Request"
             onPressButton={() => navigation.navigate("Split")}

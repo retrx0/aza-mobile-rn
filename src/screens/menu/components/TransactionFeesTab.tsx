@@ -59,7 +59,7 @@ const TransactionFeesTab = () => {
                 // lightColor={Colors.light.text}
                 // darkColor={Colors.dark.mainText}
                 style={{
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontFamily: "Euclid-Circular-A-Medium",
                   fontSize: hp(16),
                   fontWeight: "600",
                   marginLeft: hp(5),

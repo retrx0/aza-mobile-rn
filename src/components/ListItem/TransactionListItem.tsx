@@ -47,7 +47,7 @@ export default function TransactionListItem({
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Bold",
-            fontSize: hp(19),
+            fontSize: hp(16),
             fontWeight: "600",
           }}>
           {name}
@@ -109,7 +109,8 @@ export default function TransactionListItem({
             color:
               transactionType === "incoming" ? "#2A9E17" : Colors.light.error,
           }}>
-          {"\u20A6"} {amount}
+          {"\u20A6"}
+          {amount}
         </Text>
         <Text
           lightColor={Colors.light.text}

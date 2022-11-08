@@ -55,21 +55,21 @@ const IncomingSplitRequestsScreen = ({
   const listItems = [
     {
       name: "Coldstone",
-      amount: "2000000",
+      amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThTumpKjOB5PtCkHk3DUZ_6px9A073NcfLPA&usqp=CAU",
     },
     {
       name: "Burger King",
-      amount: "120000",
+      amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07WdeXexZ8Igvtni6pY013Wc0K1i9uuWfPA&usqp=CAU",
     },
     {
       name: "KFC",
-      amount: "480000",
+      amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiwr_jykU8Gdf9mpFXyUFwKAbCEaLFPFJbfA&usqp=CAU",

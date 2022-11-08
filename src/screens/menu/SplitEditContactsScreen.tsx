@@ -99,12 +99,19 @@ const SplitEditContactsScreen = ({
               style={{
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
-                marginLeft: hp(5),
+                fontWeight: "500",
               }}>
               Chiazo
             </Text>
-            <Text style={{ fontSize: hp(12), marginTop: 5, color: "#FF361A" }}>
-              {"\u20A6"} {numberWithCommas(splitAmountForEachPerson.toFixed())}
+            <Text
+              style={{
+                fontSize: hp(14),
+                marginTop: 5,
+                color: "#FF361A",
+                fontWeight: "400",
+              }}>
+              {"\u20A6"}
+              {numberWithCommas(splitAmountForEachPerson.toFixed())}
             </Text>
           </View>
           <View style={[CommonStyles.row]}>
@@ -138,7 +145,6 @@ const SplitEditContactsScreen = ({
                   alignSelf: "stretch",
                   justifyContent: "space-between",
                   marginTop: hp(25),
-                  marginLeft: hp(5),
                 },
               ]}>
               <Image
@@ -150,7 +156,7 @@ const SplitEditContactsScreen = ({
               <View
                 style={[
                   CommonStyles.col,
-                  { marginLeft: hp(20), marginRight: "auto" },
+                  { marginRight: "auto", marginLeft: 20 },
                 ]}>
                 <Text
                   lightColor={Colors.light.text}
@@ -158,7 +164,6 @@ const SplitEditContactsScreen = ({
                   style={{
                     fontSize: hp(16),
                     fontFamily: "Euclid-Circular-A-Medium",
-                    marginLeft: hp(5),
                     fontWeight: "500",
                   }}>
                   {name}
@@ -169,7 +174,7 @@ const SplitEditContactsScreen = ({
                     marginTop: hp(5),
                     color: "#FF361A",
                   }}>
-                  {"\u20A6"}{" "}
+                  {"\u20A6"}
                   {numberWithCommas(splitAmountForEachPerson.toFixed())}
                 </Text>
               </View>
@@ -198,7 +203,7 @@ const SplitEditContactsScreen = ({
         <View
           style={[
             CommonStyles.col,
-            { width: "100%", marginBottom: hp(35), marginTop: 5 },
+            { width: "100%", marginBottom: hp(65), marginTop: 5 },
           ]}>
           <Button
             title="Confirm"

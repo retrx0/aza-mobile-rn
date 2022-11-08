@@ -26,8 +26,8 @@ const SplitEditContactScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -53,8 +53,8 @@ const SplitEditContactScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: hp(16),
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(14),
               marginBottom: hp(50),
               fontWeight: "500",
               marginLeft: hp(5),
@@ -85,6 +85,7 @@ const SplitEditContactScreen = ({
               ]}
               showSoftInputOnFocus={false}
               value={contactName}
+              keyboardType="default"
             />
             <Image
               source={{
@@ -112,13 +113,14 @@ const SplitEditContactScreen = ({
                   marginTop: hp(15),
                   alignSelf: "stretch",
                   position: "relative",
+                  marginLeft: 5,
                 },
               ]}>
               <Text
                 // lightColor={Colors.light.mainText}
                 // darkColor={Colors.dark.mainText}
                 style={{ position: "absolute", paddingBottom: 5 }}>
-                {"\u20A6 "}
+                {"\u20A6"}
               </Text>
               <TextInput
                 // lightColor={Colors.light.mainText}
@@ -141,7 +143,7 @@ const SplitEditContactScreen = ({
         <View
           style={[
             CommonStyles.col,
-            { width: "100%", marginBottom: hp(35), marginTop: 5 },
+            { width: "100%", marginBottom: hp(65), marginTop: 5 },
           ]}>
           <Button
             title="Confirm"
@@ -184,6 +186,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     marginTop: hp(15),
     borderBottomWidth: 1,
+    fontSize: hp(14),
+    marginLeft: 5,
   },
   contactImage: {
     position: "absolute",
@@ -199,7 +203,8 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontFamily: "Euclid-Circular-A-Medium",
     paddingBottom: 5,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderBottomWidth: 1,
+    fontSize: hp(14),
   },
 });

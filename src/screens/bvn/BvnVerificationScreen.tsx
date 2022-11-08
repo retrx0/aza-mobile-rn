@@ -25,11 +25,12 @@ const BvnVerificationScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "600",
           }}>
           Tier 1 Verification
         </Text>
@@ -48,30 +49,33 @@ const BvnVerificationScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 16,
+              fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
+              marginLeft: 5,
             }}>
             Verify your BVN
           </Text>
           <View>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 16,
+                fontSize: hp(16),
+
                 fontWeight: "400",
+                marginLeft: 5,
               }}>
               BVN
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -80,6 +84,9 @@ const BvnVerificationScreen = ({
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                fontSize: hp(16),
+                fontWeight: "500",
+                marginLeft: 5,
               }}
               placeholder="Enter your bank verification number"
               keyboardType="number-pad"
@@ -88,7 +95,7 @@ const BvnVerificationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}>
+          style={[CommonStyles.col, { marginBottom: hp(65), width: "100%" }]}>
           <Button
             title="Verify"
             onPressButton={() =>
@@ -106,7 +113,6 @@ const BvnVerificationScreen = ({
               fontSize: 14,
             }}
             style={{
-              marginBottom: hp(20),
               backgroundColor: Colors[colorScheme].button,
             }}
           />
