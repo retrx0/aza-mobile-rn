@@ -129,7 +129,8 @@ export const UserData = {
   vaultRecentTransactions: [
     {
       id: 1,
-      image: "file:///Users/mac/Downloads/CoverImage.png",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
       name: "Flight Ticket",
       transactionType: "incoming",
       transactionTitle: "Transfer to Bank",
