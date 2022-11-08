@@ -9,10 +9,18 @@ type SegmentedInputProps = {
   secureInput: boolean;
   headerText: string;
   style?: StyleProp<ViewStyle>;
+  autoFocusOnLoad?: boolean;
 };
 
 const SegmentedInput = (props: SegmentedInputProps) => {
-  const { value, onValueChanged, secureInput, headerText, style } = props;
+  const {
+    value,
+    onValueChanged,
+    secureInput,
+    headerText,
+    style,
+    autoFocusOnLoad = true,
+  } = props;
   return (
     <View style={[styles.otpContainer, style]}>
       <Text style={styles.otpText}>{headerText}</Text>
@@ -22,7 +30,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
         onCodeChanged={(code) => onValueChanged(code)}
         secureTextEntry={secureInput}
-        autoFocusOnLoad
+        autoFocusOnLoad={autoFocusOnLoad}
         codeInputFieldStyle={styles.underlineStyleBase}
         // codeInputHighlightStyle={styles.underlineStyleHighLighted}
         onCodeFilled={(code) => {
@@ -35,10 +43,8 @@ const SegmentedInput = (props: SegmentedInputProps) => {
 
 const styles = StyleSheet.create({
   otpContainer: {
-    marginTop: hp(20),
-    paddingHorizontal: hp(20),
     height: hp(40),
-    marginBottom: hp(100),
+    width: "100%",
   },
   otpText: {
     marginBottom: 10,

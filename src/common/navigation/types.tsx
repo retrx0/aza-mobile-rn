@@ -62,7 +62,7 @@ export type CommonStackParamList = {
 
   // Settings
   ChangePassword: undefined;
-  NewPassword: undefined;
+  NewPassword: { oldPassword: string };
   ChangePhoneNumber: undefined;
   ChangePhoneNumberOTP: undefined;
   ChangeEmail: undefined;

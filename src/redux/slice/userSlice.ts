@@ -31,14 +31,14 @@ export interface UserState {
 
 // Define the initial state using that type
 const initialState: UserState = {
-  phoneNumber: "+2340011112222",
+  phoneNumber: "2348105982998",
   fullName: "Test User",
   firstName: "Test",
   lastName: "User",
   pictureUrl: undefined,
   azaAccountNumber: 331234243,
   azaBalance: 0,
-  emailAddress: "testuser@gmail.com",
+  emailAddress: "faivegid@gmail.com",
   accountVerified: true,
   accountStatus: "Ok",
   transfers: {

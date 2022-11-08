@@ -35,12 +35,20 @@ const OtpScreen = (props: OtpProp) => {
       <Text style={styles.verification}>
         Please enter the 6-digit code sent to your mobile number
       </Text>
-      <SegmentedInput
-        value={otpCode}
-        onValueChanged={(code) => onOtpChanged(code)}
-        headerText="OTP"
-        secureInput={false}
-      />
+      <View
+        style={{
+          marginTop: hp(20),
+          paddingHorizontal: hp(20),
+          marginBottom: hp(100),
+        }}
+      >
+        <SegmentedInput
+          value={otpCode}
+          onValueChanged={(code) => onOtpChanged(code)}
+          headerText="OTP"
+          secureInput={false}
+        />
+      </View>
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
         <TouchableOpacity>
