@@ -261,7 +261,6 @@ const CommonStyles = StyleSheet.create({
   },
   cancelStyle: {
     textAlign: "center",
-    marginTop: hp(5),
     color: Colors.general.red,
     fontSize: hp(16),
     fontWeight: "500",

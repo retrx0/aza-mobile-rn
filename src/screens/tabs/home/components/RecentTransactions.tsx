@@ -2,7 +2,6 @@ import { FlatList, TouchableOpacity } from "react-native";
 
 import { Text, View } from "../../../../components/Themed";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
-
 import Colors from "../../../../constants/Colors";
 import { RootTabScreenProps } from "../../../../../types";
 import useColorScheme from "../../../../hooks/useColorScheme";

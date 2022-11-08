@@ -27,10 +27,11 @@ export default function WaterScreen({
         description=""
         descriptionStyle={null}
         headerStyle={{
-          fontSize: hp(16),
+          fontSize: hp(14),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(3),
+          marginTop: hp(30),
         }}
         heading="Select water provider"
       />
@@ -64,6 +65,7 @@ export default function WaterScreen({
         onPress={() => {
           navigation.navigate("Common", { screen: "Confirm" });
         }}
+        style={{ marginTop: hp(250) }}
       />
     </SafeAreaView>
   );

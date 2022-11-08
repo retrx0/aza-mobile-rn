@@ -38,7 +38,8 @@ export default function InternetDetail({
           fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(3),
+          marginLeft: hp(2),
+          marginTop: hp(30),
         }}
         heading="Subscribe to an internet plan"
       />
@@ -65,11 +66,7 @@ export default function InternetDetail({
         label="Amount"
         placeholder="Enter an amount"
       />
-      <View
-        style={[
-          CommonStyles.passwordContainer,
-          { bottom: insets.bottom || 45 },
-        ]}>
+      <View style={[{ marginTop: 330 }]}>
         <Button
           title="Continue"
           onPressButton={() =>

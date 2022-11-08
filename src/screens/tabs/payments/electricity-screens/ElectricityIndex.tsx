@@ -29,6 +29,7 @@ export default function ElectricityIndex({
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(3),
+          marginTop: hp(30),
         }}
         heading="Select electricity provider"
       />
@@ -65,6 +66,7 @@ export default function ElectricityIndex({
         onPress={() => {
           navigation.navigate("Common", { screen: "Confirm" });
         }}
+        style={{ marginTop: hp(250) }}
       />
     </SafeAreaView>
   );

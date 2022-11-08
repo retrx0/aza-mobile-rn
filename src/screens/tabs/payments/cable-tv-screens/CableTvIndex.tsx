@@ -34,6 +34,7 @@ export default function CableTvIndex({
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(3),
+          marginTop: hp(30),
         }}
         heading="Select Cable TV"
       />
@@ -64,6 +65,7 @@ export default function CableTvIndex({
         onPress={() => {
           navigation.navigate("Common", { screen: "Confirm" });
         }}
+        style={{ marginTop: 330 }}
       />
     </SafeAreaView>
   );

@@ -12,7 +12,7 @@ export const PaymentStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
-    marginTop: 45,
+    marginTop: hp(30),
   },
   icon: {
     alignSelf: "flex-end",
