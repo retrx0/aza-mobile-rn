@@ -75,8 +75,8 @@ const BankAccountsScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(14),
+              fontFamily: "Euclid-Circular-A",
+              fontSize: hp(16),
               marginBottom: hp(30),
               fontWeight: "600",
               paddingLeft: hp(7),

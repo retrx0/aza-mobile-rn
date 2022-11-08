@@ -71,7 +71,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 marginBottom: hp(30),
                 fontWeight: "500",
