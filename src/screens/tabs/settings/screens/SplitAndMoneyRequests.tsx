@@ -59,7 +59,7 @@ const SplitAndMoneyRequestsScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
         }}>
