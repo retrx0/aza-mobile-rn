@@ -573,6 +573,7 @@ const CommonStyles = StyleSheet.create({
   },
   phoneContainer: {
     marginTop: hp(30),
+    marginBottom: hp(5),
   },
   iconStyle: {
     marginLeft: hp(26),
