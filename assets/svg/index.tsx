@@ -2318,22 +2318,24 @@ export const VaultLargeIcon = ({ color, size }: SvgIconProps) => {
   );
 };
 
-export const ExitIcon = () => {
+export const ExitIcon = ({ color }: SvgIconProps) => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="black">
+    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <Path
         d="M7.75732 16.2427L16.2426 7.75739"
-        stroke="black"
+        stroke="#E7E9EA"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        fill={color}
       />
       <Path
         d="M16.2426 16.2426L7.75732 7.75732"
-        stroke="black"
+        stroke="#E7E9EA"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        fill={color}
       />
     </Svg>
   );
@@ -2408,6 +2410,17 @@ export const UndrawCreditCardIcon = ({ color }: SvgIconProps) => {
           <Path fill="#fff" d="M0 0h299v272H0z" />
         </ClipPath>
       </Defs>
+    </Svg>
+  );
+};
+
+export const Exit = () => {
+  return (
+    <Svg width="20" height="20" viewBox="0 0 30 30" fill="none">
+      <Path
+        d="M23.4 8.29201L21.708 6.60001L15 13.308L8.29201 6.60001L6.60001 8.29201L13.308 15L6.60001 21.708L8.29201 23.4L15 16.692L21.708 23.4L23.4 21.708L16.692 15L23.4 8.29201Z"
+        fill="black"
+      />
     </Svg>
   );
 };
