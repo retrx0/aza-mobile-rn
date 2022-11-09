@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
-import { ExitIcon, NairaIcon, NigerianFlag } from "../../../../../assets/svg";
+import {
+  Exit,
+  ExitIcon,
+  NairaIcon,
+  NigerianFlag,
+} from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
@@ -147,7 +152,7 @@ export default function AccountDetails() {
               marginRight: 10,
             }}
             onPress={() => setModalVisible(false)}>
-            <ExitIcon />
+            <Exit />
           </TouchableOpacity>
           <View
             style={{
