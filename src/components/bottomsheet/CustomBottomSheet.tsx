@@ -58,6 +58,7 @@ export default function CustomBottomSheet({
             backgroundColor: Colors.dark.error,
             marginBottom: hp(40),
             marginTop: hp(40),
+            width: "100%",
           }}
           onPressButton={toggleModal}
         />
