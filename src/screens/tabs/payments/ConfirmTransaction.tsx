@@ -27,53 +27,51 @@ export default function Confirmation({
   const insets = useSafeAreaInsets();
 
   return (
-    <ScrollView
-      style={[
-        styles.container,
-        { paddingTop: Platform.OS == "android" ? 100 : 100 },
-      ]}>
-      <Text style={styles.txt}>
-        Kindly confirm the details of this transaction
-      </Text>
-      <ImageInput />
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={styles.input}
-        labelStyle={{
-          fontFamily: "Euclid-Circular-A",
-          fontWeight: "400",
-          fontSize: hp(16),
-        }}
-        label="Phone Number"
-        placeholder="08164942224"
-      />
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={styles.input}
-        labelStyle={{
-          fontFamily: "Euclid-Circular-A",
-          fontWeight: "400",
-          fontSize: hp(16),
-        }}
-        label="Amount"
-        placeholder="N2,000 (Airtime)"
-      />
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={styles.input}
-        labelStyle={{
-          fontFamily: "Euclid-Circular-A",
-          fontWeight: "400",
-          fontSize: hp(16),
-        }}
-        label="Payment Method"
-        placeholder="Aza Account"
-      />
+    <ScrollView style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}>
+      <View style={{ paddingHorizontal: 20 }}>
+        <Text style={styles.txt}>
+          Kindly confirm the details of this transaction
+        </Text>
+        <ImageInput />
+        <Input
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={styles.input}
+          labelStyle={{
+            fontFamily: "Euclid-Circular-A",
+            fontWeight: "400",
+            fontSize: hp(16),
+          }}
+          label="Phone Number"
+          placeholder="08164942224"
+        />
+        <Input
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={styles.input}
+          labelStyle={{
+            fontFamily: "Euclid-Circular-A",
+            fontWeight: "400",
+            fontSize: hp(16),
+          }}
+          label="Amount"
+          placeholder="N2,000 (Airtime)"
+        />
+        <Input
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={styles.input}
+          labelStyle={{
+            fontFamily: "Euclid-Circular-A",
+            fontWeight: "400",
+            fontSize: hp(16),
+          }}
+          label="Payment Method"
+          placeholder="Aza Account"
+        />
+      </View>
       <MyButton
-        style={{ width: wp(355), alignSelf: "center", marginTop: 200 }}
+        style={{ marginTop: 200, width: "100%" }}
         disabled={false}
         title="Confirm"
         onPress={() => {
@@ -85,14 +83,20 @@ export default function Confirmation({
           });
         }}
       />
-
       <CancelButtonWithUnderline
         onPressButton={() => {
           navigation.goBack();
         }}
         title="Cancel Transaction"
         style={{ borderBottomColor: Colors.general.red }}
-        styleText={CommonStyles.cancelStyle}
+        styleText={{
+          textAlign: "center",
+          color: Colors.general.red,
+          fontSize: hp(16),
+          fontWeight: "500",
+          lineHeight: hp(17),
+          fontFamily: "Euclid-Circular-A",
+        }}
       />
     </ScrollView>
   );
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
   txt: {
     marginBottom: hp(40),
     marginTop: hp(30),
-    marginLeft: hp(3),
+
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),

@@ -119,7 +119,7 @@ export default function AirtimeIndex({
           keyboardType="number-pad"
         />
       </View>
-      <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+      <View style={[{ marginTop: hp(160) }]}>
         <Button
           title="Continue"
           onPressButton={() => {
@@ -132,8 +132,8 @@ export default function AirtimeIndex({
           style={[
             {
               backgroundColor: Colors[colorScheme].button,
-              width: wp(335),
             },
+            CommonStyles.button,
           ]}
         />
       </View>

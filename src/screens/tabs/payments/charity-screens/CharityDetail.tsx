@@ -13,6 +13,7 @@ import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function CharityDetail({
   navigation,
@@ -89,7 +90,7 @@ export default function CharityDetail({
         <Divider
           style={{
             marginTop: 10,
-            marginBottom: 20,
+            marginBottom: 10,
             width: "85%",
           }}
         />
@@ -105,9 +106,16 @@ export default function CharityDetail({
           onPressButton={() => {
             navigation.goBack();
           }}
-          style={{ borderBottomColor: Colors.general.red, marginBottom: 20 }}
+          style={{ borderBottomColor: Colors.general.red, marginBottom: 40 }}
           title="Cancel"
-          styleText={CommonStyles.cancelStyle}
+          styleText={{
+            textAlign: "center",
+            color: Colors.general.red,
+            fontSize: hp(16),
+            fontWeight: "500",
+            lineHeight: hp(17),
+            fontFamily: "Euclid-Circular-A",
+          }}
         />
       </View>
     </View>
