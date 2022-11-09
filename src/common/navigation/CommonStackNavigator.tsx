@@ -114,9 +114,9 @@ import ConfirmGoal from "../../screens/tabs/vault/GoalConfirmation";
 import UserVault from "../../screens/tabs/vault/UserVault";
 import ChangeVaultName from "../../screens/tabs/vault/ChangeVaultName";
 import ChangeGoalAmount from "../../screens/tabs/vault/ChangeGoalAmount";
-import VaultRecurringTransfer from "../../screens/tabs/vault/VaultRecurringTransfer";
-import VaultRecurringAmount from "../../screens/tabs/vault/VaultRecurringAmount";
-import RecurringMoneyConfirmationScreen from "../../screens/tabs/vault/RecurringMoneyConfirmationScreen";
+import VaultRecurringTransfer from "../../screens/tabs/vault/VaultRecurring/VaultRecurringTransfer";
+import VaultRecurringAmount from "../../screens/tabs/vault/VaultRecurring/VaultRecurringAmount";
+import RecurringMoneyConfirmationScreen from "../../screens/tabs/vault/VaultRecurring/RecurringMoneyConfirmationScreen";
 import Vault from "../../screens/tabs/vault/Vault";
 import VaultToBankAmount from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankAmount";
 import VaultConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
@@ -157,8 +157,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             marginTop: hp(30),
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -369,8 +368,7 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={16}
@@ -381,8 +379,7 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}
-              >
+                }}>
                 Back
               </Text>
             </TouchableOpacity>
@@ -398,8 +395,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -538,8 +534,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -550,8 +545,7 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "400",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
@@ -568,8 +562,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}
