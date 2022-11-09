@@ -18,6 +18,7 @@ import {
   signInWithFacebook,
   signInWithGoogole,
 } from "../thirdPartyAuth";
+import { hp } from "../../../common/util/LayoutUtil";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
@@ -41,7 +42,16 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
         <Text style={[CommonStyles.bodyText]}>
           Enter your phone number to continue
         </Text>
-        <Text style={[CommonStyles.bodyText]}>
+        <Text
+          style={{
+            padding: hp(5),
+            margin: hp(4),
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            marginTop: hp(35),
+            marginLeft: hp(15),
+            fontSize: hp(18),
+            fontWeight: "500",
+          }}>
           Phone Number <Text style={{ color: "red" }}>*</Text>
         </Text>
       </View>
