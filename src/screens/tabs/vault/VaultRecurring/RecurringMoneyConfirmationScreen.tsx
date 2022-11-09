@@ -75,7 +75,7 @@ const RecurringMoneyConfirmationScreen = ({
               width: 45,
               height: 45,
             }}
-            source={require("../../../../assets/images/icons/CoverImage.png")}
+            source={require("../../../../../assets/images/icons/CoverImage.png")}
           />
         </View>
         <View style={CommonStyles.vaultInputcontainer}>

@@ -85,7 +85,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </Text>
             <Image
               style={{ width: 20, height: 20, marginHorizontal: 3 }}
-              source={require("../../../../assets/images/icons/NigerianFlag.png")}
+              source={require("../../../../../assets/images/icons/NigerianFlag.png")}
             />
             <Text
               lightColor={Colors.general.darkGrey}
