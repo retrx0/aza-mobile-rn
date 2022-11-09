@@ -50,7 +50,7 @@ const AddNewCardScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A",
               fontSize: hp(16),
               marginTop: hp(30),
               marginBottom: hp(40),
@@ -63,8 +63,8 @@ const AddNewCardScreen = ({
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
               }}>
               Card Number
@@ -89,8 +89,8 @@ const AddNewCardScreen = ({
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
               }}>
               Expiry Date
@@ -115,7 +115,7 @@ const AddNewCardScreen = ({
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
                 fontWeight: "500",
               }}>
@@ -137,7 +137,7 @@ const AddNewCardScreen = ({
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(60) }]}>
+        <View style={{ marginBottom: hp(65) }}>
           <CancelButtonWithUnderline
             title="Scan Card instead"
             color={Colors[colorScheme].mainText}
@@ -161,6 +161,7 @@ const AddNewCardScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}

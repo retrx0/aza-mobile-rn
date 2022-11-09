@@ -44,9 +44,9 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
             // lightColor={Colors[colorScheme].text}
             // darkColor={Colors[colorScheme].mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: hp(17),
-              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(16),
+              fontWeight: "600",
               marginLeft: hp(5),
             }}>
             {title}
@@ -57,8 +57,8 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
             style={{
               marginTop: 2,
               fontFamily: "Euclid-Circular-A",
-              fontSize: hp(14),
-              fontWeight: "500",
+              fontSize: hp(12),
+              fontWeight: "400",
               marginLeft: hp(5),
             }}>
             {subText}
@@ -69,8 +69,8 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
           // darkColor={Colors[colorScheme].mainText}
           style={{
             fontFamily: "Euclid-Circular-A",
-            fontSize: hp(12),
-            fontWeight: "500",
+            fontSize: hp(14),
+            fontWeight: "400",
           }}>
           {data}
         </Text>

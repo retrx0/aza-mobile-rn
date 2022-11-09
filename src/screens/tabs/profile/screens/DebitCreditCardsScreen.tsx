@@ -51,7 +51,7 @@ const DebitCreditCardsScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A",
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
@@ -96,7 +96,7 @@ const DebitCreditCardsScreen = ({
             <Divider />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View style={{ marginBottom: hp(65) }}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -110,6 +110,7 @@ const DebitCreditCardsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}
