@@ -70,11 +70,11 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             width: "100%",
             marginTop: 80,
-            marginBottom: "auto",
+            marginBottom: 130,
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
+        <View>
           <Button
             disabled={!amount}
             title="Continue"
@@ -83,8 +83,6 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "ConfirmGoal" })
             }
-            style={[CommonStyles.toAzabutton]}
-            styleText={CommonStyles.toAzabuttonText}
           />
         </View>
       </View>

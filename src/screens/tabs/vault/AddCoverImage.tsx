@@ -57,7 +57,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{ width: 150, height: 150, alignSelf: "center" }}
           source={require("../../../../assets/images/icons/CoverImageII.png")}
         />
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(135) }]}>
+        <View style={{ marginTop: hp(280) }}>
           <Button
             title="Select From Gallery"
             // onPressButton={() =>
@@ -69,8 +69,6 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={CommonStyles.toBankbuttonText}
             onPressButton={() => selectImageFromGallery()}
           />
-        </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
           <Button
             title="Continue"
             onPressButton={() =>

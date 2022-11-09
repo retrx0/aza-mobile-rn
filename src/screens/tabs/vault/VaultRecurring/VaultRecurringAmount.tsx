@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
-import { NairaLargeIcon } from "../../../../assets/svg";
-import { RootTabScreenProps } from "../../../../types";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import { numberWithCommas } from "../../../common/util/NumberUtils";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import BackButton from "../../../components/buttons/BackButton";
-import Button from "../../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../components/divider/Divider";
-import CustomDropdown from "../../../components/dropdown/CustomDropdown";
-import { Input } from "../../../components/input/input";
-import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
-import { Header } from "../../../components/text/header";
-import { Text, View } from "../../../components/Themed";
-import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
-import { VaultStyles as styles } from "./styles";
+import { NairaLargeIcon } from "../../../../../assets/svg";
+import { RootTabScreenProps } from "../../../../../types";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { numberWithCommas } from "../../../../common/util/NumberUtils";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import BackButton from "../../../../components/buttons/BackButton";
+import Button from "../../../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import Divider from "../../../../components/divider/Divider";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import { Input } from "../../../../components/input/input";
+import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
+import { Header } from "../../../../components/text/header";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { VaultStyles as styles } from "../styles";
 
 const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
@@ -49,7 +49,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </View>
         <Image
           style={{ width: 50, height: 50, alignSelf: "center", marginTop: 30 }}
-          source={require("../../../../assets/images/icons/CoverImage.png")}
+          source={require("../../../../../assets/images/icons/CoverImage.png")}
         />
         <Text
           style={{

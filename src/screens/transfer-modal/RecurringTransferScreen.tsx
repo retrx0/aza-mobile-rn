@@ -64,7 +64,7 @@ const RecurringTransferScreen = ({
             size={30}
           />
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View style={{ marginBottom: hp(65) }}>
           <Button
             title="New Recurring Transfer"
             onPressButton={() =>
@@ -76,6 +76,7 @@ const RecurringTransferScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "95%",
               },
               CommonStyles.button,
             ]}

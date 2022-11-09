@@ -109,7 +109,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
         </View>
 
-        <View style={[CommonStyles.SwitchContainer, { bottom: hp(30) }]}>
+        <View style={[{ marginTop: hp(360) }]}>
           {/* <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month

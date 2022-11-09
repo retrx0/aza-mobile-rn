@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Image } from "react-native";
-import { RootTabScreenProps } from "../../../../types";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import BackButton from "../../../components/buttons/BackButton";
-import Button from "../../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../components/divider/Divider";
-import CustomDropdown from "../../../components/dropdown/CustomDropdown";
-import { Input } from "../../../components/input/input";
-import { Header } from "../../../components/text/header";
-import { Text, View } from "../../../components/Themed";
-import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
-import { VaultStyles as styles } from "./styles";
+import { RootTabScreenProps } from "../../../../../types";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import BackButton from "../../../../components/buttons/BackButton";
+import Button from "../../../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import Divider from "../../../../components/divider/Divider";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import { Input } from "../../../../components/input/input";
+import { Header } from "../../../../components/text/header";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { VaultStyles as styles } from "../styles";
 
 const VaultRecurringTransfer = ({
   navigation,
@@ -113,7 +113,7 @@ const VaultRecurringTransfer = ({
           />
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -127,7 +127,6 @@ const VaultRecurringTransfer = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}

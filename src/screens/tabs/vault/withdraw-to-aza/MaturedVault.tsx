@@ -41,7 +41,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           Your funds have successfully matured and can now be withdrawn.
         </Text>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(140) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(100) }]}>
           <Button
             title="Withdraw to Aza"
             onPressButton={() =>
@@ -53,7 +53,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={CommonStyles.toBankbuttonText}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(55) }]}>
           <Button
             title="Withdraw to Bank"
             onPressButton={() =>

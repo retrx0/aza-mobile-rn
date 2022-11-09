@@ -1,18 +1,18 @@
 import { Image } from "react-native";
-import { RootTabScreenProps } from "../../../../types";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import BackButton from "../../../components/buttons/BackButton";
-import Button from "../../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../components/divider/Divider";
-import { Input } from "../../../components/input/input";
-import { Header } from "../../../components/text/header";
-import { Text, View } from "../../../components/Themed";
-import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
-import { VaultStyles as styles } from "../vault/styles";
+import { RootTabScreenProps } from "../../../../../types";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import BackButton from "../../../../components/buttons/BackButton";
+import Button from "../../../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import Divider from "../../../../components/divider/Divider";
+import { Input } from "../../../../components/input/input";
+import { Header } from "../../../../components/text/header";
+import { Text, View } from "../../../../components/Themed";
+import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { VaultStyles as styles } from "../styles";
 
 const RecurringMoneyConfirmationScreen = ({
   navigation,
@@ -167,7 +167,7 @@ const RecurringMoneyConfirmationScreen = ({
               navigation.getParent()?.navigate("VaultRecurringAmount")
             }
             styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red }}
+            style={{ borderBottomColor: Colors.general.red, marginTop: 10 }}
           />
         </View>
       </View>
