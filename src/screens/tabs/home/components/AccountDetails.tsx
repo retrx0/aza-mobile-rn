@@ -40,14 +40,12 @@ export default function AccountDetails() {
                 justifyContent: "center",
                 borderRadius: hp(50),
               },
-            ]}
-          >
+            ]}>
             <Text
               //TODO please export these constants to Colors.ts
               lightColor={"#000000"}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 14 }}
-            >
+              style={{ fontSize: 14 }}>
               Nigerian Naira
             </Text>
             <View
@@ -56,24 +54,21 @@ export default function AccountDetails() {
                 height: 20,
                 marginHorizontal: 10,
                 backgroundColor: "transparent",
-              }}
-            >
+              }}>
               <NigerianFlag />
             </View>
 
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={Colors.dark.tabIconDefault}
-              style={{ fontSize: 14 }}
-            >
+              style={{ fontSize: 14 }}>
               NGN
             </Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           style={[CommonStyles.row]}
-          onPress={() => setSecure(!secure)}
-        >
+          onPress={() => setSecure(!secure)}>
           <>
             {secure ? (
               <>
@@ -93,8 +88,7 @@ export default function AccountDetails() {
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: 26,
                     marginVertical: hp(10),
-                  }}
-                >
+                  }}>
                   {user.azaBalance}
                 </Text>
               </>
@@ -106,8 +100,7 @@ export default function AccountDetails() {
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(24),
                   marginVertical: hp(10),
-                }}
-              >
+                }}>
                 **********
               </Text>
             )}
@@ -121,8 +114,7 @@ export default function AccountDetails() {
               marginLeft: 3,
               fontSize: hp(12),
               fontFamily: "Euclid-Circular-A",
-            }}
-          >
+            }}>
             Aza Number:
           </Text>
           <Text
@@ -132,8 +124,7 @@ export default function AccountDetails() {
               marginLeft: 3,
               fontSize: hp(12),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}
-          >
+            }}>
             {user.azaAccountNumber}
           </Text>
         </View>
@@ -142,8 +133,7 @@ export default function AccountDetails() {
       <View>
         <Modal
           isVisible={ModalVisible}
-          style={{ justifyContent: "flex-end", margin: 0 }}
-        >
+          style={{ justifyContent: "flex-end", margin: 0 }}>
           <TouchableOpacity
             style={{
               width: 25,
@@ -154,9 +144,9 @@ export default function AccountDetails() {
               alignItems: "center",
               justifyContent: "center",
               marginBottom: 10,
+              marginRight: 10,
             }}
-            onPress={() => setModalVisible(false)}
-          >
+            onPress={() => setModalVisible(false)}>
             <ExitIcon />
           </TouchableOpacity>
           <View
@@ -164,13 +154,11 @@ export default function AccountDetails() {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
-            }}
-          >
+            }}>
             <View
               style={{
                 height: hp(335),
-              }}
-            >
+              }}>
               <Text
                 style={{
                   fontFamily: "Euclid-Circular-A-Medium",
@@ -179,8 +167,7 @@ export default function AccountDetails() {
                   fontWeight: "500",
                   marginTop: hp(20),
                   marginBottom: hp(20),
-                }}
-              >
+                }}>
                 Accounts
               </Text>
               <Divider />
@@ -191,8 +178,7 @@ export default function AccountDetails() {
                   justifyContent: "space-between",
                   marginBottom: hp(30),
                   marginTop: hp(30),
-                }}
-              >
+                }}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <View
                     style={{
@@ -200,8 +186,7 @@ export default function AccountDetails() {
                       height: 30,
                       marginHorizontal: 10,
                       backgroundColor: "transparent",
-                    }}
-                  >
+                    }}>
                     <NigerianFlag />
                   </View>
 
@@ -211,8 +196,7 @@ export default function AccountDetails() {
                       fontSize: hp(16),
                       textAlign: "center",
                       fontWeight: "500",
-                    }}
-                  >
+                    }}>
                     NGN - Naira
                   </Text>
                 </View>
@@ -222,8 +206,7 @@ export default function AccountDetails() {
                     fontSize: hp(16),
                     textAlign: "center",
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {`${NAIRA_UNICODE} 239,290`}
                 </Text>
               </View>
@@ -241,8 +224,7 @@ export default function AccountDetails() {
                     screen: "NewUserVault",
                   });
                   setModalVisible(false);
-                }}
-              >
+                }}>
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Image
                     style={{ width: 30, height: 30, marginHorizontal: 10 }}
@@ -254,8 +236,7 @@ export default function AccountDetails() {
                       fontSize: hp(16),
                       textAlign: "center",
                       fontWeight: "500",
-                    }}
-                  >
+                    }}>
                     Vault
                   </Text>
                 </View>
@@ -265,8 +246,7 @@ export default function AccountDetails() {
                     fontSize: hp(16),
                     textAlign: "center",
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {`${NAIRA_UNICODE} 239,290`}
                 </Text>
               </TouchableOpacity>
