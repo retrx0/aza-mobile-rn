@@ -110,8 +110,8 @@ const StatusScreen = ({
               color: Colors[colorScheme].buttonText,
             }}
             style={{
-              marginVertical: hp(20),
               backgroundColor: Colors[colorScheme].button,
+              width: "100%",
             }}
           />
           {receiptButton && (
