@@ -68,7 +68,10 @@ const AccountLimitsTab = ({
             size={34}
           />
           <View
-            style={[CommonStyles.col, { marginRight: "auto", marginLeft: 25 }]}>
+            style={[
+              CommonStyles.col,
+              { width: "100%", marginRight: "auto", marginLeft: 25 },
+            ]}>
             <Text
               style={{
                 fontSize: hp(15),
@@ -197,6 +200,7 @@ const AccountLimitsTab = ({
           backgroundColor: isVerified
             ? Colors[colorScheme].disabledButton
             : Colors[colorScheme].button,
+          width: "100%",
         }}
       />
     </View>

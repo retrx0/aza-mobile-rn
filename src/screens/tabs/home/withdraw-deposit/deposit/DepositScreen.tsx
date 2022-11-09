@@ -35,8 +35,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}
-        >
+          }}>
           Deposit
         </Text>
       ),
@@ -66,8 +65,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             {
               justifyContent: "space-between",
             },
-          ]}
-        >
+          ]}>
           <View>
             <Text
               // lightColor={Colors.light.mainText}
@@ -78,8 +76,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 marginBottom: hp(30),
                 fontWeight: "500",
                 paddingLeft: hp(7),
-              }}
-            >
+              }}>
               Select the card you wish to deposit money to your Aza from
             </Text>
             <Divider />
@@ -90,8 +87,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                     style={[
                       CommonStyles.row,
                       { alignSelf: "stretch", paddingVertical: 15 },
-                    ]}
-                  >
+                    ]}>
                     <Image
                       source={{ uri: image }}
                       style={{
@@ -107,8 +103,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                         marginLeft: 20,
                         fontFamily: "Euclid-Circular-A-Semi-Bold",
                         fontSize: 14,
-                      }}
-                    >
+                      }}>
                       {name}
                     </Text>
                     <View
@@ -124,8 +119,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                         alignItems: "center",
                         justifyContent: "center",
                         borderWidth: hp(1),
-                      }}
-                    >
+                      }}>
                       {selectedCard === name && (
                         <View style={CommonStyles.doneSelect} />
                       )}
@@ -137,11 +131,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             ))}
           </View>
 
-          <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+          <View style={[{ bottom: hp(45) }]}>
             <CancelButtonWithUnderline
               title="Add New Card"
               onPressButton={() =>
-                navigation.getParent()?.navigate("ArchievedVault")
+                navigation.navigate("AddNewCard", {
+                  navigateBackTo: "Deposit",
+                })
               }
               color={Colors[colorScheme].text}
             />
@@ -167,6 +163,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               style={[
                 {
                   backgroundColor: Colors[colorScheme].button,
+                  width: "100%",
                 },
                 CommonStyles.button,
               ]}
@@ -190,8 +187,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
           style={[
             CommonStyles.col,
             { marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+          ]}>
           <UndrawCreditCardIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />
@@ -203,8 +199,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: hp(30),
               textAlign: "center",
-            }}
-          >
+            }}>
             You do not have any credit/debit cards
           </Text>
           <View style={[CommonStyles.row, { marginTop: hp(10) }]}>
@@ -216,8 +211,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 maxWidth: 300,
                 marginRight: 5,
                 textAlign: "center",
-              }}
-            >
+              }}>
               Click ‘Add New Card’ to add a new card
             </Text>
             <ArrowDownIcon
@@ -230,7 +224,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View style={{ marginBottom: hp(45) }}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -244,6 +238,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "95%",
               },
               CommonStyles.button,
             ]}

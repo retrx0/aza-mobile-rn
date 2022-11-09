@@ -253,7 +253,12 @@ const IncomingSplitRequestAcceptanceScreen = ({
             </View>
           </View>
         </ScrollView>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View
+          style={[
+            CommonStyles.col,
+            { width: "100%" },
+            { marginBottom: hp(65) },
+          ]}>
           <Button
             title="Accept Request"
             onPressButton={() =>
@@ -271,6 +276,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}
