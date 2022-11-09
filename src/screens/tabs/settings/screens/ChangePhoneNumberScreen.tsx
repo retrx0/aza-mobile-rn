@@ -45,9 +45,11 @@ const ChangePhoneNumberScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
+          // marginTop: hp(30),
+          // marginBottom: hp(30),
         }}>
         Change your mobile phone number
       </Text>
@@ -113,7 +115,7 @@ const ChangePhoneNumberScreen = ({
             borderWidth: 1,
             borderStyle: "solid",
             borderRadius: 5,
-            marginBottom: hp(40),
+            marginBottom: hp(47),
           }}
         />
       </View>
@@ -126,8 +128,8 @@ const ChangePhoneNumberScreen = ({
           fontSize: 14,
         }}
         style={{
-          width: "100%",
           backgroundColor: Colors[colorScheme].button,
+          width: "100%",
         }}
       />
     </View>

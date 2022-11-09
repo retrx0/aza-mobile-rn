@@ -45,18 +45,24 @@ const NewPasswordScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
+          // marginTop: hp(30),
         }}>
         Please enter your new password
       </Text>
-      <View style={{ marginBottom: 100, marginTop: 80, marginLeft: -20 }}>
+      <View style={{ marginBottom: 60, marginTop: 78, marginLeft: -20 }}>
         <SegmentedInput
           value={newPassword}
           secureInput
           headerText="Password"
           onValueChanged={(pass) => setNewPassword(pass)}
+          headerstyle={{
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}
         />
       </View>
       <Button
@@ -75,8 +81,8 @@ const NewPasswordScreen = ({
           fontSize: 14,
         }}
         style={{
-          width: "100%",
           backgroundColor: Colors[colorScheme].button,
+          width: "100%",
         }}
       />
     </View>

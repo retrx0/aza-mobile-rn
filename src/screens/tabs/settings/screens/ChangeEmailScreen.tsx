@@ -47,13 +47,14 @@ const ChangeEmailScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
+          // marginTop: hp(30),
         }}>
         Change your email
       </Text>
-      <View style={{ marginBottom: 10, marginTop: 10 }}>
+      <View style={{ marginBottom: 10, marginTop: 30 }}>
         <BoxTextInput
           placeHolder="Current Email"
           required={false}
@@ -63,7 +64,7 @@ const ChangeEmailScreen = ({
           }}
           labelStyle={{
             fontSize: hp(16),
-            fontFamily: "Euclid-Circular-A-Medium",
+            fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
             fontWeight: "500",
           }}
@@ -77,7 +78,7 @@ const ChangeEmailScreen = ({
           onChange={(e) => setNewEmail(e.nativeEvent.text)}
           labelStyle={{
             fontSize: hp(16),
-            fontFamily: "Euclid-Circular-A-Medium",
+            fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
             fontWeight: "500",
           }}
@@ -95,7 +96,7 @@ const ChangeEmailScreen = ({
         }}
         style={{
           width: "100%",
-          marginTop: 10,
+          marginTop: 47,
           backgroundColor: Colors[colorScheme].button,
         }}
       />

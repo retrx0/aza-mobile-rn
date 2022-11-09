@@ -21,7 +21,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: hp(16),
+            fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
             marginLeft: hp(5),
             fontWeight: "500",
