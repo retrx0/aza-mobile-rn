@@ -57,7 +57,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{ width: 150, height: 150, alignSelf: "center" }}
           source={require("../../../../assets/images/icons/CoverImageII.png")}
         />
-        <View style={{ marginTop: hp(280) }}>
+        <View style={{ marginTop: hp(230) }}>
           <Button
             title="Select From Gallery"
             // onPressButton={() =>

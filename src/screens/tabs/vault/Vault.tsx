@@ -68,7 +68,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[{ marginTop: hp(320) }]}>
+        <View style={[{ marginTop: hp(300) }]}>
           <Button
             title="New Vault"
             onPressButton={() =>

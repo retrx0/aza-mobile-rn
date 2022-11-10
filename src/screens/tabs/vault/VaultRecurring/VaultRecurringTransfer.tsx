@@ -113,7 +113,7 @@ const VaultRecurringTransfer = ({
           />
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
           <Button
             title="Continue"
             onPressButton={() =>

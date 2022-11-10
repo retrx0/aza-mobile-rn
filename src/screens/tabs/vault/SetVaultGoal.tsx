@@ -69,7 +69,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             width: "100%",
-            marginTop: 80,
+            marginTop: 40,
             marginBottom: 130,
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />

@@ -150,7 +150,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
           <Button
             disabled={!amount}
             title="Continue"

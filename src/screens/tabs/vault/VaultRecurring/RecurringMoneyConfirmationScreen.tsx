@@ -138,7 +138,7 @@ const RecurringMoneyConfirmationScreen = ({
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -167,7 +167,7 @@ const RecurringMoneyConfirmationScreen = ({
               navigation.getParent()?.navigate("VaultRecurringAmount")
             }
             styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red, marginTop: 10 }}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>
