@@ -4,8 +4,8 @@ import {
 } from "react-native-responsive-screen";
 import Layout from "../../constants/Layout";
 
-const CustomHeight = 812;
-const CustomWidth = 375;
+const CustomHeight = Layout.window.height;
+const CustomWidth = Layout.window.width;
 
 export const hp = (value: number) => {
   const dimension = (value / CustomHeight) * 100;
