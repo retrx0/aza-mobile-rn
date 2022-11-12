@@ -1,4 +1,7 @@
-import { widthPercentageToDP as wdp, heightPercentageToDP as hdp } from "react-native-responsive-screen";
+import {
+  widthPercentageToDP as wdp,
+  heightPercentageToDP as hdp,
+} from "react-native-responsive-screen";
 import Layout from "../../constants/Layout";
 
 const CustomHeight = Layout.window.height;

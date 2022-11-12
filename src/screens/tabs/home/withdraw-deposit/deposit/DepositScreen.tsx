@@ -151,8 +151,9 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                     transaction: "deposit",
                     type: "normal",
                     beneficiary: {
-                      azaAccountNumber: "",
-                      fullName: "",
+                      beneficiaryAccount: "",
+                      beneficiaryImage: "",
+                      beneficiaryName: "",
                     },
                   },
                 })

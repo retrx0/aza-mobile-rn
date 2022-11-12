@@ -70,12 +70,20 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
       <Text style={styles.sentCode}>Enter your Aza password to login</Text>
-      <SegmentedInput
-        value={otpCode}
-        onValueChanged={(code) => verifyPasscode(code, navigation)}
-        headerText="Password"
-        secureInput={true}
-      />
+      <View
+        style={{
+          marginTop: hp(20),
+          paddingHorizontal: hp(20),
+          marginBottom: hp(100),
+        }}
+      >
+        <SegmentedInput
+          value={otpCode}
+          onValueChanged={(code) => verifyPasscode(code, navigation)}
+          headerText="Password"
+          secureInput={true}
+        />
+      </View>
       <View style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
         <TouchableOpacity onPress={() => forgetUser(navigation)}>
           <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>

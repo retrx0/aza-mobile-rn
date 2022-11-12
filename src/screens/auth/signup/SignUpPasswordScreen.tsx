@@ -11,14 +11,18 @@ import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { SignUpScreenProps } from "../../../../types";
 import { useAppDispatch, useAppSelector } from "../../../redux";
-import { registerUser, selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
+import {
+  registerUser,
+  selectNewUser,
+  setNewUser,
+  setPassword,
+} from "../../../redux/slice/newUserSlice";
 
 // import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 // import { selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
 
 // import { useAppDispatch, useAppSelector } from "../../../redux";
 // import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
-
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -49,7 +53,7 @@ const SignUpPasswordScreen = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
-  const {firstname,lastname}=useAppSelector(state=>state.newUser)
+  const { firstname, lastname } = useAppSelector((state) => state.newUser);
 
   return (
     <SpacerWrapper>
@@ -64,12 +68,20 @@ const SignUpPasswordScreen = ({
       <Text style={[CommonStyles.bodyText]}>
         The password will be used to access your account
       </Text>
-      <SegmentedInput
-        value={passcode}
-        secureInput
-        headerText=""
-        onValueChanged={(code) => setPasscode(code)}
-      />
+      <View
+        style={{
+          marginTop: hp(20),
+          paddingHorizontal: hp(20),
+          marginBottom: hp(100),
+        }}
+      >
+        <SegmentedInput
+          value={passcode}
+          secureInput
+          headerText=""
+          onValueChanged={(code) => setPasscode(code)}
+        />
+      </View>
       <View
         style={[
           CommonStyles.container,
@@ -117,12 +129,14 @@ const SignUpPasswordScreen = ({
             } else {
               if (passcode === newUserData.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
-                console.log(firstname,lastname,"NAMEE")
-                dispatch(registerUser({
-                  firstname,
-                  lastname,
-                  password:passcode
-                }))
+                console.log(firstname, lastname, "NAMEE");
+                dispatch(
+                  registerUser({
+                    firstname,
+                    lastname,
+                    password: passcode,
+                  })
+                );
                 navigation.getParent()?.navigate("Root");
               } else {
                 alert("Password does not match");
