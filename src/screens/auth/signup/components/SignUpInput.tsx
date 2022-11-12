@@ -21,7 +21,7 @@ import {
   setLastName,
   setNewUser,
 } from "../../../../redux/slice/newUserSlice";
-import { useSelector } from "react-redux";
+import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
 
 const SignUpProfile = ({
   navigation,
@@ -37,17 +37,15 @@ const SignUpProfile = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
-  const { phone, token } = useSelector((state) => state.newUser);
+  const { phone, token, thirdPartyEmailSignUp } = newUser;
 
   return (
     <>
-      {console.log(token, "my++++++")}
       <Formik
         validationSchema={signUpValidationSchema}
         initialValues={{
           firstname: "",
           lastname: "",
-          email: "",
         }}
         onSubmit={(values) => console.log(values)}
       >
@@ -61,7 +59,7 @@ const SignUpProfile = ({
           touched,
         }) => (
           <>
-            <View
+            {/* <View
               style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
             >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -83,9 +81,9 @@ const SignUpProfile = ({
               {errors.firstname && touched.firstname && (
                 <Text style={styles.errorText}>{errors.firstname}</Text>
               )}
-            </View>
+            </View> */}
 
-            <View
+            {/* <View
               style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
             >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -107,9 +105,33 @@ const SignUpProfile = ({
               {errors.lastname && touched.lastname && (
                 <Text style={styles.errorText}>{errors.lastname}</Text>
               )}
-            </View>
+            </View> */}
 
-            <View
+            <InputFormFieldNormal
+              placeholderVisible
+              onChangeText={handleChange("firstname")}
+              value={values.firstname}
+              type="firstname"
+              formikProps={{
+                errors: errors.firstname,
+                touched: touched.firstname,
+              }}
+              autoFocus
+            />
+
+            <InputFormFieldNormal
+              placeholderVisible
+              onChangeText={handleChange("lastname")}
+              value={values.lastname}
+              type="lastname"
+              formikProps={{
+                errors: errors.lastname,
+                touched: touched.lastname,
+              }}
+              autoFocus={false}
+            />
+
+            {/* <View
               style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
             >
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -133,7 +155,7 @@ const SignUpProfile = ({
               {errors.email && touched.email && (
                 <Text style={styles.errorText}>{errors.email}</Text>
               )}
-            </View>
+            </View> */}
 
             <TextHeader
               label="Gender"
@@ -190,10 +212,11 @@ const SignUpProfile = ({
                   setNewUser({
                     firstname: values.firstname,
                     lastname: values.lastname,
-                    email: values.email,
+                    email: newUser.email,
                     gender: gender,
                     isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
                     createdPasscode: newUser.createdPasscode,
+                    thirdPartyEmailSignUp: thirdPartyEmailSignUp,
                   })
                 );
                 dispatch(setFirstName(values.firstname));
@@ -212,7 +235,7 @@ const SignUpProfile = ({
                 CommonStyles.container,
                 { bottom: hp(60) },
               ]}
-              disabled={!isValid}
+              // disabled={!isValid}
             />
           </>
         )}

@@ -14,6 +14,7 @@ interface NewUser extends User {
   otp?: number;
   token?: string | void;
   password?: string;
+  thirdPartyEmailSignUp: boolean;
 }
 
 // Define the initial state using that type
@@ -27,6 +28,7 @@ const initialState: NewUser = {
   isUsePasscodeAsPin: false,
   loading: false,
   token: "",
+  thirdPartyEmailSignUp: false,
 };
 
 //Create async function fro requesting otp
@@ -60,12 +62,9 @@ export const verifyOtp = createAsyncThunk(
   "user/verifyOtp",
   (props: NewUser) => {
     const bodyData = {
-      // phoneNumber: props.phone,
-      email: "mubarakibrahim2015@gmail.com",
       otp: props.otp,
       phoneNumber: props.phone,
       email: props.email,
-      otp: props.otp,
     };
 
     return api

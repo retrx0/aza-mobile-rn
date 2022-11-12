@@ -12,7 +12,7 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { useAppDispatch } from "../../../redux";
 import {
   requestOtp,
-  setPhone as setReduxStorePhone,
+  setEmail as setReduxStoreEmail,
 } from "../../../redux/slice/newUserSlice";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 import * as AuthSession from "expo-auth-session";
@@ -33,12 +33,17 @@ import {
   signInWithGoogole,
 } from "../thirdPartyAuth";
 import * as SecureStore from "expo-secure-store";
+import InputFormFieldNormal from "../../../components/input/InputFormFieldNormal";
+import { requestOtpApi } from "../../../api/auth";
 
 WebBrowser.maybeCompleteAuthSession();
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const [phone, setPhone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const colorScheme = useColorScheme();
+
+  const [thirdPartyUserData, setThirdPartyUserData] = useState({});
 
   const dispatch = useAppDispatch();
 
@@ -77,7 +82,11 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         STORAGE_KEY_GOOGLE_REFRESH_TOKEN
       );
       fetchThirdPartyUserInfo(g_response.authentication?.accessToken, "Google")
-        .then((r) => console.log(r?.data))
+        .then((r) => {
+          if (r?.data) {
+            setThirdPartyUserData(r.data);
+          }
+        })
         .catch((e) => console.error(e));
     }
     // TODO make calls to googleapis/facebook using the response to get the email and profile
@@ -91,7 +100,11 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
         f_response.authentication?.accessToken,
         "Facebook"
       )
-        .then((r) => console.log(r?.data))
+        .then((r) => {
+          if (r?.data) {
+            setThirdPartyUserData(r.data);
+          }
+        })
         .catch((e) => console.error(e));
     }
   }, [g_response, f_response]);
@@ -108,13 +121,22 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       <View style={[CommonStyles.phoneContainer]}>
         <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
         <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to continue
+          Enter your email address to continue
         </Text>
         <Text style={[CommonStyles.phoneText]}>
-          Phone Number <Text style={[CommonStyles.phoneNumber]}>*</Text>
+          Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
         </Text>
       </View>
 
+      <InputFormFieldNormal
+        value={email}
+        onChangeText={(e) => setEmail(e)}
+        placeholderVisible={false}
+        type="email"
+        formikProps={{ errors: false, touched: false }}
+        autoFocus={false}
+      />
+      {/*
       <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
@@ -125,16 +147,21 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           placeholder: "Enter a phone number...",
         }}
         style={[CommonStyles.phoneStyle]}
-      />
+      /> */}
       <Button
         title="Continue"
         onPressButton={() => {
-          dispatch(setReduxStorePhone(phone));
+          dispatch(setReduxStoreEmail(email));
           // TDOD replace the below email with the one coming from google, apple or facebook!
-          dispatch(
-            requestOtp({ phone: "", email: "mubarakibrahim2015@gmail.com" })
-          );
-          navigation.navigate("SignUpOTP");
+          // dispatch(
+          //   requestOtp({
+          //     phone: "",
+          //     email: "mubarakibrahim2015@gmail.com",
+          //     thirdPartyEmailSignUp: false,
+          //   })
+          // );
+          requestOtpApi({ email: email, phoneNumber: "" });
+          navigation.navigate("SignUpOTP", { otpScreenType: "email" });
         }}
         styleText={{
           color: Colors[colorScheme].buttonText,
@@ -146,7 +173,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
 
           CommonStyles.otpbutton,
         ]}
-        disabled={phone.length < 10 ? true : false}
+        disabled={email.length < 10}
       />
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>

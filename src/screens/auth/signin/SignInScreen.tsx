@@ -19,9 +19,11 @@ import {
   signInWithGoogole,
 } from "../thirdPartyAuth";
 import { hp } from "../../../common/util/LayoutUtil";
+import InputFormEmail from "../../../components/input/InputFormFieldNormal";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const [phone, setPhone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
@@ -40,7 +42,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
       <View style={CommonStyles.phoneContainer}>
         <Text style={[CommonStyles.headerText]}>Login</Text>
         <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to continue
+          Enter your email to continue
         </Text>
         <Text
           style={{
@@ -51,11 +53,20 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             marginLeft: hp(15),
             fontSize: hp(18),
             fontWeight: "500",
-          }}>
-          Phone Number <Text style={{ color: "red" }}>*</Text>
+          }}
+        >
+          Email Address <Text style={{ color: "red" }}>*</Text>
         </Text>
       </View>
-      <PhoneInput
+      <InputFormEmail
+        value={email}
+        onChangeText={(e) => setEmail(e)}
+        placeholderVisible={false}
+        type="email"
+        formikProps={{ errors: false, touched: false }}
+        autoFocus={false}
+      />
+      {/* <PhoneInput
         initialValue={phone}
         onChangePhoneNumber={(p) => setPhone(p)}
         initialCountry="ng"
@@ -66,14 +77,12 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
         }}
         pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
         style={[CommonStyles.phoneStyle]}
-      />
+      /> */}
 
       <Button
         title="Continue"
         onPressButton={() => {
-          dispatch(
-            requestOtp({ phone, email: "mubarakibrahim2015@gmail.com" })
-          );
+          // dispatch(requestOtp({ phone: "", email: email }));
           navigation.navigate("SignInOTP");
         }}
         styleText={{
@@ -85,7 +94,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           },
           CommonStyles.button,
         ]}
-        disabled={phone.length < 10 ? true : false}
+        disabled={email.length < 10}
       />
       <Text style={[CommonStyles.orText]}>OR</Text>
       <ButtonLg

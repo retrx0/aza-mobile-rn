@@ -16,6 +16,34 @@ export const cancelToken = async () => {
     );
     return result;
   } catch (e) {
-    console.log("error: ", e);
+    console.error("error: ", e);
+  }
+};
+
+export const requestOtpApi = async (data: {
+  email: string;
+  phoneNumber: string;
+}) => {
+  try {
+    const result = await api.post("/api/v1/auth/request-otp", data);
+    return result;
+  } catch (e) {
+    console.error("Error Requesting OTP: " + e);
+  }
+};
+
+export const verifyOtpApi = async (
+  data: {
+    email: string;
+    phoneNumber: string;
+    otp: number;
+  },
+  type: "email" | "phone"
+): Promise<string | undefined> => {
+  try {
+    const result = await api.post("/api/v1/auth/verify-otp", data);
+    return result.headers["access-token"];
+  } catch (e) {
+    console.error("Error Requesting OTP: " + e);
   }
 };

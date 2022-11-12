@@ -90,12 +90,15 @@ export type PasswordScreenParamsType = {
   passwordScreenType: "Create" | "Confirm";
 };
 
+export type OtpForScreenType = { otpScreenType: "email" | "phone" };
+
 export type SignUpStackParamList = {
   SignUpRoot: undefined;
   SignUpProfileSetup: undefined;
-  SignUpOTP: undefined;
+  SignUpOTP: OtpForScreenType;
   SignUpPassword: PasswordScreenParamsType;
   SignUpConfirmPassword: PasswordScreenParamsType;
+  SignUpPhoneNumber: undefined;
 };
 
 export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> =

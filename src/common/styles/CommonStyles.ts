@@ -842,6 +842,21 @@ const CommonStyles = StyleSheet.create({
     marginHorizontal: wp(20),
     marginVertical: hp(20),
   },
+
+  //Text/Email Input Forms
+  textInput: {
+    width: "100%",
+    borderWidth: 0.5,
+    borderRadius: 5,
+    padding: 15,
+    fontSize: hp(18),
+    fontFamily: "Euclid-Circular-A",
+  },
+  errorText: {
+    fontSize: hp(14),
+    color: "red",
+    marginTop: 5,
+  },
 });
 
 export default CommonStyles;

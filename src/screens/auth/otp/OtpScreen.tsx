@@ -20,6 +20,7 @@ type OtpProp = {
   onResend: () => void;
   phoneNumber: string;
   onBackButtonPressed: () => void;
+  otpTitle: string;
 };
 
 const OtpScreen = (props: OtpProp) => {
@@ -32,9 +33,7 @@ const OtpScreen = (props: OtpProp) => {
         <BackButton onPress={() => props.onBackButtonPressed()} />
         <Text style={styles.otp}>OTP</Text>
       </View>
-      <Text style={styles.verification}>
-        Please enter the 6-digit code sent to your mobile number
-      </Text>
+      <Text style={styles.verification}>{props.otpTitle}</Text>
       <View
         style={{
           marginTop: hp(20),
