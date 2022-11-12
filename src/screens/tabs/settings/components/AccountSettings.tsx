@@ -89,7 +89,7 @@ export default function AccountSettings({
           style={{
             // color: Colors[colorScheme].secondaryText,
             fontFamily: "Euclid-Circular-A",
-            fontSize: hp(16),
+            fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
           }}>

@@ -39,7 +39,7 @@ const NameVisibilityScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-            fontWeight: "500",
+            fontWeight: "600",
           }}>
           Name Visibility
         </Text>
@@ -60,7 +60,7 @@ const NameVisibilityScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
         }}>
@@ -104,7 +104,6 @@ const NameVisibilityScreen = ({
               style={{
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
-                marginLeft: hp(5),
                 fontWeight: "500",
               }}>
               Chiazondu Joseph

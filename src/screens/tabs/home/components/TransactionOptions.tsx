@@ -51,7 +51,7 @@ const TransactionOptions = ({
             })
           }
           style={{ display: "flex", alignItems: "center" }}>
-          <WithdrawIcon size={50} color="#FF361A" />
+          <WithdrawIcon size={40} color="#FF361A" />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
@@ -62,7 +62,7 @@ const TransactionOptions = ({
 
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
-            <TransferIcon size={50} color={Colors[colorScheme].text} />
+            <TransferIcon size={40} color={Colors[colorScheme].text} />
             <Text
               lightColor={Colors.light.text}
               darkColor={"#CCCCCC"}
@@ -82,7 +82,7 @@ const TransactionOptions = ({
             })
           }
           style={{ display: "flex", alignItems: "center" }}>
-          <DepositIcon color="#2AD168" size={50} />
+          <DepositIcon color="#2AD168" size={40} />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}

@@ -231,6 +231,7 @@ const OutgoingSplitRequestsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].error,
+                width: "100%",
               },
               CommonStyles.button,
             ]}

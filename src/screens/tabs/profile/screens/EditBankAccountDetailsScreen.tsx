@@ -50,7 +50,7 @@ const EditBankAccountDetailsScreen = ({
             // darkColor={Colors.dark.mainText}
             style={{
               marginVertical: hp(30),
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A",
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(5),
@@ -62,7 +62,7 @@ const EditBankAccountDetailsScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(15),
                 fontWeight: "500",
                 marginLeft: hp(5),
@@ -105,7 +105,7 @@ const EditBankAccountDetailsScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(15),
                 fontWeight: "500",
                 marginLeft: hp(5),
@@ -133,7 +133,7 @@ const EditBankAccountDetailsScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(15),
                 fontWeight: "500",
                 marginLeft: hp(5),
@@ -157,7 +157,7 @@ const EditBankAccountDetailsScreen = ({
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View style={{ marginBottom: hp(65) }}>
           <Button
             title="Edit Account Details"
             onPressButton={() => navigation.goBack()}
@@ -167,6 +167,7 @@ const EditBankAccountDetailsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}
@@ -175,7 +176,7 @@ const EditBankAccountDetailsScreen = ({
             title="Delete Account"
             onPressButton={() => console.log("called")}
             styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red }}
+            style={[{ borderBottomColor: Colors.general.red }]}
           />
         </View>
       </View>

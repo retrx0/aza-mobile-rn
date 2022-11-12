@@ -28,7 +28,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             You are about to lock up {"\u20A680000"} for 2 Weeks
           </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={{ marginTop: hp(230) }}>
           <Button
             title="Continue"
             onPressButton={() =>

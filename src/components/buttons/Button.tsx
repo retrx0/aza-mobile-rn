@@ -77,7 +77,6 @@ const styles = {
   },
   nextButton: {
     backgroundColor: Colors.general.primary,
-    width: "90%",
   },
 };
 

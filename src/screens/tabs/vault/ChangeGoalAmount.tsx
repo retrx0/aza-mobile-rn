@@ -69,12 +69,12 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             width: "100%",
-            marginTop: 80,
+            marginTop: 60,
             marginBottom: "auto",
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(100) }]}>
           <Button
             disabled={!amount}
             title="Save Change"

@@ -89,7 +89,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View style={{ marginTop: hp(330) }}>
           <Button
             title="Confirm"
             onPressButton={() =>
@@ -103,7 +103,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}

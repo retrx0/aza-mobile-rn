@@ -266,6 +266,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A",
+    marginTop: hp(10),
   },
   actionContainer: {
     alignSelf: "center",
@@ -290,6 +291,7 @@ const CommonStyles = StyleSheet.create({
   passwordContainer: {
     position: "absolute",
     alignSelf: "center",
+    width: 410,
   },
   everyMonth: {
     fontSize: hp(16),
@@ -571,6 +573,7 @@ const CommonStyles = StyleSheet.create({
   },
   phoneContainer: {
     marginTop: hp(30),
+    marginBottom: hp(5),
   },
   iconStyle: {
     marginLeft: hp(26),
@@ -630,19 +633,17 @@ const CommonStyles = StyleSheet.create({
     color: Colors.general.black,
   },
   toBankbutton: {
-    width: wp(338),
     backgroundColor: Colors.general.white,
     borderColor: Colors.general.black,
     borderWidth: 1,
+    marginBottom: 20,
   },
   toAzabutton: {
-    width: wp(338),
     borderWidth: 1,
     borderColor: Colors.general.white,
   },
 
   button: {
-    width: wp(338),
     marginTop: hp(10),
   },
   textProps: {

@@ -89,7 +89,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             CommonStyles.col,
             {
               marginBottom: hp(100),
-              width: "95%",
+              width: "100%",
               alignItems: "center",
               justifyContent: "center",
             },

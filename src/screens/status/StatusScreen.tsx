@@ -84,7 +84,7 @@ const StatusScreen = ({
           </Text>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(80), width: "100%" }]}>
+          style={[CommonStyles.col, { marginBottom: hp(110), width: "100%" }]}>
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
@@ -110,8 +110,8 @@ const StatusScreen = ({
               color: Colors[colorScheme].buttonText,
             }}
             style={{
-              marginVertical: hp(20),
               backgroundColor: Colors[colorScheme].button,
+              width: "100%",
             }}
           />
           {receiptButton && (

@@ -85,7 +85,6 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}

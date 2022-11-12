@@ -31,7 +31,7 @@ const ChangePasswordScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-            fontWeight: "500",
+            fontWeight: "600",
           }}
         >
           Current Password
@@ -73,7 +73,7 @@ const ChangePasswordScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
         }}
@@ -86,6 +86,11 @@ const ChangePasswordScreen = ({
           secureInput
           headerText="Password"
           onValueChanged={(pass) => setPassword(pass)}
+          headerstyle={{
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}
         />
       </View>
       <Button
@@ -101,6 +106,7 @@ const ChangePasswordScreen = ({
           width: "100%",
           marginTop: hp(100),
           backgroundColor: Colors[colorScheme].button,
+          width: "100%",
         }}
       />
     </View>

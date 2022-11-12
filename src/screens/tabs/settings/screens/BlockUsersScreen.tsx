@@ -59,7 +59,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             darkColor={Colors.dark.mainText}
             style={{
               fontSize: hp(16),
-              fontFamily: "Euclid-Circular-A-Medium",
+              fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
               fontWeight: "400",
               marginTop: hp(30),
@@ -84,7 +84,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           </Text>
         </View>
 
-        <View style={[CommonStyles.col, { marginBottom: hp(25) }]}>
+        <View style={{ marginBottom: hp(25) }}>
           <Button
             title="Block A User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
@@ -94,6 +94,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}

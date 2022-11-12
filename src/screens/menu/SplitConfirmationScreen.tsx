@@ -253,6 +253,7 @@ const SplitConfirmationScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}

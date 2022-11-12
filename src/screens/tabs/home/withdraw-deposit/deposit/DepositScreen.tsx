@@ -131,11 +131,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             ))}
           </View>
 
-          <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+          <View style={[{ bottom: hp(45) }]}>
             <CancelButtonWithUnderline
               title="Add New Card"
               onPressButton={() =>
-                navigation.getParent()?.navigate("ArchievedVault")
+                navigation.navigate("AddNewCard", {
+                  navigateBackTo: "Deposit",
+                })
               }
               color={Colors[colorScheme].text}
             />
@@ -162,6 +164,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               style={[
                 {
                   backgroundColor: Colors[colorScheme].button,
+                  width: "100%",
                 },
                 CommonStyles.button,
               ]}
@@ -222,7 +225,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View style={{ marginBottom: hp(45) }}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -236,6 +239,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "95%",
               },
               CommonStyles.button,
             ]}

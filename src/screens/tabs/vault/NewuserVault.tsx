@@ -159,6 +159,15 @@ const NewUserVault = () => {
           }>
           <AddIcon />
         </TouchableOpacity>
+        <Text
+          style={{
+            fontFamily: "Euclid-Circular-A",
+            fontSize: hp(14),
+            fontWeight: "400",
+            marginBottom: hp(40),
+          }}>
+          New Vault
+        </Text>
       </View>
     </SpacerWrapper>
   );

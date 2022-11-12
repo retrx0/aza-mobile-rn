@@ -134,11 +134,13 @@ const BankAccountsScreen = ({
             </View>
           ))}
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(80) }]}>
+        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
           <CancelButtonWithUnderline
             title="Add another bank Account"
             onPressButton={() =>
-              navigation.getParent()?.navigate("ArchievedVault")
+              navigation.navigate("SelectBank", {
+                screenType,
+              })
             }
             color={Colors[colorScheme].text}
           />
@@ -199,6 +201,7 @@ const BankAccountsScreen = ({
               fontWeight: "600",
               paddingLeft: hp(7),
               marginBottom: hp(30),
+              marginTop: hp(30),
             }}>
             Select a bank account to perform any activity
           </Text>
@@ -239,7 +242,7 @@ const BankAccountsScreen = ({
             </View>
           ))}
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(45) }]}>
+        <View style={{ marginBottom: hp(65) }}>
           <Button
             title="Add another bank Account"
             onPressButton={() =>
@@ -253,6 +256,7 @@ const BankAccountsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}

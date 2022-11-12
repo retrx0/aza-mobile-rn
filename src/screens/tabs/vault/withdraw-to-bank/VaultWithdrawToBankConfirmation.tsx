@@ -173,11 +173,14 @@ const VaultConfirmation = ({
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
               }}>
-              {"\u20A6"} {user.azaBalance}
+              {"\u20A6"}
+              {user.azaBalance}
             </Text>
           </View>
         </View>
+
         <VirtualKeyboard value={amount} setValue={setAmount} />
+
         <Button
           title="Continue"
           disabled={!amount}
@@ -245,7 +248,6 @@ const VaultConfirmation = ({
             fontSize: 14,
           }}
           style={{
-            marginVertical: 10,
             backgroundColor: Colors[colorScheme].button,
           }}
         />

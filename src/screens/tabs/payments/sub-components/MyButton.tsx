@@ -24,7 +24,7 @@ export default function MyButton({
       style={[
         styles.button,
         {
-          width: "90%",
+          width: "100%",
           opacity: disabled ? 0.3 : 1,
           alignSelf: "center",
         },

@@ -51,11 +51,12 @@ const AddBankAccountScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A",
               fontSize: hp(16),
               marginVertical: hp(30),
               marginLeft: hp(5),
               fontWeight: "500",
+              marginTop: hp(30),
             }}>
             Add your bank account to receive withdrawals from your Aza account
           </Text>
@@ -64,8 +65,8 @@ const AddBankAccountScreen = ({
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(15),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
               }}>
@@ -79,7 +80,7 @@ const AddBankAccountScreen = ({
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
-                marginTop: hp(15),
+                marginTop: hp(5),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
                 marginLeft: hp(5),
@@ -90,7 +91,7 @@ const AddBankAccountScreen = ({
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
+        <View style={{ marginBottom: hp(65) }}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -107,6 +108,7 @@ const AddBankAccountScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
+                width: "100%",
               },
               CommonStyles.button,
             ]}

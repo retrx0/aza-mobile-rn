@@ -153,14 +153,27 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={CommonStyles.archievedContainer}>
-          <BackButton onPress={() => navigation.goBack()} />
-          <Header
-            heading="Archived Vaults"
-            description={""}
-            descriptionStyle={undefined}
-            headerStyle={CommonStyles.archieved}
-          />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: hp(20),
+            marginBottom: hp(35),
+          }}>
+          <View>
+            <BackButton onPress={() => navigation.goBack()} />
+          </View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+              textAlign: "center",
+              marginRight: hp(60),
+            }}>
+            Archieved Vault
+          </Text>
           <TouchableOpacity>
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
