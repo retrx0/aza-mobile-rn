@@ -6,13 +6,12 @@ import { SignUpScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import RNPickerSelect from "react-native-picker-select";
-import { Gender } from "../../../../constants/Gender";
+import { FEMALE, Gender, MALE } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
 import { SelectIcon } from "../../../../../assets/svg";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
-import { signUpValidationSchema } from "../components/SignupValidation";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import {
   registerUser,
@@ -22,14 +21,15 @@ import {
   setNewUser,
 } from "../../../../redux/slice/newUserSlice";
 import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
+import * as yup from "yup";
 
 const SignUpProfile = ({
   navigation,
 }: SignUpScreenProps<"SignUpProfileSetup">) => {
-  const [gender, setGender] = useState("unknown");
   const placeholder = {
     label: "Select Gender",
-    value: null,
+    value: "unknown",
+    key: -1,
     color: Colors.general.black,
   };
   const colorScheme = useColorScheme();
@@ -39,6 +39,15 @@ const SignUpProfile = ({
   const newUser = useAppSelector(selectNewUser);
   const { phone, token, thirdPartyEmailSignUp } = newUser;
 
+  const signUpValidationSchema = yup.object().shape({
+    firstname: yup.string().required("Firstname is required"),
+    lastname: yup.string().required("Lastname is required"),
+    gender: yup
+      .string()
+      .required("Please select a gender")
+      .oneOf([MALE, FEMALE]),
+  });
+
   return (
     <>
       <Formik
@@ -46,8 +55,24 @@ const SignUpProfile = ({
         initialValues={{
           firstname: "",
           lastname: "",
+          gender: "",
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          dispatch(
+            setNewUser({
+              firstname: values.firstname,
+              lastname: values.lastname,
+              email: newUser.email,
+              gender: values.gender,
+              isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
+              createdPasscode: newUser.createdPasscode,
+              thirdPartyEmailSignUp: thirdPartyEmailSignUp,
+            })
+          );
+          navigation.navigate("SignUpPassword", {
+            passwordScreenType: "Create",
+          });
+        }}
       >
         {({
           handleChange,
@@ -59,57 +84,10 @@ const SignUpProfile = ({
           touched,
         }) => (
           <>
-            {/* <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ marginBottom: hp(5) }}>First name</Text>
-                <Text style={{ color: "red" }}>*</Text>
-              </View>
-              <TextInput
-                style={[
-                  styles.textInput,
-                  { backgroundColor: Colors[colorScheme].backgroundSecondary },
-                  { borderColor: Colors[colorScheme].border },
-                  { color: Colors[colorScheme].text },
-                ]}
-                onChangeText={handleChange("firstname")}
-                onBlur={handleBlur("firstname")}
-                value={values.firstname}
-                placeholderTextColor={Colors[colorScheme].text}
-              />
-              {errors.firstname && touched.firstname && (
-                <Text style={styles.errorText}>{errors.firstname}</Text>
-              )}
-            </View> */}
-
-            {/* <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ marginBottom: hp(5) }}>Last name</Text>
-                <Text style={{ color: "red" }}>*</Text>
-              </View>
-              <TextInput
-                style={[
-                  styles.textInput,
-                  { backgroundColor: Colors[colorScheme].backgroundSecondary },
-                  { borderColor: Colors[colorScheme].border },
-                  { color: Colors[colorScheme].text },
-                ]}
-                onChangeText={handleChange("lastname")}
-                onBlur={handleBlur("lastname")}
-                value={values.lastname}
-                placeholderTextColor={Colors[colorScheme].text}
-              />
-              {errors.lastname && touched.lastname && (
-                <Text style={styles.errorText}>{errors.lastname}</Text>
-              )}
-            </View> */}
-
             <InputFormFieldNormal
               placeholderVisible
               onChangeText={handleChange("firstname")}
+              onBlur={handleBlur("firstname")}
               value={values.firstname}
               type="firstname"
               formikProps={{
@@ -122,6 +100,7 @@ const SignUpProfile = ({
             <InputFormFieldNormal
               placeholderVisible
               onChangeText={handleChange("lastname")}
+              onBlur={handleBlur("lastname")}
               value={values.lastname}
               type="lastname"
               formikProps={{
@@ -153,12 +132,11 @@ const SignUpProfile = ({
             >
               <RNPickerSelect
                 placeholder={placeholder}
-                onUpArrow={() => true}
-                onDownArrow={() => true}
                 onValueChange={(value) => {
-                  setGender(value);
+                  handleChange("gender")(value);
+                  console.log(values.gender);
                 }}
-                value={gender}
+                value={values.gender}
                 items={Gender}
                 pickerProps={{
                   style: {
@@ -176,26 +154,13 @@ const SignUpProfile = ({
                   },
                 }}
               />
+              {errors.gender && touched.gender && (
+                <Text style={CommonStyles.errorText}>{errors}</Text>
+              )}
             </View>
             <Button
               title="Continue"
-              onPressButton={() => {
-                handleSubmit();
-                dispatch(
-                  setNewUser({
-                    firstname: values.firstname,
-                    lastname: values.lastname,
-                    email: newUser.email,
-                    gender: gender,
-                    isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
-                    createdPasscode: newUser.createdPasscode,
-                    thirdPartyEmailSignUp: thirdPartyEmailSignUp,
-                  })
-                );
-                navigation.navigate("SignUpPassword", {
-                  passwordScreenType: "Create",
-                });
-              }}
+              onPressButton={handleSubmit}
               styleText={{
                 color: Colors[colorScheme].buttonText,
               }}

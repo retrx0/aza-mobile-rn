@@ -5,6 +5,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import { Text, View } from "../../../components/Themed";
 import { SignUpScreenProps } from "../../../../types";
 import SignUpProfile from "./components/SignUpInput";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
 
 const SignUpProfileSetupScreen = ({
   navigation,
@@ -19,7 +20,9 @@ const SignUpProfileSetupScreen = ({
         <Text style={[CommonStyles.headerText]}>Profile setup</Text>
         <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
       </View>
-      <SignUpProfile navigation={navigation} route={route} />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SignUpProfile navigation={navigation} route={route} />
+      </TouchableWithoutFeedback>
     </SpacerWrapper>
   );
 };

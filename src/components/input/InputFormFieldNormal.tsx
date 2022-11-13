@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
@@ -13,9 +13,10 @@ const InputFormFieldNormal = ({
   formikProps: { errors, touched },
   type,
   autoFocus,
+  onBlur,
 }: {
   onChangeText: (text: string) => void;
-  onBlur?: () => void;
+  onBlur: (e: any) => void;
   autoFocus: boolean;
   value: string;
   placeholderVisible: boolean;
@@ -26,7 +27,9 @@ const InputFormFieldNormal = ({
 
   const typeOfEmail = type === "email";
 
-  let EMAIL_REGEX = "/^w+(-?w+)*@w+(-?w+)*(.ww+)+$/";
+  let EMAIL_REGEX = /^w+(-?w+)*@w+(-?w+)*(.ww+)+$/;
+
+  const [text, setText] = useState("");
 
   const validateEmail = (email: string): boolean => {
     // return EMAIL_REGEX.test(email);
@@ -54,10 +57,11 @@ const InputFormFieldNormal = ({
             color: Colors[colorScheme].text,
           },
         ]}
+        onChangeText={onChangeText}
+        onBlur={onBlur}
+        value={value}
         autoFocus={autoFocus}
         autoCapitalize="none"
-        onChangeText={(e) => onChangeText(e)}
-        value={value}
         keyboardType={typeOfEmail ? "email-address" : "default"}
         placeholderTextColor={Colors[colorScheme].secondaryText}
         autoComplete={

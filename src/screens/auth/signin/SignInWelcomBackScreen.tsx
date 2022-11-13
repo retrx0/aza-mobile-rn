@@ -10,20 +10,30 @@ import { SignInScreenProps } from "../../../../types";
 import { View, Text } from "../../../components/Themed";
 import { UserData } from "../../../constants/userData";
 import api from "../../../api";
-import { TouchableOpacity } from "react-native";
+import {
+  Keyboard,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
+import { loginUserAPI } from "../../../api/auth";
 
 type WelcomeOTProp = {
   otpCode: string;
 };
 
-const verifyPasscode = (code: string, navigation: any) => {
+const verifyPasscode = (code: string, navigation: any, user: any) => {
   if (code.length === 6) {
     console.log("verifying passcode...");
+    // loginUserAPI({
+    //   email: user.email,
+    //   passcode: code,
+    //   phoneNumber: user.phoneNumber,
+    // }).then((r) => console.log(r));
     navigation.navigate("Root");
   }
 };
@@ -68,27 +78,31 @@ const SignInWelcomeBackScreen = ({
 
   return (
     <SpacerWrapper>
-      <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
-      <Text style={styles.sentCode}>Enter your Aza password to login</Text>
-      <View
-        style={{
-          marginTop: hp(20),
-          paddingHorizontal: hp(20),
-          marginBottom: hp(100),
-        }}
-      >
-        <SegmentedInput
-          value={otpCode}
-          onValueChanged={(code) => verifyPasscode(code, navigation)}
-          headerText="Password"
-          secureInput={true}
-        />
-      </View>
-      <View style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
-        <TouchableOpacity onPress={() => forgetUser(navigation)}>
-          <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
+        <Text style={styles.sentCode}>Enter your Aza password to login</Text>
+        <View
+          style={{
+            marginTop: hp(20),
+            paddingHorizontal: hp(20),
+            marginBottom: hp(100),
+          }}
+        >
+          <SegmentedInput
+            value={otpCode}
+            onValueChanged={(code) => verifyPasscode(code, navigation, user)}
+            headerText="Password"
+            secureInput={true}
+          />
+        </View>
+        <View
+          style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
+        >
+          <TouchableOpacity onPress={() => forgetUser(navigation)}>
+            <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
     </SpacerWrapper>
   );
 };

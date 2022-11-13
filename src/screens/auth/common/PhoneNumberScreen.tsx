@@ -64,12 +64,12 @@ const PhoneNumberScreen = ({
         title="Continue"
         onPressButton={() => {
           dispatch(setReduxStorePhone(phone));
-          const otpResponse = requestOtpApi({ email: "", phoneNumber: phone });
-          otpResponse.then((r) => {
-            console.log(r);
-            navigation.push("SignUpOTP", {
-              otpScreenType: "phone",
-            });
+          // const otpResponse = requestOtpApi({ email: "", phoneNumber: phone });
+          // otpResponse.then((r) => {
+
+          // });
+          navigation.push("SignUpOTP", {
+            otpScreenType: "phone",
           });
         }}
         styleText={{

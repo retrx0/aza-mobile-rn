@@ -17,7 +17,7 @@ import {
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
-import { Platform } from "react-native";
+import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
 import {
   ENV,
   STORAGE_KEY_FACEBOOK_REFRESH_TOKEN,
@@ -35,14 +35,18 @@ import {
 import * as SecureStore from "expo-secure-store";
 import InputFormFieldNormal from "../../../components/input/InputFormFieldNormal";
 import { requestOtpApi } from "../../../api/auth";
+import { Formik, FormikHelpers, FormikValues } from "formik";
+import * as yup from "yup";
+import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 
 WebBrowser.maybeCompleteAuthSession();
 
-const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
-  const [phone, setPhone] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const colorScheme = useColorScheme();
+const validationSchema = yup.object({
+  email: yup.string().required("Email is required!").email(),
+});
 
+const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
+  const colorScheme = useColorScheme();
   const [thirdPartyUserData, setThirdPartyUserData] = useState({});
 
   const dispatch = useAppDispatch();
@@ -115,64 +119,69 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             navigation.getParent()?.navigate("Welcome");
           }}
         />
+        <View style={[CommonStyles.phoneContainer]}>
+          <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
+          <Text style={[CommonStyles.bodyText]}>
+            Enter your email address to continue
+          </Text>
+          <Text style={[CommonStyles.phoneText]}>
+            Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
+          </Text>
+        </View>
       </View>
-      <View style={[CommonStyles.phoneContainer]}>
-        <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your email address to continue
-        </Text>
-        <Text style={[CommonStyles.phoneText]}>
-          Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
-        </Text>
-      </View>
-
-      <InputFormFieldNormal
-        value={email}
-        onChangeText={(e) => setEmail(e)}
-        placeholderVisible={false}
-        type="email"
-        formikProps={{ errors: false, touched: false }}
-        autoFocus={false}
-      />
-      {/*
-      <PhoneInput
-        initialValue={phone}
-        onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry="ng"
-        autoFormat
-        textStyle={[CommonStyles.textStyle]}
-        textProps={{
-          placeholder: "Enter a phone number...",
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{ email: "" }}
+        onSubmit={(values, actions) => {
+          dispatch(setReduxStoreEmail(values.email));
+          requestOtpApi({
+            email: values.email,
+            phoneNumber: "",
+          })
+            .then((r) => {
+              console.log(r);
+              if (r)
+                navigation.navigate("SignUpOTP", {
+                  otpScreenType: "email",
+                });
+            })
+            .catch((e) => console.error(e));
         }}
-        style={[CommonStyles.phoneStyle]}
-      /> */}
-      <Button
-        title="Continue"
-        onPressButton={() => {
-          dispatch(setReduxStoreEmail(email));
-          // TDOD replace the below email with the one coming from google, apple or facebook!
-          // dispatch(
-          //   requestOtp({
-          //     phone: "",
-          //     email: "mubarakibrahim2015@gmail.com",
-          //     thirdPartyEmailSignUp: false,
-          //   })
-          // );
-          requestOtpApi({ email: email, phoneNumber: "" });
-          navigation.navigate("SignUpOTP", { otpScreenType: "email" });
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+          errors,
+          touched,
+        }) => {
+          return (
+            <View>
+              <InputFormFieldNormal
+                value={values.email}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                placeholderVisible={false}
+                type="email"
+                formikProps={{ errors: errors.email, touched: touched.email }}
+                autoFocus={false}
+              />
+              <Button
+                title="Continue"
+                onPressButton={handleSubmit}
+                styleText={{ color: Colors[colorScheme].buttonText }}
+                style={[
+                  { backgroundColor: Colors[colorScheme].button },
+                  CommonStyles.otpbutton,
+                ]}
+                disabled={!isValid}
+              />
+            </View>
+          );
         }}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-        }}
-        style={[
-          {
-            backgroundColor: Colors[colorScheme].button,
-          },
-
-          CommonStyles.otpbutton,
-        ]}
-        disabled={email.length < 10}
-      />
+      </Formik>
       <View style={[CommonStyles.row, CommonStyles.user]}>
         <Text style={[CommonStyles.account]}>Already have an account? </Text>
         <CancelButtonWithUnderline
@@ -181,7 +190,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           color={Colors[colorScheme].text}
         />
       </View>
-
       <Text style={[CommonStyles.orText]}>OR</Text>
       {Platform.OS === "ios" ? (
         <ButtonLg

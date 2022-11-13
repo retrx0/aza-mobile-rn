@@ -55,7 +55,6 @@ const SignUpOTPScreen = ({
           //     otp: Number(signUpOtp),
           //   })
           // );
-
           verifyOtpApi(
             {
               email: otpScrenType === "email" ? email! : "",

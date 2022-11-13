@@ -20,6 +20,7 @@ import {
 import { registerUserAPI } from "../../../api/user";
 import Toast from "react-native-toast-message";
 import { useNotifications } from "../../../hooks/useNotifications";
+import * as Crypto from "expo-crypto";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -49,6 +50,11 @@ const SignUpPasswordScreen = ({
       setIsEnabled(newUser.isUsePasscodeAsPin);
     }
 
+    // const digest = Crypto.digestStringAsync(
+    //   Crypto.CryptoDigestAlgorithm.SHA256,
+    //   'GitHub stars are neat 🌟'
+    // );
+
     notification
       .registerForPushNotificationsAsync()
       .then((tok) => {
@@ -75,7 +81,8 @@ const SignUpPasswordScreen = ({
           marginTop: hp(20),
           paddingHorizontal: hp(20),
           marginBottom: hp(100),
-        }}>
+        }}
+      >
         <SegmentedInput
           value={passcode}
           secureInput
@@ -87,7 +94,8 @@ const SignUpPasswordScreen = ({
         style={[
           CommonStyles.container,
           { bottom: hp(Platform.OS == "android" ? 300 : 400) },
-        ]}>
+        ]}
+      >
         <View style={[CommonStyles.row]}>
           <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?
