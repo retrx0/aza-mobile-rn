@@ -25,7 +25,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{ marginLeft: 10 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -33,7 +33,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(80),
+              marginLeft: hp(90),
             }}>
             Confirmation
           </Text>
@@ -43,14 +43,19 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </Text>
         <View
           style={{
-            borderBottomWidth: 0.5,
-            width: "90%",
+            borderBottomWidth: hp(0.25),
             marginBottom: hp(35),
             borderColor: "#EAEAEC",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            alignSelf: "center",
+
+            width: "95%",
+            marginLeft: hp(10),
+
+            // alignSelf: "center",
+            // flexDirection: "row",
+            // alignItems: "center",
           }}>
           <Input
             icon={null}
@@ -64,6 +69,9 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A",
+              // fontSize: hp(16),
+              // fontWeight: "500",
+              // fontFamily: "Euclid-Circular-A",
             }}
           />
           <Image
@@ -74,7 +82,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             source={require("../../../../assets/images/icons/CoverImage.png")}
           />
         </View>
-
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
