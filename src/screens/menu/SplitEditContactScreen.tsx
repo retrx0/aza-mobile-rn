@@ -13,6 +13,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SplitEditContactScreen = ({
   navigation,
@@ -21,6 +22,7 @@ const SplitEditContactScreen = ({
   const { contactSplitAmount, contactImage, contactName } = route.params;
   const [editedAmount, setEditedAmount] = useState(contactSplitAmount);
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -142,8 +144,8 @@ const SplitEditContactScreen = ({
         </View>
         <View
           style={[
-            CommonStyles.col,
-            { width: "100%", marginBottom: hp(65), marginTop: 5 },
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
           ]}>
           <Button
             title="Confirm"
@@ -154,9 +156,7 @@ const SplitEditContactScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
           <CancelButtonWithUnderline

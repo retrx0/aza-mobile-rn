@@ -15,6 +15,7 @@ import { hp } from "../../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   ArrowDownIcon,
@@ -25,6 +26,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   const colorScheme = useColorScheme();
   const [selectedCard, setSelectedCard] = useState("");
   const [cardsAvailable] = useState(true);
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -131,7 +133,11 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             ))}
           </View>
 
-          <View style={[{ bottom: hp(45) }]}>
+          <View
+            style={[
+              CommonStyles.passwordContainer,
+              { bottom: insets.bottom || hp(45) },
+            ]}>
             <CancelButtonWithUnderline
               title="Add New Card"
               onPressButton={() =>
@@ -140,6 +146,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 })
               }
               color={Colors[colorScheme].text}
+              style={{ marginBottom: hp(10) }}
             />
             <Button
               disabled={!selectedCard}
@@ -164,9 +171,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               style={[
                 {
                   backgroundColor: Colors[colorScheme].button,
-                  width: "100%",
                 },
-                CommonStyles.button,
               ]}
             />
             <CancelButtonWithUnderline
@@ -225,7 +230,11 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             />
           </View>
         </View>
-        <View style={{ marginBottom: hp(45) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -239,9 +248,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "95%",
               },
-              CommonStyles.button,
             ]}
           />
           <ButtonWithUnderline

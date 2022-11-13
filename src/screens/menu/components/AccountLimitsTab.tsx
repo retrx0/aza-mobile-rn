@@ -10,11 +10,14 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { CommonScreenProps } from "../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AccountLimitsTab = ({
   navigation,
 }: CommonScreenProps<"FeesAndLimits">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
+
   const [isVerified] = useState(false);
 
   return (
@@ -179,30 +182,33 @@ const AccountLimitsTab = ({
           />
         </View>
       </View>
-      <Button
-        title="Upgrade Account"
-        disabled={isVerified}
-        onPressButton={() =>
-          navigation.navigate("BvnVerification", {
-            onVerifyNavigateBackTo: "FeesAndLimits",
-          })
-        }
-        styleText={{
-          color: isVerified
-            ? Colors[colorScheme].disabledButtonText
-            : Colors[colorScheme].buttonText,
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
-        }}
-        style={{
-          marginTop: "auto",
-          marginBottom: hp(50),
-          backgroundColor: isVerified
-            ? Colors[colorScheme].disabledButton
-            : Colors[colorScheme].button,
-          width: "100%",
-        }}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <Button
+          title="Upgrade Account"
+          disabled={isVerified}
+          onPressButton={() =>
+            navigation.navigate("BvnVerification", {
+              onVerifyNavigateBackTo: "FeesAndLimits",
+            })
+          }
+          styleText={{
+            color: isVerified
+              ? Colors[colorScheme].disabledButtonText
+              : Colors[colorScheme].buttonText,
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{
+            backgroundColor: isVerified
+              ? Colors[colorScheme].disabledButton
+              : Colors[colorScheme].button,
+          }}
+        />
+      </View>
     </View>
   );
 };
