@@ -18,8 +18,8 @@ import * as Notifications from "expo-notifications";
 import UserInactivity from "react-native-user-inactivity";
 import * as SecureStore from "expo-secure-store";
 
-import QRTransactionsScreen from "../screens/qrTransactions/QRTransactionsScreen";
-import QRCodeScreen from "../screens/qrTransactions/QRCodeScreen";
+import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
+import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
