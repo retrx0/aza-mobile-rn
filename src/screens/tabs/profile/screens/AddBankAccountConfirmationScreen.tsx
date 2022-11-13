@@ -11,6 +11,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddBankAccountConfirmationScreen = ({
   navigation,
@@ -18,6 +19,7 @@ const AddBankAccountConfirmationScreen = ({
 }: CommonScreenProps<"AddBankAccountConfirmation">) => {
   const colorScheme = useColorScheme();
   const { bankName, accountName, accountNumber, screenType } = route.params;
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -161,7 +163,11 @@ const AddBankAccountConfirmationScreen = ({
             />
           </View>
         </View>
-        <View style={{ marginBottom: hp(65) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -182,9 +188,7 @@ const AddBankAccountConfirmationScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
         </View>

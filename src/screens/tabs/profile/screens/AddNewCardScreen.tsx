@@ -12,6 +12,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddNewCardScreen = ({
   navigation,
@@ -19,6 +20,8 @@ const AddNewCardScreen = ({
 }: CommonScreenProps<"AddNewCard">) => {
   const colorScheme = useColorScheme();
   const { navigateBackTo } = route.params;
+  const insets = useSafeAreaInsets();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -137,11 +140,16 @@ const AddNewCardScreen = ({
             />
           </View>
         </View>
-        <View style={{ marginBottom: hp(65) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <CancelButtonWithUnderline
             title="Scan Card instead"
             color={Colors[colorScheme].mainText}
             onPressButton={() => navigation.navigate("ScanCard")}
+            style={{ marginBottom: hp(10) }}
           />
 
           <Button
@@ -161,9 +169,7 @@ const AddNewCardScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
         </View>
@@ -179,6 +185,6 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });
