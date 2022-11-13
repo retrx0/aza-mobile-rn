@@ -92,9 +92,13 @@ export type PasswordScreenParamsType = {
 
 export type OtpForScreenType = { otpScreenType: "email" | "phone" };
 
+export type ProfileSetupInfo = {
+  profilePreloadedInfo: { firstname: string; lastname: string };
+};
+
 export type SignUpStackParamList = {
   SignUpRoot: undefined;
-  SignUpProfileSetup: undefined;
+  SignUpProfileSetup: ProfileSetupInfo | undefined;
   SignUpOTP: OtpForScreenType;
   SignUpPassword: PasswordScreenParamsType;
   SignUpConfirmPassword: PasswordScreenParamsType;

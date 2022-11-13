@@ -72,8 +72,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   };
 
   React.useEffect(() => {
-    console.log(AuthSession.getDefaultReturnUrl());
-
     if (g_response?.type === "success") {
       // Store Tokens
       storeAuthSessionTokens(

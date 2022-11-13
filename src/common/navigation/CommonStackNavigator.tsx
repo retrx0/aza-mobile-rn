@@ -106,7 +106,7 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import { hp } from "../util/LayoutUtil";
-import NewUserVault from "../../screens/tabs/vault/NewUserVault";
+import NewUserVault from "../../screens/tabs/vault/NewuserVault";
 import AddCoverImage from "../../screens/tabs/vault/AddCoverImage";
 import AddCoverImageSuccessful from "../../screens/tabs/vault/SetVaultGoal";
 import SetVaultGoal from "../../screens/tabs/vault/SetVaultGoal";
@@ -157,7 +157,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             marginTop: hp(30),
           },
         }}
-        initialRouteName="details">
+        initialRouteName="details"
+      >
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -368,7 +369,8 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={16}
@@ -379,7 +381,8 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}>
+                }}
+              >
                 Back
               </Text>
             </TouchableOpacity>
@@ -395,7 +398,8 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}>
+        })}
+      >
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -534,7 +538,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -545,7 +550,8 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "400",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
@@ -562,7 +568,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
             },
-          })}>
+          })}
+        >
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}

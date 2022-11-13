@@ -26,7 +26,7 @@ export const requestOtpApi = async (data: {
 }) => {
   try {
     const result = await api.post("/api/v1/auth/request-otp", data);
-    return result;
+    if (result.status == 204) return result.data;
   } catch (e) {
     console.error("Error Requesting OTP: " + e);
   }
@@ -42,7 +42,7 @@ export const verifyOtpApi = async (
 ): Promise<string | undefined> => {
   try {
     const result = await api.post("/api/v1/auth/verify-otp", data);
-    return result.headers["access-token"];
+    if (result.status == 204) return result.headers["access-token"];
   } catch (e) {
     console.error("Error Requesting OTP: " + e);
   }

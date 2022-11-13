@@ -9,6 +9,8 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
+import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
+import { requestOtpApi } from "../../../api/auth";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -56,14 +58,20 @@ const PhoneNumberScreen = ({
         }}
         pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
         style={[CommonStyles.phoneStyle]}
+        offset={20}
       />
       <Button
         title="Continue"
-        onPressButton={() =>
-          navigation.push("SignUpOTP", {
-            otpScreenType: "phone",
-          })
-        }
+        onPressButton={() => {
+          dispatch(setReduxStorePhone(phone));
+          const otpResponse = requestOtpApi({ email: "", phoneNumber: phone });
+          otpResponse.then((r) => {
+            console.log(r);
+            navigation.push("SignUpOTP", {
+              otpScreenType: "phone",
+            });
+          });
+        }}
         styleText={{
           color: Colors[colorScheme].buttonText,
         }}

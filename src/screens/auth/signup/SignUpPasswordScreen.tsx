@@ -17,12 +17,9 @@ import {
   setNewUser,
   setPassword,
 } from "../../../redux/slice/newUserSlice";
-
-// import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-// import { selectNewUser, setNewUser, setPassword } from "../../../redux/slice/newUserSlice";
-
-// import { useAppDispatch, useAppSelector } from "../../../redux";
-// import { selectNewUser, setNewUser } from "../../../redux/slice/newUserSlice";
+import { registerUserAPI } from "../../../api/user";
+import Toast from "react-native-toast-message";
+import { useNotifications } from "../../../hooks/useNotifications";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -33,27 +30,32 @@ const SignUpPasswordScreen = ({
   const [isUsePasscodeAsPin, setIsEnabled] = useState<boolean | undefined>(
     false
   );
-  const newUserData = useAppSelector(selectNewUser);
   const [isConfirmScreen, setIsConfirmScreen] = useState(false);
-
-  useEffect(() => {
-    if (passwordScreenType !== "Create") {
-      setIsConfirmScreen(true);
-      setIsEnabled(newUserData.isUsePasscodeAsPin);
-    }
-  }, []);
+  const [passcode, setPasscode] = useState("");
+  const [pushToken, setPushToken] = useState("");
 
   const colorScheme = useColorScheme();
-
-  const [passcode, setPasscode] = useState("");
+  const notification = useNotifications();
 
   const switchColor = Colors[colorScheme].backgroundSecondary;
   const switchOnColor = Colors[colorScheme].success;
 
   const dispatch = useAppDispatch();
-
   const newUser = useAppSelector(selectNewUser);
-  const { firstname, lastname } = useAppSelector((state) => state.newUser);
+
+  useEffect(() => {
+    if (passwordScreenType !== "Create") {
+      setIsConfirmScreen(true);
+      setIsEnabled(newUser.isUsePasscodeAsPin);
+    }
+
+    notification
+      .registerForPushNotificationsAsync()
+      .then((tok) => {
+        if (tok) setPushToken(tok);
+      })
+      .catch((e) => console.error(e));
+  }, []);
 
   return (
     <SpacerWrapper>
@@ -119,6 +121,7 @@ const SignUpPasswordScreen = ({
                 gender: newUser.gender,
                 isUsePasscodeAsPin: isUsePasscodeAsPin,
                 createdPasscode: passcode,
+                thirdPartyEmailSignUp: false,
               })
             );
 
@@ -127,19 +130,32 @@ const SignUpPasswordScreen = ({
                 passwordScreenType: "Confirm",
               });
             } else {
-              if (passcode === newUserData.createdPasscode) {
+              if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
-                console.log(firstname, lastname, "NAMEE");
-                dispatch(
-                  registerUser({
-                    firstname,
-                    lastname,
-                    password: passcode,
+                console.log(newUser.firstname, newUser.lastname, "NAMEE");
+                registerUserAPI({
+                  email: newUser.email!,
+                  firstName: newUser.firstname!,
+                  lastName: newUser.lastname!,
+                  gender: newUser.gender!,
+                  newPassword: newUser.password!,
+                  pushNotificationToken: "",
+                })
+                  .then((_res) => {
+                    if (_res) navigation.getParent()?.navigate("Root");
                   })
-                );
-                navigation.getParent()?.navigate("Root");
+                  .catch((e) => {
+                    console.error("Error " + e);
+                    Toast.show({
+                      type: "error",
+                      text1: "There was a problem creating your account ⚠️",
+                    });
+                  });
               } else {
-                alert("Password does not match");
+                Toast.show({
+                  type: "error",
+                  text1: "Password does not match ⚠️",
+                });
               }
             }
           }}

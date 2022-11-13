@@ -59,7 +59,7 @@ const InputFormFieldNormal = ({
         onChangeText={(e) => onChangeText(e)}
         value={value}
         keyboardType={typeOfEmail ? "email-address" : "default"}
-        placeholderTextColor={Colors[colorScheme].text}
+        placeholderTextColor={Colors[colorScheme].secondaryText}
         autoComplete={
           typeOfEmail
             ? "email"

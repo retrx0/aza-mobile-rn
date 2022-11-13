@@ -10,7 +10,10 @@ import {
 } from "../../../redux/slice/newUserSlice";
 import OtpScreen from "../otp/OtpScreen";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN } from "@env";
+import {
+  STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN,
+  STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
+} from "@env";
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
 
@@ -54,13 +57,18 @@ const SignUpOTPScreen = ({
           // );
 
           verifyOtpApi(
-            { email: email!, phoneNumber: "", otp: Number(signUpOtp) },
+            {
+              email: otpScrenType === "email" ? email! : "",
+              phoneNumber: otpScrenType === "phone" ? phone! : "",
+              otp: Number(signUpOtp),
+            },
             "email"
           ).then((token) => {
             if (token) {
-              console.log(STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN);
               SecureStore.setItemAsync(
-                STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN,
+                otpScrenType === "email"
+                  ? STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN
+                  : STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
                 token
               );
               if (otpScrenType == "email") {
@@ -72,13 +80,16 @@ const SignUpOTPScreen = ({
               Toast.show({
                 autoHide: true,
                 type: "error",
-                text1: "Otp Invalid",
+                text1: "Invalid OTP ⚠️",
               });
             }
           });
         }}
         onResend={() => {
-          requestOtpApi({ email: email!, phoneNumber: "" });
+          requestOtpApi({
+            email: otpScrenType === "email" ? email! : "",
+            phoneNumber: otpScrenType === "phone" ? phone! : "",
+          });
         }}
         phoneNumber={""}
       />

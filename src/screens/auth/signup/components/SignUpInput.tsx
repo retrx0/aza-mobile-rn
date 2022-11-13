@@ -130,33 +130,6 @@ const SignUpProfile = ({
               }}
               autoFocus={false}
             />
-
-            {/* <View
-              style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={{ marginBottom: hp(5) }}>Email</Text>
-                <Text style={{ color: "red" }}>*</Text>
-              </View>
-              <TextInput
-                style={[
-                  styles.textInput,
-                  { backgroundColor: Colors[colorScheme].backgroundSecondary },
-                  { borderColor: Colors[colorScheme].border },
-                  { color: Colors[colorScheme].text },
-                ]}
-                autoCapitalize="none"
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                value={values.email}
-                keyboardType="email-address"
-                placeholderTextColor={Colors[colorScheme].text}
-              />
-              {errors.email && touched.email && (
-                <Text style={styles.errorText}>{errors.email}</Text>
-              )}
-            </View> */}
-
             <TextHeader
               label="Gender"
               style={[
@@ -219,8 +192,6 @@ const SignUpProfile = ({
                     thirdPartyEmailSignUp: thirdPartyEmailSignUp,
                   })
                 );
-                dispatch(setFirstName(values.firstname));
-                dispatch(setLastName(values.lastname));
                 navigation.navigate("SignUpPassword", {
                   passwordScreenType: "Create",
                 });
@@ -235,7 +206,7 @@ const SignUpProfile = ({
                 CommonStyles.container,
                 { bottom: hp(60) },
               ]}
-              // disabled={!isValid}
+              disabled={!isValid}
             />
           </>
         )}

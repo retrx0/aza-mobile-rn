@@ -10,35 +10,7 @@ import Navigation from "./src/navigation";
 
 import { Provider } from "react-redux";
 import { Store } from "./src/redux/Store";
-import { Text, View } from "./src/components/Themed";
-import { hp } from "./src/common/util/LayoutUtil";
-
-const toastConfig = {
-  errorToast: ({ text1 }: any) => (
-    <View
-      style={{
-        height: hp(50),
-        width: "90%",
-        backgroundColor: "#FEF2DE",
-        borderRadius: 4,
-        paddingHorizontal: 20,
-        justifyContent: "center",
-      }}
-    >
-      <Text
-        style={{
-          marginTop: "auto",
-          marginBottom: "auto",
-          fontSize: 14,
-          fontFamily: "Euclid-Circular-A-Medium",
-          color: "black",
-        }}
-      >
-        {text1}
-      </Text>
-    </View>
-  ),
-};
+import { toastConfig } from "./src/components/notification/toast";
 
 const App = () => {
   const { isLoadingComplete } = useCachedResources();
