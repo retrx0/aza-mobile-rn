@@ -3,7 +3,6 @@ import { StyleSheet, Image, Alert } from "react-native";
 import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
-
 import BackButton from "../../components/buttons/BackButton";
 import { Text, View } from "../../components/Themed";
 import Button from "../../components/buttons/Button";
@@ -21,6 +20,7 @@ import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const colorScheme = useColorScheme();
@@ -28,6 +28,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
 
   const user = useAppSelector(selectUser);
   const transaction = useAppSelector(selectTransaction);
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -66,7 +67,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
+      <View style={CommonStyles.vaultcontainer}>
         <View style={{ alignItems: "center" }}>
           <Image
             style={{ borderRadius: 50, width: 50, height: 50 }}
@@ -106,14 +107,14 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                     ? Colors.dark.mainText
                     : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: 24,
+                fontSize: hp(24),
                 marginLeft: 5,
               }}>
               {transaction.amount}
             </Text>
           </View>
         </View>
-        <View style={{ alignSelf: "center" }}>
+        <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <QRCode
             content={JSON.stringify({
               azaNumber: user.azaAccountNumber,
@@ -126,16 +127,18 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           />
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(100), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Copy Link"
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontSize: hp(14),
             }}
             style={{
-              marginBottom: hp(10),
               backgroundColor: Colors[colorScheme].button,
             }}
           />
@@ -155,8 +158,6 @@ export default QRCodeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    display: "flex",
     justifyContent: "space-between",
     paddingVertical: 15,
     paddingHorizontal: 15,

@@ -16,6 +16,7 @@ import { NairaLargeIcon } from "../../../../assets/svg";
 import { useAppDispatch, useAppSelector } from "../../../redux";
 import { setTransaction } from "../../../redux/slice/transactionSlice";
 import userSlice, { selectUser } from "../../../redux/slice/userSlice";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const QRReceivePaymentTab = ({
   navigation,
@@ -28,6 +29,7 @@ const QRReceivePaymentTab = ({
 
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
+  const insets = useSafeAreaInsets();
 
   return (
     <>
@@ -87,40 +89,44 @@ const QRReceivePaymentTab = ({
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-
-        <Button
-          title="Continue"
-          disabled={!amount}
-          onPressButton={() => {
-            dispatch(
-              setTransaction({
-                amount: Number(amount),
-                beneficairy: {
-                  fullName: user.fullName,
-                  azaAccountNumber: "" + user.azaAccountNumber,
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  email: user.emailAddress,
-                  phone: user.phoneNumber,
-                  pictureUrl: user.pictureUrl,
-                },
-                transferType: "request",
-                description: description,
-              })
-            );
-            setDescModalVisible(true);
-          }}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
-          }}
-          style={{
-            width: "100%",
-            marginBottom: "auto",
-            backgroundColor: Colors[colorScheme].button,
-          }}
-        />
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
+          <Button
+            title="Continue"
+            disabled={!amount}
+            onPressButton={() => {
+              dispatch(
+                setTransaction({
+                  amount: Number(amount),
+                  beneficairy: {
+                    fullName: user.fullName,
+                    azaAccountNumber: "" + user.azaAccountNumber,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.emailAddress,
+                    phone: user.phoneNumber,
+                    pictureUrl: user.pictureUrl,
+                  },
+                  transferType: "request",
+                  description: description,
+                })
+              );
+              setDescModalVisible(true);
+            }}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: 14,
+            }}
+            style={{
+              marginBottom: "auto",
+              backgroundColor: Colors[colorScheme].button,
+            }}
+          />
+        </View>
       </View>
       <DescriptionModal
         description={description}
