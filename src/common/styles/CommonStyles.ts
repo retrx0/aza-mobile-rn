@@ -364,7 +364,7 @@ const CommonStyles = StyleSheet.create({
     borderBottomWidth: hp(0.25),
     borderColor: "#EAEAEC",
     paddingVertical: hp(8),
-    width: 370,
+    width: "100%",
   },
   vaultInput: {
     marginBottom: hp(5),
