@@ -13,11 +13,13 @@ import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { UndrawCalendarIcon } from "../../../assets/svg";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RecurringTransferScreen = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -44,7 +46,7 @@ const RecurringTransferScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container, { justifyContent: "space-between" }]}>
+      <View style={[styles.container]}>
         <View>
           <Text
             // lightColor={Colors.light.text}
@@ -58,13 +60,17 @@ const RecurringTransferScreen = ({
             transfer orders.
           </Text>
         </View>
-        <View style={[CommonStyles.col]}>
+        <View style={{ marginTop: hp(100), alignSelf: "center" }}>
           <UndrawCalendarIcon
             color={colorScheme === "dark" ? "#999999" : "#000"}
             size={30}
           />
         </View>
-        <View style={{ marginBottom: hp(65) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="New Recurring Transfer"
             onPressButton={() =>
@@ -76,9 +82,7 @@ const RecurringTransferScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "95%",
               },
-              CommonStyles.button,
             ]}
           />
         </View>
