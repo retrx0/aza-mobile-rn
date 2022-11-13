@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "../../../../components/Themed";
+import { SafeAreaView, View } from "../../../../components/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -11,6 +11,7 @@ import { useRoute } from "@react-navigation/native";
 import { Ie } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function WaterScreen({
   navigation,
@@ -20,6 +21,8 @@ export default function WaterScreen({
   const route = useRoute();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const bundles = ["100mb", "200mb", "500mb"];
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
@@ -59,14 +62,19 @@ export default function WaterScreen({
         placeholder="Enter an amount to be paid"
       />
 
-      <MyButton
-        disabled={false}
-        title="Continue"
-        onPress={() => {
-          navigation.navigate("Common", { screen: "Confirm" });
-        }}
-        style={{ marginTop: hp(250) }}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <MyButton
+          disabled={false}
+          title="Continue"
+          onPress={() => {
+            navigation.navigate("Common", { screen: "Confirm" });
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 }

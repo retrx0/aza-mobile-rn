@@ -66,7 +66,11 @@ export default function InternetDetail({
         label="Amount"
         placeholder="Enter an amount"
       />
-      <View style={[{ marginTop: 330 }]}>
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
         <Button
           title="Continue"
           onPressButton={() =>
@@ -79,8 +83,6 @@ export default function InternetDetail({
             {
               backgroundColor: Colors[colorScheme].button,
             },
-            { bottom: 20 },
-            CommonStyles.button,
           ]}
         />
       </View>

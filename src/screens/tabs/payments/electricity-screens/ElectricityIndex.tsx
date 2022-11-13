@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "../../../../components/Themed";
+import { SafeAreaView, View } from "../../../../components/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -12,12 +12,15 @@ import { Ie } from "../../../../../assets/images";
 import HeaderImage from "../sub-components/HeaderImage";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function ElectricityIndex({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const bundles = ["100mb", "200mb", "500mb"];
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
@@ -28,7 +31,6 @@ export default function ElectricityIndex({
           fontSize: hp(14),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(3),
           marginTop: hp(30),
         }}
         heading="Select electricity provider"
@@ -60,14 +62,20 @@ export default function ElectricityIndex({
         label="Amount"
         placeholder="Enter an amount"
       />
-      <MyButton
-        disabled={false}
-        title="Continue"
-        onPress={() => {
-          navigation.navigate("Common", { screen: "Confirm" });
-        }}
-        style={{ marginTop: hp(250) }}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <MyButton
+          disabled={false}
+          title="Continue"
+          onPress={() => {
+            navigation.navigate("Common", { screen: "Confirm" });
+          }}
+          // style={{ marginTop: hp(250) }}
+        />
+      </View>
     </SafeAreaView>
   );
 }

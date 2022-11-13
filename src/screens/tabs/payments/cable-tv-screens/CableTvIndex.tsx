@@ -14,6 +14,7 @@ import SelectInput from "../../../../components/input/SelectInput";
 import { Ie } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CableTvIndex({
   navigation,
@@ -23,6 +24,8 @@ export default function CableTvIndex({
   const route = useRoute();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const bundles = ["100mb", "200mb", "500mb"];
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
@@ -33,7 +36,7 @@ export default function CableTvIndex({
           fontSize: hp(14),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(3),
+
           marginTop: hp(30),
         }}
         heading="Select Cable TV"
@@ -45,8 +48,8 @@ export default function CableTvIndex({
 
       <SelectInput
         items={bundles}
-        title="Subscription Package"
-        placeHolder="Choose a subscription package"
+        title="Smart Card Number"
+        placeHolder="Enter your smart card number"
         style={styles.select}
       />
 
@@ -55,18 +58,23 @@ export default function CableTvIndex({
         keyboardType="phone-pad"
         inputStyle={[styles.input]}
         labelStyle={styles.label}
-        label="Smart Card Number"
-        placeholder="Enter your smart card number"
+        label="Subscription Package"
+        placeholder="Choose a subscription package"
       />
-
-      <MyButton
-        disabled={false}
-        title="Continue"
-        onPress={() => {
-          navigation.navigate("Common", { screen: "Confirm" });
-        }}
-        style={{ marginTop: 330 }}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <MyButton
+          disabled={false}
+          title="Continue"
+          onPress={() => {
+            navigation.navigate("Common", { screen: "Confirm" });
+          }}
+          // style={{ marginTop: 330 }}
+        />
+      </View>
     </SafeAreaView>
   );
 }
