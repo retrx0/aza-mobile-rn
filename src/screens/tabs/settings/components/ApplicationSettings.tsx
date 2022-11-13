@@ -97,12 +97,13 @@ export default function ApplicationSettings({
       <View>
         <Text
           style={{
-            // color: Colors[colorScheme].secondaryText,
+            color: Colors[colorScheme].mainText,
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(16),
             fontWeight: "400",
             marginLeft: hp(5),
-          }}>
+          }}
+        >
           Application Settings
         </Text>
         <View

@@ -148,7 +148,7 @@ const SignUpPasswordScreen = ({
                   pushNotificationToken: "",
                 })
                   .then((_res) => {
-                    if (_res) navigation.getParent()?.navigate("Root");
+                    navigation.getParent()?.navigate("Root");
                   })
                   .catch((e) => {
                     console.error("Error " + e);

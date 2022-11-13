@@ -87,12 +87,13 @@ export default function AccountSettings({
       <View>
         <Text
           style={{
-            // color: Colors[colorScheme].secondaryText,
+            color: Colors[colorScheme].mainText,
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
-          }}>
+          }}
+        >
           Account Settings
         </Text>
         <View
