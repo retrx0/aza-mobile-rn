@@ -11,9 +11,11 @@ import { UndrawCancelIcon } from "../../../../../assets/svg";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -40,7 +42,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container, { justifyContent: "space-between" }]}>
+      <View style={[styles.container]}>
         <View>
           <Text
             lightColor={Colors.light.text}
@@ -67,7 +69,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             You can unblock these users anytime
           </Text>
         </View>
-        <View style={[CommonStyles.col]}>
+        <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <UndrawCancelIcon
             color={colorScheme === "dark" ? "#2AD168" : "#000000"}
             size={30}
@@ -84,7 +86,11 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           </Text>
         </View>
 
-        <View style={{ marginBottom: hp(25) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Block A User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
@@ -94,7 +100,6 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
               CommonStyles.button,
             ]}

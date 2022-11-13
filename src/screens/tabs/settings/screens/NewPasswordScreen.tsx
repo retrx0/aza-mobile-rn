@@ -37,8 +37,7 @@ const NewPasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           New Password
         </Text>
       ),
@@ -84,15 +83,13 @@ const NewPasswordScreen = ({
           fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
-        }}
-      >
+        }}>
         Please enter your new password
       </Text>
       <View
         style={{
           marginTop: hp(50),
-        }}
-      >
+        }}>
         <SegmentedInput
           value={newPassword}
           secureInput
@@ -109,8 +106,7 @@ const NewPasswordScreen = ({
         style={{
           marginTop: hp(70),
           marginBottom: hp(100),
-        }}
-      >
+        }}>
         <SegmentedInput
           value={newPasswordConfirmation}
           secureInput
@@ -125,8 +121,7 @@ const NewPasswordScreen = ({
           {
             marginBottom: hp(15),
           },
-        ]}
-      >
+        ]}>
         <Text style={{ fontSize: 12, marginRight: 10 }}>
           Use as transaction pin
         </Text>
@@ -148,8 +143,7 @@ const NewPasswordScreen = ({
           fontSize: 14,
         }}
         style={{
-          width: "100%",
-          marginTop: hp(10),
+          marginTop: hp(100),
           backgroundColor: Colors[colorScheme].button,
         }}
       />

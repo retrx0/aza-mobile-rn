@@ -125,11 +125,10 @@ const ChangePhoneNumberScreen = ({
         styleText={{
           color: Colors[colorScheme].buttonText,
           fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
+          fontSize: hp(14),
         }}
         style={{
           backgroundColor: Colors[colorScheme].button,
-          width: "100%",
         }}
       />
     </View>

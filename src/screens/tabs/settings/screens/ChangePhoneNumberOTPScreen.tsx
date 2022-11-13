@@ -51,7 +51,7 @@ const ChangePhoneNumberOTPScreen = ({
         }}>
         Please enter the OTP sent to your phone via SMS
       </Text>
-      <View style={{ marginBottom: 100, marginTop: 80, marginLeft: -20 }}>
+      <View style={{ marginBottom: 89, marginTop: 78 }}>
         <SegmentedInput
           value={otp}
           secureInput={false}
@@ -65,10 +65,9 @@ const ChangePhoneNumberOTPScreen = ({
         styleText={{
           color: Colors[colorScheme].buttonText,
           fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
+          fontSize: hp(14),
         }}
         style={{
-          width: "100%",
           backgroundColor: Colors[colorScheme].button,
         }}
       />
