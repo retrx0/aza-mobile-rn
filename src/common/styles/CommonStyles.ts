@@ -291,7 +291,7 @@ const CommonStyles = StyleSheet.create({
   passwordContainer: {
     position: "absolute",
     alignSelf: "center",
-    width: 410,
+    // width: "90%",
   },
   everyMonth: {
     fontSize: hp(16),

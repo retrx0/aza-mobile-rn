@@ -13,9 +13,11 @@ import { Text, View } from "../../../components/Themed";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -24,7 +26,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
           <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
@@ -34,8 +35,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: hp(170),
+              marginLeft: 100,
             }}>
             Confirmation
           </Text>
@@ -45,14 +45,14 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </Text>
         <View
           style={{
-            borderBottomWidth: 1,
-            width: wp(370),
-            marginLeft: hp(20),
+            borderBottomWidth: 0.5,
+            width: "90%",
             marginBottom: hp(35),
             borderColor: "#EAEAEC",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            alignSelf: "center",
           }}>
           <Input
             icon={null}
@@ -89,7 +89,11 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={{ marginTop: hp(330) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() =>
@@ -114,7 +118,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               navigation.getParent()?.navigate("SetVaultGoal")
             }
             styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red }}
+            style={[{ borderBottomColor: Colors.general.red }]}
           />
         </View>
       </View>

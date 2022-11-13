@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Colors from "../../constants/Colors";
-import { hp } from "../../common/util/LayoutUtil";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
 
 type ButtonPropsType = {
@@ -67,12 +67,12 @@ const styles = {
   },
   doneButton: {
     backgroundColor: Colors.general.black,
-    width: "90%",
     height: hp(50),
     borderRadius: hp(10),
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
+    width: wp(335),
     // marginTop: 100,
   },
   nextButton: {
