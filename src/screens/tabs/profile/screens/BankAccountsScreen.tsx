@@ -15,6 +15,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   ArrowDownIcon,
@@ -29,7 +30,7 @@ const BankAccountsScreen = ({
   const colorScheme = useColorScheme();
   const [selectedAccount, setSelectedAccount] = useState("");
   const [accountAvailable] = useState(true);
-
+  const insets = useSafeAreaInsets();
   const { screenType } = route.params;
 
   useLayoutEffect(() => {
@@ -134,7 +135,11 @@ const BankAccountsScreen = ({
             </View>
           ))}
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(60) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <CancelButtonWithUnderline
             title="Add another bank Account"
             onPressButton={() =>
@@ -143,6 +148,7 @@ const BankAccountsScreen = ({
               })
             }
             color={Colors[colorScheme].text}
+            style={{ marginBottom: 10 }}
           />
           <Button
             disabled={!selectedAccount}
@@ -196,12 +202,12 @@ const BankAccountsScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
+              fontFamily: "Euclid-Circular-A",
               fontSize: hp(14),
               fontWeight: "600",
               paddingLeft: hp(7),
               marginBottom: hp(30),
-              marginTop: hp(30),
+              marginTop: hp(20),
             }}>
             Select a bank account to perform any activity
           </Text>
@@ -242,7 +248,11 @@ const BankAccountsScreen = ({
             </View>
           ))}
         </View>
-        <View style={{ marginBottom: hp(65) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Add another bank Account"
             onPressButton={() =>
@@ -256,9 +266,7 @@ const BankAccountsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
         </View>

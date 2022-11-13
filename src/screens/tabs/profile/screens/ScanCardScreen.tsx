@@ -85,17 +85,19 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
             type={CameraType.back}
           />
         )}
-
         <Button
           title="Add Card Manually"
-          onPressButton={() => navigation.navigate("AddNewCard")}
+          onPressButton={() =>
+            navigation.navigate("AddNewCard", {
+              navigateBackTo: "DebitCreditCards",
+            })
+          }
           styleText={{
             color: "black",
             fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
+            fontSize: hp(14),
           }}
           style={{
-            marginBottom: hp(25),
             backgroundColor: "#E7E9EA",
           }}
         />

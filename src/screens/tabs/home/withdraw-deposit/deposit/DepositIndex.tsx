@@ -6,10 +6,15 @@ import MenuList from "../../../../../components/ListItem/MenuList";
 import { RootTabScreenProps } from "../../../../../../types";
 import Button from "../../../../../components/buttons/Button";
 import Colors from "../../../../../constants/Colors";
+import { hp } from "../../../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CommonStyles from "../../../../../common/styles/CommonStyles";
 
 export default function DepositIndex({
   navigation,
 }: RootTabScreenProps<"Home">) {
+  const insets = useSafeAreaInsets();
+
   return (
     <View style={styles.container}>
       <MenuList
@@ -20,11 +25,17 @@ export default function DepositIndex({
         }}
       />
       <Divider style={styles.divider} />
-      <Button
-        title="Cancel"
-        style={styles.button}
-        onPressButton={() => navigation.goBack()}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <Button
+          title="Cancel"
+          style={styles.button}
+          onPressButton={() => navigation.goBack()}
+        />
+      </View>
     </View>
   );
 }
@@ -39,8 +50,5 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: Colors.general.red,
-    marginTop: "auto",
-    width: "100%",
-    marginBottom: 100,
   },
 });

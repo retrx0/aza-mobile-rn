@@ -6,7 +6,6 @@ import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
 import CustomDropdown from "../../../components/dropdown/CustomDropdown";
-
 import { PercentageCard, PercentageList } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
@@ -14,11 +13,13 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import BackButton from "../../../components/buttons/BackButton";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
   const [periodValue, setPeriodValue] = useState("");
+  const insets = useSafeAreaInsets();
 
   const period = [
     { label: "2 Days", value: "1" },
@@ -37,21 +38,19 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
             marginBottom: hp(30),
           }}>
-          <View style={{ marginLeft: 17 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
-              fontWeight: "600",
-              textAlign: "center",
-              marginRight: 200,
+              fontWeight: "500",
+              marginLeft: hp(80),
             }}>
-            Vault
+            Confirmation
           </Text>
         </View>
         <Text style={CommonStyles.descriptionStyle}>
@@ -87,7 +86,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             marginTop: hp(20),
-            paddingHorizontal: 20,
+            paddingHorizontal: hp(10),
           }}>
           <Text
             // lightColor={Colors.light.secondaryText}
@@ -109,7 +108,11 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
         </View>
 
-        <View style={[{ marginTop: hp(330) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           {/* <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month
@@ -140,7 +143,6 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
         </View>

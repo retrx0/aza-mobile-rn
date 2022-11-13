@@ -209,11 +209,7 @@ const SplitSelectContactsScreen = ({
           }}
           data={filteredContacts}
         />
-        <View
-          style={[
-            CommonStyles.col,
-            { width: "100%", marginBottom: hp(35), marginTop: 5 },
-          ]}>
+        <View style={[{ marginTop: hp(5) }]}>
           <Button
             title="Continue"
             disabled={disabledButton}
@@ -232,7 +228,6 @@ const SplitSelectContactsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
               CommonStyles.button,
             ]}

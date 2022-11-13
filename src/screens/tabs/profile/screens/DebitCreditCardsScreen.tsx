@@ -12,13 +12,14 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const DebitCreditCardsScreen = ({
   navigation,
 }: CommonScreenProps<"DebitCreditCards">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -96,7 +97,11 @@ const DebitCreditCardsScreen = ({
             <Divider />
           </View>
         </View>
-        <View style={{ marginBottom: hp(65) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -110,9 +115,7 @@ const DebitCreditCardsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
           <CancelButtonWithUnderline

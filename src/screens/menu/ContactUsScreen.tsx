@@ -11,9 +11,12 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { WhatsappLogo } from "../../../assets/images";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -86,20 +89,15 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
         </View>
         <View
           style={[
-            CommonStyles.col,
-            {
-              marginBottom: hp(100),
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-            },
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
           ]}>
           <TouchableOpacity
             activeOpacity={0.7}
             style={{
               borderWidth: 1,
               borderColor: Colors[colorScheme].text,
-              width: "95%",
+              width: 335,
               height: hp(50),
               borderRadius: hp(10),
               alignItems: "center",

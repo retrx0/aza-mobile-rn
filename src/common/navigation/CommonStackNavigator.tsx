@@ -129,15 +129,23 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
 
   return (
     <SpacerWrapper>
-      <View style={[CommonStyles.topTab]}>
-        <View style={{ marginLeft: 10 }}>
-          <BackButton
-            onPress={() => {
-              navigation.getParent()?.navigate("AddVault");
-            }}
-          />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}>
+        <View style={{ marginLeft: 15 }}>
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
-        <Text style={CommonStyles.vaultTab}>Flight Ticket Vault</Text>
+        <Text
+          style={{
+            fontFamily: "Euclid-Circular-A-Bold",
+            fontSize: hp(16),
+            fontWeight: "600",
+            marginLeft: 80,
+          }}>
+          Flight Ticket Vault
+        </Text>
       </View>
       <Tab.Navigator
         screenOptions={{
@@ -154,7 +162,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            marginTop: hp(30),
+            // marginTop: hp(30),
           },
         }}
         initialRouteName="details"
@@ -546,9 +554,8 @@ const CommonStack = () => {
                 />
                 <Text
                   style={{
-                    marginLeft: 5,
                     fontSize: hp(16),
-                    fontWeight: "400",
+                    fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
                   }}
                 >
@@ -566,7 +573,7 @@ const CommonStack = () => {
             headerTitleStyle: {
               fontSize: hp(16),
               fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A-Medium",
             },
           })}
         >

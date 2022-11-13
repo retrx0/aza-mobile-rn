@@ -12,10 +12,12 @@ import Colors from "../../../../constants/Colors";
 import { Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import ListItem from "../components/ListItem";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -98,7 +100,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             fontWeight: "600",
             fontFamily: "Euclid-Circular-A",
             color: Colors[colorScheme].secondaryText,
-            marginLeft: hp(25),
+            marginLeft: hp(10),
           }}>
           * This saves the selected percentage from your aza f balance
         </Text>
@@ -144,7 +146,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
           Icon={CloseIcon}
         />
 
-        <View style={{ marginTop: hp(60) }}>
+        <View style={{ marginTop: hp(77) }}>
           <Button
             title="Continue"
             // onPressButton={() => setMatured()}

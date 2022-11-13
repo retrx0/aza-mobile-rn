@@ -10,9 +10,11 @@ import { Text, View } from "../../../components/Themed";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -21,9 +23,8 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 16 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -31,8 +32,7 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: 150,
+              marginLeft: hp(80),
             }}>
             Change Vault Name
           </Text>
@@ -61,7 +61,11 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].secondaryText}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Save Change"
             onPressButton={() =>
@@ -73,7 +77,6 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
               CommonStyles.button,
             ]}

@@ -12,12 +12,14 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   const { onVerifyNavigateBackTo } = route.params;
 
@@ -95,7 +97,10 @@ const BvnVerificationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(65), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Verify"
             onPressButton={() =>
@@ -110,11 +115,10 @@ const BvnVerificationScreen = ({
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontSize: hp(14),
             }}
             style={{
               backgroundColor: Colors[colorScheme].button,
-              width: "100%",
             }}
           />
           <CancelButtonWithUnderline
@@ -122,7 +126,6 @@ const BvnVerificationScreen = ({
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
             onPressButton={() => navigation.goBack()}
-            style={{ marginTop: 5 }}
           />
         </View>
       </View>

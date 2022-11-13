@@ -11,12 +11,14 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddBankAccountScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccount">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   const { bankName, screenType } = route.params;
 
@@ -91,7 +93,11 @@ const AddBankAccountScreen = ({
             />
           </View>
         </View>
-        <View style={{ marginBottom: hp(65) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -108,9 +114,7 @@ const AddBankAccountScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
         </View>

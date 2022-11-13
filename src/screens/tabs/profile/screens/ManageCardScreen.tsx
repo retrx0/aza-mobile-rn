@@ -11,6 +11,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { DebitCreditCardCurvesDesign } from "../../../../../assets/svg";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
   useLayoutEffect(() => {
@@ -35,6 +36,7 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -83,7 +85,10 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <CancelButtonWithUnderline
             title="Delete Card"
             styleText={[CommonStyles.cancelStyle]}

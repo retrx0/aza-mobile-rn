@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   mainItem: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(10),
     alignItems: "center",
   },
 

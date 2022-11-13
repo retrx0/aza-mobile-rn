@@ -13,6 +13,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SplitConfirmationScreen = ({
   navigation,
@@ -20,6 +21,7 @@ const SplitConfirmationScreen = ({
 }: CommonScreenProps<"SplitConfirmation">) => {
   const { amount, splitImage, name, contacts } = route.params;
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -243,7 +245,10 @@ const SplitConfirmationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(65) }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => navigation.navigate("ChooseSplit")}
@@ -253,9 +258,7 @@ const SplitConfirmationScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
           <CancelButtonWithUnderline

@@ -92,11 +92,10 @@ const ChangeEmailScreen = ({
         styleText={{
           color: Colors[colorScheme].buttonText,
           fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
+          fontSize: hp(14),
         }}
         style={{
-          width: "100%",
-          marginTop: 47,
+          marginTop: hp(47),
           backgroundColor: Colors[colorScheme].button,
         }}
       />

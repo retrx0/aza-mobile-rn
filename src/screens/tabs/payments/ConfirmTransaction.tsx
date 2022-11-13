@@ -71,7 +71,7 @@ export default function Confirmation({
         />
       </View>
       <MyButton
-        style={{ marginTop: 200, width: "100%" }}
+        style={{ marginTop: hp(200), marginBottom: hp(5) }}
         disabled={false}
         title="Confirm"
         onPress={() => {

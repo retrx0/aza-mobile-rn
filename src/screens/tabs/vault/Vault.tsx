@@ -7,11 +7,10 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { ArrowDownIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Undraw } from "../../../../assets/images";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import VaultUndrawSVG from "../../../../assets/svg/VaultUndraw";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
@@ -22,22 +21,16 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
         <View style={[CommonStyles.vaultContainer]}>
-          <View
+          <Text
             style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "500",
+              textAlign: "center",
             }}>
-            <Text
-              style={{
-                fontFamily: "Euclid-Circular-A-Bold",
-                fontSize: hp(16),
-                fontWeight: "600",
-                textAlign: "center",
-              }}>
-              Vault
-            </Text>
-          </View>
+            Vault
+          </Text>
+
           {/* <Image
             source={Undraw}
             resizeMode="cover"
@@ -68,7 +61,11 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[{ marginTop: hp(300) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="New Vault"
             onPressButton={() =>

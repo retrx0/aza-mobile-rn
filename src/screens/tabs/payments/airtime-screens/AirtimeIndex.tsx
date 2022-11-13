@@ -55,7 +55,7 @@ export default function AirtimeIndex({
           fontFamily: "Euclid-Circular-A-Medium",
           fontWeight: "600",
           fontSize: hp(16),
-          marginTop: hp(30),
+          marginTop: hp(20),
         }}
         heading="Select Network Provider"
       />
@@ -119,13 +119,17 @@ export default function AirtimeIndex({
           keyboardType="number-pad"
         />
       </View>
-      <View style={[{ marginTop: hp(160) }]}>
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
         <Button
           title="Continue"
           onPressButton={() => {
             navigation.navigate("Common", { screen: "Confirm" });
           }}
-          disabled={false}
+          disabled={!CustomSwitch}
           styleText={{
             color: Colors[colorScheme].buttonText,
           }}
@@ -133,7 +137,6 @@ export default function AirtimeIndex({
             {
               backgroundColor: Colors[colorScheme].button,
             },
-            CommonStyles.button,
           ]}
         />
       </View>

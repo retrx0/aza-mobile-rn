@@ -11,11 +11,13 @@ import Colors from "../../../constants/Colors";
 import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import { NairaLargeIcon } from "../../../../assets/svg";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -24,9 +26,8 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 10 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -34,8 +35,7 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: 140,
+              marginLeft: hp(80),
             }}>
             Change Goal Amount
           </Text>
@@ -74,7 +74,11 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(100) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             disabled={!amount}
             title="Save Change"
@@ -87,9 +91,7 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
-              CommonStyles.button,
             ]}
           />
         </View>

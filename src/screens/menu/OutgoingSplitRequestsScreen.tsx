@@ -16,11 +16,13 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import SplitPaymentStatus from "./components/SplitPaymentStatus";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const OutgoingSplitRequestsScreen = ({
   navigation,
 }: CommonScreenProps<"OutgoingSplitRequests">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -221,7 +223,10 @@ const OutgoingSplitRequestsScreen = ({
           </View>
         </ScrollView>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(65) }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Cancel Request"
             onPressButton={() => navigation.navigate("Split")}
@@ -231,9 +236,7 @@ const OutgoingSplitRequestsScreen = ({
             style={[
               {
                 backgroundColor: Colors[colorScheme].error,
-                width: "100%",
               },
-              CommonStyles.button,
             ]}
           />
         </View>

@@ -53,8 +53,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             marginLeft: hp(15),
             fontSize: hp(18),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Email Address <Text style={{ color: "red" }}>*</Text>
         </Text>
       </View>
@@ -92,7 +91,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           {
             backgroundColor: Colors[colorScheme].button,
           },
-          CommonStyles.button,
         ]}
         disabled={email.length < 10}
       />

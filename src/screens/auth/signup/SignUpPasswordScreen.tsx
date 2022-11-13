@@ -75,8 +75,7 @@ const SignUpPasswordScreen = ({
           marginTop: hp(20),
           paddingHorizontal: hp(20),
           marginBottom: hp(100),
-        }}
-      >
+        }}>
         <SegmentedInput
           value={passcode}
           secureInput
@@ -88,8 +87,7 @@ const SignUpPasswordScreen = ({
         style={[
           CommonStyles.container,
           { bottom: hp(Platform.OS == "android" ? 300 : 400) },
-        ]}
-      >
+        ]}>
         <View style={[CommonStyles.row]}>
           <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?
@@ -166,6 +164,7 @@ const SignUpPasswordScreen = ({
             {
               backgroundColor: Colors[colorScheme].button,
               marginTop: 5,
+              width: 365,
             },
             CommonStyles.button,
           ]}

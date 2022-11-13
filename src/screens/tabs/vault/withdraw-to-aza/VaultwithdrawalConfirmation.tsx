@@ -1,7 +1,5 @@
-import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../components/Themed";
-import { Header } from "../../../../components/text/header";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -12,9 +10,11 @@ import { Input } from "../../../../components/input/input";
 import { VaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -23,18 +23,17 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
+            paddingHorizontal: hp(10),
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
-              fontWeight: "600",
-              textAlign: "center",
-              marginRight: 170,
+              fontWeight: "500",
+              marginLeft: hp(80),
             }}>
             Confirmation
           </Text>
@@ -66,7 +65,11 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -86,7 +89,6 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
 

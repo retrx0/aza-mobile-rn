@@ -1,21 +1,21 @@
 import { Image } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../components/divider/Divider";
 import { Input } from "../../../components/input/input";
-import { Header } from "../../../components/text/header";
 import { Text, View } from "../../../components/Themed";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -24,9 +24,8 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{ marginLeft: 10 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -34,8 +33,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: hp(170),
+              marginLeft: hp(90),
             }}>
             Confirmation
           </Text>
@@ -45,14 +43,19 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         </Text>
         <View
           style={{
-            borderBottomWidth: 1,
-            width: wp(370),
-            marginLeft: hp(20),
+            borderBottomWidth: hp(0.25),
             marginBottom: hp(35),
             borderColor: "#EAEAEC",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+
+            width: "95%",
+            marginLeft: hp(10),
+
+            // alignSelf: "center",
+            // flexDirection: "row",
+            // alignItems: "center",
           }}>
           <Input
             icon={null}
@@ -66,6 +69,9 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A",
+              // fontSize: hp(16),
+              // fontWeight: "500",
+              // fontFamily: "Euclid-Circular-A",
             }}
           />
           <Image
@@ -76,7 +82,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             source={require("../../../../assets/images/icons/CoverImage.png")}
           />
         </View>
-
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
             icon={null}
@@ -89,7 +94,11 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={{ marginTop: hp(330) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() =>
@@ -104,7 +113,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
 
@@ -114,7 +122,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               navigation.getParent()?.navigate("SetVaultGoal")
             }
             styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red }}
+            style={[{ borderBottomColor: Colors.general.red }]}
           />
         </View>
       </View>

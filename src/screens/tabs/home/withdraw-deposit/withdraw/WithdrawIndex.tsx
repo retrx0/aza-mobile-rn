@@ -8,10 +8,15 @@ import Button from "../../../../../components/buttons/Button";
 
 import { RootTabScreenProps } from "../../../../../../types";
 import Colors from "../../../../../constants/Colors";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CommonStyles from "../../../../../common/styles/CommonStyles";
+import { hp } from "../../../../../common/util/LayoutUtil";
 
 export default function WithdrawIndex({
   navigation,
 }: RootTabScreenProps<"Home">) {
+  const insets = useSafeAreaInsets();
+
   return (
     <View style={styles.container}>
       <MenuList
@@ -25,11 +30,17 @@ export default function WithdrawIndex({
         }}
       />
       <Divider style={styles.divider} />
-      <Button
-        title="Cancel"
-        style={styles.button}
-        onPressButton={() => navigation.goBack()}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <Button
+          title="Cancel"
+          style={styles.button}
+          onPressButton={() => navigation.goBack()}
+        />
+      </View>
     </View>
   );
 }
@@ -45,8 +56,5 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: Colors.general.red,
-    marginTop: "auto",
-    width: "100%",
-    marginBottom: 100,
   },
 });
