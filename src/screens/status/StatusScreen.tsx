@@ -11,6 +11,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 
@@ -19,6 +20,7 @@ const StatusScreen = ({
   route,
 }: CommonScreenProps<"StatusScreen">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const {
     statusIcon,
     status,
@@ -84,7 +86,10 @@ const StatusScreen = ({
           </Text>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(110), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
@@ -111,7 +116,6 @@ const StatusScreen = ({
             }}
             style={{
               backgroundColor: Colors[colorScheme].button,
-              width: "100%",
             }}
           />
           {receiptButton && (

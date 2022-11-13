@@ -85,7 +85,7 @@ const CommonStyles = StyleSheet.create({
   accessContainer: {
     borderBottomWidth: hp(0.3),
     borderColor: "black",
-    width: wp(375),
+    width: wp(335),
     borderTopWidth: hp(0.3),
     alignSelf: "center",
     flexDirection: "row",
@@ -100,7 +100,7 @@ const CommonStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
     fontSize: hp(16),
     fontWeight: "500",
-    marginLeft: hp(20),
+    marginLeft: hp(14),
     marginTop: hp(30),
     marginBottom: hp(100),
   },
@@ -110,7 +110,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "400",
     lineHeight: hp(17),
     color: Colors.general.grey,
-    marginLeft: hp(20),
+
     textAlign: "center",
   },
   seconds: {
@@ -266,7 +266,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A",
-    marginTop: hp(10),
+    marginTop: hp(5),
   },
   actionContainer: {
     alignSelf: "center",
@@ -353,10 +353,9 @@ const CommonStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginHorizontal: hp(20),
-    marginVertical: hp(20),
+    marginHorizontal: hp(10),
+    marginVertical: hp(10),
     marginTop: hp(10),
-    paddingHorizontal: hp(5),
   },
   inputStyle: {
     fontSize: hp(16),
@@ -376,11 +375,11 @@ const CommonStyles = StyleSheet.create({
   //   borderColor: "#EAEAEC",
   // },
   vaultInputcontainer: {
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(10),
     marginBottom: 35,
   },
   vaultInputContainer: {
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(10),
     marginBottom: hp(35),
   },
   confirmation: {
@@ -457,7 +456,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Medium",
-    marginLeft: hp(18),
+    marginLeft: hp(12),
     marginTop: hp(30),
     marginBottom: hp(35),
   },
@@ -466,8 +465,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     marginBottom: hp(40),
     fontFamily: "Euclid-Circular-A-Medium",
-    marginLeft: hp(18),
-    width: 335,
+    marginLeft: hp(13),
   },
   undraw: {
     marginTop: hp(130),
@@ -643,9 +641,7 @@ const CommonStyles = StyleSheet.create({
     borderColor: Colors.general.white,
   },
 
-  button: {
-    marginTop: hp(10),
-  },
+  button: {},
   textProps: {
     alignSelf: "center",
     width: "90%",

@@ -8,9 +8,11 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -28,7 +30,11 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             You are about to lock up {"\u20A680000"} for 2 Weeks
           </Text>
         </View>
-        <View style={{ marginTop: hp(230) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>

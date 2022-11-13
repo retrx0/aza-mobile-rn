@@ -1,14 +1,12 @@
 import { Image } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../components/divider/Divider";
 import { Input } from "../../../components/input/input";
-import { Header } from "../../../components/text/header";
 import { Text, View } from "../../../components/Themed";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
@@ -35,7 +33,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: 100,
+              marginLeft: hp(80),
             }}>
             Confirmation
           </Text>
@@ -108,7 +106,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
 

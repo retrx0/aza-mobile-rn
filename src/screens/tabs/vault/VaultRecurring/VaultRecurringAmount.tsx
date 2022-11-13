@@ -3,26 +3,22 @@ import { Image, TouchableOpacity } from "react-native";
 import { NairaLargeIcon } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { hp } from "../../../../common/util/LayoutUtil";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../../components/divider/Divider";
-import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import { Input } from "../../../../components/input/input";
 import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
-import { Header } from "../../../../components/text/header";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { VaultStyles as styles } from "../styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -31,9 +27,8 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 16 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -41,8 +36,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: 145,
+              marginLeft: hp(70),
             }}>
             Recurring Transfer
           </Text>
@@ -150,7 +144,11 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             disabled={!amount}
             title="Continue"

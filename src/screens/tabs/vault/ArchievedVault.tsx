@@ -169,10 +169,9 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: hp(60),
+              marginRight: hp(30),
             }}>
-            Archieved Vault
+            Archived Vaults
           </Text>
           <TouchableOpacity>
             <InfoIcon color={""} size={0} />
@@ -225,7 +224,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(15),
     marginBottom: hp(20),
     marginTop: hp(20),
   },

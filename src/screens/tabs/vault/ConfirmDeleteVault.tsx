@@ -8,9 +8,12 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -27,7 +30,11 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             You are about to delete this Vault
           </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(65) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Delete"
             onPressButton={() =>
@@ -39,9 +46,7 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
-              CommonStyles.button,
             ]}
           />
 

@@ -1,20 +1,16 @@
 import { useState } from "react";
-import { Image } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../../components/divider/Divider";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import { Input } from "../../../../components/input/input";
-import { Header } from "../../../../components/text/header";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { VaultStyles as styles } from "../styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const VaultRecurringTransfer = ({
   navigation,
@@ -22,6 +18,7 @@ const VaultRecurringTransfer = ({
   const colorScheme = useColorScheme();
   const [periodValue, setPeriodValue] = useState("");
   const [dayValue, setDayValue] = useState("");
+  const insets = useSafeAreaInsets();
 
   const period = [
     { label: "2 Days", value: "1" },
@@ -48,9 +45,8 @@ const VaultRecurringTransfer = ({
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 16 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -58,8 +54,7 @@ const VaultRecurringTransfer = ({
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: 150,
+              marginLeft: hp(80),
             }}>
             Recurring Transfer
           </Text>
@@ -113,7 +108,11 @@ const VaultRecurringTransfer = ({
           />
         </View>
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -128,7 +127,6 @@ const VaultRecurringTransfer = ({
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
 

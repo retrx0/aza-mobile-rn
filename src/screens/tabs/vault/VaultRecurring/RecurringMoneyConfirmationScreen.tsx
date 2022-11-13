@@ -1,23 +1,23 @@
 import { Image } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../../components/divider/Divider";
 import { Input } from "../../../../components/input/input";
-import { Header } from "../../../../components/text/header";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../styles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RecurringMoneyConfirmationScreen = ({
   navigation,
 }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -26,18 +26,16 @@ const RecurringMoneyConfirmationScreen = ({
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
           }}>
-          <View style={{ marginLeft: 15.5 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
-              fontWeight: "600",
-              textAlign: "center",
-              marginRight: 170,
+              fontWeight: "500",
+              marginLeft: hp(80),
             }}>
             Confirmation
           </Text>
@@ -47,14 +45,14 @@ const RecurringMoneyConfirmationScreen = ({
         </Text>
         <View
           style={{
-            borderBottomWidth: 1,
-            width: 370,
-            marginLeft: 20,
-            marginBottom: 35,
+            borderBottomWidth: 0.5,
+            width: "90%",
+            marginBottom: hp(35),
             borderColor: "#EAEAEC",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            alignSelf: "center",
           }}>
           <Input
             icon={null}
@@ -138,7 +136,11 @@ const RecurringMoneyConfirmationScreen = ({
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(90) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>

@@ -13,9 +13,11 @@ import { hp } from "../../../common/util/LayoutUtil";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import BackButton from "../../../components/buttons/BackButton";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -36,8 +38,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              textAlign: "center",
-              marginRight: hp(60),
+              marginRight: hp(30),
             }}>
             Vault
           </Text>
@@ -45,26 +46,30 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
         </View>
-
         <Text
           style={{
             fontSize: hp(16),
             fontWeight: "500",
             fontFamily: "Euclid-Circular-A",
             marginBottom: hp(40),
-            marginLeft: hp(20),
+            marginLeft: hp(19),
           }}>
           Choose a vault to view/edit details
         </Text>
         <View style={CommonStyles.lineDivider} />
         <ArchievedComponents />
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(95) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <CancelButtonWithUnderline
             title="Archived Vaults"
             onPressButton={() =>
               navigation.getParent()?.navigate("ArchievedVault")
             }
             color={Colors[colorScheme].text}
+            style={{ marginBottom: 10 }}
           />
           <Button
             title="New Vault"
@@ -78,7 +83,6 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
         </View>

@@ -10,6 +10,7 @@ import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
 import * as ImagePicker from "expo-image-picker";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const selectImageFromGallery = async () => {
   const result = await ImagePicker.launchImageLibraryAsync({
@@ -25,6 +26,7 @@ const selectImageFromGallery = async () => {
 };
 
 const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
+  const insets = useSafeAreaInsets();
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -32,19 +34,16 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: hp(30),
           }}>
-          <View style={{ marginLeft: 17 }}>
+          <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
-              fontWeight: "600",
-              textAlign: "center",
-              marginRight: 160,
+              fontWeight: "500",
+              marginLeft: hp(70),
             }}>
             Add Cover Image
           </Text>
@@ -57,7 +56,11 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{ width: 150, height: 150, alignSelf: "center" }}
           source={require("../../../../assets/images/icons/CoverImageII.png")}
         />
-        <View style={{ marginTop: hp(230) }}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Select From Gallery"
             // onPressButton={() =>
