@@ -652,8 +652,8 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(40),
   },
   account: {
-    fontSize: hp(18),
-    fontWeight: "100",
+    fontSize: hp(14),
+    fontWeight: "500",
   },
   login: {
     fontWeight: "bold",

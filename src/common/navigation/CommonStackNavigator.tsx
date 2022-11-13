@@ -549,9 +549,8 @@ const CommonStack = () => {
                 />
                 <Text
                   style={{
-                    marginLeft: 5,
                     fontSize: hp(16),
-                    fontWeight: "400",
+                    fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
                   }}>
                   Back
@@ -568,7 +567,7 @@ const CommonStack = () => {
             headerTitleStyle: {
               fontSize: hp(16),
               fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontFamily: "Euclid-Circular-A-Medium",
             },
           })}>
           <Stack.Screen
