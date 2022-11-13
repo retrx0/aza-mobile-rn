@@ -90,14 +90,14 @@ import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
 import ContactUsScreen from "../../screens/menu/ContactUsScreen";
 
 // transfer modal screens
-import SendMoneyScreen from "../../screens/transferModal/SendMoneyScreen";
-import RequestMoneyScreen from "../../screens/transferModal/RequestMoneyScreen";
-import RequestMoneyConfirmationScreen from "../../screens/transferModal/RequestMoneyConfirmationScreen";
-import SendMoneyConfirmationScreen from "../../screens/transferModal/SendMoneyConfirmationScreen";
-import RecurringTransferScreen from "../../screens/transferModal/RecurringTransferScreen";
-import SelectNewRecurringTransferScreen from "../../screens/transferModal/SelectNewRecurringTransferScreen";
-import SetupRecurringTransferScreen from "../../screens/transferModal/SetupRecurringTransferScreen";
-import RecurringTransferConfirmationScreen from "../../screens/transferModal/RecurringTransferConfirmationScreen";
+import SendMoneyScreen from "../../screens/transfer-modal/SendMoneyScreen";
+import RequestMoneyScreen from "../../screens/transfer-modal/RequestMoneyScreen";
+import RequestMoneyConfirmationScreen from "../../screens/transfer-modal/RequestMoneyConfirmationScreen";
+import SendMoneyConfirmationScreen from "../../screens/transfer-modal/SendMoneyConfirmationScreen";
+import RecurringTransferScreen from "../../screens/transfer-modal/RecurringTransferScreen";
+import SelectNewRecurringTransferScreen from "../../screens/transfer-modal/SelectNewRecurringTransferScreen";
+import SetupRecurringTransferScreen from "../../screens/transfer-modal/SetupRecurringTransferScreen";
+import RecurringTransferConfirmationScreen from "../../screens/transfer-modal/RecurringTransferConfirmationScreen";
 
 // transaction keypad screen
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
