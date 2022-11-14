@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
-import { Gender, User } from "../types";
+import { Gender, UserState } from "../types";
 import api from "../../api";
 import { API_BASE_URL } from "@env";
-interface NewUser extends User {
+interface NewUser {
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
+  gender: string;
   isVerified?: boolean;
   otpSent?: boolean;
   otpTimeStamp?: undefined;
@@ -19,10 +24,10 @@ interface NewUser extends User {
 
 // Define the initial state using that type
 const initialState: NewUser = {
-  phone: "",
-  firstname: "",
-  lastname: "",
-  email: "",
+  phoneNumber: "",
+  firstName: "",
+  lastName: "",
+  emailAddress: "",
   gender: "",
   isVerified: false,
   isUsePasscodeAsPin: false,
@@ -37,7 +42,7 @@ export const requestOtp = createAsyncThunk(
   async (props: NewUser) => {
     const bodyData = {
       phoneNumber: 0,
-      email: props.email,
+      email: props.emailAddress,
     };
 
     return api
@@ -63,8 +68,8 @@ export const verifyOtp = createAsyncThunk(
   (props: NewUser) => {
     const bodyData = {
       otp: props.otp,
-      phoneNumber: props.phone,
-      email: props.email,
+      phoneNumber: props.phoneNumber,
+      email: props.emailAddress,
     };
 
     return api
@@ -86,8 +91,8 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (props: NewUser) => {
     const bodyData = {
-      firstName: props.firstname,
-      lastName: props.lastname,
+      firstName: props.firstName,
+      lastName: props.lastName,
       gender: "Male",
       email: "mubarakibrahim2015@gmail.com",
       // countryCode:'Ng',
@@ -175,17 +180,17 @@ export const newUserSlice = createSlice({
   initialState,
   reducers: {
     setPhone: (state, action: PayloadAction<string>) => {
-      state.phone = action.payload;
+      state.phoneNumber = action.payload;
     },
     setFirstName: (state, action: PayloadAction<string>) => {
-      state.firstname = action.payload;
+      state.firstName = action.payload;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     setLastName: (state, action: PayloadAction<string>) => {
-      state.lastname = action.payload;
+      state.lastName = action.payload;
     },
     setEmail: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
+      state.emailAddress = action.payload;
     },
     setGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
@@ -197,9 +202,9 @@ export const newUserSlice = createSlice({
       state.password = action.payload;
     },
     setNewUser: (state, action: PayloadAction<NewUser>) => {
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
-      state.email = action.payload.email;
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.emailAddress = action.payload.emailAddress;
       state.isUsePasscodeAsPin = action.payload.isUsePasscodeAsPin;
       state.createdPasscode = action.payload.createdPasscode;
       state.gender = action.payload.gender;

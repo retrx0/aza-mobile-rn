@@ -120,10 +120,10 @@ const SignUpPasswordScreen = ({
             // TODO replace with expo-secure-store or react-native-encrypted-storage
             dispatch(
               setNewUser({
-                firstname: newUser.firstname,
-                lastname: newUser.lastname,
-                email: newUser.email,
-                phone: newUser.phone,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                emailAddress: newUser.emailAddress,
+                phoneNumber: newUser.phoneNumber,
                 gender: newUser.gender,
                 isUsePasscodeAsPin: isUsePasscodeAsPin,
                 createdPasscode: passcode,
@@ -138,11 +138,11 @@ const SignUpPasswordScreen = ({
             } else {
               if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
-                console.log(newUser.firstname, newUser.lastname, "NAMEE");
+                console.log(newUser.firstName, newUser.lastName, "NAMEE");
                 registerUserAPI({
-                  email: newUser.email!,
-                  firstName: newUser.firstname!,
-                  lastName: newUser.lastname!,
+                  email: newUser.emailAddress!,
+                  firstName: newUser.firstName!,
+                  lastName: newUser.lastName!,
                   gender: newUser.gender!,
                   newPassword: newUser.password!,
                   pushNotificationToken: "",

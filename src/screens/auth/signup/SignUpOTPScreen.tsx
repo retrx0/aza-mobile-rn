@@ -24,19 +24,19 @@ const SignUpOTPScreen = ({
   const [signUpOtp, setSignUpOtp] = useState("");
 
   const dispatch = useAppDispatch();
-  const { phone, email } = useAppSelector(selectNewUser);
+  const { phoneNumber, emailAddress } = useAppSelector(selectNewUser);
 
   const otpScrenType = route.params.otpScreenType;
 
   const otpTitle =
     otpScrenType === "email"
-      ? `Please enter the 6-digit code sent to **${email?.substring(
-          email.indexOf("@") - 2,
-          email.length
+      ? `Please enter the 6-digit code sent to **${emailAddress?.substring(
+          emailAddress.indexOf("@") - 2,
+          emailAddress.length
         )}`
-      : `Please enter the 6-digit code sent to **${phone?.substring(
-          phone.length - 4,
-          phone.length
+      : `Please enter the 6-digit code sent to **${phoneNumber?.substring(
+          phoneNumber.length - 4,
+          phoneNumber.length
         )}`;
 
   return (
@@ -57,8 +57,8 @@ const SignUpOTPScreen = ({
           // );
           verifyOtpApi(
             {
-              email: otpScrenType === "email" ? email! : "",
-              phoneNumber: otpScrenType === "phone" ? phone! : "",
+              email: otpScrenType === "email" ? emailAddress! : "",
+              phoneNumber: otpScrenType === "phone" ? phoneNumber! : "",
               otp: Number(signUpOtp),
             },
             "email"
@@ -86,8 +86,8 @@ const SignUpOTPScreen = ({
         }}
         onResend={() => {
           requestOtpApi({
-            email: otpScrenType === "email" ? email! : "",
-            phoneNumber: otpScrenType === "phone" ? phone! : "",
+            email: otpScrenType === "email" ? emailAddress! : "",
+            phoneNumber: otpScrenType === "phone" ? phoneNumber! : "",
           });
         }}
         phoneNumber={""}

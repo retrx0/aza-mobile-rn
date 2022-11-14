@@ -37,7 +37,7 @@ const SignUpProfile = ({
   const dispatch = useAppDispatch();
 
   const newUser = useAppSelector(selectNewUser);
-  const { phone, token, thirdPartyEmailSignUp } = newUser;
+  const { phoneNumber, token, thirdPartyEmailSignUp } = newUser;
 
   const signUpValidationSchema = yup.object().shape({
     firstname: yup.string().required("Firstname is required"),
@@ -60,13 +60,14 @@ const SignUpProfile = ({
         onSubmit={(values) => {
           dispatch(
             setNewUser({
-              firstname: values.firstname,
-              lastname: values.lastname,
-              email: newUser.email,
+              firstName: values.firstname,
+              lastName: values.lastname,
+              emailAddress: newUser.emailAddress,
               gender: values.gender,
               isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
               createdPasscode: newUser.createdPasscode,
               thirdPartyEmailSignUp: thirdPartyEmailSignUp,
+              phoneNumber: phoneNumber,
             })
           );
           navigation.navigate("SignUpPassword", {

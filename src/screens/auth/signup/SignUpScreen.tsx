@@ -38,6 +38,7 @@ import { requestOtpApi } from "../../../api/auth";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
+import Toast from "react-native-toast-message";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -145,7 +146,13 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                   otpScreenType: "email",
                 });
             })
-            .catch((e) => console.error(e));
+            .catch((e) => {
+              console.error(e);
+              Toast.show({
+                type: "error",
+                text1: "Could not request OTP! try again",
+              });
+            });
         }}
       >
         {({

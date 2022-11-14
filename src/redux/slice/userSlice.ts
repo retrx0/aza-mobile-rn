@@ -1,33 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { boolean, number } from "yup";
+import api from "../../api";
 import { Beneficiary } from "../../common/navigation/types";
 import { RootState } from "../Store";
-
-// Define a type for the slice state
-export interface UserState {
-  accountCurency: string;
-  phoneNumber: string;
-  fullName: string;
-  firstName: string;
-  lastName: string;
-  pictureUrl: string | undefined;
-  azaAccountNumber: number;
-  azaBalance: number;
-  emailAddress: string;
-  accountVerified: boolean;
-  accountStatus: string;
-  transfers: {
-    incommingTransferLimit: number;
-    depositAmountLimit: number;
-    totalMonthlySenders: number;
-    totalMonthlyReceivers: number;
-    totalMonthlyIncomingTransfers: number;
-    totalMonthlyIncomingTransferAmount: number;
-    totalMonthlyOutgoingTransfers: number;
-    totalMonthlyOutgoingTransferAmount: number;
-  };
-  transactions: [];
-  azaContacts: Beneficiary[];
-}
+import { Transaction, UserState } from "../types";
 
 // Define the initial state using that type
 const initialState: UserState = {
@@ -51,7 +27,7 @@ const initialState: UserState = {
     totalMonthlyOutgoingTransfers: 0,
     totalMonthlyOutgoingTransferAmount: 0,
   },
-  transactions: [],
+  recentTransactions: { loading: false, data: [] },
   accountCurency: "NGN",
   azaContacts: [
     {
@@ -96,7 +72,37 @@ export const userSlice = createSlice({
       state = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserTransactions.pending, (state, action) => {
+        state.recentTransactions.loading = true;
+      })
+      .addCase(getUserTransactions.fulfilled, (state, action) => {
+        state.recentTransactions.data = action.payload.payload;
+      })
+      .addCase(getUserTransactions.rejected, (state, action) => {
+        state.recentTransactions.loading = false;
+      });
+  },
 });
+
+export const getUserTransactions = createAsyncThunk(
+  "user/getTransactions",
+  async (
+    { accountNumber, token }: { accountNumber: number; token: string },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      const result = await api.get(
+        `/api/v1/account/${accountNumber}/trnasactions`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return fulfillWithValue(result.data);
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
 
 export const { setUser } = userSlice.actions;
 

@@ -1,13 +1,43 @@
-export interface User {
+import { Beneficiary } from "../common/navigation/types";
+
+export interface Transaction {
+  id: number;
+  image: string;
+  name: string;
+  transactionType: string;
+  transactionTitle: string;
+  transactionMessage: string;
+  amount: string;
+  date: string;
+}
+
+export interface UserState {
   azaId?: string;
-  firstname?: string;
-  lastname?: string;
-  email?: string;
-  phone?: string;
   gender?: string;
   paymentMethods?: PaymentMethod[];
-  accountStatus?: UserAccountStatus;
-  transactions?: [];
+  accountCurency: string;
+  phoneNumber: string;
+  fullName: string;
+  firstName: string;
+  lastName: string;
+  pictureUrl: string | undefined;
+  azaAccountNumber: number;
+  azaBalance: number;
+  emailAddress: string;
+  accountVerified: boolean;
+  accountStatus: string;
+  transfers: {
+    incommingTransferLimit: number;
+    depositAmountLimit: number;
+    totalMonthlySenders: number;
+    totalMonthlyReceivers: number;
+    totalMonthlyIncomingTransfers: number;
+    totalMonthlyIncomingTransferAmount: number;
+    totalMonthlyOutgoingTransfers: number;
+    totalMonthlyOutgoingTransferAmount: number;
+  };
+  recentTransactions: { loading: boolean; data: Transaction[] };
+  azaContacts: Beneficiary[];
 }
 
 export type Gender = "Male" | "Female" | "Unknown";
