@@ -44,6 +44,7 @@ export const verifyOtpApi = async (
   try {
     const result = await api.post("/api/v1/auth/verify-otp", data);
     if (result.status === 204) return result.headers["access-token"];
+    return undefined;
   } catch (e) {
     console.error("Error Requesting OTP: " + e);
   }
@@ -52,15 +53,23 @@ export const verifyOtpApi = async (
 export const loginUserAPI = async (data: {
   email: string;
   phoneNumber: string;
-  passcode: string;
+  password: string;
 }) => {
   try {
     const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const response = await api.patch("/api/v1/user/login", data, {
-      headers: { Authorization: `Bearer ${jwt}` },
-    });
+    const response = await api.post("/api/v1/auth/login", data);
     if (response.status === 200) return response.data;
   } catch (e) {
     console.error("Error logging in user: " + e);
+  }
+};
+
+export const getUserLoginInfoAPI = async (email: string) => {
+  try {
+    const response = await api.get(`/api/v1/user/${email}`);
+    if (response.status === 200) return response.data.data;
+    return undefined;
+  } catch (e) {
+    console.error("Error get user login details: " + e);
   }
 };

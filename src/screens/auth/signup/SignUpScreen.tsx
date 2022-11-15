@@ -35,10 +35,11 @@ import {
 import * as SecureStore from "expo-secure-store";
 import InputFormFieldNormal from "../../../components/input/InputFormFieldNormal";
 import { requestOtpApi } from "../../../api/auth";
-import { Formik, FormikHelpers, FormikValues } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
-import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import Toast from "react-native-toast-message";
+import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
+import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -48,12 +49,7 @@ const validationSchema = yup.object({
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const colorScheme = useColorScheme();
-  const [thirdPartyUserData, setThirdPartyUserData] = useState({});
-
   const dispatch = useAppDispatch();
-
-  const { f_promptAsync, f_response } = signInWithFacebook();
-  const { g_promptAsync, g_response, g_request } = signInWithGoogole();
 
   const storeAuthSessionTokens = (
     response: AuthSession.AuthSessionResult | null,
@@ -76,168 +72,101 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
     }
   };
 
-  React.useEffect(() => {
-    if (g_response?.type === "success") {
-      // Store Tokens
-      storeAuthSessionTokens(
-        g_response,
-        STORAGE_KEY_GOOGLE_TOKEN,
-        STORAGE_KEY_GOOGLE_REFRESH_TOKEN
-      );
-      fetchThirdPartyUserInfo(g_response.authentication?.accessToken, "Google")
-        .then((r) => {
-          if (r?.data) {
-            setThirdPartyUserData(r.data);
-          }
-        })
-        .catch((e) => console.error(e));
-    }
-    // TODO make calls to googleapis/facebook using the response to get the email and profile
-    if (f_response?.type === "success") {
-      storeAuthSessionTokens(
-        g_response,
-        STORAGE_KEY_GOOGLE_TOKEN,
-        STORAGE_KEY_GOOGLE_REFRESH_TOKEN
-      );
-      fetchThirdPartyUserInfo(
-        f_response.authentication?.accessToken,
-        "Facebook"
-      )
-        .then((r) => {
-          if (r?.data) {
-            setThirdPartyUserData(r.data);
-          }
-        })
-        .catch((e) => console.error(e));
-    }
-  }, [g_response, f_response]);
-
   return (
     <SpacerWrapper>
-      <View style={{ marginLeft: 20 }}>
-        <BackButton
-          onPress={() => {
-            navigation.getParent()?.navigate("Welcome");
-          }}
-        />
-        <View style={[CommonStyles.phoneContainer]}>
-          <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-          <Text style={[CommonStyles.bodyText]}>
-            Enter your email address to continue
-          </Text>
-          <Text style={[CommonStyles.phoneText]}>
-            Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
-          </Text>
-        </View>
-      </View>
-      <Formik
-        validationSchema={validationSchema}
-        initialValues={{ email: "" }}
-        onSubmit={(values, actions) => {
-          dispatch(setReduxStoreEmail(values.email));
-          requestOtpApi({
-            email: values.email,
-            phoneNumber: "",
-          })
-            .then((r) => {
-              console.log(r);
-              if (r)
-                navigation.navigate("SignUpOTP", {
-                  otpScreenType: "email",
+      <HideKeyboardOnTouch>
+        <View>
+          <View style={{ marginLeft: 20 }}>
+            <BackButton
+              onPress={() => {
+                navigation.getParent()?.navigate("Welcome");
+              }}
+            />
+          </View>
+          <View style={[CommonStyles.phoneContainer]}>
+            <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
+            <Text style={[CommonStyles.bodyText]}>
+              Enter your email address to continue
+            </Text>
+            <Text style={[CommonStyles.phoneText]}>
+              Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
+            </Text>
+          </View>
+          <Formik
+            validationSchema={validationSchema}
+            initialValues={{ email: "" }}
+            onSubmit={(values, actions) => {
+              dispatch(setReduxStoreEmail(values.email));
+              requestOtpApi({
+                email: values.email,
+                phoneNumber: "",
+              })
+                .then((r) => {
+                  if (r)
+                    navigation.navigate("SignUpOTP", {
+                      otpScreenType: "email",
+                    });
+                })
+                .catch((e) => {
+                  console.error(e);
+                  Toast.show({
+                    type: "error",
+                    text1: "Could not request OTP! try again",
+                  });
                 });
-            })
-            .catch((e) => {
-              console.error(e);
-              Toast.show({
-                type: "error",
-                text1: "Could not request OTP! try again",
-              });
-            });
-        }}
-      >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          isValid,
-          errors,
-          touched,
-        }) => {
-          return (
-            <View>
-              <InputFormFieldNormal
-                value={values.email}
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                placeholderVisible={false}
-                type="email"
-                formikProps={{ errors: errors.email, touched: touched.email }}
-                autoFocus={false}
-              />
-              <Button
-                title="Continue"
-                onPressButton={handleSubmit}
-                styleText={{ color: Colors[colorScheme].buttonText }}
-                style={[
-                  { backgroundColor: Colors[colorScheme].button },
-                  CommonStyles.otpbutton,
-                ]}
-                disabled={!isValid}
-              />
-            </View>
-          );
-        }}
-      </Formik>
-      <View style={[CommonStyles.row, CommonStyles.user]}>
-        <Text style={[CommonStyles.account]}>Already have an account? </Text>
-        <CancelButtonWithUnderline
-          title="Login"
-          onPressButton={() => navigation.getParent()?.navigate("SignIn")}
-          color={Colors[colorScheme].text}
-        />
-      </View>
-      <Text style={[CommonStyles.orText]}>OR</Text>
-      {Platform.OS === "ios" ? (
-        <ButtonLg
-          icon={<AppleIcon />}
-          title="Connect Apple Account"
-          color={Colors.general.apple}
-          onPress={() => {
-            signInWithApple().then((a_response) => {
-              if (a_response?.identityToken) {
-                SecureStore.setItemAsync(
-                  STORAGE_KEY_APPLE_TOKEN,
-                  a_response.identityToken
-                );
-              }
-            });
-            // pass the response to create account
-          }}
-          alt={false}
-        />
-      ) : (
-        <></>
-      )}
-
-      <ButtonLg
-        icon={<FacebookIcon />}
-        title="Connect with Facebook"
-        color={Colors.general.facebook}
-        onPress={() => {
-          f_promptAsync();
-        }}
-        alt={false}
-      />
-      <ButtonLg
-        icon={<GoogleIcon />}
-        title="Connect Google Account"
-        color={Colors.general.google}
-        onPress={() => {
-          g_promptAsync();
-        }}
-        alt={false}
-      />
+            }}
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              isValid,
+              errors,
+              touched,
+            }) => {
+              return (
+                <View>
+                  <InputFormFieldNormal
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    placeholderVisible={false}
+                    type="email"
+                    formikProps={{
+                      errors: errors.email,
+                      touched: touched.email,
+                    }}
+                    autoFocus={false}
+                  />
+                  <Button
+                    title="Continue"
+                    onPressButton={handleSubmit}
+                    styleText={{ color: Colors[colorScheme].buttonText }}
+                    style={[
+                      { backgroundColor: Colors[colorScheme].button },
+                      CommonStyles.otpbutton,
+                    ]}
+                    disabled={!isValid}
+                  />
+                </View>
+              );
+            }}
+          </Formik>
+          <View style={[CommonStyles.row, CommonStyles.user]}>
+            <Text style={[CommonStyles.account]}>
+              Already have an account?{" "}
+            </Text>
+            <CancelButtonWithUnderline
+              title="Login"
+              onPressButton={() => navigation.getParent()?.navigate("SignIn")}
+              color={Colors[colorScheme].text}
+            />
+          </View>
+          <Text style={[CommonStyles.orText]}>OR</Text>
+          <ThirdPartyAuthButtons />
+        </View>
+      </HideKeyboardOnTouch>
     </SpacerWrapper>
   );
 };

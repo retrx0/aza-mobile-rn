@@ -48,13 +48,6 @@ const SignUpOTPScreen = ({
         otpCode={signUpOtp}
         onOtpChanged={(code) => setSignUpOtp(code)}
         onVerify={() => {
-          // dispatch(
-          //   verifyOtp({
-          //     phone: "",
-          //     email: "mubarakibrahim2015@gmail.com",
-          //     otp: Number(signUpOtp),
-          //   })
-          // );
           verifyOtpApi(
             {
               email: otpScrenType === "email" ? emailAddress! : "",
@@ -89,6 +82,7 @@ const SignUpOTPScreen = ({
             email: otpScrenType === "email" ? emailAddress! : "",
             phoneNumber: otpScrenType === "phone" ? phoneNumber! : "",
           });
+          Toast.show({ type: "info", text1: "OTP resent!" });
         }}
         phoneNumber={""}
       />

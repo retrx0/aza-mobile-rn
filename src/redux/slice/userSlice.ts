@@ -29,6 +29,7 @@ const initialState: UserState = {
   },
   recentTransactions: { loading: false, data: [] },
   accountCurency: "NGN",
+  pushToken: "",
   azaContacts: [
     {
       azaAccountNumber: "12345678",
@@ -71,6 +72,16 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<any>) => {
       state = action.payload;
     },
+    setUserPhoneAndFullName: (
+      state,
+      action: PayloadAction<{ phoneNumber: string; fullName: string }>
+    ) => {
+      state.phoneNumber = action.payload.phoneNumber;
+      state.fullName = action.payload.fullName;
+    },
+    setPushToken: (state, action: PayloadAction<string>) => {
+      state.pushToken = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -104,7 +115,8 @@ export const getUserTransactions = createAsyncThunk(
   }
 );
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setUserPhoneAndFullName, setPushToken } =
+  userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user;

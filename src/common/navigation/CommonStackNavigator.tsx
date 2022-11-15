@@ -133,7 +133,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-        }}>
+        }}
+      >
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -143,7 +144,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginLeft: 80,
-          }}>
+          }}
+        >
           Flight Ticket Vault
         </Text>
       </View>

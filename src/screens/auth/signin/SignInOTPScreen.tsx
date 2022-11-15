@@ -1,15 +1,20 @@
 /* eslint-disable no-console */
 import React, { useState } from "react";
 import { SignInScreenProps } from "../../../../types";
+import { requestOtpApi, verifyOtpApi } from "../../../api/auth";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useAppSelector, useAppDispatch } from "../../../redux";
-import { logIn, selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
+import { selectUser } from "../../../redux/slice/userSlice";
 import OtpScreen from "../otp/OtpScreen";
+import Toast from "react-native-toast-message";
+import SecureStore from "expo-secure-store";
+import { STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN } from "@env";
 
 const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
-  const [LoginOtp, setLoginUpOtp] = useState("");
-  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
+  const [loginOtp, setLoginUpOtp] = useState("");
   const dispatch = useAppDispatch();
+
+  const user = useAppSelector(selectUser);
 
   return (
     <SpacerWrapper>
@@ -18,16 +23,42 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
         onWrongNumber={() => {
           console.log("wrong otp");
         }}
-        otpCode={LoginOtp}
+        otpCode={loginOtp}
         onOtpChanged={(code) => setLoginUpOtp(code)}
         onVerify={() => {
-          // dispatch(logIn());
-          navigation.navigate("SignInWelcomeBack");
+          verifyOtpApi(
+            {
+              email: user.emailAddress,
+              phoneNumber: user.phoneNumber,
+              otp: Number(loginOtp),
+            },
+            "phone"
+          ).then((token) => {
+            if (token) {
+              // SecureStore.setItemAsync(
+              //   String(STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN),
+              //   token
+              // );
+              navigation.navigate("SignInWelcomeBack");
+            } else {
+              Toast.show({ type: "error", text1: "Invalid OTP" });
+            }
+          });
         }}
         onResend={() => {
-          console.log("otp resend");
+          if (user.phoneNumber) {
+            requestOtpApi({
+              email: "",
+              phoneNumber: user.phoneNumber,
+            });
+            Toast.show({ type: "info", text1: "OTP resent!" });
+          }
         }}
         phoneNumber={""}
+        otpTitle={`Please enter the 6-digit code sent to **${user.phoneNumber?.substring(
+          user.phoneNumber.length - 4,
+          user.phoneNumber.length
+        )}`}
       />
     </SpacerWrapper>
   );

@@ -29,12 +29,13 @@ import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
 
-import { useAppSelector } from "../redux";
+import { useAppDispatch, useAppSelector } from "../redux";
 import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
 import useCachedResources from "../hooks/useCachedResources";
 import { useNotifications } from "../hooks/useNotifications";
 
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { setPushToken } from "../redux/slice/newUserSlice";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -69,16 +70,17 @@ const RootNavigator = () => {
   const { isUserSignedIn } = useCachedResources();
   const { registerForPushNotificationsAsync, sendPushNotification } =
     useNotifications();
-  const [expoPushToken, setExpoPushToken] = React.useState<string>("");
   const notificationListener = React.useRef<any>();
   const responseListener = React.useRef<any>();
   const navigation = useNavigation<any>();
   const [active, setActive] = React.useState(true);
 
+  const dispatch = useAppDispatch();
+
   React.useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
       if (token !== undefined) {
-        setExpoPushToken(token);
+        dispatch(setPushToken(token));
       }
     });
 

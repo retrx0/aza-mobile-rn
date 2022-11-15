@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from "react";
-import { Pressable } from "react-native";
+import React, { useEffect } from "react";
+import { AppState, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import Home from "../screens/tabs/home/Home";
 import Payments from "../screens/tabs/payments/Payments";
@@ -48,6 +48,23 @@ const BottomTabNavigator = (
   const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
   const { profileBottomSheetListItems, setChoosePhoto }: any =
     useBottomSheetType("profile", _navigation);
+
+  useEffect(() => {
+    /* APP STATE CHANGES */
+
+    const { name } = _navigation.route;
+    console.log(name);
+    const appStateListener = AppState.addEventListener("change", (appState) => {
+      if (appState === "inactive") {
+        if (name === "Root" || name === "Common")
+          _navigation.navigation.navigate("SignIn");
+      }
+    });
+
+    return () => {
+      appStateListener.remove();
+    };
+  }, []);
 
   return (
     <>

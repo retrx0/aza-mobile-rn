@@ -8,11 +8,15 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { SendIcon } from "../../../../../assets/svg";
 import { UserData } from "../../../../constants/userData";
 import { hp } from "../../../../common/util/LayoutUtil";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 export default function RecentTransactions({
   navigation,
 }: RootTabScreenProps<"Home">) {
   const colorScheme = useColorScheme();
+
+  const user = useAppSelector(selectUser);
 
   return (
     <View style={{ display: "flex", marginTop: hp(30) }}>
@@ -22,11 +26,13 @@ export default function RecentTransactions({
           marginBottom: hp(20),
           flexDirection: "row",
           alignItems: "center",
-        }}>
+        }}
+      >
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", { screen: "TransactionHistory" })
-          }>
+          }
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -34,7 +40,8 @@ export default function RecentTransactions({
               marginRight: hp(3),
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(17),
-            }}>
+            }}
+          >
             Recent Transactions
           </Text>
         </TouchableOpacity>
@@ -43,7 +50,7 @@ export default function RecentTransactions({
       <FlatList
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id.toString()}
-        data={UserData.recentTransactions}
+        data={user.recentTransactions.data}
         contentContainerStyle={{ paddingBottom: 250 }}
         ItemSeparatorComponent={() => {
           return (

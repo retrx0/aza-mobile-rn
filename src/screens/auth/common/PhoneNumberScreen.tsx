@@ -63,11 +63,13 @@ const PhoneNumberScreen = ({
       <Button
         title="Continue"
         onPressButton={() => {
-          dispatch(setReduxStorePhone(phone));
-          // const otpResponse = requestOtpApi({ email: "", phoneNumber: phone });
-          // otpResponse.then((r) => {
-
-          // });
+          dispatch(setReduxStorePhone(phone.trim().replaceAll(/\s/g, "")));
+          requestOtpApi({
+            email: "",
+            phoneNumber: phone.trim().replaceAll(/\s/g, ""),
+          }).then((code) => {
+            if (code) console.debug("Phone otp requested");
+          });
           navigation.push("SignUpOTP", {
             otpScreenType: "phone",
           });

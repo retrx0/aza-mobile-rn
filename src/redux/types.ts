@@ -26,6 +26,7 @@ export interface UserState {
   emailAddress: string;
   accountVerified: boolean;
   accountStatus: string;
+  pushToken?: string;
   transfers: {
     incommingTransferLimit: number;
     depositAmountLimit: number;

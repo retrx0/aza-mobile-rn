@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { SigninStyles as styles } from "./styles";
 import Button from "../../../components/buttons/Button";
 import SegmentedInput from "../../../components/input/SegmentedInput";
@@ -21,20 +21,38 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import { loginUserAPI } from "../../../api/auth";
+import Toast from "react-native-toast-message";
+import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 
 type WelcomeOTProp = {
   otpCode: string;
 };
 
 const verifyPasscode = (code: string, navigation: any, user: any) => {
+  //todo add push notification token to the server to always keep it updated incase it changes
+
+  let loginAttemptCounter = 0;
+
   if (code.length === 6) {
     console.log("verifying passcode...");
-    // loginUserAPI({
-    //   email: user.email,
-    //   passcode: code,
-    //   phoneNumber: user.phoneNumber,
-    // }).then((r) => console.log(r));
-    navigation.navigate("Root");
+    if (loginAttemptCounter > 3) {
+    } else {
+      loginUserAPI({
+        email: user.email,
+        password: code,
+        phoneNumber: user.phoneNumber,
+      }).then((jwt) => {
+        if (jwt) {
+          navigation.navigate("Root");
+          SecureStore.setItemAsync(STORAGE_KEY_JWT_TOKEN, jwt);
+        } else {
+          Toast.show({
+            type: "error",
+            text1: `Invalid passcode, attempt ${++loginAttemptCounter}`,
+          });
+        }
+      });
+    }
   }
 };
 
@@ -78,31 +96,33 @@ const SignInWelcomeBackScreen = ({
 
   return (
     <SpacerWrapper>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
-        <Text style={styles.sentCode}>Enter your Aza password to login</Text>
-        <View
-          style={{
-            marginTop: hp(20),
-            paddingHorizontal: hp(20),
-            marginBottom: hp(100),
-          }}
-        >
-          <SegmentedInput
-            value={otpCode}
-            onValueChanged={(code) => verifyPasscode(code, navigation, user)}
-            headerText="Password"
-            secureInput={true}
-          />
+      <HideKeyboardOnTouch>
+        <View>
+          <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
+          <Text style={styles.sentCode}>Enter your Aza password to login</Text>
+          <View
+            style={{
+              marginTop: hp(20),
+              paddingHorizontal: hp(20),
+              marginBottom: hp(100),
+            }}
+          >
+            <SegmentedInput
+              value={otpCode}
+              onValueChanged={(code) => verifyPasscode(code, navigation, user)}
+              headerText="Password"
+              secureInput={true}
+            />
+          </View>
+          <View
+            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
+          >
+            <TouchableOpacity onPress={() => forgetUser(navigation)}>
+              <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View
-          style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
-        >
-          <TouchableOpacity onPress={() => forgetUser(navigation)}>
-            <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
-          </TouchableOpacity>
-        </View>
-      </TouchableWithoutFeedback>
+      </HideKeyboardOnTouch>
     </SpacerWrapper>
   );
 };

@@ -8,6 +8,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../../assets/svg";
+import ThirdPartyAuthButtons from "../../../auth/common/ThirdPartyAuthButtons";
 
 const LoginOptionsScreen = ({
   navigation,
@@ -22,7 +23,8 @@ const LoginOptionsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Login Options
         </Text>
       ),
@@ -47,34 +49,13 @@ const LoginOptionsScreen = ({
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Login quickly by connecting your Aza account to your social media
             account.
           </Text>
         </View>
-        <View>
-          <ButtonLg
-            icon={<AppleIcon />}
-            title="Connect with Apple"
-            color={Colors.general.apple}
-            onPress={() => console.log("connecting with apple...")}
-            alt={false}
-          />
-          <ButtonLg
-            icon={<FacebookIcon />}
-            title="Connect with Facebook"
-            color={Colors.general.facebook}
-            onPress={() => console.log("connecting with facebook...")}
-            alt={false}
-          />
-          <ButtonLg
-            icon={<GoogleIcon />}
-            title="Connect with Google"
-            color={Colors.general.google}
-            onPress={() => console.log("connecting with google...")}
-            alt={false}
-          />
-        </View>
+        <ThirdPartyAuthButtons />
       </View>
     </SpacerWrapper>
   );

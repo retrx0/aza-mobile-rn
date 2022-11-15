@@ -21,6 +21,9 @@ import { registerUserAPI } from "../../../api/user";
 import Toast from "react-native-toast-message";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
+import { loginUserAPI } from "../../../api/auth";
+import SecureStore from "expo-secure-store";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -118,6 +121,8 @@ const SignUpPasswordScreen = ({
           onPressButton={() => {
             // dispatch changes
             // TODO replace with expo-secure-store or react-native-encrypted-storage
+
+            console.log("Push token " + newUser.pushToken);
             dispatch(
               setNewUser({
                 firstName: newUser.firstName,
@@ -128,6 +133,7 @@ const SignUpPasswordScreen = ({
                 isUsePasscodeAsPin: isUsePasscodeAsPin,
                 createdPasscode: passcode,
                 thirdPartyEmailSignUp: false,
+                pushToken: newUser.pushToken,
               })
             );
 
@@ -138,17 +144,26 @@ const SignUpPasswordScreen = ({
             } else {
               if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
-                console.log(newUser.firstName, newUser.lastName, "NAMEE");
+                console.log(newUser.firstName, newUser.gender, "NAMEE");
                 registerUserAPI({
                   email: newUser.emailAddress!,
                   firstName: newUser.firstName!,
                   lastName: newUser.lastName!,
-                  gender: newUser.gender!,
-                  newPassword: newUser.password!,
-                  pushNotificationToken: "",
+                  gender: newUser.gender === "male" ? `1` : `2`,
+                  newPassword: passcode,
+                  pushNotificationToken: newUser.pushToken,
                 })
                   .then((_res) => {
-                    navigation.getParent()?.navigate("Root");
+                    loginUserAPI({
+                      email: newUser.emailAddress,
+                      phoneNumber: newUser.phoneNumber,
+                      password: passcode,
+                    }).then((_jwt) => {
+                      if (_jwt) {
+                        navigation.getParent()?.navigate("Root");
+                        SecureStore.setItemAsync(STORAGE_KEY_JWT_TOKEN, _jwt);
+                      }
+                    });
                   })
                   .catch((e) => {
                     console.error("Error " + e);

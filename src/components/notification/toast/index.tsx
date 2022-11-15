@@ -27,7 +27,7 @@ export const toastConfig: ToastConfig = {
       title={""}
     />
   ),
-  primary: ({ text1, text2 }: ToastData) => (
+  info: ({ text1, text2 }: ToastData) => (
     <ToastFrame
       text1={text1!}
       backgroundColor={"#EAEAEC;"}

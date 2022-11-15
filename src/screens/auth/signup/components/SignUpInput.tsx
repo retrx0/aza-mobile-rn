@@ -68,6 +68,7 @@ const SignUpProfile = ({
               createdPasscode: newUser.createdPasscode,
               thirdPartyEmailSignUp: thirdPartyEmailSignUp,
               phoneNumber: phoneNumber,
+              pushToken: newUser.pushToken,
             })
           );
           navigation.navigate("SignUpPassword", {

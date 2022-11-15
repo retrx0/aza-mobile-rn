@@ -20,6 +20,7 @@ interface NewUser {
   token?: string | void;
   password?: string;
   thirdPartyEmailSignUp: boolean;
+  pushToken: string;
 }
 
 // Define the initial state using that type
@@ -34,6 +35,7 @@ const initialState: NewUser = {
   loading: false,
   token: "",
   thirdPartyEmailSignUp: false,
+  pushToken: "",
 };
 
 //Create async function fro requesting otp
@@ -201,6 +203,9 @@ export const newUserSlice = createSlice({
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
+    setPushToken: (state, action: PayloadAction<string>) => {
+      state.pushToken = action.payload;
+    },
     setNewUser: (state, action: PayloadAction<NewUser>) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
@@ -256,6 +261,7 @@ export const {
   setGender,
   setNewUser,
   setPassword,
+  setPushToken,
 } = newUserSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

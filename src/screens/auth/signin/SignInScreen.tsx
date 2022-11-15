@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
-import ButtonLg from "../../../components/buttons/ButtonLg";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -9,26 +8,23 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
-import { requestOtp } from "../../../redux/slice/newUserSlice";
-import { API_BASE_URL } from "@env";
 import { useAppDispatch } from "../../../redux";
-import {
-  signInWithApple,
-  signInWithFacebook,
-  signInWithGoogole,
-} from "../thirdPartyAuth";
 import { hp } from "../../../common/util/LayoutUtil";
 import InputFormEmail from "../../../components/input/InputFormFieldNormal";
+import { Formik } from "formik";
+import * as yup from "yup";
+import { getUserLoginInfoAPI, requestOtpApi } from "../../../api/auth";
+import Toast from "react-native-toast-message";
+import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
+import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
-  const [phone, setPhone] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
-  const { f_promptAsync, f_response } = signInWithFacebook();
-  const { g_promptAsync, g_response } = signInWithGoogole();
+  const validationSchema = yup.object({
+    email: yup.string().required("Email is required!").email(),
+  });
 
   return (
     <SpacerWrapper>
@@ -53,69 +49,73 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             marginLeft: hp(15),
             fontSize: hp(18),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Email Address <Text style={{ color: "red" }}>*</Text>
         </Text>
       </View>
-      <InputFormEmail
-        value={email}
-        onChangeText={(e) => setEmail(e)}
-        placeholderVisible={false}
-        type="email"
-        formikProps={{ errors: false, touched: false }}
-        autoFocus={false}
-      />
-      {/* <PhoneInput
-        initialValue={phone}
-        onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry="ng"
-        autoFormat
-        textStyle={[CommonStyles.textStyle]}
-        textProps={{
-          placeholder: "Enter a phone number...",
-        }}
-        pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
-        style={[CommonStyles.phoneStyle]}
-      /> */}
 
-      <Button
-        title="Continue"
-        onPressButton={() => {
-          // dispatch(requestOtp({ phone: "", email: email }));
-          navigation.navigate("SignInOTP");
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={{ email: "" }}
+        onSubmit={(values, actions) => {
+          getUserLoginInfoAPI(values.email)
+            .then((data) => {
+              if (data) {
+                dispatch(
+                  setUserPhoneAndFullName({
+                    phoneNumber: data.phoneNumber,
+                    fullName: data.fullName,
+                  })
+                );
+                requestOtpApi({
+                  email: "",
+                  phoneNumber: data.phoneNumber,
+                });
+                navigation.navigate("SignInOTP");
+              }
+            })
+            .catch(() =>
+              Toast.show({ type: "error", text1: "Invalid email!" })
+            );
         }}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+          errors,
+          touched,
+        }) => {
+          return (
+            <View>
+              <InputFormEmail
+                value={values.email}
+                onChangeText={handleChange("email")}
+                placeholderVisible={false}
+                type="email"
+                formikProps={{ errors: errors.email, touched: touched.email }}
+                autoFocus={false}
+                onBlur={handleBlur("blur")}
+              />
+              <Button
+                title="Continue"
+                onPressButton={handleSubmit}
+                styleText={{
+                  color: Colors[colorScheme].buttonText,
+                }}
+                style={[{ backgroundColor: Colors[colorScheme].button }]}
+                disabled={!isValid}
+              />
+            </View>
+          );
         }}
-        style={[
-          {
-            backgroundColor: Colors[colorScheme].button,
-          },
-        ]}
-        disabled={email.length < 10}
-      />
+      </Formik>
+
       <Text style={[CommonStyles.orText]}>OR</Text>
-      <ButtonLg
-        icon={<AppleIcon />}
-        title="Connect Apple Account"
-        color={Colors.general.apple}
-        onPress={() => signInWithApple().then((r) => console.log(r))}
-        alt={false}
-      />
-      <ButtonLg
-        icon={<FacebookIcon />}
-        title="Connect with Facebook"
-        color={Colors.general.facebook}
-        onPress={() => f_promptAsync()}
-        alt={false}
-      />
-      <ButtonLg
-        icon={<GoogleIcon />}
-        title="Connect Google Account"
-        color={Colors.general.google}
-        onPress={() => g_promptAsync()}
-        alt={false}
-      />
+      <ThirdPartyAuthButtons />
     </SpacerWrapper>
   );
 };

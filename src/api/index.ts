@@ -28,4 +28,17 @@ const api = axios.create({
 
 // })
 
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    let res = error.response;
+    if (res.status == 401) {
+    }
+    // console.error("Looks like there was a problem. Status Code: " + res.status);
+    return Promise.reject(error);
+  }
+);
+
 export default api;

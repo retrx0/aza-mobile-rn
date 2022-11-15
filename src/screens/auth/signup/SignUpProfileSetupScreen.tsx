@@ -6,6 +6,7 @@ import { Text, View } from "../../../components/Themed";
 import { SignUpScreenProps } from "../../../../types";
 import SignUpProfile from "./components/SignUpInput";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
+import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 
 const SignUpProfileSetupScreen = ({
   navigation,
@@ -16,13 +17,17 @@ const SignUpProfileSetupScreen = ({
       <View style={{ marginLeft: 20 }}>
         <BackButton onPress={() => navigation.goBack()} />
       </View>
-      <View style={[CommonStyles.phoneContainer]}>
-        <Text style={[CommonStyles.headerText]}>Profile setup</Text>
-        <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
-      </View>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SignUpProfile navigation={navigation} route={route} />
-      </TouchableWithoutFeedback>
+      <HideKeyboardOnTouch>
+        <View style={{ flex: 1 }}>
+          <View style={[CommonStyles.phoneContainer]}>
+            <Text style={[CommonStyles.headerText]}>Profile setup</Text>
+            <Text style={[CommonStyles.bodyText]}>Set up your account</Text>
+          </View>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <SignUpProfile navigation={navigation} route={route} />
+          </TouchableWithoutFeedback>
+        </View>
+      </HideKeyboardOnTouch>
     </SpacerWrapper>
   );
 };

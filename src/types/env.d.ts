@@ -25,5 +25,6 @@ declare module "@env" {
   export const STORAGE_KEY_APPLE_REFRESH_TOKEN: string;
   export const STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN: string;
   export const STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN: string;
+  export const STORAGE_KEY_PUSH_NOTIFICATION_TOKEN: string;
   export const PREFERENCE_KEY: string;
 }
