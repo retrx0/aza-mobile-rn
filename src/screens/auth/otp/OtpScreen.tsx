@@ -1,16 +1,21 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+
 import { SigninStyles as styles } from "../signin/styles";
+
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
-import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+
+import CommonStyles from "../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
+
 import useColorScheme from "../../../hooks/useColorScheme";
+import useCountdownTimer from "../../../hooks/useCountdownTimer";
 
 type OtpProp = {
   onWrongNumber: () => void;
@@ -24,8 +29,20 @@ type OtpProp = {
 };
 
 const OtpScreen = (props: OtpProp) => {
-  const { otpCode, onOtpChanged, onVerify } = props;
+  const { otpCode, onOtpChanged, onVerify, onResend } = props;
   const colorScheme = useColorScheme();
+  const {
+    minutesToDisplay,
+    secondsToDisplay,
+    resetTimer,
+    toTwoDigits,
+    timerStatus,
+  } = useCountdownTimer(300);
+
+  const resendCode = () => {
+    onResend();
+    resetTimer();
+  };
 
   return (
     <SpacerWrapper>
@@ -50,13 +67,20 @@ const OtpScreen = (props: OtpProp) => {
       </View>
       <View style={[styles.noOtp, CommonStyles.row]}>
         <Text style={styles.otpText}>Didn't get the code? </Text>
-        <TouchableOpacity>
-          <CancelButtonWithUnderline
-            title="Resend code"
-            styleText={CommonStyles.resend}
-            color={Colors[colorScheme].text}
-          />
-        </TouchableOpacity>
+        {timerStatus === "Started" ? (
+          <Text>
+            {toTwoDigits(minutesToDisplay)}:{toTwoDigits(secondsToDisplay)}
+          </Text>
+        ) : (
+          <TouchableOpacity>
+            <CancelButtonWithUnderline
+              title="Resend code"
+              onPressButton={resendCode}
+              styleText={CommonStyles.resend}
+              color={Colors[colorScheme].text}
+            />
+          </TouchableOpacity>
+        )}
       </View>
       <Button
         title="Continue"
