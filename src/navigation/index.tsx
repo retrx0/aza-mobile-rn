@@ -36,6 +36,8 @@ import { useNotifications } from "../hooks/useNotifications";
 
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { setPushToken } from "../redux/slice/newUserSlice";
+import ActivityModal from "../components/modal/ActivityModal";
+import { selectActivityModal } from "../redux/slice/activityModalSlice";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -76,6 +78,7 @@ const RootNavigator = () => {
   const [active, setActive] = React.useState(true);
 
   const dispatch = useAppDispatch();
+  const isActivityModalOpen = useAppSelector(selectActivityModal);
 
   React.useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
@@ -123,6 +126,7 @@ const RootNavigator = () => {
       }}
       style={{ flex: 1 }}
     >
+      <ActivityModal loading={isActivityModalOpen} />
       <Stack.Navigator
         initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
         screenOptions={{ gestureEnabled: false }}

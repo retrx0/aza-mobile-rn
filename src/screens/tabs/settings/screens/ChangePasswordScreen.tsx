@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { loginThunk } from "../../../../redux/slice/authSlice";
 import Toast from "react-native-toast-message";
+import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
 
 const ChangePasswordScreen = ({
   navigation,
@@ -32,7 +33,8 @@ const ChangePasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Current Password
         </Text>
       ),
@@ -46,6 +48,7 @@ const ChangePasswordScreen = ({
   }, []);
 
   const verifyPassword = async () => {
+    dispatch(toggleActivityModal(true));
     const payloadItem = await dispatch(
       loginThunk({
         email: emailAddress,
@@ -54,11 +57,13 @@ const ChangePasswordScreen = ({
       })
     );
     if (payloadItem.payload === "Invalid crendential") {
+      dispatch(toggleActivityModal(false));
       Toast.show({
-        type: "errorToast",
+        type: "error",
         text1: payloadItem.payload,
       });
     } else {
+      dispatch(toggleActivityModal(false));
       navigation.navigate("NewPassword", {
         oldPassword: password,
       });
@@ -75,7 +80,8 @@ const ChangePasswordScreen = ({
           fontFamily: "Euclid-Circular-A",
           marginLeft: hp(5),
           fontWeight: "500",
-        }}>
+        }}
+      >
         Please enter your current password
       </Text>
       <View style={{ marginTop: hp(80), marginBottom: hp(100) }}>

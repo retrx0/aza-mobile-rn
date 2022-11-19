@@ -5,6 +5,7 @@ import transferSlice from "./slice/transferSlice";
 import transactionSlice from "./slice/transactionSlice";
 import userSlice from "./slice/userSlice";
 import vaultSlice from "./slice/vaultslice";
+import activityModalSlice from "./slice/activityModalSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const Store = configureStore({
     vault: vaultSlice,
     transfer: transferSlice,
     transaction: transactionSlice,
+    activityModal: activityModalSlice,
   },
 });
 
