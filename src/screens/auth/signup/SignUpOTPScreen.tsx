@@ -16,6 +16,7 @@ import {
 } from "@env";
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
+import { toastError, toastInfo } from "../../../common/util/ToastUtil";
 
 const SignUpOTPScreen = ({
   navigation,
@@ -38,7 +39,6 @@ const SignUpOTPScreen = ({
           phoneNumber.length - 4,
           phoneNumber.length
         )}`;
-
   return (
     <SpacerWrapper>
       <OtpScreen
@@ -69,11 +69,7 @@ const SignUpOTPScreen = ({
                 navigation.navigate("SignUpProfileSetup");
               }
             } else {
-              Toast.show({
-                autoHide: true,
-                type: "error",
-                text1: "Invalid OTP ⚠️",
-              });
+              toastError("Invalid OTP ⚠️");
             }
           });
         }}
@@ -82,7 +78,7 @@ const SignUpOTPScreen = ({
             email: otpScrenType === "email" ? emailAddress! : "",
             phoneNumber: otpScrenType === "phone" ? phoneNumber! : "",
           });
-          Toast.show({ type: "info", text1: "OTP resent!" });
+          toastInfo("OTP resent!");
         }}
         phoneNumber={""}
       />

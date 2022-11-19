@@ -1,12 +1,15 @@
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { boolean, number } from "yup";
 import api from "../../api";
 import { Beneficiary } from "../../common/navigation/types";
+import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
 import { Transaction, UserState } from "../types";
 
 // Define the initial state using that type
 const initialState: UserState = {
+  loading: false,
   phoneNumber: "",
   fullName: "",
   firstName: "",
@@ -101,9 +104,33 @@ export const userSlice = createSlice({
       })
       .addCase(getUserTransactions.rejected, (state, action) => {
         state.recentTransactions.loading = false;
+      })
+      .addCase(getUserInfo.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getUserInfo.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action) => {
+        // state.firstName = action.payload.
       });
   },
 });
+
+export const getUserInfo = createAsyncThunk(
+  "user/getInfo",
+  async ({}, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+      const info = await api.get("/api/v1/user/info", {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
+      return fulfillWithValue(info.data);
+    } catch (e: any) {
+      return rejectWithValue(e.response.data.message);
+    }
+  }
+);
 
 export const getUserTransactions = createAsyncThunk(
   "user/getTransactions",

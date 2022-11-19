@@ -32,6 +32,24 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
+  const handleSubmission = (email: string, emailValidated: boolean) => {
+    dispatch(setReduxStoreEmail(email));
+    requestOtpApi({
+      email: email,
+      phoneNumber: "",
+    })
+      .then((r) => {
+        if (r) {
+          !emailValidated
+            ? navigation.navigate("SignUpOTP", {
+                otpScreenType: "email",
+              })
+            : navigation.navigate("SignUpPhoneNumber");
+        }
+      })
+      .catch(() => toastError("Could not request OTP! try again"));
+  };
+
   return (
     <SpacerWrapper>
       <HideKeyboardOnTouch>
@@ -56,21 +74,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             validationSchema={validationSchema}
             initialValues={{ email: "" }}
             onSubmit={(values, actions) => {
-              dispatch(setReduxStoreEmail(values.email));
-              requestOtpApi({
-                email: values.email,
-                phoneNumber: "",
-              })
-                .then((r) => {
-                  if (r)
-                    navigation.navigate("SignUpOTP", {
-                      otpScreenType: "email",
-                    });
-                })
-                .catch((e) => {
-                  console.error(e);
-                  toastError("Could not request OTP! try again");
-                });
+              handleSubmission(values.email, false);
             }}
           >
             {({
@@ -121,7 +125,10 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             />
           </View>
           <Text style={[CommonStyles.orText]}>OR</Text>
-          <ThirdPartyAuthButtons />
+          <ThirdPartyAuthButtons
+            authType="signup"
+            onValidated={(email) => handleSubmission(email, true)}
+          />
         </View>
       </HideKeyboardOnTouch>
     </SpacerWrapper>

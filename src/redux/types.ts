@@ -12,6 +12,7 @@ export interface Transaction {
 }
 
 export interface UserState {
+  loading?: boolean;
   azaId?: string;
   gender?: string;
   paymentMethods?: PaymentMethod[];

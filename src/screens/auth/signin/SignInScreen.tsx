@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -26,6 +26,26 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const validationSchema = yup.object({
     email: yup.string().required("Email is required!").email(),
   });
+
+  const handleSubmission = (email: string) => {
+    getUserLoginInfoAPI(email)
+      .then((data) => {
+        if (data) {
+          dispatch(
+            setUserPhoneAndFullName({
+              phoneNumber: data.phoneNumber,
+              fullName: data.fullName,
+            })
+          );
+          requestOtpApi({
+            email: "",
+            phoneNumber: data.phoneNumber,
+          });
+          navigation.navigate("SignInOTP");
+        }
+      })
+      .catch(() => toastError("Invalid email!"));
+  };
 
   return (
     <SpacerWrapper>
@@ -62,23 +82,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             validationSchema={validationSchema}
             initialValues={{ email: "" }}
             onSubmit={(values, actions) => {
-              getUserLoginInfoAPI(values.email)
-                .then((data) => {
-                  if (data) {
-                    dispatch(
-                      setUserPhoneAndFullName({
-                        phoneNumber: data.phoneNumber,
-                        fullName: data.fullName,
-                      })
-                    );
-                    requestOtpApi({
-                      email: "",
-                      phoneNumber: data.phoneNumber,
-                    });
-                    navigation.navigate("SignInOTP");
-                  }
-                })
-                .catch(() => toastError("Invalid email!"));
+              handleSubmission(values.email);
             }}
           >
             {({
@@ -119,7 +123,10 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           </Formik>
 
           <Text style={[CommonStyles.orText]}>OR</Text>
-          <ThirdPartyAuthButtons />
+          <ThirdPartyAuthButtons
+            onValidated={(email) => handleSubmission(email)}
+            authType="signin"
+          />
         </View>
       </HideKeyboardOnTouch>
     </SpacerWrapper>

@@ -1,5 +1,24 @@
 import * as SecureStore from "expo-secure-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Keychain from "react-native-keychain";
+
+const storeUserCredentialsSecure = (username: string, password: string) => {
+  Keychain.setGenericPassword(username, password);
+};
+
+const getUserCredentialsSecure = async () => {
+  try {
+    const credentials = await Keychain.getGenericPassword();
+    if (credentials) return credentials;
+  } catch (e) {
+    console.log(e as Error, (e as Error).stack);
+  }
+};
+
+const clearUserCredentials = async () => {
+  const cleared = Keychain.resetGenericPassword();
+  return cleared;
+};
 
 export const storeItemSecure = (
   key: string,
@@ -16,7 +35,7 @@ export const storeItem = (key: string, value: string) => {
     const jsonValue = JSON.stringify(value);
     AsyncStorage.setItem(key, jsonValue);
   } catch (e) {
-    console.error("Error stroing object: " + value);
+    console.error("Error stroing object: " + value, e as Error);
   }
 };
 
@@ -28,7 +47,7 @@ export const getItemSecure = async (
     const item = await SecureStore.getItemAsync(key, options);
     return item;
   } catch (e) {
-    console.error("Error getting item: " + e);
+    console.error("Error getting item: ", e as Error);
   }
 };
 
@@ -37,7 +56,7 @@ export const getItem = async (key: string) => {
     const jsonValue = await AsyncStorage.getItem(key);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (e) {
-    console.error("Error getting object from stoarage! : " + e);
+    console.error("Error getting object from stoarage! : ", e as Error);
   }
 };
 
@@ -49,7 +68,7 @@ export const removeItemSecure = async (
     const result = await SecureStore.deleteItemAsync(key, options);
     return result;
   } catch (error) {
-    console.error("Error deleting item: " + error);
+    console.error("Error deleting item: ", error as Error);
   }
 };
 
@@ -57,6 +76,6 @@ export const removeItem = (key: string) => {
   try {
     AsyncStorage.removeItem(key);
   } catch (e) {
-    console.error("Error removing item: " + e);
+    console.error("Error removing item: ", e as Error);
   }
 };

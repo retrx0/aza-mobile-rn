@@ -16,7 +16,7 @@ export const cancelToken = async () => {
     );
     return result;
   } catch (e) {
-    console.error("error: ", e);
+    console.error("Error canceling token: ", e as Error);
   }
 };
 
@@ -29,7 +29,7 @@ export const requestOtpApi = async (data: {
     if (result.status === 204) return result.status;
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: " + e);
+    console.error("Error Requesting OTP: ", e as Error);
   }
 };
 
@@ -46,7 +46,7 @@ export const verifyOtpApi = async (
     if (result.status === 204) return result.headers["access-token"];
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: " + e);
+    console.error("Error Requesting OTP: ", e as Error);
   }
 };
 
@@ -60,7 +60,7 @@ export const loginUserAPI = async (data: {
     const response = await api.post("/api/v1/auth/login", data);
     if (response.status === 200) return response.data;
   } catch (e) {
-    console.error("Error logging in user: " + e);
+    console.error("Error logging in user: ", e as Error);
   }
 };
 
@@ -70,6 +70,6 @@ export const getUserLoginInfoAPI = async (email: string) => {
     if (response.status === 200) return response.data.data;
     return undefined;
   } catch (e) {
-    console.error("Error get user login details: " + e);
+    console.error("Error get user login details: ", e as Error);
   }
 };

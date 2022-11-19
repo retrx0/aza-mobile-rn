@@ -4,17 +4,13 @@ import { RootState } from "../Store";
 
 // Define a type for the slice state
 interface AuthState {
-  azaId: string;
   isLoggedIn: boolean;
-  user: any;
   error: any;
 }
 
 // Define the initial state using that type
 const initialState: AuthState = {
-  azaId: "",
-  isLoggedIn: true,
-  user: {},
+  isLoggedIn: false,
   error: "",
 };
 
@@ -54,7 +50,6 @@ export const authSlice = createSlice({
       builder.addCase(loginThunk.fulfilled, (state, { payload }) => {
         state.isLoggedIn = true;
         state.error = "";
-        state.user = payload;
       });
   },
 });

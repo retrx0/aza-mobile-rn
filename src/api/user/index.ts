@@ -58,7 +58,8 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
   }
 };
 
-export const getFullUserInfo = async () => {
+// Use only without the need to update data in redux, else call the dispatch(getUserInfo)
+export const getFullUserInfoAPI = async () => {
   try {
     const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
     const result = await api.get("/api/v1/user/info", {

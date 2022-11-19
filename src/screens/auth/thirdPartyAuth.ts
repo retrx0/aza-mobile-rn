@@ -76,6 +76,7 @@ export const signInWithApple = async () => {
     } else {
       // handle other errors
     }
+    console.error(e as Error);
   }
 
   console.log(credential);
@@ -101,7 +102,7 @@ export const fetchThirdPartyUserInfo = async (
     );
     return result;
   } catch (e) {
-    console.error(e);
+    console.error("Error fetching thrid party info: ", e as Error);
   }
 
   return null;
