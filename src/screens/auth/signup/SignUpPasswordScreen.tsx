@@ -18,12 +18,12 @@ import {
   setPassword,
 } from "../../../redux/slice/newUserSlice";
 import { registerUserAPI } from "../../../api/user";
-import Toast from "react-native-toast-message";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
-import SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { toastError } from "../../../common/util/ToastUtil";
+import { storeItemSecure } from "../../../common/util/StorageUtil";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -161,22 +161,16 @@ const SignUpPasswordScreen = ({
                     }).then((_jwt) => {
                       if (_jwt) {
                         navigation.getParent()?.navigate("Root");
-                        SecureStore.setItemAsync(STORAGE_KEY_JWT_TOKEN, _jwt);
+                        storeItemSecure(STORAGE_KEY_JWT_TOKEN, _jwt);
                       }
                     });
                   })
                   .catch((e) => {
                     console.error("Error " + e);
-                    Toast.show({
-                      type: "error",
-                      text1: "There was a problem creating your account ⚠️",
-                    });
+                    toastError("There was a problem creating your account ⚠️");
                   });
               } else {
-                Toast.show({
-                  type: "error",
-                  text1: "Password does not match ⚠️",
-                });
+                toastError("Password does not match ⚠️");
               }
             }
           }}

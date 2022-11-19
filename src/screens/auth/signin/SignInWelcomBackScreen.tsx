@@ -1,28 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import { SigninStyles as styles } from "./styles";
-import Button from "../../../components/buttons/Button";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
 import { View, Text } from "../../../components/Themed";
-import { UserData } from "../../../constants/userData";
 import api from "../../../api";
-import {
-  Keyboard,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import { loginUserAPI } from "../../../api/auth";
-import Toast from "react-native-toast-message";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
+import { toastError } from "../../../common/util/ToastUtil";
+import { storeItemSecure } from "../../../common/util/StorageUtil";
 
 type WelcomeOTProp = {
   otpCode: string;
@@ -43,13 +37,10 @@ const verifyPasscode = (code: string, navigation: any, user: any) => {
         phoneNumber: user.phoneNumber,
       }).then((jwt) => {
         if (jwt) {
+          storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
           navigation.navigate("Root");
-          SecureStore.setItemAsync(STORAGE_KEY_JWT_TOKEN, jwt);
         } else {
-          Toast.show({
-            type: "error",
-            text1: `Invalid passcode, attempt ${++loginAttemptCounter}`,
-          });
+          toastError(`Invalid passcode, attempt ${++loginAttemptCounter}`);
         }
       });
     }
@@ -72,7 +63,6 @@ const SignInWelcomeBackScreen = ({
   navigation,
 }: WelcomeOTProp & SignInScreenProps<"SignInWelcomeBack">) => {
   const insets = useSafeAreaInsets();
-
   const user = useAppSelector(selectUser);
 
   useEffect(() => {

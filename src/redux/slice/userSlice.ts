@@ -7,17 +7,21 @@ import { Transaction, UserState } from "../types";
 
 // Define the initial state using that type
 const initialState: UserState = {
-  phoneNumber: "2348105982998",
-  fullName: "Test User",
-  firstName: "Test",
-  lastName: "User",
+  phoneNumber: "",
+  fullName: "",
+  firstName: "",
+  lastName: "",
   pictureUrl: undefined,
-  azaAccountNumber: 331234243,
+  azaAccountNumber: 0,
   azaBalance: 0,
-  emailAddress: "faivegid@gmail.com",
-  accountVerified: true,
-  accountStatus: "Ok",
+  emailAddress: "",
+  accountVerified: false,
+  accountStatus: "",
+  recentTransactions: { loading: false, data: [] },
+  accountCurency: "",
+  pushToken: "",
   transfers: {
+    loading: false,
     incommingTransferLimit: 0,
     depositAmountLimit: 0,
     totalMonthlySenders: 0,
@@ -27,43 +31,44 @@ const initialState: UserState = {
     totalMonthlyOutgoingTransfers: 0,
     totalMonthlyOutgoingTransferAmount: 0,
   },
-  recentTransactions: { loading: false, data: [] },
-  accountCurency: "NGN",
-  pushToken: "",
-  azaContacts: [
-    {
-      azaAccountNumber: "12345678",
-      fullName: "Test User2",
-      firstName: "Test",
-      lastName: "User2",
-      phone: "234567890",
-      pictureUrl: "",
-      currency: "NGN",
-      email: "testuser2@aza.com",
-    },
-    {
-      azaAccountNumber: "12345679",
-      fullName: "Test User3",
-      firstName: "Test",
-      lastName: "User4",
-      phone: "234567890",
-      pictureUrl: "",
-      currency: "NGN",
-      email: "testuser4@aza.com",
-    },
-    {
-      azaAccountNumber: "12345610",
-      fullName: "Test User4",
-      firstName: "Test",
-      lastName: "User4",
-      phone: "234567890",
-      pictureUrl: "",
-      currency: "NGN",
-      email: "testuser4@aza.com",
-    },
-  ],
+  vault: { loading: false, recentTransaction: [] },
+  payments: { loading: false, recentPayments: [] },
+  azaContacts: {
+    loading: false,
+    data: [
+      {
+        azaAccountNumber: "12345678",
+        fullName: "Test User2",
+        firstName: "Test",
+        lastName: "User2",
+        phone: "234567890",
+        pictureUrl: "",
+        currency: "NGN",
+        email: "testuser2@aza.com",
+      },
+      {
+        azaAccountNumber: "12345679",
+        fullName: "Test User3",
+        firstName: "Test",
+        lastName: "User4",
+        phone: "234567890",
+        pictureUrl: "",
+        currency: "NGN",
+        email: "testuser4@aza.com",
+      },
+      {
+        azaAccountNumber: "12345610",
+        fullName: "Test User4",
+        firstName: "Test",
+        lastName: "User4",
+        phone: "234567890",
+        pictureUrl: "",
+        currency: "NGN",
+        email: "testuser4@aza.com",
+      },
+    ],
+  },
 };
-
 export const userSlice = createSlice({
   name: "user",
   // `createSlice` will infer the state type from the `initialState` argument
@@ -81,6 +86,9 @@ export const userSlice = createSlice({
     },
     setPushToken: (state, action: PayloadAction<string>) => {
       state.pushToken = action.payload;
+    },
+    setVault: (state, action: PayloadAction<any>) => {
+      state.vault = action.payload.vault;
     },
   },
   extraReducers: (builder) => {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput, Text, View } from "../../../components/Themed";
-import ButtonLg from "../../../components/buttons/ButtonLg";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
@@ -14,32 +13,14 @@ import {
   requestOtp,
   setEmail as setReduxStoreEmail,
 } from "../../../redux/slice/newUserSlice";
-import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
-import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
-import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native";
-import {
-  ENV,
-  STORAGE_KEY_FACEBOOK_REFRESH_TOKEN,
-  STORAGE_KEY_GOOGLE_REFRESH_TOKEN,
-  STORAGE_KEY_GOOGLE_TOKEN,
-  STORAGE_KEY_FACEBOOK_TOKEN,
-  STORAGE_KEY_APPLE_TOKEN,
-} from "@env";
-import {
-  fetchThirdPartyUserInfo,
-  signInWithApple,
-  signInWithFacebook,
-  signInWithGoogole,
-} from "../thirdPartyAuth";
-import * as SecureStore from "expo-secure-store";
 import InputFormFieldNormal from "../../../components/input/InputFormFieldNormal";
 import { requestOtpApi } from "../../../api/auth";
 import { Formik } from "formik";
 import * as yup from "yup";
-import Toast from "react-native-toast-message";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
+import { toastError } from "../../../common/util/ToastUtil";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -50,27 +31,6 @@ const validationSchema = yup.object({
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
-
-  const storeAuthSessionTokens = (
-    response: AuthSession.AuthSessionResult | null,
-    tokenKey: string,
-    refreshTokenKey: string
-  ) => {
-    if (response?.type === "success") {
-      // Store Tokens
-      if (response.authentication?.refreshToken) {
-        SecureStore.setItemAsync(tokenKey, response.authentication?.accessToken)
-          .then(() => console.log("token stored"))
-          .catch((e) => console.error(e));
-        SecureStore.setItemAsync(
-          refreshTokenKey,
-          response.authentication?.refreshToken
-        )
-          .then(() => console.log("Refresh token stored"))
-          .catch((e) => console.error(e));
-      }
-    }
-  };
 
   return (
     <SpacerWrapper>
@@ -109,10 +69,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                 })
                 .catch((e) => {
                   console.error(e);
-                  Toast.show({
-                    type: "error",
-                    text1: "Could not request OTP! try again",
-                  });
+                  toastError("Could not request OTP! try again");
                 });
             }}
           >

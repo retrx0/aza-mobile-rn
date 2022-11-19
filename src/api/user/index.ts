@@ -48,12 +48,25 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
         Authorization: `Bearer ${jwt}`,
       },
     });
-    console.log(data);
-    console.log(result.data);
     if (result.status === 200) return result.data;
     // temporary!!!! must remove the below if endpoint gets fixed
     else if (result.status === 400) return { data: "bad request" };
     else if (result.status === 409) return "";
+    return undefined;
+  } catch (e) {
+    console.log("error: ", e);
+  }
+};
+
+export const getFullUserInfo = async () => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.get("/api/v1/user/info", {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    if (result.status === 200) return result.data;
     return undefined;
   } catch (e) {
     console.log("error: ", e);

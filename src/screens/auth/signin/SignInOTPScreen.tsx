@@ -7,7 +7,6 @@ import { useAppSelector, useAppDispatch } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import OtpScreen from "../otp/OtpScreen";
 import Toast from "react-native-toast-message";
-import SecureStore from "expo-secure-store";
 import { STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN } from "@env";
 
 const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {

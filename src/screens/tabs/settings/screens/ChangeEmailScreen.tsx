@@ -8,13 +8,16 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import BoxTextInput from "../../../../components/input/BoxTextInput";
-import { UserData } from "../../../../constants/userData";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const ChangeEmailScreen = ({
   navigation,
 }: CommonScreenProps<"ChangeEmail">) => {
+  const user = useAppSelector(selectUser);
+
   const colorScheme = useColorScheme();
-  const [currentEmail, _] = useState(UserData.userEmail);
+  const [currentEmail, _] = useState(user.emailAddress);
   const [newEmail, setNewEmail] = useState("");
 
   useLayoutEffect(() => {
@@ -27,7 +30,8 @@ const ChangeEmailScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           New Email
         </Text>
       ),
@@ -51,7 +55,8 @@ const ChangeEmailScreen = ({
           marginLeft: hp(5),
           fontWeight: "500",
           // marginTop: hp(30),
-        }}>
+        }}
+      >
         Change your email
       </Text>
       <View style={{ marginBottom: 10, marginTop: 30 }}>
