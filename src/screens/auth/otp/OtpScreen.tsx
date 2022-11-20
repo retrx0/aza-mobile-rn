@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 
 import { SigninStyles as styles } from "../signin/styles";
@@ -37,7 +37,7 @@ const OtpScreen = (props: OtpProp) => {
     resetTimer,
     toTwoDigits,
     timerStatus,
-  } = useCountdownTimer(300);
+  } = useCountdownTimer(120);
 
   const resendCode = () => {
     onResend();

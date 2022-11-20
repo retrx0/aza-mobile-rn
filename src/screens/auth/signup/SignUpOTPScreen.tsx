@@ -77,8 +77,9 @@ const SignUpOTPScreen = ({
           requestOtpApi({
             email: otpScrenType === "email" ? emailAddress! : "",
             phoneNumber: otpScrenType === "phone" ? phoneNumber! : "",
-          });
-          toastInfo("OTP resent!");
+          })
+            .then(() => toastInfo("OTP resent!"))
+            .catch((e) => toastInfo("Could not send otp!, please try again"));
         }}
         phoneNumber={""}
       />

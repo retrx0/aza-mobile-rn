@@ -45,8 +45,8 @@ const ContactsScene = ({
     getUserContacts().then((_contacts) => {
       if (_contacts) {
         setContacts(_contacts.filter((_c) => _c.contactType === "person"));
-        setUserQuickContacts(user.azaContacts);
-        setUserAzaContacts(user.azaContacts);
+        setUserQuickContacts(user.azaContacts.data);
+        setUserAzaContacts(user.azaContacts.data);
       }
     });
   }, []);
@@ -77,7 +77,7 @@ const ContactsScene = ({
           >
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={[CommonStyles.row]}>
-                {user.azaContacts.map((_contct, i) => (
+                {user.azaContacts.data.map((_contct, i) => (
                   <QuickContactView
                     firstName={_contct.firstName!}
                     lastName=""
@@ -121,7 +121,7 @@ const ContactsScene = ({
             sections={[
               {
                 title: "Contacts using Aza",
-                data: user.azaContacts.filter((_c) =>
+                data: user.azaContacts.data.filter((_c) =>
                   _c.fullName
                     .toUpperCase()
                     .includes(searchContact.toUpperCase())

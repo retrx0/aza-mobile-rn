@@ -21,6 +21,7 @@ import * as yup from "yup";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import { toastError } from "../../../common/util/ToastUtil";
+import ActivityModal from "../../../components/modal/ActivityModal";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -31,6 +32,8 @@ const validationSchema = yup.object({
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
+
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const handleSubmission = (email: string, emailValidated: boolean) => {
     dispatch(setReduxStoreEmail(email));
@@ -46,8 +49,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
               })
             : navigation.navigate("SignUpPhoneNumber");
         }
+        setButtonLoading(false);
       })
-      .catch(() => toastError("Could not request OTP! try again"));
+      .catch(() => {
+        toastError("Could not request OTP! try again");
+        setButtonLoading(false);
+      });
   };
 
   return (
@@ -74,6 +81,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             validationSchema={validationSchema}
             initialValues={{ email: "" }}
             onSubmit={(values, actions) => {
+              setButtonLoading(true);
               handleSubmission(values.email, false);
             }}
           >
@@ -108,6 +116,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                       { backgroundColor: Colors[colorScheme].button },
                       CommonStyles.otpbutton,
                     ]}
+                    willCallAsync={buttonLoading}
                     disabled={!isValid}
                   />
                 </View>

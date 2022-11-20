@@ -4,6 +4,7 @@ import {
   STORAGE_KEY_JWT_TOKEN,
   STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
 } from "@env";
+import { toastError } from "../../common/util/ToastUtil";
 
 export const changePassword = async (
   oldPassword: string,
@@ -25,7 +26,10 @@ export const changePassword = async (
     );
     return result;
   } catch (e) {
-    console.log("error: ", e);
+    console.log("Error changing password: ", e as Error);
+    toastError(
+      "There was a problem changing your password ⚠️, please try again!"
+    );
   }
 };
 
@@ -54,7 +58,8 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
     else if (result.status === 409) return "";
     return undefined;
   } catch (e) {
-    console.log("error: ", e);
+    console.log("Error registering user: ", e as Error);
+    toastError("We encountered a problem while creating your account ⚠️");
   }
 };
 
@@ -70,6 +75,7 @@ export const getFullUserInfoAPI = async () => {
     if (result.status === 200) return result.data;
     return undefined;
   } catch (e) {
-    console.log("error: ", e);
+    console.log("Error getting user info: ", e as Error);
+    toastError("We encountered a problem ⚠️, please try again!");
   }
 };

@@ -3,10 +3,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Keychain from "react-native-keychain";
 
 const storeUserCredentialsSecure = (username: string, password: string) => {
-  Keychain.setGenericPassword(username, password);
+  Keychain.setGenericPassword(username, password, {
+    authenticationType: Keychain.AUTHENTICATION_TYPE.BIOMETRICS,
+  });
 };
 
-const getUserCredentialsSecure = async () => {
+export const getUserCredentialsSecure = async () => {
   try {
     const credentials = await Keychain.getGenericPassword();
     if (credentials) return credentials;
@@ -15,7 +17,7 @@ const getUserCredentialsSecure = async () => {
   }
 };
 
-const clearUserCredentials = async () => {
+export const clearUserCredentials = async () => {
   const cleared = Keychain.resetGenericPassword();
   return cleared;
 };
