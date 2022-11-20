@@ -12,23 +12,25 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const DebitCreditCardsScreen = ({
   navigation,
 }: CommonScreenProps<"DebitCreditCards">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Debit/Credit Cards
         </Text>
@@ -47,12 +49,14 @@ const DebitCreditCardsScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: hp(16),
               marginVertical: hp(30),
+              fontWeight: "500",
+              marginLeft: hp(5),
             }}>
             Securely manage all your debit and credit cards connected to Aza
             right here. Tap a card for more options.
@@ -79,12 +83,12 @@ const DebitCreditCardsScreen = ({
                   }}
                 />
                 <Text
-                  lightColor={Colors.light.mainText}
-                  darkColor={Colors.dark.mainText}
+                  // lightColor={Colors.light.mainText}
+                  // darkColor={Colors.dark.mainText}
                   style={{
-                    marginLeft: 20,
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 14,
+                    marginLeft: hp(20),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontSize: hp(14),
                   }}>
                   Visa (**** **** **** 1234)
                 </Text>
@@ -94,7 +98,10 @@ const DebitCreditCardsScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Add New Card"
             onPressButton={() =>
@@ -104,13 +111,12 @@ const DebitCreditCardsScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(15),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

@@ -10,11 +10,14 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { CommonScreenProps } from "../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AccountLimitsTab = ({
   navigation,
 }: CommonScreenProps<"FeesAndLimits">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
+
   const [isVerified] = useState(false);
 
   return (
@@ -22,22 +25,21 @@ const AccountLimitsTab = ({
       <View>
         <View style={[CommonStyles.col, { alignSelf: "flex-start" }]}>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.text}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 14,
-            }}
-          >
+              fontSize: hp(14),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+            }}>
             My Level:{" "}
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+              }}>
               Tier {isVerified ? "1" : "0"}
             </Text>
           </Text>
@@ -61,8 +63,7 @@ const AccountLimitsTab = ({
               alignItems: "flex-start",
               marginTop: hp(35),
             },
-          ]}
-        >
+          ]}>
           <VerifyIcon
             color={
               isVerified ? "#2A9E17" : Colors[colorScheme].backgroundSecondary
@@ -70,84 +71,86 @@ const AccountLimitsTab = ({
             size={34}
           />
           <View
-            style={[CommonStyles.col, { marginRight: "auto", marginLeft: 25 }]}
-          >
+            style={[
+              CommonStyles.col,
+              { width: "100%", marginRight: "auto", marginLeft: 25 },
+            ]}>
             <Text
               style={{
-                fontSize: 12,
+                fontSize: hp(15),
+                marginBottom: hp(5),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
                 color: isVerified
                   ? "#2A9E17"
                   : Colors[colorScheme].secondaryText,
-              }}
-            >
+              }}>
               {isVerified ? "Verified" : "Not verified"}
             </Text>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontSize: 16,
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(16),
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontWeight: "600",
 
                 // color: Colors[colorScheme].secondaryText,
-              }}
-            >
+              }}>
               Tier 1
             </Text>
             <View
               style={{
                 marginTop: 10,
-              }}
-            >
+              }}>
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
+                // lightColor={Colors.light.text}
+                // darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: 14,
-                  marginBottom: 5,
+                  fontSize: hp(16),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A",
 
                   // color: Colors[colorScheme].secondaryText,
-                }}
-              >
+                }}>
                 Daily Transaction Limit:
               </Text>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 14,
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                }}
-              >
-                {"\u20A6 "}
-                50,000
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontWeight: "600",
+                  marginTop: hp(5),
+                }}>
+                {"\u20A650,000"}
               </Text>
             </View>
             <View
               style={{
                 marginTop: 10,
-              }}
-            >
+              }}>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: 14,
-                  marginBottom: 5,
-                }}
-              >
+                  fontSize: hp(16),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A",
+                }}>
                 Maximum Balance:
               </Text>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 14,
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                }}
-              >
-                {"\u20A6 "}
-                200,000
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontWeight: "600",
+                  marginTop: hp(5),
+                }}>
+                {"\u20A6200,000"}
               </Text>
             </View>
             <View
@@ -157,17 +160,16 @@ const AccountLimitsTab = ({
                   alignSelf: "flex-start",
                   marginTop: 20,
                 },
-              ]}
-            >
+              ]}>
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
                 style={{
-                  fontSize: 14,
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  marginRight: 5,
-                }}
-              >
+                  fontSize: hp(16),
+                  marginBottom: hp(5),
+                  fontWeight: "600",
+                  fontFamily: "Euclid-Circular-A-Medium",
+                }}>
                 Verify BVN
               </Text>
               {isVerified && <SmallVerifyIcon color={"#2A9E17"} />}
@@ -180,29 +182,33 @@ const AccountLimitsTab = ({
           />
         </View>
       </View>
-      <Button
-        title="Upgrade Account"
-        disabled={isVerified}
-        onPressButton={() =>
-          navigation.navigate("BvnVerification", {
-            onVerifyNavigateBackTo: "FeesAndLimits",
-          })
-        }
-        styleText={{
-          color: isVerified
-            ? Colors[colorScheme].disabledButtonText
-            : Colors[colorScheme].buttonText,
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
-        }}
-        style={{
-          marginTop: "auto",
-          marginBottom: hp(50),
-          backgroundColor: isVerified
-            ? Colors[colorScheme].disabledButton
-            : Colors[colorScheme].button,
-        }}
-      />
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <Button
+          title="Upgrade Account"
+          disabled={isVerified}
+          onPressButton={() =>
+            navigation.navigate("BvnVerification", {
+              onVerifyNavigateBackTo: "FeesAndLimits",
+            })
+          }
+          styleText={{
+            color: isVerified
+              ? Colors[colorScheme].disabledButtonText
+              : Colors[colorScheme].buttonText,
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{
+            backgroundColor: isVerified
+              ? Colors[colorScheme].disabledButton
+              : Colors[colorScheme].button,
+          }}
+        />
+      </View>
     </View>
   );
 };

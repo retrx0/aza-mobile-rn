@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "type": "command",
+      "name": "Start Expo",
+      "program": "expo",
+      "args": ["start"],
+      "workingDir": "./"
+    },
+    {
+      "type": "command",
+      "name": "Restart Expo",
+      "program": "expo",
+      "args": ["restart"],
+      "workingDir": "./"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 export const Ntel = require("./common/ntel.png");
 export const Ie = require("./common/ie.png");
 export const Auth = require("./common/auth.png");
@@ -24,3 +25,8 @@ export const Joseph = require("./Joseph.png");
 export const Card = require("./Card.png");
 
 export const WhatsappLogo = require("./whatsappLogo.png");
+
+export const NigerianFlag = require("./icons/NigerianFlag.png");
+
+// Vault
+export const VaultLogo = require("./icons/VaultLogo.png");

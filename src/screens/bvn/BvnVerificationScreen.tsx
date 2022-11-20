@@ -12,12 +12,14 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   const { onVerifyNavigateBackTo } = route.params;
 
@@ -25,13 +27,13 @@ const BvnVerificationScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "600",
+          }}>
           Tier 1 Verification
         </Text>
       ),
@@ -49,30 +51,33 @@ const BvnVerificationScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: hp(16),
               marginVertical: hp(30),
-            }}
-          >
+              fontWeight: "500",
+              marginLeft: 5,
+            }}>
             Verify your BVN
           </Text>
           <View>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(16),
+
+                fontWeight: "400",
+                marginLeft: 5,
+              }}>
               BVN
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -81,6 +86,9 @@ const BvnVerificationScreen = ({
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                fontSize: hp(16),
+                fontWeight: "500",
+                marginLeft: 5,
               }}
               placeholder="Enter your bank verification number"
               keyboardType="number-pad"
@@ -89,8 +97,10 @@ const BvnVerificationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Verify"
             onPressButton={() =>
@@ -105,10 +115,9 @@ const BvnVerificationScreen = ({
             styleText={{
               color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontSize: hp(14),
             }}
             style={{
-              marginBottom: hp(20),
               backgroundColor: Colors[colorScheme].button,
             }}
           />
@@ -117,7 +126,6 @@ const BvnVerificationScreen = ({
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
             onPressButton={() => navigation.goBack()}
-            style={{ marginTop: 5 }}
           />
         </View>
       </View>

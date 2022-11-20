@@ -11,6 +11,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 
@@ -19,6 +20,7 @@ const StatusScreen = ({
   route,
 }: CommonScreenProps<"StatusScreen">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const {
     statusIcon,
     status,
@@ -43,8 +45,7 @@ const StatusScreen = ({
           style={[
             CommonStyles.col,
             { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+          ]}>
           {statusIcon === "Success" ? (
             <StatusSuccessIcon />
           ) : (
@@ -54,12 +55,12 @@ const StatusScreen = ({
             style={{
               color:
                 statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
-              fontSize: 24,
-              marginVertical: 20,
+              fontSize: hp(24),
+              marginVertical: hp(20),
               textAlign: "center",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}
-          >
+              fontWeight: "500",
+            }}>
             {status}
           </Text>
           <Text
@@ -69,8 +70,7 @@ const StatusScreen = ({
               textAlign: "center",
               maxWidth: 350,
               fontFamily: "Euclid-Circular-A-Medium",
-            }}
-          >
+            }}>
             {statusMessage}
           </Text>
 
@@ -81,14 +81,15 @@ const StatusScreen = ({
               textAlign: "center",
               marginTop: hp(25),
               fontFamily: "Euclid-Circular-A-Medium",
-            }}
-          >
+            }}>
             {statusMessage2}
           </Text>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"
@@ -96,9 +97,7 @@ const StatusScreen = ({
                 navigation.navigate("SetupRecurringTransfer")
               }
               styleText={{
-                color: Colors[colorScheme].text,
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
+                color: Colors[colorScheme].buttonText,
               }}
               style={{
                 backgroundColor: "transparent",
@@ -107,7 +106,6 @@ const StatusScreen = ({
               }}
             />
           )}
-
           <Button
             title="Continue"
             onPressButton={() =>
@@ -115,11 +113,8 @@ const StatusScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
             style={{
-              marginVertical: hp(20),
               backgroundColor: Colors[colorScheme].button,
             }}
           />

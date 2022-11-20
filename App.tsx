@@ -1,12 +1,16 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as Sentry from "sentry-expo";
+import Toast from "react-native-toast-message";
+
 import useCachedResources from "./src/hooks/useCachedResources";
 import useColorScheme from "./src/hooks/useColorScheme";
 import Navigation from "./src/navigation";
+
 import { Provider } from "react-redux";
 import { Store } from "./src/redux/Store";
-import * as Sentry from "sentry-expo";
+import { toastConfig } from "./src/components/notification/toast";
 
 const App = () => {
   const { isLoadingComplete } = useCachedResources();
@@ -20,6 +24,7 @@ const App = () => {
         <Provider store={Store}>
           <Navigation colorScheme={colorScheme} />
         </Provider>
+        <Toast config={toastConfig} />
       </SafeAreaProvider>
     );
   }

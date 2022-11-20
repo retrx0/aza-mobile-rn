@@ -9,14 +9,17 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
+  useNavigation,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import * as Notifications from "expo-notifications";
+import UserInactivity from "react-native-user-inactivity";
+import * as SecureStore from "expo-secure-store";
 
-import QRTransactionsScreen from "../screens/qrTransactions/QRTransactionsScreen";
-import QRCodeScreen from "../screens/qrTransactions/QRCodeScreen";
+import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
+import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList, RootTabParamList } from "../../types";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -26,10 +29,15 @@ import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import CommonStack from "../common/navigation/CommonStackNavigator";
 
-import { useNotifications } from "../hooks/useNotifications";
-import { useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../redux";
 import { selectAuthIsLoggedIn } from "../redux/slice/authSlice";
 import useCachedResources from "../hooks/useCachedResources";
+import { useNotifications } from "../hooks/useNotifications";
+
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { setPushToken } from "../redux/slice/newUserSlice";
+import ActivityModal from "../components/modal/ActivityModal";
+import { selectActivityModal } from "../redux/slice/activityModalSlice";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
@@ -64,14 +72,18 @@ const RootNavigator = () => {
   const { isUserSignedIn } = useCachedResources();
   const { registerForPushNotificationsAsync, sendPushNotification } =
     useNotifications();
-  const [expoPushToken, setExpoPushToken] = React.useState<string>("");
   const notificationListener = React.useRef<any>();
   const responseListener = React.useRef<any>();
+  const navigation = useNavigation<any>();
+  const [active, setActive] = React.useState(true);
+
+  const dispatch = useAppDispatch();
+  const isActivityModalOpen = useAppSelector(selectActivityModal);
 
   React.useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
       if (token !== undefined) {
-        setExpoPushToken(token);
+        dispatch(setPushToken(token));
       }
     });
 
@@ -94,45 +106,67 @@ const RootNavigator = () => {
   }, []);
 
   return (
-    <Stack.Navigator
-      initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
-      screenOptions={{ gestureEnabled: false }}
+    <UserInactivity
+      isActive={active}
+      // 5 minutes inactivity
+      timeForInactivity={1000 * 60 * 5}
+      onAction={(isActive) => {
+        setActive(isActive);
+        if (isActive === false && isUserSignedIn) {
+          navigation.navigate("SignInWelcomeBack");
+
+          // SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
+          //   requireAuthentication: true,
+          // })
+          //   .then(() => {
+          //     navigation.navigate("SignInWelcomeBack");
+          //   })
+          //   .catch((e) => console.log(e));
+        }
+      }}
+      style={{ flex: 1 }}
     >
-      <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SignUp"
-        component={SignUpRoot}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="SignIn"
-        component={LoginNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Common"
-        component={CommonStack}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{ title: "Oops!" }}
-      />
-      <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
-      <Stack.Screen name="QRCode" component={QRCodeScreen} />
-    </Stack.Navigator>
+      <ActivityModal loading={isActivityModalOpen} />
+      <Stack.Navigator
+        initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
+        screenOptions={{ gestureEnabled: false }}
+      >
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpRoot}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={LoginNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Root"
+          component={BottomTabNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Common"
+          component={CommonStack}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NotFound"
+          component={NotFoundScreen}
+          options={{ title: "Oops!" }}
+        />
+        <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
+        <Stack.Screen name="QRCode" component={QRCodeScreen} />
+      </Stack.Navigator>
+    </UserInactivity>
   );
 };
 

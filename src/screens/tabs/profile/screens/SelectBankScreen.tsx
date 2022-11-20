@@ -51,9 +51,9 @@ const SelectBankScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Select Bank
         </Text>
       ),
@@ -76,9 +76,9 @@ const SelectBankScreen = ({
               borderBottomColor: Colors[colorScheme].separator,
               borderBottomWidth: 0.7,
               marginBottom: 20,
+              marginLeft: hp(5),
             },
-          ]}
-        >
+          ]}>
           <SearchIcon color={Colors[colorScheme].secondaryText} size={16} />
           <TextInput
             style={{
@@ -111,16 +111,14 @@ const SelectBankScreen = ({
                       alignSelf: "stretch",
                       alignItems: "center",
                     },
-                  ]}
-                >
+                  ]}>
                   <Image source={logo} />
                 </TouchableOpacity>
                 <View
                   style={{
                     marginVertical: 25,
                     width: "100%",
-                  }}
-                >
+                  }}>
                   <Divider />
                 </View>
               </View>

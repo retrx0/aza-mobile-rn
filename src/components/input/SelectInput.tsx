@@ -17,6 +17,7 @@ import Animated, {
 } from "react-native-reanimated";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text } from "../Themed";
+import { hp } from "../../common/util/LayoutUtil";
 
 type SelectProps = {
   style: StyleProp<ViewStyle>;
@@ -40,15 +41,14 @@ export default function SelectInput({
 
   return (
     <Animated.View style={[styles.container, style]}>
-      <RegularText style={styles.label} text={title} />
+      <RegularText text={title} />
       <TouchableOpacity
         onPress={() => {
           const value = scaleValue.value == 0 ? 1 : 0;
           scaleValue.value = withSpring(value);
           console.log(value);
         }}
-        style={styles.selector}
-      >
+        style={styles.selector}>
         <>
           <RegularText
             style={styles.selectorText}
@@ -62,8 +62,7 @@ export default function SelectInput({
           styles.selectList,
           listItemStyle,
           { backgroundColor: scheme == "light" ? "#ffffff" : "#3A3D42" },
-        ]}
-      >
+        ]}>
         {items.length > 0 &&
           items.map((item, index) => (
             <TouchableOpacity
@@ -72,8 +71,7 @@ export default function SelectInput({
                 scaleValue.value = withSpring(0);
               }}
               key={index.toString()}
-              style={styles.listItem}
-            >
+              style={styles.listItem}>
               <Text style={styles.listItemText}>{item}</Text>
             </TouchableOpacity>
           ))}
@@ -92,16 +90,16 @@ const styles = StyleSheet.create({
     width: "100%",
     zIndex: 200,
   },
-  label: {
-    fontWeight: "400",
-    fontSize: 14,
-    color: "#4D4D4D",
-  },
+  // label: {
+  //   fontWeight: "400",
+  //   fontSize: hp(111),
+  //   fontFamily: "Euclid-Circular-A",
+  // },
   selector: {
     width: "100%",
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
-    height: 30,
+    height: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

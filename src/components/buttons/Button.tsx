@@ -5,9 +5,10 @@ import {
   TextStyle,
   ViewStyle,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import Colors from "../../constants/Colors";
-import { hp } from "../../common/util/LayoutUtil";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
 
 type ButtonPropsType = {
@@ -17,6 +18,7 @@ type ButtonPropsType = {
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
   disabled?: boolean;
+  willCallAsync?: boolean;
 };
 
 export const Button: FC<ButtonPropsType> = ({
@@ -26,6 +28,7 @@ export const Button: FC<ButtonPropsType> = ({
   style,
   styleText,
   disabled,
+  willCallAsync,
 }) => {
   const colorScheme = useColorScheme();
 
@@ -48,7 +51,11 @@ export const Button: FC<ButtonPropsType> = ({
       ]}
     >
       <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
-        {title}
+        {willCallAsync ? (
+          <ActivityIndicator animating={willCallAsync} />
+        ) : (
+          title
+        )}
       </Text>
     </TouchableOpacity>
   );
@@ -61,24 +68,23 @@ const styles = {
     letterSpacing: hp(0.5),
     fontSize: hp(14),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
   },
   nextText: {
     color: Colors.general.secondary,
   },
   doneButton: {
     backgroundColor: Colors.general.black,
-    width: "90%",
     height: hp(50),
     borderRadius: hp(10),
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
+    width: wp(335),
     // marginTop: 100,
   },
   nextButton: {
     backgroundColor: Colors.general.primary,
-    width: "90%",
   },
 };
 

@@ -4,6 +4,7 @@ import Divider from "./Divider";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { Text, View } from "../../../../components/Themed";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 type Props = {
   Icon: any;
@@ -27,14 +28,12 @@ export default function ListItem({
     <TouchableAnimated
       entering={FadeInDown.delay(200 * (index + 1))}
       onPress={onPress}
-      style={styles.listContainer}
-    >
+      style={styles.listContainer}>
       <View style={styles.mainItem}>
         <View style={styles.item}>
           <Icon />
           <Text style={styles.text}>{title}</Text>
         </View>
-
         {IconComponent == null ? <ArrowFowardIcon /> : <IconComponent />}
       </View>
       <Divider />
@@ -60,8 +59,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 14,
-    fontWeight: "500",
+    fontWeight: "600",
+    fontSize: hp(17),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginLeft: 16.5,
   },
 });

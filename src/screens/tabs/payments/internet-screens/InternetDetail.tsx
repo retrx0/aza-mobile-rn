@@ -16,6 +16,7 @@ import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 export default function InternetDetail({
   navigation,
@@ -33,7 +34,13 @@ export default function InternetDetail({
       <Header
         description=""
         descriptionStyle={null}
-        headerStyle={null}
+        headerStyle={{
+          fontSize: hp(16),
+          fontWeight: "500",
+          fontFamily: "Euclid-Circular-A-Medium",
+          marginLeft: hp(2),
+          marginTop: hp(30),
+        }}
         heading="Subscribe to an internet plan"
       />
 
@@ -62,7 +69,7 @@ export default function InternetDetail({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || 45 },
+          { bottom: insets.bottom || hp(45) },
         ]}>
         <Button
           title="Continue"
@@ -76,8 +83,6 @@ export default function InternetDetail({
             {
               backgroundColor: Colors[colorScheme].button,
             },
-            { bottom: 20 },
-            CommonStyles.button,
           ]}
         />
       </View>

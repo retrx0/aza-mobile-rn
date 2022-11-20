@@ -18,14 +18,14 @@ const ChooseSplitScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
-          Split
+            fontSize: hp(16),
+            fontWeight: "600",
+          }}>
+          Choose Transaction
         </Text>
       ),
       // hide default back button which only shows in android
@@ -40,21 +40,21 @@ const ChooseSplitScreen = ({
   const splitsListItems = [
     {
       name: "Coldstone",
-      amount: "2000000",
+      amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThTumpKjOB5PtCkHk3DUZ_6px9A073NcfLPA&usqp=CAU",
     },
     {
       name: "Burger King",
-      amount: "120000",
+      amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07WdeXexZ8Igvtni6pY013Wc0K1i9uuWfPA&usqp=CAU",
     },
     {
       name: "KFC",
-      amount: "480000",
+      amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiwr_jykU8Gdf9mpFXyUFwKAbCEaLFPFJbfA&usqp=CAU",
@@ -76,8 +76,7 @@ const ChooseSplitScreen = ({
                   splitImage,
                   name,
                 })
-              }
-            >
+              }>
               <SplitListItem
                 key={i}
                 amount={amount}

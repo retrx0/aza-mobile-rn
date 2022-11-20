@@ -1,6 +1,6 @@
 import { StyleSheet, StatusBar, Platform, Appearance } from "react-native";
+import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
-
 
 export const PaymentStyles = StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ export const PaymentStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
-    marginTop: 45,
+    marginTop: hp(30),
   },
   icon: {
     alignSelf: "flex-end",
@@ -25,7 +25,8 @@ export const PaymentStyles = StyleSheet.create({
   },
   headerText: {
     fontWeight: "600",
-    fontSize: 20,
+    fontSize: hp(17),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   subHead: {
     marginTop: 40,
@@ -67,13 +68,15 @@ export const CharityStyles = StyleSheet.create({
     // marginRight: "auto",
     // justifyContent:'space-between',
     marginTop: 40,
-    paddingHorizontal:10,
+    paddingHorizontal: 10,
   },
   text: {
     textAlign: "justify",
-    marginLeft:10,
-    marginRight:10
-    
+    marginLeft: 10,
+    marginRight: 10,
+    fontSize: hp(16),
+    fontWeight: "400",
+    fontFamily: "Euclid-Circular-A",
   },
   input: {
     marginLeft: 20,
@@ -81,18 +84,23 @@ export const CharityStyles = StyleSheet.create({
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     height: 40,
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
   },
   label: {
     marginLeft: 20,
+    fontSize: hp(19),
+    fontWeight: "500",
   },
   suggestions: {
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
-    marginTop:10,
+    marginTop: 10,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom:10
+    marginBottom: 10,
   },
   mainSuggestion: {
     width: 70,
@@ -104,6 +112,9 @@ export const CharityStyles = StyleSheet.create({
   },
   amount: {
     color: "#A6A6A6",
+    fontSize: hp(14),
+    fontWeight: "600",
+    fontFamily: "Euclid-Circular-A",
   },
   buttons: {
     marginTop: "auto",
@@ -113,7 +124,6 @@ export const CharityStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    
   },
   btn: {
     marginBottom: 10,
@@ -127,7 +137,7 @@ export const CharityStyles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
   },
- 
+
   mainInput: {
     marginTop: 0,
   },

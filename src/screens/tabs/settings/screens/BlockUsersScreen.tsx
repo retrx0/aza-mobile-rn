@@ -11,9 +11,11 @@ import { UndrawCancelIcon } from "../../../../../assets/svg";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,9 +25,9 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Block Users
         </Text>
       ),
@@ -40,13 +42,17 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container, { justifyContent: "space-between" }]}>
+      <View style={[styles.container]}>
         <View>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-          >
+            style={{
+              fontSize: hp(16),
+              fontFamily: "Euclid-Circular-A-Medium",
+              marginLeft: hp(5),
+              fontWeight: "500",
+            }}>
             Blocked users won't be able to send you money, request money from
             you or split payments with you.
           </Text>
@@ -54,14 +60,16 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
-              fontSize: 14,
+              fontSize: hp(16),
+              fontFamily: "Euclid-Circular-A",
+              marginLeft: hp(5),
+              fontWeight: "400",
               marginTop: hp(30),
-            }}
-          >
+            }}>
             You can unblock these users anytime
           </Text>
         </View>
-        <View style={[CommonStyles.col]}>
+        <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <UndrawCancelIcon
             color={colorScheme === "dark" ? "#2AD168" : "#000000"}
             size={30}
@@ -70,30 +78,31 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
-              fontSize: 16,
+              fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              marginTop: 30,
-            }}
-          >
+              marginTop: hp(30),
+            }}>
             You have not blocked anyone
           </Text>
         </View>
+
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(25) }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
-            title="Block New User"
+            title="Block A User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <ButtonWithUnderline
             title="Cancel"

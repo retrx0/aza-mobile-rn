@@ -8,9 +8,11 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -25,15 +27,24 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             This action cannot be undone
           </Text>
           <Text style={CommonStyles.lockupStyle}>
-            You are about to lock up {"\u20A62,000"} for 2 Weeks
+            You are about to lock up {"\u20A680000"} for 2 Weeks
           </Text>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "VaultSuccessful",
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage:
+                  " You have successfully locked away \u20A62000 to Flight Ticket vault",
+                navigateTo: "UserVault",
               })
             }
             styleText={{
@@ -49,7 +60,9 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
           <CancelButtonWithUnderline
             title="Cancel"
-            onPressButton={() => navigation.getParent()?.navigate("NewVault")}
+            onPressButton={() =>
+              navigation.getParent()?.navigate("ConfirmGoal")
+            }
             styleText={CommonStyles.cancelStyle}
             style={{ borderBottomColor: Colors.general.red }}
           />

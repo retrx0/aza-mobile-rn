@@ -10,6 +10,7 @@ import Svg, {
   G,
   Rect,
   ClipPath,
+  Styles,
 } from "react-native-svg";
 import { View } from "../../src/components/Themed";
 
@@ -17,6 +18,18 @@ type SvgIconProps = {
   color?: string;
   size?: number;
   style?: StyleProp<ViewStyle>;
+};
+
+export const NigerianFlag = () => {
+  return (
+    <Svg viewBox="0 0 1200 600">
+      <G>
+        <Path fill="#008751" d="M0,0h396.9v595.3H0V0z" />
+        <Path fill="#008751" d="M793.7,0h396.9v595.3H793.7V0z" />
+        <Path fill="#FFFFFF" d="M396.9,0h396.9v595.3H396.9V0z" />
+      </G>
+    </Svg>
+  );
 };
 
 export const InviteIcon = () => {
@@ -86,11 +99,13 @@ export const SettingsIcon = ({ color, size }: SvgIconProps) => {
   );
 };
 
-export const ProfileIcon = ({ color, size }: SvgIconProps) => {
+export const ProfileIcon = ({
+  color,
+  size,
+  pictureUrl,
+}: SvgIconProps & { pictureUrl?: string }) => {
   return (
-    <Svg width={size} height={size} viewBox="0 0 17 17" fill="none">
-      <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
-      <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
+    <Svg width={30} height={30} viewBox="0 0 17 17">
       <Defs>
         <Pattern
           id="pattern0"
@@ -103,12 +118,17 @@ export const ProfileIcon = ({ color, size }: SvgIconProps) => {
             transform="translate(-0.25) scale(0.003125)"
           />
         </Pattern>
-        <Image
-          href={require("../../assets/images/logo/lightning-bolt.png")}
-          width="480"
-          height="320"
-        />
       </Defs>
+      <Circle cx="8.5" cy="8.5" r="8" fill="#D9D9D9" />
+      <Circle cx="8.5" cy="8.5" r="8" fill="url(#pattern0)" />
+      <Image
+        href={{
+          uri: pictureUrl,
+        }}
+        width="480"
+        height="320"
+        opacity={1}
+      />
     </Svg>
   );
 };
@@ -210,7 +230,7 @@ export const AZALargeLightningLogo = ({ color }: SvgIconProps) => {
 
 export const BackIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+    <Svg width="14" height="14" viewBox="0 0 8 14" fill="none">
       <Path
         d="M6.83333 12.6667L1 6.83333L6.83333 1"
         stroke={color}
@@ -233,12 +253,12 @@ export const AppleIcon = () => {
   );
 };
 
-export const DataIcon = ({ style, color }: SvgIconProps) => {
+export const DataIcon = ({ style, color, size }: SvgIconProps) => {
   return (
     <Svg
       style={style}
-      width="14"
-      height="12"
+      width={size}
+      height={size}
       viewBox="0 0 14 12"
       fill="#000000"
     >
@@ -280,9 +300,15 @@ export const PieIcon = ({ style }: SvgIconProps) => {
   );
 };
 
-export const WifiIcon = ({ style, color }: SvgIconProps) => {
+export const WifiIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="16" height="12" viewBox="0 0 16 12" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 16 12"
+      fill="none"
+    >
       <Path
         d="M3.27333 5.8934C6.14 3.68007 9.86667 3.68007 12.7333 5.8934"
         stroke={color}
@@ -434,9 +460,15 @@ export const FlagIcon = () => {
   );
 };
 
-export const CableTvIcon = ({ style, color }: SvgIconProps) => {
+export const CableTvIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 14 14"
+      fill="none"
+    >
       <Path
         d="M10.7067 0.333252H3.27333C1.65333 0.333252 0.333328 1.65325 0.333328 3.27325V7.60658V7.73992C0.333328 9.36658 1.65333 10.6799 3.27333 10.6799H5.83333C6.19999 10.6799 6.49999 10.9799 6.49999 11.3466V11.9933C6.49999 12.3599 6.19999 12.6599 5.83333 12.6599H4.21999C3.94666 12.6599 3.71999 12.8866 3.71999 13.1599C3.71999 13.4333 3.93999 13.6666 4.21999 13.6666H9.78666C10.06 13.6666 10.2867 13.4399 10.2867 13.1666C10.2867 12.8933 10.06 12.6666 9.78666 12.6666H8.17333C7.80666 12.6666 7.50666 12.3666 7.50666 11.9999V11.3533C7.50666 10.9866 7.80666 10.6866 8.17333 10.6866H10.7133C12.34 10.6866 13.6533 9.36658 13.6533 7.74658V7.61325V3.27992C13.6467 1.65325 12.3267 0.333252 10.7067 0.333252Z"
         fill={color}
@@ -445,9 +477,15 @@ export const CableTvIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const ElectricIcon = ({ style, color }: SvgIconProps) => {
+export const ElectricIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="10" height="14" viewBox="0 0 10 14" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 10 14"
+      fill="none"
+    >
       <Path
         d="M8.94001 6.14668H6.88001V1.34668C6.88001 0.22668 6.27334 1.29938e-05 5.53334 0.840013L5.00001 1.44668L0.486674 6.58001C-0.133326 7.28001 0.126674 7.85335 1.06001 7.85335H3.12001V12.6533C3.12001 13.7733 3.72667 14 4.46667 13.16L5.00001 12.5533L9.51334 7.42001C10.1333 6.72001 9.87334 6.14668 8.94001 6.14668Z"
         fill={color}
@@ -456,9 +494,15 @@ export const ElectricIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const DropIcon = ({ style, color }: SvgIconProps) => {
+export const DropIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+    >
       <Path
         d="M11.06 4.93992L4.20666 11.7933C3.88666 12.1133 3.34 12.0399 3.14666 11.6333C2.8 10.9199 2.6 10.1133 2.6 9.26659C2.58666 5.58659 6.32 2.43992 7.58666 1.47325C7.83333 1.28659 8.16666 1.28659 8.40666 1.47325C8.98666 1.91325 10.0733 2.82659 11.0933 4.02659C11.32 4.29325 11.3067 4.69325 11.06 4.93992Z"
         fill={color}
@@ -471,9 +515,9 @@ export const DropIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const GiftIcon = ({ style, color }: SvgIconProps) => {
+export const GiftIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 16 16" fill="none">
       <Path
         d="M13.3333 7.99992V11.9999C13.3333 13.4733 12.14 14.6666 10.6667 14.6666H5.33334C3.86001 14.6666 2.66667 13.4733 2.66667 11.9999V7.99992C2.66667 7.63325 2.96667 7.33325 3.33334 7.33325H4.64667C5.01334 7.33325 5.31334 7.63325 5.31334 7.99992V10.0933C5.31334 10.5866 5.58667 11.0399 6.02 11.2733C6.21334 11.3799 6.42667 11.4333 6.64667 11.4333C6.90001 11.4333 7.15334 11.3599 7.37334 11.2133L8.00667 10.7999L8.59334 11.1933C9.00001 11.4666 9.52001 11.4999 9.95334 11.2666C10.3933 11.0333 10.6667 10.5866 10.6667 10.0866V7.99992C10.6667 7.63325 10.9667 7.33325 11.3333 7.33325H12.6667C13.0333 7.33325 13.3333 7.63325 13.3333 7.99992Z"
         fill={color}
@@ -498,9 +542,15 @@ export const GiftIcon = ({ style, color }: SvgIconProps) => {
   );
 };
 
-export const LoveIcon = ({ style, color }: SvgIconProps) => {
+export const LoveIcon = ({ style, color, size }: SvgIconProps) => {
   return (
-    <Svg style={style} width="14" height="12" viewBox="0 0 14 12" fill="none">
+    <Svg
+      style={style}
+      width={size}
+      height={size}
+      viewBox="0 0 14 12"
+      fill="none"
+    >
       <Path
         d="M9.95999 0.0668945C8.75333 0.0668945 7.67333 0.653561 6.99999 1.55356C6.32666 0.653561 5.24666 0.0668945 4.03999 0.0668945C1.99333 0.0668945 0.333328 1.73356 0.333328 3.79356C0.333328 4.58689 0.459995 5.32023 0.679995 6.00023C1.73333 9.33356 4.97999 11.3269 6.58666 11.8736C6.81333 11.9536 7.18666 11.9536 7.41333 11.8736C9.01999 11.3269 12.2667 9.33356 13.32 6.00023C13.54 5.32023 13.6667 4.58689 13.6667 3.79356C13.6667 1.73356 12.0067 0.0668945 9.95999 0.0668945Z"
         fill={color}
@@ -682,7 +732,7 @@ export const MessageIcon = ({ color, size, style }: SvgIconProps) => (
 );
 
 export const ReceivedIcon = ({ color }: SvgIconProps) => (
-  <Svg width={12} height={12} fill="none">
+  <Svg width={14} height={14} fill="none">
     <Path
       d="m2.5 8.75 7-7M2.5 3.615V8.75h5.135M1.75 11h8.5"
       stroke={color}
@@ -707,7 +757,7 @@ export const DepositIcon = ({ color, size, style }: SvgIconProps) => (
 );
 
 export const SendIcon = ({ color }: SvgIconProps) => (
-  <Svg width={12} height={12} fill="none">
+  <Svg width={14} height={14} fill="none">
     <Path
       d="M10.25 11h-8.5M9.5 1.75l-7 7M9.5 6.885V1.75H4.365"
       stroke={color}
@@ -748,6 +798,94 @@ export const CurrencyIcon = ({ color }: SvgIconProps) => {
       <Path
         d="M10.5915 6.08018H9.08991V4.63706H10.5915C10.8171 4.63706 11 4.45435 11 4.22868C11 4.00299 10.8171 3.82016 10.5915 3.82016H9.08991V1.81776C9.08991 1.52546 9.03215 1.31092 8.91829 1.18023C8.81007 1.0559 8.66779 0.998047 8.47076 0.998047C8.28275 0.998047 8.14583 1.0555 8.0397 1.17905C7.92717 1.30987 7.87005 1.52482 7.87005 1.81789V3.82041H5.04551L3.84455 2.00308C3.74177 1.8409 3.64513 1.68897 3.55128 1.54315C3.46678 1.41181 3.38437 1.30489 3.30653 1.22505C3.23761 1.15436 3.15908 1.09965 3.06722 1.05761C2.98056 1.01804 2.87037 0.99818 2.74001 0.99818C2.57375 0.99818 2.42282 1.04373 2.2783 1.13731C2.13529 1.22988 2.03643 1.34432 1.97605 1.4872C1.92305 1.62299 1.89501 1.83106 1.89501 2.09964V3.82027H0.408359C0.182778 3.8203 0 4.00312 0 4.22879C0 4.45446 0.182778 4.63717 0.408381 4.63717H1.89504V6.08045H0.408381C0.182778 6.08045 0 6.26322 0 6.48896C0 6.71456 0.182778 6.89721 0.408381 6.89721H1.89504V9.18345C1.89504 9.4671 1.95464 9.67947 2.07269 9.81442C2.18496 9.94309 2.32731 10.0028 2.52062 10.0028C2.70712 10.0028 2.84836 9.94282 2.96548 9.81391C3.08542 9.68184 3.14609 9.46961 3.14609 9.18347V6.89721H5.70197L7.08509 9.01809C7.18127 9.15829 7.28057 9.29979 7.37961 9.43855C7.46896 9.56314 7.56644 9.67293 7.66929 9.76463C7.76192 9.84758 7.86122 9.90835 7.96445 9.94544C8.07071 9.9837 8.19491 10.0031 8.33273 10.0031C8.70678 10.0031 9.08987 9.88858 9.08987 9.03935V6.89721H10.5914C10.8171 6.89721 11 6.7143 11 6.48869C11 6.26309 10.8171 6.08018 10.5915 6.08018ZM7.87002 4.63704V6.08016H6.53917L5.58558 4.63704H7.87002ZM3.14611 2.97884L3.69494 3.82016H3.14611V2.97884ZM3.14611 6.08018V4.63706H4.22784L5.16913 6.08018H3.14611ZM7.87002 8.09445L7.07909 6.89721H7.87002V8.09445Z"
         fill={color}
+      />
+    </Svg>
+  );
+};
+
+export const OpenIcon = () => {
+  return (
+    <Svg width="9" height="5" viewBox="0 0 9 5" fill="none">
+      <Path
+        d="M1.63125 0.369141L4.5 3.23164L7.36875 0.369141L8.25 1.25039L4.5 5.00039L0.75 1.25039L1.63125 0.369141Z"
+        fill="black"
+      />
+    </Svg>
+  );
+};
+
+export const AddIcon = () => {
+  return (
+    <Svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <Path
+        d="M20.0007 36.6663C29.1673 36.6663 36.6673 29.1663 36.6673 19.9997C36.6673 10.833 29.1673 3.33301 20.0007 3.33301C10.834 3.33301 3.33398 10.833 3.33398 19.9997C3.33398 29.1663 10.834 36.6663 20.0007 36.6663Z"
+        stroke="#2AD168"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M13.334 20H26.6673"
+        stroke="#2AD168"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M20 26.6663V13.333"
+        stroke="#2AD168"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </Svg>
+  );
+};
+export const Icons = () => {
+  return (
+    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <Path
+        d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M8 19H16C18 19 19 18 19 16V8C19 6 18 5 16 5H8C6 5 5 6 5 8V16C5 18 6 19 8 19Z"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M5 9.5H7.48C8.86 9.5 9.98 10.62 9.98 12C9.98 13.38 8.86 14.5 7.48 14.5H5"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M19 9.99023H16"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M19 14H16"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M7.19922 12H7.29922"
+        stroke="white"
+        stroke-width="2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </Svg>
   );
@@ -2197,7 +2335,7 @@ export const VaultLargeIcon = ({ color, size }: SvgIconProps) => {
   );
 };
 
-export const ExitIcon = () => {
+export const ExitIcon = ({ color }: SvgIconProps) => {
   return (
     <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <Path
@@ -2206,6 +2344,7 @@ export const ExitIcon = () => {
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        fill={color}
       />
       <Path
         d="M16.2426 16.2426L7.75732 7.75732"
@@ -2213,6 +2352,7 @@ export const ExitIcon = () => {
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        fill={color}
       />
     </Svg>
   );
@@ -2290,3 +2430,25 @@ export const UndrawCreditCardIcon = ({ color }: SvgIconProps) => {
     </Svg>
   );
 };
+
+export const Exit = () => {
+  return (
+    <Svg width="20" height="20" viewBox="0 0 30 30" fill="none">
+      <Path
+        d="M23.4 8.29201L21.708 6.60001L15 13.308L8.29201 6.60001L6.60001 8.29201L13.308 15L6.60001 21.708L8.29201 23.4L15 16.692L21.708 23.4L23.4 21.708L16.692 15L23.4 8.29201Z"
+        fill="black"
+      />
+    </Svg>
+  );
+};
+
+// export const ExitIcon = () => {
+//   return (
+//     <Svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+//       <Path
+//         d="M23.4 8.29201L21.708 6.60001L15 13.308L8.29201 6.60001L6.60001 8.29201L13.308 15L6.60001 21.708L8.29201 23.4L15 16.692L21.708 23.4L23.4 21.708L16.692 15L23.4 8.29201Z"
+//         fill="#070648"
+//       />
+//     </Svg>
+//   );
+// };

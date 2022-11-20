@@ -11,12 +11,14 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddBankAccountScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccount">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   const { bankName, screenType } = route.params;
 
@@ -24,13 +26,13 @@ const AddBankAccountScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Add Bank Account
         </Text>
       ),
@@ -48,25 +50,28 @@ const AddBankAccountScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: hp(16),
               marginVertical: hp(30),
-            }}
-          >
+              marginLeft: hp(5),
+              fontWeight: "500",
+              marginTop: hp(30),
+            }}>
             Add your bank account to receive withdrawals from your Aza account
           </Text>
           <View>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(16),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Account Number
             </Text>
             <TextInput
@@ -77,9 +82,10 @@ const AddBankAccountScreen = ({
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
-                marginTop: hp(15),
+                marginTop: hp(5),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               placeholder="Enter your account number"
               keyboardType="number-pad"
@@ -88,8 +94,10 @@ const AddBankAccountScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -102,13 +110,12 @@ const AddBankAccountScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(25),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
           />
         </View>
       </View>

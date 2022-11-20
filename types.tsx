@@ -90,12 +90,19 @@ export type PasswordScreenParamsType = {
   passwordScreenType: "Create" | "Confirm";
 };
 
+export type OtpForScreenType = { otpScreenType: "email" | "phone" };
+
+export type ProfileSetupInfo = {
+  profilePreloadedInfo: { firstname: string; lastname: string };
+};
+
 export type SignUpStackParamList = {
   SignUpRoot: undefined;
-  SignUpProfileSetup: undefined;
-  SignUpOTP: undefined;
+  SignUpProfileSetup: ProfileSetupInfo | undefined;
+  SignUpOTP: OtpForScreenType;
   SignUpPassword: PasswordScreenParamsType;
   SignUpConfirmPassword: PasswordScreenParamsType;
+  SignUpPhoneNumber: undefined;
 };
 
 export type SignUpScreenProps<Screen extends keyof SignUpStackParamList> =
@@ -113,6 +120,13 @@ export type DaysProps = {
   onPress?: () => void;
 };
 
+export type UnmatureVaultListProps = {
+  onPress?: () => void;
+  closeIcon: any;
+  title: string;
+  subTitle: string;
+};
+
 export type VaultListProps = {
   item: string;
   lockIcon: any;
@@ -120,11 +134,13 @@ export type VaultListProps = {
   closeIcon: any;
   amount: string;
   stage: string;
+  altamount: string;
 };
+
 export type VaultActivitytProps = {
   send: any;
   status: string;
-  price: string;
+  amount: string;
   due: string;
   onPress?: () => void;
 };

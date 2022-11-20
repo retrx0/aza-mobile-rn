@@ -14,9 +14,14 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { NairaLargeIcon } from "../../../assets/svg";
 import { numberWithCommas } from "../../common/util/NumberUtils";
-import { UserData } from "../../constants/userData";
 
+import { useAppDispatch, useAppSelector } from "../../redux";
+import { selectUser } from "../../redux/slice/userSlice";
+import { getInitialsAvatar } from "../../common/util/AppUtil";
 import DescriptionModal from "./modal/DescriptionModal";
+import transactionSlice, {
+  setTransaction,
+} from "../../redux/slice/transactionSlice";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -26,12 +31,17 @@ const TransactionKeypadScreen = ({
   const [description, setDescription] = useState("");
   const [descModal, setDescModalOpen] = useState(false);
 
+  const user = useAppSelector(selectUser);
+
   const colorScheme = useColorScheme();
 
   const { headerTitle, transactionType } = route.params;
+  const { beneficiary, type } = transactionType;
 
-  const normalTransaction = transactionType.type === "normal";
-  const recurringTransaction = transactionType.type === "recurring";
+  const normalTransaction = type === "normal";
+  const recurringTransaction = type === "recurring";
+
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -42,8 +52,7 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           {headerTitle}
         </Text>
       ),
@@ -63,7 +72,14 @@ const TransactionKeypadScreen = ({
           <Image
             style={{ borderRadius: 50, width: 50, height: 50 }}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              uri:
+                beneficiary.pictureUrl && beneficiary.pictureUrl !== ""
+                  ? beneficiary.pictureUrl
+                  : getInitialsAvatar({
+                      firstName: beneficiary.fullName,
+                      lastName: beneficiary.lastName,
+                      scheme: colorScheme,
+                    }),
             }}
           />
           <Text
@@ -73,9 +89,8 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 14,
               marginTop: 15,
-            }}
-          >
-            {UserData.userFullName}
+            }}>
+            {beneficiary.fullName}
           </Text>
           <View
             lightColor="#eaeaec"
@@ -90,13 +105,11 @@ const TransactionKeypadScreen = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}
-          >
+            ]}>
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}
-            >
+              style={{ fontSize: 12 }}>
               Nigerian Naira
             </Text>
             <Image
@@ -111,8 +124,7 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}
-            >
+              style={{ fontSize: 12 }}>
               NGN
             </Text>
           </View>
@@ -136,8 +148,7 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 15,
-              }}
-            >
+              }}>
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -147,8 +158,7 @@ const TransactionKeypadScreen = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}
-            >
+              }}>
               Aza Balance:
             </Text>
             <Text
@@ -158,9 +168,8 @@ const TransactionKeypadScreen = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}
-            >
-              {"\u20A6"} {UserData.azaBalance}
+              }}>
+              {"\u20A6"} {user.azaBalance}
             </Text>
           </View>
         </View>
@@ -173,15 +182,45 @@ const TransactionKeypadScreen = ({
             if (normalTransaction) {
               // This checks if the transactions are send or request money which have optional description message
 
-              //if(withraw){
+              switch (transactionType.transaction) {
+                case "deposit":
+                  console.log("deposit");
+                  break;
+                case "request":
+                  console.log("request");
+                  dispatch(
+                    setTransaction({
+                      ...{},
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "request",
+                    })
+                  );
+                  navigation.navigate("RequestMoneyConfirmation");
+                  break;
+                case "send":
+                  dispatch(
+                    setTransaction({
+                      amount: Number(amount),
+                      beneficairy: beneficiary,
+                      description: description,
+                      transferType: "send",
+                    })
+                  );
+                  navigation.navigate("SendMoneyConfirmation");
+                  break;
+                case "withdraw":
+                  console.log("withdrawing");
+                  break;
+              }
 
               //}else if(deposit){
 
               //}
-              console.log("first");
+
               transactionType.openDescriptionModal && setDescModalOpen(true);
             } else {
-              console.log("Hh");
               // TODO create and pass required params
               navigation.navigate("RecurringTransferConfirmation");
             }
@@ -193,14 +232,13 @@ const TransactionKeypadScreen = ({
           }}
           style={{
             marginVertical: 10,
-            width: "100%",
             backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>
 
       {/* description modal */}
-      <DescriptionModal
+      {/* <DescriptionModal
         visible={descModal}
         setModalVisible={setDescModalOpen}
         description={description}
@@ -210,7 +248,7 @@ const TransactionKeypadScreen = ({
         recurringTransaction={recurringTransaction}
         transactionType={transactionType}
         // transactionParams={}
-      />
+      /> */}
     </>
   );
 };

@@ -11,6 +11,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddBankAccountConfirmationScreen = ({
   navigation,
@@ -18,18 +19,19 @@ const AddBankAccountConfirmationScreen = ({
 }: CommonScreenProps<"AddBankAccountConfirmation">) => {
   const colorScheme = useColorScheme();
   const { bankName, accountName, accountNumber, screenType } = route.params;
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Confirmation
         </Text>
       ),
@@ -47,25 +49,27 @@ const AddBankAccountConfirmationScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: hp(16),
               marginVertical: hp(30),
-            }}
-          >
+              fontWeight: "500",
+              marginLeft: hp(5),
+            }}>
             Kindly confirm the details of your bank account
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(15),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Bank
             </Text>
             <TextInput
@@ -74,11 +78,12 @@ const AddBankAccountConfirmationScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
               value={bankName}
@@ -101,13 +106,14 @@ const AddBankAccountConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(15),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Account Number
             </Text>
             <TextInput
@@ -116,11 +122,12 @@ const AddBankAccountConfirmationScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
               value={accountNumber}
@@ -128,13 +135,14 @@ const AddBankAccountConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(15),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Account Name
             </Text>
             <TextInput
@@ -143,11 +151,12 @@ const AddBankAccountConfirmationScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
+                marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
               value={accountName}
@@ -155,8 +164,10 @@ const AddBankAccountConfirmationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -173,13 +184,12 @@ const AddBankAccountConfirmationScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginBottom: hp(25),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
           />
         </View>
       </View>

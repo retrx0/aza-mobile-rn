@@ -18,6 +18,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import { EditIcon, TrashIcon } from "../../../assets/svg";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { numberWithCommas } from "../../common/util/NumberUtils";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SplitEditContactsScreen = ({
   navigation,
@@ -25,6 +26,7 @@ const SplitEditContactsScreen = ({
 }: CommonScreenProps<"SplitEditContacts">) => {
   const [contactsToEdit, setContactsToEdit] = useState<Contact[]>([]);
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -34,9 +36,9 @@ const SplitEditContactsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Split
         </Text>
       ),
@@ -84,8 +86,7 @@ const SplitEditContactsScreen = ({
               justifyContent: "space-between",
               marginTop: hp(25),
             },
-          ]}
-        >
+          ]}>
           <Image
             style={{ borderRadius: 50, width: 45, height: 45 }}
             source={{
@@ -93,20 +94,26 @@ const SplitEditContactsScreen = ({
             }}
           />
           <View
-            style={[CommonStyles.col, { marginLeft: 20, marginRight: "auto" }]}
-          >
+            style={[CommonStyles.col, { marginLeft: 20, marginRight: "auto" }]}>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.text}
+              // darkColor={Colors.dark.mainText}
               style={{
-                fontSize: 16,
+                fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
-              }}
-            >
+                fontWeight: "500",
+              }}>
               Chiazo
             </Text>
-            <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
-              {"\u20A6"} {numberWithCommas(splitAmountForEachPerson.toFixed())}
+            <Text
+              style={{
+                fontSize: hp(14),
+                marginTop: 5,
+                color: "#FF361A",
+                fontWeight: "400",
+              }}>
+              {"\u20A6"}
+              {numberWithCommas(splitAmountForEachPerson.toFixed())}
             </Text>
           </View>
           <View style={[CommonStyles.row]}>
@@ -121,13 +128,11 @@ const SplitEditContactsScreen = ({
                     .toFixed()
                     .toString(),
                 })
-              }
-            >
+              }>
               <EditIcon color="#A6A6A6" size={20} />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => console.log("deleted request creator")}
-            >
+              onPress={() => console.log("deleted request creator")}>
               <TrashIcon color="#FF361A" size={20} />
             </TouchableOpacity>
           </View>
@@ -143,8 +148,7 @@ const SplitEditContactsScreen = ({
                   justifyContent: "space-between",
                   marginTop: hp(25),
                 },
-              ]}
-            >
+              ]}>
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
@@ -154,21 +158,25 @@ const SplitEditContactsScreen = ({
               <View
                 style={[
                   CommonStyles.col,
-                  { marginLeft: 20, marginRight: "auto" },
-                ]}
-              >
+                  { marginRight: "auto", marginLeft: 20 },
+                ]}>
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
                   style={{
-                    fontSize: 16,
+                    fontSize: hp(16),
                     fontFamily: "Euclid-Circular-A-Medium",
-                  }}
-                >
+                    fontWeight: "500",
+                  }}>
                   {name}
                 </Text>
-                <Text style={{ fontSize: 12, marginTop: 5, color: "#FF361A" }}>
-                  {"\u20A6"}{" "}
+                <Text
+                  style={{
+                    fontSize: hp(12),
+                    marginTop: hp(5),
+                    color: "#FF361A",
+                  }}>
+                  {"\u20A6"}
                   {numberWithCommas(splitAmountForEachPerson.toFixed())}
                 </Text>
               </View>
@@ -184,8 +192,7 @@ const SplitEditContactsScreen = ({
                         .toFixed()
                         .toString(),
                     })
-                  }
-                >
+                  }>
                   <EditIcon color="#A6A6A6" size={20} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => removePerson(id)}>
@@ -197,10 +204,9 @@ const SplitEditContactsScreen = ({
         </ScrollView>
         <View
           style={[
-            CommonStyles.col,
-            { width: "100%", marginBottom: hp(35), marginTop: 5 },
-          ]}
-        >
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() =>
@@ -213,14 +219,12 @@ const SplitEditContactsScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

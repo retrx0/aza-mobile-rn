@@ -5,37 +5,60 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
 import { VaultStyles } from "../styles";
-import { Image, TouchableOpacity } from "react-native";
+import { DatePickerIOSBase, Image, TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { useNavigation } from "@react-navigation/core";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToBank = () => {
   const [click, setClick] = useState(false);
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
       <View style={VaultStyles.container}>
-        <View style={[CommonStyles.topTab]}>
-          <View style={{ marginLeft: 20 }}>
-            <BackButton
-              onPress={() => {
-                navigation.getParent()?.navigate("TopBar");
-              }}
-            />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingHorizontal: hp(10),
+          }}>
+          <View>
+            <BackButton onPress={() => navigation.goBack()} />
           </View>
-          <Text style={CommonStyles.withdraw}>Withdraw</Text>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "500",
+              marginLeft: hp(90),
+            }}>
+            Withdraw
+          </Text>
         </View>
-        <Text style={CommonStyles.selectStyle}>
+        <Text
+          style={{
+            fontFamily: "Euclid-Circular-A",
+            fontSize: hp(16),
+            fontWeight: "500",
+            marginLeft: hp(14),
+            marginTop: hp(30),
+            marginBottom: hp(40),
+          }}>
           Select the bank you wish to withdraw to
         </Text>
         <View
           style={[
             CommonStyles.accessContainer,
-            { borderColor: Colors[colorScheme].disabledButton },
+            {
+              borderColor: "#EAEAEC",
+            },
           ]}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
@@ -60,7 +83,11 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <CancelButtonWithUnderline
             title="Add another Bank Account"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
@@ -70,8 +97,17 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "VaultWithdrawConfirmation",
+              navigation.navigate("VaultConfirmation", {
+                headerTitle: "Amount",
+                transactionType: {
+                  transaction: "deposit",
+                  type: "normal",
+                  beneficiary: {
+                    beneficiaryAccount: "",
+                    beneficiaryImage: "",
+                    beneficiaryName: "",
+                  },
+                },
               })
             }
             styleText={{
@@ -81,8 +117,8 @@ const VaultToBank = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
+            disabled={!click}
           />
 
           <CancelButtonWithUnderline

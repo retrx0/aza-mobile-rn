@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, Image } from "react-native";
 import {
   CurrencyIcon,
   FlightIcon,
@@ -15,43 +15,50 @@ export const ActivityList = [
   {
     send: <WithDrawIcon />,
     status: "Withdrawal to Bank",
-    price: "2,000",
+    amount: "\u20A62,000",
     due: "4 July 2022 04:26",
   },
   {
     send: <ReceiveIcon />,
     status: "Vault top up",
-    price: "200",
+    amount: "\u20A6200",
     due: "4 July 2022 04:26",
   },
   {
     send: <ReceiveIcon />,
     status: "Vault top up",
-    price: "200",
+    amount: "\u20A6200",
+    due: "4 July 2022 04:26",
+  },
+  {
+    send: (
+      <Image
+        style={{
+          width: 36,
+          height: 36,
+        }}
+        source={require("../../../../../assets/images/icons/CoverImage.png")}
+      />
+    ),
+    status: "Goal amount changed",
     due: "4 July 2022 04:26",
   },
   {
     send: <ReceiveIcon />,
     status: "Vault top up",
-    price: "200",
+    amount: "\u20A6200",
     due: "4 July 2022 04:26",
   },
   {
     send: <ReceiveIcon />,
     status: "Vault top up",
-    price: "200",
+    amount: "\u20A6200",
     due: "4 July 2022 04:26",
   },
   {
     send: <ReceiveIcon />,
     status: "Vault top up",
-    price: "200",
-    due: "4 July 2022 04:26",
-  },
-  {
-    send: <ReceiveIcon />,
-    status: "Vault top up",
-    price: "200",
+    amount: "\u20A6200",
     due: "4 July 2022 04:26",
   },
 ];
@@ -59,16 +66,15 @@ export const ActivityList = [
 export const ActivityCard = ({
   send,
   status,
-  price,
+  amount,
   due,
   onPress,
 }: VaultActivitytProps) => {
   return (
-    <View>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.activityContainer}>
         <View style={styles.activityItem}>
-          <TouchableOpacity
-            onPress={onPress}
+          <View
             style={[
               styles.sendContainer,
               {
@@ -79,14 +85,13 @@ export const ActivityCard = ({
                     ? Colors.general.lightGreen
                     : Colors.light.backgroundSecondary,
               },
-            ]}
-          >
+            ]}>
             {send}
-          </TouchableOpacity>
+          </View>
           <Text style={styles.status}>{status}</Text>
         </View>
         <View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View>
             <Text
               style={[
                 styles.amount,
@@ -96,16 +101,15 @@ export const ActivityCard = ({
                       ? Colors.general.red
                       : Colors.general.green,
                 },
-              ]}
-            >
-              {"\u20A6"} {price}
+              ]}>
+              {amount}
             </Text>
           </View>
           <Text style={styles.date}> {due}</Text>
         </View>
       </View>
       <View style={styles.separator} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -135,20 +139,18 @@ const styles = StyleSheet.create({
   date: {
     fontSize: hp(10),
     fontWeight: "600",
-    lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A",
   },
   amount: {
-    fontSize: hp(12),
+    fontSize: hp(14),
     fontWeight: "600",
-    lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Bold",
+    alignSelf: "flex-end",
   },
   status: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
-    lineHeight: hp(17.75),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     marginLeft: hp(15),
   },
   separator: {

@@ -13,6 +13,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SplitEditContactScreen = ({
   navigation,
@@ -21,18 +22,19 @@ const SplitEditContactScreen = ({
   const { contactSplitAmount, contactImage, contactName } = route.params;
   const [editedAmount, setEditedAmount] = useState(contactSplitAmount);
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           Edit
         </Text>
       ),
@@ -50,29 +52,32 @@ const SplitEditContactScreen = ({
       <View style={styles.container}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontSize: hp(14),
               marginBottom: hp(50),
-            }}
-          >
+              fontWeight: "500",
+              marginLeft: hp(5),
+            }}>
             You can edit the split amount
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontSize: 14,
-              }}
-            >
+                fontSize: hp(14),
+                marginLeft: hp(5),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+              }}>
               With whom?
             </Text>
             <TextInput
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={[
                 styles.input1,
@@ -82,6 +87,7 @@ const SplitEditContactScreen = ({
               ]}
               showSoftInputOnFocus={false}
               value={contactName}
+              keyboardType="default"
             />
             <Image
               source={{
@@ -92,13 +98,14 @@ const SplitEditContactScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              lightColor={Colors.light.secondaryText}
-              darkColor={Colors.dark.secondaryText}
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: 14,
-              }}
-            >
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
+              }}>
               Amount
             </Text>
             <View
@@ -108,19 +115,18 @@ const SplitEditContactScreen = ({
                   marginTop: hp(15),
                   alignSelf: "stretch",
                   position: "relative",
+                  marginLeft: 5,
                 },
-              ]}
-            >
+              ]}>
               <Text
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}
-              >
-                {"\u20A6 "}
+                // lightColor={Colors.light.mainText}
+                // darkColor={Colors.dark.mainText}
+                style={{ position: "absolute", paddingBottom: 5 }}>
+                {"\u20A6"}
               </Text>
               <TextInput
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
+                // lightColor={Colors.light.mainText}
+                // darkColor={Colors.dark.mainText}
                 placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={[
                   styles.input2,
@@ -138,23 +144,20 @@ const SplitEditContactScreen = ({
         </View>
         <View
           style={[
-            CommonStyles.col,
-            { width: "100%", marginBottom: hp(35), marginTop: 5 },
-          ]}
-        >
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => navigation.goBack()}
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              marginVertical: 10,
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"
@@ -184,6 +187,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     marginTop: hp(15),
     borderBottomWidth: 1,
+    fontSize: hp(14),
+    marginLeft: 5,
   },
   contactImage: {
     position: "absolute",
@@ -199,7 +204,8 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontFamily: "Euclid-Circular-A-Medium",
     paddingBottom: 5,
-    paddingLeft: 20,
+    paddingLeft: 10,
     borderBottomWidth: 1,
+    fontSize: hp(14),
   },
 });

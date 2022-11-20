@@ -8,13 +8,16 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import BoxTextInput from "../../../../components/input/BoxTextInput";
-import { UserData } from "../../../../constants/userData";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const ChangeEmailScreen = ({
   navigation,
 }: CommonScreenProps<"ChangeEmail">) => {
+  const user = useAppSelector(selectUser);
+
   const colorScheme = useColorScheme();
-  const [currentEmail, _] = useState(UserData.userEmail);
+  const [currentEmail, _] = useState(user.emailAddress);
   const [newEmail, setNewEmail] = useState("");
 
   useLayoutEffect(() => {
@@ -25,8 +28,10 @@ const ChangeEmailScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}>
+            fontSize: hp(16),
+            fontWeight: "600",
+          }}
+        >
           New Email
         </Text>
       ),
@@ -44,10 +49,17 @@ const ChangeEmailScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A",
+          marginLeft: hp(5),
+          fontWeight: "500",
+          // marginTop: hp(30),
+        }}
+      >
         Change your email
       </Text>
-      <View style={{ marginBottom: 10, marginTop: 10 }}>
+      <View style={{ marginBottom: 10, marginTop: 30 }}>
         <BoxTextInput
           placeHolder="Current Email"
           required={false}
@@ -55,12 +67,28 @@ const ChangeEmailScreen = ({
           onChange={() => {
             undefined;
           }}
+          labelStyle={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A",
+            marginLeft: hp(5),
+            fontWeight: "500",
+          }}
+          inputStyle={undefined}
+          containerStyle={undefined}
         />
         <BoxTextInput
           placeHolder="New Email"
           required={false}
           value={newEmail}
           onChange={(e) => setNewEmail(e.nativeEvent.text)}
+          labelStyle={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A",
+            marginLeft: hp(5),
+            fontWeight: "500",
+          }}
+          inputStyle={undefined}
+          containerStyle={undefined}
         />
       </View>
       <Button
@@ -69,11 +97,10 @@ const ChangeEmailScreen = ({
         styleText={{
           color: Colors[colorScheme].buttonText,
           fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
+          fontSize: hp(14),
         }}
         style={{
-          width: "100%",
-          marginTop: 10,
+          marginTop: hp(47),
           backgroundColor: Colors[colorScheme].button,
         }}
       />

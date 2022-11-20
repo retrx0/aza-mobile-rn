@@ -90,14 +90,14 @@ import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
 import ContactUsScreen from "../../screens/menu/ContactUsScreen";
 
 // transfer modal screens
-import SendMoneyScreen from "../../screens/transferModal/SendMoneyScreen";
-import RequestMoneyScreen from "../../screens/transferModal/RequestMoneyScreen";
-import RequestMoneyConfirmationScreen from "../../screens/transferModal/RequestMoneyConfirmationScreen";
-import SendMoneyConfirmationScreen from "../../screens/transferModal/SendMoneyConfirmationScreen";
-import RecurringTransferScreen from "../../screens/transferModal/RecurringTransferScreen";
-import SelectNewRecurringTransferScreen from "../../screens/transferModal/SelectNewRecurringTransferScreen";
-import SetupRecurringTransferScreen from "../../screens/transferModal/SetupRecurringTransferScreen";
-import RecurringTransferConfirmationScreen from "../../screens/transferModal/RecurringTransferConfirmationScreen";
+import SendMoneyScreen from "../../screens/transfer-modal/SendMoneyScreen";
+import RequestMoneyScreen from "../../screens/transfer-modal/RequestMoneyScreen";
+import RequestMoneyConfirmationScreen from "../../screens/transfer-modal/RequestMoneyConfirmationScreen";
+import SendMoneyConfirmationScreen from "../../screens/transfer-modal/SendMoneyConfirmationScreen";
+import RecurringTransferScreen from "../../screens/transfer-modal/RecurringTransferScreen";
+import SelectNewRecurringTransferScreen from "../../screens/transfer-modal/SelectNewRecurringTransferScreen";
+import SetupRecurringTransferScreen from "../../screens/transfer-modal/SetupRecurringTransferScreen";
+import RecurringTransferConfirmationScreen from "../../screens/transfer-modal/RecurringTransferConfirmationScreen";
 
 // transaction keypad screen
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
@@ -105,6 +105,21 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 // withdraw/deposit
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
+import { hp } from "../util/LayoutUtil";
+import NewUserVault from "../../screens/tabs/vault/NewUserVault";
+import AddCoverImage from "../../screens/tabs/vault/AddCoverImage";
+import AddCoverImageSuccessful from "../../screens/tabs/vault/SetVaultGoal";
+import SetVaultGoal from "../../screens/tabs/vault/SetVaultGoal";
+import ConfirmGoal from "../../screens/tabs/vault/GoalConfirmation";
+import UserVault from "../../screens/tabs/vault/UserVault";
+import ChangeVaultName from "../../screens/tabs/vault/ChangeVaultName";
+import ChangeGoalAmount from "../../screens/tabs/vault/ChangeGoalAmount";
+import VaultRecurringTransfer from "../../screens/tabs/vault/VaultRecurring/VaultRecurringTransfer";
+import VaultRecurringAmount from "../../screens/tabs/vault/VaultRecurring/VaultRecurringAmount";
+import RecurringMoneyConfirmationScreen from "../../screens/tabs/vault/VaultRecurring/RecurringMoneyConfirmationScreen";
+import Vault from "../../screens/tabs/vault/Vault";
+import VaultToBankAmount from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankAmount";
+import VaultConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -114,15 +129,23 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
 
   return (
     <SpacerWrapper>
-      <View style={[CommonStyles.topTab]}>
-        <View style={{ marginLeft: 20 }}>
-          <BackButton
-            onPress={() => {
-              navigation.getParent()?.navigate("AddVault");
-            }}
-          />
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}>
+        <View style={{ marginLeft: 15 }}>
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
-        <Text style={CommonStyles.vaultTab}>Vault</Text>
+        <Text
+          style={{
+            fontFamily: "Euclid-Circular-A-Bold",
+            fontSize: hp(16),
+            fontWeight: "600",
+            marginLeft: 80,
+          }}>
+          Flight Ticket Vault
+        </Text>
       </View>
       <Tab.Navigator
         screenOptions={{
@@ -131,15 +154,18 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             marginTop: Platform.OS == "android" ? 50 : 0,
           },
           tabBarIndicatorStyle: {
-            borderWidth: 1,
+            borderWidth: 0.9,
             borderColor: scheme == "light" ? "#000000" : "#ffffff",
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
+            fontSize: hp(16),
+            fontWeight: "600",
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            // marginTop: hp(30),
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -174,6 +200,7 @@ const CommonStack = () => {
           name="TransactionKeypad"
           component={TransactionKeypadScreen}
         />
+        <Stack.Screen name="VaultConfirmation" component={VaultConfirmation} />
       </Stack.Group>
 
       {/* Settings */}
@@ -276,6 +303,66 @@ const CommonStack = () => {
           name="VaultToBankSuccessful"
           component={VaultToBankSuccessful}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="NewUserVault"
+          component={NewUserVault}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="AddCoverImage"
+          component={AddCoverImage}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="SetVaultGoal"
+          component={SetVaultGoal}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ConfirmGoal"
+          component={ConfirmGoal}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="UserVault"
+          component={UserVault}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ChangeVaultName"
+          component={ChangeVaultName}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ChangeGoalAmount"
+          component={ChangeGoalAmount}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultRecurringTransfer"
+          component={VaultRecurringTransfer}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultRecurringAmount"
+          component={VaultRecurringAmount}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="RecurringMoneyConfirmationScreen"
+          component={RecurringMoneyConfirmationScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Vault"
+          component={Vault}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultToBankAmount"
+          component={VaultToBankAmount}
+        />
       </Stack.Group>
 
       {/* Payments */}
@@ -289,13 +376,20 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
-                size={24}
+                size={16}
               />
-              <Text style={{ marginLeft: 5 }}>Back</Text>
+              <Text
+                style={{
+                  marginLeft: hp(5),
+                  fontSize: hp(16),
+                  fontWeight: "400",
+                  fontFamily: "Euclid-Circular-A",
+                }}>
+                Back
+              </Text>
             </TouchableOpacity>
           ),
           headerStyle: {
@@ -309,8 +403,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -449,13 +542,19 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
                 />
-                <Text style={{ marginLeft: 5 }}>Back</Text>
+                <Text
+                  style={{
+                    fontSize: hp(16),
+                    fontWeight: "600",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -466,11 +565,11 @@ const CommonStack = () => {
             },
             headerTransparent: true,
             headerTitleStyle: {
-              fontSize: 16,
-              fontWeight: "600",
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}

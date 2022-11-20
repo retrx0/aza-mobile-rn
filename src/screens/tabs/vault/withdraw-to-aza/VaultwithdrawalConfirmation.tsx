@@ -1,7 +1,5 @@
-import { TouchableOpacity } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../components/Themed";
-import { Header } from "../../../../components/text/header";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -12,25 +10,33 @@ import { Input } from "../../../../components/input/input";
 import { VaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View style={{ marginLeft: 15 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingHorizontal: hp(10),
+          }}>
+          <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
-          <View>
-            <Header
-              heading="Confirmation"
-              description={""}
-              headerStyle={CommonStyles.confirmation}
-              descriptionStyle={undefined}
-            />
-          </View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "500",
+              marginLeft: hp(80),
+            }}>
+            Confirmation
+          </Text>
         </View>
         <Text style={CommonStyles.confirmDetails}>
           Kindly confirm the details of this transaction
@@ -59,12 +65,21 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholderTextColor={Colors[colorScheme].text}
           />
         </View>
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "VaultWithdrawsuccessful",
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage:
+                  "   You have successfully withdrawn \u20A6 80,000 to your Aza Account",
+                navigateTo: "Vault",
               })
             }
             styleText={{
@@ -73,9 +88,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               {
                 backgroundColor: Colors[colorScheme].button,
-                marginBottom: hp(10),
               },
-              CommonStyles.button,
             ]}
           />
 

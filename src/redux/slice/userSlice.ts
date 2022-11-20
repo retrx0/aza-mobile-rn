@@ -1,46 +1,30 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getCurrencyUnicode } from "../../common/util/AppUtil";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { boolean, number } from "yup";
+import api from "../../api";
+import { Beneficiary } from "../../common/navigation/types";
+import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
-
-// Define a type for the slice state
-export interface UserState {
-  accountCurency: string;
-  phoneNumber: string;
-  fullName: string;
-  firstName: string;
-  lastName: string;
-  pictureUrl: string | undefined;
-  azaAccountNumber: number;
-  azaBalance: number;
-  emailAddress: string;
-  accountVerified: boolean;
-  accountStatus: string;
-  transfers: {
-    incommingTransferLimit: number;
-    depositAmountLimit: number;
-    totalMonthlySenders: number;
-    totalMonthlyReceivers: number;
-    totalMonthlyIncomingTransfers: number;
-    totalMonthlyIncomingTransferAmount: number;
-    totalMonthlyOutgoingTransfers: number;
-    totalMonthlyOutgoingTransferAmount: number;
-  };
-  transactions: [];
-}
+import { Transaction, UserState } from "../types";
 
 // Define the initial state using that type
 const initialState: UserState = {
-  phoneNumber: "+2340011112222",
-  fullName: "Test User",
-  firstName: "Test",
-  lastName: "User",
+  loading: false,
+  phoneNumber: "",
+  fullName: "",
+  firstName: "",
+  lastName: "",
   pictureUrl: undefined,
-  azaAccountNumber: 331234243,
+  azaAccountNumber: 0,
   azaBalance: 0,
-  emailAddress: "testuser@gmail.com",
-  accountVerified: true,
-  accountStatus: "Ok",
+  emailAddress: "",
+  accountVerified: false,
+  accountStatus: "",
+  recentTransactions: { loading: false, data: [] },
+  accountCurency: "",
+  pushToken: "",
   transfers: {
+    loading: false,
     incommingTransferLimit: 0,
     depositAmountLimit: 0,
     totalMonthlySenders: 0,
@@ -50,10 +34,44 @@ const initialState: UserState = {
     totalMonthlyOutgoingTransfers: 0,
     totalMonthlyOutgoingTransferAmount: 0,
   },
-  transactions: [],
-  accountCurency: "NGN",
+  vault: { loading: false, recentTransaction: [] },
+  payments: { loading: false, recentPayments: [] },
+  azaContacts: {
+    loading: false,
+    data: [
+      {
+        azaAccountNumber: "12345678",
+        fullName: "Test User2",
+        firstName: "Test",
+        lastName: "User2",
+        phone: "234567890",
+        pictureUrl: "",
+        currency: "NGN",
+        email: "testuser2@aza.com",
+      },
+      {
+        azaAccountNumber: "12345679",
+        fullName: "Test User3",
+        firstName: "Test",
+        lastName: "User4",
+        phone: "234567890",
+        pictureUrl: "",
+        currency: "NGN",
+        email: "testuser4@aza.com",
+      },
+      {
+        azaAccountNumber: "12345610",
+        fullName: "Test User4",
+        firstName: "Test",
+        lastName: "User4",
+        phone: "234567890",
+        pictureUrl: "",
+        currency: "NGN",
+        email: "testuser4@aza.com",
+      },
+    ],
+  },
 };
-
 export const userSlice = createSlice({
   name: "user",
   // `createSlice` will infer the state type from the `initialState` argument
@@ -62,10 +80,78 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<any>) => {
       state = action.payload;
     },
+    setUserPhoneAndFullName: (
+      state,
+      action: PayloadAction<{ phoneNumber: string; fullName: string }>
+    ) => {
+      state.phoneNumber = action.payload.phoneNumber;
+      state.fullName = action.payload.fullName;
+    },
+    setPushToken: (state, action: PayloadAction<string>) => {
+      state.pushToken = action.payload;
+    },
+    setVault: (state, action: PayloadAction<any>) => {
+      state.vault = action.payload.vault;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUserTransactions.pending, (state, action) => {
+        state.recentTransactions.loading = true;
+      })
+      .addCase(getUserTransactions.fulfilled, (state, action) => {
+        state.recentTransactions.data = action.payload.payload;
+      })
+      .addCase(getUserTransactions.rejected, (state, action) => {
+        state.recentTransactions.loading = false;
+      })
+      .addCase(getUserInfo.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getUserInfo.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action) => {
+        // state.firstName = action.payload.
+      });
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const getUserInfo = createAsyncThunk(
+  "user/getInfo",
+  async ({}, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+      const info = await api.get("/api/v1/user/info", {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
+      return fulfillWithValue(info.data);
+    } catch (e: any) {
+      return rejectWithValue(e.response.data.message);
+    }
+  }
+);
+
+export const getUserTransactions = createAsyncThunk(
+  "user/getTransactions",
+  async (
+    { accountNumber, token }: { accountNumber: number; token: string },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      const result = await api.get(
+        `/api/v1/account/${accountNumber}/trnasactions`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return fulfillWithValue(result.data);
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const { setUser, setUserPhoneAndFullName, setPushToken } =
+  userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user;

@@ -15,6 +15,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   ArrowDownIcon,
@@ -29,7 +30,7 @@ const BankAccountsScreen = ({
   const colorScheme = useColorScheme();
   const [selectedAccount, setSelectedAccount] = useState("");
   const [accountAvailable] = useState(true);
-
+  const insets = useSafeAreaInsets();
   const { screenType } = route.params;
 
   useLayoutEffect(() => {
@@ -41,8 +42,7 @@ const BankAccountsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           {screenType}
         </Text>
       ),
@@ -70,18 +70,18 @@ const BankAccountsScreen = ({
           {
             justifyContent: "space-between",
           },
-        ]}
-      >
+        ]}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: hp(16),
               marginBottom: hp(30),
-            }}
-          >
+              fontWeight: "600",
+              paddingLeft: hp(7),
+            }}>
             Select the bank you wish to withdraw to
           </Text>
           <Divider />
@@ -92,8 +92,7 @@ const BankAccountsScreen = ({
                   style={[
                     CommonStyles.row,
                     { alignSelf: "stretch", paddingVertical: 15 },
-                  ]}
-                >
+                  ]}>
                   <Image
                     source={image}
                     style={{
@@ -103,14 +102,13 @@ const BankAccountsScreen = ({
                     }}
                   />
                   <Text
-                    lightColor={Colors.light.mainText}
-                    darkColor={Colors.dark.mainText}
+                    // lightColor={Colors.light.mainText}
+                    // darkColor={Colors.dark.mainText}
                     style={{
-                      marginLeft: 20,
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 14,
-                    }}
-                  >
+                      marginLeft: hp(20),
+                      fontFamily: "Euclid-Circular-A-Semi-Bold",
+                      fontSize: hp(14),
+                    }}>
                     Access Bank (123........)
                   </Text>
                   <View
@@ -126,8 +124,7 @@ const BankAccountsScreen = ({
                       alignItems: "center",
                       justifyContent: "center",
                       borderWidth: hp(1),
-                    }}
-                  >
+                    }}>
                     {selectedAccount === name && (
                       <View style={CommonStyles.doneSelect} />
                     )}
@@ -139,8 +136,20 @@ const BankAccountsScreen = ({
           ))}
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
+          <CancelButtonWithUnderline
+            title="Add another bank Account"
+            onPressButton={() =>
+              navigation.navigate("SelectBank", {
+                screenType,
+              })
+            }
+            color={Colors[colorScheme].text}
+            style={{ marginBottom: 10 }}
+          />
           <Button
             disabled={!selectedAccount}
             title="Continue"
@@ -148,7 +157,7 @@ const BankAccountsScreen = ({
               navigation.navigate("TransactionKeypad", {
                 headerTitle: "Amount",
                 transactionType: {
-                  transaction: "withdraw",
+                  transaction: "deposit",
                   type: "normal",
                   beneficiary: {
                     beneficiaryAccount: "",
@@ -160,14 +169,13 @@ const BankAccountsScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              width: "100%",
-              marginBottom: hp(15),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
           />
           <CancelButtonWithUnderline
             title="Cancel"
@@ -188,32 +196,31 @@ const BankAccountsScreen = ({
           {
             justifyContent: "space-between",
           },
-        ]}
-      >
+        ]}>
         <View>
           <Text
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A",
-              fontSize: 14,
+              fontSize: hp(14),
+              fontWeight: "600",
+              paddingLeft: hp(7),
               marginBottom: hp(30),
-            }}
-          >
+              marginTop: hp(20),
+            }}>
             Select a bank account to perform any activity
           </Text>
           <Divider />
           {accounts.map(({ image, name }, i) => (
             <View key={i}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("EditBankAccountDetails")}
-              >
+                onPress={() => navigation.navigate("EditBankAccountDetails")}>
                 <View
                   style={[
                     CommonStyles.row,
                     { alignSelf: "stretch", paddingVertical: 15 },
-                  ]}
-                >
+                  ]}>
                   <Image
                     source={image}
                     style={{
@@ -223,14 +230,13 @@ const BankAccountsScreen = ({
                     }}
                   />
                   <Text
-                    lightColor={Colors.light.mainText}
-                    darkColor={Colors.dark.mainText}
+                    // lightColor={Colors.light.mainText}
+                    // darkColor={Colors.dark.mainText}
                     style={{
-                      marginLeft: 20,
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 14,
-                    }}
-                  >
+                      marginLeft: hp(20),
+                      fontFamily: "Euclid-Circular-A-Semi-Bold",
+                      fontSize: hp(14),
+                    }}>
                     Access Bank (123........)
                   </Text>
                   <View style={{ marginLeft: "auto" }}>
@@ -243,8 +249,10 @@ const BankAccountsScreen = ({
           ))}
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(45), width: "100%" }]}
-        >
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Add another bank Account"
             onPressButton={() =>
@@ -254,14 +262,12 @@ const BankAccountsScreen = ({
             }
             styleText={{
               color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
             }}
-            style={{
-              width: "100%",
-              marginBottom: hp(15),
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
           />
         </View>
       </View>
@@ -275,8 +281,7 @@ const BankAccountsScreen = ({
           style={[
             CommonStyles.col,
             { marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+          ]}>
           <UndrawAccountIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
             size={30}
@@ -290,8 +295,7 @@ const BankAccountsScreen = ({
               marginTop: hp(30),
               maxWidth: 300,
               textAlign: "center",
-            }}
-          >
+            }}>
             There is no bank account registered to your Aza account
           </Text>
           <View style={[CommonStyles.row, { marginTop: hp(15) }]}>
@@ -303,8 +307,7 @@ const BankAccountsScreen = ({
                 maxWidth: 300,
                 marginRight: 5,
                 textAlign: "center",
-              }}
-            >
+              }}>
               Click ‘Add Bank Account’ to link your bank account to aza
             </Text>
             <ArrowDownIcon
@@ -318,8 +321,7 @@ const BankAccountsScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}
-        >
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
           <Button
             title="Add Bank Account"
             onPressButton={() =>

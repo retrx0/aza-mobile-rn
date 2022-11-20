@@ -21,10 +21,10 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
             color: "#E7E9EA",
-          }}
-        >
+            fontWeight: "500",
+          }}>
           Scan Card
         </Text>
       ),
@@ -56,8 +56,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
           paddingHorizontal: 15,
           paddingTop: hp(120),
           paddingBottom: hp(50),
-        }}
-      >
+        }}>
         <View style={{ backgroundColor: "transparent" }}>
           <Text
             darkColor={Colors.dark.mainText}
@@ -66,8 +65,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
               textAlign: "center",
-            }}
-          >
+            }}>
             1/2
           </Text>
           <Text
@@ -77,8 +75,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
               marginTop: hp(15),
-            }}
-          >
+            }}>
             Place the front side of card in the purple box
           </Text>
         </View>
@@ -88,17 +85,19 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
             type={CameraType.back}
           />
         )}
-
         <Button
           title="Add Card Manually"
-          onPressButton={() => navigation.navigate("AddNewCard")}
+          onPressButton={() =>
+            navigation.navigate("AddNewCard", {
+              navigateBackTo: "DebitCreditCards",
+            })
+          }
           styleText={{
             color: "black",
             fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
+            fontSize: hp(14),
           }}
           style={{
-            marginBottom: hp(25),
             backgroundColor: "#E7E9EA",
           }}
         />

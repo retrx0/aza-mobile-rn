@@ -39,7 +39,8 @@ const PrivacySettingsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Privacy Settings
         </Text>
@@ -58,7 +59,12 @@ const PrivacySettingsScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}>
         You can change your privacy settings
       </Text>
       <View style={{ marginTop: hp(80) }}>

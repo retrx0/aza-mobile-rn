@@ -2,24 +2,28 @@ import { FlatList, TouchableOpacity } from "react-native";
 
 import { Text, View } from "../../../../components/Themed";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
-
 import Colors from "../../../../constants/Colors";
 import { RootTabScreenProps } from "../../../../../types";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { SendIcon } from "../../../../../assets/svg";
 import { UserData } from "../../../../constants/userData";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 export default function RecentTransactions({
   navigation,
 }: RootTabScreenProps<"Home">) {
   const colorScheme = useColorScheme();
 
+  const user = useAppSelector(selectUser);
+
   return (
-    <View style={{ display: "flex", marginTop: 50 }}>
+    <View style={{ display: "flex", marginTop: hp(30) }}>
       <View
         style={{
           display: "flex",
-          marginBottom: 25,
+          marginBottom: hp(20),
           flexDirection: "row",
           alignItems: "center",
         }}
@@ -32,7 +36,11 @@ export default function RecentTransactions({
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
-            style={{ marginRight: 3, fontFamily: "Euclid-Circular-A-Medium" }}
+            style={{
+              marginRight: hp(3),
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(17),
+            }}
           >
             Recent Transactions
           </Text>
@@ -42,7 +50,7 @@ export default function RecentTransactions({
       <FlatList
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id.toString()}
-        data={UserData.recentTransactions}
+        data={user.recentTransactions.data}
         contentContainerStyle={{ paddingBottom: 250 }}
         ItemSeparatorComponent={() => {
           return (

@@ -32,8 +32,7 @@ const ContactListItem = ({
           justifyContent: "space-between",
           marginTop: hp(25),
         },
-      ]}
-    >
+      ]}>
       <Image
         style={{ borderRadius: 50, width: 45, height: 45 }}
         source={{
@@ -44,15 +43,13 @@ const ContactListItem = ({
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
-          style={{ fontSize: 16, fontFamily: "Euclid-Circular-A-Medium" }}
-        >
+          style={{ fontSize: 18, fontFamily: "Euclid-Circular-A-Medium" }}>
           {name}
         </Text>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.secondaryText}
-          style={{ fontSize: 12, marginTop: 5 }}
-        >
+          style={{ fontSize: 12, marginTop: 5 }}>
           {phoneNumber}
         </Text>
       </View>

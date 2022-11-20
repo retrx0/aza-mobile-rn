@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   I18nManager,
+  Image,
 } from "react-native";
 import { SafeAreaView, Text, View } from "../../../../components/Themed";
 
@@ -24,19 +25,28 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 const ArchieveList = [
   {
     id: "1",
-    lockIcon: <NewIcon />,
+    lockIcon: (
+      <Image
+        style={{
+          width: 36,
+          height: 36,
+        }}
+        source={require("../../../../../assets/images/icons/CoverImage.png")}
+      />
+    ),
     item: "Flight Ticket",
     amount: "2000",
     closeIcon: <CloseIcon />,
-    stage: "Matured",
+    altamount: "/\u20A6280,000",
   },
   {
     id: "2",
     lockIcon: <NewIcon />,
-    item: "New Laptop",
+    item: "New Phone",
     amount: "2000",
     closeIcon: <CloseIcon />,
-    stage: "Matured",
+
+    altamount: "/\u20A6280,000",
   },
   {
     id: "3",
@@ -56,6 +66,7 @@ const ListItem = ({
   amount,
   closeIcon,
   stage,
+  altamount,
 
   onPress,
 }: VaultListProps) => {
@@ -70,20 +81,18 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}
-        >
+          }}>
           <TouchableOpacity
             style={{
               width: 77,
-              height: 77,
-              backgroundColor: Colors[colorScheme].disabled,
+              height: 80,
+              backgroundColor: "#A6A6A6",
               alignItems: "center",
               justifyContent: "center",
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ArchievedVault" })
-            }
-          >
+            }>
             <ArchieveIcon />
             <Text
               style={{
@@ -93,23 +102,21 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}
-            >
+              }}>
               Archive
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               width: 77,
-              height: 77,
+              height: 80,
               backgroundColor: "red",
               alignItems: "center",
               justifyContent: "center",
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }
-          >
+            }>
             <TrashIcon color="white" size={24} />
             <Text
               style={{
@@ -119,8 +126,7 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}
-            >
+              }}>
               Delete
             </Text>
           </TouchableOpacity>
@@ -128,9 +134,9 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}
-    >
-      <View>
+      rightThreshold={40}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Common", { screen: "TopBar" })}>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
             <View
@@ -142,8 +148,7 @@ const ListItem = ({
                       ? "#EBFCE9"
                       : Colors[colorScheme].disabled,
                 },
-              ]}
-            >
+              ]}>
               <TouchableOpacity onPress={onPress} style={{}}>
                 {lockIcon}
               </TouchableOpacity>
@@ -151,20 +156,23 @@ const ListItem = ({
 
             <View style={styles.list}>
               <Text style={styles.item}>{item}</Text>
-              <Text
-                style={[
-                  styles.amount,
-                  {
-                    color:
-                      amount === "200,000"
-                        ? "#2A9E17"
-                        : Colors[colorScheme].text,
-                  },
-                ]}
-              >
-                {"\u20A6"}
-                {amount}
-              </Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View>
+                  <Text
+                    style={[
+                      styles.amount,
+                      {
+                        color: "#2A9E17",
+                      },
+                    ]}>
+                    {"\u20A6"}
+                    {amount}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={[styles.amount]}>{altamount}</Text>
+                </View>
+              </View>
             </View>
           </View>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -172,8 +180,8 @@ const ListItem = ({
             <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
           </View>
         </View>
-        <View style={styles.separator} />
-      </View>
+      </TouchableOpacity>
+      <View style={styles.separator} />
     </Swipeable>
   );
 };
@@ -226,27 +234,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(15),
     marginBottom: hp(20),
     marginTop: hp(20),
   },
   amount: {
-    fontSize: hp(12),
+    fontSize: hp(14),
     fontWeight: "600",
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Bold",
     marginTop: hp(2),
   },
   item: {
-    fontSize: hp(14),
+    fontSize: hp(16),
     fontWeight: "500",
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A",
   },
   separator: {
-    borderWidth: hp(0.7),
+    borderWidth: 0.5,
     borderColor: "#EAEAEC",
-    width: wp(370),
+    width: wp(390),
     alignSelf: "center",
   },
 });

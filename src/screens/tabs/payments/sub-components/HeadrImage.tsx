@@ -1,11 +1,16 @@
-import { StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ImageSourcePropType,
+} from "react-native";
 import React from "react";
 import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
 import { Text, View } from "../../../../components/Themed";
 
 type HeaderImageProps = {
-  image: any;
+  image: ImageSourcePropType;
   header?: string;
   title: string;
   amount?: string;

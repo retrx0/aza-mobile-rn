@@ -51,6 +51,7 @@ export default function BlockUserModal({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
+            fontWeight: "600",
           }}>
           Block User
         </Text>
@@ -67,7 +68,7 @@ export default function BlockUserModal({
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 15,
+              fontSize: hp(15),
             }}>
             {user}
           </Text>{" "}
@@ -93,6 +94,7 @@ export default function BlockUserModal({
             marginTop: hp(40),
             marginBottom: hp(20),
             backgroundColor: Colors[colorScheme].button,
+            width: "90%",
           }}
         />
         <ButtonWithUnderline

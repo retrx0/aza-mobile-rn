@@ -6,7 +6,6 @@ import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
 import CustomDropdown from "../../../components/dropdown/CustomDropdown";
-
 import { PercentageCard, PercentageList } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
@@ -14,11 +13,13 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import BackButton from "../../../components/buttons/BackButton";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
   const [periodValue, setPeriodValue] = useState("");
+  const insets = useSafeAreaInsets();
 
   const period = [
     { label: "2 Days", value: "1" },
@@ -30,22 +31,27 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
   const colorScheme = useColorScheme();
 
-  const switchColor = Colors[colorScheme].backgroundSecondary;
-  const switchOnColor = Colors[colorScheme].success;
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={CommonStyles.newvaultcontainer}>
-          <BackButton onPress={() => navigation.goBack()} />
-          <Text style={CommonStyles.vaultstyle}>Vault</Text>
-          {/* <Header
-            headerStyle={CommonStyles.vaultstyle}
-            descriptionStyle={CommonStyles.descriptionStyle}
-            heading="Vault"
-            description="Save and lock part of your Aza funds temporarily,
-        for future use."
-          /> */}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: hp(30),
+          }}>
+          <View style={{ marginLeft: 15 }}>
+            <BackButton onPress={() => navigation.goBack()} />
+          </View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "500",
+              marginLeft: hp(80),
+            }}>
+            Confirmation
+          </Text>
         </View>
         <Text style={CommonStyles.descriptionStyle}>
           Save and lock part of your Aza funds temporarily, for future use
@@ -60,7 +66,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             containerStyle={undefined}
           />
         </View>
-        <View style={CommonStyles.vaultInputcontainer}>
+        {/* <View style={CommonStyles.vaultInputcontainer}>
           <Input
             label={"Amount"}
             labelStyle={undefined}
@@ -70,19 +76,27 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             icon={undefined}
             containerStyle={{ marginBottom: 2 }}
           />
-        </View>
-        <View style={CommonStyles.percentageContainer}>
+        </View> */}
+        {/* <View style={CommonStyles.percentageContainer}>
           {PercentageList.map((item, index) => {
             return <PercentageCard key={index} percentage={item.percentage} />;
           })}
-        </View>
+        </View> */}
 
-        <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
+        <View
+          style={{
+            marginTop: hp(20),
+            paddingHorizontal: hp(10),
+          }}>
           <Text
-            lightColor={Colors.light.secondaryText}
-            darkColor={Colors.dark.secondaryText}
+            // lightColor={Colors.light.secondaryText}
+            // darkColor={Colors.dark.secondaryText}
             style={{
-              fontSize: 14,
+              fontSize: hp(16),
+              fontWeight: "400",
+              lineHeight: hp(17.75),
+              marginBottom: hp(11),
+              fontFamily: "Euclid-Circular-A",
             }}>
             Period
           </Text>
@@ -94,8 +108,12 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
         </View>
 
-        <View style={[CommonStyles.SwitchContainer, { bottom: hp(30) }]}>
-          <View style={CommonStyles.periodContainer}>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
+          {/* <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month
             </Text>
@@ -110,12 +128,12 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               }}
             />
           </View>
-          <Separator />
+          <Separator /> */}
           <Button
             title={"Continue"}
             onPressButton={() =>
               navigation.navigate("Common", {
-                screen: "LockVault",
+                screen: "AddCoverImage",
               })
             }
             styleText={{
@@ -125,7 +143,6 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
         </View>

@@ -61,20 +61,18 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}
-        >
+          }}>
           <TouchableOpacity
             style={{
               width: 77,
-              height: 77,
+              height: 80,
               backgroundColor: "#A6A6A6",
               alignItems: "center",
               justifyContent: "center",
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "AddVault" })
-            }
-          >
+            }>
             <UnarchiveIcon />
             <Text
               style={{
@@ -84,23 +82,21 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}
-            >
+              }}>
               Unarchive
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               width: 77,
-              height: 77,
+              height: 80,
               backgroundColor: "red",
               alignItems: "center",
               justifyContent: "center",
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }
-          >
+            }>
             <TrashIcon color="white" size={24} />
             <Text
               style={{
@@ -110,8 +106,7 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}
-            >
+              }}>
               Delete
             </Text>
           </TouchableOpacity>
@@ -119,8 +114,7 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}
-    >
+      rightThreshold={40}>
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
@@ -138,8 +132,7 @@ const ListItem = ({
                         ? Colors.general.green
                         : Colors.general.black,
                   },
-                ]}
-              >
+                ]}>
                 {"\u20A6"}
                 {amount}
               </Text>
@@ -160,14 +153,26 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={CommonStyles.archievedContainer}>
-          <BackButton onPress={() => navigation.goBack()} />
-          <Header
-            heading="Archived Vaults"
-            description={""}
-            descriptionStyle={undefined}
-            headerStyle={CommonStyles.archieved}
-          />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: hp(20),
+            marginBottom: hp(35),
+          }}>
+          <View>
+            <BackButton onPress={() => navigation.goBack()} />
+          </View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+              marginRight: hp(30),
+            }}>
+            Archived Vaults
+          </Text>
           <TouchableOpacity>
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
@@ -176,7 +181,7 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
         <FlatList
           data={ArchieveList}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem {...item} />}
+          renderItem={({ item }) => <ListItem altamount={""} {...item} />}
         />
       </View>
     </SpacerWrapper>
@@ -219,7 +224,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(15),
     marginBottom: hp(20),
     marginTop: hp(20),
   },
@@ -237,9 +242,9 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   separator: {
-    borderWidth: hp(0.7),
+    borderWidth: 0.5,
     borderColor: "#EAEAEC",
-    width: wp(370),
+    width: wp(390),
     alignSelf: "center",
   },
 });

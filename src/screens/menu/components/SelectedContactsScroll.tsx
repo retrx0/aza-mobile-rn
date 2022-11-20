@@ -8,6 +8,7 @@ import Colors from "../../../constants/Colors";
 
 import { CloseCircleIcon } from "../../../../assets/svg";
 import { Contact } from "expo-contacts";
+import { hp } from "../../../common/util/LayoutUtil";
 
 interface IProps {
   deSelectContact: (id: Contact["id"]) => void;
@@ -27,15 +28,13 @@ const SelectedContactsScroll = ({
               CommonStyles.col,
               {
                 alignItems: "center",
-                marginLeft: 20,
+                marginLeft: hp(20),
               },
-            ]}
-          >
+            ]}>
             <View
               style={{
                 position: "relative",
-              }}
-            >
+              }}>
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
@@ -48,8 +47,7 @@ const SelectedContactsScroll = ({
                   position: "absolute",
                   right: 0,
                   backgroundColor: "transparent",
-                }}
-              >
+                }}>
                 <CloseCircleIcon size={16} color="#FF361A" />
               </TouchableOpacity>
             </View>
@@ -57,8 +55,7 @@ const SelectedContactsScroll = ({
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
-              style={{ fontSize: 10, marginTop: 5 }}
-            >
+              style={{ fontSize: 10, marginTop: 5 }}>
               {firstName}
             </Text>
           </View>

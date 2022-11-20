@@ -1,43 +1,73 @@
 import Button from "../../../../components/buttons/Button";
-import { Text, View } from "../../../../components/Themed";
+import { ScrollView, Text, View } from "../../../../components/Themed";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { LockIcon, NairaIcon } from "../../../../../assets/svg";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { CloseIcon, LockIcon, NairaIcon } from "../../../../../assets/svg";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { VaultStyles } from "../styles";
 import { Input } from "../../../../components/input/input";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
+import { Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/core";
+import ListItem from "../components/ListItem";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
   const colorScheme = useColorScheme();
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
-      <View style={VaultStyles.container}>
+      <ScrollView style={VaultStyles.container}>
         <View style={CommonStyles.flightContainer}>
-          <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <NairaIcon color={Colors[colorScheme].text} size={0} />
-            <Text style={CommonStyles.flightAmount}> 2,000</Text>
+          <View style={{ alignSelf: "center" }}>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                alignSelf: "center",
+                marginBottom: hp(10),
+              }}
+              source={require("../../../../../assets/images/icons/CoverImage.png")}
+            />
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Text
+                style={{
+                  fontSize: hp(24),
+                  fontWeight: "600",
+                  fontFamily: "Euclid-Circular-A-Bold",
+                  marginTop: hp(2),
+                }}>
+                {"\u20A62,000/"}
+              </Text>
+              <Text
+                style={{
+                  fontSize: hp(24),
+                  fontWeight: "600",
+                  fontFamily: "Euclid-Circular-A-Bold",
+                  color: Colors[colorScheme].secondaryText,
+                }}>
+                {"\u20A6280,000"}
+              </Text>
+            </View>
           </View>
         </View>
 
-        <View>
+        <TouchableOpacity onPress={() => setMatured()}>
           <View
             style={[
               CommonStyles.lockContainer,
               { backgroundColor: Colors[colorScheme].disabled },
-            ]}
-          >
+            ]}>
             <LockIcon color={Colors[colorScheme].button} />
             <View
               style={[
                 CommonStyles.timeContainer,
                 { backgroundColor: Colors[colorScheme].disabled },
-              ]}
-            >
+              ]}>
               <Text style={CommonStyles.time}>06</Text>
               <Text style={CommonStyles.seconds}>Days : </Text>
               <Text style={CommonStyles.time}>14</Text>
@@ -46,7 +76,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
               <Text style={CommonStyles.seconds}>Mins</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
         <Text style={CommonStyles.maturity}>until maturity</Text>
         <View style={CommonStyles.vaultInputcontainer}>
           <Input
@@ -64,11 +94,62 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             return <PercentageCard key={index} percentage={item.percentage} />;
           })}
         </View>
+        <Text
+          style={{
+            fontSize: hp(12),
+            fontWeight: "600",
+            fontFamily: "Euclid-Circular-A",
+            color: Colors[colorScheme].secondaryText,
+            marginLeft: hp(10),
+          }}>
+          * This saves the selected percentage from your aza f balance
+        </Text>
+        <View
+          style={{
+            borderWidth: 0.5,
+            borderColor: "#EAEAEC",
+            width: wp(380),
+            alignSelf: "center",
+            marginTop: hp(17),
+            marginBottom: hp(17),
+          }}
+        />
 
-        <View style={[CommonStyles.passwordContainer, { bottom: hp(45) }]}>
+        <ListItem
+          index={0}
+          onPress={() => {
+            navigation.navigate("Common", { screen: "ChangeGoalAmount" });
+          }}
+          title="Change Goal Amount"
+          route=""
+          subtitle={"\u20A6280,000"}
+          Icon={CloseIcon}
+        />
+        <ListItem
+          index={0}
+          onPress={() => {
+            navigation.navigate("Common", { screen: "VaultRecurringTransfer" });
+          }}
+          title="Recurring Transfer"
+          route=""
+          subtitle="Reach your vault goal faster with recurring transfers"
+          Icon={CloseIcon}
+        />
+        <ListItem
+          index={0}
+          onPress={() => {
+            navigation.navigate("Common", { screen: "ChangeVaultName" });
+          }}
+          title="Change Vault Name"
+          route=""
+          subtitle="Flight Ticket"
+          Icon={CloseIcon}
+        />
+
+        <View style={{ marginTop: hp(77) }}>
           <Button
             title="Continue"
-            onPressButton={() => setMatured()}
+            // onPressButton={() => setMatured()}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -78,9 +159,10 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
               },
               CommonStyles.button,
             ]}
+            disabled
           />
         </View>
-      </View>
+      </ScrollView>
     </SpacerWrapper>
   );
 };

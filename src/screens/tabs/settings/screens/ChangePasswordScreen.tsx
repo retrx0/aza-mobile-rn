@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
 import { Text, View } from "../../../../components/Themed";
@@ -8,6 +8,11 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { loginThunk } from "../../../../redux/slice/authSlice";
+import Toast from "react-native-toast-message";
+import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
 
 const ChangePasswordScreen = ({
   navigation,
@@ -15,16 +20,21 @@ const ChangePasswordScreen = ({
   const colorScheme = useColorScheme();
   const [password, setPassword] = useState("");
 
+  const dispatch = useAppDispatch();
+  const { phoneNumber, emailAddress } = useAppSelector(selectUser);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}>
+            fontSize: hp(16),
+            fontWeight: "600",
+          }}
+        >
           Current Password
         </Text>
       ),
@@ -37,32 +47,67 @@ const ChangePasswordScreen = ({
     });
   }, []);
 
+  const verifyPassword = async () => {
+    dispatch(toggleActivityModal(true));
+    const payloadItem = await dispatch(
+      loginThunk({
+        email: emailAddress,
+        phoneNumber,
+        password: password,
+      })
+    );
+    if (payloadItem.payload === "Invalid crendential") {
+      dispatch(toggleActivityModal(false));
+      Toast.show({
+        type: "error",
+        text1: payloadItem.payload,
+      });
+    } else {
+      dispatch(toggleActivityModal(false));
+      navigation.navigate("NewPassword", {
+        oldPassword: password,
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}>
+        style={{
+          fontSize: hp(16),
+          fontFamily: "Euclid-Circular-A",
+          marginLeft: hp(5),
+          fontWeight: "500",
+        }}
+      >
         Please enter your current password
       </Text>
-      <View style={{ marginBottom: 60, marginTop: 80, marginLeft: -20 }}>
+      <View style={{ marginTop: hp(80), marginBottom: hp(100) }}>
         <SegmentedInput
           value={password}
           secureInput
           headerText="Password"
           onValueChanged={(pass) => setPassword(pass)}
+          headerstyle={{
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}
         />
       </View>
       <Button
         title="Continue"
-        onPressButton={() => navigation.navigate("NewPassword")}
+        disabled={password.length < 6 ? true : false}
+        onPressButton={() => verifyPassword()}
         styleText={{
           color: Colors[colorScheme].buttonText,
           fontFamily: "Euclid-Circular-A-Medium",
           fontSize: 14,
         }}
         style={{
-          width: "100%",
+          marginTop: hp(100),
           backgroundColor: Colors[colorScheme].button,
         }}
       />

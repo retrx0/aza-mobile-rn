@@ -13,6 +13,8 @@ import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CharityDetail({
   navigation,
@@ -20,6 +22,8 @@ export default function CharityDetail({
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const route = useRoute();
+  const insets = useSafeAreaInsets();
+
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
@@ -78,7 +82,11 @@ export default function CharityDetail({
         </TouchableOpacity>
       </View>
 
-      <View style={styles.buttons}>
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
         <View style={styles.check}>
           <CustomSwitch
             title="Recurring monthly donation"
@@ -86,10 +94,11 @@ export default function CharityDetail({
             isEnabled={isEnabled}
           />
         </View>
+
         <Divider
           style={{
             marginTop: 10,
-            marginBottom: 20,
+            marginBottom: 10,
             width: "85%",
           }}
         />
@@ -105,9 +114,16 @@ export default function CharityDetail({
           onPressButton={() => {
             navigation.goBack();
           }}
-          style={{ borderBottomColor: Colors.general.red, marginBottom: 20 }}
+          style={{ borderBottomColor: Colors.general.red }}
           title="Cancel"
-          styleText={CommonStyles.cancelStyle}
+          styleText={{
+            textAlign: "center",
+            color: Colors.general.red,
+            fontSize: hp(16),
+            fontWeight: "500",
+            lineHeight: hp(17),
+            fontFamily: "Euclid-Circular-A",
+          }}
         />
       </View>
     </View>

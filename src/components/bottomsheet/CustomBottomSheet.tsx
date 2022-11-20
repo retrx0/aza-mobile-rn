@@ -36,8 +36,7 @@ export default function CustomBottomSheet({
     <Modal
       isVisible={isModalVisible}
       onBackdropPress={toggleModal}
-      style={{ justifyContent: "flex-end", margin: 0 }}
-    >
+      style={{ justifyContent: "flex-end", margin: 0 }}>
       <View
         style={{
           backgroundColor: Colors[colorScheme].backgroundSecondary,
@@ -46,13 +45,11 @@ export default function CustomBottomSheet({
           paddingHorizontal: 15,
           display: "flex",
           justifyContent: "space-between",
-        }}
-      >
+        }}>
         <View
           style={{
             backgroundColor: Colors[colorScheme].backgroundSecondary,
-          }}
-        >
+          }}>
           {renderBottomSheetListItems()}
         </View>
         <Button
@@ -61,6 +58,7 @@ export default function CustomBottomSheet({
             backgroundColor: Colors.dark.error,
             marginBottom: hp(40),
             marginTop: hp(40),
+            width: "100%",
           }}
           onPressButton={toggleModal}
         />

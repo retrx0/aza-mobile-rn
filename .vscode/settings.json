@@ -19,5 +19,9 @@
   "task.allowAutomaticTasks": true,
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false,
+  "debug.javascript.resourceRequestOptions": {
+  
   }
 }

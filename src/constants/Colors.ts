@@ -40,7 +40,7 @@ export default {
     border: "#E7E9EA",
     button: "#E7E9EA",
     buttonText: "#000000",
-    disabled: "#3A3D42",
+    disabled: "#A6A6A6",
     unlock: "#E7E9EA",
     mature: "#3A3D42",
     Text: "#999999",

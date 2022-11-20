@@ -4,6 +4,7 @@ import { Text } from "../Themed";
 import Colors from "../../constants/Colors";
 import CommonStyles from "../../common/styles/CommonStyles";
 import useColorScheme from "../../hooks/useColorScheme";
+import { hp } from "../../common/util/LayoutUtil";
 
 export default function BottomSheetListItem({
   itemName,
@@ -19,12 +20,15 @@ export default function BottomSheetListItem({
           style={[
             CommonStyles.row,
             { alignSelf: "flex-start", paddingVertical: 25 },
-          ]}
-        >
+          ]}>
           {itemIcon}
           <Text
-            style={{ marginLeft: 10, fontFamily: "Euclid-Circular-A-Medium" }}
-          >
+            style={{
+              marginLeft: 10,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
+            }}>
             {itemName}
           </Text>
         </View>

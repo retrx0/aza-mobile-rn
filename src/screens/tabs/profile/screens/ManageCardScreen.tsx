@@ -11,17 +11,19 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { DebitCreditCardCurvesDesign } from "../../../../../assets/svg";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
+          // lightColor={Colors.light.mainText}
+          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}>
           Manage Card
         </Text>
@@ -34,6 +36,7 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -57,8 +60,9 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 16,
+                fontSize: hp(16),
                 color: "white",
+                fontWeight: "500",
               }}>
               **** **** **** 1234
             </Text>
@@ -81,7 +85,10 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(50), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <CancelButtonWithUnderline
             title="Delete Card"
             styleText={[CommonStyles.cancelStyle]}

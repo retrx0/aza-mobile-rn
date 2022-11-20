@@ -12,7 +12,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { useAppSelector } from "../../../../hooks/redux";
+import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import {
@@ -42,28 +42,38 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
       >
         <View style={[CommonStyles.col]}>
           <Text
-            lightColor={Colors[colorScheme].text}
-            darkColor={Colors[colorScheme].mainText}
+            // lightColor={Colors[colorScheme].text}
+            // darkColor={Colors[colorScheme].mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontSize: hp(16),
+              fontWeight: "600",
+              marginLeft: hp(5),
             }}
           >
             {title}
           </Text>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.secondaryText}
-            style={{ fontSize: 10, marginTop: 2 }}
+            // lightColor={Colors.light.text}
+            // darkColor={Colors.dark.secondaryText}
+            style={{
+              marginTop: 2,
+              fontFamily: "Euclid-Circular-A",
+              fontSize: hp(12),
+              fontWeight: "400",
+              marginLeft: hp(5),
+            }}
           >
             {subText}
           </Text>
         </View>
         <Text
-          lightColor={Colors[colorScheme].text}
-          darkColor={Colors[colorScheme].mainText}
+          // lightColor={Colors[colorScheme].text}
+          // darkColor={Colors[colorScheme].mainText}
           style={{
-            fontSize: 14,
+            fontFamily: "Euclid-Circular-A",
+            fontSize: hp(14),
+            fontWeight: "400",
           }}
         >
           {data}
@@ -90,7 +100,8 @@ const AccountDetailsScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
+            fontSize: hp(16),
+            fontWeight: "500",
           }}
         >
           Account Details
@@ -119,7 +130,7 @@ const AccountDetailsScreen = ({
     {
       title: "Available Balance",
       subText: "Available balance except for pending \ntransactions",
-      data: `${currencySymbol} ${user.azaBalance}`,
+      data: `${NAIRA_UNICODE} ${user.azaBalance}`,
     },
     {
       title: "Incoming transfer amount limit",
@@ -164,8 +175,7 @@ const AccountDetailsScreen = ({
                 : getInitialsAvatar({
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    backgroundColor: Colors[colorScheme].backgroundSecondary,
-                    foreground: Colors[colorScheme].mainText,
+                    scheme: colorScheme,
                   }),
             }}
           />
@@ -174,8 +184,9 @@ const AccountDetailsScreen = ({
               lightColor={Colors[colorScheme].text}
               darkColor={Colors[colorScheme].mainText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(16),
+                fontWeight: "500",
               }}
             >
               {user.fullName}
@@ -185,7 +196,9 @@ const AccountDetailsScreen = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 marginVertical: 5,
-                fontSize: 12,
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(12),
+                fontWeight: "500",
               }}
             >
               {user.phoneNumber}
@@ -193,7 +206,11 @@ const AccountDetailsScreen = ({
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
-              style={{ fontSize: 10 }}
+              style={{
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(10),
+                fontWeight: "500",
+              }}
             >
               {user.emailAddress}
             </Text>
@@ -220,11 +237,12 @@ const AccountDetailsScreen = ({
           style={{ alignSelf: "center", marginVertical: hp(35) }}
         >
           <Text
-            lightColor={Colors[colorScheme].text}
-            darkColor={Colors[colorScheme].mainText}
+            // lightColor={Colors[colorScheme].text}
+            // darkColor={Colors[colorScheme].mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(16),
+              fontWeight: "500",
             }}
           >
             Term of Use

@@ -54,9 +54,9 @@ const AppLanguageScreen = ({
           darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
           App Language
         </Text>
       ),
@@ -74,8 +74,12 @@ const AppLanguageScreen = ({
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.mainText}
-        style={{ fontSize: 14, fontFamily: "Euclid-Circular-A-Medium" }}
-      >
+        style={{
+          fontFamily: "Euclid-Circular-A-Medium",
+          fontSize: hp(16),
+          fontWeight: "500",
+          marginLeft: hp(5),
+        }}>
         You can change the app language
       </Text>
       <View style={{ marginTop: hp(30) }}>
@@ -91,8 +95,7 @@ const AppLanguageScreen = ({
                   alignSelf: "stretch",
                   paddingVertical: 20,
                 },
-              ]}
-            >
+              ]}>
               <View>{icon}</View>
               <Text
                 lightColor={Colors.light.text}
@@ -100,10 +103,10 @@ const AppLanguageScreen = ({
                 style={{
                   marginRight: "auto",
                   marginLeft: 15,
-                  fontSize: 14,
+                  fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}
-              >
+                  fontWeight: "500",
+                }}>
                 {name}
               </Text>
               {selectedLanguage === name && (

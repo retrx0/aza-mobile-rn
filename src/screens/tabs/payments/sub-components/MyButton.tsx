@@ -26,7 +26,7 @@ export default function MyButton({
         {
           width: "100%",
           opacity: disabled ? 0.3 : 1,
-          
+          alignSelf: "center",
         },
         style,
       ]}>
