@@ -40,12 +40,14 @@ const QRReceivePaymentTab = ({
           alignItems: "center",
           paddingVertical: hp(30),
           paddingHorizontal: 15,
-        }}>
+        }}
+      >
         <View
           style={{
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -54,7 +56,8 @@ const QRReceivePaymentTab = ({
               fontSize: 14,
               marginTop: 10,
               marginBottom: 15,
-            }}>
+            }}
+          >
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -76,7 +79,8 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -86,47 +90,42 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: "auto",
             marginBottom: "auto",
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
-          <Button
-            title="Continue"
-            disabled={!amount}
-            onPressButton={() => {
-              dispatch(
-                setTransaction({
-                  amount: Number(amount),
-                  beneficairy: {
-                    fullName: user.fullName,
-                    azaAccountNumber: "" + user.azaAccountNumber,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.emailAddress,
-                    phone: user.phoneNumber,
-                    pictureUrl: user.pictureUrl,
-                  },
-                  transferType: "request",
-                  description: description,
-                })
-              );
-              setDescModalVisible(true);
-            }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
-            style={{
-              marginBottom: "auto",
-              backgroundColor: Colors[colorScheme].button,
-            }}
-          />
-        </View>
+        <Button
+          title="Continue"
+          disabled={!amount}
+          onPressButton={() => {
+            dispatch(
+              setTransaction({
+                amount: Number(amount),
+                beneficairy: {
+                  fullName: user.fullName,
+                  azaAccountNumber: "" + user.azaAccountNumber,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  email: user.emailAddress,
+                  phone: user.phoneNumber,
+                  pictureUrl: user.pictureUrl,
+                },
+                transferType: "request",
+                description: description,
+              })
+            );
+            setDescModalVisible(true);
+          }}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{
+            marginBottom: "auto",
+            backgroundColor: Colors[colorScheme].button,
+          }}
+        />
       </View>
       <DescriptionModal
         description={description}

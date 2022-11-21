@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Alert } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { Camera, CameraType, PermissionResponse } from "expo-camera";
+import {
+  BarCodeScanningResult,
+  Camera,
+  CameraType,
+  PermissionResponse,
+} from "expo-camera";
 
 import Button from "../../../components/buttons/Button";
 import { View } from "../../../components/Themed";
@@ -26,35 +31,38 @@ const QRMakePaymentTab = ({
     edgePosition: "bottomRight" | "bottomLeft" | "topRight" | "topLeft"
   ) => {
     return (
-      <View
-        style={{
-          position: "absolute",
-          top:
-            edgePosition === "topLeft" || edgePosition === "topRight"
-              ? -4
-              : undefined,
-          right:
-            edgePosition === "topRight" || edgePosition === "bottomRight"
-              ? -4
-              : undefined,
-          bottom:
-            edgePosition === "bottomRight" || edgePosition === "bottomLeft"
-              ? -4
-              : undefined,
-          left:
-            edgePosition === "topLeft" || edgePosition === "bottomLeft"
-              ? -4
-              : undefined,
-          width: 60,
-          height: 60,
-          backgroundColor: "transparent",
-          borderColor: "#D9D9D9",
-          borderBottomWidth: edgePosition.includes("bottom") ? 4 : undefined,
-          borderLeftWidth: edgePosition.includes("Left") ? 4 : undefined,
-          borderRightWidth: edgePosition.includes("Right") ? 4 : undefined,
-          borderTopWidth: edgePosition.includes("top") ? 4 : undefined,
-        }}
-      />
+      // TODO: fix View not rendering properly on android
+      Platform.OS === "ios" && (
+        <View
+          style={{
+            position: "absolute",
+            top:
+              edgePosition === "topLeft" || edgePosition === "topRight"
+                ? -4
+                : undefined,
+            right:
+              edgePosition === "topRight" || edgePosition === "bottomRight"
+                ? -4
+                : undefined,
+            bottom:
+              edgePosition === "bottomRight" || edgePosition === "bottomLeft"
+                ? -4
+                : undefined,
+            left:
+              edgePosition === "topLeft" || edgePosition === "bottomLeft"
+                ? -4
+                : undefined,
+            width: 60,
+            height: 60,
+            backgroundColor: "transparent",
+            borderColor: "#D9D9D9",
+            borderBottomWidth: edgePosition.includes("bottom") ? 4 : undefined,
+            borderLeftWidth: edgePosition.includes("Left") ? 4 : undefined,
+            borderRightWidth: edgePosition.includes("Right") ? 4 : undefined,
+            borderTopWidth: edgePosition.includes("top") ? 4 : undefined,
+          }}
+        />
+      )
     );
   };
 
@@ -71,90 +79,42 @@ const QRMakePaymentTab = ({
     }
   };
 
+  const onBarCodeScanned = (code: BarCodeScanningResult) => {
+    if (code.type === "org.iso.QRCode") {
+      console.log("Code Scanned " + code.data);
+      navigation.navigate("Common", {
+        screen: "SendMoneyConfirmation",
+      });
+    }
+  };
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
+    <View style={styles.cameraContainer}>
       {/* TODO fix camera not shuting down after closing modal */}
       {cameraPermission?.granted && (
         <Camera
-          style={{ width: "100%", height: "100%" }}
+          style={styles.camera}
           type={CameraType.back}
-          onBarCodeScanned={(code) => {
-            if (code.type === "org.iso.QRCode") {
-              console.log("Code Scanned " + code.data);
-              navigation.navigate("Common", {
-                screen: "SendMoneyConfirmation",
-              });
-            }
-          }}
+          onBarCodeScanned={(code) => onBarCodeScanned(code)}
         >
-          <View
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              flex: 1,
-            }}
-          />
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              flex: 2,
-              backgroundColor: "transparent",
-            }}
-          >
-            <View
-              style={{
-                backgroundColor: "rgba(0, 0, 0, 0.7)",
-                width: "10%",
-              }}
-            />
-            <View
-              style={{
-                backgroundColor: "transparent",
-                position: "relative",
-                flex: 1,
-              }}
-            >
-              {/* {renderCameraEdge("topLeft")}
-                    {renderCameraEdge("topRight")}
-                    {renderCameraEdge("bottomLeft")}
-                    {renderCameraEdge("bottomRight")} */}
+          <View style={styles.container1} />
+          <View style={styles.container2}>
+            <View style={styles.scannerSide} />
+            <View style={styles.scanner}>
+              {renderCameraEdge("topLeft")}
+              {renderCameraEdge("topRight")}
+              {renderCameraEdge("bottomLeft")}
+              {renderCameraEdge("bottomRight")}
             </View>
-            <View
-              style={{
-                backgroundColor: "rgba(0, 0, 0, 0.7)",
-                width: "10%",
-                zIndex: -10,
-              }}
-            />
+            <View style={styles.scannerSide} />
           </View>
-          <View
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              flex: 2,
-            }}
-          >
+
+          <View style={styles.container3}>
             <Button
               title="Select from Gallery"
               onPressButton={() => selectImageFromGallery()}
-              styleText={{
-                color: "black",
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: 14,
-              }}
-              style={{
-                marginTop: hp(100),
-                marginBottom: "auto",
-                backgroundColor: "#E7E9EA",
-              }}
+              styleText={styles.buttonText}
+              style={styles.button}
             />
           </View>
         </Camera>
@@ -164,3 +124,52 @@ const QRMakePaymentTab = ({
 };
 
 export default QRMakePaymentTab;
+
+const styles = StyleSheet.create({
+  cameraContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  camera: { width: "100%", height: "100%" },
+  container1: {
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    flex: 1,
+  },
+  container2: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flex: 2,
+    zIndex: 1,
+    backgroundColor: "transparent",
+  },
+  scanner: {
+    backgroundColor: "transparent",
+    position: "relative",
+    width: 300,
+    height: "100%",
+  },
+  scannerSide: {
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    width: "10%",
+    flex: 1,
+    zIndex: -2,
+  },
+  container3: {
+    display: "flex",
+    justifyContent: "flex-end",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    flex: 2,
+  },
+  buttonText: {
+    color: "black",
+    fontFamily: "Euclid-Circular-A-Medium",
+    fontSize: 14,
+  },
+  button: {
+    marginTop: hp(100),
+    marginBottom: "auto",
+    backgroundColor: "#E7E9EA",
+  },
+});
