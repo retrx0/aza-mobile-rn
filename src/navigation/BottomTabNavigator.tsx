@@ -53,9 +53,8 @@ const BottomTabNavigator = (
     /* APP STATE CHANGES */
 
     const { name } = _navigation.route;
-    console.log(name);
     const appStateListener = AppState.addEventListener("change", (appState) => {
-      if (appState === "inactive") {
+      if (appState === "background") {
         if (name === "Root" || name === "Common")
           _navigation.navigation.navigate("SignIn");
       }

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
@@ -28,13 +28,6 @@ const InputFormFieldNormal = ({
   const typeOfEmail = type === "email";
 
   let EMAIL_REGEX = /^w+(-?w+)*@w+(-?w+)*(.ww+)+$/;
-
-  const [text, setText] = useState("");
-
-  const validateEmail = (email: string): boolean => {
-    // return EMAIL_REGEX.test(email);
-    return false;
-  };
 
   return (
     <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>

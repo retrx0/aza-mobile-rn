@@ -18,12 +18,12 @@ import {
   setPassword,
 } from "../../../redux/slice/newUserSlice";
 import { registerUserAPI } from "../../../api/user";
-import Toast from "react-native-toast-message";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
-import SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { toastError } from "../../../common/util/ToastUtil";
+import { storeItemSecure } from "../../../common/util/StorageUtil";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -37,6 +37,7 @@ const SignUpPasswordScreen = ({
   const [isConfirmScreen, setIsConfirmScreen] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [pushToken, setPushToken] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const colorScheme = useColorScheme();
   const notification = useNotifications();
@@ -121,8 +122,7 @@ const SignUpPasswordScreen = ({
           onPressButton={() => {
             // dispatch changes
             // TODO replace with expo-secure-store or react-native-encrypted-storage
-
-            console.log("Push token " + newUser.pushToken);
+            setLoading(true);
             dispatch(
               setNewUser({
                 firstName: newUser.firstName,
@@ -144,7 +144,6 @@ const SignUpPasswordScreen = ({
             } else {
               if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
-                console.log(newUser.firstName, newUser.gender, "NAMEE");
                 registerUserAPI({
                   email: newUser.emailAddress!,
                   firstName: newUser.firstName!,
@@ -152,8 +151,8 @@ const SignUpPasswordScreen = ({
                   gender: newUser.gender === "male" ? `1` : `2`,
                   newPassword: passcode,
                   pushNotificationToken: newUser.pushToken,
-                })
-                  .then((_res) => {
+                }).then((_res) => {
+                  if (_res) {
                     loginUserAPI({
                       email: newUser.emailAddress,
                       phoneNumber: newUser.phoneNumber,
@@ -161,22 +160,15 @@ const SignUpPasswordScreen = ({
                     }).then((_jwt) => {
                       if (_jwt) {
                         navigation.getParent()?.navigate("Root");
-                        SecureStore.setItemAsync(STORAGE_KEY_JWT_TOKEN, _jwt);
+                        storeItemSecure(STORAGE_KEY_JWT_TOKEN, _jwt);
                       }
+                      setLoading(false);
                     });
-                  })
-                  .catch((e) => {
-                    console.error("Error " + e);
-                    Toast.show({
-                      type: "error",
-                      text1: "There was a problem creating your account ⚠️",
-                    });
-                  });
-              } else {
-                Toast.show({
-                  type: "error",
-                  text1: "Password does not match ⚠️",
+                  }
+                  setLoading(false);
                 });
+              } else {
+                toastError("Password does not match ⚠️");
               }
             }
           }}
@@ -191,6 +183,7 @@ const SignUpPasswordScreen = ({
             },
             CommonStyles.button,
           ]}
+          willCallAsync={loading}
           disabled={passcode.length < 6 ? true : false}
         />
       </View>

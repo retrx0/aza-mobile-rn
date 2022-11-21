@@ -8,7 +8,6 @@ import { hp, wp } from "../../../../common/util/LayoutUtil";
 import RNPickerSelect from "react-native-picker-select";
 import { FEMALE, Gender, MALE } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
-import { SelectIcon } from "../../../../../assets/svg";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";

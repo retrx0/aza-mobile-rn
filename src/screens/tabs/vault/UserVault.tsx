@@ -21,7 +21,6 @@ import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import UserArchieved from "./components/UserArchieved";
 import TransactionListItem from "../../../components/ListItem/TransactionListItem";
-import { UserData } from "../../../constants/userData";
 
 const UserVault = () => {
   const colorScheme = useColorScheme();
@@ -43,13 +42,15 @@ const UserVault = () => {
           paddingHorizontal: 5,
           marginTop: hp(20),
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <Pressable
           onPress={toggleMenuModal}
           style={({ pressed }) => ({
             opacity: pressed ? 0.5 : 1,
             marginLeft: 15,
-          })}>
+          })}
+        >
           <MenuIcon size={25} color={Colors[colorScheme].text} />
         </Pressable>
         <AZALightningLogo
@@ -62,7 +63,8 @@ const UserVault = () => {
           onPress={() => navigation.navigate("QRTransactions")}
           style={({ pressed }) => ({
             opacity: pressed ? 0.5 : 1,
-          })}>
+          })}
+        >
           {colorScheme === "dark" ? (
             <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
           ) : (
@@ -76,7 +78,8 @@ const UserVault = () => {
       </View>
       <View style={[CommonStyles.col, { alignItems: "center" }]}>
         <TouchableOpacity
-          onPress={() => navigation.getParent()?.navigate("Home")}>
+          onPress={() => navigation.getParent()?.navigate("Home")}
+        >
           <View
             lightColor="#eaeaec"
             darkColor="#1D1D20"
@@ -89,7 +92,8 @@ const UserVault = () => {
                 justifyContent: "space-between",
                 borderRadius: hp(50),
               },
-            ]}>
+            ]}
+          >
             <Image
               style={{ width: 11, height: 11 }}
               source={require("../../../../assets/images/icons/VaultLogo.png")}
@@ -103,7 +107,8 @@ const UserVault = () => {
                 fontFamily: "Euclid-Circular-A",
                 marginRight: hp(9),
                 marginLeft: hp(9),
-              }}>
+              }}
+            >
               Vault
             </Text>
             <OpenIcon />
@@ -111,7 +116,8 @@ const UserVault = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[CommonStyles.row]}
-          onPress={() => setSecure(!secure)}>
+          onPress={() => setSecure(!secure)}
+        >
           <>
             {secure ? (
               <>
@@ -131,7 +137,8 @@ const UserVault = () => {
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: 26,
                     marginVertical: hp(10),
-                  }}>
+                  }}
+                >
                   {user.azaBalance}
                 </Text>
               </>
@@ -143,7 +150,8 @@ const UserVault = () => {
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(24),
                   marginVertical: hp(10),
-                }}>
+                }}
+              >
                 **********
               </Text>
             )}
@@ -154,7 +162,8 @@ const UserVault = () => {
             navigation.navigate("Common", {
               screen: "NewVault",
             })
-          }>
+          }
+        >
           <AddIcon />
         </TouchableOpacity>
         <Text
@@ -163,7 +172,8 @@ const UserVault = () => {
             fontSize: hp(14),
             fontWeight: "400",
             marginBottom: hp(40),
-          }}>
+          }}
+        >
           New Vault
         </Text>
       </View>
@@ -177,14 +187,16 @@ const UserVault = () => {
           flexDirection: "row",
           alignItems: "center",
           marginLeft: hp(20),
-        }}>
+        }}
+      >
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
             marginRight: hp(3),
-          }}>
+          }}
+        >
           Vaults
         </Text>
         <SendIcon color={Colors[colorScheme].secondaryText} />
@@ -255,11 +267,13 @@ const UserVault = () => {
           alignItems: "center",
           marginTop: hp(40),
           paddingHorizontal: hp(20),
-        }}>
+        }}
+      >
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", { screen: "TransactionHistory" })
-          }>
+          }
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -267,7 +281,8 @@ const UserVault = () => {
               marginRight: hp(3),
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(17),
-            }}>
+            }}
+          >
             Recent Transactions
           </Text>
         </TouchableOpacity>
@@ -275,8 +290,7 @@ const UserVault = () => {
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
-        data={UserData.vaultRecentTransactions}
+        data={user.vault.recentTransaction}
         contentContainerStyle={{ paddingBottom: 250, paddingHorizontal: 15 }}
         ItemSeparatorComponent={() => {
           return (

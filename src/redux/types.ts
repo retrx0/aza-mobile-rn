@@ -12,6 +12,7 @@ export interface Transaction {
 }
 
 export interface UserState {
+  loading?: boolean;
   azaId?: string;
   gender?: string;
   paymentMethods?: PaymentMethod[];
@@ -28,6 +29,7 @@ export interface UserState {
   accountStatus: string;
   pushToken?: string;
   transfers: {
+    loading: boolean;
     incommingTransferLimit: number;
     depositAmountLimit: number;
     totalMonthlySenders: number;
@@ -37,10 +39,14 @@ export interface UserState {
     totalMonthlyOutgoingTransfers: number;
     totalMonthlyOutgoingTransferAmount: number;
   };
+  vault: { loading: boolean; recentTransaction: [] };
+  payments: { loading: boolean; recentPayments: [] };
   recentTransactions: { loading: boolean; data: Transaction[] };
-  azaContacts: Beneficiary[];
+  azaContacts: { loading: boolean; data: Beneficiary[] };
 }
 
+interface Vault {}
+interface Payment {}
 export type Gender = "Male" | "Female" | "Unknown";
 
 type PaymentMethodCardType = "Master Card" | "Visa";

@@ -5,6 +5,7 @@ import {
   TextStyle,
   ViewStyle,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
@@ -17,6 +18,7 @@ type ButtonPropsType = {
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
   disabled?: boolean;
+  willCallAsync?: boolean;
 };
 
 export const Button: FC<ButtonPropsType> = ({
@@ -26,6 +28,7 @@ export const Button: FC<ButtonPropsType> = ({
   style,
   styleText,
   disabled,
+  willCallAsync,
 }) => {
   const colorScheme = useColorScheme();
 
@@ -45,9 +48,14 @@ export const Button: FC<ButtonPropsType> = ({
           opacity: disabled ? 0.5 : 1,
         },
         style,
-      ]}>
+      ]}
+    >
       <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
-        {title}
+        {willCallAsync ? (
+          <ActivityIndicator animating={willCallAsync} />
+        ) : (
+          title
+        )}
       </Text>
     </TouchableOpacity>
   );

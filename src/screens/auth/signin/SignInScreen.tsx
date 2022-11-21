@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -14,9 +14,10 @@ import InputFormEmail from "../../../components/input/InputFormFieldNormal";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { getUserLoginInfoAPI, requestOtpApi } from "../../../api/auth";
-import Toast from "react-native-toast-message";
 import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
+import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
+import { toastError } from "../../../common/util/ToastUtil";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const colorScheme = useColorScheme();
@@ -26,96 +27,108 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
     email: yup.string().required("Email is required!").email(),
   });
 
+  const handleSubmission = (email: string) => {
+    getUserLoginInfoAPI(email)
+      .then((data) => {
+        if (data) {
+          dispatch(
+            setUserPhoneAndFullName({
+              phoneNumber: data.phoneNumber,
+              fullName: data.fullName,
+            })
+          );
+          requestOtpApi({
+            email: "",
+            phoneNumber: data.phoneNumber,
+          });
+          navigation.navigate("SignInOTP");
+        }
+      })
+      .catch(() => toastError("Invalid email!"));
+  };
+
   return (
     <SpacerWrapper>
-      <View style={{ marginLeft: 20 }}>
-        <BackButton
-          onPress={() => {
-            navigation.getParent()?.navigate("Welcome");
-          }}
-        />
-      </View>
-      <View style={CommonStyles.phoneContainer}>
-        <Text style={[CommonStyles.headerText]}>Login</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your email to continue
-        </Text>
-        <Text
-          style={{
-            padding: hp(5),
-            margin: hp(4),
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            marginTop: hp(35),
-            marginLeft: hp(15),
-            fontSize: hp(18),
-            fontWeight: "500",
-          }}
-        >
-          Email Address <Text style={{ color: "red" }}>*</Text>
-        </Text>
-      </View>
+      <HideKeyboardOnTouch>
+        <View>
+          <View style={{ marginLeft: 20 }}>
+            <BackButton
+              onPress={() => {
+                navigation.getParent()?.navigate("Welcome");
+              }}
+            />
+          </View>
+          <View style={CommonStyles.phoneContainer}>
+            <Text style={[CommonStyles.headerText]}>Login</Text>
+            <Text style={[CommonStyles.bodyText]}>
+              Enter your email to continue
+            </Text>
+            <Text
+              style={{
+                padding: hp(5),
+                margin: hp(4),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                marginTop: hp(35),
+                marginLeft: hp(15),
+                fontSize: hp(18),
+                fontWeight: "500",
+              }}
+            >
+              Email Address <Text style={{ color: "red" }}>*</Text>
+            </Text>
+          </View>
 
-      <Formik
-        validationSchema={validationSchema}
-        initialValues={{ email: "" }}
-        onSubmit={(values, actions) => {
-          getUserLoginInfoAPI(values.email)
-            .then((data) => {
-              if (data) {
-                dispatch(
-                  setUserPhoneAndFullName({
-                    phoneNumber: data.phoneNumber,
-                    fullName: data.fullName,
-                  })
-                );
-                requestOtpApi({
-                  email: "",
-                  phoneNumber: data.phoneNumber,
-                });
-                navigation.navigate("SignInOTP");
-              }
-            })
-            .catch(() =>
-              Toast.show({ type: "error", text1: "Invalid email!" })
-            );
-        }}
-      >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          isValid,
-          errors,
-          touched,
-        }) => {
-          return (
-            <View>
-              <InputFormEmail
-                value={values.email}
-                onChangeText={handleChange("email")}
-                placeholderVisible={false}
-                type="email"
-                formikProps={{ errors: errors.email, touched: touched.email }}
-                autoFocus={false}
-                onBlur={handleBlur("blur")}
-              />
-              <Button
-                title="Continue"
-                onPressButton={handleSubmit}
-                styleText={{
-                  color: Colors[colorScheme].buttonText,
-                }}
-                style={[{ backgroundColor: Colors[colorScheme].button }]}
-                disabled={!isValid}
-              />
-            </View>
-          );
-        }}
-      </Formik>
+          <Formik
+            validationSchema={validationSchema}
+            initialValues={{ email: "" }}
+            onSubmit={(values, actions) => {
+              handleSubmission(values.email);
+            }}
+          >
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              isValid,
+              errors,
+              touched,
+            }) => {
+              return (
+                <View>
+                  <InputFormEmail
+                    value={values.email}
+                    onChangeText={handleChange("email")}
+                    placeholderVisible={false}
+                    type="email"
+                    formikProps={{
+                      errors: errors.email,
+                      touched: touched.email,
+                    }}
+                    autoFocus={false}
+                    onBlur={handleBlur("blur")}
+                  />
+                  <Button
+                    title="Continue"
+                    onPressButton={handleSubmit}
+                    styleText={{
+                      color: Colors[colorScheme].buttonText,
+                    }}
+                    style={[{ backgroundColor: Colors[colorScheme].button }]}
+                    disabled={!isValid}
+                  />
+                </View>
+              );
+            }}
+          </Formik>
 
-      <Text style={[CommonStyles.orText]}>OR</Text>
-      <ThirdPartyAuthButtons />
+          <Text style={[CommonStyles.orText]}>OR</Text>
+          <ThirdPartyAuthButtons
+            onValidated={(email) => handleSubmission(email)}
+            authType="signin"
+          />
+        </View>
+      </HideKeyboardOnTouch>
     </SpacerWrapper>
   );
 };

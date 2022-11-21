@@ -1,6 +1,8 @@
 import api from "..";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { toastError } from "../../common/util/ToastUtil";
+import { getItemSecure, storeItemSecure } from "../../common/util/StorageUtil";
 
 export const cancelToken = async () => {
   try {
@@ -16,7 +18,7 @@ export const cancelToken = async () => {
     );
     return result;
   } catch (e) {
-    console.error("error: ", e);
+    console.error("Error canceling token: ", e as Error);
   }
 };
 
@@ -29,7 +31,7 @@ export const requestOtpApi = async (data: {
     if (result.status === 204) return result.status;
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: " + e);
+    console.error("Error Requesting OTP: ", e as Error);
   }
 };
 
@@ -46,7 +48,7 @@ export const verifyOtpApi = async (
     if (result.status === 204) return result.headers["access-token"];
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: " + e);
+    console.error("Error Requesting OTP: ", e as Error);
   }
 };
 
@@ -56,11 +58,13 @@ export const loginUserAPI = async (data: {
   password: string;
 }) => {
   try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
     const response = await api.post("/api/v1/auth/login", data);
-    if (response.status === 200) return response.data;
+    if (response.status === 200) {
+      return response.headers["access-token"];
+    }
   } catch (e) {
-    console.error("Error logging in user: " + e);
+    console.error("Error logging in user: ", e as Error);
+    toastError("We encountered a problem while loggin you in");
   }
 };
 
@@ -70,6 +74,6 @@ export const getUserLoginInfoAPI = async (email: string) => {
     if (response.status === 200) return response.data.data;
     return undefined;
   } catch (e) {
-    console.error("Error get user login details: " + e);
+    console.error("Error get user login details: ", e as Error);
   }
 };
