@@ -554,9 +554,9 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(20),
   },
   genderstyle: {
-    marginLeft: hp(18),
+    marginLeft: hp(20),
     fontSize: hp(18),
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontFamily: "Euclid-Circular-A-Medium",
     marginTop: hp(10),
     fontWeight: "500",
   },
@@ -566,12 +566,13 @@ const CommonStyles = StyleSheet.create({
     margin: hp(3),
     fontFamily: "Euclid-Circular-A",
     marginLeft: hp(15),
-    fontSize: hp(16),
-    fontWeight: "600",
+    fontSize: hp(14),
+    fontWeight: "400",
+    marginBottom: hp(35),
   },
   phoneContainer: {
     marginTop: hp(30),
-    marginBottom: hp(5),
+    marginBottom: hp(10),
   },
   iconStyle: {
     marginLeft: hp(26),
@@ -654,6 +655,7 @@ const CommonStyles = StyleSheet.create({
   account: {
     fontSize: hp(14),
     fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
   },
   login: {
     fontWeight: "bold",
@@ -767,9 +769,9 @@ const CommonStyles = StyleSheet.create({
     flexDirection: "row",
   },
   resend: {
-    fontWeight: "400",
-    fontFamily: "Euclid-Circular-A",
-    fontSize: hp(16),
+    fontWeight: "500",
+    fontSize: hp(14),
+    fontFamily: "Euclid-Circular-A-Bold",
   },
 
   verification: {
@@ -845,8 +847,9 @@ const CommonStyles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 5,
     padding: 15,
-    fontSize: hp(18),
+    fontSize: hp(16),
     fontFamily: "Euclid-Circular-A",
+    fontWeight: "400",
   },
   errorText: {
     fontSize: hp(14),

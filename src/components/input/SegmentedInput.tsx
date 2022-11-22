@@ -49,11 +49,10 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   otpText: {
-    marginBottom: 10,
+    marginBottom: hp(10),
     fontWeight: "500",
     fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Medium",
-    lineHeight: hp(20),
   },
   otp: {
     marginLeft: hp(90),

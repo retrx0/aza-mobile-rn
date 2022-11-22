@@ -48,8 +48,7 @@ export const Button: FC<ButtonPropsType> = ({
           opacity: disabled ? 0.5 : 1,
         },
         style,
-      ]}
-    >
+      ]}>
       <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
         {willCallAsync ? (
           <ActivityIndicator animating={willCallAsync} />
@@ -65,10 +64,9 @@ const styles = {
   doneText: {
     color: Colors.general.secondary,
     fontWeight: "500",
-    letterSpacing: hp(0.5),
     fontSize: hp(14),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   nextText: {
     color: Colors.general.secondary,
@@ -80,7 +78,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: wp(335),
+    width: 370,
     // marginTop: 100,
   },
   nextButton: {
