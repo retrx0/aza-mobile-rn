@@ -33,7 +33,13 @@ const InputFormFieldNormal = ({
     <View style={[{ width: "90%", alignSelf: "center", marginBottom: 30 }]}>
       {placeholderVisible ? (
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={{ marginBottom: hp(5) }}>
+          <Text
+            style={{
+              marginBottom: hp(5),
+              fontSize: hp(18),
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontWeight: "500",
+            }}>
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </Text>
           <Text style={{ color: "red" }}>*</Text>

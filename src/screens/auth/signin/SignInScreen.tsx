@@ -72,8 +72,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Email Address <Text style={{ color: "red" }}>*</Text>
             </Text>
           </View>
@@ -83,8 +82,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             initialValues={{ email: "" }}
             onSubmit={(values, actions) => {
               handleSubmission(values.email);
-            }}
-          >
+            }}>
             {({
               handleChange,
               handleBlur,
@@ -114,7 +112,12 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                     styleText={{
                       color: Colors[colorScheme].buttonText,
                     }}
-                    style={[{ backgroundColor: Colors[colorScheme].button }]}
+                    style={[
+                      {
+                        backgroundColor: Colors[colorScheme].button,
+                        marginTop: 40,
+                      },
+                    ]}
                     disabled={!isValid}
                   />
                 </View>

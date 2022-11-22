@@ -55,9 +55,8 @@ const OtpScreen = (props: OtpProp) => {
         style={{
           marginTop: hp(20),
           paddingHorizontal: hp(20),
-          marginBottom: hp(100),
-        }}
-      >
+          marginBottom: hp(111),
+        }}>
         <SegmentedInput
           value={otpCode}
           onValueChanged={(code) => onOtpChanged(code)}

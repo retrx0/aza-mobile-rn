@@ -21,6 +21,12 @@ import {
 } from "../../../../redux/slice/newUserSlice";
 import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
 import * as yup from "yup";
+import {
+  ArrowDownIcon,
+  NairaIcon,
+  OutgoingTransferIcon,
+  Select,
+} from "../../../../../assets/svg";
 
 const SignUpProfile = ({
   navigation,
@@ -73,8 +79,7 @@ const SignUpProfile = ({
           navigation.navigate("SignUpPassword", {
             passwordScreenType: "Create",
           });
-        }}
-      >
+        }}>
         {({
           handleChange,
           handleBlur,
@@ -129,8 +134,7 @@ const SignUpProfile = ({
                 marginTop: hp(7),
                 paddingVertical: hp(15),
                 justifyContent: "space-between",
-              }}
-            >
+              }}>
               <RNPickerSelect
                 placeholder={placeholder}
                 onValueChange={(value) => {
@@ -147,7 +151,7 @@ const SignUpProfile = ({
                 }}
                 style={{
                   placeholder: {
-                    fontSize: hp(16),
+                    fontSize: hp(15),
                     lineHeight: hp(20),
                     fontFamily: "Euclid-Circular-A",
                     color: Colors.general.black,

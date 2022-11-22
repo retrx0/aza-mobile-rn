@@ -22,6 +22,8 @@ import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import { toastError } from "../../../common/util/ToastUtil";
 import ActivityModal from "../../../components/modal/ActivityModal";
+import styles from "../../onboarding/OnboardingStyles";
+import { hp } from "../../../common/util/LayoutUtil";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -83,8 +85,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             onSubmit={(values, actions) => {
               setButtonLoading(true);
               handleSubmission(values.email, false);
-            }}
-          >
+            }}>
             {({
               handleChange,
               handleBlur,
@@ -131,6 +132,11 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
               title="Login"
               onPressButton={() => navigation.getParent()?.navigate("SignIn")}
               color={Colors[colorScheme].text}
+              styleText={{
+                fontSize: hp(14),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+              }}
             />
           </View>
           <Text style={[CommonStyles.orText]}>OR</Text>

@@ -101,14 +101,16 @@ export const SigninStyles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     marginLeft: hp(20),
+    marginTop: hp(30),
   },
 
   verification: {
-    width: wp(321),
     marginTop: hp(30),
     fontSize: hp(16),
     fontWeight: "400",
     marginLeft: hp(20),
+    fontFamily: "Euclid-Circular-A-Medium",
+    marginBottom: hp(62),
   },
   phoneStyle: {
     alignSelf: "center",

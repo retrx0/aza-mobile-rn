@@ -21,6 +21,7 @@ import {
   getUserCredentialsSecure,
   storeItemSecure,
 } from "../../../common/util/StorageUtil";
+import CommonStyles from "../../../common/styles/CommonStyles";
 
 let loginAttemptCounter = 0;
 const verifyPasscode = (code: string, navigation: any, user: any) => {
@@ -94,7 +95,7 @@ const SignInWelcomeBackScreen = ({
   return (
     <SpacerWrapper>
       <HideKeyboardOnTouch>
-        <View>
+        <View style={[CommonStyles.phoneContainer]}>
           <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
@@ -102,8 +103,7 @@ const SignInWelcomeBackScreen = ({
               marginTop: hp(20),
               paddingHorizontal: hp(20),
               marginBottom: hp(100),
-            }}
-          >
+            }}>
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -115,8 +115,7 @@ const SignInWelcomeBackScreen = ({
             />
           </View>
           <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
-          >
+            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
             <TouchableOpacity onPress={() => forgetUser(navigation)}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>
