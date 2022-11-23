@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { View } from "../../../components/Themed";
+import { Text, View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
 
 import AccountDetails from "./components/AccountDetails";
@@ -11,6 +11,8 @@ import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
 import { useAppSelector } from "../../../redux";
 import { selectNewUser } from "../../../redux/slice/newUserSlice";
 import { useNotifications } from "../../../hooks/useNotifications";
+import { hp, wp } from "../../../common/util/LayoutUtil";
+import { CautionIcon } from "../../../../assets/svg";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
@@ -42,7 +44,8 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
     <View style={styles.container}>
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
-      <LinkBVN navigation={navigation} route={route} isBvnLinked={true} />
+      <LinkBVN navigation={navigation} route={route} isBvnLinked={false} />
+
       <RecentTransactions navigation={navigation} route={route} />
     </View>
   );
