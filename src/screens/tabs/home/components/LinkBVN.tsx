@@ -9,7 +9,7 @@ interface IProps {
   isBvnLinked: boolean;
 }
 
-const LinkBVN = ({
+export const LinkBVN = ({
   navigation,
   isBvnLinked,
 }: RootTabScreenProps<"Home"> & IProps) => {
