@@ -95,7 +95,7 @@ const SignInWelcomeBackScreen = ({
   return (
     <SpacerWrapper>
       <HideKeyboardOnTouch>
-        <View style={[CommonStyles.phoneContainer]}>
+        <View>
           <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
