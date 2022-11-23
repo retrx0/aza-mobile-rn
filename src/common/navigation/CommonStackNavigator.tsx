@@ -120,6 +120,12 @@ import RecurringMoneyConfirmationScreen from "../../screens/tabs/vault/VaultRecu
 import Vault from "../../screens/tabs/vault/Vault";
 import VaultToBankAmount from "../../screens/tabs/vault/withdraw-to-bank/VaultToBankAmount";
 import VaultConfirmation from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
+import ElectricityConfirmation from "../../screens/tabs/payments/electricity-screens/ElectricityConfirmation";
+import AirtimeConfirmation from "../../screens/tabs/payments/airtime-screens/AirtimeConfirmation";
+import InternetConfirmation from "../../screens/tabs/payments/internet-screens/InternetConfirmation";
+import CableConfirmation from "../../screens/tabs/payments/cable-tv-screens/CableConfirmation";
+import CharityConfirmation from "../../screens/tabs/payments/charity-screens/CharityConfirmation";
+import WaterConfirmation from "../../screens/tabs/payments/water-screens/WaterConfirmation";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -413,6 +419,36 @@ const CommonStack = () => {
           options={{ presentation: "fullScreenModal", title: "" }}
           name="Pie"
           component={Pie}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="ElectricityConfirmation"
+          component={ElectricityConfirmation}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="AirtimeConfirmation"
+          component={AirtimeConfirmation}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="InternetConfirmation"
+          component={InternetConfirmation}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="CableConfirmation"
+          component={CableConfirmation}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="WaterConfirmation"
+          component={WaterConfirmation}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="CharityConfirmation"
+          component={CharityConfirmation}
         />
         <Stack.Screen
           options={{ title: "Confirmation" }}

@@ -27,6 +27,13 @@ export type CommonStackParamList = {
   Water: undefined;
   Charity: undefined;
   CharityDetail: { name: string };
+  ElectricityConfirmation: undefined;
+  AirtimeConfirmation: undefined;
+  InternetConfirmation: undefined;
+  CableConfirmation: undefined;
+  WaterConfirmation: undefined;
+  GiftCardConfirmation: undefined;
+  CharityConfirmation: undefined;
 
   // Vault
   NewVault: undefined;
