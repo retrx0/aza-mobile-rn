@@ -50,17 +50,17 @@ export default function HeadrImage({
           style={[
             styles.image,
             {
-              width: amount ? 36 : 44,
-              height: amount ? 36 : 44,
+              width: amount ? 40 : 45,
+              height: amount ? 40 : 45,
             },
           ]}
           source={image}
         />
-        {/* {amount || selected == true ? (
+        {amount || selected == true ? (
           <View style={styles.icon}>
             <TickIcon />
           </View>
-        ) : null} */}
+        ) : null}
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
 
@@ -72,14 +72,13 @@ export default function HeadrImage({
 
 const styles = StyleSheet.create({
   mainConatiner: {
-    width: 44,
     backgroundColor: "transparent",
     alignItems: "center",
     marginRight: 33.5,
   },
   imageContainer: {
-    width: 44,
-    height: 44,
+    width: 45,
+    height: 45,
     backgroundColor: "transparent",
     borderRadius: 22,
     justifyContent: "center",

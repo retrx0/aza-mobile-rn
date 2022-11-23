@@ -116,7 +116,7 @@ const styles2 = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
   },
   img: {
-    width: 20,
-    height: 20,
+    width: 45,
+    height: 45,
   },
 });

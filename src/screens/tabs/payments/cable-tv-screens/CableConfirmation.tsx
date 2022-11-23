@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     marginBottom: hp(40),
     marginTop: hp(30),
 
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
   },
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     borderColor: "#EAEAEC",
     borderBottomWidth: 1,
     marginBottom: 20,
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },

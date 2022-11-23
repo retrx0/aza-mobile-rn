@@ -12,11 +12,13 @@ interface IProps {
     label: string;
     value: string;
   }>;
+
   value: string;
   setValue: (value: string) => void;
   placeholder: string;
   placeholderstyle?: StyleProp<TextStyle>;
   label: string;
+
   style?: StyleProp<TextStyle>;
 }
 
@@ -79,14 +81,23 @@ const CustomDropdown = ({
           borderBottomColor: colorScheme === "dark" ? "#484B51" : "#EAEAEC",
         }}
         renderItem={(item) => (
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{
-              fontSize: 14,
-            }}>
-            {item.label}
-          </Text>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <Text
+              lightColor={Colors.light.text}
+              darkColor={Colors.dark.mainText}
+              style={{
+                fontSize: 14,
+              }}>
+              {item.label}
+            </Text>
+            <Text
+              lightColor={Colors.light.text}
+              darkColor={Colors.dark.mainText}
+              style={{
+                fontSize: 14,
+              }}></Text>
+          </View>
         )}
         placeholder={placeholder}
         value={value}

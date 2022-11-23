@@ -16,9 +16,9 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 
 const data = [
-  { value: 54, color: "#753FF6", text: "Cable Tv" },
-  { value: 40, color: "#2A9E17", text: "Internet" },
-  { value: 20, color: "#ED8A0A", text: "Charity" },
+  { value: 54, color: "#2A9E17", text: "Cable Tv" },
+  { value: 40, color: "#ED8A0A", text: "Internet" },
+  { value: 20, color: "#753FF6", text: "Charity" },
 ];
 export default function Pie() {
   const scheme = useColorScheme();
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   colors: {
     height: 15,
     width: 15,
-    borderRadius: 5,
+    borderRadius: 3,
     marginRight: 3,
   },
   month: {

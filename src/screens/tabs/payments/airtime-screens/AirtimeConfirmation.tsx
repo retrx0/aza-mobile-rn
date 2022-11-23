@@ -47,7 +47,7 @@ export default function AirtimeConfirmation({
             color: colorScheme === "dark" ? "#999999" : "#000000",
           }}
           label="Phone Number"
-          placeholder="08164942224"
+          placeholder="1234ueydjThs567890"
           placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
         <Input
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     borderColor: "#EAEAEC",
     borderBottomWidth: 1,
     marginBottom: 20,
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },

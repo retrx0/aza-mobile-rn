@@ -38,6 +38,7 @@ export default function CableTvIndex({
     { label: "DSTV Compact Plus", value: "1" },
     { label: "DSTV Premium", value: "1" },
   ];
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header

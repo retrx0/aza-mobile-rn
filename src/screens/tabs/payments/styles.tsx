@@ -34,16 +34,17 @@ export const PaymentStyles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     backgroundColor: "transparent",
+    marginBottom: hp(24),
   },
   imageIcon: {
     width: 58,
     height: 58,
   },
   imageHeaderContainer: {
-    marginLeft: 20,
     minHeight: 70,
     maxHeight: 100,
     backgroundColor: "transparent",
+    marginLeft: hp(20),
   },
   itemListContainer: {
     paddingHorizontal: 20,

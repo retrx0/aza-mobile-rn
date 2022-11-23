@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderColor: "#EAEAEC",
     borderBottomWidth: 1,
     minWidth: "100%",
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },

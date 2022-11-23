@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderBottomWidth: 1,
     marginBottom: 20,
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },
