@@ -21,6 +21,7 @@ export type InputProps = {
   icon: any;
   isPhone?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
+  placeholderStyle?: StyleProp<TextStyle>;
 };
 
 export const Input = ({
@@ -32,6 +33,7 @@ export const Input = ({
   icon,
   isPhone,
   containerStyle,
+  placeholderStyle,
   ...rest
 }: InputProps & TextInputProps) => {
   const colorScheme = useColorScheme();
@@ -58,6 +60,7 @@ export const Input = ({
               {
                 color: Colors[colorScheme].text,
               },
+              placeholderStyle,
             ]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>

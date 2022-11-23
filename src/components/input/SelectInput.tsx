@@ -16,7 +16,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import useColorScheme from "../../hooks/useColorScheme";
-import { Text } from "../Themed";
+import { Text, View } from "../Themed";
 import { hp } from "../../common/util/LayoutUtil";
 
 type SelectProps = {
@@ -97,12 +97,13 @@ const styles = StyleSheet.create({
   // },
   selector: {
     width: "100%",
-    borderBottomColor: "#EAEAEC",
+    borderBottomColor: "#262626",
     borderBottomWidth: 1,
     height: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: hp(12),
   },
   selectorText: {
     color: "#A6A6A6",
@@ -122,14 +123,16 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     padding: 10,
+    borderRadius: hp(10),
   },
   listItem: {
-    height: 30,
+    height: hp(45),
     borderBottomWidth: 1,
-    borderBottomColor: "#EAEAEC",
+    borderBottomColor: "#484B51",
     justifyContent: "center",
   },
   listItemText: {
     fontWeight: "400",
+    fontSize: hp(14),
   },
 });
