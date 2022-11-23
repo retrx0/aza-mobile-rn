@@ -21,6 +21,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { fetchAirtimeOperators } from "../../../../api/airtime";
 import api from "../../../../api";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 
 export default function AirtimeIndex({
   navigation,
@@ -33,6 +34,15 @@ export default function AirtimeIndex({
   const bundles = ["100mb", "200mb", "500mb"];
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const [periodValue, setPeriodValue] = useState("");
+
+  const period = [
+    { label: "100 ", value: "1" },
+    { label: "200 ", value: "1" },
+    { label: "500 ", value: "1" },
+    { label: "1gb ", value: "1" },
+    { label: "1.5gb ", value: "1" },
+  ];
 
   const [airtimeOperators, setAirtimeOperators] = useState<
     {
@@ -91,7 +101,12 @@ export default function AirtimeIndex({
         <Input
           icon={null}
           keyboardType="phone-pad"
-          inputStyle={styles.input}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={styles.label}
           style={{ marginTop: hp(35) }}
           label="Phone Number"
@@ -102,17 +117,37 @@ export default function AirtimeIndex({
           onValueChange={toggleSwitch}
           isEnabled={isEnabled}
         />
-        {route.name == "data" && (
-          <SelectInput
-            items={bundles}
-            title="Bundle"
-            placeHolder="Choose a bundle"
-            style={styles.select}
-          />
-        )}
+
+        <View
+          style={{
+            paddingHorizontal: hp(20),
+            marginTop: hp(30),
+            marginBottom: hp(10),
+          }}>
+          {route.name == "data bundle" && (
+            <CustomDropdown
+              data={period}
+              placeholder="Choose a bundle"
+              setValue={setPeriodValue}
+              value={periodValue}
+              style={[
+                { fontFamily: "Euclid-Circular-A" },
+                { fontWeight: "400" },
+                { fontSize: hp(16) },
+              ]}
+              label={"Bundle"}
+            />
+          )}
+        </View>
+
         <Input
           icon={null}
-          inputStyle={styles.input}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={styles.label}
           label="Amount"
           placeholder="Enter an amount"
@@ -127,7 +162,7 @@ export default function AirtimeIndex({
         <Button
           title="Continue"
           onPressButton={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("Common", { screen: "AirtimeConfirmation" });
           }}
           disabled={!CustomSwitch}
           styleText={{

@@ -1,25 +1,18 @@
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import { Input } from "../../../components/input/input";
-import MyButton from "./sub-components/MyButton";
-import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-} from "../../../components/Themed";
-import { RootTabScreenProps } from "../../../../types";
-import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Colors from "../../../constants/Colors";
-import Button from "../../../components/buttons/Button";
+import { Input } from "../../../../components/input/input";
+import MyButton from "../sub-components/MyButton";
+import { ScrollView, Text, View } from "../../../../components/Themed";
+import { RootTabScreenProps } from "../../../../../types";
+import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import Colors from "../../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../hooks/useColorScheme";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import { ImageInput } from "./sub-components/ImageInput";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { ImageInput } from "../sub-components/ImageInput";
+import { Ie, Mtn } from "../../../../../assets/images";
 
-export default function Confirmation({
+export default function AirtimeConfirmation({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
@@ -33,46 +26,67 @@ export default function Confirmation({
           Kindly confirm the details of this transaction
         </Text>
         <ImageInput
-          label={""}
-          placeholder={""}
-          source={undefined}
+          label={"To"}
+          placeholder={"MTN"}
+          source={Mtn}
           icon={undefined}
         />
         <Input
           icon={null}
           keyboardType="phone-pad"
-          inputStyle={styles.input}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={{
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",
             fontSize: hp(16),
+            color: colorScheme === "dark" ? "#999999" : "#000000",
           }}
           label="Phone Number"
           placeholder="08164942224"
+          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
         <Input
           icon={null}
           keyboardType="phone-pad"
-          inputStyle={styles.input}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={{
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",
             fontSize: hp(16),
+            color: colorScheme === "dark" ? "#999999" : "#000000",
           }}
           label="Amount"
           placeholder="N2,000 (Airtime)"
+          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
         <Input
           icon={null}
           keyboardType="phone-pad"
-          inputStyle={styles.input}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={{
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",
             fontSize: hp(16),
+            color: colorScheme === "dark" ? "#999999" : "#000000",
           }}
           label="Payment Method"
           placeholder="Aza Account"
+          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
       </View>
       <MyButton
@@ -118,7 +132,7 @@ const styles = StyleSheet.create({
     marginBottom: hp(40),
     marginTop: hp(30),
 
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
   },

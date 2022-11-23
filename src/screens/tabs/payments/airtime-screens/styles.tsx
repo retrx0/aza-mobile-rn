@@ -17,7 +17,6 @@ export const AIrtimeStyles = StyleSheet.create({
   input: {
     marginLeft: 20,
     width: "90%",
-    borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",

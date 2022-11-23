@@ -37,8 +37,7 @@ export default function HeadrImage({
         {
           height: amount ? 120 : 70,
         },
-      ]}
-    >
+      ]}>
       <View
         style={[
           styles.imageContainer,
@@ -46,8 +45,7 @@ export default function HeadrImage({
             borderWidth: amount ? 1 : 0,
             borderColor: amount ? "#A6A6A6" : "",
           },
-        ]}
-      >
+        ]}>
         <Image
           style={[
             styles.image,
@@ -58,11 +56,11 @@ export default function HeadrImage({
           ]}
           source={image}
         />
-        {amount || selected == true ? (
+        {/* {amount || selected == true ? (
           <View style={styles.icon}>
             <TickIcon />
           </View>
-        ) : null}
+        ) : null} */}
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
 
@@ -108,6 +106,7 @@ const styles = StyleSheet.create({
   text2: {
     fontWeight: "400",
     fontSize: 12,
+    marginTop: 10,
   },
   text3: {
     fontWeight: "400",

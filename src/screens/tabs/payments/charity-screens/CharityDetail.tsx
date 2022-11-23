@@ -107,7 +107,7 @@ export default function CharityDetail({
           disabled={false}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("Common", { screen: "CharityConfirmation" });
           }}
         />
         <CancelButtonWithUnderline

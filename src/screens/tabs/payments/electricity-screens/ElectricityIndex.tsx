@@ -8,18 +8,28 @@ import HeadrImage from "../sub-components/HeadrImage";
 import { Input } from "../../../../components/input/input";
 import MyButton from "../sub-components/MyButton";
 import SelectInput from "../../../../components/input/SelectInput";
-import { Ie } from "../../../../../assets/images";
+import { AEDC, EEDC, EKEDC, Ie, PH } from "../../../../../assets/images";
 import HeaderImage from "../sub-components/HeaderImage";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 
 export default function ElectricityIndex({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const bundles = ["100mb", "200mb", "500mb"];
+  const bundles = ["Prepaid", "Postpaid"];
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
+
+  const [periodValue, setPeriodValue] = useState("");
+
+  const period = [
+    { label: "Prepaid", value: "1" },
+    { label: "Postpaid", value: "1" },
+  ];
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -38,18 +48,39 @@ export default function ElectricityIndex({
 
       <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
         <HeaderImage selected index={0} image={Ie} title="IE" />
+        <HeaderImage selected index={0} image={AEDC} title="AEDC" />
+        <HeaderImage selected index={0} image={EEDC} title="EEDC" />
+        <HeaderImage selected index={0} image={EKEDC} title="EKEDC" />
+        <HeaderImage selected index={0} image={PH} title="PHED" />
       </ScrollView>
 
-      <SelectInput
-        items={bundles}
-        title="Meter Type"
-        placeHolder="Choose a bundle"
-        style={styles.select}
-      />
+      <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginTop: hp(30),
+          marginBottom: hp(10),
+        }}>
+        <CustomDropdown
+          label="Meter Type"
+          data={period}
+          placeholder="Choose your meter type"
+          setValue={setPeriodValue}
+          value={periodValue}
+          placeholderstyle={[
+            { fontFamily: "Euclid-Circular-A" },
+            { fontWeight: "400" },
+            { fontSize: hp(16) },
+          ]}
+        />
+      </View>
       <Input
         icon={null}
-        keyboardType="phone-pad"
-        inputStyle={styles.input}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label="Meter Number"
         placeholder="Enter your meter number"
@@ -57,10 +88,15 @@ export default function ElectricityIndex({
 
       <Input
         icon={null}
-        inputStyle={styles.input}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label="Amount"
-        placeholder="Enter an amount"
+        placeholder="Enter an amount to be paid"
       />
       <View
         style={[
@@ -68,10 +104,12 @@ export default function ElectricityIndex({
           { bottom: insets.bottom || hp(45) },
         ]}>
         <MyButton
-          disabled={false}
+          disabled={!bundles}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("Common", {
+              screen: "ElectricityConfirmation",
+            });
           }}
           // style={{ marginTop: hp(250) }}
         />

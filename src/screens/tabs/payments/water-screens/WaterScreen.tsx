@@ -8,10 +8,18 @@ import HeadrImage from "../sub-components/HeadrImage";
 import { Input } from "../../../../components/input/input";
 import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
-import { Ie } from "../../../../../assets/images";
+import {
+  Crswb,
+  Enswc,
+  Fctwb,
+  Ie,
+  Lswc,
+  Vws,
+} from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 export default function WaterScreen({
   navigation,
@@ -22,6 +30,7 @@ export default function WaterScreen({
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const bundles = ["100mb", "200mb", "500mb"];
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -32,7 +41,7 @@ export default function WaterScreen({
         headerStyle={{
           fontSize: hp(14),
           fontWeight: "500",
-          fontFamily: "Euclid-Circular-A-Medium",
+          fontFamily: "Euclid-Circular-A",
           marginLeft: hp(3),
           marginTop: hp(30),
         }}
@@ -40,14 +49,23 @@ export default function WaterScreen({
       />
 
       <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={Ie} title="FCTWB" />
+        <HeadrImage selected index={0} image={Fctwb} title="FCTWB" />
+        <HeadrImage selected index={0} image={Lswc} title="LSWC" />
+        <HeadrImage selected index={0} image={Crswb} title="CRSWB" />
+        <HeadrImage selected index={0} image={Vws} title="VWS" />
+        <HeadrImage selected index={0} image={Enswc} title="ENSWC" />
       </ScrollView>
 
       <Input
         style={styles2.input}
         icon={null}
         keyboardType="phone-pad"
-        inputStyle={styles.input}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label="Customer Account Number"
         placeholder="Enter your customer account number"
@@ -56,7 +74,12 @@ export default function WaterScreen({
       <Input
         style={styles2.input}
         icon={null}
-        inputStyle={styles.input}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label="Amount"
         placeholder="Enter an amount to be paid"
@@ -71,7 +94,7 @@ export default function WaterScreen({
           disabled={false}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("Common", { screen: "WaterConfirmation" });
           }}
         />
       </View>

@@ -3,6 +3,7 @@ import React from "react";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
 import { Text, View } from "../../../../components/Themed";
 import { TickIcon } from "../../../../../assets/svg";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 type HeaderImageProps = {
   image: any;
@@ -32,8 +33,7 @@ export default function HeaderImage({
         {
           height: amount ? 120 : 70,
         },
-      ]}
-    >
+      ]}>
       <View
         style={[
           styles.imageContainer,
@@ -41,8 +41,7 @@ export default function HeaderImage({
             borderWidth: amount ? 1 : 0,
             borderColor: amount ? "#A6A6A6" : "",
           },
-        ]}
-      >
+        ]}>
         <Image
           style={[
             styles.image,
@@ -53,11 +52,6 @@ export default function HeaderImage({
           ]}
           source={image}
         />
-        {amount || selected == true ? (
-          <View style={styles.icon}>
-            <TickIcon />
-          </View>
-        ) : null}
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
 
@@ -102,7 +96,8 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontWeight: "400",
-    fontSize: 12,
+    fontSize: hp(14),
+    marginTop: hp(5),
   },
   text3: {
     fontWeight: "400",

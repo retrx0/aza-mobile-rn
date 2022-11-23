@@ -71,7 +71,6 @@ export const CharityStyles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   text: {
-    textAlign: "justify",
     marginLeft: 10,
     marginRight: 10,
     fontSize: hp(16),

@@ -17,6 +17,7 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 
 export default function InternetDetail({
   navigation,
@@ -28,6 +29,15 @@ export default function InternetDetail({
   const bundles = ["100mb", "200mb", "500mb"];
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const [periodValue, setPeriodValue] = useState("");
+
+  const period = [
+    { label: "100 ", value: "1" },
+    { label: "200 ", value: "1" },
+    { label: "500 ", value: "1" },
+    { label: "1gb ", value: "1" },
+    { label: "1.5gb ", value: "1" },
+  ];
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -47,21 +57,44 @@ export default function InternetDetail({
       <Input
         icon={null}
         keyboardType="phone-pad"
-        inputStyle={[styles.input]}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label="Account/User ID"
         placeholder="Enter your User ID"
       />
 
-      <SelectInput
-        items={bundles}
-        title="Bundle"
-        placeHolder="Choose a bundle"
-        style={[styles.select, styles2.select]}
-      />
+      <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginTop: hp(30),
+          marginBottom: hp(10),
+        }}>
+        <CustomDropdown
+          label="Bundle"
+          data={period}
+          placeholder="Choose a bundle"
+          setValue={setPeriodValue}
+          value={periodValue}
+          placeholderstyle={[
+            { fontFamily: "Euclid-Circular-A" },
+            { fontWeight: "400" },
+            { fontSize: hp(16) },
+          ]}
+        />
+      </View>
       <Input
         icon={null}
-        inputStyle={styles.input}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label="Amount"
         placeholder="Enter an amount"
@@ -74,7 +107,7 @@ export default function InternetDetail({
         <Button
           title="Continue"
           onPressButton={() =>
-            navigation.navigate("Common", { screen: "Confirm" })
+            navigation.navigate("Common", { screen: "InternetConfirmation" })
           }
           styleText={{
             color: Colors[colorScheme].buttonText,

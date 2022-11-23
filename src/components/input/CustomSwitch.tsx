@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { hp } from "../../common/util/LayoutUtil";
+import useColorScheme from "../../hooks/useColorScheme";
 
 export default function CustomSwitch({
   onValueChange,
@@ -19,9 +20,19 @@ export default function CustomSwitch({
   isEnabled: boolean;
   title: string;
 }) {
+  const colorScheme = useColorScheme();
+
   return (
     <View style={styles.container}>
-      <Text style={[styles.text]}>{title}</Text>
+      <Text
+        style={[
+          styles.text,
+          {
+            color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+          },
+        ]}>
+        {title}
+      </Text>
       <Switch
         trackColor={{ false: "#767577", true: "#2A9E17" }}
         thumbColor={"#f4f3f4"}

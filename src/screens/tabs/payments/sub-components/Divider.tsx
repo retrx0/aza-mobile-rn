@@ -12,7 +12,7 @@ export default function Divider({ style }: { style?: ViewStyle }) {
         styles.divider,
         style,
         {
-          backgroundColor: Colors[colorScheme].disabledButton,
+          backgroundColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
         },
       ]}></View>
   );
