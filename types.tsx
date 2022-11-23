@@ -60,6 +60,13 @@ export type PaymentsStackParamList = {
   water: undefined;
   Charity: undefined;
   charity_detail: undefined;
+  ElectricityConfirmation: undefined;
+  AirtimeConfirmation: undefined;
+  InternetConfirmation: undefined;
+  CableConfirmation: undefined;
+  WaterConfirmation: undefined;
+  GiftCardConfirmation: undefined;
+  CharityConfirmation: undefined;
 };
 
 export type TopTabParamList = {
