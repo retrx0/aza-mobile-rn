@@ -71,7 +71,7 @@ const SplitEditContactScreen = ({
                 fontSize: hp(14),
                 marginLeft: hp(5),
                 fontWeight: "500",
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
               }}>
               With whom?
             </Text>
@@ -101,7 +101,7 @@ const SplitEditContactScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),

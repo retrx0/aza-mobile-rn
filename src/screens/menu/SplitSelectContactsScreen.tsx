@@ -203,6 +203,7 @@ const SplitSelectContactsScreen = ({
                       <CheckIcon size={25} color={Colors["general"].green} />
                     ) : undefined
                   }
+                  isContactOnAza={false}
                 />
               </TouchableOpacity>
             );

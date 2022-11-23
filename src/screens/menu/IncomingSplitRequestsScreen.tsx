@@ -54,25 +54,25 @@ const IncomingSplitRequestsScreen = ({
 
   const listItems = [
     {
-      name: "Coldstone",
+      name: "KFC",
       amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThTumpKjOB5PtCkHk3DUZ_6px9A073NcfLPA&usqp=CAU",
-    },
-    {
-      name: "Burger King",
-      amount: "20000",
-      date: "4 July 2022 04:26",
-      splitImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07WdeXexZ8Igvtni6pY013Wc0K1i9uuWfPA&usqp=CAU",
+        "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
     },
     {
       name: "KFC",
       amount: "20000",
       date: "4 July 2022 04:26",
       splitImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiwr_jykU8Gdf9mpFXyUFwKAbCEaLFPFJbfA&usqp=CAU",
+        "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
+    },
+    {
+      name: "KFC",
+      amount: "20000",
+      date: "4 July 2022 04:26",
+      splitImage:
+        "https://upload.wikimedia.org/wikipedia/sco/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
     },
   ];
 

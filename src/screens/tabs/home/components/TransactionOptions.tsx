@@ -37,9 +37,10 @@ const TransactionOptions = ({
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           marginTop: hp(20),
           marginBottom: hp(10),
+          paddingHorizontal: hp(20),
         }}>
         <TouchableOpacity
           onPress={() =>

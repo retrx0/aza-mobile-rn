@@ -54,8 +54,8 @@ const OutgoingSplitRequestsScreen = ({
         <SplitListItem
           amount="480000"
           date="4 July 2022 04:26"
-          name="KFC"
-          splitImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiwr_jykU8Gdf9mpFXyUFwKAbCEaLFPFJbfA&usqp=CAU"
+          name="Genesis Cinemas"
+          splitImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCw2MbJZQFCcrpjKNlU9z6nui49AWU1_ugpJSQ_wnCQ&s"
         />
         <Divider />
         <View
