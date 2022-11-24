@@ -78,7 +78,6 @@ const SetupRecurringTransferScreen = ({
               fontSize: hp(16),
               marginTop: hp(30),
               marginBottom: hp(40),
-              marginLeft: hp(5),
             }}>
             Setup a recurring money transfer
           </Text>
@@ -87,9 +86,9 @@ const SetupRecurringTransferScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontSize: hp(14),
+                fontSize: hp(16),
                 fontWeight: "500",
-                marginLeft: hp(5),
+
                 fontFamily: "Euclid-Circular-A-Medium",
               }}>
               Period
@@ -107,10 +106,9 @@ const SetupRecurringTransferScreen = ({
                 // lightColor={Colors.light.secondaryText}
                 // darkColor={Colors.dark.secondaryText}
                 style={{
-                  fontSize: hp(14),
+                  fontSize: hp(16),
                   fontWeight: "500",
                   fontFamily: "Euclid-Circular-A-Medium",
-                  marginLeft: hp(5),
                 }}>
                 Day
               </Text>

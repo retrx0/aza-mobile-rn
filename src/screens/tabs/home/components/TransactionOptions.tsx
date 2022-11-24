@@ -40,7 +40,7 @@ const TransactionOptions = ({
           justifyContent: "space-between",
           marginTop: hp(20),
           marginBottom: hp(10),
-          paddingHorizontal: hp(20),
+          paddingHorizontal: hp(10),
         }}>
         <TouchableOpacity
           onPress={() =>

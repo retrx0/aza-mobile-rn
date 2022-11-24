@@ -15,6 +15,7 @@ import { CommonScreenProps } from "../../common/navigation/types";
 import { useAppSelector } from "../../redux";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
+import { Input } from "../../components/input/input";
 
 const SendMoneyConfirmationScreen = ({
   navigation,
@@ -59,7 +60,6 @@ const SendMoneyConfirmationScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               marginVertical: hp(30),
-              marginLeft: hp(5),
             }}>
             Kindly confirm the details of this transaction
           </Text>
@@ -68,8 +68,8 @@ const SendMoneyConfirmationScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
               }}>
               To
@@ -80,12 +80,12 @@ const SendMoneyConfirmationScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
-                marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
               value={transferObject.beneficairy.fullName}
@@ -113,79 +113,50 @@ const SendMoneyConfirmationScreen = ({
               }}
             />
           </View>
-          <View style={{ marginBottom: hp(30) }}>
-            <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
-              style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
-                fontWeight: "500",
-                marginLeft: hp(5),
-              }}>
-              Amount
-            </Text>
-            <View
-              style={[
-                CommonStyles.row,
+          <View style={{ marginBottom: 30 }}>
+            <Input
+              icon={null}
+              inputStyle={[
+                styles.input,
                 {
-                  marginTop: hp(15),
-                  alignSelf: "stretch",
-                  position: "relative",
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 },
-              ]}>
-              <Text
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}>
-                {"\u20A6 "}
-              </Text>
-              <TextInput
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
-                placeholderTextColor={Colors[colorScheme].secondaryText}
-                style={{
-                  flex: 1,
-                  backgroundColor: "transparent",
-                  fontFamily: "Euclid-Circular-A",
-                  paddingBottom: 5,
-                  paddingLeft: 20,
-                  borderBottomWidth: 1,
-                  borderBottomColor: Colors[colorScheme].separator,
-                  marginLeft: hp(5),
-                }}
-                showSoftInputOnFocus={false}
-                value={"" + transferObject.amount}
-              />
-            </View>
-          </View>
-          <View style={{ marginBottom: hp(30) }}>
-            <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
-              style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
-                fontWeight: "500",
-                marginLeft: hp(5),
-              }}>
-              Description
-            </Text>
-            <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
-              style={{
-                backgroundColor: "transparent",
+              ]}
+              labelStyle={{
                 fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginTop: hp(15),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-                marginLeft: hp(5),
+                fontWeight: "500",
+                fontSize: hp(16),
+                color: colorScheme === "dark" ? "#999999" : "#000000",
               }}
-              showSoftInputOnFocus={false}
-              value={transferObject.description}
+              label="Amount"
+              placeholder={"\u20A60"}
+              placeholderTextColor={
+                colorScheme === "dark" ? "#E7E9EA" : "#000000"
+              }
+            />
+          </View>
+          <View style={{ marginBottom: 30 }}>
+            <Input
+              icon={null}
+              inputStyle={[
+                styles.input,
+                {
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
+              labelStyle={{
+                fontFamily: "Euclid-Circular-A",
+                fontWeight: "500",
+                fontSize: hp(16),
+                color: colorScheme === "dark" ? "#999999" : "#000000",
+              }}
+              label="Description"
+              placeholder={"Chop life my gee ❤️"}
+              placeholderTextColor={
+                colorScheme === "dark" ? "#E7E9EA" : "#000000"
+              }
             />
           </View>
         </View>
@@ -195,7 +166,7 @@ const SendMoneyConfirmationScreen = ({
             title="Continue"
             onPressButton={() =>
               navigation.navigate("StatusScreen", {
-                status: "Successful",
+                status: "Your Transaction was successful",
                 statusIcon: "Success",
                 statusMessage: "Your money transfer has been successful.",
                 statusMessage2:
@@ -233,8 +204,14 @@ export default SendMoneyConfirmationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: "flex",
     justifyContent: "space-between",
     paddingHorizontal: 15,
+  },
+  input: {
+    width: "100%",
+    borderBottomWidth: 1,
+    fontFamily: "Euclid-Circular-A-Medium",
+    fontWeight: "500",
+    fontSize: hp(16),
   },
 });

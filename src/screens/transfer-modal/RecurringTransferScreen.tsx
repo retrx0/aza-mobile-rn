@@ -54,7 +54,6 @@ const RecurringTransferScreen = ({
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              marginLeft: hp(5),
             }}>
             You can add and edit daily, weekly and monthly recurring money
             transfer orders.
