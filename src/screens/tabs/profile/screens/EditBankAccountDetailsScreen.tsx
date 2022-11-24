@@ -52,7 +52,7 @@ const EditBankAccountDetailsScreen = ({
             // darkColor={Colors.dark.mainText}
             style={{
               marginVertical: hp(30),
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(5),
@@ -65,7 +65,7 @@ const EditBankAccountDetailsScreen = ({
               // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: hp(15),
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
               }}>
@@ -77,12 +77,13 @@ const EditBankAccountDetailsScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
                 marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               value={"Access"}
             />
@@ -108,7 +109,7 @@ const EditBankAccountDetailsScreen = ({
               // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: hp(15),
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
               }}>
@@ -120,12 +121,13 @@ const EditBankAccountDetailsScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
                 marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               value={"123456789"}
             />
@@ -136,7 +138,7 @@ const EditBankAccountDetailsScreen = ({
               // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: hp(15),
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
               }}>
@@ -148,12 +150,13 @@ const EditBankAccountDetailsScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
                 marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               value={"james bond"}
             />

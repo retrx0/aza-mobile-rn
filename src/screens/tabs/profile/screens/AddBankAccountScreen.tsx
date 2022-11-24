@@ -53,7 +53,7 @@ const AddBankAccountScreen = ({
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               marginVertical: hp(30),
               marginLeft: hp(5),
