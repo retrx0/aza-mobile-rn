@@ -96,14 +96,8 @@ const StatusScreen = ({
               onPressButton={() =>
                 navigation.navigate("SetupRecurringTransfer")
               }
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={{
-                backgroundColor: "transparent",
-                borderWidth: 1,
-                borderColor: Colors[colorScheme].text,
-              }}
+              style={[CommonStyles.toBankbutton]}
+              styleText={CommonStyles.toBankbuttonText}
             />
           )}
           <Button
@@ -123,6 +117,7 @@ const StatusScreen = ({
               title="Receipt"
               color={Colors[colorScheme].text}
               onPressButton={() => console.log("called receipt")}
+              style={{ marginTop: 10 }}
             />
           )}
           {cancelButton && (

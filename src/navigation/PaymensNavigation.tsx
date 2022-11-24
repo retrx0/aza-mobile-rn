@@ -27,7 +27,7 @@ import CableConfirmation from "../screens/tabs/payments/cable-tv-screens/CableCo
 import WaterConfirmation from "../screens/tabs/payments/water-screens/WaterConfirmation";
 import GiftCardScreen from "../screens/tabs/payments/gift-card/GiftCardScreen";
 import GiftCardDetails from "../screens/tabs/payments/gift-card/GiftCard_Details";
-import GameScreen from "../screens/tabs/payments/Game.tsx/GameScreen";
+import GameScreen from "../screens/tabs/payments/game/GameScreen";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
