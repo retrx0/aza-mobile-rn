@@ -68,7 +68,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             inputStyle={{
               fontSize: hp(16),
               fontWeight: "500",
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               // fontSize: hp(16),
               // fontWeight: "500",
               // fontFamily: "Euclid-Circular-A",

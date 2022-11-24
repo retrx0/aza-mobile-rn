@@ -27,7 +27,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             This action cannot be undone
           </Text>
           <Text style={CommonStyles.lockupStyle}>
-            You are about to lock up {"\u20A680000"} for 2 Weeks
+            You are about to lock up {"\u20A62000"} for 2 Weeks
           </Text>
         </View>
         <View

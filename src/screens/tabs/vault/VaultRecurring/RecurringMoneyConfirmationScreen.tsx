@@ -12,6 +12,7 @@ import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ImageInput } from "../../payments/sub-components/ImageInput";
 
 const RecurringMoneyConfirmationScreen = ({
   navigation,
@@ -45,35 +46,13 @@ const RecurringMoneyConfirmationScreen = ({
         </Text>
         <View
           style={{
-            borderBottomWidth: 0.5,
-            width: "90%",
-            marginBottom: hp(35),
-            borderColor: "#EAEAEC",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            alignSelf: "center",
+            paddingHorizontal: hp(10),
           }}>
-          <Input
-            icon={null}
-            keyboardType="default"
-            labelStyle={styles.label}
-            label="To"
-            placeholder="Flight Ticket vault"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Medium",
-            }}
-          />
-          <Image
-            style={{
-              width: 45,
-              height: 45,
-            }}
+          <ImageInput
+            label={"To"}
+            placeholder={"Flight Ticket vault"}
             source={require("../../../../../assets/images/icons/CoverImage.png")}
+            icon={undefined}
           />
         </View>
         <View style={CommonStyles.vaultInputcontainer}>
@@ -87,7 +66,7 @@ const RecurringMoneyConfirmationScreen = ({
               borderBottomWidth: hp(0.25),
               borderColor: "#EAEAEC",
               paddingVertical: hp(8),
-              width: 370,
+              width: "100%",
             }}
             labelStyle={styles.label}
             label="Amount"
@@ -107,7 +86,7 @@ const RecurringMoneyConfirmationScreen = ({
               borderBottomWidth: hp(0.25),
               borderColor: "#EAEAEC",
               paddingVertical: hp(8),
-              width: 370,
+              width: "100%",
             }}
             labelStyle={styles.label}
             label="Period"
@@ -127,7 +106,7 @@ const RecurringMoneyConfirmationScreen = ({
               borderBottomWidth: hp(0.25),
               borderColor: "#EAEAEC",
               paddingVertical: hp(8),
-              width: 370,
+              width: "100%",
             }}
             labelStyle={styles.label}
             label="Day"
@@ -149,7 +128,7 @@ const RecurringMoneyConfirmationScreen = ({
                 statusIcon: "Success",
                 //TODO update message to accept JSX
                 statusMessage: "Your recurring transfer was setup successfully",
-                navigateTo: "Home",
+                navigateTo: "TopBar",
               })
             }
             styleText={{

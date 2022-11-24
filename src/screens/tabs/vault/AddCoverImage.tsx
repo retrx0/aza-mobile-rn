@@ -43,7 +43,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(70),
+              marginLeft: hp(90),
             }}>
             Add Cover Image
           </Text>

@@ -35,7 +35,7 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(80),
+              marginLeft: hp(60),
             }}>
             Change Goal Amount
           </Text>

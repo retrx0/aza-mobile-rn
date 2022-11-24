@@ -101,6 +101,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             fontFamily: "Euclid-Circular-A",
             color: Colors[colorScheme].secondaryText,
             marginLeft: hp(10),
+            marginTop: hp(5),
           }}>
           * This saves the selected percentage from your aza f balance
         </Text>

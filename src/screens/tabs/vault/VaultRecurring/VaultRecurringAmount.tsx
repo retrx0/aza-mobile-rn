@@ -36,7 +36,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(70),
+              marginLeft: hp(80),
             }}>
             Recurring Transfer
           </Text>

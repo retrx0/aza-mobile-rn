@@ -29,13 +29,13 @@ const VaultRecurringTransfer = ({
   ];
 
   const day = [
-    { label: "Saturday", value: "1" },
     { label: "Sunday", value: "1" },
     { label: "Monday", value: "1" },
     { label: "Tuesday", value: "1" },
     { label: "Wednesday", value: "1" },
     { label: "Thursday", value: "1" },
     { label: "Friday", value: "1" },
+    { label: "Saturday", value: "1" },
   ];
 
   return (
@@ -84,6 +84,7 @@ const VaultRecurringTransfer = ({
             placeholder="Choose a period"
             setValue={setPeriodValue}
             value={periodValue}
+            label={""}
           />
         </View>
         <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
@@ -105,6 +106,7 @@ const VaultRecurringTransfer = ({
             placeholder="Choose a day"
             setValue={setDayValue}
             value={dayValue}
+            label={""}
           />
         </View>
 

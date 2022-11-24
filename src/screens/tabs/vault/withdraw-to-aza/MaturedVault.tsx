@@ -60,11 +60,17 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
           <Button
             title="Withdraw to Bank"
-            onPressButton={() =>
-              navigation
-                .getParent()
-                ?.navigate("Common", { screen: "VaultToBank" })
-            }
+            // onPressButton={() =>
+            //   navigation
+            //     .getParent()
+            //     ?.navigate("Common", { screen: "VaultToBank" })
+            // }
+            onPressButton={() => {
+              navigation.navigate("Common", {
+                screen: "BankAccounts",
+                params: { screenType: "Withdraw" },
+              });
+            }}
             style={[CommonStyles.toAzabutton]}
             styleText={CommonStyles.toAzabuttonText}
           />

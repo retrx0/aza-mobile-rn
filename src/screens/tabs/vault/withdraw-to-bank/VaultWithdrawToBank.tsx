@@ -91,6 +91,12 @@ const VaultToBank = () => {
           <CancelButtonWithUnderline
             title="Add another Bank Account"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}
+            // onPressButton={() => {
+            //   navigation.navigate("Common", {
+            //     screen: "BankAccounts",
+            //     params: { screenType: "Withdraw" },
+            //   });
+            // }}
             style={CommonStyles.archivedBox}
             styleText={CommonStyles.addAccount}
           />

@@ -48,9 +48,9 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(80),
+              marginLeft: hp(100),
             }}>
-            Confirmation
+            New Vault
           </Text>
         </View>
         <Text style={CommonStyles.descriptionStyle}>
@@ -105,6 +105,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             placeholder="Choose a period to lock funds away"
             setValue={setPeriodValue}
             value={periodValue}
+            label={""}
           />
         </View>
 

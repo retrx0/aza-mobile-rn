@@ -239,7 +239,7 @@ const VaultConfirmation = ({
               //TODO update message to accept JSX
               statusMessage:
                 "   You have successfully withdrawn \u20A680000 to your Bank Account",
-              navigateTo: "Home",
+              navigateTo: "UserVault",
             })
           }
           styleText={{

@@ -38,7 +38,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginRight: hp(30),
+              marginRight: hp(50),
             }}>
             Vault
           </Text>
@@ -50,7 +50,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             fontSize: hp(16),
             fontWeight: "500",
-            fontFamily: "Euclid-Circular-A",
+            fontFamily: "Euclid-Circular-A-Medium",
             marginBottom: hp(40),
             marginLeft: hp(19),
           }}>

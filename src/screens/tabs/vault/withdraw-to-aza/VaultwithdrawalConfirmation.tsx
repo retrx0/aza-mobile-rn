@@ -79,7 +79,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 //TODO update message to accept JSX
                 statusMessage:
                   "   You have successfully withdrawn \u20A6 80,000 to your Aza Account",
-                navigateTo: "Vault",
+                navigateTo: "UserVault",
               })
             }
             styleText={{

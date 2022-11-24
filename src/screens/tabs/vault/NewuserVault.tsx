@@ -154,7 +154,7 @@ const NewUserVault = () => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", {
-              screen: "NewVault",
+              screen: "Vault",
             })
           }>
           <AddIcon />
