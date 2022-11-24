@@ -30,8 +30,7 @@ const ChangeEmailScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}
-        >
+          }}>
           New Email
         </Text>
       ),
@@ -51,12 +50,11 @@ const ChangeEmailScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(5),
           fontWeight: "500",
           // marginTop: hp(30),
-        }}
-      >
+        }}>
         Change your email
       </Text>
       <View style={{ marginBottom: 10, marginTop: 30 }}>

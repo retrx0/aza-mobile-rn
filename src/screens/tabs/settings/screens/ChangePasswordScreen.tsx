@@ -33,8 +33,7 @@ const ChangePasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}
-        >
+          }}>
           Current Password
         </Text>
       ),
@@ -77,11 +76,10 @@ const ChangePasswordScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(5),
           fontWeight: "500",
-        }}
-      >
+        }}>
         Please enter your current password
       </Text>
       <View style={{ marginTop: hp(80), marginBottom: hp(100) }}>

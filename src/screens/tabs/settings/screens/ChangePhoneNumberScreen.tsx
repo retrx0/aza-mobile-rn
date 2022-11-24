@@ -45,7 +45,7 @@ const ChangePhoneNumberScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(5),
           fontWeight: "500",
           // marginTop: hp(30),
