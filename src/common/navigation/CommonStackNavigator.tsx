@@ -126,6 +126,10 @@ import InternetConfirmation from "../../screens/tabs/payments/internet-screens/I
 import CableConfirmation from "../../screens/tabs/payments/cable-tv-screens/CableConfirmation";
 import CharityConfirmation from "../../screens/tabs/payments/charity-screens/CharityConfirmation";
 import WaterConfirmation from "../../screens/tabs/payments/water-screens/WaterConfirmation";
+import GiftCardScreen from "../../screens/tabs/payments/gift-card/GiftCardScreen";
+import GiftCardConfirmation from "../../screens/tabs/payments/gift-card/GiftCardConfirmation";
+import GiftCardDetails from "../../screens/tabs/payments/gift-card/GiftCard_Details";
+import GameScreen from "../../screens/tabs/payments/Game.tsx/GameScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -460,6 +464,26 @@ const CommonStack = () => {
           options={{ title: "Internet" }}
           name="InternetPlans"
           component={InternetPlans}
+        />
+        <Stack.Screen
+          options={{ title: "Gift Cards" }}
+          name="GiftCard"
+          component={GiftCardScreen}
+        />
+        <Stack.Screen
+          options={{ title: "iTunes" }}
+          name="GiftCardDetails"
+          component={GiftCardDetails}
+        />
+        <Stack.Screen
+          options={{ title: "Game Credits" }}
+          name="GameScreen"
+          component={GameScreen}
+        />
+        <Stack.Screen
+          options={{ title: "Confirmation" }}
+          name="GiftCardConfirmation"
+          component={GiftCardConfirmation}
         />
         <Stack.Screen
           options={{ title: "Electricity" }}

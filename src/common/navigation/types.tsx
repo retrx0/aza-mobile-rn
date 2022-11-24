@@ -34,6 +34,9 @@ export type CommonStackParamList = {
   WaterConfirmation: undefined;
   GiftCardConfirmation: undefined;
   CharityConfirmation: undefined;
+  GiftCard: undefined;
+  GiftCardDetails: undefined;
+  GameScreen: undefined;
 
   // Vault
   NewVault: undefined;

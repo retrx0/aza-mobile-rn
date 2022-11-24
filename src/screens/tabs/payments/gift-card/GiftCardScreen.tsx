@@ -6,27 +6,22 @@ import { Input } from "../../../../components/input/input";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
 import {
-  Chess,
-  DORCAS,
-  FOUNTAIN,
-  HOPE,
-  ICICE,
-  IET,
-  IREDE,
-  Ntel,
-  OVIE,
-  REAL,
-  SAINTS,
-  SAVE,
-  Spectranet,
-  TIMEOUT,
-  YARA,
+  AMAZON,
+  GOOGLEPLAY,
+  ITUNES,
+  NETFLIX,
+  NINTENDO,
+  PSN,
+  RAZER,
+  SEPHORA,
+  STEAM,
+  XBOX,
 } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
-export default function CharityIndexScreen({
+export default function GiftCardScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const colorScheme = useColorScheme();
@@ -44,105 +39,83 @@ export default function CharityIndexScreen({
         ]}
         labelStyle={styles.label}
         label=""
-        placeholder="Search for charitable organizations"
+        placeholder="Search for gift card"
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="ICICE"
-          Icon={() => <Image style={styles2.img} source={ICICE} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="IET"
-          Icon={() => <Image style={styles2.img} source={IET} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Living Fountain Orphange"
-          Icon={() => <Image style={styles2.img} source={FOUNTAIN} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Little Saints Orphanage"
-          Icon={() => <Image style={styles2.img} source={SAINTS} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Hope Motherless Babies Home"
-          Icon={() => <Image style={styles2.img} source={HOPE} />}
-        />
-        <ListItem
           onPress={() => {
             navigation.navigate("Common", {
-              screen: "CharityDetail",
-              params: { name: "Chess in Slums" },
+              screen: "GiftCardDetails",
             });
           }}
           route=""
+          index={2}
+          title="iTunes"
+          Icon={() => <Image style={styles2.img} source={ITUNES} />}
+        />
+        <ListItem
+          onPress={() => {}}
+          route=""
+          index={2}
+          title="Google Play"
+          Icon={() => <Image style={styles2.img} source={GOOGLEPLAY} />}
+        />
+        <ListItem
+          onPress={() => {}}
+          route=""
+          index={2}
+          title="Amazon"
+          Icon={() => <Image style={styles2.img} source={AMAZON} />}
+        />
+        <ListItem
+          onPress={() => {}}
+          route=""
+          index={2}
+          title="PSN"
+          Icon={() => <Image style={styles2.img} source={PSN} />}
+        />
+        <ListItem
+          onPress={() => {}}
+          route=""
+          index={2}
+          title="Xbox"
+          Icon={() => <Image style={styles2.img} source={XBOX} />}
+        />
+        <ListItem
+          route=""
           index={0}
-          title="Chess in Slums"
-          Icon={() => <Image style={styles2.img} source={Chess} />}
+          title="Razer"
+          Icon={() => <Image style={styles2.img} source={RAZER} />}
+          onPress={undefined}
         />
 
         <ListItem
           onPress={() => {}}
           route=""
           index={2}
-          title="Aunty Dorcas Orphanage"
-          Icon={() => <Image style={styles2.img} source={DORCAS} />}
+          title="Netflix"
+          Icon={() => <Image style={styles2.img} source={NETFLIX} />}
         />
         <ListItem
           onPress={() => {}}
           route=""
           index={2}
-          title="Timeout 4 Africa"
-          Icon={() => <Image style={styles2.img} source={TIMEOUT} />}
+          title="Steam"
+          Icon={() => <Image style={styles2.img} source={STEAM} />}
         />
         <ListItem
           onPress={() => {}}
           route=""
           index={2}
-          title="Save the Children"
-          Icon={() => <Image style={styles2.img} source={SAVE} />}
+          title="Sephora"
+          Icon={() => <Image style={styles2.img} source={SEPHORA} />}
         />
         <ListItem
           onPress={() => {}}
           route=""
           index={2}
-          title="The Irede Foundation"
-          Icon={() => <Image style={styles2.img} source={IREDE} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="The CeCe Yara Foundation"
-          Icon={() => <Image style={styles2.img} source={YARA} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Keeping it real Foundation"
-          Icon={() => <Image style={styles2.img} source={REAL} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Ovie Brume Foundation"
-          Icon={() => <Image style={styles2.img} source={OVIE} />}
+          title="Nintendo"
+          Icon={() => <Image style={styles2.img} source={NINTENDO} />}
         />
       </ScrollView>
     </View>
@@ -167,7 +140,7 @@ const styles2 = StyleSheet.create({
     marginTop: 0,
   },
   img: {
-    width: 45,
-    height: 45,
+    width: 36,
+    height: 36,
   },
 });

@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 import BackButton from "../../components/buttons/BackButton";
 import { Text, TextInput, View } from "../../components/Themed";
 import Button from "../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -13,6 +12,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 const BvnVerificationScreen = ({
   navigation,

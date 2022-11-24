@@ -148,7 +148,9 @@ export default function Payments({
 
         <ListItem
           index={5}
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate("Common", { screen: "GiftCard" });
+          }}
           Icon={() => <GiftIcon size={24} />}
           title="Gift Cards"
           route=""
@@ -166,7 +168,7 @@ export default function Payments({
         <ListItem
           index={6}
           onPress={() => {
-            navigation.navigate("Common", { screen: "Charity" });
+            navigation.navigate("Common", { screen: "GameScreen" });
           }}
           Icon={() => <GameIcon size={24} />}
           title="Game Credits"

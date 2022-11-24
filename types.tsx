@@ -67,6 +67,9 @@ export type PaymentsStackParamList = {
   WaterConfirmation: undefined;
   GiftCardConfirmation: undefined;
   CharityConfirmation: undefined;
+  GiftCard: undefined;
+  GiftCardDetails: undefined;
+  GameScreen: undefined;
 };
 
 export type TopTabParamList = {

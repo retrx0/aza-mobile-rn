@@ -25,6 +25,9 @@ import AirtimeConfirmation from "../screens/tabs/payments/airtime-screens/Airtim
 import InternetConfirmation from "../screens/tabs/payments/internet-screens/InternetConfirmation";
 import CableConfirmation from "../screens/tabs/payments/cable-tv-screens/CableConfirmation";
 import WaterConfirmation from "../screens/tabs/payments/water-screens/WaterConfirmation";
+import GiftCardScreen from "../screens/tabs/payments/gift-card/GiftCardScreen";
+import GiftCardDetails from "../screens/tabs/payments/gift-card/GiftCard_Details";
+import GameScreen from "../screens/tabs/payments/Game.tsx/GameScreen";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -109,7 +112,7 @@ const PaymentNavigator = () => {
               color={scheme == "light" ? "#000000" : "#ffffff"}
               size={24}
             />
-            <Text style={{ marginLeft: 5 }}>Back</Text>
+            <Text style={{ marginLeft: 5, fontSize: 16 }}>Back</Text>
           </TouchableOpacity>
         ),
         headerStyle: {
@@ -174,6 +177,11 @@ const PaymentNavigator = () => {
         component={WaterConfirmation}
       />
       <Stack.Screen
+        options={{ title: "GameScreen" }}
+        name="GameScreen"
+        component={GameScreen}
+      />
+      <Stack.Screen
         options={{ title: "Confirmation" }}
         name="CharityConfirmation"
         component={CharityConfirmation}
@@ -205,6 +213,16 @@ const PaymentNavigator = () => {
         component={CharityTabs}
       />
 
+      <Stack.Screen
+        options={({ route }: { route: any }) => ({ title: route.params.name })}
+        name="GiftCard"
+        component={GiftCardScreen}
+      />
+      <Stack.Screen
+        options={{ title: "iTunes" }}
+        name="GiftCardDetails"
+        component={GiftCardDetails}
+      />
       <Stack.Screen
         options={({ route }: { route: any }) => ({ title: route.params.name })}
         name="internet_plan_detail"
