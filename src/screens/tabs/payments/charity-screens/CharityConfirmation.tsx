@@ -97,7 +97,6 @@ export default function CharityConfirmation({
           fontWeight: "500",
           lineHeight: hp(17),
           fontFamily: "Euclid-Circular-A",
-          marginTop: hp(20),
         }}
       />
     </ScrollView>

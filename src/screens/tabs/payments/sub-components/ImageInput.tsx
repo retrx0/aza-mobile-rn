@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   img: {
-    height: 36,
-    width: 36,
+    height: 45,
+    width: 45,
     borderRadius: 36,
     position: "absolute",
     right: 0,
