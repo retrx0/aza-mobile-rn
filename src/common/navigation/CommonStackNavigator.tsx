@@ -139,6 +139,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
+          marginTop: hp(20),
         }}>
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />

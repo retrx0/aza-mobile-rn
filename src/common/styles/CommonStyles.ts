@@ -85,7 +85,7 @@ const CommonStyles = StyleSheet.create({
   accessContainer: {
     borderBottomWidth: hp(0.3),
     borderColor: "black",
-    width: wp(335),
+    width: "95%",
     borderTopWidth: hp(0.3),
     alignSelf: "center",
     flexDirection: "row",
@@ -97,7 +97,7 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(10),
   },
   selectStyle: {
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontSize: hp(16),
     fontWeight: "500",
     marginLeft: hp(14),
@@ -189,12 +189,12 @@ const CommonStyles = StyleSheet.create({
 
   archivedBox: {
     marginBottom: hp(10),
-    borderBottomColor: "#A6A6A6",
+    borderBottomColor: "#121212",
     paddingBottom: hp(1),
     borderBottomWidth: hp(1),
   },
   addAccount: {
-    color: "#121212",
+    borderBottomColor: "#121212",
     fontFamily: "Euclid-Circular-A",
     fontSize: hp(14),
     fontWeight: "500",
@@ -354,13 +354,11 @@ const CommonStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginHorizontal: hp(10),
-    marginVertical: hp(10),
-    marginTop: hp(10),
   },
   inputStyle: {
     fontSize: hp(16),
     fontWeight: "500",
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     borderBottomWidth: hp(0.25),
     borderColor: "#EAEAEC",
     paddingVertical: hp(8),
