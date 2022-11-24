@@ -129,7 +129,7 @@ import WaterConfirmation from "../../screens/tabs/payments/water-screens/WaterCo
 import GiftCardScreen from "../../screens/tabs/payments/gift-card/GiftCardScreen";
 import GiftCardConfirmation from "../../screens/tabs/payments/gift-card/GiftCardConfirmation";
 import GiftCardDetails from "../../screens/tabs/payments/gift-card/GiftCard_Details";
-import GameScreen from "../../screens/tabs/payments/Game.tsx/GameScreen";
+import GameScreen from "../../screens/tabs/payments/game/GameScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
