@@ -1,16 +1,29 @@
 import React, { useState } from "react";
-import { SignInScreenProps, SignUpScreenProps } from "../../../../types";
+import {
+  CountriesType,
+  CountryDetails,
+  CountryProps,
+  SignUpScreenProps,
+} from "../../../../types";
 import { PhoneInput, Text, View } from "../../../components/Themed";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { useAppDispatch } from "../../../redux";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp } from "../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { requestOtpApi } from "../../../api/auth";
+import { CountryBox } from "../signup/components/CountryInput";
+import { useCountries } from "../signup/components/UseCountries";
+import { CountriesCard } from "../signup/components/CountriesCard";
+import Modal from "react-native-modal";
+import { FlatList } from "react-native";
+import { SelectIcon } from "../../../../assets/svg";
+import SignupStage1 from "./phoneStage";
+import Phone from "./phoneStage";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -18,74 +31,141 @@ const PhoneNumberScreen = ({
   const [phone, setPhone] = useState<string>("");
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [code, setCode] = useState("");
+  const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
+  const { loading, countries } = useCountries();
+  const FetchedCountries = ({ item }: { item: CountryProps }) => {
+    return <CountriesCard onPress={() => selectCountry(item)} {...item} />;
+  };
+  const selectCountry = (item: CountriesType) => {
+    setCountry(item);
+    setModalVisible(false);
+  };
+  // const bottomSheetRef = useRef<BottomSheet>(null);
+  // const [phoneNumber, setPhoneNumber] = useState('');
+  // const intro = useRef<AppIntroSlider>(null);
+  // const checkOTP = useRef<OTPInputView>(null);
+  // const [signupStage, setSignupStage] = useState(1);
+  // const [nextSlide, setNext] = useState(1);
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
-    <SpacerWrapper>
-      <View style={{ marginLeft: 20 }}>
-        <BackButton
-          onPress={() => {
-            navigation.getParent()?.navigate("Welcome");
+    <>
+      <SpacerWrapper>
+        <View style={{ marginLeft: 20 }}>
+          <BackButton
+            onPress={() => {
+              navigation.getParent()?.navigate("Welcome");
+            }}
+          />
+        </View>
+        <View style={CommonStyles.phoneContainer}>
+          <Text style={[CommonStyles.headerText]}>Sign Up</Text>
+          <Text style={[CommonStyles.bodyText]}>
+            Enter your phone number to sign up
+          </Text>
+          <Text
+            style={{
+              padding: hp(5),
+              margin: hp(4),
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              marginTop: hp(35),
+              marginLeft: hp(15),
+              fontSize: hp(18),
+              fontWeight: "500",
+            }}>
+            Phone Number <Text style={{ color: "red" }}>*</Text>
+          </Text>
+        </View>
+
+        {/* <View
+          style={[
+            CommonStyles.phoneStyle,
+            { flexDirection: "row", alignItems: "center" },
+          ]}>
+          <PhoneInput
+            initialValue={phone}
+            onChangePhoneNumber={(p) => setPhone(p)}
+            initialCountry="ng"
+            autoFormat
+            textStyle={[CommonStyles.textStyle]}
+            textProps={{
+              placeholder: "Enter a phone number...",
+            }}
+            pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
+            offset={20}
+          />
+          <SelectIcon />
+        </View> */}
+        <Phone
+          country={country}
+          phoneNumber={phoneNumber}
+          onCountryPress={() => setModalVisible(true)}
+          onChangeText={setPhoneNumber}
+          onSendOtp={phone}
+          onChangePhoneNumber={(p: React.SetStateAction<string>) => setPhone(p)}
+          initialValue={phone}
+          initialCountry="ng"
+          autoFormat
+          textStyle={[CommonStyles.textStyle]}
+          textProps={{
+            placeholder: "Enter a phone number...",
           }}
+          pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
+          offset={20}
         />
-      </View>
-      <View style={CommonStyles.phoneContainer}>
-        <Text style={[CommonStyles.headerText]}>Sign Up</Text>
-        <Text style={[CommonStyles.bodyText]}>
-          Enter your phone number to sign up
-        </Text>
-        <Text
-          style={{
-            padding: hp(5),
-            margin: hp(4),
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            marginTop: hp(35),
-            marginLeft: hp(15),
-            fontSize: hp(18),
-            fontWeight: "500",
+
+        <Button
+          title="Continue"
+          onPressButton={() => {
+            dispatch(
+              setReduxStorePhone(phoneNumber.trim().replaceAll(/\s/g, ""))
+            );
+            requestOtpApi({
+              email: "",
+              phoneNumber: phoneNumber.trim().replaceAll(/\s/g, ""),
+            }).then((code) => {
+              if (code) console.debug("Phone otp requested");
+            });
+            navigation.push("SignUpOTP", {
+              otpScreenType: "phone",
+            });
           }}
-        >
-          Phone Number <Text style={{ color: "red" }}>*</Text>
-        </Text>
-      </View>
-      <PhoneInput
-        initialValue={phone}
-        onChangePhoneNumber={(p) => setPhone(p)}
-        initialCountry="ng"
-        autoFormat
-        textStyle={[CommonStyles.textStyle]}
-        textProps={{
-          placeholder: "Enter a phone number...",
-        }}
-        pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
-        style={[CommonStyles.phoneStyle]}
-        offset={20}
-      />
-      <Button
-        title="Continue"
-        onPressButton={() => {
-          dispatch(setReduxStorePhone(phone.trim().replaceAll(/\s/g, "")));
-          requestOtpApi({
-            email: "",
-            phoneNumber: phone.trim().replaceAll(/\s/g, ""),
-          }).then((code) => {
-            if (code) console.debug("Phone otp requested");
-          });
-          navigation.push("SignUpOTP", {
-            otpScreenType: "phone",
-          });
-        }}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-        }}
-        style={[
-          {
-            backgroundColor: Colors[colorScheme].button,
-          },
-          CommonStyles.button,
-        ]}
-        disabled={phone.length < 10}
-      />
-    </SpacerWrapper>
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+            },
+            CommonStyles.button,
+          ]}
+          disabled={phoneNumber.length < 10}
+        />
+      </SpacerWrapper>
+      <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>
+        <View
+          style={[
+            { borderRadius: hp(10) },
+            // {
+            //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
+            // },
+          ]}>
+          <FlatList
+            style={[
+              {
+                borderRadius: hp(10),
+                paddingHorizontal: wp(20),
+                paddingTop: hp(20),
+              },
+            ]}
+            data={countries}
+            renderItem={FetchedCountries}
+          />
+        </View>
+      </Modal>
+    </>
   );
 };
 

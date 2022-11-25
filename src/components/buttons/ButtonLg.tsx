@@ -21,6 +21,7 @@ const ButtonLg = (props: {
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
   disabled?: boolean;
+  titleStyle?: StyleProp<TextStyle>;
 }) => {
   return (
     <TouchableOpacity
@@ -61,6 +62,7 @@ const ButtonLg = (props: {
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 flex: 6,
               },
+              props.titleStyle,
             ]}>
             {props.title}
           </Text>

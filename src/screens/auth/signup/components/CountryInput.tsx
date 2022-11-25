@@ -8,9 +8,10 @@ import {
   StyleSheet,
   TextInputProps,
 } from "react-native";
-import { DropIcon } from "../../../../../assets/svg";
+import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 export const CountryBox = ({
   code,
@@ -20,77 +21,95 @@ export const CountryBox = ({
   // id,
   ...rest
 }: CountryProps & TextInputProps) => {
+  const colorScheme = useColorScheme();
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { borderColor: colorScheme === "dark" ? "#999999" : "#121212" },
+      ]}>
       <View style={styles.countryContainer}>
         <Image
           source={{ uri: imageLink }}
           style={styles.flag}
           resizeMode="contain"
         />
-        <View style={styles.country}>
+        {/* <View style={styles.country}>
           <Text style={styles.countryName}>{short_name}</Text>
-        </View>
-
-        <View style={styles.divider} />
-        <Text style={styles.countryName}>{code}</Text>
+        </View> */}
+        <Text
+          style={[
+            styles.countryName,
+            { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
+          ]}>
+          {code}
+        </Text>
+        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+          <SelectIcon />
+        </TouchableOpacity>
+        <View
+          style={[
+            styles.divider,
+            {
+              backgroundColor: colorScheme === "dark" ? "#D7D7DB" : "#000000",
+            },
+          ]}
+        />
         <TextInput
-          style={styles.textInput}
+          style={[
+            styles.textInput,
+            { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
+          ]}
           placeholder="phone number"
           keyboardType="number-pad"
           {...rest}
         />
       </View>
-
-      <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-        <DropIcon color={""} size={0} />
-      </TouchableOpacity>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   flag: {
-    width: wp(29),
-    height: hp(29),
-    marginRight: wp(12),
+    width: wp(15),
+    height: hp(15),
+    marginRight: wp(10),
   },
   country: {
     color: "black",
-    fontSize: hp(19),
+    fontSize: 17,
     paddingHorizontal: wp(2),
   },
   container: {
     flexDirection: "row",
-    alignItems: "center",
-    borderColor: "green",
-    borderWidth: 1,
-    borderRadius: 8,
+    alignSelf: "center",
+    width: "90%",
+    padding: hp(10),
+    borderWidth: hp(1),
+    borderRadius: hp(5),
+    marginBottom: hp(40),
     height: hp(55),
-    marginVertical: hp(30),
-    paddingHorizontal: wp(15),
   },
   countryContainer: {
     flexDirection: "row",
     alignItems: "center",
-    width: "95%",
   },
   divider: {
     width: 1,
-    backgroundColor: "grey",
-    height: hp(18),
-    marginRight: wp(8),
+
+    height: hp(28),
+    marginLeft: wp(12),
+    marginRight: 10,
   },
   countryName: {
     color: "black",
-    fontSize: hp(19),
+    fontSize: hp(16),
     marginRight: wp(5),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
   },
   textInput: {
-    marginRight: wp(5),
-    width: wp(140),
-    paddingRight: wp(5),
-    fontSize: hp(20),
-    alignItems: "center",
+    fontSize: hp(16),
+    fontFamily: "Euclid-Circular-A",
   },
 });

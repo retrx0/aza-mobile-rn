@@ -18,6 +18,7 @@ import {
   STORAGE_KEY_GOOGLE_TOKEN,
 } from "@env";
 import ActivityModal from "../../../components/modal/ActivityModal";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const ThirdPartyAuthButtons = ({
   onValidated,
@@ -32,6 +33,7 @@ const ThirdPartyAuthButtons = ({
   const [thirdPartyUserData, setThirdPartyUserData] = useState({});
 
   const [loading, setLoading] = useState(false);
+  const colorScheme = useColorScheme();
 
   React.useEffect(() => {
     if (g_response?.type === "success") {
@@ -74,9 +76,12 @@ const ThirdPartyAuthButtons = ({
     <View>
       {Platform.OS === "ios" ? (
         <ButtonLg
-          icon={<AppleIcon />}
+          icon={
+            <AppleIcon color={colorScheme === "dark" ? "#000000" : "#ffff"} />
+          }
           title="Connect Apple Account"
-          color={Colors.general.apple}
+          titleStyle={{ color: colorScheme === "dark" ? "#000000" : "#ffff" }}
+          color={colorScheme === "dark" ? "#ffff" : "#000000"}
           onPress={() => {
             signInWithApple().then((a_response) => {
               if (a_response?.identityToken) {

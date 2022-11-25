@@ -2,6 +2,8 @@ import React from "react";
 import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { View } from "../../../../components/Themed";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 export const CountriesCard = ({
   code,
@@ -10,9 +12,19 @@ export const CountriesCard = ({
   imageLink,
   onPress,
 }: CountryProps) => {
+  const colorScheme = useColorScheme();
+
   return (
-    <>
-      <TouchableOpacity style={styles.countryCard} onPress={onPress}>
+    <View>
+      <TouchableOpacity
+        style={[
+          styles.countryCard,
+          {
+            // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
+            borderColor: colorScheme === "dark" ? "#E5E5E5" : "#F2F2F2",
+          },
+        ]}
+        onPress={onPress}>
         {imageLink && (
           <Image
             source={{
@@ -22,36 +34,61 @@ export const CountriesCard = ({
               },
             }}
             style={styles.flag}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         )}
-        <Text style={styles.countryName}>{code}</Text>
-        <Text style={styles.countryName}>{short_name}</Text>
-
-        <Text style={styles.countryName}>{name}</Text>
+        <Text
+          style={[
+            styles.countryName,
+            {
+              // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
+              color: colorScheme === "dark" ? "#E5E5E5" : "#000000",
+            },
+          ]}>
+          {code}
+        </Text>
+        <Text
+          style={[
+            styles.countryName,
+            {
+              // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
+              color: colorScheme === "dark" ? "#E5E5E5" : "#000000",
+            },
+          ]}>
+          {short_name}
+        </Text>
+        <Text
+          style={[
+            styles.countryName,
+            {
+              // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
+              color: colorScheme === "dark" ? "#E5E5E5" : "#000000",
+            },
+          ]}>
+          {name}
+        </Text>
       </TouchableOpacity>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   countryName: {
     color: "black",
-    fontSize: hp(16),
-    marginRight: hp(5),
+    fontSize: 16,
+    marginRight: wp(5),
   },
   countryCard: {
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 0.5,
-    borderColor: "green",
     height: hp(40),
     paddingVertical: hp(5),
     marginBottom: hp(10),
   },
   flag: {
-    width: wp(29),
-    height: hp(29),
+    width: wp(15),
+    height: hp(15),
     marginRight: wp(12),
   },
 });

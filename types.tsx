@@ -165,12 +165,29 @@ export type SocialSignInProps = {
 
 export type CountryProps = {
   code: string;
+  short_name: string;
   name?: string;
   id?: string;
   imageLink?: string;
   onPress?: () => void;
-  short_name: string;
+  onChangePhoneNumber: any;
+  onSendOtp: any;
 };
+
+export const CountryDetails: CountriesType[] = [
+  {
+    code: "+234",
+    short_name: "NGN",
+    onChangePhoneNumber: {},
+    onSendOtp: {},
+  },
+  {
+    code: "+233",
+    short_name: "GH",
+    onChangePhoneNumber: {},
+    onSendOtp: {},
+  },
+];
 
 export type CountriesType = Omit<CountryProps, "onPress">;
 

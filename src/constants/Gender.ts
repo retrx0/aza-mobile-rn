@@ -1,3 +1,5 @@
+import { CountriesType } from "../../types";
+
 export const MALE = "male";
 export const FEMALE = "female";
 
