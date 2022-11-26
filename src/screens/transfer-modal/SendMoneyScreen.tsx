@@ -21,7 +21,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },
-    { key: "second", title: "Aza Number" },
+    { key: "second", title: "Aza Number/Bank" },
   ]);
   const colorScheme = useColorScheme();
   const layout = useWindowDimensions();

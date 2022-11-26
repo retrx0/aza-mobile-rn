@@ -98,6 +98,7 @@ const SetupRecurringTransferScreen = ({
               placeholder="Choose a period"
               setValue={setPeriodValue}
               value={periodValue}
+              label={""}
             />
           </View>
           {periodValue !== "daily" && (
@@ -117,6 +118,7 @@ const SetupRecurringTransferScreen = ({
                 placeholder="Choose a day"
                 setValue={setDayValue}
                 value={dayValue}
+                label={""}
               />
             </View>
           )}
@@ -169,6 +171,6 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(23),
   },
 });

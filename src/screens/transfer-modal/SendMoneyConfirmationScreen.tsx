@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(23),
   },
   input: {
     width: "100%",

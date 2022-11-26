@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(23),
   },
 
   input: {

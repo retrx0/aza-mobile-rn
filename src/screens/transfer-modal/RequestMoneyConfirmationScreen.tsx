@@ -54,10 +54,9 @@ const RequestMoneyConfirmationScreen = ({
             // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: hp(14),
-              // marginVertical: hp(30),
+              fontSize: hp(16),
+              marginVertical: hp(30),
               fontWeight: "500",
-              marginLeft: hp(5),
             }}>
             Kindly confirm the details of this transaction
           </Text>
@@ -66,12 +65,11 @@ const RequestMoneyConfirmationScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
-                marginLeft: hp(5),
               }}>
-              From?
+              To
             </Text>
             <TextInput
               // lightColor={Colors.light.mainText}
@@ -79,12 +77,13 @@ const RequestMoneyConfirmationScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
-                marginLeft: hp(5),
+
+                fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
               value={"Chiazondu Joseph"}
@@ -109,10 +108,9 @@ const RequestMoneyConfirmationScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
-                marginLeft: hp(5),
               }}>
               Amount
             </Text>
@@ -125,12 +123,6 @@ const RequestMoneyConfirmationScreen = ({
                   position: "relative",
                 },
               ]}>
-              <Text
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}>
-                {"\u20A6 "}
-              </Text>
               <TextInput
                 // lightColor={Colors.light.mainText}
                 // darkColor={Colors.dark.mainText}
@@ -138,15 +130,14 @@ const RequestMoneyConfirmationScreen = ({
                 style={{
                   flex: 1,
                   backgroundColor: "transparent",
-                  fontFamily: "Euclid-Circular-A",
                   paddingBottom: 5,
-                  paddingLeft: 20,
                   borderBottomWidth: 1,
                   borderBottomColor: Colors[colorScheme].separator,
-                  marginLeft: hp(5),
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
                 }}
                 showSoftInputOnFocus={false}
-                value={"80,000"}
+                value={"\u20A680,000"}
               />
             </View>
           </View>
@@ -155,10 +146,9 @@ const RequestMoneyConfirmationScreen = ({
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
                 fontWeight: "500",
-                marginLeft: hp(5),
               }}>
               Description
             </Text>
@@ -168,12 +158,12 @@ const RequestMoneyConfirmationScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 borderBottomColor: Colors[colorScheme].separator,
-                marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
               value={"Chop life my gee ❤️"}
@@ -223,6 +213,6 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(23),
   },
 });
