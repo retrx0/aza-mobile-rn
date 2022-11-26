@@ -22,14 +22,14 @@ export const useCountries = () => {
         //@ts-ignore
         const countriesResponse = res1?.data?.data;
         //@ts-ignore
-        const countriesImagesResponse = res2.data.data;
+        const countriesImagesResponse = res2?.data?.data;
 
         //@ts-ignore
         const formattedCountries = countriesResponse?.map((item) => {
           const imageLink = countriesImagesResponse?.find(
             //@ts-ignore
             (imagesItem) => imagesItem.name === item.name
-          )?.imageLink;
+          )?.flag;
           return {
             code: item.dial_code,
             short_name: item.code,

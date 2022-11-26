@@ -53,7 +53,7 @@ const PhoneNumberScreen = ({
   return (
     <>
       <SpacerWrapper>
-        <View style={{ marginLeft: 20 }}>
+        <View style={{ marginLeft: hp(17), marginTop: hp(20) }}>
           <BackButton
             onPress={() => {
               navigation.getParent()?.navigate("Welcome");
@@ -106,7 +106,6 @@ const PhoneNumberScreen = ({
           onSendOtp={phone}
           onChangePhoneNumber={(p: React.SetStateAction<string>) => setPhone(p)}
           initialValue={phone}
-          initialCountry="ng"
           autoFormat
           textStyle={[CommonStyles.textStyle]}
           textProps={{

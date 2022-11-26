@@ -100,7 +100,7 @@ export const SigninStyles = StyleSheet.create({
   Container: {
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: hp(20),
+    marginLeft: hp(17),
     marginTop: hp(20),
   },
 

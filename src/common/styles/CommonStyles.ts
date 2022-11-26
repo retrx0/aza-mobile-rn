@@ -562,10 +562,10 @@ const CommonStyles = StyleSheet.create({
   bodyText: {
     padding: hp(3),
     margin: hp(3),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     marginLeft: hp(15),
-    fontSize: hp(14),
-    fontWeight: "400",
+    fontSize: hp(16),
+    fontWeight: "500",
     marginBottom: hp(35),
   },
   phoneContainer: {
@@ -577,7 +577,7 @@ const CommonStyles = StyleSheet.create({
   },
   centerText: {
     width: wp(160),
-    left: hp(30),
+    left: hp(50),
   },
   // Shadows
   raised: {

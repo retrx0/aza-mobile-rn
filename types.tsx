@@ -170,26 +170,23 @@ export type CountryProps = {
   id?: string;
   imageLink?: string;
   onPress?: () => void;
-  onChangePhoneNumber: any;
-  onSendOtp: any;
+  onChangePhoneNumber?: any;
 };
+
+export type CountriesType = Omit<CountryProps, "onPress">;
 
 export const CountryDetails: CountriesType[] = [
   {
     code: "+234",
     short_name: "NGN",
-    onChangePhoneNumber: {},
-    onSendOtp: {},
+    name: "Nigeria",
   },
   {
     code: "+233",
     short_name: "GH",
-    onChangePhoneNumber: {},
-    onSendOtp: {},
+    name: "Ghana",
   },
 ];
-
-export type CountriesType = Omit<CountryProps, "onPress">;
 
 export type UserData = {
   userAzaAccountNumber: number;

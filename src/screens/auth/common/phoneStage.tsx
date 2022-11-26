@@ -18,7 +18,6 @@ const Phone = (props: StageOneProp & PhoneInputProps) => {
     onCountryPress,
     country,
     onChangeText,
-    onSendOtp,
     phoneNumber,
     onChangePhoneNumber,
   } = props;
@@ -30,8 +29,7 @@ const Phone = (props: StageOneProp & PhoneInputProps) => {
         value={phoneNumber}
         onChangeText={onChangeText}
         onChangePhoneNumber={onChangePhoneNumber}
-        onSendOtp={onSendOtp}
-        short_name={""}
+        short_name={country.short_name}
       />
     </>
   );

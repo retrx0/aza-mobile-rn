@@ -3,10 +3,10 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
   TextInput,
   StyleSheet,
   TextInputProps,
+  Pressable,
 } from "react-native";
 import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
@@ -18,7 +18,8 @@ export const CountryBox = ({
   short_name,
   onPress,
   imageLink,
-  // id,
+  id,
+  onChangePhoneNumber,
   ...rest
 }: CountryProps & TextInputProps) => {
   const colorScheme = useColorScheme();
@@ -28,6 +29,7 @@ export const CountryBox = ({
       style={[
         styles.container,
         { borderColor: colorScheme === "dark" ? "#999999" : "#121212" },
+        { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
       ]}>
       <View style={styles.countryContainer}>
         <Image
@@ -45,14 +47,14 @@ export const CountryBox = ({
           ]}>
           {code}
         </Text>
-        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+        <Pressable onPress={onPress}>
           <SelectIcon />
-        </TouchableOpacity>
+        </Pressable>
         <View
           style={[
             styles.divider,
             {
-              backgroundColor: colorScheme === "dark" ? "#D7D7DB" : "#000000",
+              backgroundColor: "#D7D7DB",
             },
           ]}
         />
@@ -61,9 +63,10 @@ export const CountryBox = ({
             styles.textInput,
             { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
           ]}
-          placeholder="phone number"
+          placeholder="8012345678"
           keyboardType="number-pad"
           {...rest}
+          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
       </View>
     </View>
@@ -96,20 +99,19 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: 1,
-
     height: hp(28),
-    marginLeft: wp(12),
-    marginRight: 10,
+    marginLeft: wp(10),
+    marginRight: hp(10),
   },
   countryName: {
-    color: "black",
     fontSize: hp(16),
     marginRight: wp(5),
     fontWeight: "500",
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   textInput: {
     fontSize: hp(16),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
+    fontWeight: "500",
   },
 });

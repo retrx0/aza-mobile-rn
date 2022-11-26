@@ -24,19 +24,19 @@ export const CountriesCard = ({
             borderColor: colorScheme === "dark" ? "#E5E5E5" : "#F2F2F2",
           },
         ]}
-        onPress={onPress}>
-        {imageLink && (
-          <Image
-            source={{
-              uri: imageLink,
-              headers: {
-                Accept: "*/*",
-              },
-            }}
-            style={styles.flag}
-            resizeMode="cover"
-          />
-        )}
+        onPress={onPress}
+        activeOpacity={0.7}>
+        <Image
+          source={{
+            uri: imageLink,
+            headers: {
+              Accept: "*/*",
+            },
+          }}
+          style={styles.flag}
+          resizeMode="contain"
+        />
+
         <Text
           style={[
             styles.countryName,
@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
   flag: {
     width: wp(15),
     height: hp(15),
-    marginRight: wp(12),
+    marginRight: wp(10),
   },
 });
