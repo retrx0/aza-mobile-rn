@@ -25,6 +25,10 @@ export const Spectranet = require("./common/spectranet.png");
 export const Undraw = require("./common/Undraw.png");
 export const Mtn = require("./common/mtn.png");
 export const Glo = require("./common/glo.png");
+export const Etisalat = require("./common/Etisalat.png");
+
+export const Airtel = require("./common/Airtel.png");
+
 export const Aleemz = require("./Aleemz.png");
 export const Chess = require("./Chess.png");
 export const AccessBank = require("./AccessBank.png");
