@@ -56,7 +56,7 @@ export default function HeadrImage({
           ]}
           source={image}
         />
-        {amount || selected == true ? (
+        {selected ? (
           <View style={styles.icon}>
             <TickIcon />
           </View>

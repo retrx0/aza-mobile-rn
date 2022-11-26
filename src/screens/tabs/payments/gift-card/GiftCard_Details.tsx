@@ -31,7 +31,7 @@ export default function GiftCardDetails({
         headerStyle={{
           fontSize: hp(14),
           fontWeight: "500",
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(3),
           marginTop: hp(30),
         }}

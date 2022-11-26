@@ -20,6 +20,7 @@ import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { TickIcon } from "../../../../../assets/svg";
 
 export default function WaterScreen({
   navigation,
@@ -31,6 +32,7 @@ export default function WaterScreen({
   const bundles = ["100mb", "200mb", "500mb"];
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
+  const [selected, setSelected] = useState(false);
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -41,7 +43,7 @@ export default function WaterScreen({
         headerStyle={{
           fontSize: hp(14),
           fontWeight: "500",
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(3),
           marginTop: hp(30),
         }}
@@ -49,7 +51,15 @@ export default function WaterScreen({
       />
 
       <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={Fctwb} title="FCTWB" />
+        <HeadrImage
+          index={0}
+          image={Fctwb}
+          title="FCTWB"
+          selected={selected === false}
+          onSelect={() => {
+            setSelected(false);
+          }}
+        />
         <HeadrImage selected index={0} image={Lswc} title="LSWC" />
         <HeadrImage selected index={0} image={Crswb} title="CRSWB" />
         <HeadrImage selected index={0} image={Vws} title="VWS" />

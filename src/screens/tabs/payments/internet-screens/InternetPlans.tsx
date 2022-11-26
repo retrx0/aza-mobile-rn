@@ -110,7 +110,6 @@ const styles2 = StyleSheet.create({
     width: "100%",
     borderBottomColor: "#EAEAEC",
     borderBottomWidth: 1,
-    marginBottom: 10,
     fontSize: hp(16),
     fontWeight: "500",
     fontFamily: "Euclid-Circular-A",

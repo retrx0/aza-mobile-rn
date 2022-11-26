@@ -1,6 +1,6 @@
-import { ScrollView, Switch } from "react-native";
+import { Switch } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
+import { SafeAreaView, ScrollView, View } from "../../../../components/Themed";
 import { AIrtimeStyles as styles } from "./styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -22,19 +22,42 @@ import { fetchAirtimeOperators } from "../../../../api/airtime";
 import api from "../../../../api";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import HeaderImage from "../sub-components/HeaderImage";
+import * as Images from "../../../../../assets/images/index";
+import { AirtimeCard } from "./airtimeCard";
 
+const Network = [
+  {
+    title: "Glo",
+    icon: Images.Glo,
+  },
+  {
+    title: "MTN",
+    icon: Images.Mtn,
+  },
+  {
+    title: "Airtel",
+    icon: Images.Airtel,
+  },
+  {
+    title: "9mobile",
+    icon: Images.Etisalat,
+  },
+];
 export default function AirtimeIndex({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [selected, setSelected] = useState(-1);
-  const [currentIndex, setCurrent] = useState(0);
+  // const [selected, setSelected] = useState(false);
+  // const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+  // const bundles = ["100mb", "200mb", "500mb"];
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
+  const [active, setActive] = useState("");
+  // const { icon } = route.params;
 
   const period = [
     { label: "100 ", value: "1" },
@@ -44,17 +67,17 @@ export default function AirtimeIndex({
     { label: "1.5gb ", value: "1" },
   ];
 
-  const [airtimeOperators, setAirtimeOperators] = useState<
-    {
-      name: string;
-      logoUrls: string[];
-      operatorId: number;
-    }[]
-  >([]);
+  // const [airtimeOperators, setAirtimeOperators] = useState<
+  //   {
+  //     name: string;
+  //     logoUrls: string[];
+  //     operatorId: number;
+  //   }[]
+  // >([]);
 
-  useEffect(() => {
-    fetchAirtimeOperators().then((r) => setAirtimeOperators(r.data.data));
-  }, []);
+  // useEffect(() => {
+  //   fetchAirtimeOperators().then((r) => setAirtimeOperators(r.data.data));
+  // }, []);
 
   return (
     <View style={styles.container}>
@@ -69,24 +92,23 @@ export default function AirtimeIndex({
         }}
         heading="Select Network Provider"
       />
-      <ScrollView
+      {/* <ScrollView
         horizontal
         style={CommonStyles.imageHeaderContainer}
         showsHorizontalScrollIndicator={false}>
         {airtimeOperators.map((op, i) => {
           return (
-            <HeadrImage
+            <HeaderImage
               selected={selected === i}
               onSelect={() => {
                 setSelected(i);
               }}
               index={0}
-              image={{ uri: op.logoUrls[0] }}
-              title={op.name}
+              image={{ uri: op.logoUrls[-0] }}
             />
           );
-        })}
-        {/* <HeadrImage
+        })} */}
+      {/* <HeadrImage
           selected={selected}
           onSelect={() => {
             setSelected(true);
@@ -94,9 +116,57 @@ export default function AirtimeIndex({
           index={0}
           image={Mtn}
           title="MTN"
+        />
+        <HeadrImage
+          selected={selected}
+          index={1}
+          image={Glo}
+          title="Glo"
+          onSelect={() => {
+            setSelected(true);
+          }}
+        />
+        <HeadrImage
+          selected={selected}
+          index={2}
+          image={airtel}
+          title="Airtel"
+          onSelect={() => {
+            setSelected(true);
+          }}
+        />
+        <HeadrImage
+          selected={selected}
+          index={3}
+          image={etisalat}
+          title="9mobile"
+          onSelect={() => {
+            setSelected(true);
+          }}
         /> */}
-        {/* <HeadrImage selected={false} index={1} image={Glo} title="Glo" /> */}
-      </ScrollView>
+      {/* </ScrollView> */}
+
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+
+          marginTop: 30,
+          justifyContent: "space-between",
+        }}>
+        {Network.map((item, index) => {
+          return (
+            <AirtimeCard
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setActive(item.icon)}
+              isActive={item.icon === active}
+            />
+          );
+        })}
+      </View>
+
       <View>
         <Input
           icon={null}

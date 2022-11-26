@@ -52,6 +52,11 @@ export default function HeaderImage({
           ]}
           source={image}
         />
+        {selected ? (
+          <View style={styles.icon}>
+            <TickIcon />
+          </View>
+        ) : null}
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
 

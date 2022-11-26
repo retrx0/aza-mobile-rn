@@ -48,7 +48,7 @@ export default function CableTvIndex({
         headerStyle={{
           fontSize: hp(14),
           fontWeight: "500",
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           marginTop: hp(30),
         }}
         heading="Select Cable TV"
