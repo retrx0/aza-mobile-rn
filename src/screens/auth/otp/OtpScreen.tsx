@@ -61,7 +61,7 @@ const OtpScreen = (props: OtpProp) => {
           value={otpCode}
           onValueChanged={(code) => onOtpChanged(code)}
           headerText="OTP"
-          secureInput={false}
+          secureInput={true}
         />
       </View>
       <View style={[styles.noOtp, CommonStyles.row]}>

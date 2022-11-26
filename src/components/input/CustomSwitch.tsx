@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-    height: 40,
-    padding: 10,
+    height: hp(40),
+    padding: hp(10),
   },
   text: {
     color: "#A6A6A6",

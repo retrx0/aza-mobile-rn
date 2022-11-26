@@ -178,7 +178,7 @@ export default function AirtimeIndex({
             },
           ]}
           labelStyle={styles.label}
-          style={{ marginTop: hp(35) }}
+          style={{ marginTop: hp(20) }}
           label="Phone Number"
           placeholder="Enter a phone number"
         />
@@ -191,8 +191,8 @@ export default function AirtimeIndex({
         <View
           style={{
             paddingHorizontal: hp(20),
-            marginTop: hp(30),
-            marginBottom: hp(10),
+            marginTop: hp(20),
+            marginBottom: hp(20),
           }}>
           {route.name == "data bundle" && (
             <CustomDropdown
@@ -218,7 +218,7 @@ export default function AirtimeIndex({
               borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
             },
           ]}
-          labelStyle={styles.label}
+          labelStyle={[styles.label]}
           label="Amount"
           placeholder="Enter an amount"
           keyboardType="number-pad"

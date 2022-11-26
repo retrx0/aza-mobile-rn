@@ -41,7 +41,7 @@ export default function Payments({
       <Header
         description=""
         headerStyle={{
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           fontSize: hp(16),
           fontWeight: "400",
         }}
