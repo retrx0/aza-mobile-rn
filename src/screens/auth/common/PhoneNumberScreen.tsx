@@ -16,13 +16,11 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { requestOtpApi } from "../../../api/auth";
-import { CountryBox } from "../signup/components/CountryInput";
 import { useCountries } from "../signup/components/UseCountries";
 import { CountriesCard } from "../signup/components/CountriesCard";
 import Modal from "react-native-modal";
 import { FlatList } from "react-native";
-import { SelectIcon } from "../../../../assets/svg";
-import SignupStage1 from "./phoneStage";
+// import { SelectIcon } from "../../../../assets/svg";
 import Phone from "./phoneStage";
 
 const PhoneNumberScreen = ({
@@ -32,7 +30,6 @@ const PhoneNumberScreen = ({
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const [code, setCode] = useState("");
   const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
   const { loading, countries } = useCountries();
   const FetchedCountries = ({ item }: { item: CountryProps }) => {
@@ -42,12 +39,7 @@ const PhoneNumberScreen = ({
     setCountry(item);
     setModalVisible(false);
   };
-  // const bottomSheetRef = useRef<BottomSheet>(null);
-  // const [phoneNumber, setPhoneNumber] = useState('');
-  // const intro = useRef<AppIntroSlider>(null);
-  // const checkOTP = useRef<OTPInputView>(null);
-  // const [signupStage, setSignupStage] = useState(1);
-  // const [nextSlide, setNext] = useState(1);
+
   const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
