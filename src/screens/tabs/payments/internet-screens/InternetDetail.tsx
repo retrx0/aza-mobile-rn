@@ -48,25 +48,25 @@ export default function InternetDetail({
           fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(2),
           marginTop: hp(30),
         }}
         heading="Subscribe to an internet plan"
       />
-
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Account/User ID"
-        placeholder="Enter your User ID"
-      />
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <Input
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Account/User ID"
+          placeholder="Enter your User ID"
+        />
+      </View>
 
       <View
         style={{
@@ -87,18 +87,21 @@ export default function InternetDetail({
           ]}
         />
       </View>
-      <Input
-        icon={null}
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Amount"
-        placeholder="Enter an amount"
-      />
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <Input
+          icon={null}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Amount"
+          placeholder="Enter an amount"
+        />
+      </View>
+
       <View
         style={[
           CommonStyles.passwordContainer,
@@ -126,6 +129,7 @@ export default function InternetDetail({
 const styles2 = StyleSheet.create({
   container: {
     paddingTop: 100,
+    paddingHorizontal: hp(23),
   },
   select: {
     marginTop: 20,

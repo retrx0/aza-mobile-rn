@@ -24,7 +24,7 @@ import { hp, wp } from "../../../../common/util/LayoutUtil";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import HeaderImage from "../sub-components/HeaderImage";
 import * as Images from "../../../../../assets/images/index";
-import { AirtimeCard } from "./airtimeCard";
+import { Card } from "../sub-components/Card";
 
 const Network = [
   {
@@ -150,13 +150,12 @@ export default function AirtimeIndex({
         style={{
           flexDirection: "row",
           flexWrap: "wrap",
-
           marginTop: 30,
           justifyContent: "space-between",
         }}>
         {Network.map((item, index) => {
           return (
-            <AirtimeCard
+            <Card
               key={index}
               title={item.title}
               icon={item.icon}
@@ -167,7 +166,7 @@ export default function AirtimeIndex({
         })}
       </View>
 
-      <View>
+      <View style={{ paddingHorizontal: hp(20) }}>
         <Input
           icon={null}
           keyboardType="phone-pad"
@@ -187,29 +186,29 @@ export default function AirtimeIndex({
           onValueChange={toggleSwitch}
           isEnabled={isEnabled}
         />
-
-        <View
-          style={{
-            paddingHorizontal: hp(20),
-            marginTop: hp(20),
-            marginBottom: hp(20),
-          }}>
-          {route.name == "data bundle" && (
-            <CustomDropdown
-              data={period}
-              placeholder="Choose a bundle"
-              setValue={setPeriodValue}
-              value={periodValue}
-              style={[
-                { fontFamily: "Euclid-Circular-A" },
-                { fontWeight: "400" },
-                { fontSize: hp(16) },
-              ]}
-              label={"Bundle"}
-            />
-          )}
-        </View>
-
+      </View>
+      <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginTop: hp(20),
+          marginBottom: hp(20),
+        }}>
+        {route.name == "data bundle" && (
+          <CustomDropdown
+            data={period}
+            placeholder="Choose a bundle"
+            setValue={setPeriodValue}
+            value={periodValue}
+            style={[
+              { fontFamily: "Euclid-Circular-A" },
+              { fontWeight: "400" },
+              { fontSize: hp(16) },
+            ]}
+            label={"Bundle"}
+          />
+        )}
+      </View>
+      <View style={{ paddingHorizontal: hp(20) }}>
         <Input
           icon={null}
           inputStyle={[
@@ -224,6 +223,7 @@ export default function AirtimeIndex({
           keyboardType="number-pad"
         />
       </View>
+
       <View
         style={[
           CommonStyles.passwordContainer,

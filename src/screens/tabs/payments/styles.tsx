@@ -76,7 +76,7 @@ export const CharityStyles = StyleSheet.create({
     marginRight: 10,
     fontSize: hp(16),
     fontWeight: "400",
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   input: {
     marginLeft: 20,

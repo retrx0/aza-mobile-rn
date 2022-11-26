@@ -21,12 +21,7 @@ type AirtimeProps = {
   styleText?: StyleProp<TextStyle>;
 };
 
-export const AirtimeCard = ({
-  title,
-  isActive,
-  icon,
-  onPress,
-}: AirtimeProps) => {
+export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
   return (
     <>
       <View>

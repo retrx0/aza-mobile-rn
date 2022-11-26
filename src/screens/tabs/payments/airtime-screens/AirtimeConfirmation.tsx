@@ -21,7 +21,7 @@ export default function AirtimeConfirmation({
 
   return (
     <ScrollView style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}>
-      <View style={{ paddingHorizontal: 20 }}>
+      <View style={{ paddingHorizontal: 23 }}>
         <Text style={styles.txt}>
           Kindly confirm the details of this transaction
         </Text>
@@ -130,8 +130,7 @@ const styles = StyleSheet.create({
   txt: {
     marginBottom: hp(40),
     marginTop: hp(30),
-
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },

@@ -16,6 +16,32 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 
+import * as Images from "../../../../../assets/images/index";
+import { Card } from "../sub-components/Card";
+
+const CableList = [
+  {
+    title: "IE",
+    icon: Images.Ie,
+  },
+  {
+    title: "AEDC",
+    icon: Images.AEDC,
+  },
+  {
+    title: "EEDC",
+    icon: Images.EEDC,
+  },
+  {
+    title: "EKEDC",
+    icon: Images.EKEDC,
+  },
+  {
+    title: "PHED",
+    icon: Images.PH,
+  },
+];
+
 export default function ElectricityIndex({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -23,6 +49,7 @@ export default function ElectricityIndex({
   const bundles = ["Prepaid", "Postpaid"];
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
+  const [active, setActive] = useState("");
 
   const [periodValue, setPeriodValue] = useState("");
 
@@ -38,7 +65,7 @@ export default function ElectricityIndex({
         description=""
         descriptionStyle={null}
         headerStyle={{
-          fontSize: hp(14),
+          fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginTop: hp(30),
@@ -46,14 +73,31 @@ export default function ElectricityIndex({
         heading="Select electricity provider"
       />
 
-      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
+      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
         <HeaderImage selected index={0} image={Ie} title="IE" />
         <HeaderImage selected index={0} image={AEDC} title="AEDC" />
         <HeaderImage selected index={0} image={EEDC} title="EEDC" />
         <HeaderImage selected index={0} image={EKEDC} title="EKEDC" />
         <HeaderImage selected index={0} image={PH} title="PHED" />
-      </ScrollView>
-
+      </ScrollView> */}
+      <View
+        style={{
+          flexDirection: "row",
+          marginTop: hp(15),
+          marginBottom: hp(20),
+        }}>
+        {CableList.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setActive(item.icon)}
+              isActive={item.icon === active}
+            />
+          );
+        })}
+      </View>
       <View
         style={{
           paddingHorizontal: hp(20),
@@ -73,31 +117,34 @@ export default function ElectricityIndex({
           ]}
         />
       </View>
-      <Input
-        icon={null}
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Meter Number"
-        placeholder="Enter your meter number"
-      />
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <Input
+          icon={null}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Meter Number"
+          placeholder="Enter your meter number"
+        />
 
-      <Input
-        icon={null}
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Amount"
-        placeholder="Enter an amount to be paid"
-      />
+        <Input
+          icon={null}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Amount"
+          placeholder="Enter an amount to be paid"
+        />
+      </View>
+
       <View
         style={[
           CommonStyles.passwordContainer,

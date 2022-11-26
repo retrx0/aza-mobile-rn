@@ -17,6 +17,23 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import * as Images from "../../../../../assets/images/index";
+import { Card } from "../sub-components/Card";
+
+const Cable = [
+  {
+    title: "DSTV",
+    icon: Images.Dstv,
+  },
+  {
+    title: "GOTV",
+    icon: Images.Gotv,
+  },
+  {
+    title: "Startimes",
+    icon: Images.Startimes,
+  },
+];
 
 export default function CableTvIndex({
   navigation,
@@ -29,6 +46,7 @@ export default function CableTvIndex({
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
   const colorScheme = useColorScheme();
+  const [active, setActive] = useState("");
 
   const period = [
     { label: "DSTV Padi", value: "1" },
@@ -46,7 +64,7 @@ export default function CableTvIndex({
         description=""
         descriptionStyle={null}
         headerStyle={{
-          fontSize: hp(14),
+          fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginTop: hp(30),
@@ -54,25 +72,47 @@ export default function CableTvIndex({
         heading="Select Cable TV"
       />
 
-      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
+      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
         <HeadrImage selected index={0} image={Dstv} title="DSTV" />
         <HeadrImage selected index={0} image={Gotv} title="GOTV" />
         <HeadrImage selected index={0} image={Startimes} title="Startimes" />
-      </ScrollView>
+      </ScrollView> */}
 
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Smart Card Number"
-        placeholder="Enter your smart card number"
-      />
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginTop: hp(30),
+          marginBottom: hp(35),
+        }}>
+        {Cable.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setActive(item.icon)}
+              isActive={item.icon === active}
+            />
+          );
+        })}
+      </View>
+
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <Input
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Smart Card Number"
+          placeholder="Enter your smart card number"
+        />
+      </View>
 
       <View
         style={{

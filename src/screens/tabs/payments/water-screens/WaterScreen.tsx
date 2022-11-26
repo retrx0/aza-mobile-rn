@@ -21,6 +21,31 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { TickIcon } from "../../../../../assets/svg";
+import * as Images from "../../../../../assets/images/index";
+import { Card } from "../sub-components/Card";
+
+const WaterList = [
+  {
+    title: "FCTWB",
+    icon: Images.Fctwb,
+  },
+  {
+    title: "LSWC",
+    icon: Images.Lswc,
+  },
+  {
+    title: "CRSWB",
+    icon: Images.Crswb,
+  },
+  {
+    title: "VWS",
+    icon: Images.Vws,
+  },
+  {
+    title: "ENSWC",
+    icon: Images.Enswc,
+  },
+];
 
 export default function WaterScreen({
   navigation,
@@ -33,6 +58,7 @@ export default function WaterScreen({
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
   const [selected, setSelected] = useState(false);
+  const [active, setActive] = useState("");
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -41,7 +67,7 @@ export default function WaterScreen({
         description=""
         descriptionStyle={null}
         headerStyle={{
-          fontSize: hp(14),
+          fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginLeft: hp(3),
@@ -50,7 +76,7 @@ export default function WaterScreen({
         heading="Select water provider"
       />
 
-      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
+      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
         <HeadrImage
           index={0}
           image={Fctwb}
@@ -64,36 +90,55 @@ export default function WaterScreen({
         <HeadrImage selected index={0} image={Crswb} title="CRSWB" />
         <HeadrImage selected index={0} image={Vws} title="VWS" />
         <HeadrImage selected index={0} image={Enswc} title="ENSWC" />
-      </ScrollView>
+      </ScrollView> */}
+      <View
+        style={{
+          flexDirection: "row",
+          marginTop: hp(15),
+          marginBottom: hp(20),
+        }}>
+        {WaterList.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setActive(item.icon)}
+              isActive={item.icon === active}
+            />
+          );
+        })}
+      </View>
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <Input
+          style={styles2.input}
+          icon={null}
+          keyboardType="phone-pad"
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Customer Account Number"
+          placeholder="Enter your customer account number"
+        />
 
-      <Input
-        style={styles2.input}
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Customer Account Number"
-        placeholder="Enter your customer account number"
-      />
-
-      <Input
-        style={styles2.input}
-        icon={null}
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label="Amount"
-        placeholder="Enter an amount to be paid"
-      />
+        <Input
+          style={styles2.input}
+          icon={null}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
+          labelStyle={styles.label}
+          label="Amount"
+          placeholder="Enter an amount to be paid"
+        />
+      </View>
 
       <View
         style={[

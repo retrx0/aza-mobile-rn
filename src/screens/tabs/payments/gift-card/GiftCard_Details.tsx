@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
+import { SafeAreaView, Text, View } from "../../../../components/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -14,13 +14,31 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { ClockIcon, CloseIcon } from "../../../../../assets/svg";
 import ListItem from "./List";
+import * as Images from "../../../../../assets/images/index";
+import { Card } from "../sub-components/Card";
+import Divider from "../sub-components/Divider";
 
+const CountryList = [
+  {
+    title: "US",
+    icon: Images.USA,
+  },
+  {
+    title: "UK",
+    icon: Images.UK,
+  },
+  {
+    title: "Canada",
+    icon: Images.CANADA,
+  },
+];
 export default function GiftCardDetails({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const insets = useSafeAreaInsets();
+  const [active, setActive] = useState("false");
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -29,20 +47,52 @@ export default function GiftCardDetails({
         description=""
         descriptionStyle={null}
         headerStyle={{
-          fontSize: hp(14),
+          fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(3),
+
           marginTop: hp(30),
         }}
         heading="Select Region"
       />
 
-      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
+      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
         <HeadrImage selected index={0} image={USA} title="USA" />
         <HeadrImage selected index={0} image={UK} title="UK" />
         <HeadrImage selected index={0} image={CANADA} title="CANADA" />
-      </ScrollView>
+      </ScrollView> */}
+
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginTop: hp(30),
+          marginBottom: hp(35),
+        }}>
+        {CountryList.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setActive(item.icon)}
+              isActive={item.icon === active}
+            />
+          );
+        })}
+      </View>
+
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <Text
+          style={{
+            fontSize: hp(16),
+            fontWeight: "500",
+            fontFamily: "Euclid-Circular-A-Medium",
+          }}>
+          Select Package
+        </Text>
+        <Divider />
+      </View>
 
       <ListItem
         onPress={() => {
@@ -98,7 +148,7 @@ export default function GiftCardDetails({
           disabled={false}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "WaterConfirmation" });
+            navigation.navigate("Common", { screen: "GiftCardConfirmation" });
           }}
         />
       </View>

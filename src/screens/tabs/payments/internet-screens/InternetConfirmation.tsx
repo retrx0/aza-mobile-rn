@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   txt: {
     marginBottom: hp(40),
     marginTop: hp(30),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },
