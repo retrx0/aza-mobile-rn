@@ -25,12 +25,13 @@ export const CountryBox = ({
   const colorScheme = useColorScheme();
 
   return (
-    <View
+    <Pressable
       style={[
         styles.container,
         { borderColor: colorScheme === "dark" ? "#999999" : "#121212" },
         { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
-      ]}>
+      ]}
+      onPress={onPress}>
       <View style={styles.countryContainer}>
         <Image
           source={{ uri: imageLink }}
@@ -47,9 +48,9 @@ export const CountryBox = ({
           ]}>
           {code}
         </Text>
-        <Pressable onPress={onPress}>
+        <View>
           <SelectIcon />
-        </Pressable>
+        </View>
         <View
           style={[
             styles.divider,
@@ -63,13 +64,13 @@ export const CountryBox = ({
             styles.textInput,
             { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
           ]}
-          placeholder="8012345678"
+          placeholder=""
           keyboardType="number-pad"
           {...rest}
           placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
       </View>
-    </View>
+    </Pressable>
   );
 };
 const styles = StyleSheet.create({
