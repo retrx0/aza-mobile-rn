@@ -33,7 +33,7 @@ export const ImageInput = ({
     <View style={styles.container}>
       <Input
         icon={null}
-        keyboardType="phone-pad"
+        keyboardType="default"
         placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         inputStyle={[
           styles.input,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderColor: "#EAEAEC",
     borderBottomWidth: 1,
     minWidth: "100%",
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
   },

@@ -55,7 +55,7 @@ export default function InternetDetail({
       <View style={{ paddingHorizontal: hp(20) }}>
         <Input
           icon={null}
-          keyboardType="phone-pad"
+          keyboardType="default"
           inputStyle={[
             styles.input,
             {
@@ -89,6 +89,7 @@ export default function InternetDetail({
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
         <Input
+          keyboardType="phone-pad"
           icon={null}
           inputStyle={[
             styles.input,

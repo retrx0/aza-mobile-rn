@@ -11,6 +11,9 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { ImageInput } from "../sub-components/ImageInput";
 import { Chess, Ie } from "../../../../../assets/images";
+import Button from "../../../../components/buttons/Button";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 export default function CharityConfirmation({
   navigation,
@@ -20,86 +23,102 @@ export default function CharityConfirmation({
   const insets = useSafeAreaInsets();
 
   return (
-    <ScrollView style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}>
-      <View style={{ paddingHorizontal: 20 }}>
-        <Text style={styles.txt}>
-          Kindly confirm the details of this transaction
-        </Text>
-        <ImageInput
-          label={"To"}
-          placeholder={"Chess in Slums"}
-          source={Chess}
-          icon={undefined}
-        />
-        <Input
-          icon={null}
-          keyboardType="phone-pad"
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
-          labelStyle={{
-            fontFamily: "Euclid-Circular-A",
-            fontWeight: "400",
-            fontSize: hp(16),
-            color: colorScheme === "dark" ? "#999999" : "#000000",
-          }}
-          label="Amount"
-          placeholder={"\u20A680,000"}
-          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-        />
+    <SpacerWrapper>
+      <View style={CommonStyles.vaultcontainer}>
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={styles.txt}>
+            Kindly confirm the details of this transaction
+          </Text>
+          <ImageInput
+            label={"To"}
+            placeholder={"Chess in Slums"}
+            source={Chess}
+            icon={undefined}
+          />
+          <Input
+            icon={null}
+            keyboardType="phone-pad"
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={{
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "400",
+              fontSize: hp(16),
+              color: colorScheme === "dark" ? "#999999" : "#000000",
+            }}
+            label="Amount"
+            placeholder="Enter amount"
+            // placeholder={"\u20A680,000"}
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
+          />
 
-        <Input
-          icon={null}
-          keyboardType="phone-pad"
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
-          labelStyle={{
-            fontFamily: "Euclid-Circular-A",
-            fontWeight: "400",
-            fontSize: hp(16),
-            color: colorScheme === "dark" ? "#999999" : "#000000",
-          }}
-          label="Payment Method"
-          placeholder="Aza Account"
-          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-        />
+          <Input
+            icon={null}
+            keyboardType="default"
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={{
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "400",
+              fontSize: hp(16),
+              color: colorScheme === "dark" ? "#999999" : "#000000",
+            }}
+            label="Payment Method"
+            placeholder="Select your payment method"
+            // placeholder="Aza Account"
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
+          />
+        </View>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
+          <Button
+            title="Confirm"
+            onPressButton={() => {
+              navigation.navigate("StatusScreen", {
+                statusIcon: "Success",
+                status: "Successful",
+                statusMessage:
+                  "You have successfully donated to Chess in Slums",
+                navigateTo: "Payments",
+              });
+            }}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
+          />
+          <CancelButtonWithUnderline
+            title="Cancel Transaction"
+            onPressButton={() => {
+              navigation.goBack();
+            }}
+            style={{ borderBottomColor: Colors.general.red }}
+            styleText={CommonStyles.cancelStyle}
+          />
+        </View>
       </View>
-      <MyButton
-        style={{ marginTop: hp(200), marginBottom: hp(5) }}
-        disabled={false}
-        title="Confirm"
-        onPress={() => {
-          navigation.navigate("StatusScreen", {
-            statusIcon: "Success",
-            status: "Successful",
-            statusMessage: "You have successfully donated to Chess in Slums",
-            navigateTo: "Payments",
-          });
-        }}
-      />
-      <CancelButtonWithUnderline
-        onPressButton={() => {
-          navigation.goBack();
-        }}
-        title="Cancel Transaction"
-        style={{ borderBottomColor: Colors.general.red }}
-        styleText={{
-          textAlign: "center",
-          color: Colors.general.red,
-          fontSize: hp(16),
-          fontWeight: "500",
-          lineHeight: hp(17),
-          fontFamily: "Euclid-Circular-A",
-        }}
-      />
-    </ScrollView>
+    </SpacerWrapper>
   );
 }
 
@@ -112,7 +131,6 @@ const styles = StyleSheet.create({
   txt: {
     marginBottom: hp(40),
     marginTop: hp(30),
-
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
@@ -122,7 +140,7 @@ const styles = StyleSheet.create({
     borderColor: "#EAEAEC",
     borderBottomWidth: 1,
     marginBottom: 20,
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
   },
