@@ -16,6 +16,7 @@ import { useAppSelector } from "../../redux";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { Input } from "../../components/input/input";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SendMoneyConfirmationScreen = ({
   navigation,
@@ -23,6 +24,7 @@ const SendMoneyConfirmationScreen = ({
   const colorScheme = useColorScheme();
 
   const transferObject = useAppSelector(selectTransaction);
+  const insets = useSafeAreaInsets();
 
   console.log(transferObject);
 
@@ -161,7 +163,10 @@ const SendMoneyConfirmationScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(65), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -191,7 +196,6 @@ const SendMoneyConfirmationScreen = ({
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
             onPressButton={() => navigation.goBack()}
-            style={{ marginTop: 5 }}
           />
         </View>
       </View>

@@ -66,7 +66,7 @@ const styles = {
     fontWeight: "500",
     fontSize: hp(14),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontFamily: "Euclid-Circular-A",
   },
   nextText: {
     color: Colors.general.secondary,
