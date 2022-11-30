@@ -66,7 +66,8 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -132,7 +133,7 @@ const PhoneNumberScreen = ({
             },
             CommonStyles.button,
           ]}
-          disabled={phoneNumber.length < 10}
+          disabled={phoneNumber.length < 7}
         />
       </SpacerWrapper>
       <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>
@@ -142,7 +143,8 @@ const PhoneNumberScreen = ({
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },
-          ]}>
+          ]}
+        >
           <FlatList
             style={[
               {

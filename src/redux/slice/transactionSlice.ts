@@ -17,15 +17,15 @@ export interface TransactionState {
 // Define the initial state using that type
 const initialState: TransactionState = {
   amount: 0,
-  description: "enjoy this",
+  description: "",
   beneficairy: {
-    azaAccountNumber: "000000111",
-    fullName: "Test User",
-    phone: "23456789",
+    azaAccountNumber: "",
+    fullName: "",
+    phone: "",
     currency: "NGN",
-    email: "testuser@aza.com",
-    firstName: "Test",
-    lastName: "User",
+    email: "",
+    firstName: "",
+    lastName: "",
     pictureUrl: "",
   },
   transferType: "send",
