@@ -151,6 +151,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 backgroundColor: Colors[colorScheme].button,
               },
             ]}
+            disabled={!periodValue}
           />
         </View>
       </View>
