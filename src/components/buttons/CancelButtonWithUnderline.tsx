@@ -29,7 +29,6 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
       onPress={onPressButton}
       style={[
         {
-          backgroundColor: "transparent",
           borderBottomColor: color,
           paddingBottom: 2,
           borderBottomWidth: 1,

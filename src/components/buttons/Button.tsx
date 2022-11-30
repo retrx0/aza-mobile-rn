@@ -78,7 +78,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: 370,
+    width: wp(350),
     // marginTop: 100,
   },
   nextButton: {
