@@ -19,6 +19,7 @@ export const ipnx = require("./common/ipnx.png");
 export const legend = require("./common/legend.png");
 export const smile = require("./common/smile.png");
 export const cobra = require("./common/cobra.png");
+export const NigeriaFlag = require("./common/NigeriaFlag.png");
 
 export const Auth = require("./common/auth.png");
 export const Spectranet = require("./common/spectranet.png");
