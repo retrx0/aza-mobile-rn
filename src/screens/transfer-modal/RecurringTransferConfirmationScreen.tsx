@@ -14,11 +14,13 @@ import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import { Input } from "../../components/input/input";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RecurringTransferConfirmationScreen = ({
   navigation,
 }: CommonScreenProps<"RecurringTransferConfirmation">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -172,7 +174,10 @@ const RecurringTransferConfirmationScreen = ({
           />
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(65), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>

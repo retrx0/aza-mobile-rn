@@ -13,6 +13,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SetupRecurringTransferScreen = ({
   navigation,
@@ -65,6 +66,7 @@ const SetupRecurringTransferScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+  const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
@@ -124,7 +126,10 @@ const SetupRecurringTransferScreen = ({
           )}
         </View>
         <View
-          style={[CommonStyles.col, { marginBottom: hp(65), width: "100%" }]}>
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
