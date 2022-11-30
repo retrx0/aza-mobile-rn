@@ -7,7 +7,7 @@ import {
   NigerianFlag,
 } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import { useAppSelector } from "../../../../redux";
@@ -18,7 +18,7 @@ import Divider from "../../../../components/divider/Divider";
 import { RootTabScreenProps } from "../../../../../types";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useNavigation } from "@react-navigation/core";
-import { VaultLogo } from "../../../../../assets/images";
+import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 export default function AccountDetails() {
@@ -49,23 +49,22 @@ export default function AccountDetails() {
             <Text
               //TODO please export these constants to Colors.ts
               lightColor={"#000000"}
-              darkColor={"#CCCCCC"}
+              darkColor={"#E7E9EA"}
               style={{ fontSize: 14 }}>
-              Nigerian Naira
+              Naira
             </Text>
-            <View
+            <Image
+              source={NigeriaFlag}
               style={{
-                width: 20,
-                height: 20,
-                marginHorizontal: 10,
-                backgroundColor: "transparent",
-              }}>
-              <NigerianFlag />
-            </View>
-
+                width: wp(15),
+                height: hp(15),
+                marginRight: hp(5),
+                marginLeft: hp(5),
+              }}
+            />
             <Text
-              lightColor={Colors.general.darkGrey}
-              darkColor={Colors.dark.tabIconDefault}
+              lightColor={"#000000"}
+              darkColor={"#E7E9EA"}
               style={{ fontSize: 14 }}>
               NGN
             </Text>
@@ -159,10 +158,12 @@ export default function AccountDetails() {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
+              backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
             }}>
             <View
               style={{
                 height: hp(335),
+                backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
               }}>
               <Text
                 style={{
@@ -183,24 +184,27 @@ export default function AccountDetails() {
                   justifyContent: "space-between",
                   marginBottom: hp(30),
                   marginTop: hp(30),
+                  backgroundColor:
+                    colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
                 }}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View
-                    style={{
-                      width: 30,
-                      height: 30,
-                      marginHorizontal: 10,
-                      backgroundColor: "transparent",
-                    }}>
-                    <NigerianFlag />
-                  </View>
-
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    backgroundColor:
+                      colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
+                  }}>
+                  <Image
+                    source={NigeriaFlag}
+                    style={{ width: wp(40), height: hp(40) }}
+                  />
                   <Text
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),
                       textAlign: "center",
                       fontWeight: "500",
+                      marginLeft: hp(10),
                     }}>
                     NGN - Naira
                   </Text>
@@ -230,9 +234,15 @@ export default function AccountDetails() {
                   });
                   setModalVisible(false);
                 }}>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    backgroundColor:
+                      colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
+                  }}>
                   <Image
-                    style={{ width: 30, height: 30, marginHorizontal: 10 }}
+                    style={{ width: wp(40), height: hp(40) }}
                     source={VaultLogo}
                   />
                   <Text
@@ -241,6 +251,7 @@ export default function AccountDetails() {
                       fontSize: hp(16),
                       textAlign: "center",
                       fontWeight: "500",
+                      marginLeft: hp(10),
                     }}>
                     Vault
                   </Text>

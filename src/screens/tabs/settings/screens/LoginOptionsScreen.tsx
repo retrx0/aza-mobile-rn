@@ -23,8 +23,7 @@ const LoginOptionsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Login Options
         </Text>
       ),
@@ -48,14 +47,17 @@ const LoginOptionsScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(5),
-            }}
-          >
+            }}>
             Login quickly by connecting your Aza account to your social media
             account.
           </Text>
         </View>
-        <ThirdPartyAuthButtons />
+        <ThirdPartyAuthButtons
+          onValidated={function (email: string): void {
+            throw new Error("Function not implemented.");
+          }}
+          authType={"signup"}
+        />
       </View>
     </SpacerWrapper>
   );
@@ -68,6 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

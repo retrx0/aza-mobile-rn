@@ -96,8 +96,19 @@ const StatusScreen = ({
               onPressButton={() =>
                 navigation.navigate("SetupRecurringTransfer")
               }
-              style={[CommonStyles.toBankbutton]}
-              styleText={CommonStyles.toBankbuttonText}
+              style={[
+                {
+                  backgroundColor:
+                    colorScheme === "dark" ? "#000000" : "#E5E5E5",
+                  borderColor: colorScheme === "dark" ? "#E7E9EA" : "#121212",
+                  borderWidth: 1,
+                  marginTop: hp(20),
+                },
+                { marginBottom: 20 },
+              ]}
+              styleText={{
+                color: colorScheme === "dark" ? "#E7E9EA" : "#121212",
+              }}
             />
           )}
           <Button
@@ -117,7 +128,6 @@ const StatusScreen = ({
               title="Receipt"
               color={Colors[colorScheme].text}
               onPressButton={() => console.log("called receipt")}
-              style={{ marginTop: 10 }}
             />
           )}
           {cancelButton && (

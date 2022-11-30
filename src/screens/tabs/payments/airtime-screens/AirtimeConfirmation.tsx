@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { ImageInput } from "../sub-components/ImageInput";
-import { Ie, Mtn } from "../../../../../assets/images";
+import { Glo, Ie, Mtn } from "../../../../../assets/images";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Button from "../../../../components/buttons/Button";
@@ -43,8 +43,8 @@ export default function AirtimeConfirmation({
 
           <ImageInput
             label={"To"}
-            placeholder={""}
-            source={undefined}
+            placeholder={"Glo"}
+            source={Glo}
             icon={undefined}
           />
           <Input
@@ -64,10 +64,10 @@ export default function AirtimeConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Phone Number"
-            placeholder=""
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            placeholder="Enter your phone number"
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
           <Input
             icon={null}
@@ -86,10 +86,10 @@ export default function AirtimeConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            placeholder=""
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            placeholder="Enter amount"
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
           <Input
             icon={null}
@@ -108,10 +108,10 @@ export default function AirtimeConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Payment Method"
-            placeholder=""
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            placeholder="Select your payment method"
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
         </View>
         <View

@@ -51,7 +51,6 @@ export const PaymentStyles = StyleSheet.create({
     width: "100%",
     marginTop: 10,
     backgroundColor: "transparent",
-    flex: 1,
   },
 });
 

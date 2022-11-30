@@ -44,13 +44,12 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
             fontSize: hp(16),
             color: "#E7E9EA",
             fontWeight: "500",
-          }}
-        >
+          }}>
           Scan Card
         </Text>
       ),
       // hide default back button which only shows in android
-      headerBackVisible: false,
+      headerBackVisible: true,
       headerTransparent: true,
       //center it in android
       headerTitleAlign: "center",
@@ -107,8 +106,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
             },
           ],
           backgroundColor: "transparent",
-        }}
-      >
+        }}>
         <Svg width={30} height={30}>
           <Path d="M19,0 H 30 V 12 Q27,2 18,0" fill={"rgba(0,0,0, 0.7)"} />
         </Svg>
@@ -129,8 +127,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
                 fontSize: 16,
                 textAlign: "center",
                 lineHeight: 35,
-              }}
-            >
+              }}>
               1/2{"\n"}
               Place the front side of card in the purple box
             </Text>

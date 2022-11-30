@@ -78,7 +78,6 @@ const AppLanguageScreen = ({
           fontFamily: "Euclid-Circular-A-Medium",
           fontSize: hp(16),
           fontWeight: "500",
-          marginLeft: hp(5),
         }}>
         You can change the app language
       </Text>
@@ -132,6 +131,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

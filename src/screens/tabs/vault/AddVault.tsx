@@ -56,7 +56,12 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           }}>
           Choose a vault to view/edit details
         </Text>
-        <View style={CommonStyles.lineDivider} />
+        <View
+          style={[
+            CommonStyles.lineDivider,
+            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
+        />
         <ArchievedComponents />
         <View
           style={[
@@ -74,7 +79,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             title="New Vault"
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
+              navigation.navigate("Common", { screen: "NewVault" })
             }
             styleText={{
               color: Colors[colorScheme].buttonText,

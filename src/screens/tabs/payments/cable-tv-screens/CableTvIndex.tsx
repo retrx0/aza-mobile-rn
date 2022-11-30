@@ -56,7 +56,13 @@ export default function CableTvIndex({
     { label: "DSTV Compact Plus", value: "1" },
     { label: "DSTV Premium", value: "1" },
   ];
-
+  const period2 = [
+    { price: "100 ", value: "2" },
+    { price: "200 ", value: "2" },
+    { price: "500 ", value: "2" },
+    { price: "1gb ", value: "2" },
+    { price: "1.5gb ", value: "2" },
+  ];
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header

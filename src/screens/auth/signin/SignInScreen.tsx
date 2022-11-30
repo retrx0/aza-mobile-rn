@@ -51,7 +51,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: 17 }}>
             <BackButton
               onPress={() => {
                 navigation.getParent()?.navigate("Welcome");

@@ -23,7 +23,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingHorizontal: hp(10),
+            paddingHorizontal: hp(20),
           }}>
           <View>
             <BackButton onPress={() => navigation.goBack()} />
@@ -38,33 +38,42 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Confirmation
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Kindly confirm the details of this transaction
-        </Text>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={CommonStyles.inputStyle}
-            labelStyle={styles.label}
-            label="To"
-            placeholder="Aza Account"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.confirmDetails}>
+            Kindly confirm the details of this transaction
+          </Text>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={[
+                CommonStyles.inputStyle,
+                { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+              ]}
+              labelStyle={styles.label}
+              label="To"
+              placeholder="Aza Account"
+              containerStyle={undefined}
+              placeholderTextColor={Colors[colorScheme].text}
+            />
+          </View>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={[
+                CommonStyles.inputStyle,
+                { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+              ]}
+              labelStyle={styles.label}
+              label="Amount"
+              placeholder={"\u20A6 80,000"}
+              containerStyle={undefined}
+              placeholderTextColor={Colors[colorScheme].text}
+            />
+          </View>
         </View>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={CommonStyles.inputStyle}
-            labelStyle={styles.label}
-            label="Amount"
-            placeholder={"\u20A6 80,000"}
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
-        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,

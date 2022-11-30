@@ -6,6 +6,7 @@ import useColorScheme from "../../hooks/useColorScheme";
 import { Text, View } from "../Themed";
 import { StyleProp, TextStyle } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 interface IProps {
   data: Array<{
@@ -43,6 +44,7 @@ const CustomDropdown = ({
         }}>
         {label}
       </Text>
+
       <Dropdown
         style={{
           borderBottomWidth: 0.6,
@@ -56,9 +58,12 @@ const CustomDropdown = ({
           { fontFamily: "Euclid-Circular-A" },
           style,
         ]}
-        selectedTextStyle={{
-          color: colorScheme === "dark" ? "#545454" : "#000",
-        }}
+        selectedTextStyle={[
+          {
+            color: colorScheme === "dark" ? "#545454" : "#000",
+            fontSize: 14,
+          },
+        ]}
         data={data}
         maxHeight={300}
         labelField="label"
@@ -79,10 +84,17 @@ const CustomDropdown = ({
           borderBottomWidth: 1,
           paddingVertical: 15,
           borderBottomColor: colorScheme === "dark" ? "#484B51" : "#EAEAEC",
+          backgroundColor: colorScheme === "dark" ? "#3A3D42" : "white",
         }}
         renderItem={(item) => (
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            style={[
+              {
+                flexDirection: "row",
+                justifyContent: "space-between",
+                backgroundColor: colorScheme === "dark" ? "#E7E9EA;" : "white",
+              },
+            ]}>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
@@ -91,12 +103,6 @@ const CustomDropdown = ({
               }}>
               {item.label}
             </Text>
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
-              style={{
-                fontSize: 14,
-              }}></Text>
           </View>
         )}
         placeholder={placeholder}

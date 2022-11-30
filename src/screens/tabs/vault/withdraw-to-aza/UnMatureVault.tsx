@@ -78,13 +78,17 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
           </View>
         </TouchableOpacity>
         <Text style={CommonStyles.maturity}>until maturity</Text>
-        <View style={CommonStyles.vaultInputcontainer}>
+        <View
+          style={[CommonStyles.vaultInputcontainer, { paddingHorizontal: 25 }]}>
           <Input
             label={"Top up Vault"}
             labelStyle={undefined}
             placeholder="Add more funds from your Aza balance"
             style={CommonStyles.vaultInput}
-            inputStyle={CommonStyles.inputStyle}
+            inputStyle={[
+              CommonStyles.inputStyle,
+              { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+            ]}
             icon={undefined}
             containerStyle={{ marginBottom: 2 }}
           />
@@ -100,52 +104,57 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             fontWeight: "600",
             fontFamily: "Euclid-Circular-A",
             color: Colors[colorScheme].secondaryText,
-            marginLeft: hp(10),
+            marginLeft: hp(15),
             marginTop: hp(5),
           }}>
           * This saves the selected percentage from your aza f balance
         </Text>
         <View
-          style={{
-            borderWidth: 0.5,
-            borderColor: "#EAEAEC",
-            width: wp(380),
-            alignSelf: "center",
-            marginTop: hp(17),
-            marginBottom: hp(17),
-          }}
+          style={[
+            {
+              borderWidth: 0.5,
+              width: wp(380),
+              alignSelf: "center",
+              marginTop: hp(17),
+              marginBottom: hp(17),
+            },
+            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
         />
-
-        <ListItem
-          index={0}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "ChangeGoalAmount" });
-          }}
-          title="Change Goal Amount"
-          route=""
-          subtitle={"\u20A6280,000"}
-          Icon={CloseIcon}
-        />
-        <ListItem
-          index={0}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "VaultRecurringTransfer" });
-          }}
-          title="Recurring Transfer"
-          route=""
-          subtitle="Reach your vault goal faster with recurring transfers"
-          Icon={CloseIcon}
-        />
-        <ListItem
-          index={0}
-          onPress={() => {
-            navigation.navigate("Common", { screen: "ChangeVaultName" });
-          }}
-          title="Change Vault Name"
-          route=""
-          subtitle="Flight Ticket"
-          Icon={CloseIcon}
-        />
+        <View style={{ paddingHorizontal: hp(15) }}>
+          <ListItem
+            index={0}
+            onPress={() => {
+              navigation.navigate("Common", { screen: "ChangeGoalAmount" });
+            }}
+            title="Change Goal Amount"
+            route=""
+            subtitle={"\u20A6280,000"}
+            Icon={CloseIcon}
+          />
+          <ListItem
+            index={0}
+            onPress={() => {
+              navigation.navigate("Common", {
+                screen: "VaultRecurringTransfer",
+              });
+            }}
+            title="Recurring Transfer"
+            route=""
+            subtitle="Reach your vault goal faster with recurring transfers"
+            Icon={CloseIcon}
+          />
+          <ListItem
+            index={0}
+            onPress={() => {
+              navigation.navigate("Common", { screen: "ChangeVaultName" });
+            }}
+            title="Change Vault Name"
+            route=""
+            subtitle="Flight Ticket"
+            Icon={CloseIcon}
+          />
+        </View>
 
         <View style={{ marginTop: hp(77) }}>
           <Button

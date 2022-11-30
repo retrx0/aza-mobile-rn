@@ -77,7 +77,6 @@ const ChangePasswordScreen = ({
         style={{
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(5),
           fontWeight: "500",
         }}>
         Please enter your current password
@@ -119,6 +118,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

@@ -33,8 +33,8 @@ export default function CableConfirmation({
           </Text>
           <ImageInput
             label={"To"}
-            placeholder={""}
-            source={undefined}
+            placeholder={"DSTV"}
+            source={Dstv}
             icon={undefined}
           />
           <Input

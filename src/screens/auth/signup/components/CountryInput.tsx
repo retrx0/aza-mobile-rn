@@ -25,14 +25,13 @@ export const CountryBox = ({
   const colorScheme = useColorScheme();
 
   return (
-    <Pressable
+    <View
       style={[
         styles.container,
         { borderColor: colorScheme === "dark" ? "#999999" : "#121212" },
         { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
-      ]}
-      onPress={onPress}>
-      <View style={styles.countryContainer}>
+      ]}>
+      <Pressable style={styles.countryContainer} onPress={onPress}>
         <Image
           source={{ uri: imageLink }}
           style={styles.flag}
@@ -64,13 +63,13 @@ export const CountryBox = ({
             styles.textInput,
             { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
           ]}
-          placeholder=""
+          placeholder="1234568"
           keyboardType="number-pad"
           {...rest}
           placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         />
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 const styles = StyleSheet.create({

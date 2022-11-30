@@ -31,8 +31,8 @@ export default function InternetConfirmation({
           </Text>
           <ImageInput
             label={"To"}
-            placeholder={""}
-            source={undefined}
+            placeholder={"Spectrant"}
+            source={Spectranet}
             icon={undefined}
           />
           <Input

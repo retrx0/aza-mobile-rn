@@ -25,7 +25,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
           }}>
-          <View style={{ marginLeft: 10 }}>
+          <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -38,62 +38,71 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Confirmation
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Kindly confirm the details of this transaction
-        </Text>
-        <View
-          style={{
-            borderBottomWidth: hp(0.25),
-            marginBottom: hp(35),
-            borderColor: "#EAEAEC",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.confirmDetails}>
+            Kindly confirm the details of this transaction
+          </Text>
+          <View
+            style={[
+              {
+                borderBottomWidth: hp(0.25),
+                marginBottom: hp(35),
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
 
-            width: "95%",
-            marginLeft: hp(10),
+                // alignSelf: "center",
+                // flexDirection: "row",
+                // alignItems: "center",
+              },
+              {
+                borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}>
+            <Input
+              icon={null}
+              keyboardType="default"
+              labelStyle={styles.label}
+              label="Vault Name"
+              placeholder="Give your vault a name"
+              inputStyle={{
+                fontSize: hp(16),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+                // fontSize: hp(16),
+                // fontWeight: "500",
+                // fontFamily: "Euclid-Circular-A",
+              }}
+            />
+            <Image
+              style={{
+                width: 45,
+                height: 45,
+              }}
+              source={require("../../../../assets/images/icons/CoverImage.png")}
+            />
+          </View>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={[
+                [CommonStyles.inputStyle],
+                {
+                  borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
+              labelStyle={styles.label}
+              label="Vault Goal"
+              // placeholder={"\u20A6 80,000"}
+              placeholder="Amount"
+              containerStyle={undefined}
+              // placeholderTextColor={Colors[colorScheme].text}
+            />
+          </View>
+        </View>
 
-            // alignSelf: "center",
-            // flexDirection: "row",
-            // alignItems: "center",
-          }}>
-          <Input
-            icon={null}
-            keyboardType="default"
-            labelStyle={styles.label}
-            label="Vault Name"
-            placeholder="Flight Ticket"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Medium",
-              // fontSize: hp(16),
-              // fontWeight: "500",
-              // fontFamily: "Euclid-Circular-A",
-            }}
-          />
-          <Image
-            style={{
-              width: 45,
-              height: 45,
-            }}
-            source={require("../../../../assets/images/icons/CoverImage.png")}
-          />
-        </View>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={CommonStyles.inputStyle}
-            labelStyle={styles.label}
-            label="Vault Goal"
-            placeholder={"\u20A6 80,000"}
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
-        </View>
         <View
           style={[
             CommonStyles.passwordContainer,
@@ -115,7 +124,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               },
             ]}
           />
-
           <CancelButtonWithUnderline
             title="Cancel Transaction"
             onPressButton={() =>

@@ -33,14 +33,14 @@ const SelectBankScreen = ({
   const { screenType } = route.params;
 
   const banks = [
-    { name: "access", logo: AccessBankLogoWithName },
-    { name: "eco", logo: EcoBankLogoWithName },
-    { name: "fcmb", logo: FCMBLogoWithName },
-    { name: "gt", logo: GTBankLogoWithName },
-    { name: "uba", logo: UBALogoWithName },
-    { name: "zenith", logo: ZenithBankLogoWithName },
-    { name: "fidelity", logo: FidelityBankLogoWithName },
-    { name: "first", logo: FirstBankLogoWithName },
+    { name: "Access", logo: AccessBankLogoWithName },
+    { name: "Eco", logo: EcoBankLogoWithName },
+    { name: "Fcmb", logo: FCMBLogoWithName },
+    { name: "Gtb", logo: GTBankLogoWithName },
+    { name: "Uba", logo: UBALogoWithName },
+    { name: "Zenith", logo: ZenithBankLogoWithName },
+    { name: "Fidelity", logo: FidelityBankLogoWithName },
+    { name: "First", logo: FirstBankLogoWithName },
   ];
 
   useLayoutEffect(() => {
@@ -102,6 +102,7 @@ const SelectBankScreen = ({
                   onPress={() =>
                     navigation.navigate("AddBankAccount", {
                       bankName: name,
+                      bankLogo: logo,
                       screenType,
                     })
                   }

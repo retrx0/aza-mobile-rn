@@ -40,7 +40,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             alignItems: "center",
             marginBottom: hp(30),
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -53,19 +53,51 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             New Vault
           </Text>
         </View>
-        <Text style={CommonStyles.descriptionStyle}>
-          Save and lock part of your Aza funds temporarily, for future use
-        </Text>
-        <View style={CommonStyles.vaultInputContainer}>
-          <Input
-            label={"Vault Name"}
-            labelStyle={undefined}
-            placeholder="Give your vault a name"
-            inputStyle={CommonStyles.inputStyle}
-            icon={undefined}
-            containerStyle={undefined}
-          />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.descriptionStyle}>
+            Save and lock part of your Aza funds temporarily, for future use
+          </Text>
+          <View style={CommonStyles.vaultInputContainer}>
+            <Input
+              label={"Vault Name"}
+              labelStyle={undefined}
+              placeholder="Give your vault a name"
+              inputStyle={[
+                CommonStyles.inputStyle,
+                {
+                  borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
+              icon={undefined}
+              containerStyle={undefined}
+            />
+          </View>
+          <View
+            style={{
+              marginTop: hp(20),
+            }}>
+            <Text
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
+              style={{
+                fontSize: hp(16),
+                fontWeight: "400",
+                lineHeight: hp(17.75),
+                marginBottom: hp(11),
+                fontFamily: "Euclid-Circular-A",
+              }}>
+              Period
+            </Text>
+            <CustomDropdown
+              data={period}
+              placeholder="Choose a period to lock funds away"
+              setValue={setPeriodValue}
+              value={periodValue}
+              label={""}
+            />
+          </View>
         </View>
+
         {/* <View style={CommonStyles.vaultInputcontainer}>
           <Input
             label={"Amount"}
@@ -82,32 +114,6 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             return <PercentageCard key={index} percentage={item.percentage} />;
           })}
         </View> */}
-
-        <View
-          style={{
-            marginTop: hp(20),
-            paddingHorizontal: hp(10),
-          }}>
-          <Text
-            // lightColor={Colors.light.secondaryText}
-            // darkColor={Colors.dark.secondaryText}
-            style={{
-              fontSize: hp(16),
-              fontWeight: "400",
-              lineHeight: hp(17.75),
-              marginBottom: hp(11),
-              fontFamily: "Euclid-Circular-A",
-            }}>
-            Period
-          </Text>
-          <CustomDropdown
-            data={period}
-            placeholder="Choose a period to lock funds away"
-            setValue={setPeriodValue}
-            value={periodValue}
-            label={""}
-          />
-        </View>
 
         <View
           style={[
@@ -145,6 +151,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 backgroundColor: Colors[colorScheme].button,
               },
             ]}
+            disabled={!periodValue}
           />
         </View>
       </View>

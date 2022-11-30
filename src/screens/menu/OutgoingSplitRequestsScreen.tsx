@@ -231,7 +231,7 @@ const OutgoingSplitRequestsScreen = ({
             title="Cancel Request"
             onPressButton={() => navigation.navigate("Split")}
             styleText={{
-              color: Colors[colorScheme].buttonText,
+              color: colorScheme === "dark" ? "#FFFFFF" : "#FFFFFF",
             }}
             style={[
               {

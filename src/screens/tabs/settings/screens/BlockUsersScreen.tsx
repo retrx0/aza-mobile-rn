@@ -50,7 +50,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Medium",
-              marginLeft: hp(5),
+
               fontWeight: "500",
             }}>
             Blocked users won't be able to send you money, request money from
@@ -122,6 +122,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

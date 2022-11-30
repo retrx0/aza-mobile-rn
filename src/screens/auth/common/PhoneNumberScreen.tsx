@@ -21,7 +21,7 @@ import { CountriesCard } from "../signup/components/CountriesCard";
 import Modal from "react-native-modal";
 import { FlatList } from "react-native";
 // import { SelectIcon } from "../../../../assets/svg";
-import Phone from "./phoneStage";
+import Phone from "./PhoneStage";
 
 const PhoneNumberScreen = ({
   navigation,

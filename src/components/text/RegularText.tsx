@@ -14,7 +14,7 @@ export default function RegularText({
       style={[
         style,
         {
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Semi-Bold",
           fontWeight: "500",
           fontSize: hp(16),
         },

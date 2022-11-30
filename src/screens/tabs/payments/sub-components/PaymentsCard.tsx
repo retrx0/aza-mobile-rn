@@ -22,7 +22,12 @@ type AirtimeProps = {
   styleText?: StyleProp<TextStyle>;
 };
 
-export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
+export const PaymentsCard = ({
+  title,
+  isActive,
+  icon,
+  onPress,
+}: AirtimeProps) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -31,8 +36,18 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
         <TouchableOpacity style={[styles.card]} onPress={onPress}>
           <Image resizeMode="cover" style={styles.image} source={icon} />
           {isActive ? (
-            <View style={styles.icon}>
-              <TickIcon />
+            <View style={styles.icon2}>
+              <View style={styles.icon}>
+                <TickIcon />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    color: "#2A9E17",
+                    textAlign: "center",
+                  }}>
+                  Paid
+                </Text>
+              </View>
             </View>
           ) : null}
           <Text
@@ -51,11 +66,13 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
 };
 
 const styles = StyleSheet.create({
-  icon: {
+  icon2: {
     position: "absolute",
     bottom: 0,
     right: 0,
     transform: [{ translateY: 2 }],
+  },
+  icon: {
     borderRadius: 20,
   },
   card: {
@@ -78,7 +95,7 @@ const styles = StyleSheet.create({
   // },
   title: {
     fontSize: hp(14),
-    marginTop: hp(4),
+    marginTop: hp(10),
     textAlign: "center",
     fontWeight: "500",
     fontFamily: "Euclid-Circular-A-Medium",
