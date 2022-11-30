@@ -4,8 +4,11 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { ActivityCard, ActivityList } from "../components/ActivityComponents";
 import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultActivity = () => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -39,13 +42,18 @@ const VaultActivity = () => {
                 fontSize: hp(10),
                 fontWeight: "600",
                 fontFamily: "Euclid-Circular-A",
-                marginLeft: hp(103),
+                marginLeft: hp(70),
               }}>
               4 July 2022 04:26
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={CommonStyles.line} />
+        <View
+          style={[
+            CommonStyles.line,
+            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
+        />
       </View>
     </SpacerWrapper>
   );
