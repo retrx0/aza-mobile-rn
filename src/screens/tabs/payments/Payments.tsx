@@ -1,5 +1,5 @@
 import { ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { PaymentStyles as styles } from "./styles";
 import { SafeAreaView, Text, View } from "../../../components/Themed";
 import { Header } from "../../../components/text/header";
@@ -21,11 +21,44 @@ import { RootTabScreenProps } from "../../../../types";
 import { Dstv, Fctwb, Ie, Mtn, Swift } from "../../../../assets/images";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
+import * as Images from "../../../../assets/images/index";
+import { Card } from "./sub-components/Card";
+import { PaymentsCard } from "./sub-components/PaymentsCard";
+
+// const Network = [
+//   {
+//     title: "MTN",
+//     icon: Images.Mtn,
+//     amount: "\u20A62,050",
+//   },
+//   {
+//     title: "Swift N",
+//     icon: Images.Swift,
+//     amount: "\u20A620,000",
+//   },
+//   {
+//     title: "DSTV",
+//     icon: Images.Dstv,
+//     amount: "\u20A621,000",
+//   },
+//   {
+//     title: "Ikeja El...",
+//     icon: Images.Ie,
+//     amount: "\u20A62,150",
+//   },
+//   {
+//     title: "FCT Wat",
+//     icon: Images.Fctwb,
+//     amount: "\u20A62,150",
+//   },
+// ];
 
 export default function Payments({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const scheme = useColorScheme();
+  const [active, setActive] = useState("");
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -94,6 +127,25 @@ export default function Payments({
           image={Fctwb}
         />
       </ScrollView>
+      {/* <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        style={{
+          flexDirection: "row",
+          marginTop: 30,
+        }}>
+        {Network.map((item, index) => {
+          return (
+            <PaymentsCard
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setActive(item.icon)}
+              isActive={item.icon === active}
+            />
+          );
+        })}
+      </ScrollView> */}
 
       <ScrollView style={styles.itemListContainer}>
         <ListItem

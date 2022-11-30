@@ -22,6 +22,8 @@ const data = [
 ];
 export default function Pie() {
   const scheme = useColorScheme();
+  const colorScheme = useColorScheme();
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer]}>
       <View style={styles.container}>
@@ -49,9 +51,18 @@ export default function Pie() {
           focusOnPress
           showValuesAsLabels
           centerLabelComponent={() => (
-            <View style={styles.centerLabel}>
-              <Text style={{ color: "black" }}>Total</Text>
-              <RegularText text="N38,000" />
+            <View style={[styles.centerLabel]}>
+              <Text darkColor="#000000" lightColor="#000000">
+                Total
+              </Text>
+              <RegularText
+                text={"\u20A638,000"}
+                style={[
+                  {
+                    color: colorScheme === "dark" ? "#000000" : "#000000",
+                  },
+                ]}
+              />
             </View>
           )}
         />

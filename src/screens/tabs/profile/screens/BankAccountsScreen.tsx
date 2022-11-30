@@ -147,8 +147,8 @@ const BankAccountsScreen = ({
                 screenType,
               })
             }
-            color={Colors[colorScheme].text}
-            style={{ marginBottom: 10 }}
+            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+            style={[{ marginBottom: 10 }]}
           />
           <Button
             disabled={!selectedAccount}
