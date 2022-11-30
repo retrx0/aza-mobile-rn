@@ -55,7 +55,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "VaultToAza" })
             }
-            style={[CommonStyles.toBankbutton]}
+            style={[CommonStyles.toBankbutton, { marginBottom: hp(20) }]}
             styleText={CommonStyles.toBankbuttonText}
           />
           <Button

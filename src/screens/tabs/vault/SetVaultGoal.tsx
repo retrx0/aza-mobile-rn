@@ -27,7 +27,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -40,7 +40,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Set a Goal
           </Text>
         </View>
-        <Text style={CommonStyles.selectStyle}>
+        <Text style={[CommonStyles.selectStyle, { marginLeft: 20 }]}>
           You can determine the amount you want to save
         </Text>
         <View style={[CommonStyles.row]}>
@@ -87,6 +87,16 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "ConfirmGoal" })
             }
+            style={[
+              [CommonStyles.toBankbutton],
+              {
+                backgroundColor: colorScheme === "dark" ? "white" : "black",
+              },
+            ]}
+            styleText={[
+              CommonStyles.toBankbuttonText,
+              { color: colorScheme === "dark" ? "black" : "white" },
+            ]}
           />
         </View>
       </View>

@@ -35,7 +35,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
           }}>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -48,14 +48,17 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Add Cover Image
           </Text>
         </View>
-        <Text style={CommonStyles.selectStyle}>
-          When you add a photo and set a vault goal in the next step, your
-          account would look like the one below.
-        </Text>
-        <Image
-          style={{ width: 150, height: 150, alignSelf: "center" }}
-          source={require("../../../../assets/images/icons/CoverImageII.png")}
-        />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.selectStyle}>
+            When you add a photo and set a vault goal in the next step, your
+            account would look like the one below.
+          </Text>
+          <Image
+            style={{ width: 150, height: 150, alignSelf: "center" }}
+            source={require("../../../../assets/images/icons/CoverImageII.png")}
+          />
+        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
@@ -68,8 +71,8 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             //     .getParent()
             //     ?.navigate("Common", { screen: "VaultToAza" })
             // }
-            style={[CommonStyles.toBankbutton]}
-            styleText={CommonStyles.toBankbuttonText}
+            style={[CommonStyles.toAzabutton]}
+            styleText={CommonStyles.toAzabuttonText}
             onPressButton={() => selectImageFromGallery()}
           />
           <Button
@@ -79,8 +82,8 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 screen: "SetVaultGoal",
               })
             }
-            style={[CommonStyles.toAzabutton]}
-            styleText={CommonStyles.toAzabuttonText}
+            style={[CommonStyles.toBankbutton]}
+            styleText={CommonStyles.toBankbuttonText}
           />
         </View>
       </View>

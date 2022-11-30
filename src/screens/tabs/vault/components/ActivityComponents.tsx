@@ -10,6 +10,7 @@ import { VaultActivitytProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 export const ActivityList = [
   {
@@ -70,6 +71,8 @@ export const ActivityCard = ({
   due,
   onPress,
 }: VaultActivitytProps) => {
+  const colorScheme = useColorScheme();
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.activityContainer}>
@@ -108,7 +111,12 @@ export const ActivityCard = ({
           <Text style={styles.date}> {due}</Text>
         </View>
       </View>
-      <View style={styles.separator} />
+      <View
+        style={[
+          styles.separator,
+          { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
+      />
     </TouchableOpacity>
   );
 };
@@ -155,7 +163,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     borderWidth: hp(0.3),
-    borderColor: "#EAEAEC",
     marginBottom: hp(10),
     width: wp(370),
     alignSelf: "center",

@@ -21,6 +21,8 @@ import { VaultListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const ArchieveList = [
   {
@@ -181,7 +183,12 @@ const ListItem = ({
           </View>
         </View>
       </TouchableOpacity>
-      <View style={styles.separator} />
+      <View
+        style={[
+          styles.separator,
+          { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
+      />
     </Swipeable>
   );
 };
@@ -189,13 +196,15 @@ const ListItem = ({
 const ArchievedComponents = () => {
   return (
     <>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={ArchieveList}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem {...item} />}
-        />
-      </SafeAreaView>
+      <SpacerWrapper>
+        <View style={CommonStyles.vaultcontainer}>
+          <FlatList
+            data={ArchieveList}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <ListItem {...item} />}
+          />
+        </View>
+      </SpacerWrapper>
     </>
   );
 };
@@ -215,9 +224,7 @@ const styles = StyleSheet.create({
     color: Colors.general.green,
     marginRight: hp(12),
   },
-  container: {
-    flex: 1,
-  },
+  // container: {},
   itemSeparator: {
     flex: 1,
     height: 1,
@@ -253,7 +260,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     borderWidth: 0.5,
-    borderColor: "#EAEAEC",
     width: wp(390),
     alignSelf: "center",
   },

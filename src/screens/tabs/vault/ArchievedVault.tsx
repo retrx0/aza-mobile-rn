@@ -22,6 +22,7 @@ import { VaultListProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const ArchieveList = [
   {
@@ -53,6 +54,8 @@ const ListItem = ({
   onPress,
 }: VaultListProps) => {
   const navigation = useNavigation();
+  const colorScheme = useColorScheme();
+
   return (
     <Swipeable
       renderRightActions={() => (
@@ -143,13 +146,20 @@ const ListItem = ({
             <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
           </View>
         </View>
-        <View style={styles.separator} />
+        <View
+          style={[
+            styles.separator,
+            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
+        />
       </View>
     </Swipeable>
   );
 };
 
 const ArchievedVault = ({ navigation }: { navigation: any }) => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -177,12 +187,19 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
         </View>
-        <View style={CommonStyles.lineDivider} />
-        <FlatList
-          data={ArchieveList}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem altamount={""} {...item} />}
-        />
+        <View style={{ paddingHorizontal: 10 }}>
+          <View
+            style={[
+              CommonStyles.lineDivider,
+              { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+            ]}
+          />
+          <FlatList
+            data={ArchieveList}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <ListItem altamount={""} {...item} />}
+          />
+        </View>
       </View>
     </SpacerWrapper>
   );
@@ -205,9 +222,9 @@ const styles = StyleSheet.create({
     color: Colors.general.green,
     marginRight: hp(12),
   },
-  container: {
-    flex: 1,
-  },
+  // container: {
+  //   flex: 1,
+  // },
   itemSeparator: {
     flex: 1,
     height: 1,
@@ -243,7 +260,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     borderWidth: 0.5,
-    borderColor: "#EAEAEC",
     width: wp(390),
     alignSelf: "center",
   },

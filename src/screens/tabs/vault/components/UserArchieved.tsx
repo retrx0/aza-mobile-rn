@@ -163,7 +163,12 @@ const ListItem = ({
           </View>
         </TouchableOpacity>
       </View>
-      <View style={styles.separator} />
+      <View
+        style={[
+          styles.separator,
+          { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
+      />
     </Swipeable>
   );
 };
@@ -216,7 +221,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: hp(20),
+
     marginBottom: hp(20),
     marginTop: hp(20),
   },
@@ -235,7 +240,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     borderWidth: 0.5,
-    borderColor: "#EAEAEC",
     width: wp(390),
     alignSelf: "center",
   },
