@@ -62,7 +62,6 @@ const NotificationSettingsScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-            marginLeft: hp(5),
           }}>
           Do you want us to inform you about your account
         </Text>
@@ -112,6 +111,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

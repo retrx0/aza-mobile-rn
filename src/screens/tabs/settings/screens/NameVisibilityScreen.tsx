@@ -61,7 +61,6 @@ const NameVisibilityScreen = ({
         style={{
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A",
-          marginLeft: hp(5),
           fontWeight: "500",
         }}>
         You can disable this setting if you want your name to appear masked when
@@ -128,6 +127,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

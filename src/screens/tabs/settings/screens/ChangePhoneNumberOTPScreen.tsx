@@ -46,7 +46,6 @@ const ChangePhoneNumberOTPScreen = ({
         style={{
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(5),
           fontWeight: "500",
         }}>
         Please enter the OTP sent to your phone via SMS
@@ -81,6 +80,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

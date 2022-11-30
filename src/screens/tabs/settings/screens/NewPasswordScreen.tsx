@@ -143,7 +143,7 @@ const NewPasswordScreen = ({
           fontSize: 14,
         }}
         style={{
-          marginTop: hp(100),
+          marginTop: hp(10),
           backgroundColor: Colors[colorScheme].button,
         }}
       />
@@ -157,6 +157,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

@@ -71,7 +71,6 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-            marginLeft: hp(5),
           }}>
           You can access your account without entering a password by signing in
           with Face ID
@@ -102,6 +101,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });
