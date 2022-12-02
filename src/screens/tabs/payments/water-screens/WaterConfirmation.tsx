@@ -25,7 +25,7 @@ export default function WaterConfirmation({
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={{ paddingHorizontal: 20 }}>
+        <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
           </Text>

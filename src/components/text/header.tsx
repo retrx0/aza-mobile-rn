@@ -28,7 +28,7 @@ export const Header = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: hp(20),
+    paddingHorizontal: hp(23),
   },
 
   heading: {

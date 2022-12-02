@@ -49,7 +49,7 @@ const BvnVerificationScreen = ({
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View>
+        <View style={{ paddingHorizontal: 8 }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
@@ -58,7 +58,6 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-              marginLeft: 5,
             }}>
             Verify your BVN
           </Text>
@@ -71,7 +70,6 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-                marginLeft: 5,
               }}>
               BVN
             </Text>
@@ -88,7 +86,6 @@ const BvnVerificationScreen = ({
                 borderBottomColor: Colors[colorScheme].separator,
                 fontSize: hp(16),
                 fontWeight: "500",
-                marginLeft: 5,
               }}
               placeholder="Enter your bank verification number"
               keyboardType="number-pad"

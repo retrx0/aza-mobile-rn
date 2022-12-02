@@ -107,7 +107,7 @@ export default function InternetDetail({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <Button
           title="Continue"
