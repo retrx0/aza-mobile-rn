@@ -179,7 +179,7 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginRight: hp(30),
+              marginRight: hp(40),
             }}>
             Archived Vaults
           </Text>
@@ -187,7 +187,7 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
             <InfoIcon color={""} size={0} />
           </TouchableOpacity>
         </View>
-        <View style={{ paddingHorizontal: 10 }}>
+        <View>
           <View
             style={[
               CommonStyles.lineDivider,

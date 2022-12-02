@@ -36,89 +36,89 @@ const RecurringMoneyConfirmationScreen = ({
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(80),
+              marginLeft: hp(65),
             }}>
             Confirmation
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Kindly confirm the details of this transaction
-        </Text>
-        <View
-          style={{
-            paddingHorizontal: hp(10),
-          }}>
-          <ImageInput
-            label={"To"}
-            placeholder={"Flight Ticket vault"}
-            source={require("../../../../../assets/images/icons/CoverImage.png")}
-            icon={undefined}
-          />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.confirmDetails}>
+            Kindly confirm the details of this transaction
+          </Text>
+          <View>
+            <ImageInput
+              label={"To"}
+              placeholder={"Flight Ticket vault"}
+              source={require("../../../../../assets/images/icons/CoverImage.png")}
+              icon={undefined}
+            />
+          </View>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={{
+                fontSize: hp(16),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+                borderBottomWidth: hp(0.25),
+                borderColor: "#EAEAEC",
+                paddingVertical: hp(8),
+                width: "100%",
+              }}
+              labelStyle={styles.label}
+              label="Amount"
+              placeholder={"\u20A6 80,000"}
+              containerStyle={undefined}
+              // placeholderTextColor={Colors[colorScheme].text}
+            />
+          </View>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={{
+                fontSize: hp(16),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+                borderBottomWidth: hp(0.25),
+                borderColor: "#EAEAEC",
+                paddingVertical: hp(8),
+                width: "100%",
+              }}
+              labelStyle={styles.label}
+              label="Period"
+              placeholder="Weekly"
+              containerStyle={undefined}
+              // placeholderTextColor={Colors[colorScheme].text}
+            />
+          </View>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={{
+                fontSize: hp(16),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+                borderBottomWidth: hp(0.25),
+                borderColor: "#EAEAEC",
+                paddingVertical: hp(8),
+                width: "100%",
+              }}
+              labelStyle={styles.label}
+              label="Day"
+              placeholder="Wednesday"
+              containerStyle={undefined}
+              // placeholderTextColor={Colors[colorScheme].text}
+            />
+          </View>
         </View>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Medium",
-              borderBottomWidth: hp(0.25),
-              borderColor: "#EAEAEC",
-              paddingVertical: hp(8),
-              width: "100%",
-            }}
-            labelStyle={styles.label}
-            label="Amount"
-            placeholder={"\u20A6 80,000"}
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
-        </View>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Medium",
-              borderBottomWidth: hp(0.25),
-              borderColor: "#EAEAEC",
-              paddingVertical: hp(8),
-              width: "100%",
-            }}
-            labelStyle={styles.label}
-            label="Period"
-            placeholder="Weekly"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
-        </View>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A-Medium",
-              borderBottomWidth: hp(0.25),
-              borderColor: "#EAEAEC",
-              paddingVertical: hp(8),
-              width: "100%",
-            }}
-            labelStyle={styles.label}
-            label="Day"
-            placeholder="Wednesday"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
-        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Continue"

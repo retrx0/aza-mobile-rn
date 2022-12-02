@@ -35,12 +35,12 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(60),
+              marginLeft: hp(65),
             }}>
             Change Goal Amount
           </Text>
         </View>
-        <Text style={CommonStyles.selectStyle}>
+        <Text style={[CommonStyles.selectStyle, { marginLeft: hp(20) }]}>
           You can determine the amount you want to save
         </Text>
         <View style={[CommonStyles.row]}>
@@ -77,7 +77,7 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             disabled={!amount}

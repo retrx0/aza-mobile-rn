@@ -9,6 +9,7 @@ import { VaultStyles } from "../styles";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Image } from "react-native";
 
 const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const colorScheme = useColorScheme();
@@ -17,11 +18,27 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={VaultStyles.container}>
-        <View style={CommonStyles.flightContainer}>
-          <Text style={CommonStyles.ticket}>Flight Ticket Vault</Text>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <NairaIcon color={Colors[colorScheme].text} size={0} />
-            <Text style={CommonStyles.flightAmount}>80,000</Text>
+        <View>
+          <View>
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                alignSelf: "center",
+                marginBottom: hp(10),
+              }}
+              source={require("../../../../../assets/images/icons/CoverImage.png")}
+            />
+            <Text
+              style={{
+                fontSize: hp(24),
+                fontWeight: "600",
+                fontFamily: "Euclid-Circular-A-Bold",
+                marginTop: hp(2),
+                textAlign: "center",
+              }}>
+              {"\u20A62,000"}
+            </Text>
           </View>
         </View>
         <View
@@ -39,14 +56,16 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Matured
           </Text>
         </View>
-        <Text style={CommonStyles.withdrawSuccessfull}>
-          Your funds have successfully matured and can now be withdrawn.
-        </Text>
+        <View style={{ paddingHorizontal: hp(40) }}>
+          <Text style={CommonStyles.withdrawSuccessfull}>
+            Your funds have successfully matured and can now be withdrawn.
+          </Text>
+        </View>
 
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Withdraw to Aza"

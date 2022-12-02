@@ -43,7 +43,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(90),
+              marginLeft: hp(65),
             }}>
             Add Cover Image
           </Text>
@@ -62,7 +62,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Select From Gallery"

@@ -62,6 +62,19 @@ export const ActivityList = [
     amount: "\u20A6200",
     due: "4 July 2022 04:26",
   },
+  {
+    send: (
+      <Image
+        style={{
+          width: 36,
+          height: 36,
+        }}
+        source={require("../../../../../assets/images/icons/CoverImage.png")}
+      />
+    ),
+    status: "Flight Ticket vault created",
+    due: "4 July 2022 04:26",
+  },
 ];
 
 export const ActivityCard = ({
@@ -108,7 +121,7 @@ export const ActivityCard = ({
               {amount}
             </Text>
           </View>
-          <Text style={styles.date}> {due}</Text>
+          <Text style={styles.date}>{due}</Text>
         </View>
       </View>
       <View

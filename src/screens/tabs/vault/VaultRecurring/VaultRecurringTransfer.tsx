@@ -54,20 +54,20 @@ const VaultRecurringTransfer = ({
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(80),
+              marginLeft: hp(70),
             }}>
             Recurring Transfer
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Setup a recurring money transfer
-        </Text>
+
         <View
           style={{
-            marginTop: hp(20),
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
           }}>
+          <Text style={CommonStyles.confirmDetails}>
+            Setup a recurring money transfer
+          </Text>
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
@@ -113,7 +113,7 @@ const VaultRecurringTransfer = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Continue"
@@ -130,6 +130,7 @@ const VaultRecurringTransfer = ({
                 backgroundColor: Colors[colorScheme].button,
               },
             ]}
+            disabled={!periodValue}
           />
 
           <CancelButtonWithUnderline

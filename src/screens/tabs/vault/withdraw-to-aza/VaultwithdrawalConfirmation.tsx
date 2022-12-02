@@ -54,7 +54,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
               label="To"
               placeholder="Aza Account"
               containerStyle={undefined}
-              placeholderTextColor={Colors[colorScheme].text}
+              // placeholderTextColor={Colors[colorScheme].text}
             />
           </View>
           <View style={CommonStyles.vaultInputcontainer}>
@@ -69,7 +69,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
               label="Amount"
               placeholder={"\u20A6 80,000"}
               containerStyle={undefined}
-              placeholderTextColor={Colors[colorScheme].text}
+              // placeholderTextColor={Colors[colorScheme].text}
             />
           </View>
         </View>
@@ -77,7 +77,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Continue"
