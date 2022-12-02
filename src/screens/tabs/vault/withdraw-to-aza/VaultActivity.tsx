@@ -24,36 +24,7 @@ const VaultActivity = () => {
               />
             );
           })}
-          <TouchableOpacity style={CommonStyles.flightcontainer}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Image
-                style={{
-                  width: 36,
-                  height: 36,
-                }}
-                source={require("../../../../../assets/images/icons/CoverImage.png")}
-              />
-              <Text style={CommonStyles.flightText}>
-                Flight Ticket vault created
-              </Text>
-            </View>
-            <Text
-              style={{
-                fontSize: hp(10),
-                fontWeight: "600",
-                fontFamily: "Euclid-Circular-A",
-                marginLeft: hp(70),
-              }}>
-              4 July 2022 04:26
-            </Text>
-          </TouchableOpacity>
         </View>
-        <View
-          style={[
-            CommonStyles.line,
-            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
-          ]}
-        />
       </View>
     </SpacerWrapper>
   );
