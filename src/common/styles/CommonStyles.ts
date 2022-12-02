@@ -99,7 +99,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(16),
     fontWeight: "500",
     marginTop: hp(30),
-    marginBottom: hp(100),
+    marginBottom: hp(80),
   },
   withdrawSuccessfull: {
     fontFamily: "Euclid-Circular-A",
@@ -263,7 +263,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A",
-    marginTop: hp(5),
+    marginTop: hp(10),
   },
   actionContainer: {
     alignSelf: "center",
@@ -449,7 +449,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Medium",
     marginTop: hp(30),
-    marginBottom: hp(35),
+    marginBottom: hp(40),
   },
   descriptionStyle: {
     fontSize: hp(16),
@@ -564,9 +564,7 @@ const CommonStyles = StyleSheet.create({
     marginTop: hp(30),
     marginBottom: hp(10),
   },
-  iconStyle: {
-    marginLeft: hp(26),
-  },
+
   centerText: {
     width: wp(160),
     left: hp(50),
@@ -815,7 +813,7 @@ const CommonStyles = StyleSheet.create({
   //   fontWeight: "500",
   // },
   orText: {
-    fontSize: hp(20),
+    fontSize: hp(14),
     alignSelf: "center",
     fontWeight: "500",
     marginTop: hp(30),

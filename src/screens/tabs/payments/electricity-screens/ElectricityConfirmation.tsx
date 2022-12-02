@@ -31,7 +31,7 @@ export default function ElectricityConfirmation({
           </Text>
           <ImageInput
             label={"To"}
-            placeholder={""}
+            placeholder={"Ikeja Electric"}
             source={Ie}
             icon={undefined}
           />
@@ -102,7 +102,7 @@ export default function ElectricityConfirmation({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Confirm"

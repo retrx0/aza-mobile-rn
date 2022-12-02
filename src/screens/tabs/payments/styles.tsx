@@ -45,6 +45,7 @@ export const PaymentStyles = StyleSheet.create({
     maxHeight: 100,
     backgroundColor: "transparent",
     marginLeft: hp(20),
+    marginBottom: hp(25),
   },
   itemListContainer: {
     paddingHorizontal: 20,
@@ -80,7 +81,7 @@ export const CharityStyles = StyleSheet.create({
   input: {
     marginLeft: 20,
     width: "90%",
-    borderBottomColor: "#EAEAEC",
+
     borderBottomWidth: 1,
     height: 40,
     fontSize: hp(16),

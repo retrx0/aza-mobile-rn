@@ -8,6 +8,7 @@ import React from "react";
 import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
 import { Text, View } from "../../../../components/Themed";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 type HeaderImageProps = {
   image: ImageSourcePropType;
@@ -63,7 +64,6 @@ export default function HeadrImage({
         ) : null}
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
-
       <Text style={styles.text2}>{title}</Text>
       {amount && <Text style={styles.text3}>₦{amount}</Text>}
     </TouchableAnimated>
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
   text2: {
     fontWeight: "400",
     fontSize: 12,
-    marginTop: 10,
   },
   text3: {
     fontWeight: "400",

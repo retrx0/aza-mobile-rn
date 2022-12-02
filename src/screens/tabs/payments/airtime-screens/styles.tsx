@@ -19,6 +19,7 @@ export const AIrtimeStyles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
+    paddingVertical: hp(3),
   },
   button: {
     marginTop: "auto",

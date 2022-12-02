@@ -100,7 +100,7 @@ export default function Payments({
           header="Paid"
           title="Swift N"
           amount="20,000"
-          image={Swift}
+          image={Images.SWIFT}
         />
         <HeadrImage
           selected
@@ -153,7 +153,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "AirtimeData" });
           }}
-          Icon={() => <DataIcon size={24} />}
+          Icon={() => <DataIcon size={30} />}
           title="Airtime & Data"
           route=""
         />
@@ -163,7 +163,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "InternetPlans" });
           }}
-          Icon={() => <WifiIcon size={24} />}
+          Icon={() => <WifiIcon size={30} />}
           title="Internet"
           route=""
         />
@@ -173,7 +173,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "CableTV" });
           }}
-          Icon={() => <CableTvIcon size={20} />}
+          Icon={() => <CableTvIcon size={30} />}
           title="Cable TV"
           route=""
         />
@@ -183,7 +183,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Electricity" });
           }}
-          Icon={() => <ElectricIcon size={24} />}
+          Icon={() => <ElectricIcon size={30} />}
           title="Electricity"
           route=""
         />
@@ -193,7 +193,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Water" });
           }}
-          Icon={() => <DropIcon size={24} />}
+          Icon={() => <DropIcon size={30} />}
           title="Water"
           route=""
         />
@@ -203,7 +203,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "GiftCard" });
           }}
-          Icon={() => <GiftIcon size={24} />}
+          Icon={() => <GiftIcon size={30} />}
           title="Gift Cards"
           route=""
         />
@@ -213,7 +213,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Charity" });
           }}
-          Icon={() => <LoveIcon size={24} />}
+          Icon={() => <LoveIcon size={30} />}
           title="Charity"
           route=""
         />
@@ -222,7 +222,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "GameScreen" });
           }}
-          Icon={() => <GameIcon size={24} />}
+          Icon={() => <GameIcon size={30} />}
           title="Game Credits"
           route=""
         />

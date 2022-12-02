@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { ImageInput } from "../sub-components/ImageInput";
-import { Chess, Ie } from "../../../../../assets/images";
+import { CHESS, Ie } from "../../../../../assets/images";
 import Button from "../../../../components/buttons/Button";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -32,7 +32,7 @@ export default function CharityConfirmation({
           <ImageInput
             label={"To"}
             placeholder={"Chess in Slums"}
-            source={Chess}
+            source={CHESS}
             icon={undefined}
           />
           <Input
@@ -86,7 +86,7 @@ export default function CharityConfirmation({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Confirm"

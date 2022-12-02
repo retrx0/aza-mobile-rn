@@ -49,6 +49,7 @@ export default function InternetDetail({
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginTop: hp(30),
+          marginLeft: 3,
         }}
         heading="Subscribe to an internet plan"
       />

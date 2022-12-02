@@ -27,12 +27,6 @@ export default function AirtimeConfirmation({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
-  const signUpValidationSchema = yup.object().shape({
-    Amount: yup.number().required("Amount is required"),
-    PhoneNumber: yup.number().required("Phone Number is required"),
-    PaymentMethod: yup.number().required("Payment Method is required"),
-  });
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -117,7 +111,7 @@ export default function AirtimeConfirmation({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Confirm"
