@@ -23,7 +23,6 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
-
             fontWeight: "500",
           }}>
           Blocked users won't be able to send you money, request money from you
@@ -35,7 +34,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
+
             fontWeight: "400",
             marginTop: hp(30),
           }}>
@@ -45,14 +44,16 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           <TextInput
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
-            placeholderTextColor={Colors[colorScheme].secondaryText}
+            // placeholderTextColor={Colors[colorScheme].secondaryText}
             style={{
               backgroundColor: "transparent",
               fontFamily: "Euclid-Circular-A",
               paddingBottom: 10,
               marginTop: hp(15),
               borderBottomWidth: 1,
-              borderBottomColor: Colors[colorScheme].separator,
+
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
               marginLeft: hp(5),
             }}
             placeholder="Mobile Number"

@@ -32,6 +32,7 @@ export default function AccountSettings({
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "ChangePassword" }),
     },
+
     {
       icon: (
         <ChangePhoneNumberIcon size={36} color={Colors[colorScheme].mainText} />
@@ -83,7 +84,7 @@ export default function AccountSettings({
   ];
 
   return (
-    <View>
+    <View style={{ marginBottom: hp(25) }}>
       <View>
         <Text
           style={{
@@ -100,7 +101,7 @@ export default function AccountSettings({
             backgroundColor: "transparent",
             marginTop: hp(10),
             borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />
       </View>

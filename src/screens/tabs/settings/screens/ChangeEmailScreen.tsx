@@ -62,9 +62,7 @@ const ChangeEmailScreen = ({
           placeHolder="Current Email"
           required={false}
           value={currentEmail}
-          onChange={() => {
-            undefined;
-          }}
+          onChange={(e) => setNewEmail(e.nativeEvent.text)}
           labelStyle={{
             fontSize: hp(16),
             fontFamily: "Euclid-Circular-A",

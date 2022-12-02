@@ -49,7 +49,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
         </Text>
       ),
       // hide default back button which only shows in android
-      headerBackVisible: true,
+      headerBackVisible: false,
       headerTransparent: true,
       //center it in android
       headerTitleAlign: "center",

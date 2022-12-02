@@ -110,7 +110,7 @@ export default function ApplicationSettings({
             backgroundColor: "transparent",
             marginTop: hp(10),
             borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />
       </View>

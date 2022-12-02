@@ -21,7 +21,6 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
-
             fontWeight: "500",
           }}>
           Blocked users won't be able to send you money, request money from you
@@ -33,7 +32,6 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
             fontWeight: "400",
             marginTop: hp(30),
           }}>
