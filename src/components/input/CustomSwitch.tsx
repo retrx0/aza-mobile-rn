@@ -1,25 +1,21 @@
-import {
-  View,
-  Text,
-  Switch,
-  StyleSheet,
-  StyleProp,
-  ViewStyle,
-} from "react-native";
+import { View, Text, Switch, StyleSheet, StyleProp } from "react-native";
 import React from "react";
 import { hp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
+import { TextStyle } from "react-native-phone-input";
 
+export type SwitchProps = {
+  Style?: StyleProp<TextStyle>;
+  onValueChange: any;
+  isEnabled: boolean;
+  title: string;
+};
 export default function CustomSwitch({
   onValueChange,
   isEnabled,
   title,
-}: {
-  onValueChange: any;
-
-  isEnabled: boolean;
-  title: string;
-}) {
+  Style,
+}: SwitchProps & TextStyle) {
   const colorScheme = useColorScheme();
 
   return (
@@ -28,7 +24,7 @@ export default function CustomSwitch({
         style={[
           styles.text,
           {
-            color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+            color: colorScheme === "dark" ? "#A6A6A6" : "#A6A6A6",
           },
         ]}>
         {title}
@@ -39,6 +35,7 @@ export default function CustomSwitch({
         ios_backgroundColor="#f4f3f4"
         onValueChange={onValueChange}
         value={isEnabled}
+        style={{ transform: [{ scaleX: 0.9 }, { scaleY: 0.8 }] }}
       />
     </View>
   );
@@ -48,13 +45,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-    height: hp(40),
-    padding: hp(10),
   },
   text: {
     color: "#A6A6A6",
-    marginRight: 20,
-    fontSize: hp(12),
+    marginRight: hp(10),
+    fontSize: hp(14),
     fontWeight: "600",
     fontFamily: "Euclid-Circular-A",
   },

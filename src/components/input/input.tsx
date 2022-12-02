@@ -59,6 +59,7 @@ export const Input = ({
               inputStyle,
               {
                 color: Colors[colorScheme].text,
+                // marginTop: 10,
               },
               placeholderStyle,
             ]}></TextInput>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: hp(16),
     fontWeight: "400",
     lineHeight: hp(17.75),
-    marginBottom: hp(11),
+    marginBottom: hp(12),
     fontFamily: "Euclid-Circular-A",
   },
   container: {

@@ -24,62 +24,49 @@ const ButtonLg = (props: {
   titleStyle?: StyleProp<TextStyle>;
 }) => {
   return (
-    <TouchableOpacity
+    <View
       {...props}
-      style={[styles.button, { backgroundColor: props.color }, props.style]}
-      onPress={props.onPress}>
-      <View
-        style={[
-          {
-            flex: 1,
-            justifyContent: "center",
-            backgroundColor: "transparent",
-            alignItems: "center",
-          },
-        ]}>
+      style={[
+        styles.button,
+        { backgroundColor: props.color },
+        { paddingHorizontal: 27.5 },
+        props.style,
+      ]}>
+      <TouchableOpacity onPress={props.onPress}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
           <View
-            style={[
-              CommonStyles.iconStyle,
-              {
-                flex: 1,
-                alignItems: "center",
-                height: 0,
-                width: 0,
-              },
-            ]}>
+            style={{ backgroundColor: "transparent", alignSelf: "flex-start" }}>
             {props.icon}
           </View>
-          <Text
-            adjustsFontSizeToFit
-            style={[
-              CommonStyles.centerText,
-              {
-                color: props.alt ? "black" : "white",
-                fontWeight: "500",
-                fontSize: hp(14),
-                lineHeight: hp(18),
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                flex: 6,
-              },
-              props.titleStyle,
-            ]}>
-            {props.title}
-          </Text>
+          <View style={{ backgroundColor: "transparent" }}>
+            <Text
+              style={[
+                {
+                  color: props.alt ? "black" : "white",
+                  fontWeight: "500",
+                  fontSize: hp(14),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  marginLeft: 55,
+                },
+                props.titleStyle,
+              ]}>
+              {props.title}
+            </Text>
+          </View>
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    justifyContent: "center",
+    marginVertical: 15,
   },
   button: {
     width: "90%",
-    height: 50,
+    height: hp(50),
     marginVertical: 10,
     borderRadius: 10,
     alignSelf: "center",

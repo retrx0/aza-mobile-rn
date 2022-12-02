@@ -2,7 +2,9 @@ import React from "react";
 import {
   ColorValue,
   GestureResponderEvent,
+  StyleProp,
   StyleSheet,
+  TextStyle,
   TouchableOpacity,
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
@@ -12,6 +14,7 @@ const ButtonMd = (props: {
   title: string;
   color: ColorValue;
   alt: boolean;
+  style?: StyleProp<TextStyle>;
   onPress: (event: GestureResponderEvent) => void;
 }) => {
   return (
@@ -19,7 +22,11 @@ const ButtonMd = (props: {
       style={[styles.buttonContainer, { backgroundColor: props.color }]}
       onPress={props.onPress}>
       <Text
-        style={[styles.buttonText, { color: props.alt ? "black" : "white" }]}>
+        style={[
+          styles.buttonText,
+          { color: props.alt ? "black" : "white" },
+          props.style,
+        ]}>
         {props.title}
       </Text>
     </TouchableOpacity>
@@ -31,7 +38,7 @@ const styles = StyleSheet.create({
     width: wp(160),
     height: hp(50),
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: hp(10),
     borderColor: "black",
     borderWidth: 1,
   },

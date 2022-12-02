@@ -66,7 +66,7 @@ const styles = {
     fontWeight: "500",
     fontSize: hp(14),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   nextText: {
     color: Colors.general.secondary,
@@ -78,7 +78,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: wp(350),
+    width: wp(370),
     // marginTop: 100,
   },
   nextButton: {

@@ -59,8 +59,8 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(18),
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(24),
               padding: 10,
               textAlign: "center",
             }}>

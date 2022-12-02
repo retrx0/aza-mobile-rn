@@ -26,7 +26,7 @@ import CommonStyles from "../styles/CommonStyles";
 import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
 import Colors from "../../constants/Colors";
-import { BackIcon } from "../../../assets/svg";
+import { BackIcon, ExitIcon } from "../../../assets/svg";
 
 import StatusScreen from "../../screens/status/StatusScreen";
 
@@ -130,6 +130,7 @@ import GiftCardScreen from "../../screens/tabs/payments/gift-card/GiftCardScreen
 import GiftCardConfirmation from "../../screens/tabs/payments/gift-card/GiftCardConfirmation";
 import GiftCardDetails from "../../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../../screens/tabs/payments/game/GameScreen";
+import SetNewRecurringTransfer from "../../screens/transfer-modal/SetNewRecurringTransfer";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -153,7 +154,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontFamily: "Euclid-Circular-A-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-            marginLeft: 80,
+            marginLeft: hp(65),
           }}>
           Flight Ticket Vault
         </Text>
@@ -390,7 +391,7 @@ const CommonStack = () => {
               }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
-                size={16}
+                size={12}
               />
               <Text
                 style={{
@@ -618,6 +619,7 @@ const CommonStack = () => {
                 </Text>
               </TouchableOpacity>
             ),
+
             headerStyle: {
               backgroundColor:
                 scheme == "light"
@@ -669,6 +671,10 @@ const CommonStack = () => {
         <Stack.Screen
           name="RecurringTransferConfirmation"
           component={RecurringTransferConfirmationScreen}
+        />
+        <Stack.Screen
+          name="SetNewRecurringTransfer"
+          component={SetNewRecurringTransfer}
         />
       </Stack.Group>
     </Stack.Navigator>
