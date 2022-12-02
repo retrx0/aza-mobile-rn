@@ -138,7 +138,7 @@ const BankAccountsScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <CancelButtonWithUnderline
             title="Add another bank Account"
@@ -148,7 +148,7 @@ const BankAccountsScreen = ({
               })
             }
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-            style={[{ marginBottom: 10 }]}
+            style={[{ marginBottom: 15 }]}
           />
           <Button
             disabled={!selectedAccount}
@@ -174,7 +174,6 @@ const BankAccountsScreen = ({
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
           <CancelButtonWithUnderline
@@ -251,7 +250,7 @@ const BankAccountsScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Add another bank Account"

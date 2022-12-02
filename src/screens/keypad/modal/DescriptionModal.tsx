@@ -42,12 +42,10 @@ const DescriptionModal = ({
   return (
     <Modal
       isVisible={visible}
-      style={{ justifyContent: "flex-end", margin: 0 }}
-    >
+      style={{ justifyContent: "flex-end", margin: 0 }}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}
-      >
+        keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}>
         <TouchableOpacity
           onPress={() => setModalVisible(false)}
           style={{
@@ -55,8 +53,7 @@ const DescriptionModal = ({
             alignItems: "flex-end",
             marginBottom: 20,
             marginRight: 15,
-          }}
-        >
+          }}>
           <CloseCircleLargeIcon
             color={Colors[colorScheme].backgroundSecondary}
           />
@@ -71,16 +68,14 @@ const DescriptionModal = ({
             paddingBottom: 50,
             display: "flex",
             justifyContent: "space-between",
-          }}
-        >
+          }}>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 16,
-            }}
-          >
+            }}>
             Description
           </Text>
           <Text
@@ -89,8 +84,7 @@ const DescriptionModal = ({
             style={{
               marginTop: 10,
               fontSize: 14,
-            }}
-          >
+            }}>
             You can add a note to this transaction
           </Text>
           <TextInput

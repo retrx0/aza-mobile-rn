@@ -190,7 +190,6 @@ const RequestMoneyConfirmationScreen = ({
               {
                 backgroundColor: Colors[colorScheme].button,
               },
-              CommonStyles.button,
             ]}
           />
           <CancelButtonWithUnderline
