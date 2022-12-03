@@ -70,6 +70,14 @@ export type PaymentsStackParamList = {
   GiftCard: undefined;
   GiftCardDetails: undefined;
   GameScreen: undefined;
+  PaymentRecurring: undefined;
+  InternetRecurring: undefined;
+  CableRecurring: undefined;
+  ElectricityRecurring: undefined;
+  WaterRecurring: undefined;
+  CharityRecurring: undefined;
+  AirtimeRecurring: undefined;
+  RecurringPlan: undefined;
 };
 
 export type TopTabParamList = {
