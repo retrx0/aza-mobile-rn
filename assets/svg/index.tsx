@@ -40,7 +40,8 @@ export const InviteIcon = () => {
         borderRadius: 5,
         paddingHorizontal: 10,
         paddingVertical: 2,
-      }}>
+      }}
+    >
       <Text style={{ color: "white", fontSize: 10 }}>Invite</Text>
     </View>
   );
@@ -110,7 +111,8 @@ export const ProfileIcon = ({
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <Use
             href="#image0_1093_6630"
             transform="translate(-0.25) scale(0.003125)"
@@ -365,7 +367,8 @@ export const ArrowRightIcon = ({ style, color, size }: SvgIconProps) => {
       width={size}
       height={size}
       viewBox="0 0 16 16"
-      fill="none">
+      fill="none"
+    >
       <Path
         d="M9.62 3.95337L13.6667 8.00004L9.62 12.0467"
         stroke={color}
@@ -431,7 +434,8 @@ export const FlagIcon = () => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1">
+          height="1"
+        >
           <Use
             xlinkHref="#image0_295_18064"
             transform="translate(-0.124378) scale(0.00497512)"
@@ -2487,6 +2491,19 @@ export const GameIcon = ({ color, size }: SvgIconProps) => {
       <Path
         d="M13.64 3.31547L13.63 4.25547C13.62 5.13547 12.89 5.86547 12 5.86547C11.85 5.86547 11.76 5.96547 11.76 6.09547C11.76 6.22547 11.86 6.32547 11.99 6.32547H10.38C10.37 6.25547 10.36 6.17547 10.36 6.09547C10.36 5.19547 11.09 4.46547 11.98 4.46547C12.13 4.46547 12.23 4.36547 12.23 4.23547L12.24 3.29547C12.25 2.91547 12.56 2.60547 12.94 2.60547H12.95C13.34 2.60547 13.64 2.92547 13.64 3.31547Z"
         fill="#FF8F80"
+      />
+    </Svg>
+  );
+};
+
+export const QRCodeSmallIcon = ({ color, size }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} fill="none">
+      <Path
+        d="M1.667 7.5V5.415a3.745 3.745 0 0 1 3.75-3.75H7.5M12.5 1.666h2.083a3.745 3.745 0 0 1 3.75 3.75v2.083M18.334 13.334v1.25a3.745 3.745 0 0 1-3.75 3.75h-1.25M7.5 18.333H5.417a3.745 3.745 0 0 1-3.75-3.75V12.5M8.75 5.834v1.667c0 .833-.416 1.25-1.25 1.25H5.833c-.833 0-1.25-.417-1.25-1.25V5.834c0-.833.417-1.25 1.25-1.25H7.5c.834 0 1.25.417 1.25 1.25ZM15.417 5.834v1.667c0 .833-.417 1.25-1.25 1.25H12.5c-.833 0-1.25-.417-1.25-1.25V5.834c0-.833.417-1.25 1.25-1.25h1.667c.833 0 1.25.417 1.25 1.25ZM8.75 12.5v1.667c0 .833-.416 1.25-1.25 1.25H5.833c-.833 0-1.25-.417-1.25-1.25V12.5c0-.833.417-1.25 1.25-1.25H7.5c.834 0 1.25.417 1.25 1.25ZM15.417 12.5v1.667c0 .833-.417 1.25-1.25 1.25H12.5c-.833 0-1.25-.417-1.25-1.25V12.5c0-.833.417-1.25 1.25-1.25h1.667c.833 0 1.25.417 1.25 1.25Z"
+        stroke={color}
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </Svg>
   );

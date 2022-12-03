@@ -28,7 +28,7 @@ import {
   OutgoingTransferIcon,
   PaymentsOutlinedIcon,
   PlusIcon,
-  QRCodeIcon,
+  QRCodeSmallIcon,
   VaultOutlinedIcon,
   VaultOutlinedSmallIcon,
   WithdrawIcon,
@@ -52,7 +52,7 @@ const transactionIcons: Record<string, JSX.Element> = {
 const transactionDetailsIcons: Record<string, JSX.Element> = {
   debitCardSmallIcon: <DebitCardSmallIcon size={20} color="#FFFFFF" />,
   incomingTransferIcon: <IncomingTransferIcon size={20} color="#FFFFFF" />,
-  qrCodeIcon: <QRCodeIcon size={20} color="white" />,
+  qrCodeIcon: <QRCodeSmallIcon size={20} color="white" />,
   outgoingTransferIcon: <OutgoingTransferIcon size={20} color="#FFFFFF" />,
   bankIcon: <BankIcon size={16} color="#FFFFFF" />,
   outlinedVaultSmallIcon: <VaultOutlinedSmallIcon color={"white"} size={20} />,
