@@ -69,7 +69,8 @@ const SelectNewRecurringTransferScreen = ({
     },
     {
       name: "Bill payment",
-      handleNavigation: () => navigation.getParent()?.navigate("Payments"),
+      handleNavigation: () =>
+        navigation.getParent()?.navigate("PaymentRecurring"),
       icon: <BillIcon size={24} color={Colors[colorScheme].mainText} />,
     },
 
