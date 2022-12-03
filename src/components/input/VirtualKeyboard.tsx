@@ -76,7 +76,7 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
       <View
         style={{
           flexDirection: "row",
-          marginTop: 30,
+          marginTop: 15,
           alignItems: "center",
           justifyContent: "space-between",
         }}>

@@ -9,7 +9,7 @@ export const SigninStyles = StyleSheet.create({
     paddingHorizontal: hp(10),
     lineHeight: hp(17.75),
     marginBottom: hp(35),
-    marginLeft: hp(20),
+    marginLeft: hp(10),
   },
   welcome: {
     marginTop: hp(50),
@@ -19,7 +19,7 @@ export const SigninStyles = StyleSheet.create({
     paddingHorizontal: hp(10),
     lineHeight: hp(30.43),
     marginBottom: hp(10),
-    marginLeft: hp(20),
+    marginLeft: hp(10),
   },
 
   passwordText: {

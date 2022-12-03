@@ -41,10 +41,8 @@ export const PaymentStyles = StyleSheet.create({
     height: 58,
   },
   imageHeaderContainer: {
-    minHeight: 70,
-    maxHeight: 100,
     backgroundColor: "transparent",
-    marginLeft: hp(20),
+
     marginBottom: hp(25),
   },
   itemListContainer: {

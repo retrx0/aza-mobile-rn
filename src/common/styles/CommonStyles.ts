@@ -561,7 +561,7 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(35),
   },
   phoneContainer: {
-    marginTop: hp(30),
+    marginTop: hp(20),
     marginBottom: hp(10),
   },
 
@@ -605,9 +605,9 @@ const CommonStyles = StyleSheet.create({
     // alignSelf: "center",
   },
   imageHeaderContainer: {
-    marginLeft: hp(20),
     minHeight: hp(70),
     maxHeight: hp(100),
+    marginTop: hp(20),
   },
   wrapperContainer: {
     flex: hp(1),
@@ -655,7 +655,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(20),
   },
   user: {
-    marginVertical: hp(20),
+    marginVertical: hp(15),
   },
   textStyle: {
     fontSize: hp(18),
@@ -816,10 +816,10 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(14),
     alignSelf: "center",
     fontWeight: "500",
-    marginTop: hp(30),
-    marginBottom: hp(20),
+    marginTop: hp(15),
+    marginBottom: hp(15),
     lineHeight: hp(18),
-    padding: hp(5),
+
     color: Colors.general.grey,
   },
   signupOptions: {

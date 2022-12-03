@@ -170,7 +170,7 @@ export const useBottomSheetType = (
           />
         ),
         onPress: () =>
-          navigation.navigate("Common", { screen: "RecurringTransfer" }),
+          navigation.navigate("Common", { screen: "SetNewRecurringTransfer" }),
       },
     ],
     choosePhotoBottomSheetListItems: [

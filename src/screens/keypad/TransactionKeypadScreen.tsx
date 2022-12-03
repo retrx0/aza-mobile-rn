@@ -89,7 +89,6 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               marginTop: hp(10),
-              marginBottom: hp(22),
             }}>
             {beneficiary.fullName}
           </Text>
@@ -105,7 +104,7 @@ const TransactionKeypadScreen = ({
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 50,
-                marginBottom: hp(40),
+                // marginBottom: hp(40),
               },
             ]}>
             <Text
@@ -161,7 +160,7 @@ const TransactionKeypadScreen = ({
               style={{
                 fontSize: hp(14),
                 fontWeight: "400",
-                marginVertical: 15,
+                marginVertical: 10,
               }}>
               Aza Balance:
             </Text>
@@ -180,6 +179,7 @@ const TransactionKeypadScreen = ({
           </View>
         </View>
         <VirtualKeyboard value={amount} setValue={setAmount} />
+
         <Button
           title="Continue"
           disabled={!amount}
@@ -237,7 +237,7 @@ const TransactionKeypadScreen = ({
             fontSize: hp(14),
           }}
           style={{
-            marginVertical: 60,
+            marginTop: 70,
             backgroundColor: Colors[colorScheme].button,
           }}
         />

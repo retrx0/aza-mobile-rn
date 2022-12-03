@@ -37,6 +37,14 @@ export type CommonStackParamList = {
   GiftCard: undefined;
   GiftCardDetails: undefined;
   GameScreen: undefined;
+  PaymentRecurring: undefined;
+  AirtimeRecurring: undefined;
+  InternetRecurring: undefined;
+  CableRecurring: undefined;
+  ElectricityRecurring: undefined;
+  WaterRecurring: undefined;
+  CharityRecurring: undefined;
+  RecurringPlan: undefined;
 
   // Vault
   NewVault: undefined;
