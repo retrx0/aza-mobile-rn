@@ -84,13 +84,10 @@ export default function CableTvIndex({
         <HeadrImage selected index={0} image={Startimes} title="Startimes" />
       </ScrollView> */}
 
-      <View
-        style={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          marginTop: hp(30),
-          marginBottom: hp(35),
-        }}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={CommonStyles.imageHeaderContainer}>
         {Cable.map((item, index) => {
           return (
             <Card
@@ -102,7 +99,7 @@ export default function CableTvIndex({
             />
           );
         })}
-      </View>
+      </ScrollView>
 
       <View style={{ paddingHorizontal: hp(20) }}>
         <Input
@@ -143,7 +140,7 @@ export default function CableTvIndex({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <MyButton
           disabled={false}

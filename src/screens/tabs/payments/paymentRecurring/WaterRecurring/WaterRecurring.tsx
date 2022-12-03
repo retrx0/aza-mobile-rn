@@ -1,28 +1,20 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
-import MyButton from "../sub-components/MyButton";
+import { SafeAreaView, View } from "../../../../../components/Themed";
+import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
+import CommonStyles from "../../../../../common/styles/CommonStyles";
+import { Header } from "../../../../../components/text/header";
+import { Input } from "../../../../../components/input/input";
+import MyButton from "../../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
-import {
-  Crswb,
-  Enswc,
-  Fctwb,
-  Ie,
-  Lswc,
-  Vws,
-} from "../../../../../assets/images";
-import { RootTabScreenProps } from "../../../../../types";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { RootTabScreenProps } from "../../../../../../types";
+import { hp } from "../../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import { TickIcon } from "../../../../../assets/svg";
-import * as Images from "../../../../../assets/images/index";
-import { Card } from "../sub-components/Card";
+import useColorScheme from "../../../../../hooks/useColorScheme";
+import * as Images from "../../../../../../assets/images/index";
+import { Card } from "../../sub-components/Card";
+import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
+import { CommonScreenProps } from "../../../../../common/navigation/types";
 
 const WaterList = [
   {
@@ -47,9 +39,9 @@ const WaterList = [
   },
 ];
 
-export default function WaterScreen({
+export default function WaterRecurring({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"SetupRecurringTransfer">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -59,6 +51,32 @@ export default function WaterScreen({
   const colorScheme = useColorScheme();
   const [selected, setSelected] = useState(false);
   const [active, setActive] = useState("");
+  const [periodValue, setPeriodValue] = useState("");
+
+  // const { icon } = route.params;
+  const [dayValue, setDayValue] = useState("");
+
+  const period = [
+    { label: "Monthly", value: "monthly" },
+    { label: "Weekly", value: "weekly" },
+    { label: "Daily", value: "daily" },
+  ];
+
+  const dayMonthly = [
+    { label: "First Day of the Month", value: "1" },
+    { label: "2nd", value: "2" },
+    { label: "3rd", value: "3" },
+  ];
+
+  const dayWeekly = [
+    { label: "Sunday", value: "sunday" },
+    { label: "Monday", value: "monday" },
+    { label: "Tuesday", value: "tuesday" },
+    { label: "Wednesday", value: "wednesday" },
+    { label: "Thursday", value: "thursday" },
+    { label: "Friday", value: "friday" },
+    { label: "Saturday", value: "saturday" },
+  ];
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -122,33 +140,52 @@ export default function WaterScreen({
           label="Customer Account Number"
           placeholder="Enter your customer account number"
         />
-
-        <Input
-          style={styles2.input}
-          icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
-          labelStyle={styles.label}
-          label="Amount"
-          placeholder="Enter an amount to be paid"
-        />
       </View>
-
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <View style={{ marginBottom: hp(40) }}>
+          <CustomDropdown
+            data={period}
+            placeholder="Choose a period"
+            setValue={setPeriodValue}
+            value={periodValue}
+            label={"Period"}
+          />
+        </View>
+        {periodValue !== "daily" && (
+          <View style={{ marginBottom: hp(40) }}>
+            <CustomDropdown
+              data={periodValue === "weekly" ? dayWeekly : dayMonthly}
+              placeholder="Choose a day"
+              setValue={setDayValue}
+              value={dayValue}
+              label={"Day"}
+            />
+          </View>
+        )}
+      </View>
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.top || hp(45) },
+          { bottom: insets.bottom || hp(45) },
         ]}>
         <MyButton
           disabled={false}
           title="Continue"
-          onPress={() => {
-            navigation.navigate("Common", { screen: "WaterConfirmation" });
-          }}
+          onPress={() =>
+            navigation.push("TransactionKeypad", {
+              headerTitle: "Recurring Transfer",
+              transactionType: {
+                type: "recurring",
+                beneficiary: {
+                  beneficiaryAccount: "",
+                  beneficiaryImage: "",
+                  beneficiaryName: "",
+                },
+                period: periodValue,
+                day: dayValue,
+              },
+            })
+          }
         />
       </View>
     </SafeAreaView>

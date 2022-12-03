@@ -133,7 +133,7 @@ export default function AirtimeConfirmation({
             ]}
           />
           <CancelButtonWithUnderline
-            title="Cancel"
+            title="Cancel Transaction"
             onPressButton={() => {
               navigation.goBack();
             }}
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     marginBottom: hp(40),
-    marginTop: hp(30),
+    marginTop: hp(20),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),

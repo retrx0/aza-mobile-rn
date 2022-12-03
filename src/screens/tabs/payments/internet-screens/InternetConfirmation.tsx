@@ -49,7 +49,7 @@ export default function InternetConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Account/User ID"
             placeholder="Enter your User ID"
@@ -71,7 +71,7 @@ export default function InternetConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Amount"
             placeholder="Enter Amount"
@@ -93,7 +93,7 @@ export default function InternetConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Payment Method"
             placeholder="Select your payment method"
@@ -128,7 +128,7 @@ export default function InternetConfirmation({
           />
 
           <CancelButtonWithUnderline
-            title="Cancel"
+            title="Cancel Transaction"
             onPressButton={() => {
               navigation.goBack();
             }}
