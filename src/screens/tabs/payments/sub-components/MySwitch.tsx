@@ -6,10 +6,12 @@ export default function MySwitch({
   onValueChange,
   isEnabled,
   title,
+  onSwitchToggle,
 }: {
   onValueChange: any;
   isEnabled: boolean;
   title: string;
+  onSwitchToggle: () => void;
 }) {
   return (
     <View style={styles.container}>

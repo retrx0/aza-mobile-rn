@@ -33,7 +33,7 @@ export default function WithdrawIndex({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <Button
           title="Cancel"

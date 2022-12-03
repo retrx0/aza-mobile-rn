@@ -88,7 +88,7 @@ const StatusScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           {setupRecurringTransfer && (
             <Button
@@ -121,6 +121,7 @@ const StatusScreen = ({
             }}
             style={{
               backgroundColor: Colors[colorScheme].button,
+              marginBottom: 20,
             }}
           />
           {receiptButton && (

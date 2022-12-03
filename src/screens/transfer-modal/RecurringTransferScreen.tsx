@@ -12,7 +12,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { UndrawCalendarIcon } from "../../../assets/svg";
+import { CloseIcon, UndrawCalendarIcon } from "../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RecurringTransferScreen = ({
@@ -47,18 +47,14 @@ const RecurringTransferScreen = ({
   return (
     <SpacerWrapper>
       <View style={[styles.container]}>
-        <View>
-          <Text
-            // lightColor={Colors.light.text}
-            // darkColor={Colors.dark.mainText}
-            style={{
-              fontSize: hp(16),
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}>
-            You can add and edit daily, weekly and monthly recurring money
-            transfer orders.
-          </Text>
-        </View>
+        <Text
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
+          style={[CommonStyles.descriptionStyle, { marginLeft: 10 }]}>
+          You can add and edit daily, weekly and monthly recurring money
+          transfer orders.
+        </Text>
+
         <View style={{ marginTop: hp(100), alignSelf: "center" }}>
           <UndrawCalendarIcon
             color={colorScheme === "dark" ? "#999999" : "#000"}
@@ -68,13 +64,11 @@ const RecurringTransferScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="New Recurring Transfer"
-            onPressButton={() =>
-              navigation.navigate("SelectNewRecurringTransfer")
-            }
+            onPressButton={() => navigation.navigate("SetNewRecurringTransfer")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}

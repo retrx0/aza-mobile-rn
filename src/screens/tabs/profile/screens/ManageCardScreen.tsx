@@ -87,7 +87,7 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <CancelButtonWithUnderline
             title="Delete Card"

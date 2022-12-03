@@ -61,20 +61,17 @@ const ContactsScene = ({
                 colorScheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text,
-              fontSize: hp(15),
+              fontSize: hp(14),
               fontWeight: "500",
+              marginLeft: hp(5),
+              marginTop: hp(30),
+              marginBottom: hp(24),
             }}>
             Quick contacts
           </Text>
-          <View
-            style={[
-              CommonStyles.row,
-              {
-                marginTop: hp(20),
-              },
-            ]}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View style={[CommonStyles.row]}>
+          <View>
+            <View style={{ flexDirection: "row", marginBottom: hp(50) }}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {user.azaContacts.data.map((_contct, i) => (
                   <QuickContactView
                     firstName={_contct.firstName!}
@@ -87,14 +84,14 @@ const ContactsScene = ({
                     key={i}
                   />
                 ))}
-              </View>
-            </ScrollView>
+              </ScrollView>
+            </View>
           </View>
 
           <TextInput
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
-            placeholderTextColor={Colors[colorScheme].secondaryText}
+            // placeholderTextColor={Colors[colorScheme].secondaryText}
             value={searchContact}
             returnKeyType="search"
             onChangeText={(text) => {
@@ -104,45 +101,69 @@ const ContactsScene = ({
               backgroundColor: "transparent",
               fontFamily: "Euclid-Circular-A",
               paddingBottom: 10,
-              marginVertical: hp(35),
               borderBottomWidth: 1,
-              borderBottomColor: Colors[colorScheme].separator,
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
               marginLeft: hp(5),
+              fontSize: hp(16),
             }}
             placeholder="To (Search for a contact)"
           />
-          <SectionList
-            contentContainerStyle={{ paddingBottom: hp(300) }}
-            showsVerticalScrollIndicator={false}
-            stickyHeaderHiddenOnScroll={true}
-            stickySectionHeadersEnabled={false}
-            sections={[
-              {
-                title: "Contacts using Aza",
-                data: user.azaContacts.data.filter((_c) =>
-                  _c.fullName
-                    .toUpperCase()
-                    .includes(searchContact.toUpperCase())
-                ),
-                azaContacts: false,
-              },
-              {
-                title: "Contacts not using Aza yet",
-                data: contacts.filter((_c) =>
-                  _c.name.toUpperCase().includes(searchContact.toUpperCase())
-                ),
-                azaContacts: false,
-              },
-            ]}
-            renderSectionHeader={({ section }) => (
-              <SectionListSeparator
-                title={section.title}
-                listSize={section.data.length}
-              />
-            )}
-            renderItem={({ section, item }) => {
-              return section.azaContacts ? (
-                item.azaAccountNumber && item.phone ? (
+          <View style={{ marginLeft: 5 }}>
+            <SectionList
+              contentContainerStyle={{ paddingBottom: hp(300) }}
+              showsVerticalScrollIndicator={false}
+              stickyHeaderHiddenOnScroll={true}
+              stickySectionHeadersEnabled={false}
+              sections={[
+                {
+                  title: "Contacts using Aza",
+                  data: user.azaContacts.data.filter((_c) =>
+                    _c.fullName
+                      .toUpperCase()
+                      .includes(searchContact.toUpperCase())
+                  ),
+                  azaContacts: false,
+                },
+                {
+                  title: "Contacts not using Aza yet",
+                  data: contacts.filter((_c) =>
+                    _c.name.toUpperCase().includes(searchContact.toUpperCase())
+                  ),
+                  azaContacts: false,
+                },
+              ]}
+              renderSectionHeader={({ section }) => (
+                <SectionListSeparator
+                  title={section.title}
+                  listSize={section.data.length}
+                />
+              )}
+              renderItem={({ section, item }) => {
+                return section.azaContacts ? (
+                  item.azaAccountNumber && item.phone ? (
+                    <TouchableOpacity
+                      onPress={() => {
+                        if (section.azaContacts) {
+                          azaContactOnPress(item);
+                        } else {
+                          nonAzaContactOnPress(item);
+                        }
+                      }}>
+                      <ContactListItem
+                        image={getInitialsAvatar({
+                          firstName: item?.fullName,
+                          lastName: item.lastName,
+                          scheme: colorScheme,
+                        })}
+                        name={item.fullName}
+                        phoneNumber={item.phone || ""}
+                        isContactOnAza={section.azaContacts}
+                      />
+                    </TouchableOpacity>
+                  ) : (
+                    <></>
+                  )
+                ) : item.firstName && item.phoneNumbers ? (
                   <TouchableOpacity
                     onPress={() => {
                       if (section.azaContacts) {
@@ -153,53 +174,59 @@ const ContactsScene = ({
                     }}>
                     <ContactListItem
                       image={getInitialsAvatar({
-                        firstName: item?.fullName,
+                        firstName: item?.firstName,
                         lastName: item.lastName,
                         scheme: colorScheme,
                       })}
-                      name={item.fullName}
-                      phoneNumber={item.phone || ""}
+                      name={item.name}
+                      phoneNumber={item.phoneNumbers[0].number || ""}
                       isContactOnAza={section.azaContacts}
                     />
                   </TouchableOpacity>
                 ) : (
                   <></>
-                )
-              ) : item.firstName && item.phoneNumbers ? (
-                <TouchableOpacity
-                  onPress={() => {
-                    if (section.azaContacts) {
-                      azaContactOnPress(item);
-                    } else {
-                      nonAzaContactOnPress(item);
-                    }
-                  }}>
-                  <ContactListItem
-                    image={getInitialsAvatar({
-                      firstName: item?.firstName,
-                      lastName: item.lastName,
-                      scheme: colorScheme,
-                    })}
-                    name={item.name}
-                    phoneNumber={item.phoneNumbers[0].number || ""}
-                    isContactOnAza={section.azaContacts}
-                  />
-                </TouchableOpacity>
-              ) : (
-                <></>
-              );
-            }}
-          />
+                );
+              }}
+            />
+          </View>
         </View>
       </View>
     );
   } else if (route.key === "second") {
     return (
       <View style={[styles.container, { justifyContent: "flex-start" }]}>
+        <Text
+          style={{
+            color:
+              colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text,
+            fontSize: hp(14),
+            fontWeight: "500",
+            marginLeft: hp(5),
+            marginTop: hp(30),
+            marginBottom: hp(24),
+          }}>
+          Recents
+        </Text>
+        <View>
+          <View style={{ flexDirection: "row", marginBottom: hp(37) }}>
+            {user.azaContacts.data.map((_contct, i) => (
+              <QuickContactView
+                firstName={_contct.firstName!}
+                lastName=""
+                photoUrl={getInitialsAvatar({
+                  firstName: _contct.fullName!,
+                  scheme: colorScheme,
+                })}
+                onPress={() => azaContactOnPress(_contct)}
+                key={i}
+              />
+            ))}
+          </View>
+        </View>
         <TextInput
           // lightColor={Colors.light.mainText}
           // darkColor={Colors.dark.mainText}
-          placeholderTextColor={Colors[colorScheme].secondaryText}
+          // placeholderTextColor={Colors[colorScheme].secondaryText}
           keyboardType={"number-pad"}
           returnKeyType={"send"}
           returnKeyLabel={"Send"}
@@ -211,18 +238,27 @@ const ContactsScene = ({
             paddingBottom: 10,
             marginTop: hp(15),
             borderBottomWidth: 1,
-            borderBottomColor: Colors[colorScheme].separator,
+            fontSize: hp(16),
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
             marginLeft: hp(5),
           }}
           placeholder="Aza Number"
         />
         <Button
           title="Send"
-          style={{ marginVertical: hp(20) }}
           onPressButton={() => {
             sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
           }}
           disabled={receipientAzaNumber.length < 5}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+              marginVertical: hp(20),
+            },
+          ]}
         />
       </View>
     );

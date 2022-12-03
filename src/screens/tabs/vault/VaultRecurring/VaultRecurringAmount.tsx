@@ -36,7 +36,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(80),
+              marginLeft: hp(65),
             }}>
             Recurring Transfer
           </Text>
@@ -139,7 +139,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             width: "100%",
-            marginTop: 20,
+            marginTop: 10,
             marginBottom: "auto",
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
@@ -147,7 +147,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             disabled={!amount}

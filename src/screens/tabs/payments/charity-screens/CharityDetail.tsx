@@ -15,6 +15,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 export default function CharityDetail({
   navigation,
@@ -23,6 +24,7 @@ export default function CharityDetail({
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const route = useRoute();
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
 
   return (
     <View style={styles.container}>
@@ -39,7 +41,13 @@ export default function CharityDetail({
           <Input
             style={styles.mainInput}
             icon={null}
-            inputStyle={styles.input}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label=""
             placeholder="Name and Surname"
@@ -48,7 +56,13 @@ export default function CharityDetail({
           <Input
             style={styles.mainInput}
             icon={null}
-            inputStyle={styles.input}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label=""
             placeholder="Email Address"
@@ -58,7 +72,12 @@ export default function CharityDetail({
       <Input
         style={styles.mainInput}
         icon={null}
-        inputStyle={styles.input}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label=""
         placeholder="Donation Amount"
@@ -85,7 +104,7 @@ export default function CharityDetail({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <View style={styles.check}>
           <CustomSwitch

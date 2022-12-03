@@ -13,6 +13,7 @@ import {
   Ntel,
   smile,
   Spectranet,
+  SWIFT,
   Swift,
 } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
@@ -74,7 +75,7 @@ export default function InternetPlans({
         route=""
         index={2}
         title="Swift Networks"
-        Icon={() => <Image style={styles2.img} source={Swift} />}
+        Icon={() => <Image style={styles2.img} source={SWIFT} />}
       />
       <ListItem
         onPress={() => {}}

@@ -12,6 +12,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { WhatsappLogo } from "../../../assets/images";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Divider from "../../components/divider/Divider";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const colorScheme = useColorScheme();
@@ -43,7 +44,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View>
+        <View style={{ paddingHorizontal: hp(5) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
@@ -52,7 +53,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               fontSize: hp(14),
               marginTop: hp(20),
               marginBottom: hp(40),
-              marginLeft: hp(5),
+
               fontWeight: "400",
             }}>
             Contact us with any questions. We are ready to help
@@ -65,32 +66,25 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
                 fontWeight: "400",
-                marginLeft: hp(5),
               }}>
               Email
             </Text>
-            <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              // placeholderTextColor={Colors[colorScheme].secondaryText}
+            <Text
               style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginTop: hp(15),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-                marginLeft: hp(5),
-                fontSize: hp(14),
-              }}
-              placeholder="Enter your Email"
-            />
+                marginBottom: 5,
+                marginTop: 10,
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(16),
+              }}>
+              customersupport@aza.com
+            </Text>
+            <Divider />
           </View>
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <TouchableOpacity
             activeOpacity={0.7}
@@ -104,7 +98,10 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               flexDirection: "row",
               justifyContent: "center",
             }}>
-            <Image source={WhatsappLogo} style={{ marginRight: 10 }} />
+            <Image
+              source={WhatsappLogo}
+              style={{ marginRight: 10, width: hp(22), height: hp(23) }}
+            />
             <Text
               style={{
                 color: Colors[colorScheme].text,

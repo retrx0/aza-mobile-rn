@@ -29,7 +29,7 @@ const TransactionKeypadScreen = ({
 }: CommonScreenProps<"TransactionKeypad">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [descModal, setDescModalOpen] = useState(false);
+  const [descModal, setDescModalOpen] = useState(true);
 
   const user = useAppSelector(selectUser);
 
@@ -87,8 +87,8 @@ const TransactionKeypadScreen = ({
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 14,
-              marginTop: 15,
+              fontSize: hp(16),
+              marginTop: hp(10),
             }}>
             {beneficiary.fullName}
           </Text>
@@ -98,12 +98,13 @@ const TransactionKeypadScreen = ({
             style={[
               CommonStyles.row,
               {
-                marginVertical: 20,
+                // marginVertical: 10,
                 paddingHorizontal: 15,
-                paddingVertical: 10,
+                paddingVertical: hp(10),
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 50,
+                // marginBottom: hp(40),
               },
             ]}>
             <Text
@@ -149,7 +150,7 @@ const TransactionKeypadScreen = ({
                 fontSize: 36,
                 marginVertical: 15,
               }}>
-              {!amount && " 0"} {numberWithCommas(amount)}
+              {!amount && "0"} {numberWithCommas(amount)}
             </Text>
           </View>
           <View style={[CommonStyles.row]}>
@@ -157,7 +158,9 @@ const TransactionKeypadScreen = ({
               lightColor={Colors.light.text}
               darkColor={Colors.dark.secondaryText}
               style={{
-                fontSize: 12,
+                fontSize: hp(14),
+                fontWeight: "400",
+                marginVertical: 10,
               }}>
               Aza Balance:
             </Text>
@@ -166,14 +169,17 @@ const TransactionKeypadScreen = ({
               darkColor={Colors.dark.mainText}
               style={{
                 marginLeft: 3,
-                fontSize: 12,
+                fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontWeight: "600",
               }}>
-              {"\u20A6"} {user.azaBalance}
+              {"\u20A6"}
+              {user.azaBalance}
             </Text>
           </View>
         </View>
         <VirtualKeyboard value={amount} setValue={setAmount} />
+
         <Button
           title="Continue"
           disabled={!amount}
@@ -228,17 +234,16 @@ const TransactionKeypadScreen = ({
           styleText={{
             color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
+            fontSize: hp(14),
           }}
           style={{
-            marginVertical: 10,
+            marginTop: 70,
             backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>
-
       {/* description modal */}
-      {/* <DescriptionModal
+      <DescriptionModal
         visible={descModal}
         setModalVisible={setDescModalOpen}
         description={description}
@@ -247,8 +252,8 @@ const TransactionKeypadScreen = ({
         normalTransaction={normalTransaction}
         recurringTransaction={recurringTransaction}
         transactionType={transactionType}
-        // transactionParams={}
-      /> */}
+        // transactionParams={description}
+      />
     </>
   );
 };

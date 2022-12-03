@@ -7,8 +7,11 @@ import Colors from "../../../constants/Colors";
 
 import { Text, View } from "../../../components/Themed";
 import Divider from "../../../components/divider/Divider";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const TransactionFeesTab = () => {
+  const colorScheme = useColorScheme();
+
   const transactionFees = [
     {
       transaction: "Account usage and opening fee",
@@ -73,9 +76,9 @@ const TransactionFeesTab = () => {
                   style={{
                     fontSize: hp(14),
                     marginTop: hp(4),
-                    fontFamily: "Euclid-Circular-A",
                     marginLeft: hp(5),
                     fontWeight: "400",
+                    color: colorScheme === "dark" ? "#999999" : "#000000",
                   }}>
                   {detail}
                 </Text>
@@ -88,6 +91,7 @@ const TransactionFeesTab = () => {
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A",
                 fontWeight: "400",
+                color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
               }}>
               {charge}
             </Text>

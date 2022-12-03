@@ -41,6 +41,7 @@ const CustomDropdown = ({
           fontFamily: "Euclid-Circular-A",
           fontWeight: "400",
           fontSize: hp(16),
+          marginBottom: 3,
         }}>
         {label}
       </Text>
@@ -75,7 +76,7 @@ const CustomDropdown = ({
           borderRadius: 10,
           borderWidth: 0,
           shadowColor: "#000",
-          shadowOffset: { width: 0, height: 10 },
+          shadowOffset: { width: 0, height: 5 },
           shadowOpacity: 0.3,
           shadowRadius: 10,
           elevation: 5,

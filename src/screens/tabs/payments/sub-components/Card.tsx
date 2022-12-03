@@ -35,16 +35,17 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
               <TickIcon />
             </View>
           ) : null}
-          <Text
-            style={[
-              styles.title,
-              {
-                color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-              },
-            ]}>
-            {title}
-          </Text>
         </TouchableOpacity>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+            },
+            isActive && styles.title2,
+          ]}>
+          {title}
+        </Text>
       </View>
     </>
   );
@@ -53,13 +54,13 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
 const styles = StyleSheet.create({
   icon: {
     position: "absolute",
-    bottom: 0,
+    top: 30,
     right: 0,
     transform: [{ translateY: 2 }],
     borderRadius: 20,
   },
   card: {
-    paddingHorizontal: 20,
+    paddingHorizontal: hp(20),
   },
   image: {
     width: hp(45),
@@ -81,6 +82,14 @@ const styles = StyleSheet.create({
     marginTop: hp(4),
     textAlign: "center",
     fontWeight: "500",
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
+    marginLeft: 5,
+  },
+  title2: {
+    fontSize: hp(14),
+    marginTop: hp(4),
+    textAlign: "center",
+    fontWeight: "600",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
 });

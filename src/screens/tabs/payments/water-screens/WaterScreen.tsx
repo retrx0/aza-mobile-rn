@@ -91,12 +91,10 @@ export default function WaterScreen({
         <HeadrImage selected index={0} image={Vws} title="VWS" />
         <HeadrImage selected index={0} image={Enswc} title="ENSWC" />
       </ScrollView> */}
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: hp(15),
-          marginBottom: hp(20),
-        }}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={CommonStyles.imageHeaderContainer}>
         {WaterList.map((item, index) => {
           return (
             <Card
@@ -108,7 +106,7 @@ export default function WaterScreen({
             />
           );
         })}
-      </View>
+      </ScrollView>
       <View style={{ paddingHorizontal: hp(20) }}>
         <Input
           style={styles2.input}
@@ -143,7 +141,7 @@ export default function WaterScreen({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <MyButton
           disabled={false}

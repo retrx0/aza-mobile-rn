@@ -6,7 +6,7 @@ import { Input } from "../../../../components/input/input";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
 import {
-  Chess,
+  CHESS,
   DORCAS,
   FOUNTAIN,
   HOPE,
@@ -92,7 +92,7 @@ export default function CharityIndexScreen({
           route=""
           index={0}
           title="Chess in Slums"
-          Icon={() => <Image style={styles2.img} source={Chess} />}
+          Icon={() => <Image style={styles2.img} source={CHESS} />}
         />
 
         <ListItem

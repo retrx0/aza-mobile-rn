@@ -27,16 +27,10 @@ export default function AirtimeConfirmation({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
-  const signUpValidationSchema = yup.object().shape({
-    Amount: yup.number().required("Amount is required"),
-    PhoneNumber: yup.number().required("Phone Number is required"),
-    PaymentMethod: yup.number().required("Payment Method is required"),
-  });
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={{ paddingHorizontal: hp(20) }}>
+        <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
           </Text>
@@ -117,7 +111,7 @@ export default function AirtimeConfirmation({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Confirm"
@@ -139,7 +133,7 @@ export default function AirtimeConfirmation({
             ]}
           />
           <CancelButtonWithUnderline
-            title="Cancel"
+            title="Cancel Transaction"
             onPressButton={() => {
               navigation.goBack();
             }}
@@ -160,7 +154,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     marginBottom: hp(40),
-    marginTop: hp(30),
+    marginTop: hp(20),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),

@@ -10,7 +10,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { ImageInput } from "../sub-components/ImageInput";
-import { Chess, Ie } from "../../../../../assets/images";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Button from "../../../../components/buttons/Button";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -80,7 +79,7 @@ export default function GiftCardConfirmation({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Confirm"

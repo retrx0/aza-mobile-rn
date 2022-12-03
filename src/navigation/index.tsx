@@ -128,7 +128,6 @@ const RootNavigator = () => {
     >
       <ActivityModal loading={isActivityModalOpen} />
       <Stack.Navigator
-        // initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
         initialRouteName={"Root"}
         screenOptions={{ gestureEnabled: false }}
       >

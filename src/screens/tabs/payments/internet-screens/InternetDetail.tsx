@@ -49,6 +49,7 @@ export default function InternetDetail({
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
           marginTop: hp(30),
+          marginLeft: 3,
         }}
         heading="Subscribe to an internet plan"
       />
@@ -62,7 +63,7 @@ export default function InternetDetail({
               borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
             },
           ]}
-          labelStyle={styles.label}
+          labelStyle={[styles.label]}
           label="Account/User ID"
           placeholder="Enter your User ID"
         />
@@ -97,7 +98,10 @@ export default function InternetDetail({
               borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
             },
           ]}
-          labelStyle={styles.label}
+          labelStyle={[
+            styles.label,
+            { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
+          ]}
           label="Amount"
           placeholder="Enter an amount"
         />
@@ -106,7 +110,7 @@ export default function InternetDetail({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <Button
           title="Continue"

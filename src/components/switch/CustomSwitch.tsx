@@ -21,6 +21,7 @@ const CustomSwitch = ({ isEnabled, onSwitchToggle }: IProps) => {
       ios_backgroundColor={switchColor}
       onValueChange={onSwitchToggle}
       value={isEnabled}
+      style={{ transform: [{ scaleX: 1 }, { scaleY: 1 }] }}
     />
   );
 };

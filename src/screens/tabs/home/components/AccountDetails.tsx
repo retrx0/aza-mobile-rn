@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import {
+  CloseCircleLargeIcon,
   Exit,
   ExitIcon,
   NairaIcon,
@@ -139,27 +140,25 @@ export default function AccountDetails() {
           isVisible={ModalVisible}
           style={{ justifyContent: "flex-end", margin: 0 }}>
           <TouchableOpacity
+            onPress={() => setModalVisible(false)}
             style={{
-              width: 25,
-              height: 25,
-              borderRadius: 25,
-              backgroundColor: "white",
-              alignSelf: "flex-end",
-              alignItems: "center",
-              justifyContent: "center",
+              backgroundColor: "transparent",
+              alignItems: "flex-end",
               marginBottom: 10,
               marginRight: 10,
-            }}
-            onPress={() => setModalVisible(false)}>
-            <Exit />
+            }}>
+            <CloseCircleLargeIcon
+              color={Colors[colorScheme].backgroundSecondary}
+            />
           </TouchableOpacity>
-          <View
+          <TouchableOpacity
             style={{
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
               backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-            }}>
+            }}
+            onPress={() => setModalVisible(false)}>
             <View
               style={{
                 height: hp(335),
@@ -268,7 +267,7 @@ export default function AccountDetails() {
               </TouchableOpacity>
               <Divider />
             </View>
-          </View>
+          </TouchableOpacity>
         </Modal>
       </View>
     </>

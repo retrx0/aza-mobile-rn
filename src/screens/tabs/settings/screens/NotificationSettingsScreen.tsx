@@ -73,7 +73,6 @@ const NotificationSettingsScreen = ({
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(16),
             fontWeight: "400",
-            marginLeft: hp(5),
             marginTop: hp(40),
           }}>
           You can receive notifications if you enable this setting.
@@ -85,7 +84,7 @@ const NotificationSettingsScreen = ({
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(16),
             fontWeight: "400",
-            marginLeft: hp(5),
+
             marginTop: hp(10),
           }}>
           You can revoke this permission at any time.

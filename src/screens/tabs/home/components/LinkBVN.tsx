@@ -2,8 +2,10 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { DangerIcon } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
 import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 interface IProps {
   isBvnLinked: boolean;
@@ -13,6 +15,8 @@ export const LinkBVN = ({
   navigation,
   isBvnLinked,
 }: RootTabScreenProps<"Home"> & IProps) => {
+  const colorScheme = useColorScheme();
+
   return (
     <View
       style={{
@@ -36,16 +40,17 @@ export const LinkBVN = ({
         }}>
         <Text
           style={{
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 12,
-            color: Colors.general.darkGrey,
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+            color: colorScheme === "dark" ? "#000000" : "#000000",
           }}>
           Link your BVN to start using AZA
         </Text>
         <Text
           style={{
-            fontSize: 10,
-            color: "black",
+            fontSize: hp(12),
+            color: colorScheme === "dark" ? "#000000" : "#000000",
+
             marginTop: 5,
           }}>
           Link your BVN to upgrade your account as there are certain limits on
@@ -70,9 +75,9 @@ export const LinkBVN = ({
             }}>
             <Text
               style={{
-                fontSize: 14,
+                fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Medium",
-                color: Colors.general.primary,
+                color: colorScheme === "dark" ? "#000000" : "#000000",
               }}>
               Link your BVN
             </Text>

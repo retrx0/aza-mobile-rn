@@ -115,7 +115,8 @@ const AppLanguageScreen = ({
             <View
               style={{
                 borderBottomWidth: 0.6,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
             />
           </View>

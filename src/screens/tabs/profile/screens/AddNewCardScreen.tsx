@@ -143,7 +143,7 @@ const AddNewCardScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <CancelButtonWithUnderline
             title="Scan Card instead"
@@ -171,6 +171,14 @@ const AddNewCardScreen = ({
                 backgroundColor: Colors[colorScheme].button,
               },
             ]}
+          />
+
+          <CancelButtonWithUnderline
+            title="Cancel"
+            color={Colors[colorScheme].mainText}
+            onPressButton={() => navigation.goBack()}
+            styleText={CommonStyles.cancelStyle}
+            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
       </View>

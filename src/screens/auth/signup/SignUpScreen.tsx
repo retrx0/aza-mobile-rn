@@ -63,7 +63,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <View style={{ marginLeft: 17 }}>
+          <View style={{ marginLeft: 17, marginTop: 20 }}>
             <BackButton
               onPress={() => {
                 navigation.getParent()?.navigate("Welcome");
@@ -72,10 +72,27 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           </View>
           <View style={[CommonStyles.phoneContainer]}>
             <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-            <Text style={[CommonStyles.bodyText]}>
+            <Text
+              style={{
+                padding: hp(3),
+                margin: hp(3),
+                fontFamily: "Euclid-Circular-A-Medium",
+                marginLeft: hp(15),
+                fontSize: hp(16),
+                fontWeight: "500",
+                marginBottom: hp(30),
+              }}>
               Enter your email address to continue
             </Text>
-            <Text style={[CommonStyles.phoneText]}>
+            <Text
+              style={{
+                padding: hp(5),
+                margin: hp(4),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                marginLeft: hp(15),
+                fontSize: hp(18),
+                fontWeight: "500",
+              }}>
               Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
             </Text>
           </View>
@@ -113,10 +130,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                     title="Continue"
                     onPressButton={handleSubmit}
                     styleText={{ color: Colors[colorScheme].buttonText }}
-                    style={[
-                      { backgroundColor: Colors[colorScheme].button },
-                      CommonStyles.otpbutton,
-                    ]}
+                    style={[{ backgroundColor: Colors[colorScheme].button }]}
                     willCallAsync={buttonLoading}
                     disabled={!isValid}
                   />

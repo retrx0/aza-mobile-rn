@@ -68,20 +68,22 @@ const RecurringTransferConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
+                color: colorScheme === "dark" ? "#999999" : "#000000",
               }}>
               To
             </Text>
             <TextInput
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              // placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
@@ -122,9 +124,10 @@ const RecurringTransferConfirmationScreen = ({
               }}
               label="Amount"
               placeholder={"\u20A680000"}
-              placeholderTextColor={
-                colorScheme === "dark" ? "#E7E9EA" : "#000000"
-              }
+              keyboardType="number-pad"
+              // placeholderTextColor={
+              //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+              // }
             />
           </View>
           <View style={{ marginBottom: 30 }}>
@@ -145,9 +148,9 @@ const RecurringTransferConfirmationScreen = ({
               }}
               label="Period"
               placeholder="Weekly"
-              placeholderTextColor={
-                colorScheme === "dark" ? "#E7E9EA" : "#000000"
-              }
+              // placeholderTextColor={
+              //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+              // }
             />
           </View>
 
@@ -168,15 +171,15 @@ const RecurringTransferConfirmationScreen = ({
             }}
             label="Day"
             placeholder="Wednesday"
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Continue"

@@ -39,7 +39,12 @@ const LoginOptionsScreen = ({
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View>
+        <View
+          style={{
+            paddingHorizontal: hp(23),
+            marginTop: hp(30),
+            marginBottom: hp(396),
+          }}>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -68,8 +73,5 @@ export default LoginOptionsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
   },
 });

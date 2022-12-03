@@ -91,6 +91,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             ]}
             icon={undefined}
             containerStyle={{ marginBottom: 2 }}
+            keyboardType="number-pad"
           />
         </View>
         <View style={CommonStyles.percentageContainer}>

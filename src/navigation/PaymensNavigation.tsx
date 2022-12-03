@@ -28,6 +28,14 @@ import WaterConfirmation from "../screens/tabs/payments/water-screens/WaterConfi
 import GiftCardScreen from "../screens/tabs/payments/gift-card/GiftCardScreen";
 import GiftCardDetails from "../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../screens/tabs/payments/game/GameScreen";
+import PaymentRecurring from "../screens/tabs/payments/paymentRecurring/PaymentRecurring";
+import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
+import InternetRecurring from "../screens/tabs/payments/paymentRecurring/InternetRecurring/InternetRecurring";
+import InternetRecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRecurring/RecurringPlan";
+import RecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRecurring/RecurringPlan";
+import WaterRecurring from "../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
+import CableRecurring from "../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
+import ElectricityRecurring from "../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -57,6 +65,35 @@ export function AirtimeTabs() {
         initialRouteName="airtime">
         <Tab.Screen name="airtime" component={AirtimeIndex} />
         <Tab.Screen name="data bundle" component={AirtimeIndex} />
+      </Tab.Navigator>
+    </SafeAreaView>
+  );
+}
+
+export function AirtimeRecurringTab() {
+  const scheme = useColorScheme();
+  return (
+    <SafeAreaView style={CommonStyles.parentContainer}>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarItemStyle: {
+            borderRadius: 100,
+            marginTop: Platform.OS == "android" ? 50 : 0,
+          },
+          tabBarIndicatorStyle: {
+            borderWidth: 1,
+            borderColor: scheme == "light" ? "#000000" : "#ffffff",
+            borderBottomColor: "#A6A6A6",
+          },
+          tabBarLabelStyle: {
+            textTransform: "capitalize",
+            fontSize: hp(16),
+            fontWeight: "500",
+          },
+        }}
+        initialRouteName="airtime">
+        <Tab.Screen name="airtime" component={AirtimeRecurring} />
+        <Tab.Screen name="data bundle" component={AirtimeRecurring} />
       </Tab.Navigator>
     </SafeAreaView>
   );
@@ -172,7 +209,7 @@ const PaymentNavigator = () => {
         component={CableConfirmation}
       />
       <Stack.Screen
-        options={{ title: "Password" }}
+        options={{ headerShown: false }}
         name="WaterConfirmation"
         component={WaterConfirmation}
       />
@@ -235,6 +272,51 @@ const PaymentNavigator = () => {
         }}
         name="complete_transaction"
         component={CompletedTransaction}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PaymentRecurring"
+        component={PaymentRecurring}
+      />
+      <Stack.Screen
+        options={{ title: "Airtime & Data" }}
+        name="AirtimeRecurring"
+        component={AirtimeRecurringTab}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="RecurringPlan"
+        component={RecurringPlan}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="InternetRecurring"
+        component={InternetRecurring}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="WaterRecurring"
+        component={WaterRecurring}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="CableRecurring"
+        component={CableRecurring}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name="ElectricityRecurring"
+        component={ElectricityRecurring}
       />
     </Stack.Navigator>
   );

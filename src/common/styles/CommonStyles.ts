@@ -99,7 +99,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(16),
     fontWeight: "500",
     marginTop: hp(30),
-    marginBottom: hp(100),
+    marginBottom: hp(80),
   },
   withdrawSuccessfull: {
     fontFamily: "Euclid-Circular-A",
@@ -263,7 +263,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A",
-    marginTop: hp(5),
+    marginTop: hp(10),
   },
   actionContainer: {
     alignSelf: "center",
@@ -449,7 +449,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(17.75),
     fontFamily: "Euclid-Circular-A-Medium",
     marginTop: hp(30),
-    marginBottom: hp(35),
+    marginBottom: hp(40),
   },
   descriptionStyle: {
     fontSize: hp(16),
@@ -561,12 +561,10 @@ const CommonStyles = StyleSheet.create({
     marginBottom: hp(35),
   },
   phoneContainer: {
-    marginTop: hp(30),
+    marginTop: hp(20),
     marginBottom: hp(10),
   },
-  iconStyle: {
-    marginLeft: hp(26),
-  },
+
   centerText: {
     width: wp(160),
     left: hp(50),
@@ -607,9 +605,9 @@ const CommonStyles = StyleSheet.create({
     // alignSelf: "center",
   },
   imageHeaderContainer: {
-    marginLeft: hp(20),
     minHeight: hp(70),
     maxHeight: hp(100),
+    marginTop: hp(20),
   },
   wrapperContainer: {
     flex: hp(1),
@@ -657,7 +655,7 @@ const CommonStyles = StyleSheet.create({
     fontSize: hp(20),
   },
   user: {
-    marginVertical: hp(20),
+    marginVertical: hp(15),
   },
   textStyle: {
     fontSize: hp(18),
@@ -815,13 +813,13 @@ const CommonStyles = StyleSheet.create({
   //   fontWeight: "500",
   // },
   orText: {
-    fontSize: hp(20),
+    fontSize: hp(14),
     alignSelf: "center",
     fontWeight: "500",
-    marginTop: hp(30),
-    marginBottom: hp(20),
+    marginTop: hp(15),
+    marginBottom: hp(15),
     lineHeight: hp(18),
-    padding: hp(5),
+
     color: Colors.general.grey,
   },
   signupOptions: {

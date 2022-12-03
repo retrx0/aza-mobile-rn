@@ -50,7 +50,6 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Medium",
-
               fontWeight: "500",
             }}>
             Blocked users won't be able to send you money, request money from
@@ -62,7 +61,6 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A",
-              marginLeft: hp(5),
               fontWeight: "400",
               marginTop: hp(30),
             }}>
@@ -81,6 +79,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: hp(30),
+              textAlign: "center",
             }}>
             You have not blocked anyone
           </Text>
@@ -89,7 +88,7 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Block A User"

@@ -37,6 +37,14 @@ export type CommonStackParamList = {
   GiftCard: undefined;
   GiftCardDetails: undefined;
   GameScreen: undefined;
+  PaymentRecurring: undefined;
+  AirtimeRecurring: undefined;
+  InternetRecurring: undefined;
+  CableRecurring: undefined;
+  ElectricityRecurring: undefined;
+  WaterRecurring: undefined;
+  CharityRecurring: undefined;
+  RecurringPlan: undefined;
 
   // Vault
   NewVault: undefined;
@@ -126,11 +134,11 @@ export type CommonStackParamList = {
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
   SendMoneyConfirmation: undefined;
-
   SetupRecurringTransfer: undefined;
   RecurringTransfer: undefined;
   SelectNewRecurringTransfer: undefined;
   RecurringTransferConfirmation: undefined;
+  SetNewRecurringTransfer: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =

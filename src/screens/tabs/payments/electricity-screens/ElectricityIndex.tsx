@@ -19,7 +19,7 @@ import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 
-const CableList = [
+const ElectricityList = [
   {
     title: "IE",
     icon: Images.Ie,
@@ -68,7 +68,7 @@ export default function ElectricityIndex({
           fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginTop: hp(30),
+          marginTop: hp(10),
         }}
         heading="Select electricity provider"
       />
@@ -80,13 +80,11 @@ export default function ElectricityIndex({
         <HeaderImage selected index={0} image={EKEDC} title="EKEDC" />
         <HeaderImage selected index={0} image={PH} title="PHED" />
       </ScrollView> */}
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: hp(15),
-          marginBottom: hp(20),
-        }}>
-        {CableList.map((item, index) => {
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={CommonStyles.imageHeaderContainer}>
+        {ElectricityList.map((item, index) => {
           return (
             <Card
               key={index}
@@ -97,11 +95,11 @@ export default function ElectricityIndex({
             />
           );
         })}
-      </View>
+      </ScrollView>
       <View
         style={{
           paddingHorizontal: hp(20),
-          marginTop: hp(30),
+
           marginBottom: hp(10),
         }}>
         <CustomDropdown
@@ -148,7 +146,7 @@ export default function ElectricityIndex({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <MyButton
           disabled={!bundles}

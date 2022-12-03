@@ -25,13 +25,13 @@ export default function ElectricityConfirmation({
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <View style={{ paddingHorizontal: 20 }}>
+        <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
           </Text>
           <ImageInput
             label={"To"}
-            placeholder={""}
+            placeholder={"Ikeja Electric"}
             source={Ie}
             icon={undefined}
           />
@@ -102,7 +102,7 @@ export default function ElectricityConfirmation({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Confirm"

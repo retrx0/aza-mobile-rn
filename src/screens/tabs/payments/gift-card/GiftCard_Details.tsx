@@ -142,7 +142,7 @@ export default function GiftCardDetails({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <MyButton
           disabled={false}

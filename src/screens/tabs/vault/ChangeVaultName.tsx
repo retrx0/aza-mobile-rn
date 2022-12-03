@@ -37,34 +37,36 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Change Vault Name
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Change the name of your vault
-        </Text>
+        <View style={{ paddingHorizontal: hp(20) }}>
+          <Text style={CommonStyles.confirmDetails}>
+            Change the name of your vault
+          </Text>
+          <View style={{ marginTop: hp(100) }}>
+            <Input
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={{
+                fontSize: hp(16),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A",
+                borderBottomWidth: hp(0.25),
+                borderColor: "#EAEAEC",
+                paddingVertical: hp(8),
+                width: "100%",
 
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A",
-              borderBottomWidth: hp(0.25),
-              borderColor: "#EAEAEC",
-              paddingVertical: hp(8),
-              width: 370,
-            }}
-            labelStyle={styles.label}
-            label="Vault Name"
-            placeholder="Type in vault new name"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].secondaryText}
-          />
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              }}
+              labelStyle={styles.label}
+              label="Vault Name"
+              placeholder="Type in vault new name"
+            />
+          </View>
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Save Change"

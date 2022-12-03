@@ -86,7 +86,10 @@ const SendMoneyConfirmationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
@@ -165,7 +168,7 @@ const SendMoneyConfirmationScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Continue"
@@ -217,5 +220,6 @@ const styles = StyleSheet.create({
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
+    paddingVertical: 3,
   },
 });

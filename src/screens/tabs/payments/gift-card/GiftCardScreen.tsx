@@ -140,7 +140,7 @@ const styles2 = StyleSheet.create({
     marginTop: 0,
   },
   img: {
-    width: 36,
-    height: 36,
+    width: 45,
+    height: 45,
   },
 });
