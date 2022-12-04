@@ -62,6 +62,7 @@ const SummaryModal = ({
           // darkColor={Colors.dark.mainText}
           style={{
             fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A",
             textAlign: "center",
             marginBottom: hp(49),
             color: colorScheme === "dark" ? "#999999" : "#000000",

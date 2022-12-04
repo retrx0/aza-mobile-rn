@@ -89,6 +89,7 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               marginTop: hp(10),
+              marginBottom: hp(14),
             }}>
             {beneficiary.fullName}
           </Text>
@@ -117,7 +118,7 @@ const TransactionKeypadScreen = ({
               style={{
                 width: 15,
                 height: 15,
-                marginHorizontal: 10,
+                marginHorizontal: 5,
                 resizeMode: "cover",
               }}
               source={require("../../../assets/images/icons/NigerianFlag.png")}
@@ -160,7 +161,7 @@ const TransactionKeypadScreen = ({
               style={{
                 fontSize: hp(14),
                 fontWeight: "400",
-                marginVertical: 10,
+                marginVertical: 15,
               }}>
               Aza Balance:
             </Text>
@@ -237,7 +238,7 @@ const TransactionKeypadScreen = ({
             fontSize: hp(14),
           }}
           style={{
-            marginTop: 70,
+            // marginTop: 30,
             backgroundColor: Colors[colorScheme].button,
           }}
         />
@@ -263,7 +264,7 @@ export default TransactionKeypadScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: hp(20),
+    paddingVertical: hp(10),
     paddingHorizontal: 15,
     alignItems: "center",
     justifyContent: "space-around",

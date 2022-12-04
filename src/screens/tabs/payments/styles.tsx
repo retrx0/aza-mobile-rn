@@ -32,9 +32,9 @@ export const PaymentStyles = StyleSheet.create({
     marginTop: 40,
     fontWeight: "400",
     fontSize: 14,
-    lineHeight: 18,
+
     backgroundColor: "transparent",
-    marginBottom: hp(24),
+    marginBottom: hp(20),
   },
   imageIcon: {
     width: 58,
@@ -42,7 +42,6 @@ export const PaymentStyles = StyleSheet.create({
   },
   imageHeaderContainer: {
     backgroundColor: "transparent",
-
     marginBottom: hp(25),
   },
   itemListContainer: {
@@ -95,10 +94,10 @@ export const CharityStyles = StyleSheet.create({
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
-    marginTop: 10,
+
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   mainSuggestion: {
     width: 70,

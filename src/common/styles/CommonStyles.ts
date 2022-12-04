@@ -521,7 +521,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "600",
     fontSize: hp(26),
     fontFamily: "Euclid-Circular-A-Bold",
-    marginLeft: hp(15),
+    marginLeft: hp(13),
     lineHeight: hp(30),
   },
   phoneText: {
