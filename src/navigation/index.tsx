@@ -43,7 +43,8 @@ const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -123,11 +124,13 @@ const RootNavigator = () => {
           //   .catch((e) => console.log(e));
         }
       }}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <ActivityModal loading={isActivityModalOpen} />
       <Stack.Navigator
-        initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
-        screenOptions={{ gestureEnabled: false }}>
+        initialRouteName={"Root"}
+        screenOptions={{ gestureEnabled: false }}
+      >
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
