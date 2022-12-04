@@ -21,7 +21,7 @@ const CarouselWrapper = (props: { carousel: CarouselItem }) => {
         source={props.carousel.source}
         resizeMode="contain"
       />
-      <View style={{ marginHorizontal: 25, alignItems: "flex-start" }}>
+      <View style={{ marginHorizontal: 30, alignItems: "flex-start" }}>
         <Text
           style={{
             fontWeight: "600",
