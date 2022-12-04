@@ -110,8 +110,7 @@ const AccountLimitsTab = ({
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-
-                  // color: Colors[colorScheme].secondaryText,
+                  color: colorScheme === "dark" ? "#999999" : "#000000",
                 }}>
                 Daily Transaction Limit:
               </Text>
@@ -132,12 +131,11 @@ const AccountLimitsTab = ({
                 marginTop: 10,
               }}>
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
                 style={{
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
+                  color: colorScheme === "dark" ? "#999999" : "#000000",
                 }}>
                 Maximum Balance:
               </Text>

@@ -43,7 +43,6 @@ const LoginOptionsScreen = ({
           style={{
             paddingHorizontal: hp(23),
             marginTop: hp(30),
-            marginBottom: hp(396),
           }}>
           <Text
             lightColor={Colors.light.text}
@@ -57,12 +56,14 @@ const LoginOptionsScreen = ({
             account.
           </Text>
         </View>
-        <ThirdPartyAuthButtons
-          onValidated={function (email: string): void {
-            throw new Error("Function not implemented.");
-          }}
-          authType={"signup"}
-        />
+        <View style={{ marginTop: 330 }}>
+          <ThirdPartyAuthButtons
+            onValidated={function (email: string): void {
+              throw new Error("Function not implemented.");
+            }}
+            authType={"signup"}
+          />
+        </View>
       </View>
     </SpacerWrapper>
   );

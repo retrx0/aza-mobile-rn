@@ -57,7 +57,7 @@ const SettingsListItem = ({
               }
               style={{
                 fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "500",
               }}>
               {name}

@@ -98,7 +98,7 @@ export default function ApplicationSettings({
         <Text
           style={{
             color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-            fontFamily: "Euclid-Circular-A-Medium",
+            fontFamily: "Euclid-Circular-A",
             fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
