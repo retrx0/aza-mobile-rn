@@ -88,7 +88,7 @@ export default function AirtimeIndex({
           fontFamily: "Euclid-Circular-A-Medium",
           fontWeight: "600",
           fontSize: hp(16),
-          marginTop: hp(20),
+          marginTop: hp(30),
         }}
         heading="Select Network Provider"
       />
@@ -150,7 +150,7 @@ export default function AirtimeIndex({
         style={{
           flexDirection: "row",
           flexWrap: "wrap",
-          marginTop: 30,
+          marginTop: hp(15),
           justifyContent: "space-between",
         }}>
         {Network.map((item, index) => {
@@ -177,7 +177,7 @@ export default function AirtimeIndex({
             },
           ]}
           labelStyle={styles.label}
-          style={{ marginTop: hp(20) }}
+          style={{ marginTop: hp(10) }}
           label="Phone Number"
           placeholder="Enter a phone number"
         />
@@ -190,8 +190,8 @@ export default function AirtimeIndex({
       <View
         style={{
           paddingHorizontal: hp(20),
-          marginTop: hp(20),
-          marginBottom: hp(20),
+          marginTop: hp(10),
+          marginBottom: hp(10),
         }}>
         {route.name == "data bundle" && (
           <CustomDropdown
@@ -227,7 +227,7 @@ export default function AirtimeIndex({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <Button
           title="Continue"

@@ -1,23 +1,20 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
-import MyButton from "../sub-components/MyButton";
-import SelectInput from "../../../../components/input/SelectInput";
-import { AEDC, EEDC, EKEDC, Ie, PH } from "../../../../../assets/images";
-import HeaderImage from "../sub-components/HeaderImage";
-import { RootTabScreenProps } from "../../../../../types";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { SafeAreaView, View } from "../../../../../components/Themed";
+import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
+import CommonStyles from "../../../../../common/styles/CommonStyles";
+import { Header } from "../../../../../components/text/header";
+import { Input } from "../../../../../components/input/input";
+import MyButton from "../../sub-components/MyButton";
+import { RootTabScreenProps } from "../../../../../../types";
+import { hp } from "../../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import useColorScheme from "../../../../../hooks/useColorScheme";
+import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
 
-import * as Images from "../../../../../assets/images/index";
-import { Card } from "../sub-components/Card";
+import * as Images from "../../../../../../assets/images/index";
+import { Card } from "../../sub-components/Card";
+import { CommonScreenProps } from "../../../../../common/navigation/types";
 
 const ElectricityList = [
   {
@@ -42,9 +39,9 @@ const ElectricityList = [
   },
 ];
 
-export default function ElectricityIndex({
+export default function ElectricityRecurring({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"SetupRecurringTransfer">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const bundles = ["Prepaid", "Postpaid"];
   const insets = useSafeAreaInsets();
@@ -53,7 +50,31 @@ export default function ElectricityIndex({
 
   const [periodValue, setPeriodValue] = useState("");
 
+  // const { icon } = route.params;
+  const [dayValue, setDayValue] = useState("");
+
   const period = [
+    { label: "Monthly", value: "monthly" },
+    { label: "Weekly", value: "weekly" },
+    { label: "Daily", value: "daily" },
+  ];
+
+  const dayMonthly = [
+    { label: "First Day of the Month", value: "1" },
+    { label: "2nd", value: "2" },
+    { label: "3rd", value: "3" },
+  ];
+
+  const dayWeekly = [
+    { label: "Sunday", value: "sunday" },
+    { label: "Monday", value: "monday" },
+    { label: "Tuesday", value: "tuesday" },
+    { label: "Wednesday", value: "wednesday" },
+    { label: "Thursday", value: "thursday" },
+    { label: "Friday", value: "friday" },
+    { label: "Saturday", value: "saturday" },
+  ];
+  const meter = [
     { label: "Prepaid", value: "1" },
     { label: "Postpaid", value: "1" },
   ];
@@ -83,7 +104,7 @@ export default function ElectricityIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}>
         {ElectricityList.map((item, index) => {
           return (
             <Card
@@ -99,12 +120,10 @@ export default function ElectricityIndex({
       <View
         style={{
           paddingHorizontal: hp(20),
-
-          marginBottom: hp(10),
         }}>
         <CustomDropdown
           label="Meter Type"
-          data={period}
+          data={meter}
           placeholder="Choose your meter type"
           setValue={setPeriodValue}
           value={periodValue}
@@ -115,7 +134,7 @@ export default function ElectricityIndex({
           ]}
         />
       </View>
-      <View style={{ paddingHorizontal: hp(20) }}>
+      <View style={{ paddingHorizontal: hp(20), marginBottom: hp(20) }}>
         <Input
           icon={null}
           inputStyle={[
@@ -128,21 +147,29 @@ export default function ElectricityIndex({
           label="Meter Number"
           placeholder="Enter your meter number"
         />
-
-        <Input
-          icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
-          labelStyle={styles.label}
-          label="Amount"
-          placeholder="Enter an amount to be paid"
-        />
       </View>
-
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <View style={{ marginBottom: hp(40) }}>
+          <CustomDropdown
+            data={period}
+            placeholder="Choose a period"
+            setValue={setPeriodValue}
+            value={periodValue}
+            label={"Period"}
+          />
+        </View>
+        {periodValue !== "daily" && (
+          <View style={{ marginBottom: hp(40) }}>
+            <CustomDropdown
+              data={periodValue === "weekly" ? dayWeekly : dayMonthly}
+              placeholder="Choose a day"
+              setValue={setDayValue}
+              value={dayValue}
+              label={"Day"}
+            />
+          </View>
+        )}
+      </View>
       <View
         style={[
           CommonStyles.passwordContainer,
@@ -151,11 +178,21 @@ export default function ElectricityIndex({
         <MyButton
           disabled={!bundles}
           title="Continue"
-          onPress={() => {
-            navigation.navigate("Common", {
-              screen: "ElectricityConfirmation",
-            });
-          }}
+          onPress={() =>
+            navigation.push("TransactionKeypad", {
+              headerTitle: "Recurring Transfer",
+              transactionType: {
+                type: "recurring",
+                beneficiary: {
+                  beneficiaryAccount: "",
+                  beneficiaryImage: "",
+                  beneficiaryName: "",
+                },
+                period: periodValue,
+                day: dayValue,
+              },
+            })
+          }
           // style={{ marginTop: hp(250) }}
         />
       </View>

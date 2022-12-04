@@ -21,13 +21,14 @@ const CarouselWrapper = (props: { carousel: CarouselItem }) => {
         source={props.carousel.source}
         resizeMode="contain"
       />
-      <View style={{ marginHorizontal: 30 }}>
+      <View style={{ marginHorizontal: 20 }}>
         <Text
           style={{
             fontWeight: "600",
             fontSize: hp(24),
             fontFamily: "Euclid-Circular-A-Bold",
             marginTop: hp(29),
+            marginLeft: 10,
           }}>
           {props.carousel.heading}
         </Text>
@@ -38,6 +39,7 @@ const CarouselWrapper = (props: { carousel: CarouselItem }) => {
             fontWeight: "400",
             marginTop: hp(10),
             marginBottom: hp(50),
+            marginLeft: 10,
           }}>
           {props.carousel.description}
         </Text>

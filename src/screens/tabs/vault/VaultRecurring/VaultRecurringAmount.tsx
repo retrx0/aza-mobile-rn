@@ -139,7 +139,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             width: "100%",
-            marginTop: 20,
+            marginTop: 10,
             marginBottom: "auto",
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />

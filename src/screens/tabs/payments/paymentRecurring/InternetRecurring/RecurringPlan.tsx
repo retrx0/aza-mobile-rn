@@ -1,27 +1,28 @@
 import { Text, ScrollView, Switch, StyleSheet } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
-import ButtonLg from "../../../../components/buttons/ButtonLg";
-import MyButton from "../sub-components/MyButton";
-import MySwitch from "../sub-components/MySwitch";
+import { SafeAreaView, View } from "../../../../../components/Themed";
+import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
+import CommonStyles from "../../../../../common/styles/CommonStyles";
+import { Header } from "../../../../../components/text/header";
+import HeadrImage from "../../sub-components/HeadrImage";
+import { Input } from "../../../../../components/input/input";
+import ButtonLg from "../../../../../components/buttons/ButtonLg";
+import MyButton from "../../sub-components/MyButton";
+import MySwitch from "../../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
-import SelectInput from "../../../../components/input/SelectInput";
-import { RootTabScreenProps } from "../../../../../types";
-import Button from "../../../../components/buttons/Button";
-import useColorScheme from "../../../../hooks/useColorScheme";
+import SelectInput from "../../../../../components/input/SelectInput";
+import { RootTabScreenProps } from "../../../../../../types";
+import Button from "../../../../../components/buttons/Button";
+import useColorScheme from "../../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
-import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import Colors from "../../../../../constants/Colors";
+import { hp } from "../../../../../common/util/LayoutUtil";
+import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
+import { CommonScreenProps } from "../../../../../common/navigation/types";
 
-export default function InternetDetail({
+export default function RecurringPlan({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"SetupRecurringTransfer">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
@@ -30,6 +31,23 @@ export default function InternetDetail({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
+  const [dayValue, setDayValue] = useState("");
+
+  const dayMonthly = [
+    { label: "First Day of the Month", value: "1" },
+    { label: "2nd", value: "2" },
+    { label: "3rd", value: "3" },
+  ];
+
+  const dayWeekly = [
+    { label: "Sunday", value: "sunday" },
+    { label: "Monday", value: "monday" },
+    { label: "Tuesday", value: "tuesday" },
+    { label: "Wednesday", value: "wednesday" },
+    { label: "Thursday", value: "thursday" },
+    { label: "Friday", value: "friday" },
+    { label: "Saturday", value: "saturday" },
+  ];
 
   const period = [
     { label: "100 ", value: "1" },
@@ -73,7 +91,7 @@ export default function InternetDetail({
         style={{
           paddingHorizontal: hp(20),
           marginTop: hp(30),
-          marginBottom: hp(10),
+          marginBottom: hp(40),
         }}>
         <CustomDropdown
           label="Bundle"
@@ -89,24 +107,27 @@ export default function InternetDetail({
         />
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
-          keyboardType="phone-pad"
-          icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
-          labelStyle={[
-            styles.label,
-            { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
-          ]}
-          label="Amount"
-          placeholder="Enter an amount"
-        />
+        <View style={{ marginBottom: hp(40) }}>
+          <CustomDropdown
+            data={period}
+            placeholder="Choose a period"
+            setValue={setPeriodValue}
+            value={periodValue}
+            label={"Period"}
+          />
+        </View>
+        {periodValue !== "daily" && (
+          <View style={{ marginBottom: hp(40) }}>
+            <CustomDropdown
+              data={periodValue === "weekly" ? dayWeekly : dayMonthly}
+              placeholder="Choose a day"
+              setValue={setDayValue}
+              value={dayValue}
+              label={"Day"}
+            />
+          </View>
+        )}
       </View>
-
       <View
         style={[
           CommonStyles.passwordContainer,
@@ -115,7 +136,19 @@ export default function InternetDetail({
         <Button
           title="Continue"
           onPressButton={() =>
-            navigation.navigate("Common", { screen: "InternetConfirmation" })
+            navigation.push("TransactionKeypad", {
+              headerTitle: "Recurring Transfer",
+              transactionType: {
+                type: "recurring",
+                beneficiary: {
+                  beneficiaryAccount: "",
+                  beneficiaryImage: "",
+                  beneficiaryName: "",
+                },
+                period: periodValue,
+                day: dayValue,
+              },
+            })
           }
           styleText={{
             color: Colors[colorScheme].buttonText,

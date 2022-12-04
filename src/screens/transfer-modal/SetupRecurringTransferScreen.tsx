@@ -14,6 +14,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import ExitButton from "../../components/buttons/ExitButton";
 
 const SetupRecurringTransferScreen = ({
   navigation,
@@ -63,7 +64,7 @@ const SetupRecurringTransferScreen = ({
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
     });
   }, []);
   const insets = useSafeAreaInsets();

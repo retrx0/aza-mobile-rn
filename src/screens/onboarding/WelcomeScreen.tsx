@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AZALogo } from "../../../assets/svg";
 import { RootStackScreenProps } from "../../../types";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { hp } from "../../common/util/LayoutUtil";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import ButtonMd from "../../components/buttons/ButtonMd";
 import WelcomeScrollIndicator from "../../components/indicators/WelcomeScrollIndicator";
 import Colors from "../../constants/Colors";
@@ -56,24 +56,25 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           flexDirection: "row",
           justifyContent: "space-between",
           marginBottom: hp(100),
-          marginHorizontal: hp(30),
+          paddingHorizontal: 30,
         }}>
-        <ButtonMd
-          title="Login"
-          color={Colors.general.white}
-          alt={true}
-          onPress={() => {
-            navigation.navigate("SignIn");
-          }}
-          style={{
-            fontFamily: "Euclid-Circular-A",
-            fontSize: hp(14),
-            fontWeight: "500",
-            lineHeight: hp(18),
-          }}
-        />
-
-        <View style={{ marginRight: 20 }}>
+        <View>
+          <ButtonMd
+            title="Login"
+            color={Colors.general.white}
+            alt={true}
+            onPress={() => {
+              navigation.navigate("SignIn");
+            }}
+            style={{
+              fontFamily: "Euclid-Circular-A",
+              fontSize: hp(14),
+              fontWeight: "500",
+              lineHeight: hp(18),
+            }}
+          />
+        </View>
+        <View style={{ marginLeft: 15 }}>
           <ButtonMd
             title="Sign Up"
             color={Colors.general.black}

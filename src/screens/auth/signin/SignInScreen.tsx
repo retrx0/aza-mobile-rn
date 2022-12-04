@@ -51,7 +51,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <View style={{ marginLeft: 17 }}>
+          <View style={{ marginLeft: 17, marginTop: 20 }}>
             <BackButton
               onPress={() => {
                 navigation.getParent()?.navigate("Welcome");
@@ -68,7 +68,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 padding: hp(5),
                 margin: hp(4),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                marginTop: hp(35),
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
@@ -115,7 +114,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                     style={[
                       {
                         backgroundColor: Colors[colorScheme].button,
-                        marginTop: 40,
+                        marginTop: 20,
                       },
                     ]}
                     disabled={!isValid}
@@ -125,7 +124,17 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             }}
           </Formik>
 
-          <Text style={[CommonStyles.orText]}>OR</Text>
+          <Text
+            style={{
+              fontSize: hp(14),
+              alignSelf: "center",
+              fontWeight: "500",
+              marginTop: hp(30),
+              marginBottom: hp(30),
+              lineHeight: hp(18),
+            }}>
+            OR
+          </Text>
           <ThirdPartyAuthButtons
             onValidated={(email) => handleSubmission(email)}
             authType="signin"

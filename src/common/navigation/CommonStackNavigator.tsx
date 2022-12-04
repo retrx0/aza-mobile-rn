@@ -2,7 +2,11 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity, Platform } from "react-native";
 
-import { AirtimeTabs, CharityTabs } from "../../navigation/PaymensNavigation";
+import {
+  AirtimeRecurringTab,
+  AirtimeTabs,
+  CharityTabs,
+} from "../../navigation/PaymensNavigation";
 
 // Vault
 import AddVault from "../../screens/tabs/vault/AddVault";
@@ -131,6 +135,13 @@ import GiftCardConfirmation from "../../screens/tabs/payments/gift-card/GiftCard
 import GiftCardDetails from "../../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../../screens/tabs/payments/game/GameScreen";
 import SetNewRecurringTransfer from "../../screens/transfer-modal/SetNewRecurringTransfer";
+import PaymentRecurring from "../../screens/tabs/payments/paymentRecurring/PaymentRecurring";
+import AirtimeRecurring from "../../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
+import InternetRecurring from "../../screens/tabs/payments/paymentRecurring/InternetRecurring/InternetRecurring";
+import RecurringPlan from "../../screens/tabs/payments/paymentRecurring/InternetRecurring/RecurringPlan";
+import WaterRecurring from "../../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
+import CableRecurring from "../../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
+import ElectricityRecurring from "../../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -422,6 +433,11 @@ const CommonStack = () => {
           component={AirtimeTabs}
         />
         <Stack.Screen
+          options={{ title: "Airtime & Data" }}
+          name="AirtimeRecurring"
+          component={AirtimeRecurringTab}
+        />
+        <Stack.Screen
           options={{ presentation: "fullScreenModal", title: "" }}
           name="Pie"
           component={Pie}
@@ -524,6 +540,38 @@ const CommonStack = () => {
           }}
           name="CompleteTransaction"
           component={StatusScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="PaymentRecurring"
+          component={PaymentRecurring}
+        />
+        <Stack.Screen
+          options={{ title: "Internet" }}
+          name="InternetRecurring"
+          component={InternetRecurring}
+        />
+        <Stack.Screen
+          options={{ title: "Internet" }}
+          name="RecurringPlan"
+          component={RecurringPlan}
+        />
+        <Stack.Screen
+          options={{ title: "Water" }}
+          name="WaterRecurring"
+          component={WaterRecurring}
+        />
+        <Stack.Screen
+          options={{ title: "Cable" }}
+          name="CableRecurring"
+          component={CableRecurring}
+        />
+        <Stack.Screen
+          options={{ title: "Electricity" }}
+          name="ElectricityRecurring"
+          component={ElectricityRecurring}
         />
       </Stack.Group>
 

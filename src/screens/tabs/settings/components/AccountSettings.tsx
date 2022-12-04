@@ -84,7 +84,7 @@ export default function AccountSettings({
   ];
 
   return (
-    <View style={{ marginBottom: hp(25) }}>
+    <View style={{ marginBottom: hp(15) }}>
       <View>
         <Text
           style={{

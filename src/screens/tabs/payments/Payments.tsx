@@ -85,7 +85,11 @@ export default function Payments({
       <ScrollView
         showsHorizontalScrollIndicator={false}
         horizontal
-        style={styles.imageHeaderContainer}>
+        style={{
+          backgroundColor: "transparent",
+          marginLeft: hp(20),
+          marginBottom: hp(20),
+        }}>
         <HeadrImage
           selected
           index={0}
