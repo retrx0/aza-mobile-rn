@@ -40,10 +40,15 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Set a Goal
           </Text>
         </View>
-        <Text style={[CommonStyles.selectStyle, { marginLeft: 20 }]}>
+        <Text
+          style={[
+            CommonStyles.selectStyle,
+            { marginLeft: 20 },
+            { marginBottom: 100 },
+          ]}>
           You can determine the amount you want to save
         </Text>
-        <View style={[CommonStyles.row]}>
+        <View style={[CommonStyles.row, { marginBottom: 50 }]}>
           <NairaLargeIcon
             color={
               !amount
@@ -70,7 +75,6 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             width: "100%",
             marginTop: 40,
-            marginBottom: 130,
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
