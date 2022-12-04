@@ -12,6 +12,7 @@ import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data } from "./OnboardingUtil";
+import Layout from "../../constants/Layout";
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
@@ -54,9 +55,10 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-evenly",
           marginBottom: hp(100),
-          paddingHorizontal: 30,
+          paddingHorizontal: 25,
+          width: Layout.window.width,
         }}>
         <View>
           <ButtonMd
@@ -74,7 +76,7 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
             }}
           />
         </View>
-        <View style={{ marginLeft: 15 }}>
+        <View>
           <ButtonMd
             title="Sign Up"
             color={Colors.general.black}

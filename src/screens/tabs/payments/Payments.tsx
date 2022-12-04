@@ -88,7 +88,7 @@ export default function Payments({
         style={{
           backgroundColor: "transparent",
           marginLeft: hp(20),
-          marginBottom: hp(20),
+          marginBottom: hp(10),
         }}>
         <HeadrImage
           selected

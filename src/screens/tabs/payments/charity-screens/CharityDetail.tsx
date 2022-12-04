@@ -116,8 +116,8 @@ export default function CharityDetail({
 
         <Divider
           style={{
-            marginTop: 10,
-            marginBottom: 10,
+            marginTop: hp(5),
+            marginBottom: hp(5),
             width: "85%",
           }}
         />
