@@ -34,6 +34,7 @@ export default function InternetConfirmation({
             placeholder={"Spectrant"}
             source={Spectranet}
             icon={undefined}
+            value={""}
           />
           <Input
             icon={null}
@@ -52,10 +53,11 @@ export default function InternetConfirmation({
               color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Account/User ID"
-            placeholder="Enter your User ID"
+            // placeholder="Enter your User ID"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value=""
           />
           <Input
             icon={null}
@@ -74,10 +76,11 @@ export default function InternetConfirmation({
               color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Amount"
-            placeholder="Enter Amount"
+            // placeholder="Enter Amount"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value=""
           />
           <Input
             icon={null}
@@ -96,10 +99,11 @@ export default function InternetConfirmation({
               color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Payment Method"
-            placeholder="Select your payment method"
+            // placeholder="Select your payment method"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value="Aza Account"
           />
         </View>
         <View

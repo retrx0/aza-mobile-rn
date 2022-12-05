@@ -97,7 +97,7 @@ export default function AirtimeRecurring({
             fontWeight: "600",
             fontSize: hp(16),
             marginTop: hp(15),
-            marginBottom: 10,
+            marginBottom: 5,
           }}
           heading="  Select Network Provider"
         />
@@ -144,7 +144,7 @@ export default function AirtimeRecurring({
             onValueChange={toggleSwitch}
             isEnabled={isEnabled}
           />
-          <View style={{ marginBottom: hp(15) }}>
+          <View style={{ marginBottom: hp(25) }}>
             <Input
               icon={null}
               inputStyle={[
@@ -162,7 +162,7 @@ export default function AirtimeRecurring({
           </View>
           {route.name == "airtime" && (
             <>
-              <View style={{ marginBottom: hp(15) }}>
+              <View style={{ marginBottom: hp(25) }}>
                 <CustomDropdown
                   data={period}
                   placeholder="Choose a period"

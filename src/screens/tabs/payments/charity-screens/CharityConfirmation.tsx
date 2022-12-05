@@ -34,6 +34,7 @@ export default function CharityConfirmation({
             placeholder={"Chess in Slums"}
             source={CHESS}
             icon={undefined}
+            value={""}
           />
           <Input
             icon={null}
@@ -52,11 +53,12 @@ export default function CharityConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            placeholder="Enter amount"
+            // placeholder="Enter amount"
             // placeholder={"\u20A680,000"}
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value=""
           />
 
           <Input
@@ -76,11 +78,12 @@ export default function CharityConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Payment Method"
-            placeholder="Select your payment method"
+            // placeholder="Aza Account"
             // placeholder="Aza Account"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value="Aza Account"
           />
         </View>
         <View

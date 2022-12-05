@@ -45,24 +45,30 @@ export default function CableTvIndex({
   const bundles = ["100mb", "200mb", "500mb"];
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
+  const [periodValue1, setPeriodValue1] = useState("");
   const colorScheme = useColorScheme();
   const [active, setActive] = useState("");
+  const [subscriptionValue, setSubscriptionValue] = useState("");
+  const [amountValue, setAmountValue] = useState("");
 
   const period = [
-    { label: "DSTV Padi", value: "1" },
-    { label: "DSTV Yanga", value: "1" },
-    { label: "DSTV Confam", value: "1" },
-    { label: "DSTV Compact", value: "1" },
-    { label: "DSTV Compact Plus", value: "1" },
-    { label: "DSTV Premium", value: "1" },
+    { label: "DSTV Padi", value: "dSTV Padi" },
+    { label: "DSTV Yanga", value: "dSTV Yanga" },
+    { label: "DSTV Confam", value: "3" },
+    { label: "DSTV Compact", value: "4" },
+    { label: "DSTV Compact Plus", value: "5" },
+    { label: "DSTV Premium", value: "6" },
   ];
-  const period2 = [
-    { price: "100 ", value: "2" },
-    { price: "200 ", value: "2" },
-    { price: "500 ", value: "2" },
-    { price: "1gb ", value: "2" },
-    { price: "1.5gb ", value: "2" },
+
+  const amount = [
+    { lable: "\u20A62,150", value: "1" },
+    { lable: "\u20A62,950", value: "2" },
+    { lable: "\u20A65,300", value: "3" },
+    { label: "\u20A69,000", value: "4" },
+    { label: "\u20A614,250", value: "5" },
+    { label: "\u20A621,000", value: "6" },
   ];
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
@@ -133,7 +139,26 @@ export default function CableTvIndex({
             { fontWeight: "400" },
             { fontSize: hp(16) },
           ]}
-          label="Subscription Package"
+          label={"Subscription Package"}
+        />
+      </View>
+      <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginTop: hp(30),
+          marginBottom: hp(10),
+        }}>
+        <CustomDropdown
+          data={period}
+          placeholder="Amount"
+          setValue={setPeriodValue}
+          value={periodValue}
+          style={[
+            { fontFamily: "Euclid-Circular-A" },
+            { fontWeight: "400" },
+            { fontSize: hp(16) },
+          ]}
+          label={"Subscription Amount"}
         />
       </View>
 

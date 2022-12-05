@@ -36,6 +36,7 @@ export default function CableConfirmation({
             placeholder={"DSTV"}
             source={Dstv}
             icon={undefined}
+            value={""}
           />
           <Input
             icon={null}
@@ -76,11 +77,12 @@ export default function CableConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            placeholder="Enter Amount"
+            // placeholder="Enter Amount"
             // placeholder={"\u20A621,000 (DSTV Premium"}
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value=""
           />
           <Input
             icon={null}
@@ -99,10 +101,10 @@ export default function CableConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Payment Method"
-            placeholder="Select your payment method"
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
+            placeholder="Aza Account"
+            placeholderTextColor={
+              colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            }
           />
         </View>
         <View

@@ -34,6 +34,7 @@ export default function WaterConfirmation({
             placeholder={"FCTWB"}
             source={Fctwb}
             icon={undefined}
+            value={""}
           />
           <Input
             icon={null}
@@ -52,7 +53,7 @@ export default function WaterConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Customer Account Number"
-            placeholder="Enter account number"
+            value=""
             // placeholder="1234ueydjThs567890"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
@@ -75,7 +76,7 @@ export default function WaterConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            placeholder="Enter amount"
+            value=""
             // placeholder={"\u20A620,000"}
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
@@ -98,7 +99,7 @@ export default function WaterConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Payment Method"
-            placeholder="Select your payment method"
+            value="Aza Account"
             // placeholder="Aza Account"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"

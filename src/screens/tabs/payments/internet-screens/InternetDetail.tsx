@@ -65,7 +65,7 @@ export default function InternetDetail({
           ]}
           labelStyle={[styles.label]}
           label="Account/User ID"
-          placeholder="Enter your User ID"
+          value=""
         />
       </View>
 

@@ -34,6 +34,7 @@ export default function ElectricityConfirmation({
             placeholder={"Ikeja Electric"}
             source={Ie}
             icon={undefined}
+            value={""}
           />
           <Input
             icon={null}
@@ -53,7 +54,7 @@ export default function ElectricityConfirmation({
             }}
             label="Meter Number"
             // placeholder="1234ueydjThs567890"
-            placeholder="Enter your meter number"
+            value=""
             // placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />
           <Input
@@ -73,7 +74,7 @@ export default function ElectricityConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            placeholder="Enter Amount"
+            value=""
             // placeholder="N80,000"
             // placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />
@@ -94,7 +95,7 @@ export default function ElectricityConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Payment Method"
-            placeholder="Select your payment method"
+            value="Aza Account"
             // placeholder="Aza Account"
             // placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />

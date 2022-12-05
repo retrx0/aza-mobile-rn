@@ -15,6 +15,9 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Button from "../../../../components/buttons/Button";
 import { Formik } from "formik";
+import { TextInput } from "../../../../components/Themed";
+import { useAppSelector } from "../../../../redux";
+import { selectTransaction } from "../../../../redux/slice/transactionSlice";
 
 import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
 import * as yup from "yup";
@@ -26,6 +29,7 @@ export default function AirtimeConfirmation({
   const [confirmed, setConfirm] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const transferObject = useAppSelector(selectTransaction);
 
   return (
     <SpacerWrapper>
@@ -40,7 +44,9 @@ export default function AirtimeConfirmation({
             placeholder={"Glo"}
             source={Glo}
             icon={undefined}
+            value={""}
           />
+
           <Input
             icon={null}
             keyboardType="phone-pad"
@@ -58,14 +64,15 @@ export default function AirtimeConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Phone Number"
-            placeholder="Enter your phone number"
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
+            value=""
+            placeholderTextColor={
+              colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            }
           />
+
           <Input
             icon={null}
-            keyboardType="phone-pad"
+            keyboardType="default"
             inputStyle={[
               styles.input,
               {
@@ -75,19 +82,21 @@ export default function AirtimeConfirmation({
             ]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
+              fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Amount"
-            placeholder="Enter amount"
+            // placeholder="Select your payment method"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value=""
           />
+
           <Input
             icon={null}
-            keyboardType="phone-pad"
+            keyboardType="default"
             inputStyle={[
               styles.input,
               {
@@ -97,15 +106,16 @@ export default function AirtimeConfirmation({
             ]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
+              fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Payment Method"
-            placeholder="Select your payment method"
+            // placeholder="Select your payment method"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value="Aza Account"
           />
         </View>
         <View

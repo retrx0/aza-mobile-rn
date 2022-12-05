@@ -47,10 +47,11 @@ export default function GiftCardConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Package"}
-            placeholder={"iTunes USD100"}
+            // placeholder={"iTunes USD100"}
             placeholderTextColor={
               colorScheme === "dark" ? "#E7E9EA" : "#000000"
             }
+            value=""
           />
 
           <Input
@@ -70,10 +71,11 @@ export default function GiftCardConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            placeholder={"\u20A660,000"}
+            // placeholder={"\u20A660,000"}
             placeholderTextColor={
               colorScheme === "dark" ? "#E7E9EA" : "#000000"
             }
+            value=""
           />
         </View>
         <View
@@ -87,7 +89,7 @@ export default function GiftCardConfirmation({
               navigation.navigate("StatusScreen", {
                 statusIcon: "Success",
                 status: "Successful",
-                statusMessage: "Your Transaction was successfully",
+                statusMessage: "Your Transaction was successfull",
                 navigateTo: "Payments",
               });
             }}
