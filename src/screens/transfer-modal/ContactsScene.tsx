@@ -130,15 +130,15 @@ const ContactsScene = ({
                       ),
                       azaContacts: false,
                     },
-                    // {
-                    //   title: "Contacts not using Aza yet",
-                    //   data: contacts.filter((_c) =>
-                    //     _c.name
-                    //       .toUpperCase()
-                    //       .includes(searchContact.toUpperCase())
-                    //   ),
-                    //   azaContacts: false,
-                    // },
+                    {
+                      title: "Contacts not using Aza yet",
+                      data: contacts.filter((_c) =>
+                        _c.name
+                          .toUpperCase()
+                          .includes(searchContact.toUpperCase())
+                      ),
+                      azaContacts: false,
+                    },
                   ]}
                   renderSectionHeader={({ section }) => (
                     <SectionListSeparator
