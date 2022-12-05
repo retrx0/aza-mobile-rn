@@ -57,7 +57,7 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           flexDirection: "row",
           justifyContent: "space-evenly",
           marginBottom: hp(100),
-          paddingHorizontal: 25,
+          paddingHorizontal: 20,
           width: Layout.window.width,
         }}>
         <View>

@@ -819,7 +819,6 @@ const CommonStyles = StyleSheet.create({
     marginTop: hp(15),
     marginBottom: hp(15),
     lineHeight: hp(18),
-
     color: Colors.general.grey,
   },
   signupOptions: {

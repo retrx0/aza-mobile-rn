@@ -132,6 +132,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
               marginTop: hp(30),
               marginBottom: hp(30),
               lineHeight: hp(18),
+              color: Colors.general.grey,
             }}>
             OR
           </Text>

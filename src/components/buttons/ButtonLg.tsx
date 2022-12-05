@@ -46,7 +46,7 @@ const ButtonLg = (props: {
                   fontWeight: "500",
                   fontSize: hp(14),
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  marginLeft: 60,
+                  marginLeft: hp(55.5),
                 },
                 props.titleStyle,
               ]}>
