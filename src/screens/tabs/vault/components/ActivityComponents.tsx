@@ -106,7 +106,7 @@ export const ActivityCard = ({
           </View>
           <Text style={styles.status}>{status}</Text>
         </View>
-        <View>
+        <View style={{ alignSelf: "center" }}>
           <View>
             <Text
               style={[

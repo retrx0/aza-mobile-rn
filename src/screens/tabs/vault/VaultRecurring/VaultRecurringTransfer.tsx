@@ -59,15 +59,14 @@ const VaultRecurringTransfer = ({
             Recurring Transfer
           </Text>
         </View>
-
+        <Text style={[CommonStyles.confirmDetails, { marginLeft: 20 }]}>
+          Setup a recurring money transfer
+        </Text>
         <View
           style={{
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
           }}>
-          <Text style={CommonStyles.confirmDetails}>
-            Setup a recurring money transfer
-          </Text>
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}

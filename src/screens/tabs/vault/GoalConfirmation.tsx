@@ -65,7 +65,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               keyboardType="default"
               labelStyle={styles.label}
               label="Vault Name"
-              placeholder="Give your vault a name"
+              // placeholder="Give your vault a name"
               inputStyle={{
                 fontSize: hp(16),
                 fontWeight: "500",
@@ -74,6 +74,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 // fontWeight: "500",
                 // fontFamily: "Euclid-Circular-A",
               }}
+              value=""
             />
             <Image
               style={{
@@ -96,9 +97,10 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               labelStyle={styles.label}
               label="Vault Goal"
               // placeholder={"\u20A6 80,000"}
-              placeholder="Amount"
+              // placeholder="Amount"
               containerStyle={undefined}
               // placeholderTextColor={Colors[colorScheme].text}
+              value=""
             />
           </View>
         </View>

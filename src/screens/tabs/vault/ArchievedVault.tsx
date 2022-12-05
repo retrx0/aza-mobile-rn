@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   separator: {
     borderWidth: 0.5,

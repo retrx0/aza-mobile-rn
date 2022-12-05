@@ -71,8 +71,9 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             //     .getParent()
             //     ?.navigate("Common", { screen: "VaultToAza" })
             // }
-            style={[CommonStyles.toAzabutton]}
-            styleText={CommonStyles.toAzabuttonText}
+
+            styleText={CommonStyles.toBankbuttonText}
+            style={[CommonStyles.toBankbutton, { marginBottom: hp(20) }]}
             onPressButton={() => selectImageFromGallery()}
           />
           <Button
@@ -82,8 +83,8 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 screen: "SetVaultGoal",
               })
             }
-            style={[CommonStyles.toBankbutton]}
-            styleText={CommonStyles.toBankbuttonText}
+            style={[CommonStyles.toAzabutton]}
+            styleText={CommonStyles.toAzabuttonText}
           />
         </View>
       </View>

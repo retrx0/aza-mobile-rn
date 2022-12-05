@@ -40,7 +40,12 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Change Goal Amount
           </Text>
         </View>
-        <Text style={[CommonStyles.selectStyle, { marginLeft: hp(20) }]}>
+        <Text
+          style={[
+            CommonStyles.selectStyle,
+            { marginLeft: hp(20) },
+            { marginTop: 50 },
+          ]}>
           You can determine the amount you want to save
         </Text>
         <View style={[CommonStyles.row]}>

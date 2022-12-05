@@ -115,11 +115,7 @@ const ListItem = ({
       <View>
         <TouchableOpacity
           style={styles.vaultContainer}
-          onPress={() => {
-            navigation.navigate("Common", {
-              screen: "AddVault",
-            });
-          }}>
+          onPress={() => navigation.navigate("Common", { screen: "TopBar" })}>
           <View style={styles.vaultItem}>
             <View
               style={[

@@ -35,7 +35,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(90),
+              marginLeft: hp(100),
             }}>
             Vault
           </Text>
