@@ -22,6 +22,8 @@ import DescriptionModal from "./modal/DescriptionModal";
 import transactionSlice, {
   setTransaction,
 } from "../../redux/slice/transactionSlice";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -30,6 +32,7 @@ const TransactionKeypadScreen = ({
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [descModal, setDescModalOpen] = useState(true);
+  const insets = useSafeAreaInsets();
 
   const user = useAppSelector(selectUser);
 
@@ -66,8 +69,8 @@ const TransactionKeypadScreen = ({
   }, []);
 
   return (
-    <>
-      <View style={[styles.container]}>
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ alignItems: "center" }}>
           <Image
             style={{ borderRadius: 50, width: 50, height: 50 }}
@@ -180,68 +183,73 @@ const TransactionKeypadScreen = ({
           </View>
         </View>
         <VirtualKeyboard value={amount} setValue={setAmount} />
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.top || hp(45) },
+          ]}>
+          <Button
+            title="Continue"
+            disabled={!amount}
+            onPressButton={() => {
+              // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
+              if (normalTransaction) {
+                // This checks if the transactions are send or request money which have optional description message
 
-        <Button
-          title="Continue"
-          disabled={!amount}
-          onPressButton={() => {
-            // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
-            if (normalTransaction) {
-              // This checks if the transactions are send or request money which have optional description message
+                switch (transactionType.transaction) {
+                  case "deposit":
+                    console.log("deposit");
+                    break;
+                  case "request":
+                    console.log("request");
+                    dispatch(
+                      setTransaction({
+                        ...{},
+                        amount: Number(amount),
+                        beneficairy: beneficiary,
+                        description: description,
+                        transferType: "request",
+                      })
+                    );
+                    navigation.navigate("RequestMoneyConfirmation");
+                    break;
+                  case "send":
+                    dispatch(
+                      setTransaction({
+                        amount: Number(amount),
+                        beneficairy: beneficiary,
+                        description: description,
+                        transferType: "send",
+                      })
+                    );
+                    navigation.navigate("SendMoneyConfirmation");
+                    break;
+                  case "withdraw":
+                    console.log("withdrawing");
+                    break;
+                }
 
-              switch (transactionType.transaction) {
-                case "deposit":
-                  console.log("deposit");
-                  break;
-                case "request":
-                  console.log("request");
-                  dispatch(
-                    setTransaction({
-                      ...{},
-                      amount: Number(amount),
-                      beneficairy: beneficiary,
-                      description: description,
-                      transferType: "request",
-                    })
-                  );
-                  navigation.navigate("RequestMoneyConfirmation");
-                  break;
-                case "send":
-                  dispatch(
-                    setTransaction({
-                      amount: Number(amount),
-                      beneficairy: beneficiary,
-                      description: description,
-                      transferType: "send",
-                    })
-                  );
-                  navigation.navigate("SendMoneyConfirmation");
-                  break;
-                case "withdraw":
-                  console.log("withdrawing");
-                  break;
+                //}else if(deposit){
+
+                //}
+
+                transactionType.openDescriptionModal && setDescModalOpen(true);
+              } else {
+                // TODO create and pass required params
+                navigation.navigate("RecurringTransferConfirmation");
               }
-
-              //}else if(deposit){
-
-              //}
-
-              transactionType.openDescriptionModal && setDescModalOpen(true);
-            } else {
-              // TODO create and pass required params
-              navigation.navigate("RecurringTransferConfirmation");
-            }
-          }}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: hp(14),
-          }}
-          style={{
-            // marginTop: 30,
-            backgroundColor: Colors[colorScheme].button,
-          }}
-        />
+            }}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(14),
+            }}
+            style={{
+              // marginTop: 30,
+              backgroundColor: Colors[colorScheme].button,
+            }}
+          />
+        </View>
       </View>
       {/* description modal */}
       <DescriptionModal
@@ -255,7 +263,7 @@ const TransactionKeypadScreen = ({
         transactionType={transactionType}
         // transactionParams={description}
       />
-    </>
+    </SpacerWrapper>
   );
 };
 

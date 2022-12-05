@@ -40,7 +40,7 @@ const StatusScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View
           style={[
             CommonStyles.col,
@@ -99,7 +99,7 @@ const StatusScreen = ({
               style={[
                 {
                   backgroundColor:
-                    colorScheme === "dark" ? "#000000" : "#E5E5E5",
+                    colorScheme === "dark" ? "#000000" : "#ffffff",
                   borderColor: colorScheme === "dark" ? "#E7E9EA" : "#121212",
                   borderWidth: 1,
                   marginTop: hp(20),
