@@ -29,7 +29,7 @@ const ButtonLg = (props: {
       style={[
         styles.button,
         { backgroundColor: props.color },
-        { paddingHorizontal: 27.5 },
+        { paddingHorizontal: 30 },
         props.style,
       ]}>
       <TouchableOpacity onPress={props.onPress}>
@@ -46,7 +46,7 @@ const ButtonLg = (props: {
                   fontWeight: "500",
                   fontSize: hp(14),
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  marginLeft: 55,
+                  marginLeft: 60,
                 },
                 props.titleStyle,
               ]}>

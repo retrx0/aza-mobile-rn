@@ -288,7 +288,7 @@ const CommonStyles = StyleSheet.create({
   passwordContainer: {
     position: "absolute",
     alignSelf: "center",
-    // width: "90%",
+    width: "100%",
   },
   everyMonth: {
     fontSize: hp(16),
@@ -554,7 +554,7 @@ const CommonStyles = StyleSheet.create({
   bodyText: {
     padding: hp(3),
     margin: hp(3),
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
     marginLeft: hp(15),
     fontSize: hp(16),
     fontWeight: "500",

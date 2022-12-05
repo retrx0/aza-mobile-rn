@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { hp } from "../../common/util/LayoutUtil";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { Text, TextInput } from "../Themed";

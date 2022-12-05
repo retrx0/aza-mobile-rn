@@ -20,13 +20,14 @@ type ImagePropsType = {
   source: any;
   icon: any;
   placeholderStyle?: StyleProp<TextStyle>;
+  value: string;
 };
 
 export const ImageInput = ({
   label,
   source,
   placeholder,
-  placeholderStyle,
+  value,
 }: ImagePropsType) => {
   const colorScheme = useColorScheme();
   return (
@@ -49,6 +50,7 @@ export const ImageInput = ({
         }}
         label={label}
         placeholder={placeholder}
+        value={value}
       />
 
       <Image style={styles.img} source={source} />
@@ -58,7 +60,7 @@ export const ImageInput = ({
 const styles = StyleSheet.create({
   input: {
     borderColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     minWidth: "100%",
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
