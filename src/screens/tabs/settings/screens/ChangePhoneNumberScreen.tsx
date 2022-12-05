@@ -7,6 +7,8 @@ import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 const ChangePhoneNumberScreen = ({
   navigation,
@@ -39,98 +41,106 @@ const ChangePhoneNumberScreen = ({
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
-        style={{
-          fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "500",
-          // marginTop: hp(30),
-          // marginBottom: hp(30),
-        }}>
-        Change your mobile phone number
-      </Text>
-      <View style={{ marginBottom: 10, marginTop: 50 }}>
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: 16,
+            fontSize: hp(16),
             fontFamily: "Euclid-Circular-A-Medium",
-            marginBottom: hp(10),
+            fontWeight: "500",
+            // marginTop: hp(30),
+            // marginBottom: hp(30),
+            marginLeft: hp(20),
           }}>
-          Current Phone Number
+          Change your mobile phone number
         </Text>
-        <PhoneInput
-          initialValue={currentPhoneNumber}
-          disabled
-          initialCountry="ng"
-          autoFormat
-          textStyle={{
-            fontSize: 16,
-            padding: 3,
-          }}
+        <View
           style={{
-            alignSelf: "center",
-            height: 50,
-            width: "100%",
-            padding: 10,
-            borderWidth: 1,
-            borderStyle: "solid",
-            borderRadius: 5,
-            marginBottom: hp(40),
-          }}
-        />
+            marginBottom: 10,
+            marginTop: 50,
+            paddingHorizontal: hp(20),
+          }}>
+          <Text
+            lightColor={Colors.light.text}
+            darkColor={Colors.dark.mainText}
+            style={{
+              fontSize: 16,
+              fontFamily: "Euclid-Circular-A-Medium",
+              marginBottom: hp(10),
+            }}>
+            Current Phone Number
+          </Text>
+          <PhoneInput
+            initialValue={currentPhoneNumber}
+            disabled
+            initialCountry="ng"
+            autoFormat
+            textStyle={{
+              fontSize: 16,
+              padding: 3,
+            }}
+            style={{
+              alignSelf: "center",
+              height: 50,
+              width: "100%",
+              padding: 10,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 5,
+              marginBottom: hp(40),
+            }}
+          />
 
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontSize: 16,
+          <Text
+            lightColor={Colors.light.text}
+            darkColor={Colors.dark.mainText}
+            style={{
+              fontSize: 16,
+              fontFamily: "Euclid-Circular-A-Medium",
+              marginBottom: hp(10),
+            }}>
+            New Phone Number
+          </Text>
+          <PhoneInput
+            initialValue={newPhoneNumber}
+            onChangePhoneNumber={(p) => setNewPhoneNumber(p)}
+            initialCountry="ng"
+            autoFormat
+            textStyle={{
+              fontSize: 16,
+              padding: 3,
+            }}
+            textProps={{
+              placeholder: "Enter new phone number",
+            }}
+            style={{
+              alignSelf: "center",
+              height: 50,
+              width: "100%",
+              padding: 10,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderRadius: 5,
+              marginBottom: hp(47),
+            }}
+          />
+        </View>
+        <Button
+          title="Continue"
+          onPressButton={() => navigation.navigate("ChangePhoneNumberOTP")}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
-            marginBottom: hp(10),
-          }}>
-          New Phone Number
-        </Text>
-        <PhoneInput
-          initialValue={newPhoneNumber}
-          onChangePhoneNumber={(p) => setNewPhoneNumber(p)}
-          initialCountry="ng"
-          autoFormat
-          textStyle={{
-            fontSize: 16,
-            padding: 3,
-          }}
-          textProps={{
-            placeholder: "Enter new phone number",
+            fontSize: hp(14),
           }}
           style={{
-            alignSelf: "center",
-            height: 50,
-            width: "100%",
-            padding: 10,
-            borderWidth: 1,
-            borderStyle: "solid",
-            borderRadius: 5,
-            marginBottom: hp(47),
+            backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>
-      <Button
-        title="Continue"
-        onPressButton={() => navigation.navigate("ChangePhoneNumberOTP")}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: hp(14),
-        }}
-        style={{
-          backgroundColor: Colors[colorScheme].button,
-        }}
-      />
-    </View>
+    </SpacerWrapper>
   );
 };
 

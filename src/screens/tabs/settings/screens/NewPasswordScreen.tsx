@@ -15,6 +15,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import CustomSwitch from "../../../../components/switch/CustomSwitch";
 
 import { changePassword } from "../../../../api/user";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 const NewPasswordScreen = ({
   navigation,
@@ -74,80 +75,84 @@ const NewPasswordScreen = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
-        style={{
-          fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
-          marginLeft: hp(5),
-          fontWeight: "500",
-        }}>
-        Please enter your new password
-      </Text>
-      <View
-        style={{
-          marginTop: hp(50),
-        }}>
-        <SegmentedInput
-          value={newPassword}
-          secureInput
-          headerText="Password"
-          onValueChanged={(pass) => setNewPassword(pass)}
-          headerstyle={{
-            fontFamily: "Euclid-Circular-A-Medium",
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
             fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            marginLeft: hp(20),
             fontWeight: "500",
-          }}
-        />
-      </View>
-      <View
-        style={{
-          marginTop: hp(70),
-          marginBottom: hp(100),
-        }}>
-        <SegmentedInput
-          value={newPasswordConfirmation}
-          secureInput
-          autoFocusOnLoad={false}
-          headerText="Confirm password"
-          onValueChanged={(pass) => setNewPasswordConfirmation(pass)}
-        />
-      </View>
-      <View
-        style={[
-          CommonStyles.row,
-          {
-            marginBottom: hp(15),
-          },
-        ]}>
-        <Text style={{ fontSize: 12, marginRight: 10 }}>
-          Use as transaction pin
+          }}>
+          Please enter your new password
         </Text>
-        <CustomSwitch
-          isEnabled={isTransactionPin}
-          onSwitchToggle={() => {
-            setTransactionPin(!isTransactionPin);
+        <View
+          style={{
+            marginTop: hp(50),
+            paddingHorizontal: hp(20),
+          }}>
+          <SegmentedInput
+            value={newPassword}
+            secureInput
+            headerText="Password"
+            onValueChanged={(pass) => setNewPassword(pass)}
+            headerstyle={{
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(16),
+              fontWeight: "500",
+            }}
+          />
+        </View>
+        <View
+          style={{
+            marginTop: hp(70),
+            marginBottom: hp(100),
+            paddingHorizontal: hp(20),
+          }}>
+          <SegmentedInput
+            value={newPasswordConfirmation}
+            secureInput
+            autoFocusOnLoad={false}
+            headerText="Confirm password"
+            onValueChanged={(pass) => setNewPasswordConfirmation(pass)}
+          />
+        </View>
+        <View
+          style={[
+            CommonStyles.row,
+            {
+              marginBottom: hp(15),
+            },
+          ]}>
+          <Text style={{ fontSize: 12, marginRight: 10 }}>
+            Use as transaction pin
+          </Text>
+          <CustomSwitch
+            isEnabled={isTransactionPin}
+            onSwitchToggle={() => {
+              setTransactionPin(!isTransactionPin);
+            }}
+          />
+        </View>
+        <Divider />
+        <Button
+          title="Continue"
+          disabled={checkIfPasswordsMatch()}
+          onPressButton={() => updatePassword()}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{
+            marginTop: hp(10),
+            backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>
-      <Divider />
-      <Button
-        title="Continue"
-        disabled={checkIfPasswordsMatch()}
-        onPressButton={() => updatePassword()}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
-        }}
-        style={{
-          marginTop: hp(10),
-          backgroundColor: Colors[colorScheme].button,
-        }}
-      />
-    </View>
+    </SpacerWrapper>
   );
 };
 

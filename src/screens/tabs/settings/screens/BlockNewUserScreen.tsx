@@ -63,47 +63,46 @@ const BlockNewUserScreen = ({
 
   return (
     <>
-      <SpacerWrapper>
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={{ width: layout.width }}
-          sceneContainerStyle={{ overflow: "visible" }}
-          renderTabBar={(props) => (
-            <TabBar
-              {...props}
-              style={{
-                elevation: 0,
-                backgroundColor: "transparent",
-                borderBottomColor: Colors[colorScheme].secondaryText,
-                borderBottomWidth: 2,
-              }}
-              indicatorStyle={{
-                backgroundColor: Colors[colorScheme].text,
-                marginBottom: -2,
-              }}
-              renderLabel={({ focused, route }) => {
-                return (
-                  <Text
-                    lightColor={
-                      focused ? Colors.light.text : Colors.light.secondaryText
-                    }
-                    darkColor={
-                      focused ? Colors.dark.mainText : Colors.dark.secondaryText
-                    }
-                    style={{
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 16,
-                    }}>
-                    {route.title}
-                  </Text>
-                );
-              }}
-            />
-          )}
-        />
-      </SpacerWrapper>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        sceneContainerStyle={{ overflow: "visible" }}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            style={{
+              elevation: 0,
+              backgroundColor: "transparent",
+              borderBottomColor: Colors[colorScheme].secondaryText,
+              borderBottomWidth: 2,
+            }}
+            indicatorStyle={{
+              backgroundColor: Colors[colorScheme].text,
+              marginBottom: -2,
+            }}
+            renderLabel={({ focused, route }) => {
+              return (
+                <Text
+                  lightColor={
+                    focused ? Colors.light.text : Colors.light.secondaryText
+                  }
+                  darkColor={
+                    focused ? Colors.dark.mainText : Colors.dark.secondaryText
+                  }
+                  style={{
+                    fontFamily: "Euclid-Circular-A-Medium",
+                    fontSize: 16,
+                  }}>
+                  {route.title}
+                </Text>
+              );
+            }}
+          />
+        )}
+      />
+
       <BlockUserModal
         navigation={navigation}
         route={route}

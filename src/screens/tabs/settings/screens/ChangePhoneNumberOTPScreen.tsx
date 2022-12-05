@@ -8,6 +8,8 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const ChangePhoneNumberOTPScreen = ({
   navigation,
@@ -39,38 +41,46 @@ const ChangePhoneNumberOTPScreen = ({
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
-        style={{
-          fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "500",
-        }}>
-        Please enter the OTP sent to your phone via SMS
-      </Text>
-      <View style={{ marginBottom: 89, marginTop: 78 }}>
-        <SegmentedInput
-          value={otp}
-          secureInput={false}
-          headerText="OTP"
-          onValueChanged={(pass) => setOTP(pass)}
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontWeight: "500",
+            marginLeft: hp(20),
+          }}>
+          Please enter the OTP sent to your phone via SMS
+        </Text>
+        <View
+          style={{
+            marginBottom: 89,
+            marginTop: 78,
+            paddingHorizontal: hp(20),
+          }}>
+          <SegmentedInput
+            value={otp}
+            secureInput={false}
+            headerText="OTP"
+            onValueChanged={(pass) => setOTP(pass)}
+          />
+        </View>
+        <Button
+          title="Continue"
+          onPressButton={() => navigation.getParent()?.navigate("Settings")}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(14),
+          }}
+          style={{
+            backgroundColor: Colors[colorScheme].button,
+          }}
         />
       </View>
-      <Button
-        title="Continue"
-        onPressButton={() => navigation.getParent()?.navigate("Settings")}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: hp(14),
-        }}
-        style={{
-          backgroundColor: Colors[colorScheme].button,
-        }}
-      />
-    </View>
+    </SpacerWrapper>
   );
 };
 

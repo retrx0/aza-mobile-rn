@@ -42,8 +42,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container]}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: 20 }}>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}

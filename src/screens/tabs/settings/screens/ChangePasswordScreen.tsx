@@ -13,6 +13,8 @@ import { selectUser } from "../../../../redux/slice/userSlice";
 import { loginThunk } from "../../../../redux/slice/authSlice";
 import Toast from "react-native-toast-message";
 import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const ChangePasswordScreen = ({
   navigation,
@@ -70,45 +72,53 @@ const ChangePasswordScreen = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
-        style={{
-          fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "500",
-        }}>
-        Please enter your current password
-      </Text>
-      <View style={{ marginTop: hp(80), marginBottom: hp(100) }}>
-        <SegmentedInput
-          value={password}
-          secureInput
-          headerText="Password"
-          onValueChanged={(pass) => setPassword(pass)}
-          headerstyle={{
-            fontFamily: "Euclid-Circular-A-Medium",
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
             fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
+            marginLeft: hp(20),
+          }}>
+          Please enter your current password
+        </Text>
+        <View
+          style={{
+            marginTop: hp(80),
+            marginBottom: hp(100),
+            paddingHorizontal: hp(20),
+          }}>
+          <SegmentedInput
+            value={password}
+            secureInput
+            headerText="Password"
+            onValueChanged={(pass) => setPassword(pass)}
+            headerstyle={{
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(16),
+              fontWeight: "500",
+            }}
+          />
+        </View>
+        <Button
+          title="Continue"
+          disabled={password.length < 6 ? true : false}
+          onPressButton={() => verifyPassword()}
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{
+            marginTop: hp(100),
+            backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>
-      <Button
-        title="Continue"
-        disabled={password.length < 6 ? true : false}
-        onPressButton={() => verifyPassword()}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
-        }}
-        style={{
-          marginTop: hp(100),
-          backgroundColor: Colors[colorScheme].button,
-        }}
-      />
-    </View>
+    </SpacerWrapper>
   );
 };
 
