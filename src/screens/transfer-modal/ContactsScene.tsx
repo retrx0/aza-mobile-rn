@@ -22,6 +22,8 @@ import useColorScheme from "../../hooks/useColorScheme";
 import { getUserContacts } from "../../hooks/useContacts";
 import { selectUser } from "../../redux/slice/userSlice";
 import SectionListSeparator from "../tabs/home/components/SectionListSeparator";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ContactsScene = ({
   route,
@@ -38,6 +40,7 @@ const ContactsScene = ({
   const [userAzaContacts, setUserAzaContacts] = useState<Beneficiary[]>([]);
   const [searchContact, setSearchContact] = useState("");
   const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
+  const insets = useSafeAreaInsets();
 
   const user = useAppSelector(selectUser);
 
@@ -53,25 +56,173 @@ const ContactsScene = ({
 
   if (route.key == "first") {
     return (
-      <View style={[styles.container, { justifyContent: "space-between" }]}>
-        <View>
-          <Text
-            style={{
-              color:
-                colorScheme === "dark"
-                  ? Colors.dark.mainText
-                  : Colors.light.text,
-              fontSize: hp(14),
-              fontWeight: "500",
-              marginLeft: hp(5),
-              marginTop: hp(30),
-              marginBottom: hp(24),
-            }}>
-            Quick contacts
-          </Text>
-          <View>
-            <View style={{ flexDirection: "row", marginBottom: hp(50) }}>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <SpacerWrapper>
+        <View style={[CommonStyles.vaultcontainer]}>
+          <View style={{ paddingHorizontal: hp(20) }}>
+            <View>
+              <Text
+                style={{
+                  color:
+                    colorScheme === "dark"
+                      ? Colors.dark.mainText
+                      : Colors.light.text,
+                  fontSize: hp(14),
+                  fontWeight: "500",
+                  marginLeft: hp(5),
+                  marginTop: hp(30),
+                  marginBottom: hp(24),
+                }}>
+                Quick contacts
+              </Text>
+              <View>
+                <View style={{ flexDirection: "row", marginBottom: hp(50) }}>
+                  <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {user.azaContacts.data.map((_contct, i) => (
+                      <QuickContactView
+                        firstName={_contct.firstName!}
+                        lastName=""
+                        photoUrl={getInitialsAvatar({
+                          firstName: _contct.fullName!,
+                          scheme: colorScheme,
+                        })}
+                        onPress={() => azaContactOnPress(_contct)}
+                        key={i}
+                      />
+                    ))}
+                  </ScrollView>
+                </View>
+              </View>
+
+              <TextInput
+                lightColor={Colors.light.mainText}
+                darkColor={Colors.dark.mainText}
+                // placeholderTextColor={Colors[colorScheme].secondaryText}
+                value={searchContact}
+                returnKeyType="search"
+                onChangeText={(text) => {
+                  setSearchContact(text);
+                }}
+                style={{
+                  backgroundColor: "transparent",
+                  fontFamily: "Euclid-Circular-A",
+                  paddingBottom: 10,
+                  borderBottomWidth: 1,
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                  marginLeft: hp(5),
+                  fontSize: hp(16),
+                }}
+                placeholder="To (Search for a contact)"
+              />
+              <View style={{ marginLeft: 5 }}>
+                <SectionList
+                  contentContainerStyle={{ paddingBottom: hp(300) }}
+                  showsVerticalScrollIndicator={false}
+                  stickyHeaderHiddenOnScroll={true}
+                  stickySectionHeadersEnabled={false}
+                  sections={[
+                    {
+                      title: "Contacts using Aza",
+                      data: user.azaContacts.data.filter((_c) =>
+                        _c.fullName
+                          .toUpperCase()
+                          .includes(searchContact.toUpperCase())
+                      ),
+                      azaContacts: false,
+                    },
+                    // {
+                    //   title: "Contacts not using Aza yet",
+                    //   data: contacts.filter((_c) =>
+                    //     _c.name
+                    //       .toUpperCase()
+                    //       .includes(searchContact.toUpperCase())
+                    //   ),
+                    //   azaContacts: false,
+                    // },
+                  ]}
+                  renderSectionHeader={({ section }) => (
+                    <SectionListSeparator
+                      title={section.title}
+                      listSize={section.data.length}
+                    />
+                  )}
+                  renderItem={({ section, item }) => {
+                    return section.azaContacts ? (
+                      item.azaAccountNumber && item.phone ? (
+                        <TouchableOpacity
+                          onPress={() => {
+                            if (section.azaContacts) {
+                              azaContactOnPress(item);
+                            } else {
+                              nonAzaContactOnPress(item);
+                            }
+                          }}>
+                          <ContactListItem
+                            image={getInitialsAvatar({
+                              firstName: item?.fullName,
+                              lastName: item.lastName,
+                              scheme: colorScheme,
+                            })}
+                            name={item.fullName}
+                            phoneNumber={item.phone || ""}
+                            isContactOnAza={section.azaContacts}
+                          />
+                        </TouchableOpacity>
+                      ) : (
+                        <></>
+                      )
+                    ) : item.firstName && item.phoneNumbers ? (
+                      <TouchableOpacity
+                        onPress={() => {
+                          if (section.azaContacts) {
+                            azaContactOnPress(item);
+                          } else {
+                            nonAzaContactOnPress(item);
+                          }
+                        }}>
+                        <ContactListItem
+                          image={getInitialsAvatar({
+                            firstName: item?.firstName,
+                            lastName: item.lastName,
+                            scheme: colorScheme,
+                          })}
+                          name={item.name}
+                          phoneNumber={item.phoneNumbers[0].number || ""}
+                          isContactOnAza={section.azaContacts}
+                        />
+                      </TouchableOpacity>
+                    ) : (
+                      <></>
+                    );
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </SpacerWrapper>
+    );
+  } else if (route.key === "second") {
+    return (
+      <SpacerWrapper>
+        <View style={[CommonStyles.vaultcontainer]}>
+          <View style={{ paddingHorizontal: hp(20) }}>
+            <Text
+              style={{
+                color:
+                  colorScheme === "dark"
+                    ? Colors.dark.mainText
+                    : Colors.light.text,
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginLeft: hp(5),
+                marginTop: hp(30),
+                marginBottom: hp(24),
+              }}>
+              Recents
+            </Text>
+            <View>
+              <View style={{ flexDirection: "row", marginBottom: hp(37) }}>
                 {user.azaContacts.data.map((_contct, i) => (
                   <QuickContactView
                     firstName={_contct.firstName!}
@@ -84,183 +235,50 @@ const ContactsScene = ({
                     key={i}
                   />
                 ))}
-              </ScrollView>
+              </View>
             </View>
+            <TextInput
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
+              // placeholderTextColor={Colors[colorScheme].secondaryText}
+              keyboardType={"number-pad"}
+              returnKeyType={"send"}
+              returnKeyLabel={"Send"}
+              value={receipientAzaNumber}
+              onChangeText={(number) => setReceipientAzaNumber(number)}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A",
+                paddingBottom: 10,
+                marginTop: hp(15),
+                borderBottomWidth: 1,
+                fontSize: hp(16),
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                marginLeft: hp(5),
+              }}
+              placeholder="Aza Number"
+            />
           </View>
-
-          <TextInput
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
-            // placeholderTextColor={Colors[colorScheme].secondaryText}
-            value={searchContact}
-            returnKeyType="search"
-            onChangeText={(text) => {
-              setSearchContact(text);
-            }}
-            style={{
-              backgroundColor: "transparent",
-              fontFamily: "Euclid-Circular-A",
-              paddingBottom: 10,
-              borderBottomWidth: 1,
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              marginLeft: hp(5),
-              fontSize: hp(16),
-            }}
-            placeholder="To (Search for a contact)"
-          />
-          <View style={{ marginLeft: 5 }}>
-            <SectionList
-              contentContainerStyle={{ paddingBottom: hp(300) }}
-              showsVerticalScrollIndicator={false}
-              stickyHeaderHiddenOnScroll={true}
-              stickySectionHeadersEnabled={false}
-              sections={[
+          <View style={{ marginTop: 10 }}>
+            <Button
+              title="Send"
+              onPressButton={() => {
+                sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
+              }}
+              disabled={receipientAzaNumber.length < 5}
+              styleText={{
+                color: Colors[colorScheme].buttonText,
+              }}
+              style={[
                 {
-                  title: "Contacts using Aza",
-                  data: user.azaContacts.data.filter((_c) =>
-                    _c.fullName
-                      .toUpperCase()
-                      .includes(searchContact.toUpperCase())
-                  ),
-                  azaContacts: false,
-                },
-                {
-                  title: "Contacts not using Aza yet",
-                  data: contacts.filter((_c) =>
-                    _c.name.toUpperCase().includes(searchContact.toUpperCase())
-                  ),
-                  azaContacts: false,
+                  backgroundColor: Colors[colorScheme].button,
                 },
               ]}
-              renderSectionHeader={({ section }) => (
-                <SectionListSeparator
-                  title={section.title}
-                  listSize={section.data.length}
-                />
-              )}
-              renderItem={({ section, item }) => {
-                return section.azaContacts ? (
-                  item.azaAccountNumber && item.phone ? (
-                    <TouchableOpacity
-                      onPress={() => {
-                        if (section.azaContacts) {
-                          azaContactOnPress(item);
-                        } else {
-                          nonAzaContactOnPress(item);
-                        }
-                      }}>
-                      <ContactListItem
-                        image={getInitialsAvatar({
-                          firstName: item?.fullName,
-                          lastName: item.lastName,
-                          scheme: colorScheme,
-                        })}
-                        name={item.fullName}
-                        phoneNumber={item.phone || ""}
-                        isContactOnAza={section.azaContacts}
-                      />
-                    </TouchableOpacity>
-                  ) : (
-                    <></>
-                  )
-                ) : item.firstName && item.phoneNumbers ? (
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (section.azaContacts) {
-                        azaContactOnPress(item);
-                      } else {
-                        nonAzaContactOnPress(item);
-                      }
-                    }}>
-                    <ContactListItem
-                      image={getInitialsAvatar({
-                        firstName: item?.firstName,
-                        lastName: item.lastName,
-                        scheme: colorScheme,
-                      })}
-                      name={item.name}
-                      phoneNumber={item.phoneNumbers[0].number || ""}
-                      isContactOnAza={section.azaContacts}
-                    />
-                  </TouchableOpacity>
-                ) : (
-                  <></>
-                );
-              }}
             />
           </View>
         </View>
-      </View>
-    );
-  } else if (route.key === "second") {
-    return (
-      <View style={[styles.container, { justifyContent: "flex-start" }]}>
-        <Text
-          style={{
-            color:
-              colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text,
-            fontSize: hp(14),
-            fontWeight: "500",
-            marginLeft: hp(5),
-            marginTop: hp(30),
-            marginBottom: hp(24),
-          }}>
-          Recents
-        </Text>
-        <View>
-          <View style={{ flexDirection: "row", marginBottom: hp(37) }}>
-            {user.azaContacts.data.map((_contct, i) => (
-              <QuickContactView
-                firstName={_contct.firstName!}
-                lastName=""
-                photoUrl={getInitialsAvatar({
-                  firstName: _contct.fullName!,
-                  scheme: colorScheme,
-                })}
-                onPress={() => azaContactOnPress(_contct)}
-                key={i}
-              />
-            ))}
-          </View>
-        </View>
-        <TextInput
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
-          // placeholderTextColor={Colors[colorScheme].secondaryText}
-          keyboardType={"number-pad"}
-          returnKeyType={"send"}
-          returnKeyLabel={"Send"}
-          value={receipientAzaNumber}
-          onChangeText={(number) => setReceipientAzaNumber(number)}
-          style={{
-            backgroundColor: "transparent",
-            fontFamily: "Euclid-Circular-A",
-            paddingBottom: 10,
-            marginTop: hp(15),
-            borderBottomWidth: 1,
-            fontSize: hp(16),
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            marginLeft: hp(5),
-          }}
-          placeholder="Aza Number"
-        />
-        <Button
-          title="Send"
-          onPressButton={() => {
-            sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
-          }}
-          disabled={receipientAzaNumber.length < 5}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
-          style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-              marginVertical: hp(20),
-            },
-          ]}
-        />
-      </View>
+      </SpacerWrapper>
     );
   } else {
     return <></>;
