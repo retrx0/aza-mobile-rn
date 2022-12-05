@@ -64,212 +64,204 @@ const BankAccountsScreen = ({
 
   if (accountAvailable && screenType === "Withdraw") {
     return (
-      <View
-        style={[
-          styles.container,
-          {
-            justifyContent: "space-between",
-          },
-        ]}>
-        <View>
-          <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
-            style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(16),
-              marginBottom: hp(30),
-              fontWeight: "600",
-              paddingLeft: hp(7),
-            }}>
-            Select the bank you wish to withdraw to
-          </Text>
-          <Divider />
-          {accounts.map(({ image, name }, i) => (
-            <View key={i}>
-              <TouchableOpacity onPress={() => setSelectedAccount(name)}>
-                <View
-                  style={[
-                    CommonStyles.row,
-                    { alignSelf: "stretch", paddingVertical: 15 },
-                  ]}>
-                  <Image
-                    source={image}
-                    style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 50,
-                    }}
-                  />
-                  <Text
-                    // lightColor={Colors.light.mainText}
-                    // darkColor={Colors.dark.mainText}
-                    style={{
-                      marginLeft: hp(20),
-                      fontFamily: "Euclid-Circular-A-Semi-Bold",
-                      fontSize: hp(14),
-                    }}>
-                    Access Bank (123........)
-                  </Text>
+      <SpacerWrapper>
+        <View style={[CommonStyles.vaultcontainer]}>
+          <View style={{ paddingHorizontal: 15 }}>
+            <Text
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
+              style={{
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(16),
+                marginBottom: hp(30),
+                fontWeight: "600",
+                paddingLeft: hp(7),
+              }}>
+              Select the bank you wish to withdraw to
+            </Text>
+            <Divider />
+            {accounts.map(({ image, name }, i) => (
+              <View key={i}>
+                <TouchableOpacity onPress={() => setSelectedAccount(name)}>
                   <View
-                    style={{
-                      marginLeft: "auto",
-                      width: hp(20),
-                      height: hp(20),
-                      borderRadius: hp(10),
-                      borderColor:
-                        selectedAccount === name
-                          ? Colors.general.green
-                          : "#3A3D42",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderWidth: hp(1),
-                    }}>
-                    {selectedAccount === name && (
-                      <View style={CommonStyles.doneSelect} />
-                    )}
+                    style={[
+                      CommonStyles.row,
+                      { alignSelf: "stretch", paddingVertical: 15 },
+                    ]}>
+                    <Image
+                      source={image}
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 50,
+                      }}
+                    />
+                    <Text
+                      // lightColor={Colors.light.mainText}
+                      // darkColor={Colors.dark.mainText}
+                      style={{
+                        marginLeft: hp(20),
+                        fontFamily: "Euclid-Circular-A-Semi-Bold",
+                        fontSize: hp(14),
+                      }}>
+                      Access Bank (123........)
+                    </Text>
+                    <View
+                      style={{
+                        marginLeft: "auto",
+                        width: hp(20),
+                        height: hp(20),
+                        borderRadius: hp(10),
+                        borderColor:
+                          selectedAccount === name
+                            ? Colors.general.green
+                            : "#3A3D42",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderWidth: hp(1),
+                      }}>
+                      {selectedAccount === name && (
+                        <View style={CommonStyles.doneSelect} />
+                      )}
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-              <Divider />
-            </View>
-          ))}
-        </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
-          ]}>
-          <CancelButtonWithUnderline
-            title="Add another bank Account"
-            onPressButton={() =>
-              navigation.navigate("SelectBank", {
-                screenType,
-              })
-            }
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-            style={[{ marginBottom: 15 }]}
-          />
-          <Button
-            disabled={!selectedAccount}
-            title="Continue"
-            onPressButton={() =>
-              navigation.navigate("TransactionKeypad", {
-                headerTitle: "Amount",
-                transactionType: {
-                  transaction: "deposit",
-                  type: "normal",
-                  beneficiary: {
-                    beneficiaryAccount: "",
-                    beneficiaryImage: "",
-                    beneficiaryName: "",
-                  },
-                },
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
+                </TouchableOpacity>
+                <Divider />
+              </View>
+            ))}
+          </View>
+          <View
             style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
-          />
-          <CancelButtonWithUnderline
-            title="Cancel"
-            onPressButton={() => navigation.goBack()}
-            styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red }}
-          />
+              CommonStyles.passwordContainer,
+              { bottom: insets.top || hp(45) },
+            ]}>
+            <CancelButtonWithUnderline
+              title="Add another bank Account"
+              onPressButton={() =>
+                navigation.navigate("SelectBank", {
+                  screenType,
+                })
+              }
+              color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+              style={[{ marginBottom: 15 }]}
+            />
+            <Button
+              disabled={!selectedAccount}
+              title="Continue"
+              onPressButton={() =>
+                navigation.navigate("TransactionKeypad", {
+                  headerTitle: "Amount",
+                  transactionType: {
+                    transaction: "deposit",
+                    type: "normal",
+                    beneficiary: {
+                      beneficiaryAccount: "",
+                      beneficiaryImage: "",
+                      beneficiaryName: "",
+                    },
+                  },
+                })
+              }
+              styleText={{
+                color: Colors[colorScheme].buttonText,
+              }}
+              style={[
+                {
+                  backgroundColor: Colors[colorScheme].button,
+                },
+              ]}
+            />
+            <CancelButtonWithUnderline
+              title="Cancel"
+              onPressButton={() => navigation.goBack()}
+              styleText={CommonStyles.cancelStyle}
+              style={{ borderBottomColor: Colors.general.red }}
+            />
+          </View>
         </View>
-      </View>
+      </SpacerWrapper>
     );
   }
 
   if (accountAvailable && screenType === "Bank Account") {
     return (
-      <View
-        style={[
-          styles.container,
-          {
-            justifyContent: "space-between",
-          },
-        ]}>
-        <View>
-          <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
-            style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(16),
-              fontWeight: "600",
-              paddingLeft: hp(7),
-              marginBottom: hp(30),
-              marginTop: hp(20),
-            }}>
-            Select a bank account to perform any activity
-          </Text>
-          <Divider />
-          {accounts.map(({ image, name }, i) => (
-            <View key={i}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate("EditBankAccountDetails")}>
-                <View
-                  style={[
-                    CommonStyles.row,
-                    { alignSelf: "stretch", paddingVertical: 15 },
-                  ]}>
-                  <Image
-                    source={image}
-                    style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 50,
-                    }}
-                  />
-                  <Text
-                    // lightColor={Colors.light.mainText}
-                    // darkColor={Colors.dark.mainText}
-                    style={{
-                      marginLeft: hp(20),
-                      fontFamily: "Euclid-Circular-A-Semi-Bold",
-                      fontSize: hp(14),
-                    }}>
-                    Access Bank (123........)
-                  </Text>
-                  <View style={{ marginLeft: "auto" }}>
-                    <ChevronRightIcon color={"#2A9E17"} size={20} />
+      <SpacerWrapper>
+        <View style={[CommonStyles.vaultcontainer]}>
+          <View style={{ paddingHorizontal: hp(15) }}>
+            <Text
+              // lightColor={Colors.light.mainText}
+              // darkColor={Colors.dark.mainText}
+              style={{
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(16),
+                fontWeight: "600",
+                paddingLeft: hp(7),
+                marginBottom: hp(30),
+                marginTop: hp(20),
+              }}>
+              Select a bank account to perform any activity
+            </Text>
+            <Divider />
+            {accounts.map(({ image, name }, i) => (
+              <View key={i}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("EditBankAccountDetails")}>
+                  <View
+                    style={[
+                      CommonStyles.row,
+                      { alignSelf: "stretch", paddingVertical: 15 },
+                    ]}>
+                    <Image
+                      source={image}
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 50,
+                      }}
+                    />
+                    <Text
+                      // lightColor={Colors.light.mainText}
+                      // darkColor={Colors.dark.mainText}
+                      style={{
+                        marginLeft: hp(20),
+                        fontFamily: "Euclid-Circular-A-Semi-Bold",
+                        fontSize: hp(14),
+                      }}>
+                      Access Bank (123........)
+                    </Text>
+                    <View style={{ marginLeft: "auto" }}>
+                      <ChevronRightIcon color={"#2A9E17"} size={20} />
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-              <Divider />
-            </View>
-          ))}
-        </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
-          ]}>
-          <Button
-            title="Add another bank Account"
-            onPressButton={() =>
-              navigation.navigate("SelectBank", {
-                screenType,
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
+                </TouchableOpacity>
+                <Divider />
+              </View>
+            ))}
+          </View>
+          <View
             style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
-          />
+              CommonStyles.passwordContainer,
+              { bottom: insets.top || hp(45) },
+            ]}>
+            <Button
+              title="Add another bank Account"
+              onPressButton={() =>
+                navigation.navigate("SelectBank", {
+                  screenType,
+                })
+              }
+              styleText={{
+                color: Colors[colorScheme].buttonText,
+              }}
+              style={[
+                {
+                  backgroundColor: Colors[colorScheme].button,
+                },
+              ]}
+            />
+          </View>
         </View>
-      </View>
+      </SpacerWrapper>
     );
   }
 

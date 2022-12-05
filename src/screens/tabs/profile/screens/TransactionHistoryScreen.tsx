@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
@@ -12,11 +12,13 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { DownLoadIcon } from "../../../../../assets/svg";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import TransactionModal from "./TransactionHistroyModal";
 
 const TransactionHistoryScreen = ({
   navigation,
 }: CommonScreenProps<"TransactionHistory">) => {
   const colorScheme = useColorScheme();
+  const [ModalVisible, setModalVisible] = useState(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -40,7 +42,8 @@ const TransactionHistoryScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}>
+          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
+          onPress={() => setModalVisible(true)}>
           <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
           <Text
             style={{
@@ -189,54 +192,65 @@ const TransactionHistoryScreen = ({
   ];
 
   return (
-    <SpacerWrapper>
-      <View style={[styles.container]}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {transactionHistory.map(({ dateOfTransactions, transactions }, i) => (
-            <View key={i} style={[CommonStyles.col, { alignSelf: "stretch" }]}>
-              <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
-                style={{
-                  fontSize: hp(14),
-                  marginBottom: hp(10),
-                  fontFamily: "Euclid-Circular-A",
-                  fontWeight: "500",
-                  marginLeft: hp(5),
-                }}>
-                {dateOfTransactions}
-              </Text>
-              {transactions.map(
-                (
-                  {
-                    amount,
-                    date,
-                    image,
-                    name,
-                    transactionMessage,
-                    transactionTitle,
-                    transactionType,
-                  },
-                  i
-                ) => (
-                  <View key={i} style={{ marginBottom: hp(20) }}>
-                    <TransactionListItem
-                      amount={amount}
-                      date={date}
-                      image={image}
-                      name={name}
-                      transactionMessage={transactionMessage}
-                      transactionTitle={transactionTitle}
-                      transactionType={transactionType}
-                    />
-                  </View>
-                )
-              )}
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-    </SpacerWrapper>
+    <>
+      <SpacerWrapper>
+        <View style={[styles.container]}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {transactionHistory.map(
+              ({ dateOfTransactions, transactions }, i) => (
+                <View
+                  key={i}
+                  style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+                  <Text
+                    lightColor={Colors.light.text}
+                    darkColor={Colors.dark.secondaryText}
+                    style={{
+                      fontSize: hp(14),
+                      marginBottom: hp(10),
+                      fontFamily: "Euclid-Circular-A",
+                      fontWeight: "500",
+                      marginLeft: hp(5),
+                    }}>
+                    {dateOfTransactions}
+                  </Text>
+                  {transactions.map(
+                    (
+                      {
+                        amount,
+                        date,
+                        image,
+                        name,
+                        transactionMessage,
+                        transactionTitle,
+                        transactionType,
+                      },
+                      i
+                    ) => (
+                      <View key={i} style={{ marginBottom: hp(20) }}>
+                        <TransactionListItem
+                          amount={amount}
+                          date={date}
+                          image={image}
+                          name={name}
+                          transactionMessage={transactionMessage}
+                          transactionTitle={transactionTitle}
+                          transactionType={transactionType}
+                        />
+                      </View>
+                    )
+                  )}
+                </View>
+              )
+            )}
+          </ScrollView>
+        </View>
+      </SpacerWrapper>
+      <TransactionModal
+        visible={ModalVisible}
+        setModalVisible={setModalVisible}
+        navigation={navigation}
+      />
+    </>
   );
 };
 
