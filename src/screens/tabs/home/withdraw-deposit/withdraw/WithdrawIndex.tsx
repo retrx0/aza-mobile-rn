@@ -11,6 +11,7 @@ import Colors from "../../../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { hp } from "../../../../../common/util/LayoutUtil";
+import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
 
 export default function WithdrawIndex({
   navigation,
@@ -18,30 +19,35 @@ export default function WithdrawIndex({
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
-      <MenuList
-        heading="Withdraw money to your own bank account"
-        subHeading="Bank Account"
-        onPress={() => {
-          navigation.navigate("Common", {
-            screen: "BankAccounts",
-            params: { screenType: "Withdraw" },
-          });
-        }}
-      />
-      <Divider style={styles.divider} />
-      <View
-        style={[
-          CommonStyles.passwordContainer,
-          { bottom: insets.top || hp(45) },
-        ]}>
-        <Button
-          title="Cancel"
-          style={styles.button}
-          onPressButton={() => navigation.goBack()}
-        />
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
+          <MenuList
+            heading="Withdraw money to your own bank account"
+            subHeading="Bank Account"
+            onPress={() => {
+              navigation.navigate("Common", {
+                screen: "BankAccounts",
+                params: { screenType: "Withdraw" },
+              });
+            }}
+          />
+          <Divider style={styles.divider} />
+        </View>
+
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.top || hp(45) },
+          ]}>
+          <Button
+            title="Cancel"
+            style={styles.button}
+            onPressButton={() => navigation.goBack()}
+          />
+        </View>
       </View>
-    </View>
+    </SpacerWrapper>
   );
 }
 

@@ -48,7 +48,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View
           style={{
             backgroundColor: "transparent",
@@ -57,7 +57,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
           }}
         />
         <View>
-          <View style={{ paddingVertical: 15 }}>
+          <View style={{ paddingVertical: hp(15), paddingHorizontal: hp(20) }}>
             <View
               style={[
                 CommonStyles.row,
@@ -142,6 +142,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
         <View
           style={{
             marginTop: hp(25),
+            paddingHorizontal: hp(20),
           }}>
           <Text
             // lightColor={Colors.light.secondaryText}
@@ -203,7 +204,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
           style={{
             fontSize: hp(16),
             fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
+            marginLeft: hp(20),
             marginTop: hp(25),
             fontWeight: "400",
           }}>
@@ -218,6 +219,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   alignSelf: "stretch",
                   justifyContent: "space-between",
                   marginTop: hp(15),
+                  paddingHorizontal: hp(20),
                 },
               ]}>
               <Image

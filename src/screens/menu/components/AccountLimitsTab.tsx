@@ -11,6 +11,7 @@ import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { CommonScreenProps } from "../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
 
 const AccountLimitsTab = ({
   navigation,
@@ -21,9 +22,9 @@ const AccountLimitsTab = ({
   const [isVerified] = useState(false);
 
   return (
-    <View style={[styles.container, { paddingHorizontal: 15 }]}>
-      <View>
-        <View style={[CommonStyles.col, { alignSelf: "flex-start" }]}>
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
             // lightColor={Colors.light.text}
             // darkColor={Colors.dark.secondaryText}
@@ -62,6 +63,7 @@ const AccountLimitsTab = ({
               alignSelf: "stretch",
               alignItems: "flex-start",
               marginTop: hp(35),
+              paddingHorizontal: hp(20),
             },
           ]}>
           <VerifyIcon
@@ -207,7 +209,7 @@ const AccountLimitsTab = ({
           }}
         />
       </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 

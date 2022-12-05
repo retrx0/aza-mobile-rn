@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux";
 import { setTransaction } from "../../../redux/slice/transactionSlice";
 import userSlice, { selectUser } from "../../../redux/slice/userSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
 
 const QRReceivePaymentTab = ({
   navigation,
@@ -32,22 +33,13 @@ const QRReceivePaymentTab = ({
   const insets = useSafeAreaInsets();
 
   return (
-    <>
-      <View
-        style={{
-          display: "flex",
-          flex: 1,
-          alignItems: "center",
-          paddingVertical: hp(30),
-          paddingHorizontal: 15,
-        }}
-      >
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View
           style={{
             display: "flex",
             alignItems: "center",
-          }}
-        >
+          }}>
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -56,8 +48,7 @@ const QRReceivePaymentTab = ({
               fontSize: 14,
               marginTop: 10,
               marginBottom: 15,
-            }}
-          >
+            }}>
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -79,8 +70,7 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}
-            >
+              }}>
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -90,8 +80,7 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: "auto",
             marginBottom: "auto",
-          }}
-        >
+          }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
         <Button
@@ -136,7 +125,7 @@ const QRReceivePaymentTab = ({
         transactionType={null}
         visible={isDescModalVisible}
       />
-    </>
+    </SpacerWrapper>
   );
 };
 

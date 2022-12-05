@@ -49,89 +49,31 @@ const OutgoingSplitRequestsScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <Divider />
-        <SplitListItem
-          amount="480000"
-          date="4 July 2022 04:26"
-          name="Genesis Cinemas"
-          splitImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCw2MbJZQFCcrpjKNlU9z6nui49AWU1_ugpJSQ_wnCQ&s"
-        />
-        <Divider />
-        <View
-          style={{
-            marginTop: hp(25),
-          }}>
-          <Text
-            // lightColor={Colors.light.secondaryText}
-            // darkColor={Colors.dark.secondaryText}
-            style={{
-              fontSize: hp(16),
-              fontWeight: "400",
-              fontFamily: "Euclid-Circular-A",
-              marginLeft: hp(5),
-            }}>
-            Request Creator
-          </Text>
+      <View style={CommonStyles.vaultcontainer}>
+        <View style={{ paddingHorizontal: hp(20) }}>
+          <Divider />
+          <SplitListItem
+            amount="480000"
+            date="4 July 2022 04:26"
+            name="Genesis Cinemas"
+            splitImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCw2MbJZQFCcrpjKNlU9z6nui49AWU1_ugpJSQ_wnCQ&s"
+          />
+          <Divider />
           <View
-            style={[
-              CommonStyles.row,
-              {
-                alignSelf: "stretch",
-                justifyContent: "space-between",
-                marginTop: hp(15),
-              },
-            ]}>
-            <Image
-              style={{ borderRadius: 50, width: 45, height: 45 }}
-              source={{
-                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-              }}
-            />
-            <View
-              style={[
-                CommonStyles.col,
-                { marginLeft: 20, marginRight: "auto" },
-              ]}>
-              <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.mainText}
-                style={{
-                  fontSize: hp(15),
-                  fontFamily: "Euclid-Circular-A-Medium",
-                  fontWeight: "500",
-                }}>
-                Chiazo
-              </Text>
-              <Text
-                style={{
-                  fontSize: hp(14),
-                  marginTop: 5,
-                  color: "#FF361A",
-                  fontFamily: "Euclid-Circular-A-Medium",
-                  fontWeight: "500",
-                }}>
-                {"\u20A6"}
-                {numberWithCommas(6666)}
-              </Text>
-            </View>
-            <SplitPaymentStatus paid={true} />
-          </View>
-        </View>
-        <Text
-          // lightColor={Colors.light.secondaryText}
-          // darkColor={Colors.dark.secondaryText}
-          style={{
-            fontSize: hp(16),
-            fontWeight: "400",
-            fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
-            marginTop: hp(25),
-          }}>
-          Request Recipients
-        </Text>
-        <ScrollView>
-          <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+            style={{
+              marginTop: hp(25),
+            }}>
+            <Text
+              // lightColor={Colors.light.secondaryText}
+              // darkColor={Colors.dark.secondaryText}
+              style={{
+                fontSize: hp(16),
+                fontWeight: "400",
+                fontFamily: "Euclid-Circular-A",
+                marginLeft: hp(5),
+              }}>
+              Request Creator
+            </Text>
             <View
               style={[
                 CommonStyles.row,
@@ -160,7 +102,7 @@ const OutgoingSplitRequestsScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
                   }}>
-                  James
+                  Chiazo
                 </Text>
                 <Text
                   style={{
@@ -176,52 +118,112 @@ const OutgoingSplitRequestsScreen = ({
               </View>
               <SplitPaymentStatus paid={true} />
             </View>
-            <View
-              style={[
-                CommonStyles.row,
-                {
-                  alignSelf: "stretch",
-                  justifyContent: "space-between",
-                  marginTop: hp(15),
-                },
-              ]}>
-              <Image
-                style={{ borderRadius: 50, width: 45, height: 45 }}
-                source={{
-                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                }}
-              />
+          </View>
+          <Text
+            // lightColor={Colors.light.secondaryText}
+            // darkColor={Colors.dark.secondaryText}
+            style={{
+              fontSize: hp(16),
+              fontWeight: "400",
+              fontFamily: "Euclid-Circular-A",
+              marginLeft: hp(5),
+              marginTop: hp(25),
+            }}>
+            Request Recipients
+          </Text>
+          <ScrollView>
+            <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <View
                 style={[
-                  CommonStyles.col,
-                  { marginLeft: 20, marginRight: "auto" },
+                  CommonStyles.row,
+                  {
+                    alignSelf: "stretch",
+                    justifyContent: "space-between",
+                    marginTop: hp(15),
+                  },
                 ]}>
-                <Text
-                  lightColor={Colors.light.text}
-                  darkColor={Colors.dark.mainText}
-                  style={{
-                    fontSize: hp(15),
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontWeight: "500",
-                  }}>
-                  James
-                </Text>
-                <Text
-                  style={{
-                    fontSize: hp(14),
-                    marginTop: 5,
-                    color: "#FF361A",
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontWeight: "500",
-                  }}>
-                  {"\u20A6"}
-                  {numberWithCommas(6666)}
-                </Text>
+                <Image
+                  style={{ borderRadius: 50, width: 45, height: 45 }}
+                  source={{
+                    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                  }}
+                />
+                <View
+                  style={[
+                    CommonStyles.col,
+                    { marginLeft: 20, marginRight: "auto" },
+                  ]}>
+                  <Text
+                    lightColor={Colors.light.text}
+                    darkColor={Colors.dark.mainText}
+                    style={{
+                      fontSize: hp(15),
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontWeight: "500",
+                    }}>
+                    James
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: hp(14),
+                      marginTop: 5,
+                      color: "#FF361A",
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontWeight: "500",
+                    }}>
+                    {"\u20A6"}
+                    {numberWithCommas(6666)}
+                  </Text>
+                </View>
+                <SplitPaymentStatus paid={true} />
               </View>
-              <SplitPaymentStatus paid={false} />
+              <View
+                style={[
+                  CommonStyles.row,
+                  {
+                    alignSelf: "stretch",
+                    justifyContent: "space-between",
+                    marginTop: hp(15),
+                  },
+                ]}>
+                <Image
+                  style={{ borderRadius: 50, width: 45, height: 45 }}
+                  source={{
+                    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                  }}
+                />
+                <View
+                  style={[
+                    CommonStyles.col,
+                    { marginLeft: 20, marginRight: "auto" },
+                  ]}>
+                  <Text
+                    lightColor={Colors.light.text}
+                    darkColor={Colors.dark.mainText}
+                    style={{
+                      fontSize: hp(15),
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontWeight: "500",
+                    }}>
+                    James
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: hp(14),
+                      marginTop: 5,
+                      color: "#FF361A",
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontWeight: "500",
+                    }}>
+                    {"\u20A6"}
+                    {numberWithCommas(6666)}
+                  </Text>
+                </View>
+                <SplitPaymentStatus paid={false} />
+              </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
         <View
           style={[
             CommonStyles.passwordContainer,

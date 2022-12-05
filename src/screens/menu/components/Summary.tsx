@@ -89,6 +89,7 @@ const SummaryModal = ({
             {
               backgroundColor: colorScheme === "dark" ? "#EAEAEC" : "#121212",
               marginBottom: hp(10),
+              width: "100%",
             },
           ]}
           styleText={{
@@ -101,11 +102,10 @@ const SummaryModal = ({
             navigation.goBack();
             setModalVisible(false);
           }}
-          style={[
-            {
-              backgroundColor: colorScheme === "dark" ? "#FF361A" : "#FF361A",
-            },
-          ]}
+          style={{
+            backgroundColor: colorScheme === "dark" ? "#FF361A" : "#FF361A",
+            width: "100%",
+          }}
           styleText={{
             color: colorScheme === "dark" ? "#FFFFFF" : "#FFFFFF",
           }}

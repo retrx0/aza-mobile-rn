@@ -6,6 +6,7 @@ import {
   ExitIcon,
   NairaIcon,
   NigerianFlag,
+  OpenIcon,
 } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
@@ -21,6 +22,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useNavigation } from "@react-navigation/core";
 import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function AccountDetails() {
   const colorScheme = useColorScheme();
@@ -40,7 +42,7 @@ export default function AccountDetails() {
             style={[
               CommonStyles.row,
               {
-                paddingHorizontal: 15,
+                paddingHorizontal: 20,
                 paddingVertical: hp(7),
                 alignItems: "center",
                 justifyContent: "center",
@@ -66,9 +68,10 @@ export default function AccountDetails() {
             <Text
               lightColor={"#000000"}
               darkColor={"#E7E9EA"}
-              style={{ fontSize: 14 }}>
+              style={{ fontSize: 14, marginRight: 5 }}>
               NGN
             </Text>
+            <OpenIcon color={Colors[colorScheme].button} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity

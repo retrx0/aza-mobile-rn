@@ -25,7 +25,7 @@ import {
 const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   const colorScheme = useColorScheme();
   const [selectedCard, setSelectedCard] = useState("");
-  const [cardsAvailable] = useState(true);
+  const [cardsAvailable] = useState(false);
   const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
@@ -61,14 +61,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   if (cardsAvailable) {
     return (
       <SpacerWrapper>
-        <View
-          style={[
-            styles.container,
-            {
-              justifyContent: "space-between",
-            },
-          ]}>
-          <View>
+        <View style={[CommonStyles.vaultcontainer]}>
+          <View style={{ paddingHorizontal: hp(15) }}>
             <Text
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
@@ -188,7 +182,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container, { justifyContent: "space-between" }]}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View
           style={[
             CommonStyles.col,
