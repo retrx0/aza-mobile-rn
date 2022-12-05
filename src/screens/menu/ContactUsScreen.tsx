@@ -43,8 +43,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View style={{ paddingHorizontal: hp(5) }}>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
@@ -91,12 +91,13 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             style={{
               borderWidth: 1,
               borderColor: Colors[colorScheme].text,
-              width: 335,
+              width: "90%",
               height: hp(50),
               borderRadius: hp(10),
               alignItems: "center",
               flexDirection: "row",
               justifyContent: "center",
+              alignSelf: "center",
             }}>
             <Image
               source={WhatsappLogo}
