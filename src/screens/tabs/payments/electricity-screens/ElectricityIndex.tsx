@@ -61,14 +61,13 @@ export default function ElectricityIndex({
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
-        style={styles.header}
         description=""
         descriptionStyle={null}
         headerStyle={{
           fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginTop: hp(10),
+          marginTop: hp(30),
         }}
         heading="Select electricity provider"
       />
