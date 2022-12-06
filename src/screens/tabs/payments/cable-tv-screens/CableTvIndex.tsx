@@ -70,7 +70,6 @@ export default function CableTvIndex({
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
-        style={styles.header}
         description=""
         descriptionStyle={null}
         headerStyle={{
