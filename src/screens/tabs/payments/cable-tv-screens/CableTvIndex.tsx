@@ -44,27 +44,25 @@ export default function CableTvIndex({
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const bundles = ["100mb", "200mb", "500mb"];
   const insets = useSafeAreaInsets();
-  const [periodValue, setPeriodValue] = useState("");
-  const [periodValue1, setPeriodValue1] = useState("");
   const colorScheme = useColorScheme();
   const [active, setActive] = useState("");
-  const [subscriptionValue, setSubscriptionValue] = useState("");
-  const [amountValue, setAmountValue] = useState("");
+  const [periodValue, setPeriodValue] = useState("");
+  const [dayValue, setDayValue] = useState("");
 
   const period = [
-    { label: "DSTV Padi", value: "dSTV Padi" },
-    { label: "DSTV Yanga", value: "dSTV Yanga" },
+    { label: "DSTV Padi", value: "1" },
+    { label: "DSTV Yanga", value: "2" },
     { label: "DSTV Confam", value: "3" },
     { label: "DSTV Compact", value: "4" },
     { label: "DSTV Compact Plus", value: "5" },
     { label: "DSTV Premium", value: "6" },
   ];
 
-  const amount = [
-    { lable: "\u20A62,150", value: "1" },
-    { lable: "\u20A62,950", value: "2" },
-    { lable: "\u20A65,300", value: "3" },
-    { label: "\u20A69,000", value: "4" },
+  const day = [
+    { label: "\u20A62,150", value: "1" },
+    { label: "\u20A62,950", value: "2" },
+    { label: "\u20A65,300", value: "3" },
+    { label: "\u20A69000", value: "4" },
     { label: "\u20A614,250", value: "5" },
     { label: "\u20A621,000", value: "6" },
   ];
@@ -126,39 +124,48 @@ export default function CableTvIndex({
       <View
         style={{
           paddingHorizontal: hp(20),
-          marginTop: hp(30),
-          marginBottom: hp(10),
+          marginBottom: hp(20),
+          marginTop: hp(20),
         }}>
+        <Text
+          // lightColor={Colors.light.secondaryText}
+          // darkColor={Colors.dark.secondaryText}
+          style={{
+            fontSize: hp(16),
+            fontWeight: "400",
+
+            fontFamily: "Euclid-Circular-A",
+          }}>
+          Subscription Package
+        </Text>
         <CustomDropdown
           data={period}
-          placeholder="Choose a subscription package"
+          placeholder="Select your subscription"
           setValue={setPeriodValue}
           value={periodValue}
-          style={[
-            { fontFamily: "Euclid-Circular-A" },
-            { fontWeight: "400" },
-            { fontSize: hp(16) },
-          ]}
-          label={"Subscription Package"}
+          label={""}
         />
       </View>
-      <View
-        style={{
-          paddingHorizontal: hp(20),
-          marginTop: hp(30),
-          marginBottom: hp(10),
-        }}>
+      <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
+        <Text
+          // lightColor={Colors.light.secondaryText}
+          // darkColor={Colors.dark.secondaryText}
+          style={{
+            fontSize: hp(16),
+            fontWeight: "400",
+            lineHeight: hp(17.75),
+
+            fontFamily: "Euclid-Circular-A",
+          }}>
+          Subscription Amount
+        </Text>
+
         <CustomDropdown
-          data={period}
+          data={day}
           placeholder="Amount"
           setValue={setPeriodValue}
           value={periodValue}
-          style={[
-            { fontFamily: "Euclid-Circular-A" },
-            { fontWeight: "400" },
-            { fontSize: hp(16) },
-          ]}
-          label={"Subscription Amount"}
+          label={""}
         />
       </View>
 
