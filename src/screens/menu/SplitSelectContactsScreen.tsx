@@ -26,6 +26,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 import { ArrowRightIcon, CheckIcon } from "../../../assets/svg";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SplitSelectContactsScreen = ({
   navigation,
@@ -38,6 +39,7 @@ const SplitSelectContactsScreen = ({
   );
   const colorScheme = useColorScheme();
   const { amount, date, splitImage, name } = route.params;
+  const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -105,8 +107,8 @@ const SplitSelectContactsScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Divider />
           <SplitListItem
             amount={amount}
@@ -116,130 +118,138 @@ const SplitSelectContactsScreen = ({
           />
           <Divider />
         </View>
-        <TextInput
-          lightColor={Colors.light.mainText}
-          darkColor={Colors.dark.mainText}
-          placeholderTextColor={Colors[colorScheme].secondaryText}
-          style={[
-            styles.input,
-            {
-              borderBottomColor: Colors[colorScheme].separator,
-              fontSize: hp(16),
-              fontFamily: "Euclid-Circular-A",
-              marginLeft: hp(5),
-              fontWeight: "500",
-            },
-          ]}
-          value={search}
-          onChangeText={(e) => setSearch(e)}
-          placeholder="With whom (Search for contact)"
-        />
-        {selectedContacts.length > 0 && (
-          <View style={[CommonStyles.row]}>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={{
-                marginTop: hp(15),
-              }}>
-              <View style={[CommonStyles.row]}>
-                <View style={[CommonStyles.col, { alignItems: "center" }]}>
-                  <Image
-                    style={{ borderRadius: 50, width: 45, height: 45 }}
-                    source={{
-                      uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                    }}
-                  />
-                  <Text
-                    // lightColor={Colors.light.text}
-                    // darkColor={Colors.dark.mainText}
-                    style={{ fontSize: 10, marginTop: 5 }}>
-                    Chiazo
-                  </Text>
-                </View>
-                <View style={{ marginHorizontal: 15 }}>
-                  <ArrowRightIcon
-                    size={24}
-                    color={Colors[colorScheme].mainText}
-                  />
-                </View>
-              </View>
-              <SelectedContactsScroll
-                deSelectContact={deSelectContact}
-                selectedContacts={selectedContacts}
-              />
-            </ScrollView>
-          </View>
-        )}
-        <Text
-          style={{
-            // color: Colors[colorScheme].secondaryText,
-            marginTop: hp(40),
-            fontSize: hp(14),
-            marginBottom: hp(20),
-            fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
-            fontWeight: "400",
-          }}>
-          {search.length > 0 ? "Contacts" : "Quick contacts"}
-        </Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => {
-            return (
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={() => addContact(item)}>
-                <ContactListItem
-                  image={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-                  }
-                  name={item.name}
-                  // phoneNumber={item.phoneNumbers[0].number}
-                  phoneNumber={"08167753429"}
-                  suffixIcon={
-                    checkIfContactIsSelected(item) ? (
-                      <CheckIcon size={25} color={Colors["general"].green} />
-                    ) : undefined
-                  }
-                  isContactOnAza={false}
-                />
-              </TouchableOpacity>
-            );
-          }}
-          data={filteredContacts}
-        />
-        <View style={[{ marginTop: hp(5) }]}>
-          <Button
-            title="Continue"
-            disabled={disabledButton}
-            onPressButton={() =>
-              navigation.navigate("SplitEditContacts", {
-                amount,
-                date,
-                splitImage,
-                name,
-                contacts: selectedContacts,
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
+        <View style={{ paddingHorizontal: hp(20) }}>
+          <TextInput
+            lightColor={Colors.light.mainText}
+            darkColor={Colors.dark.mainText}
+            placeholderTextColor={Colors[colorScheme].secondaryText}
             style={[
+              styles.input,
               {
-                backgroundColor: Colors[colorScheme].button,
+                borderBottomColor: Colors[colorScheme].separator,
+                fontSize: hp(16),
+                fontFamily: "Euclid-Circular-A",
+                marginLeft: hp(5),
+                fontWeight: "500",
               },
-              CommonStyles.button,
             ]}
-          />
-          <CancelButtonWithUnderline
-            title="Cancel"
-            onPressButton={() => navigation.goBack()}
-            style={{ borderBottomColor: Colors.general.red }}
-            styleText={CommonStyles.cancelStyle}
+            value={search}
+            onChangeText={(e) => setSearch(e)}
+            placeholder="With whom (Search for contact)"
           />
         </View>
+        <View style={{ paddingHorizontal: hp(20) }}>
+          {selectedContacts.length > 0 && (
+            <View style={[CommonStyles.row]}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={{
+                  marginTop: hp(15),
+                }}>
+                <View style={[CommonStyles.row]}>
+                  <View style={[CommonStyles.col, { alignItems: "center" }]}>
+                    <Image
+                      style={{ borderRadius: 50, width: 45, height: 45 }}
+                      source={{
+                        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                      }}
+                    />
+                    <Text
+                      // lightColor={Colors.light.text}
+                      // darkColor={Colors.dark.mainText}
+                      style={{ fontSize: 10, marginTop: 5 }}>
+                      Chiazo
+                    </Text>
+                  </View>
+                  <View style={{ marginHorizontal: 15 }}>
+                    <ArrowRightIcon
+                      size={24}
+                      color={Colors[colorScheme].mainText}
+                    />
+                  </View>
+                </View>
+                <SelectedContactsScroll
+                  deSelectContact={deSelectContact}
+                  selectedContacts={selectedContacts}
+                />
+              </ScrollView>
+            </View>
+          )}
+          <Text
+            style={{
+              // color: Colors[colorScheme].secondaryText,
+              marginTop: hp(40),
+              fontSize: hp(14),
+              marginBottom: hp(10),
+              fontFamily: "Euclid-Circular-A",
+              marginLeft: hp(5),
+              fontWeight: "400",
+            }}>
+            {search.length > 0 ? "Contacts" : "Quick contacts"}
+          </Text>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => {
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => addContact(item)}>
+                  <ContactListItem
+                    image={
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
+                    }
+                    name={item.name}
+                    // phoneNumber={item.phoneNumbers[0].number}
+                    phoneNumber={"08167753429"}
+                    suffixIcon={
+                      checkIfContactIsSelected(item) ? (
+                        <CheckIcon size={25} color={Colors["general"].green} />
+                      ) : undefined
+                    }
+                    isContactOnAza={false}
+                  />
+                </TouchableOpacity>
+              );
+            }}
+            data={filteredContacts}
+          />
+        </View>
+      </View>
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.bottom || hp(45) },
+        ]}>
+        <Button
+          title="Continue"
+          disabled={disabledButton}
+          onPressButton={() =>
+            navigation.navigate("SplitEditContacts", {
+              amount,
+              date,
+              splitImage,
+              name,
+              contacts: selectedContacts,
+            })
+          }
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+            },
+            CommonStyles.button,
+          ]}
+        />
+        <CancelButtonWithUnderline
+          title="Cancel"
+          onPressButton={() => navigation.goBack()}
+          style={{ borderBottomColor: Colors.general.red }}
+          styleText={CommonStyles.cancelStyle}
+        />
       </View>
     </SpacerWrapper>
   );

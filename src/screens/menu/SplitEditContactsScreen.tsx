@@ -67,8 +67,8 @@ const SplitEditContactsScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Divider />
           <SplitListItem
             amount={amount}
@@ -78,130 +78,138 @@ const SplitEditContactsScreen = ({
           />
           <Divider />
         </View>
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              alignSelf: "stretch",
-              justifyContent: "space-between",
-              marginTop: hp(25),
-            },
-          ]}>
-          <Image
-            style={{ borderRadius: 50, width: 45, height: 45 }}
-            source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-            }}
-          />
+        <View style={{ paddingHorizontal: hp(20) }}>
           <View
-            style={[CommonStyles.col, { marginLeft: 20, marginRight: "auto" }]}>
-            <Text
-              // lightColor={Colors.light.text}
-              // darkColor={Colors.dark.mainText}
-              style={{
-                fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontWeight: "500",
-              }}>
-              Chiazo
-            </Text>
-            <Text
-              style={{
-                fontSize: hp(14),
-                marginTop: 5,
-                color: "#FF361A",
-                fontWeight: "400",
-              }}>
-              {"\u20A6"}
-              {numberWithCommas(splitAmountForEachPerson.toFixed())}
-            </Text>
-          </View>
-          <View style={[CommonStyles.row]}>
-            <TouchableOpacity
-              style={{ marginRight: 20 }}
-              onPress={() =>
-                navigation.navigate("SplitEditContact", {
-                  contactName: "Chiazo",
-                  contactImage:
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                  contactSplitAmount: splitAmountForEachPerson
-                    .toFixed()
-                    .toString(),
-                })
-              }>
-              <EditIcon color="#A6A6A6" size={20} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => console.log("deleted request creator")}>
-              <TrashIcon color="#FF361A" size={20} />
-            </TouchableOpacity>
+            style={[
+              CommonStyles.row,
+              {
+                alignSelf: "stretch",
+                justifyContent: "space-between",
+                marginTop: hp(25),
+              },
+            ]}>
+            <Image
+              style={{ borderRadius: 50, width: 45, height: 45 }}
+              source={{
+                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+              }}
+            />
+            <View
+              style={[
+                CommonStyles.col,
+                { marginLeft: 20, marginRight: "auto" },
+              ]}>
+              <Text
+                // lightColor={Colors.light.text}
+                // darkColor={Colors.dark.mainText}
+                style={{
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontWeight: "500",
+                }}>
+                Chiazo
+              </Text>
+              <Text
+                style={{
+                  fontSize: hp(14),
+                  marginTop: 5,
+                  color: "#FF361A",
+                  fontWeight: "400",
+                }}>
+                {"\u20A6"}
+                {numberWithCommas(splitAmountForEachPerson.toFixed())}
+              </Text>
+            </View>
+            <View style={[CommonStyles.row]}>
+              <TouchableOpacity
+                style={{ marginRight: 20 }}
+                onPress={() =>
+                  navigation.navigate("SplitEditContact", {
+                    contactName: "Chiazo",
+                    contactImage:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                    contactSplitAmount: splitAmountForEachPerson
+                      .toFixed()
+                      .toString(),
+                  })
+                }>
+                <EditIcon color="#A6A6A6" size={20} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => console.log("deleted request creator")}>
+                <TrashIcon color="#FF361A" size={20} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {contactsToEdit.map(({ name, id }) => (
-            <View
-              key={id}
-              style={[
-                CommonStyles.row,
-                {
-                  alignSelf: "stretch",
-                  justifyContent: "space-between",
-                  marginTop: hp(25),
-                },
-              ]}>
-              <Image
-                style={{ borderRadius: 50, width: 45, height: 45 }}
-                source={{
-                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                }}
-              />
+        <View style={{ paddingHorizontal: hp(20) }}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {contactsToEdit.map(({ name, id }) => (
               <View
+                key={id}
                 style={[
-                  CommonStyles.col,
-                  { marginRight: "auto", marginLeft: 20 },
+                  CommonStyles.row,
+                  {
+                    alignSelf: "stretch",
+                    justifyContent: "space-between",
+                    marginTop: hp(25),
+                  },
                 ]}>
-                <Text
-                  lightColor={Colors.light.text}
-                  darkColor={Colors.dark.mainText}
-                  style={{
-                    fontSize: hp(16),
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontWeight: "500",
-                  }}>
-                  {name}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: hp(12),
-                    marginTop: hp(5),
-                    color: "#FF361A",
-                  }}>
-                  {"\u20A6"}
-                  {numberWithCommas(splitAmountForEachPerson.toFixed())}
-                </Text>
+                <Image
+                  style={{ borderRadius: 50, width: 45, height: 45 }}
+                  source={{
+                    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                  }}
+                />
+                <View
+                  style={[
+                    CommonStyles.col,
+                    { marginRight: "auto", marginLeft: 20 },
+                  ]}>
+                  <Text
+                    lightColor={Colors.light.text}
+                    darkColor={Colors.dark.mainText}
+                    style={{
+                      fontSize: hp(16),
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontWeight: "500",
+                    }}>
+                    {name}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: hp(12),
+                      marginTop: hp(5),
+                      color: "#FF361A",
+                    }}>
+                    {"\u20A6"}
+                    {numberWithCommas(splitAmountForEachPerson.toFixed())}
+                  </Text>
+                </View>
+                <View style={[CommonStyles.row]}>
+                  <TouchableOpacity
+                    style={{ marginRight: 20 }}
+                    onPress={() =>
+                      navigation.navigate("SplitEditContact", {
+                        contactName: name,
+                        contactImage:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                        contactSplitAmount: splitAmountForEachPerson
+                          .toFixed()
+                          .toString(),
+                      })
+                    }>
+                    <EditIcon color="#A6A6A6" size={20} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => removePerson(id)}>
+                    <TrashIcon color="#FF361A" size={20} />
+                  </TouchableOpacity>
+                </View>
               </View>
-              <View style={[CommonStyles.row]}>
-                <TouchableOpacity
-                  style={{ marginRight: 20 }}
-                  onPress={() =>
-                    navigation.navigate("SplitEditContact", {
-                      contactName: name,
-                      contactImage:
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                      contactSplitAmount: splitAmountForEachPerson
-                        .toFixed()
-                        .toString(),
-                    })
-                  }>
-                  <EditIcon color="#A6A6A6" size={20} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => removePerson(id)}>
-                  <TrashIcon color="#FF361A" size={20} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
+            ))}
+          </ScrollView>
+        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
