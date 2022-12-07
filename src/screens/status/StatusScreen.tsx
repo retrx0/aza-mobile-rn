@@ -81,6 +81,7 @@ const StatusScreen = ({
               textAlign: "center",
               marginTop: hp(25),
               fontFamily: "Euclid-Circular-A-Medium",
+              maxWidth: 350,
             }}>
             {statusMessage2}
           </Text>
