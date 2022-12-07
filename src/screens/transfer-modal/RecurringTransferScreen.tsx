@@ -46,11 +46,11 @@ const RecurringTransferScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container]}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <Text
           // lightColor={Colors.light.text}
           // darkColor={Colors.dark.mainText}
-          style={[CommonStyles.descriptionStyle, { marginLeft: 10 }]}>
+          style={[CommonStyles.descriptionStyle, { marginLeft: 20 }]}>
           You can add and edit daily, weekly and monthly recurring money
           transfer orders.
         </Text>
