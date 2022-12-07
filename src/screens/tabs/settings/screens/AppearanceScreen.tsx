@@ -107,7 +107,9 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
             <View
               style={{
                 borderBottomWidth: 0.6,
-                borderBottomColor: Colors[colorScheme].separator,
+
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
             />
           </View>
@@ -123,6 +125,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

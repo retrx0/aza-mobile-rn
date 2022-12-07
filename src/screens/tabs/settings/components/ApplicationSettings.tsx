@@ -19,15 +19,15 @@ export default function ApplicationSettings({
 }: RootTabScreenProps<"Settings">) {
   const colorScheme = useColorScheme();
   const applicationSettings = [
-    // {
-    //   icon: <MoonIcon size={36} color={Colors[colorScheme].mainText} />,
-    //   name: "Appearance",
-    //   detail: "Change appearance as light/dark/system",
-    //   disabled: false,
-    //   disabledIcon: <MoonIcon size={36} color={Colors[colorScheme].disabled} />,
-    //   handleNavigation: () =>
-    //     navigation.navigate("Common", { screen: "Appearance" }),
-    // },
+    {
+      icon: <MoonIcon size={36} color={Colors[colorScheme].mainText} />,
+      name: "Appearance",
+      detail: "Change appearance as light/dark/system",
+      disabled: false,
+      disabledIcon: <MoonIcon size={36} color={Colors[colorScheme].disabled} />,
+      handleNavigation: () =>
+        navigation.navigate("Common", { screen: "Appearance" }),
+    },
     {
       icon: (
         <NotificationSettingsIcon
