@@ -135,10 +135,12 @@ const SendMoneyConfirmationScreen = ({
                 color: colorScheme === "dark" ? "#999999" : "#000000",
               }}
               label="Amount"
-              placeholder={"\u20A60"}
+              value={"\u20A60"}
               placeholderTextColor={
                 colorScheme === "dark" ? "#E7E9EA" : "#000000"
               }
+              keyboardType="number-pad"
+              returnKeyType="done"
             />
           </View>
           <View style={{ marginBottom: 30 }}>
@@ -158,7 +160,7 @@ const SendMoneyConfirmationScreen = ({
                 color: colorScheme === "dark" ? "#999999" : "#000000",
               }}
               label="Description"
-              placeholder={"Chop life my gee ❤️"}
+              value={"Chop life my gee ❤️"}
               placeholderTextColor={
                 colorScheme === "dark" ? "#E7E9EA" : "#000000"
               }

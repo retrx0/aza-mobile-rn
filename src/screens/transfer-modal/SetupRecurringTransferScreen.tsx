@@ -71,15 +71,15 @@ const SetupRecurringTransferScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
-              marginTop: hp(30),
+              marginTop: hp(20),
               marginBottom: hp(40),
             }}>
             Setup a recurring money transfer
