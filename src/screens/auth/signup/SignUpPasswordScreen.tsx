@@ -36,6 +36,7 @@ const SignUpPasswordScreen = ({
   );
   const [isConfirmScreen, setIsConfirmScreen] = useState(false);
   const [passcode, setPasscode] = useState("");
+  const [hashedPasscode, setHashedPasscode] = useState("");
   const [pushToken, setPushToken] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -54,11 +55,6 @@ const SignUpPasswordScreen = ({
       setIsEnabled(newUser.isUsePasscodeAsPin);
     }
 
-    // const digest = Crypto.digestStringAsync(
-    //   Crypto.CryptoDigestAlgorithm.SHA256,
-    //   'GitHub stars are neat 🌟'
-    // );
-
     notification
       .registerForPushNotificationsAsync()
       .then((tok) => {
@@ -66,6 +62,16 @@ const SignUpPasswordScreen = ({
       })
       .catch((e) => console.error(e));
   }, []);
+
+  useEffect(() => {
+    Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      passcode
+    ).then((hashed) => {
+      setHashedPasscode(hashed);
+      console.log(hashed);
+    });
+  }, [passcode]);
 
   return (
     <SpacerWrapper>
@@ -131,7 +137,7 @@ const SignUpPasswordScreen = ({
                 phoneNumber: newUser.phoneNumber,
                 gender: newUser.gender,
                 isUsePasscodeAsPin: isUsePasscodeAsPin,
-                createdPasscode: passcode,
+                createdPasscode: hashedPasscode,
                 thirdPartyEmailSignUp: false,
                 pushToken: newUser.pushToken,
               })
@@ -142,21 +148,21 @@ const SignUpPasswordScreen = ({
                 passwordScreenType: "Confirm",
               });
             } else {
-              if (passcode === newUser.createdPasscode) {
+              if (hashedPasscode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
                 registerUserAPI({
                   email: newUser.emailAddress!,
                   firstName: newUser.firstName!,
                   lastName: newUser.lastName!,
                   gender: newUser.gender === "male" ? `1` : `2`,
-                  newPassword: passcode,
+                  newPassword: hashedPasscode,
                   pushNotificationToken: newUser.pushToken,
                 }).then((_res) => {
                   if (_res) {
                     loginUserAPI({
                       email: newUser.emailAddress,
                       phoneNumber: newUser.phoneNumber,
-                      password: passcode,
+                      password: hashedPasscode,
                     }).then((_jwt) => {
                       if (_jwt) {
                         navigation.getParent()?.navigate("Root");
@@ -169,6 +175,7 @@ const SignUpPasswordScreen = ({
                 });
               } else {
                 toastError("Password does not match ⚠️");
+                setLoading(false);
               }
             }
           }}
@@ -183,7 +190,7 @@ const SignUpPasswordScreen = ({
             },
             CommonStyles.button,
           ]}
-          willCallAsync={loading}
+          willCallAsync={isConfirmScreen && loading}
           disabled={passcode.length < 6 ? true : false}
         />
       </View>
