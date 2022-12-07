@@ -128,6 +128,7 @@ const RootNavigator = () => {
     >
       <ActivityModal loading={isActivityModalOpen} />
       <Stack.Navigator
+        // initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
         initialRouteName={"Root"}
         screenOptions={{ gestureEnabled: false }}
       >
@@ -151,12 +152,13 @@ const RootNavigator = () => {
           component={BottomTabNavigator}
           options={{
             headerShown: false,
+            gestureEnabled: true,
           }}
         />
         <Stack.Screen
           name="Common"
           component={CommonStack}
-          options={{ headerShown: false }}
+          options={{ headerShown: false, gestureEnabled: true }}
         />
         <Stack.Screen
           name="NotFound"
