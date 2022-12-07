@@ -64,7 +64,7 @@ export default function AirtimeConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Phone Number"
-            value=""
+            value="1234ueydjThs567890"
             placeholderTextColor={
               colorScheme === "dark" ? "#E7E9EA" : "#000000"
             }
@@ -72,7 +72,7 @@ export default function AirtimeConfirmation({
 
           <Input
             icon={null}
-            keyboardType="default"
+            keyboardType="phone-pad"
             inputStyle={[
               styles.input,
               {
@@ -91,7 +91,8 @@ export default function AirtimeConfirmation({
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
-            value=""
+            value={"\u20A62,000 (Airtime)"}
+            returnKeyType="done"
           />
 
           <Input

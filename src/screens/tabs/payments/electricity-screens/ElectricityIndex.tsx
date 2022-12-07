@@ -126,6 +126,8 @@ export default function ElectricityIndex({
           labelStyle={styles.label}
           label="Meter Number"
           placeholder="Enter your meter number"
+          keyboardType="number-pad"
+          returnKeyType="done"
         />
 
         <Input
@@ -139,6 +141,8 @@ export default function ElectricityIndex({
           labelStyle={styles.label}
           label="Amount"
           placeholder="Enter an amount to be paid"
+          keyboardType="number-pad"
+          returnKeyType="done"
         />
       </View>
 

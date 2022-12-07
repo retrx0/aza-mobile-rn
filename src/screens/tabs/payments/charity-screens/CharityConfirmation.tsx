@@ -58,7 +58,8 @@ export default function CharityConfirmation({
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
-            value=""
+            value={"\u20A680,000"}
+            returnKeyType="done"
           />
 
           <Input

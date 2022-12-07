@@ -107,7 +107,7 @@ export default function CableTvIndex({
       <View style={{ paddingHorizontal: hp(20) }}>
         <Input
           icon={null}
-          keyboardType="phone-pad"
+          keyboardType="number-pad"
           inputStyle={[
             styles.input,
             {
@@ -117,6 +117,7 @@ export default function CableTvIndex({
           labelStyle={styles.label}
           label="Smart Card Number"
           placeholder="Enter your smart card number"
+          returnKeyType="done"
         />
       </View>
 
@@ -132,8 +133,9 @@ export default function CableTvIndex({
           style={{
             fontSize: hp(16),
             fontWeight: "400",
-
             fontFamily: "Euclid-Circular-A",
+
+            color: colorScheme === "dark" ? "#ffffff" : "#000000",
           }}>
           Subscription Package
         </Text>
@@ -153,7 +155,7 @@ export default function CableTvIndex({
             fontSize: hp(16),
             fontWeight: "400",
             lineHeight: hp(17.75),
-
+            color: colorScheme === "dark" ? "#ffffff" : "#000000",
             fontFamily: "Euclid-Circular-A",
           }}>
           Subscription Amount

@@ -53,7 +53,7 @@ export default function WaterConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Customer Account Number"
-            value=""
+            value="1234ueydjThs567890"
             // placeholder="1234ueydjThs567890"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
@@ -76,7 +76,8 @@ export default function WaterConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            value=""
+            value={"\u20A621,000 "}
+            returnKeyType="done"
             // placeholder={"\u20A620,000"}
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"

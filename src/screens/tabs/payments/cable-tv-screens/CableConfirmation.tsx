@@ -55,10 +55,12 @@ export default function CableConfirmation({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Smart Card Number"
-            placeholder="Enter your card number"
+            // placeholder="Enter your card number"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
+            value="1234ueydjThs567890"
+            returnKeyType="done"
           />
           <Input
             icon={null}
@@ -82,7 +84,8 @@ export default function CableConfirmation({
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
-            value=""
+            value={"\u20A621,000 (DSTV Premium)"}
+            returnKeyType="done"
           />
           <Input
             icon={null}

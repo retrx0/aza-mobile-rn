@@ -57,7 +57,7 @@ export default function InternetConfirmation({
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
-            value=""
+            value="1234ueydjThs567890"
           />
           <Input
             icon={null}
@@ -80,7 +80,8 @@ export default function InternetConfirmation({
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
-            value=""
+            value={"\u20A680,000 (Unlimited plan)"}
+            returnKeyType="done"
           />
           <Input
             icon={null}

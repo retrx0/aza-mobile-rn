@@ -221,6 +221,7 @@ export default function AirtimeIndex({
           label="Amount"
           placeholder="Enter an amount"
           keyboardType="number-pad"
+          returnKeyType="done"
         />
       </View>
 

@@ -51,7 +51,7 @@ export default function GiftCardConfirmation({
             placeholderTextColor={
               colorScheme === "dark" ? "#E7E9EA" : "#000000"
             }
-            value=""
+            value="iTunes USD100"
           />
 
           <Input
@@ -75,7 +75,32 @@ export default function GiftCardConfirmation({
             placeholderTextColor={
               colorScheme === "dark" ? "#E7E9EA" : "#000000"
             }
-            value=""
+            value={"\u20A660,000"}
+            returnKeyType="done"
+          />
+          <Input
+            icon={null}
+            keyboardType="phone-pad"
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={{
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "400",
+              fontSize: hp(16),
+              color: colorScheme === "dark" ? "#999999" : "#000000",
+            }}
+            label="Email Address"
+            // placeholder={"\u20A660,000"}
+            placeholderTextColor={
+              colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            }
+            value="abc@example.com"
+            returnKeyType="done"
           />
         </View>
         <View
@@ -124,7 +149,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     marginBottom: hp(40),
-    marginTop: hp(30),
+    marginTop: hp(20),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),

@@ -104,6 +104,7 @@ export default function InternetDetail({
           ]}
           label="Amount"
           placeholder="Enter an amount"
+          returnKeyType="done"
         />
       </View>
 

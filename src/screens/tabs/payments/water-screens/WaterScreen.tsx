@@ -112,6 +112,7 @@ export default function WaterScreen({
           style={styles2.input}
           icon={null}
           keyboardType="phone-pad"
+          returnKeyType="done"
           inputStyle={[
             styles.input,
             {
@@ -135,6 +136,8 @@ export default function WaterScreen({
           labelStyle={styles.label}
           label="Amount"
           placeholder="Enter an amount to be paid"
+          keyboardType="number-pad"
+          returnKeyType="done"
         />
       </View>
 

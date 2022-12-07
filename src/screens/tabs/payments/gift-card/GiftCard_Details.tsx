@@ -97,7 +97,7 @@ export default function GiftCardDetails({
       <ListItem
         onPress={() => {
           navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
+            screen: "GiftCardEmail",
           });
         }}
         route=""
@@ -139,7 +139,7 @@ export default function GiftCardDetails({
         amount={"\u20A660,000"}
       />
 
-      <View
+      {/* <View
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
@@ -151,7 +151,7 @@ export default function GiftCardDetails({
             navigation.navigate("Common", { screen: "GiftCardConfirmation" });
           }}
         />
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 }
