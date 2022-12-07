@@ -74,7 +74,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 // fontWeight: "500",
                 // fontFamily: "Euclid-Circular-A",
               }}
-              value=""
+              value="Flight Ticket"
             />
             <Image
               style={{
@@ -100,7 +100,8 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               // placeholder="Amount"
               containerStyle={undefined}
               // placeholderTextColor={Colors[colorScheme].text}
-              value=""
+              value={"\u20A680,000"}
+              returnKeyType="done"
             />
           </View>
         </View>

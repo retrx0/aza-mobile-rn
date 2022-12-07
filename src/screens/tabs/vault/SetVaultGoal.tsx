@@ -7,11 +7,12 @@ import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
 import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
-import { NairaLargeIcon } from "../../../../assets/svg";
+import { FlightIcon, NairaLargeIcon } from "../../../../assets/svg";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Image } from "react-native";
 
 const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [amount, setAmount] = useState("");
@@ -44,10 +45,22 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.selectStyle,
             { marginLeft: 20 },
-            { marginBottom: 100 },
+            { marginBottom: 30 },
           ]}>
           You can determine the amount you want to save
         </Text>
+        <>
+          <Image
+            style={{
+              width: 50,
+              height: 50,
+              alignSelf: "center",
+              marginBottom: hp(20),
+            }}
+            source={require("../../../../assets/images/icons/CoverImage.png")}
+          />
+        </>
+
         <View style={[CommonStyles.row, { marginBottom: 50 }]}>
           <NairaLargeIcon
             color={
@@ -74,7 +87,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             width: "100%",
-            marginTop: 40,
+            marginTop: hp(20),
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>

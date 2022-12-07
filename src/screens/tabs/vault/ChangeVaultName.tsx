@@ -44,7 +44,7 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <View style={{ marginTop: hp(100) }}>
             <Input
               icon={null}
-              keyboardType="phone-pad"
+              keyboardType="default"
               inputStyle={{
                 fontSize: hp(16),
                 fontWeight: "500",
