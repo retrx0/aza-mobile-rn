@@ -51,8 +51,8 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             fontSize: hp(16),
             fontWeight: "400",
             textAlign: "center",
-            marginTop: hp(10),
-            marginBottom: hp(14),
+            marginTop: hp(20),
+            marginBottom: hp(20),
           }}>
           Flight Ticket Vault
         </Text>
@@ -63,12 +63,12 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               CommonStyles.row,
               {
-                paddingHorizontal: 15,
-                paddingVertical: hp(7),
+                paddingHorizontal: hp(25),
+                paddingVertical: hp(9),
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: hp(50),
-                marginBottom: hp(37),
+                marginBottom: hp(25),
               },
             ]}>
             <Text
@@ -116,7 +116,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignSelf: "center",
-            marginTop: hp(5),
+            marginTop: hp(10),
           }}>
           <Text
             style={{
@@ -139,7 +139,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View
           style={{
             width: "100%",
-            marginTop: 10,
+            marginTop: hp(30),
             marginBottom: "auto",
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />

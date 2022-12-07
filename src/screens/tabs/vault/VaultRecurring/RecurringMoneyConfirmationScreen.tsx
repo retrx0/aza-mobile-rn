@@ -50,7 +50,7 @@ const RecurringMoneyConfirmationScreen = ({
               label={"To"}
               source={require("../../../../../assets/images/icons/CoverImage.png")}
               icon={undefined}
-              value=""
+              value="Flight Ticket vault"
               placeholder={""}
             />
           </View>
@@ -73,13 +73,14 @@ const RecurringMoneyConfirmationScreen = ({
               // placeholder={"\u20A6 80,000"}
               containerStyle={undefined}
               // placeholderTextColor={Colors[colorScheme].text}
-              value=""
+              value={"\u20A680,000"}
+              returnKeyType="done"
             />
           </View>
           <View style={CommonStyles.vaultInputcontainer}>
             <Input
               icon={null}
-              keyboardType="phone-pad"
+              keyboardType="default"
               inputStyle={{
                 fontSize: hp(16),
                 fontWeight: "500",
@@ -94,13 +95,13 @@ const RecurringMoneyConfirmationScreen = ({
               // placeholder="Weekly"
               containerStyle={undefined}
               // placeholderTextColor={Colors[colorScheme].text}
-              value=""
+              value="Weekly"
             />
           </View>
           <View style={CommonStyles.vaultInputcontainer}>
             <Input
               icon={null}
-              keyboardType="phone-pad"
+              keyboardType="default"
               inputStyle={{
                 fontSize: hp(16),
                 fontWeight: "500",
@@ -115,7 +116,7 @@ const RecurringMoneyConfirmationScreen = ({
               placeholder="Wednesday"
               containerStyle={undefined}
               // placeholderTextColor={Colors[colorScheme].text}
-              value=""
+              value="Wednesday"
             />
           </View>
         </View>

@@ -44,18 +44,18 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <Text
           style={[
             CommonStyles.selectStyle,
-            { marginLeft: 20 },
-            { marginBottom: 30 },
+            { marginLeft: hp(20) },
+            { marginBottom: hp(40) },
           ]}>
           You can determine the amount you want to save
         </Text>
         <>
           <Image
             style={{
-              width: 50,
-              height: 50,
+              width: hp(100),
+              height: hp(100),
               alignSelf: "center",
-              marginBottom: hp(20),
+              marginBottom: hp(40),
             }}
             source={require("../../../../assets/images/icons/CoverImage.png")}
           />
