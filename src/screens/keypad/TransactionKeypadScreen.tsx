@@ -31,7 +31,7 @@ const TransactionKeypadScreen = ({
 }: CommonScreenProps<"TransactionKeypad">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [descModal, setDescModalOpen] = useState(true);
+  const [descModal, setDescModalOpen] = useState(false);
   const insets = useSafeAreaInsets();
 
   const user = useAppSelector(selectUser);
@@ -91,8 +91,8 @@ const TransactionKeypadScreen = ({
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
-              marginTop: hp(10),
-              marginBottom: hp(14),
+              marginTop: hp(15),
+              marginBottom: hp(15),
             }}>
             {beneficiary.fullName}
           </Text>
@@ -102,13 +102,13 @@ const TransactionKeypadScreen = ({
             style={[
               CommonStyles.row,
               {
-                // marginVertical: 10,
+                marginVertical: 10,
                 paddingHorizontal: 15,
-                paddingVertical: hp(10),
+                paddingVertical: hp(8),
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 50,
-                // marginBottom: hp(40),
+                marginBottom: hp(20),
               },
             ]}>
             <Text
@@ -151,8 +151,8 @@ const TransactionKeypadScreen = ({
                   ? Colors.dark.mainText
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: 36,
-                marginVertical: 15,
+                fontSize: hp(36),
+                marginVertical: hp(10),
               }}>
               {!amount && "0"} {numberWithCommas(amount)}
             </Text>
@@ -164,7 +164,7 @@ const TransactionKeypadScreen = ({
               style={{
                 fontSize: hp(14),
                 fontWeight: "400",
-                marginVertical: 15,
+                marginVertical: hp(10),
               }}>
               Aza Balance:
             </Text>

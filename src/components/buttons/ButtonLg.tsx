@@ -26,33 +26,29 @@ const ButtonLg = (props: {
   return (
     <View
       {...props}
-      style={[
-        styles.button,
-        { backgroundColor: props.color },
-        { paddingHorizontal: 30 },
-        props.style,
-      ]}>
+      style={[styles.button, { backgroundColor: props.color }, props.style]}>
       <TouchableOpacity onPress={props.onPress}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
           <View
-            style={{ backgroundColor: "transparent", alignSelf: "flex-start" }}>
+            style={{
+              backgroundColor: "transparent",
+              marginLeft: hp(28),
+              marginRight: hp(63),
+            }}>
             {props.icon}
           </View>
-          <View style={{ backgroundColor: "transparent" }}>
-            <Text
-              style={[
-                {
-                  color: props.alt ? "black" : "white",
-                  fontWeight: "500",
-                  fontSize: hp(14),
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  marginLeft: hp(55.5),
-                },
-                props.titleStyle,
-              ]}>
-              {props.title}
-            </Text>
-          </View>
+          <Text
+            style={[
+              {
+                color: props.alt ? "black" : "white",
+                fontWeight: "500",
+                fontSize: hp(14),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+              },
+              props.titleStyle,
+            ]}>
+            {props.title}
+          </Text>
         </View>
       </TouchableOpacity>
     </View>

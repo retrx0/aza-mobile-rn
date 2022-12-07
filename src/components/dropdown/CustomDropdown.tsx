@@ -61,7 +61,7 @@ const CustomDropdown = ({
         ]}
         selectedTextStyle={[
           {
-            color: colorScheme === "dark" ? "#545454" : "#000",
+            color: colorScheme === "dark" ? "#A6A6A6" : "#A6A6A6",
             fontSize: 14,
           },
         ]}
