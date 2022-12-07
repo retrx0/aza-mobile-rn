@@ -45,9 +45,9 @@ const QRReceivePaymentTab = ({
             darkColor={Colors.dark.secondaryText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-              marginTop: 10,
-              marginBottom: 15,
+              fontSize: hp(14),
+              marginTop: hp(60),
+              marginBottom: hp(20),
             }}>
             Enter amount to be paid
           </Text>
@@ -78,8 +78,8 @@ const QRReceivePaymentTab = ({
         <View
           style={{
             width: "100%",
-            marginTop: "auto",
-            marginBottom: "auto",
+            marginTop: hp(60),
+            marginBottom: hp(60),
           }}>
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
