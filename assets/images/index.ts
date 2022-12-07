@@ -26,7 +26,7 @@ export const Spectranet = require("./common/spectranet.png");
 export const Undraw = require("./common/Undraw.png");
 export const Mtn = require("./common/mtn.png");
 export const Glo = require("./common/glo.png");
-export const etisalat = require("./common/Etisalat.png");
+export const Etisalat = require("./common/Etisalat.png");
 
 export const Airtel = require("./common/Airtel.png");
 
@@ -76,11 +76,11 @@ export const RAZER = require("./common/RAZER.png");
 export const NETFLIX = require("./common/NETFLIX.png");
 export const STEAM = require("./common/STEAM.png");
 export const SEPHORA = require("./common/SEPHORA.png");
-export const NINTENDO = require("./common/NINTENDO.png");
+export const Nintendo = require("./Nintendo.png");
 export const USA = require("./common/USA.png");
 export const UK = require("./common/UK.png");
 export const CANADA = require("./common/CANADA.png");
 export const GAME = require("./common/GAME.png");
-export const CHESS = require("./common/Chess.png");
+export const Chess = require("./common/Chess.png");
 
 export const SWIFT = require("./common/SWIFT.png");

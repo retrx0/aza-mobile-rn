@@ -44,7 +44,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <Text
           style={[
             CommonStyles.selectStyle,
-            { marginLeft: hp(20) },
+            { paddingHorizontal: hp(20) },
             { marginBottom: hp(40) },
           ]}>
           You can determine the amount you want to save
