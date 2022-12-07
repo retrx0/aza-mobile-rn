@@ -62,7 +62,7 @@ const BlockNewUserScreen = ({
   };
 
   return (
-    <>
+    <SpacerWrapper>
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -110,7 +110,7 @@ const BlockNewUserScreen = ({
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}
       />
-    </>
+    </SpacerWrapper>
   );
 };
 

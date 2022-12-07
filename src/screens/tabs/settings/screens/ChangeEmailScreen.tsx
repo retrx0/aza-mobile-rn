@@ -105,6 +105,7 @@ const ChangeEmailScreen = ({
             marginTop: hp(47),
             backgroundColor: Colors[colorScheme].button,
           }}
+          disabled={!currentEmail}
         />
       </View>
     </SpacerWrapper>

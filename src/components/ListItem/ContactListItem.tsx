@@ -25,14 +25,13 @@ const ContactListItem = ({
   const scheme = useColorScheme();
   return (
     <View
-      style={[
-        CommonStyles.row,
-        {
-          alignSelf: "stretch",
-          justifyContent: "space-between",
-          marginTop: hp(25),
-        },
-      ]}>
+      style={{
+        justifyContent: "space-between",
+        marginTop: hp(25),
+        flexDirection: "row",
+
+        alignItems: "center",
+      }}>
       <Image
         style={{ borderRadius: 50, width: 45, height: 45 }}
         source={{

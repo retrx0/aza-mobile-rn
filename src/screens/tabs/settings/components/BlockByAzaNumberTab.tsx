@@ -48,7 +48,7 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
               paddingBottom: 10,
               marginTop: hp(15),
               borderBottomWidth: 1,
-              borderBottomColor: Colors[colorScheme].separator,
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
               fontSize: hp(16),
             }}
             placeholder="Aza Number"
