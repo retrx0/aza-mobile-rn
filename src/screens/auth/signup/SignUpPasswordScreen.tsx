@@ -69,7 +69,6 @@ const SignUpPasswordScreen = ({
       passcode
     ).then((hashed) => {
       setHashedPasscode(hashed);
-      console.log(hashed);
     });
   }, [passcode]);
 

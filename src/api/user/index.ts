@@ -47,15 +47,11 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
     const jwt = await SecureStore.getItemAsync(
       STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN
     );
-    const result = await api.put(
-      "https://aza-backend-asp-dev.azurewebsites.net/api/v1/user/register",
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
+    const result = await api.put("/api/v1/user/register", data, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     if (result.status === 200) return result.data;
     // temporary!!!! must remove the below if endpoint gets fixed
     else if (result.status === 400) return { data: "bad request" };
