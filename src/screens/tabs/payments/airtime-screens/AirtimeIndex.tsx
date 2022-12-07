@@ -180,6 +180,7 @@ export default function AirtimeIndex({
           style={{ marginTop: hp(10) }}
           label="Phone Number"
           placeholder="Enter a phone number"
+          returnKeyType="done"
         />
         <CustomSwitch
           title="My number"
