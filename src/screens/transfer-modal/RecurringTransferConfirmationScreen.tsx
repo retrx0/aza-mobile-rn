@@ -48,16 +48,15 @@ const RecurringTransferConfirmationScreen = ({
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
-        <View>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
-              marginVertical: hp(30),
+              marginVertical: hp(20),
               fontWeight: "500",
-              paddingHorizontal: hp(20),
             }}>
             Kindly confirm the details of this transaction
           </Text>
@@ -124,11 +123,12 @@ const RecurringTransferConfirmationScreen = ({
                 color: colorScheme === "dark" ? "#999999" : "#000000",
               }}
               label="Amount"
-              placeholder={"\u20A680000"}
+              value={"\u20A680000"}
               keyboardType="number-pad"
               // placeholderTextColor={
               //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
               // }
+              returnKeyType="done"
             />
           </View>
           <View style={{ marginBottom: 30 }}>
@@ -148,7 +148,7 @@ const RecurringTransferConfirmationScreen = ({
                 color: colorScheme === "dark" ? "#999999" : "#000000",
               }}
               label="Period"
-              placeholder="Weekly"
+              value="Weekly"
               // placeholderTextColor={
               //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
               // }
@@ -171,7 +171,7 @@ const RecurringTransferConfirmationScreen = ({
               color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Day"
-            placeholder="Wednesday"
+            value="Wednesday"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
