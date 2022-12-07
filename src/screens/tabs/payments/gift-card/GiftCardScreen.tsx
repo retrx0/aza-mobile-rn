@@ -10,7 +10,7 @@ import {
   GOOGLEPLAY,
   ITUNES,
   NETFLIX,
-  NINTENDO,
+  Nintendo,
   PSN,
   RAZER,
   SEPHORA,
@@ -115,7 +115,7 @@ export default function GiftCardScreen({
           route=""
           index={2}
           title="Nintendo"
-          Icon={() => <Image style={styles2.img} source={NINTENDO} />}
+          Icon={() => <Image style={styles2.img} source={Nintendo} />}
         />
       </ScrollView>
     </View>
