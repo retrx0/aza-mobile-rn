@@ -45,6 +45,7 @@ export type CommonStackParamList = {
   WaterRecurring: undefined;
   CharityRecurring: undefined;
   RecurringPlan: undefined;
+  GiftCardEmail: undefined;
 
   // Vault
   NewVault: undefined;

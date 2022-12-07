@@ -142,6 +142,7 @@ import RecurringPlan from "../../screens/tabs/payments/paymentRecurring/Internet
 import WaterRecurring from "../../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
 import CableRecurring from "../../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
 import ElectricityRecurring from "../../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
+import GiftCardEmail from "../../screens/tabs/payments/gift-card/EmailScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -496,6 +497,11 @@ const CommonStack = () => {
           options={{ title: "Game Credits" }}
           name="GameScreen"
           component={GameScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="GiftCardEmail"
+          component={GiftCardEmail}
         />
         <Stack.Screen
           options={{ title: "Confirmation" }}
