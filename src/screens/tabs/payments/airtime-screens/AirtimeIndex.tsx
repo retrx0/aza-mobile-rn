@@ -41,7 +41,7 @@ const Network = [
   },
   {
     title: "9mobile",
-    icon: Images.etisalat,
+    icon: Images.Etisalat,
   },
 ];
 export default function AirtimeIndex({
