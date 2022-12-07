@@ -83,7 +83,9 @@ const SplitConfirmationScreen = ({
               style={[
                 styles.input,
                 {
-                  borderBottomColor: Colors[colorScheme].separator,
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
                   fontWeight: "500",
@@ -161,7 +163,7 @@ const SplitConfirmationScreen = ({
             <View
               style={[
                 CommonStyles.col,
-                { alignSelf: "stretch", marginTop: 25 },
+                { alignSelf: "stretch", marginTop: 30 },
               ]}>
               <Text
                 // lightColor={Colors.light.secondaryText}
@@ -232,7 +234,9 @@ const SplitConfirmationScreen = ({
               style={[
                 styles.input,
                 {
-                  borderBottomColor: Colors[colorScheme].separator,
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(14),
                   fontWeight: "500",

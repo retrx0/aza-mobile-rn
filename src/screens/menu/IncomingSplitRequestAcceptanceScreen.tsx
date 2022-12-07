@@ -53,7 +53,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
           style={{
             backgroundColor: "transparent",
             borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
+            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />
         <View>
@@ -141,7 +141,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
         </View>
         <View
           style={{
-            marginTop: hp(25),
+            marginTop: hp(30),
             paddingHorizontal: hp(20),
           }}>
           <Text
@@ -205,7 +205,7 @@ const IncomingSplitRequestAcceptanceScreen = ({
             fontSize: hp(16),
             fontFamily: "Euclid-Circular-A",
             marginLeft: hp(20),
-            marginTop: hp(25),
+            marginTop: hp(30),
             fontWeight: "400",
           }}>
           Request Recipients

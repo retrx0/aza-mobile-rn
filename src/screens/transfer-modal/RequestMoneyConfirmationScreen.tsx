@@ -14,11 +14,13 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useAppSelector } from "../../redux";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RequestMoneyConfirmationScreen = ({
   navigation,
 }: CommonScreenProps<"RequestMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   console.log(useAppSelector(selectTransaction));
 
@@ -47,16 +49,17 @@ const RequestMoneyConfirmationScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
-              marginVertical: hp(30),
+              marginTop: hp(15),
               fontWeight: "500",
+              marginBottom: hp(50),
             }}>
             Kindly confirm the details of this transaction
           </Text>
@@ -170,36 +173,40 @@ const RequestMoneyConfirmationScreen = ({
             />
           </View>
         </View>
-        <View style={[CommonStyles.col, { marginBottom: hp(65) }]}>
-          <Button
-            title="Continue"
-            onPressButton={() =>
-              navigation.navigate("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                //TODO update message to accept JSX
-                statusMessage:
-                  "You have successfully requested for 80,000 from Chiazondu Joseph",
-                navigateTo: "Home",
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
-          />
-          <CancelButtonWithUnderline
-            title="Cancel Transaction"
-            color={Colors.general.red}
-            styleText={CommonStyles.cancelStyle}
-            onPressButton={() => navigation.goBack()}
-            style={{ marginTop: 5 }}
-          />
-        </View>
+      </View>
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.top || hp(45) },
+        ]}>
+        <Button
+          title="Continue"
+          onPressButton={() =>
+            navigation.navigate("StatusScreen", {
+              status: "Successful",
+              statusIcon: "Success",
+              //TODO update message to accept JSX
+              statusMessage:
+                "You have successfully requested for 80,000 from Chiazondu Joseph",
+              navigateTo: "Home",
+            })
+          }
+          styleText={{
+            color: Colors[colorScheme].buttonText,
+          }}
+          style={[
+            {
+              backgroundColor: Colors[colorScheme].button,
+            },
+          ]}
+        />
+        <CancelButtonWithUnderline
+          title="Cancel Transaction"
+          color={Colors.general.red}
+          styleText={CommonStyles.cancelStyle}
+          onPressButton={() => navigation.goBack()}
+          style={{ marginTop: 5 }}
+        />
       </View>
     </SpacerWrapper>
   );

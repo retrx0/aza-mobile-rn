@@ -49,8 +49,8 @@ const SplitEditContactScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
@@ -82,7 +82,8 @@ const SplitEditContactScreen = ({
               style={[
                 styles.input1,
                 {
-                  borderBottomColor: Colors[colorScheme].separator,
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -131,7 +132,8 @@ const SplitEditContactScreen = ({
                 style={[
                   styles.input2,
                   {
-                    borderBottomColor: Colors[colorScheme].separator,
+                    borderBottomColor:
+                      colorScheme === "dark" ? "#262626" : "#EAEAEC",
                   },
                 ]}
                 keyboardType="number-pad"

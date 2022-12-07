@@ -45,8 +45,8 @@ const EditBankAccountDetailsScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(15) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
@@ -81,7 +81,9 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
@@ -125,7 +127,8 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
@@ -154,7 +157,8 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}

@@ -73,7 +73,8 @@ const SelectBankScreen = ({
           style={[
             CommonStyles.row,
             {
-              borderBottomColor: Colors[colorScheme].separator,
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
               borderBottomWidth: 0.7,
               marginBottom: 20,
               marginLeft: hp(5),

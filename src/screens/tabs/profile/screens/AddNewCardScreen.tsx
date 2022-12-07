@@ -82,9 +82,11 @@ const AddNewCardScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your card number"
+              keyboardType="number-pad"
             />
           </View>
           <View style={{ marginBottom: hp(40) }}>
@@ -108,9 +110,11 @@ const AddNewCardScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="MM/YYYY"
+              keyboardType="number-pad"
             />
           </View>
           <View style={{ marginBottom: hp(40) }}>
@@ -134,9 +138,11 @@ const AddNewCardScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your security code behind card"
+              keyboardType="number-pad"
             />
           </View>
         </View>

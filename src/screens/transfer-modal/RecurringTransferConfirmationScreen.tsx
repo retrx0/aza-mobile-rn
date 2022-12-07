@@ -47,7 +47,7 @@ const RecurringTransferConfirmationScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View>
           <Text
             // lightColor={Colors.light.mainText}
@@ -57,6 +57,7 @@ const RecurringTransferConfirmationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
+              paddingHorizontal: hp(20),
             }}>
             Kindly confirm the details of this transaction
           </Text>

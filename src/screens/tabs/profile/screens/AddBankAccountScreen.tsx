@@ -84,7 +84,9 @@ const AddBankAccountScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(5),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                 marginLeft: hp(5),
               }}
               placeholder="Enter your account number"

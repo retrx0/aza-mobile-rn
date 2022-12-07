@@ -126,7 +126,9 @@ const SplitSelectContactsScreen = ({
             style={[
               styles.input,
               {
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A",
                 marginLeft: hp(5),
@@ -216,40 +218,40 @@ const SplitSelectContactsScreen = ({
             data={filteredContacts}
           />
         </View>
-      </View>
-      <View
-        style={[
-          CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
-        ]}>
-        <Button
-          title="Continue"
-          disabled={disabledButton}
-          onPressButton={() =>
-            navigation.navigate("SplitEditContacts", {
-              amount,
-              date,
-              splitImage,
-              name,
-              contacts: selectedContacts,
-            })
-          }
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
+        <View
           style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-            },
-            CommonStyles.button,
-          ]}
-        />
-        <CancelButtonWithUnderline
-          title="Cancel"
-          onPressButton={() => navigation.goBack()}
-          style={{ borderBottomColor: Colors.general.red }}
-          styleText={CommonStyles.cancelStyle}
-        />
+            CommonStyles.passwordContainer,
+            { bottom: insets.top || hp(45) },
+          ]}>
+          <Button
+            title="Continue"
+            disabled={disabledButton}
+            onPressButton={() =>
+              navigation.navigate("SplitEditContacts", {
+                amount,
+                date,
+                splitImage,
+                name,
+                contacts: selectedContacts,
+              })
+            }
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+              CommonStyles.button,
+            ]}
+          />
+          <CancelButtonWithUnderline
+            title="Cancel"
+            onPressButton={() => navigation.goBack()}
+            style={{ borderBottomColor: Colors.general.red }}
+            styleText={CommonStyles.cancelStyle}
+          />
+        </View>
       </View>
     </SpacerWrapper>
   );
