@@ -87,6 +87,7 @@ const AddNewCardScreen = ({
               }}
               placeholder="Enter your card number"
               keyboardType="number-pad"
+              returnKeyType="done"
             />
           </View>
           <View style={{ marginBottom: hp(40) }}>
@@ -115,6 +116,7 @@ const AddNewCardScreen = ({
               }}
               placeholder="MM/YYYY"
               keyboardType="number-pad"
+              returnKeyType="done"
             />
           </View>
           <View style={{ marginBottom: hp(40) }}>
@@ -143,6 +145,7 @@ const AddNewCardScreen = ({
               }}
               placeholder="Enter your security code behind card"
               keyboardType="number-pad"
+              returnKeyType="done"
             />
           </View>
         </View>
