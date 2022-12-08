@@ -81,7 +81,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginBottom: hp(30),
-              }}>
+              }}
+            >
               Enter your email address to continue
             </Text>
             <Text
@@ -92,7 +93,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
             </Text>
           </View>
@@ -102,7 +104,8 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             onSubmit={(values, actions) => {
               setButtonLoading(true);
               handleSubmission(values.email, false);
-            }}>
+            }}
+          >
             {({
               handleChange,
               handleBlur,
