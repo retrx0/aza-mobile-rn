@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import {
   AddIcon,
   AZALightningLogo,
+  DepositIcon,
   MenuIcon,
   NairaIcon,
   OpenIcon,
@@ -169,7 +170,7 @@ const NewUserVault = (
                 screen: "Vault",
               })
             }>
-            <AddIcon />
+            <DepositIcon color="#2AD168" size={40} />
           </TouchableOpacity>
           <Text
             style={{

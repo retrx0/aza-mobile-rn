@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch } from "react-native";
+import { Keyboard, StyleSheet, Switch } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -14,6 +14,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -57,7 +58,9 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Text style={CommonStyles.descriptionStyle}>
             Save and lock part of your Aza funds temporarily, for future use
           </Text>
-          <View style={CommonStyles.vaultInputContainer}>
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            style={CommonStyles.vaultInputContainer}>
             <Input
               label={"Vault Name"}
               labelStyle={undefined}
@@ -71,7 +74,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               icon={undefined}
               containerStyle={undefined}
             />
-          </View>
+          </TouchableWithoutFeedback>
           <View
             style={{
               marginTop: hp(20),
