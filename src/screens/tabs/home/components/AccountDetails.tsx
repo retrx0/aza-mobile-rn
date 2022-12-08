@@ -24,12 +24,14 @@ import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import { Dropdown } from "react-native-element-dropdown";
 
-export default function AccountDetails() {
+export default function AccountDetails({ isModalVisible, listItems }: any) {
   const colorScheme = useColorScheme();
   const [secure, setSecure] = useState(true);
   const [ModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
-
+  // const toggleModal = () => {
+  //   setMenuModalVisible(!isMenuModalVisible);
+  // };
   const user = useAppSelector(selectUser);
 
   return (
@@ -140,16 +142,17 @@ export default function AccountDetails() {
 
       <View>
         <Modal
+          onBackdropPress={() => setModalVisible(false)}
           isVisible={ModalVisible}
           style={{ justifyContent: "flex-end", margin: 0 }}>
           <TouchableOpacity
-            onPress={() => setModalVisible(false)}
             style={{
               backgroundColor: "transparent",
               alignItems: "flex-end",
               marginBottom: 10,
               marginRight: 10,
-            }}>
+            }}
+            onPress={() => setModalVisible(false)}>
             <CloseCircleLargeIcon
               color={Colors[colorScheme].backgroundSecondary}
             />
@@ -160,8 +163,7 @@ export default function AccountDetails() {
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
               backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-            }}
-            onPress={() => setModalVisible(false)}>
+            }}>
             <View
               style={{
                 height: hp(335),
