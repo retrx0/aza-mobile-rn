@@ -54,8 +54,7 @@ const RecurringMoneyConfirmationScreen = ({
               placeholder={""}
             />
           </View>
-          <View
-            style={[CommonStyles.vaultInputcontainer, { marginBottom: 20 }]}>
+          <View style={{ marginBottom: 20 }}>
             <Input
               icon={null}
               keyboardType="phone-pad"
@@ -77,7 +76,7 @@ const RecurringMoneyConfirmationScreen = ({
               returnKeyType="done"
             />
           </View>
-          <View style={CommonStyles.vaultInputcontainer}>
+          <View style={{ marginBottom: 20 }}>
             <Input
               icon={null}
               keyboardType="default"

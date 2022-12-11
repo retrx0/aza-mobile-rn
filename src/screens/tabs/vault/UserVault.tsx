@@ -15,6 +15,7 @@ import {
   MenuIcon,
   QRCodeDarkModeIcon,
   QRCodeIcon,
+  DepositIcon,
 } from "../../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";
 import { useAppSelector } from "../../../redux";
@@ -161,7 +162,7 @@ const UserVault = (
                 screen: "NewVault",
               })
             }>
-            <AddIcon />
+            <DepositIcon color="#2AD168" size={40} />
           </TouchableOpacity>
           <Text
             style={{
