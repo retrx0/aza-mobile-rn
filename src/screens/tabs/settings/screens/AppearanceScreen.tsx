@@ -104,14 +104,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
                 <CheckIcon size={20} color={"#2A9E17"} />
               )}
             </TouchableOpacity>
-            <View
-              style={{
-                borderBottomWidth: 0.6,
-
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              }}
-            />
+            <Divider />
           </View>
         ))}
       </View>
