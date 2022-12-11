@@ -91,7 +91,6 @@ const TransactionModal = ({
         <Button
           title={"Cancel"}
           onPressButton={() => {
-            navigation.goBack();
             setModalVisible(false);
           }}
           style={{

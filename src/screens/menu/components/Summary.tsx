@@ -1,19 +1,11 @@
 import React from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
+import { useColorScheme } from "react-native";
 import Modal from "react-native-modal";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import { CommonScreenProps } from "../../../common/navigation/types";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 // import { useNavigation } from "@react-navigation/core";
-import { RootTabScreenProps } from "../../../../types";
-import navigation from "../../../navigation";
 import { hp } from "../../../common/util/LayoutUtil";
 // import navigation from "../../../navigation";
 
@@ -99,7 +91,6 @@ const SummaryModal = ({
         <Button
           title={"Cancel"}
           onPressButton={() => {
-            navigation.goBack();
             setModalVisible(false);
           }}
           style={{

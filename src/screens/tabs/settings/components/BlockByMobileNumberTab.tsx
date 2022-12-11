@@ -89,7 +89,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
                       color={Colors[colorScheme].text}
                     />
                   }
-                  isContactOnAza={false}
+                  isContactOnAza={true}
                 />
               </TouchableOpacity>
             ))}

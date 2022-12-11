@@ -127,7 +127,7 @@ const ContactsVisibilityScreen = ({
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
             name={"Adewale Adeyesufu"}
             phoneNumber={"8012345678"}
-            isContactOnAza={false}
+            isContactOnAza={true}
           />
         </View>
       </View>
