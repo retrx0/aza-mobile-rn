@@ -25,6 +25,7 @@ const TransactionModal = ({
 
   return (
     <Modal
+      onBackdropPress={() => setModalVisible(false)}
       isVisible={visible}
       style={{ justifyContent: "flex-end", margin: 0 }}>
       <View

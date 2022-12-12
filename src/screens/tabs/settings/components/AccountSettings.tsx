@@ -100,7 +100,7 @@ export default function AccountSettings({
           style={{
             backgroundColor: "transparent",
             marginTop: hp(10),
-            borderBottomWidth: 0.6,
+            borderBottomWidth: 0.8,
             borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />
