@@ -1,10 +1,10 @@
-import { Image, TouchableOpacity } from "react-native";
+import { Image, Modal, TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { View, Text } from "../../../components/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp } from "../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Colors from "../../../constants/Colors";
@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import {
   AddIcon,
   AZALightningLogo,
+  CloseCircleLargeIcon,
   DepositIcon,
   MenuIcon,
   NairaIcon,
@@ -25,6 +26,11 @@ import { selectUser } from "../../../redux/slice/userSlice";
 import { Pressable } from "react-native";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
+import { NigeriaFlag, VaultLogo } from "../../../../assets/images";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import Divider from "../payments/sub-components/Divider";
+import { VaultList } from "./components/VaultCard";
+import VaultModal from "./components/VaultModal";
 
 // const NewUserVault = () => {
 //   const colorScheme = useColorScheme();
@@ -43,7 +49,7 @@ const NewUserVault = (
   const user = useAppSelector(selectUser);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
   const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
-
+  const [ModalVisible, setModalVisible] = useState(false);
   const toggleMenuModal = () => {
     setMenuModalVisible(!isMenuModalVisible);
   };
@@ -90,8 +96,7 @@ const NewUserVault = (
         </View>
 
         <View style={[CommonStyles.col, { alignItems: "center" }]}>
-          <TouchableOpacity
-            onPress={() => navigation.getParent()?.navigate("Home")}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <View
               lightColor="#eaeaec"
               darkColor="#1D1D20"
@@ -188,6 +193,11 @@ const NewUserVault = (
         isModalVisible={isMenuModalVisible}
         toggleModal={toggleMenuModal}
         listItems={menuBottomSheetListItems}
+      />
+      <VaultModal
+        visible={ModalVisible}
+        setModalVisible={setModalVisible}
+        navigation={navigation}
       />
     </>
   );
