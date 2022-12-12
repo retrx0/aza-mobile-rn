@@ -10,7 +10,7 @@ const Divider = () => {
       style={{
         backgroundColor: "transparent",
         borderBottomWidth: 0.8,
-        borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+        borderBottomColor: colorScheme === "dark" ? "#484B51" : "#EAEAEC",
       }}
     />
   );

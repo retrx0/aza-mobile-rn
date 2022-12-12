@@ -149,14 +149,20 @@ export const useBottomSheetType = (
       {
         itemName: "Send Money",
         itemIcon: (
-          <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
+          <SendMoneyIcon
+            size={16}
+            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+          />
         ),
         onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
       },
       {
         itemName: "Request Money",
         itemIcon: (
-          <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />
+          <RequestMoneyIcon
+            size={16}
+            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+          />
         ),
         onPress: () =>
           navigation.navigate("Common", { screen: "RequestMoney" }),
@@ -166,7 +172,7 @@ export const useBottomSheetType = (
         itemIcon: (
           <RecurringTransferIcon
             size={16}
-            color={Colors[colorScheme].mainText}
+            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />
         ),
         onPress: () =>
