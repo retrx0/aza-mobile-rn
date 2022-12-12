@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity } from "react-native";
+import { Image, Keyboard, TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import { Text, View } from "../../../../components/Themed";
@@ -18,7 +18,12 @@ import { AIrtimeStyles as styles } from "../../payments/airtime-screens/styles";
 const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
   const colorScheme = useColorScheme();
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => {
+    setIsEnabled((previousState) => !previousState);
+    if (!isEnabled) {
+      Keyboard.dismiss();
+    }
+  };
 
   const insets = useSafeAreaInsets();
 
@@ -30,7 +35,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: hp(30),
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -40,7 +46,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(80),
-            }}>
+            }}
+          >
             Email Address
           </Text>
         </View>
@@ -51,7 +58,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
               fontWeight: "500",
               marginBottom: hp(40),
               fontFamily: "Euclid-Circular-A-Medium",
-            }}>
+            }}
+          >
             Enter your email address to get your digital code
           </Text>
         </View>
@@ -81,7 +89,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>
