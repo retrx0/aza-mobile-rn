@@ -84,3 +84,4 @@ export const GAME = require("./common/GAME.png");
 export const Chess = require("./common/Chess.png");
 
 export const SWIFT = require("./common/SWIFT.png");
+export const ZEAL = require("./common/ZEAL.png");
