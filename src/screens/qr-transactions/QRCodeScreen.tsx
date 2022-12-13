@@ -21,6 +21,7 @@ import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const colorScheme = useColorScheme();
@@ -140,6 +141,12 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             }}
             style={{
               backgroundColor: Colors[colorScheme].button,
+            }}
+            onPressButton={() => {
+              Toast.show({
+                type: "info",
+                text1: "👍🏻 Link successfully copied!",
+              });
             }}
           />
           <ButtonWithUnderline
