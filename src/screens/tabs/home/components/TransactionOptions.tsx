@@ -60,7 +60,6 @@ const TransactionOptions = ({
             Withdraw
           </Text>
         </TouchableOpacity>
-
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
             <TransferIcon size={40} color={Colors[colorScheme].text} />
@@ -72,7 +71,6 @@ const TransactionOptions = ({
             </Text>
           </View>
         </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", {
