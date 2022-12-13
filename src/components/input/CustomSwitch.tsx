@@ -24,7 +24,7 @@ export default function CustomSwitch({
         style={[
           styles.text,
           {
-            color: colorScheme === "dark" ? "#A6A6A6" : "#A6A6A6",
+            color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
           },
         ]}>
         {title}
