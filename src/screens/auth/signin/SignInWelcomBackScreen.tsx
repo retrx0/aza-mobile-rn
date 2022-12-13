@@ -37,7 +37,7 @@ const verifyPasscode = (code: string, navigation: any, user: any) => {
     }).then((jwt) => {
       if (jwt) {
         storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
-        navigation.navigate("Root");
+        navigation.replace("Root");
       } else {
         toastError(`Invalid passcode, attempt ${++loginAttemptCounter} ⚠️`);
       }
@@ -103,7 +103,8 @@ const SignInWelcomeBackScreen = ({
               marginTop: hp(20),
               paddingHorizontal: hp(20),
               marginBottom: hp(100),
-            }}>
+            }}
+          >
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -115,7 +116,8 @@ const SignInWelcomeBackScreen = ({
             />
           </View>
           <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
+            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
+          >
             <TouchableOpacity onPress={() => forgetUser(navigation)}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>

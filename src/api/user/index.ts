@@ -53,9 +53,6 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
       },
     });
     if (result.status === 200) return result.data;
-    // temporary!!!! must remove the below if endpoint gets fixed
-    else if (result.status === 400) return { data: "bad request" };
-    else if (result.status === 409) return "";
     return undefined;
   } catch (e) {
     console.log("Error registering user: ", e as Error);

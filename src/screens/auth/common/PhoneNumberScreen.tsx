@@ -95,10 +95,12 @@ const PhoneNumberScreen = ({
           country={country}
           phoneNumber={phoneNumber}
           onCountryPress={() => setModalVisible(true)}
-          onChangeText={setPhoneNumber}
-          onSendOtp={phone}
+          onChangeText={(ttt) => {
+            setPhoneNumber(ttt);
+            console.log(ttt);
+          }}
           onChangePhoneNumber={(p: React.SetStateAction<string>) => setPhone(p)}
-          initialValue={phone}
+          initialValue={phoneNumber}
           autoFormat
           textStyle={[CommonStyles.textStyle]}
           textProps={{

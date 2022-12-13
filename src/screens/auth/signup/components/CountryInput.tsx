@@ -30,7 +30,8 @@ export const CountryBox = ({
         styles.container,
         { borderColor: colorScheme === "dark" ? "#999999" : "#121212" },
         { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
-      ]}>
+      ]}
+    >
       <Pressable style={styles.countryContainer} onPress={onPress}>
         <Image
           source={{ uri: imageLink }}
@@ -44,7 +45,8 @@ export const CountryBox = ({
           style={[
             styles.countryName,
             { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
-          ]}>
+          ]}
+        >
           {code}
         </Text>
         <View>
@@ -63,7 +65,7 @@ export const CountryBox = ({
             styles.textInput,
             { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
           ]}
-          placeholder="1234568"
+          placeholder=""
           keyboardType="number-pad"
           {...rest}
           placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
