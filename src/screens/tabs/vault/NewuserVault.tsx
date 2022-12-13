@@ -1,18 +1,15 @@
-import { Image, Modal, TouchableOpacity } from "react-native";
-import Button from "../../../components/buttons/Button";
+import { Image, TouchableOpacity } from "react-native";
 import { View, Text } from "../../../components/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import { hp } from "../../../common/util/LayoutUtil";
 import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Colors from "../../../constants/Colors";
 import React, { useState } from "react";
 import {
-  AddIcon,
   AZALightningLogo,
-  CloseCircleLargeIcon,
   DepositIcon,
   MenuIcon,
   NairaIcon,
@@ -26,19 +23,7 @@ import { selectUser } from "../../../redux/slice/userSlice";
 import { Pressable } from "react-native";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
-import { NigeriaFlag, VaultLogo } from "../../../../assets/images";
-import { NAIRA_UNICODE } from "../../../constants/AppConstants";
-import Divider from "../payments/sub-components/Divider";
-import { VaultList } from "./components/VaultCard";
 import VaultModal from "./components/VaultModal";
-
-// const NewUserVault = () => {
-//   const colorScheme = useColorScheme();
-//   const navigation = useNavigation();
-//   const [secure, setSecure] = useState(true);
-//   const user = useAppSelector(selectUser);
-//   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
-//   const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
 
 const NewUserVault = (
   _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
@@ -53,6 +38,9 @@ const NewUserVault = (
   const toggleMenuModal = () => {
     setMenuModalVisible(!isMenuModalVisible);
   };
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const insets = useSafeAreaInsets();
   return (
     <>
       <SpacerWrapper>
