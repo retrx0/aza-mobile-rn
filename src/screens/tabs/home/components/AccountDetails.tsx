@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import {
   CloseCircleLargeIcon,
-  Exit,
-  ExitIcon,
   NairaIcon,
-  NigerianFlag,
   OpenIcon,
 } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -17,12 +14,9 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import Modal from "react-native-modal";
 import Divider from "../../../../components/divider/Divider";
-import { RootTabScreenProps } from "../../../../../types";
-import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useNavigation } from "@react-navigation/core";
 import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
-import { Dropdown } from "react-native-element-dropdown";
 
 export default function AccountDetails({ isModalVisible, listItems }: any) {
   const colorScheme = useColorScheme();
@@ -154,10 +148,10 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             }}
             onPress={() => setModalVisible(false)}>
             <CloseCircleLargeIcon
-              color={Colors[colorScheme].backgroundSecondary}
+              color={colorScheme === "dark" ? "#E7E9EA" : "#E7E9EA"}
             />
           </TouchableOpacity>
-          <TouchableOpacity
+          <View
             style={{
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
@@ -181,7 +175,11 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                 Accounts
               </Text>
               <Divider />
-              <View
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.getParent()?.navigate("Home");
+                  setModalVisible(false);
+                }}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -222,7 +220,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   }}>
                   {`${NAIRA_UNICODE} 239,290`}
                 </Text>
-              </View>
+              </TouchableOpacity>
               <Divider />
               <TouchableOpacity
                 style={{
@@ -272,7 +270,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               </TouchableOpacity>
               <Divider />
             </View>
-          </TouchableOpacity>
+          </View>
         </Modal>
       </View>
     </>
