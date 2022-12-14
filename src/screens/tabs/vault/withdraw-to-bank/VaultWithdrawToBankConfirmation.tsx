@@ -19,10 +19,10 @@ import { selectUser } from "../../../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../../../common/util/AppUtil";
 import { setTransaction } from "../../../../redux/slice/transactionSlice";
 
-const VaultConfirmation = ({
+const VaultWithdrawConfirm = ({
   navigation,
   route,
-}: CommonScreenProps<"VaultConfirmation">) => {
+}: CommonScreenProps<"VaultWithdrawConfirm">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [descModal, setDescModalOpen] = useState(false);
@@ -269,7 +269,7 @@ const VaultConfirmation = ({
   );
 };
 
-export default VaultConfirmation;
+export default VaultWithdrawConfirm;
 
 const styles = StyleSheet.create({
   container: {
