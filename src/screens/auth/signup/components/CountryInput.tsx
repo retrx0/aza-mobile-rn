@@ -8,6 +8,7 @@ import {
   TextInputProps,
   Pressable,
 } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
@@ -28,10 +29,9 @@ export const CountryBox = ({
     <View
       style={[
         styles.container,
-        { borderColor: colorScheme === "dark" ? "#999999" : "#121212" },
+        { borderColor: Colors[colorScheme].border },
         { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
-      ]}
-    >
+      ]}>
       <Pressable style={styles.countryContainer} onPress={onPress}>
         <Image
           source={{ uri: imageLink }}
@@ -45,8 +45,7 @@ export const CountryBox = ({
           style={[
             styles.countryName,
             { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
-          ]}
-        >
+          ]}>
           {code}
         </Text>
         <View>
@@ -60,17 +59,19 @@ export const CountryBox = ({
             },
           ]}
         />
-        <TextInput
-          style={[
-            styles.textInput,
-            { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
-          ]}
-          placeholder=""
-          keyboardType="number-pad"
-          {...rest}
-          placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-        />
       </Pressable>
+      <TextInput
+        style={[
+          styles.textInput,
+          { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
+        ]}
+        placeholder=""
+        keyboardType="number-pad"
+        {...rest}
+        placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+        maxLength={15}
+        returnKeyType="done"
+      />
     </View>
   );
 };
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
     padding: hp(10),
-    borderWidth: hp(1),
+    borderWidth: 0.5,
     borderRadius: hp(5),
     marginBottom: hp(40),
     height: hp(55),
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     width: 1,
-    height: hp(28),
+    height: hp(30),
     marginLeft: wp(10),
     marginRight: hp(10),
   },
@@ -115,5 +116,6 @@ const styles = StyleSheet.create({
     fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
+    width: "100%",
   },
 });
