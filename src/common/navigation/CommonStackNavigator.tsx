@@ -143,6 +143,7 @@ import WaterRecurring from "../../screens/tabs/payments/paymentRecurring/WaterRe
 import CableRecurring from "../../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
 import ElectricityRecurring from "../../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
 import GiftCardEmail from "../../screens/tabs/payments/gift-card/EmailScreen";
+import CEOMessage from "../../screens/onboarding/CEOMessage";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -224,6 +225,12 @@ const CommonStack = () => {
           name="TransactionKeypad"
           component={TransactionKeypadScreen}
         />
+        <Stack.Screen name="VaultConfirmation" component={VaultConfirmation} />
+      </Stack.Group>
+
+      {/*  CeoMessage screen */}
+      <Stack.Group>
+        <Stack.Screen name="CEOMessage" component={CEOMessage} />
         <Stack.Screen name="VaultConfirmation" component={VaultConfirmation} />
       </Stack.Group>
 

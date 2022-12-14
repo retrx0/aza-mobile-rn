@@ -140,6 +140,9 @@ export type CommonStackParamList = {
   SelectNewRecurringTransfer: undefined;
   RecurringTransferConfirmation: undefined;
   SetNewRecurringTransfer: undefined;
+
+  // CEOMessage screen
+  CEOMessage: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
