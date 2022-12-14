@@ -66,8 +66,7 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -145,8 +144,7 @@ const PhoneNumberScreen = ({
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },
-          ]}
-        >
+          ]}>
           <FlatList
             style={[
               {
