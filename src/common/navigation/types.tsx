@@ -6,7 +6,7 @@ import { Contact } from "expo-contacts";
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
-  VaultConfirmation: VaultConfirmationParamsType;
+  VaultWithdrawConfirm: VaultConfirmationParamsType;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
