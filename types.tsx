@@ -187,8 +187,10 @@ export type CountriesType = Omit<CountryProps, "onPress">;
 export const CountryDetails: CountriesType[] = [
   {
     code: "+234",
-    short_name: "NGN",
+    imageLink:
+      "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
     name: "Nigeria",
+    short_name: "NG",
   },
   {
     code: "+233",

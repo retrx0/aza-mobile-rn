@@ -2,13 +2,14 @@ import React from "react";
 import {
   Text,
   View,
-  Image,
   TextInput,
   StyleSheet,
   TextInputProps,
   Pressable,
 } from "react-native";
+import { SvgUri } from "react-native-svg";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+
 import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
@@ -31,12 +32,14 @@ export const CountryBox = ({
         styles.container,
         { borderColor: Colors[colorScheme].border },
         { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
-      ]}>
+      ]}
+    >
       <Pressable style={styles.countryContainer} onPress={onPress}>
-        <Image
-          source={{ uri: imageLink }}
+        <SvgUri
+          uri={imageLink || null}
           style={styles.flag}
-          resizeMode="contain"
+          width={wp(25)}
+          height={wp(15)}
         />
         {/* <View style={styles.country}>
           <Text style={styles.countryName}>{short_name}</Text>
@@ -45,7 +48,8 @@ export const CountryBox = ({
           style={[
             styles.countryName,
             { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
-          ]}>
+          ]}
+        >
           {code}
         </Text>
         <View>
