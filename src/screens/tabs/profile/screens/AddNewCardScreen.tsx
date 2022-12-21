@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
@@ -13,6 +13,8 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { number } from "yup/lib/locale";
+import { string } from "yup";
 
 const AddNewCardScreen = ({
   navigation,
@@ -21,6 +23,18 @@ const AddNewCardScreen = ({
   const colorScheme = useColorScheme();
   const { navigateBackTo } = route.params;
   const insets = useSafeAreaInsets();
+
+  interface CardDetails {
+    cardNo: string;
+    expiryDate: string;
+    cvv: string;
+  }
+
+  const [cardDetails, setCardDetails] = useState<CardDetails>({
+    cardNo: "",
+    cvv: "",
+    expiryDate: "",
+  });
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -32,7 +46,8 @@ const AddNewCardScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Add New Card
         </Text>
       ),
@@ -58,7 +73,8 @@ const AddNewCardScreen = ({
               marginTop: hp(30),
               marginBottom: hp(40),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Add your card details to deposit money to your Aza wallet
           </Text>
           <View style={{ marginBottom: hp(40) }}>
@@ -69,7 +85,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Card Number
             </Text>
             <TextInput
@@ -88,6 +105,11 @@ const AddNewCardScreen = ({
               placeholder="Enter your card number"
               keyboardType="number-pad"
               returnKeyType="done"
+              maxLength={16}
+              value={"" + cardDetails.cardNo}
+              onChangeText={(_cardNo) =>
+                setCardDetails({ ...cardDetails, cardNo: _cardNo })
+              }
             />
           </View>
           <View style={{ marginBottom: hp(40) }}>
@@ -98,7 +120,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Expiry Date
             </Text>
             <TextInput
@@ -114,9 +137,14 @@ const AddNewCardScreen = ({
                 borderBottomColor:
                   colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
-              placeholder="MM/YYYY"
+              placeholder="MM/YY"
               keyboardType="number-pad"
               returnKeyType="done"
+              maxLength={4}
+              value={cardDetails.expiryDate}
+              onChangeText={(text) => {
+                setCardDetails({ ...cardDetails, expiryDate: text });
+              }}
             />
           </View>
           <View style={{ marginBottom: hp(40) }}>
@@ -127,10 +155,12 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               CVV
             </Text>
             <TextInput
+              secureTextEntry
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
@@ -146,6 +176,11 @@ const AddNewCardScreen = ({
               placeholder="Enter your security code behind card"
               keyboardType="number-pad"
               returnKeyType="done"
+              maxLength={3}
+              value={"" + cardDetails.cvv}
+              onChangeText={(_cvv) =>
+                setCardDetails({ ...cardDetails, cvv: _cvv })
+              }
             />
           </View>
         </View>
@@ -153,7 +188,8 @@ const AddNewCardScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <CancelButtonWithUnderline
             title="Scan Card instead"
             color={Colors[colorScheme].mainText}
@@ -163,15 +199,19 @@ const AddNewCardScreen = ({
 
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                statusMessage:
-                  "Your card has been successfully added to your Aza",
-                navigateTo: navigateBackTo,
-              })
-            }
+            onPressButton={() => {
+              if (cardDetails) {
+                console.log(cardDetails);
+                navigation.navigate("StatusScreen", {
+                  status: "Successful",
+                  statusIcon: "Success",
+                  statusMessage:
+                    "Your card has been successfully added to your Aza",
+                  navigateTo: navigateBackTo,
+                });
+              } else {
+              }
+            }}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}

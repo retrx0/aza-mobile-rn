@@ -36,6 +36,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         codeInputFieldStyle={styles.underlineStyleBase}
         // codeInputHighlightStyle={styles.underlineStyleHighLighted}
         onCodeFilled={() => null}
+        style={{ marginBottom: hp(20), marginTop: hp(10) }}
       />
     </View>
   );

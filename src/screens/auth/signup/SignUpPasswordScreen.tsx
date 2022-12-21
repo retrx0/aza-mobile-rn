@@ -23,7 +23,10 @@ import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { toastError } from "../../../common/util/ToastUtil";
-import { storeItemSecure } from "../../../common/util/StorageUtil";
+import {
+  storeItemSecure,
+  storeUserCredentialsSecure,
+} from "../../../common/util/StorageUtil";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -63,14 +66,14 @@ const SignUpPasswordScreen = ({
       .catch((e) => console.error(e));
   }, []);
 
-  useEffect(() => {
-    Crypto.digestStringAsync(
-      Crypto.CryptoDigestAlgorithm.SHA256,
-      passcode
-    ).then((hashed) => {
-      setHashedPasscode(hashed);
-    });
-  }, [passcode]);
+  // useEffect(() => {
+  //   Crypto.digestStringAsync(
+  //     Crypto.CryptoDigestAlgorithm.SHA256,
+  //     passcode
+  //   ).then((hashed) => {
+  //     setHashedPasscode(hashed);
+  //   });
+  // }, [passcode]);
 
   return (
     <SpacerWrapper>
@@ -136,7 +139,7 @@ const SignUpPasswordScreen = ({
                 phoneNumber: newUser.phoneNumber,
                 gender: newUser.gender,
                 isUsePasscodeAsPin: isUsePasscodeAsPin,
-                createdPasscode: hashedPasscode,
+                createdPasscode: passcode,
                 thirdPartyEmailSignUp: false,
                 pushToken: newUser.pushToken,
               })
@@ -147,21 +150,24 @@ const SignUpPasswordScreen = ({
                 passwordScreenType: "Confirm",
               });
             } else {
-              if (hashedPasscode === newUser.createdPasscode) {
+              if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
                 registerUserAPI({
                   email: newUser.emailAddress!,
                   firstName: newUser.firstName!,
                   lastName: newUser.lastName!,
                   gender: newUser.gender === "male" ? `1` : `2`,
-                  newPassword: hashedPasscode,
+                  newPassword: passcode,
                   pushNotificationToken: newUser.pushToken,
                 }).then((_res) => {
                   if (_res) {
+                    // Store user credentials for face id
+                    storeUserCredentialsSecure(newUser.emailAddress, passcode);
+
                     loginUserAPI({
                       email: newUser.emailAddress,
                       phoneNumber: newUser.phoneNumber,
-                      password: hashedPasscode,
+                      password: passcode,
                     }).then((_jwt) => {
                       if (_jwt) {
                         navigation.getParent()?.navigate("Root");

@@ -20,6 +20,7 @@ import {
   clearUserCredentials,
   getUserCredentialsSecure,
   storeItemSecure,
+  storeUserCredentialsSecure,
 } from "../../../common/util/StorageUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import ActivityScreen from "../../ActivityScreen";
@@ -97,6 +98,12 @@ const SignInWelcomeBackScreen = ({
   };
 
   useEffect(() => {
+    // storeUserCredentialsSecure("email", "passcode");
+
+    // getUserCredentialsSecure().then((creds) => {
+    //   console.log(creds);
+    // });
+
     LocalAuthentication.hasHardwareAsync().then((hasBiometricHardware) => {
       if (hasBiometricHardware) {
         LocalAuthentication.isEnrolledAsync().then((enrolled) => {
@@ -106,7 +113,13 @@ const SignInWelcomeBackScreen = ({
             }).then((result) => {
               if (result.success) {
                 // getUserCredentialsSecure().then((r) => console.log(r));
-                navigation.getParent()?.navigate("Root");
+                //get user credentials from keychain
+                getUserCredentialsSecure().then((creds) => {
+                  console.log(creds);
+                  if (creds) {
+                    verifyPasscode(creds.password, navigation, user);
+                  }
+                });
               } else {
               }
             });
