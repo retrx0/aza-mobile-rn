@@ -2,14 +2,15 @@ import React from "react";
 import {
   Text,
   View,
-  Image,
   TextInput,
   StyleSheet,
   TextInputProps,
   Pressable,
 } from "react-native";
 import { SvgUri } from "react-native-svg";
+import { SvgUri } from "react-native-svg";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+
 import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
@@ -35,11 +36,6 @@ export const CountryBox = ({
       ]}
     >
       <Pressable style={styles.countryContainer} onPress={onPress}>
-        {/* <Image
-          source={{ uri: imageLink }}
-          style={styles.flag}
-          resizeMode="contain"
-        /> */}
         <SvgUri
           style={styles.flag}
           width={"25"}

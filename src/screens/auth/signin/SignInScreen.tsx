@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState } from "react";
+import React, { useState }, { useState } from "react";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -24,6 +24,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const dispatch = useAppDispatch();
 
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [isButtonLoading, setButtonLoading] = useState(false);
 
   const validationSchema = yup.object({
     email: yup.string().required("Email is required!").email(),
@@ -31,8 +32,10 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
 
   const handleSubmission = (email: string) => {
     setButtonLoading(true);
+    setButtonLoading(true);
     getUserLoginInfoAPI(email)
       .then((data) => {
+        setButtonLoading(false);
         if (data) {
           dispatch(
             setUserPhoneAndFullName({
@@ -78,6 +81,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 fontSize: hp(18),
                 fontWeight: "500",
               }}
+
             >
               Email Address <Text style={{ color: "red" }}>*</Text>
             </Text>
@@ -127,6 +131,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                     ]}
                     buttonLoading={buttonLoading}
                     disabled={!isValid}
+                    willCallAsync={isButtonLoading}
                   />
                 </View>
               );

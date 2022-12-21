@@ -1,32 +1,35 @@
 import React, { useState } from "react";
+import Modal from "react-native-modal";
+import { FlatList } from "react-native";
+
+import BackButton from "../../../components/buttons/BackButton";
+import Button from "../../../components/buttons/Button";
+import { useCountries } from "../signup/components/UseCountries";
+import { CountriesCard } from "../signup/components/CountriesCard";
+import { PhoneInput, Text, View } from "../../../components/Themed";
+import Phone from "./PhoneStage";
+
+import useColorScheme from "../../../hooks/useColorScheme";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import Colors from "../../../constants/Colors";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import { hp, wp } from "../../../common/util/LayoutUtil";
 import {
   CountriesType,
   CountryDetails,
   CountryProps,
   SignUpScreenProps,
 } from "../../../../types";
-import { PhoneInput, Text, View } from "../../../components/Themed";
-import useColorScheme from "../../../hooks/useColorScheme";
+
 import { useAppDispatch } from "../../../redux";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import Colors from "../../../constants/Colors";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import { hp, wp } from "../../../common/util/LayoutUtil";
-import BackButton from "../../../components/buttons/BackButton";
-import Button from "../../../components/buttons/Button";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { requestOtpApi } from "../../../api/auth";
-import { useCountries } from "../signup/components/UseCountries";
-import { CountriesCard } from "../signup/components/CountriesCard";
-import Modal from "react-native-modal";
-import { FlatList } from "react-native";
-// import { SelectIcon } from "../../../../assets/svg";
-import Phone from "./PhoneStage";
 
 const PhoneNumberScreen = ({
   navigation,
 }: SignUpScreenProps<"SignUpPhoneNumber">) => {
   const [phone, setPhone] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
@@ -40,8 +43,6 @@ const PhoneNumberScreen = ({
     setCountry(item);
     setModalVisible(false);
   };
-
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
     <>
@@ -96,9 +97,8 @@ const PhoneNumberScreen = ({
           country={country}
           phoneNumber={phoneNumber}
           onCountryPress={() => setModalVisible(true)}
-          onChangeText={(ttt) => {
-            setPhoneNumber(ttt);
-            console.log(ttt);
+          onChangeText={(number) => {
+            setPhoneNumber(number);
           }}
           onChangePhoneNumber={(p: React.SetStateAction<string>) => setPhone(p)}
           initialValue={phoneNumber}
@@ -115,11 +115,14 @@ const PhoneNumberScreen = ({
           title="Continue"
           onPressButton={() => {
             dispatch(
-              setReduxStorePhone(phoneNumber.trim().replaceAll(/\s/g, ""))
+              setReduxStorePhone(
+                country.code + phoneNumber.trim().replaceAll(/\s/g, "")
+              )
             );
             requestOtpApi({
               email: "",
-              phoneNumber: phoneNumber.trim().replaceAll(/\s/g, ""),
+              phoneNumber:
+                country.code + phoneNumber.trim().replaceAll(/\s/g, ""),
             }).then((code) => {
               if (code) console.debug("Phone otp requested");
             });

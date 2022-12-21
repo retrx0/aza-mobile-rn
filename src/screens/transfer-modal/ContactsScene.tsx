@@ -71,7 +71,8 @@ const ContactsScene = ({
                   marginLeft: hp(5),
                   marginTop: hp(30),
                   marginBottom: hp(24),
-                }}>
+                }}
+              >
                 Quick contacts
               </Text>
               <View>
@@ -132,10 +133,14 @@ const ContactsScene = ({
                     },
                     {
                       title: "Contacts not using Aza yet",
-                      data: contacts.filter((_c) =>
-                        _c.name
-                          .toUpperCase()
-                          .includes(searchContact.toUpperCase())
+                      data: contacts.filter(
+                        (_c) =>
+                          _c.firstName
+                            ?.toUpperCase()
+                            .includes(searchContact.toUpperCase()) ||
+                          _c.lastName
+                            ?.toUpperCase()
+                            .includes(searchContact.toUpperCase())
                       ),
                       azaContacts: false,
                     },
@@ -156,7 +161,8 @@ const ContactsScene = ({
                             } else {
                               nonAzaContactOnPress(item);
                             }
-                          }}>
+                          }}
+                        >
                           <ContactListItem
                             image={getInitialsAvatar({
                               firstName: item?.fullName,
@@ -179,7 +185,8 @@ const ContactsScene = ({
                           } else {
                             nonAzaContactOnPress(item);
                           }
-                        }}>
+                        }}
+                      >
                         <ContactListItem
                           image={getInitialsAvatar({
                             firstName: item?.firstName,
@@ -218,7 +225,8 @@ const ContactsScene = ({
                 marginLeft: hp(5),
                 marginTop: hp(30),
                 marginBottom: hp(24),
-              }}>
+              }}
+            >
               Recents
             </Text>
             <View>
@@ -312,7 +320,8 @@ const QuickContactView = ({
   return (
     <TouchableOpacity onPress={onPress}>
       <View
-        style={[CommonStyles.col, { alignItems: "center", marginRight: 20 }]}>
+        style={[CommonStyles.col, { alignItems: "center", marginRight: 20 }]}
+      >
         <Image
           style={{
             borderRadius: 50,
@@ -326,7 +335,8 @@ const QuickContactView = ({
         <Text
           // lightColor={Colors.light.text}
           // darkColor={Colors.dark.mainText}
-          style={{ fontSize: hp(12), marginTop: 5 }}>
+          style={{ fontSize: hp(12), marginTop: 5 }}
+        >
           {firstName}
         </Text>
       </View>
