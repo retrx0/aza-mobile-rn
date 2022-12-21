@@ -41,7 +41,8 @@ const TransactionOptions = ({
           marginTop: hp(20),
           marginBottom: hp(10),
           paddingHorizontal: hp(10),
-        }}>
+        }}
+      >
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", {
@@ -51,12 +52,14 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}>
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <WithdrawIcon size={40} color="#FF361A" />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
-            style={{ fontSize: hp(17) }}>
+            style={{ fontSize: hp(17) }}
+          >
             Withdraw
           </Text>
         </TouchableOpacity>
@@ -66,7 +69,8 @@ const TransactionOptions = ({
             <Text
               lightColor={Colors.light.text}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: hp(17) }}>
+              style={{ fontSize: hp(17) }}
+            >
               Transfer
             </Text>
           </View>
@@ -80,12 +84,14 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}>
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <DepositIcon color="#2AD168" size={40} />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
-            style={{ fontSize: hp(17) }}>
+            style={{ fontSize: hp(17) }}
+          >
             Deposit
           </Text>
         </TouchableOpacity>
