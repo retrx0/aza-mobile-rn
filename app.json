@@ -56,7 +56,8 @@
           "icon": "./assets/images/app/aza-app-icon-light.png",
           "color": "#ffffff"
         }
-      ]
+      ],
+      "@config-plugins/detox"
     ]
   },
   "infoPlist": {

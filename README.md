@@ -19,6 +19,24 @@
 
 TODO: Describe and show how to build your code and run the tests.
 
+### Test
+
+#### Frameworks
+
+- Unit testing
+  - [Jest](https://jestjs.io/)
+- End to End testing
+  - [Detox](https://github.com/wix/Detox#readme)
+  - [Getting started with Detox](https://wix.github.io/Detox/docs/introduction/getting-started/)
+
+#### Runnnig
+
+`yarn e2e:ios` for IOS debug
+
+`yarn e2e:android` for Android debug
+
+`yarn e2e:android-release` use release to run app in release mode
+
 ## Important!
 
 - Project uses yarn as package manager!
