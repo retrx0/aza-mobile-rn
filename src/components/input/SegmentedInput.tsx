@@ -35,9 +35,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         autoFocusOnLoad={autoFocusOnLoad}
         codeInputFieldStyle={styles.underlineStyleBase}
         // codeInputHighlightStyle={styles.underlineStyleHighLighted}
-        onCodeFilled={(code) => {
-          console.log(`Code is ${code}, you are good to go!`);
-        }}
+        onCodeFilled={() => null}
       />
     </View>
   );

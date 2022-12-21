@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from "react";
+import React, { useState } from "react";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -23,11 +23,14 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
+  const [buttonLoading, setButtonLoading] = useState(false);
+
   const validationSchema = yup.object({
     email: yup.string().required("Email is required!").email(),
   });
 
   const handleSubmission = (email: string) => {
+    setButtonLoading(true);
     getUserLoginInfoAPI(email)
       .then((data) => {
         if (data) {
@@ -40,11 +43,14 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           requestOtpApi({
             email: "",
             phoneNumber: data.phoneNumber,
-          });
+          }).then(() => setButtonLoading(false));
           navigation.navigate("SignInOTP");
         }
       })
-      .catch(() => toastError("Invalid email!"));
+      .catch(() => {
+        toastError("Invalid email!");
+        setButtonLoading(false);
+      });
   };
 
   return (
@@ -71,7 +77,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Email Address <Text style={{ color: "red" }}>*</Text>
             </Text>
           </View>
@@ -81,7 +88,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             initialValues={{ email: "" }}
             onSubmit={(values, actions) => {
               handleSubmission(values.email);
-            }}>
+            }}
+          >
             {({
               handleChange,
               handleBlur,
@@ -117,6 +125,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                         marginTop: 20,
                       },
                     ]}
+                    buttonLoading={buttonLoading}
                     disabled={!isValid}
                   />
                 </View>
@@ -133,7 +142,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
               marginBottom: hp(30),
               lineHeight: hp(18),
               color: Colors.general.grey,
-            }}>
+            }}
+          >
             OR
           </Text>
           <ThirdPartyAuthButtons

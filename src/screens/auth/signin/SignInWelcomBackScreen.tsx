@@ -7,7 +7,7 @@ import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
 import { View, Text } from "../../../components/Themed";
 import api from "../../../api";
-import { AppState, TouchableOpacity } from "react-native";
+import { Alert, AppState, TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
@@ -22,28 +22,9 @@ import {
   storeItemSecure,
 } from "../../../common/util/StorageUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
-
-let loginAttemptCounter = 0;
-const verifyPasscode = (code: string, navigation: any, user: any) => {
-  //todo add push notification token to the server to always keep it updated incase it change
-
-  console.log("verifying passcode...");
-  if (loginAttemptCounter > 3) {
-  } else {
-    loginUserAPI({
-      email: user.email,
-      password: code,
-      phoneNumber: user.phoneNumber,
-    }).then((jwt) => {
-      if (jwt) {
-        storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
-        navigation.replace("Root");
-      } else {
-        toastError(`Invalid passcode, attempt ${++loginAttemptCounter} ⚠️`);
-      }
-    });
-  }
-};
+import ActivityScreen from "../../ActivityScreen";
+import ActivityModal from "../../../components/modal/ActivityModal";
+import useCountdownTimer from "../../../hooks/useCountdownTimer";
 
 const forgetUser = (navigation: any) => {
   console.debug("forgetting user...");
@@ -63,7 +44,57 @@ const SignInWelcomeBackScreen = ({
   const insets = useSafeAreaInsets();
   const user = useAppSelector(selectUser);
 
+  const [screenLoading, setScreenLoading] = useState(false);
+
   const [passcode, setPasscode] = useState("");
+
+  const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
+
+  const {
+    minutesToDisplay,
+    secondsToDisplay,
+    resetTimer,
+    toTwoDigits,
+    timerStatus,
+    startTimer,
+  } = useCountdownTimer(60 * 5);
+
+  const resendCode = () => {
+    resetTimer();
+  };
+
+  const verifyPasscode = (code: string, navigation: any, user: any) => {
+    // TODO add push notification token to the server to always keep it updated incase it change
+
+    // TODO refactor below code
+
+    if (loginAttemptCounter > 3) {
+      if (timerStatus === "Started") {
+        Alert.alert(
+          `Your account has been locked, try again after ${minutesToDisplay} minutes`
+        );
+      } else {
+        startTimer();
+      }
+    } else {
+      setScreenLoading(true);
+      loginUserAPI({
+        email: user.email,
+        password: code,
+        phoneNumber: user.phoneNumber,
+      }).then((jwt) => {
+        if (jwt) {
+          storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
+          setScreenLoading(false);
+          navigation.navigate("Root");
+        } else {
+          setScreenLoading(false);
+          setLoginAttemptCounter((s) => s + 1);
+          toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+        }
+      });
+    }
+  };
 
   useEffect(() => {
     LocalAuthentication.hasHardwareAsync().then((hasBiometricHardware) => {
@@ -124,6 +155,7 @@ const SignInWelcomeBackScreen = ({
           </View>
         </View>
       </HideKeyboardOnTouch>
+      <ActivityModal loading={screenLoading} />
     </SpacerWrapper>
   );
 };

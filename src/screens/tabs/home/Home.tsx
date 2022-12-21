@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Modal, StyleSheet } from "react-native";
 
 import { Text, View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
@@ -13,12 +13,11 @@ import { selectNewUser } from "../../../redux/slice/newUserSlice";
 import { useNotifications } from "../../../hooks/useNotifications";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import { CautionIcon } from "../../../../assets/svg";
+import CEOMessage from "../../onboarding/CEOMessage";
+import { useState } from "react";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
-  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
-  console.log("Logged in state: " + isLoggedIn);
-  const newUserData = useAppSelector(selectNewUser);
-  console.log(newUserData);
+  const [ceoMessageVisible, setceoMessageVisible] = useState(true);
 
   const {
     schedulePushNotification,
@@ -46,6 +45,9 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
       <TransactionOptions navigation={navigation} route={route} />
       <LinkBVN navigation={navigation} route={route} isBvnLinked={false} />
       <RecentTransactions navigation={navigation} route={route} />
+      {/* <Modal visible={ceoMessageVisible}>
+        <CEOMessage navigation={navigation} route={route} />
+      </Modal> */}
     </View>
   );
 };

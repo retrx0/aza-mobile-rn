@@ -38,12 +38,23 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { setPushToken } from "../redux/slice/newUserSlice";
 import ActivityModal from "../components/modal/ActivityModal";
 import { selectActivityModal } from "../redux/slice/activityModalSlice";
+import { selectAppTheme } from "../redux/slice/themeSlice";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
+  const _selectedTheme = useAppSelector(selectAppTheme);
+
+  const getDeviceTheme = () => {
+    if (_selectedTheme === "dark") return DarkTheme;
+    else if (_selectedTheme === "light") return DefaultTheme;
+    else {
+      return colorScheme === "dark" ? DarkTheme : DefaultTheme;
+    }
+  };
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      theme={getDeviceTheme()}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -123,11 +134,13 @@ const RootNavigator = () => {
           //   .catch((e) => console.log(e));
         }
       }}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <ActivityModal loading={isActivityModalOpen} />
       <Stack.Navigator
         initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
-        screenOptions={{ gestureEnabled: false }}>
+        screenOptions={{ gestureEnabled: false }}
+      >
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
@@ -146,7 +159,7 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Root"
           component={BottomTabNavigator}
-          options={{ headerShown: false, gestureEnabled: true }}
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
           name="Common"

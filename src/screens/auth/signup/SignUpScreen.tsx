@@ -134,7 +134,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                     onPressButton={handleSubmit}
                     styleText={{ color: Colors[colorScheme].buttonText }}
                     style={[{ backgroundColor: Colors[colorScheme].button }]}
-                    willCallAsync={buttonLoading}
+                    buttonLoading={buttonLoading}
                     disabled={!isValid}
                   />
                 </View>

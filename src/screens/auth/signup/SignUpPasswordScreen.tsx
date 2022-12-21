@@ -189,7 +189,7 @@ const SignUpPasswordScreen = ({
             },
             CommonStyles.button,
           ]}
-          willCallAsync={isConfirmScreen && loading}
+          buttonLoading={isConfirmScreen && loading}
           disabled={passcode.length < 6 ? true : false}
         />
       </View>

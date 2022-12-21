@@ -9,13 +9,12 @@ import { useNavigation } from "@react-navigation/core";
 import MyButton from "../tabs/payments/sub-components/MyButton";
 import CustomSwitch from "../../components/input/CustomSwitch";
 
-const CEOMessage = (
-  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
-) => {
+const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+
   return (
     <>
       <SpacerWrapper>
@@ -25,7 +24,8 @@ const CEOMessage = (
             marginTop: hp(70),
             marginBottom: hp(35),
             alignItems: "center",
-          }}>
+          }}
+        >
           <AZALogo
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
             size={24}
@@ -41,7 +41,8 @@ const CEOMessage = (
               marginBottom: hp(20),
               fontWeight: "600",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             Message from the CEO
           </Text>
           <Text
@@ -52,7 +53,8 @@ const CEOMessage = (
               lineHeight: hp(19),
               marginBottom: hp(35),
               fontWeight: "400",
-            }}>
+            }}
+          >
             Calling all Nigerians, the future is now. Gone are the times where
             we had to accept poorly made apps that frustrated the living out of
             us just because the companies were lazy, cared more about revenue,
@@ -70,7 +72,8 @@ const CEOMessage = (
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-            }}>
+            }}
+          >
             <ZEAL
               color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
               size={57}
@@ -86,7 +89,7 @@ const CEOMessage = (
             disabled={false}
             title="Continue"
             onPress={() => {
-              navigation.getParent()?.navigate("Home");
+              navigation.goBack();
             }}
           />
           <View
@@ -94,7 +97,8 @@ const CEOMessage = (
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <CustomSwitch
               title="Don’t show this again"
               onValueChange={toggleSwitch}
