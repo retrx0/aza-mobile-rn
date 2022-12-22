@@ -79,3 +79,7 @@ export const getFullUserInfoAPI = async () => {
     toastError("We encountered a problem ⚠️, please try again!");
   }
 };
+
+const deleteUser = async () => {};
+
+const getUserAccountStatus = async (email: string) => {};

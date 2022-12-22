@@ -65,7 +65,10 @@ export const loginUserAPI = async (data: {
     }
   } catch (e) {
     console.debug("Error logging in user: ", e as Error);
-    toastError("We encountered a problem while loggin you in");
+    if ((e as AxiosError).response) {
+      if ((e as AxiosError).response?.status === 400) return "400";
+      else toastError("We encountered an error, please try again!");
+    }
   }
 };
 

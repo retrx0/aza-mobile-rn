@@ -1,8 +1,5 @@
 import axios from "axios";
-import { API_BASE_URL, STORAGE_KEY_JWT_TOKEN } from "@env";
-import * as SecureStore from "expo-secure-store";
-
-const USER_JWT = SecureStore.getItemAsync(`${STORAGE_KEY_JWT_TOKEN}`);
+import { API_BASE_URL } from "@env";
 
 console.log(API_BASE_URL);
 

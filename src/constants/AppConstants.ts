@@ -4,3 +4,5 @@ export const ENV_PRODUCTION = "production";
 export const PREFERENCE_STORAGE_KEY = "@settings";
 
 export const NAIRA_UNICODE = "\u20A6";
+
+export const CEO_MESSAGE_STORAGE_KEY = "CEO_MESSAGE";

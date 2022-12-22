@@ -1,4 +1,4 @@
-import { View, Text } from "../../components/Themed";
+import { View, Text, ScrollView } from "../../components/Themed";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import { RootStackScreenProps, RootTabScreenProps } from "../../../types";
@@ -8,20 +8,25 @@ import { AZALogo, Signature, ZEAL } from "../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";
 import MyButton from "../tabs/payments/sub-components/MyButton";
 import CustomSwitch from "../../components/input/CustomSwitch";
+import { storeItem } from "../../common/util/StorageUtil";
+import { CEO_MESSAGE_STORAGE_KEY } from "../../constants/AppConstants";
 
 const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
   const [isEnabled, setIsEnabled] = useState(true);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => {
+    setIsEnabled((previousState) => !previousState);
+    storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
+  };
 
   return (
-    <>
+    <ScrollView>
       <SpacerWrapper>
         <View
           style={{
             height: "4%",
-            marginTop: hp(70),
+            marginTop: hp(50),
             marginBottom: hp(35),
             alignItems: "center",
           }}
@@ -97,6 +102,7 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
+              marginBottom: hp(50),
             }}
           >
             <CustomSwitch
@@ -107,7 +113,7 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
           </View>
         </View>
       </SpacerWrapper>
-    </>
+    </ScrollView>
   );
 };
 

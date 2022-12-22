@@ -38,7 +38,6 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   //     );
   //   }
   // });
-
   return (
     <View style={styles.container}>
       <AccountDetails />

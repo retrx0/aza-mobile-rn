@@ -39,6 +39,7 @@ import { setPushToken } from "../redux/slice/newUserSlice";
 import ActivityModal from "../components/modal/ActivityModal";
 import { selectActivityModal } from "../redux/slice/activityModalSlice";
 import { selectAppTheme } from "../redux/slice/themeSlice";
+import CEOMessage from "../screens/onboarding/CEOMessage";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   const _selectedTheme = useAppSelector(selectAppTheme);
@@ -173,6 +174,11 @@ const RootNavigator = () => {
         />
         <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
         <Stack.Screen name="QRCode" component={QRCodeScreen} />
+        <Stack.Screen
+          name="CEOMessage"
+          component={CEOMessage}
+          options={{ presentation: "modal" }}
+        />
       </Stack.Navigator>
     </UserInactivity>
   );

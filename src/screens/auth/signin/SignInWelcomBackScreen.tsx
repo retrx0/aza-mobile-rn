@@ -35,7 +35,7 @@ const forgetUser = (navigation: any) => {
     .then(() => {
       navigation.navigate("Welcome");
     })
-    .catch((e) => console.log(e));
+    .catch((e) => console.debug(e as Error));
   clearUserCredentials();
 };
 
@@ -68,12 +68,14 @@ const SignInWelcomeBackScreen = ({
     // TODO add push notification token to the server to always keep it updated incase it change
 
     // TODO refactor below code
-
     if (loginAttemptCounter > 3) {
       if (timerStatus === "Started") {
         Alert.alert(
           `Your account has been locked, try again after ${minutesToDisplay} minutes`
         );
+      } else if (timerStatus === "Stopped") {
+        setLoginAttemptCounter(1);
+        resetTimer();
       } else {
         startTimer();
       }
@@ -83,9 +85,9 @@ const SignInWelcomeBackScreen = ({
         email: user.email,
         password: code,
         phoneNumber: user.phoneNumber,
-      }).then((jwt) => {
-        if (jwt) {
-          storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
+      }).then((response) => {
+        if (response && response !== "400") {
+          storeItemSecure(STORAGE_KEY_JWT_TOKEN, response);
           setScreenLoading(false);
           navigation.navigate("Root");
         } else {
@@ -103,6 +105,8 @@ const SignInWelcomeBackScreen = ({
     // getUserCredentialsSecure().then((creds) => {
     //   console.log(creds);
     // });
+
+    // TODO add check to see if account is closed or locked
 
     LocalAuthentication.hasHardwareAsync().then((hasBiometricHardware) => {
       if (hasBiometricHardware) {
