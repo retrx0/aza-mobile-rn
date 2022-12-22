@@ -26,7 +26,10 @@ import { toastError } from "../../../common/util/ToastUtil";
 import {
   storeItemSecure,
   storeUserCredentialsSecure,
+  getItem,
+  storeItem,
 } from "../../../common/util/StorageUtil";
+import { CEO_MESSAGE_STORAGE_KEY } from "../../../constants/AppConstants";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -39,9 +42,9 @@ const SignUpPasswordScreen = ({
   );
   const [isConfirmScreen, setIsConfirmScreen] = useState(false);
   const [passcode, setPasscode] = useState("");
-  const [hashedPasscode, setHashedPasscode] = useState("");
   const [pushToken, setPushToken] = useState("");
   const [loading, setLoading] = useState(false);
+  const [ceoMessageShown, setCeoMessageShown] = useState(undefined);
 
   const colorScheme = useColorScheme();
   const notification = useNotifications();
@@ -63,7 +66,13 @@ const SignUpPasswordScreen = ({
       .then((tok) => {
         if (tok) setPushToken(tok);
       })
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        throw new Error(e);
+      });
+
+    getItem(CEO_MESSAGE_STORAGE_KEY).then((shown) => {
+      if (shown) setCeoMessageShown(shown);
+    });
   }, []);
 
   // useEffect(() => {
@@ -162,7 +171,7 @@ const SignUpPasswordScreen = ({
                 }).then((_res) => {
                   if (_res) {
                     // Store user credentials for face id
-                    storeUserCredentialsSecure(newUser.emailAddress, passcode);
+                    // storeUserCredentialsSecure(newUser.emailAddress, passcode);
 
                     loginUserAPI({
                       email: newUser.emailAddress,
@@ -172,6 +181,11 @@ const SignUpPasswordScreen = ({
                       if (_jwt) {
                         navigation.getParent()?.navigate("Root");
                         storeItemSecure(STORAGE_KEY_JWT_TOKEN, _jwt);
+                        if (!ceoMessageShown || ceoMessageShown === "null") {
+                          //show CEO Message
+                          navigation.getParent()?.navigate("CEOMessage");
+                          storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
+                        }
                       }
                       setLoading(false);
                     });
