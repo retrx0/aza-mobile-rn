@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { PhoneInput, Text, View } from "../../../components/Themed";
+import { Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
@@ -30,7 +30,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   });
 
   const handleSubmission = (email: string) => {
-    setButtonLoading(true);
     setButtonLoading(true);
     getUserLoginInfoAPI(email)
       .then((data) => {
