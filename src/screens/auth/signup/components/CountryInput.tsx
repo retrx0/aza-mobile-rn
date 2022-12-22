@@ -8,7 +8,6 @@ import {
   Pressable,
 } from "react-native";
 import { SvgUri } from "react-native-svg";
-import { SvgUri } from "react-native-svg";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 import { SelectIcon } from "../../../../../assets/svg";
