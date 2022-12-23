@@ -26,6 +26,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   QRTransactions: undefined;
   CEOMessage: undefined;
+  QRFeature: undefined;
   QRCode: undefined;
   NotFound: undefined;
   Welcome: undefined;
