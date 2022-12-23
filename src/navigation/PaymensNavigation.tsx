@@ -8,7 +8,7 @@ import CommonStyles from "../common/styles/CommonStyles";
 import ConfirmTransaction from "../screens/tabs/payments/ConfirmTransaction";
 import CompletedTransaction from "../screens/tabs/payments/CompletedTransaction";
 import { Platform, TouchableOpacity } from "react-native";
-import { BackIcon, CableTvIcon } from "../../assets/svg";
+import { BackIcon, CableTvIcon, InfoIcon } from "../../assets/svg";
 import InternetPlans from "../screens/tabs/payments/internet-screens/InternetPlans";
 import InternetDetail from "../screens/tabs/payments/internet-screens/InternetDetail";
 import ElectricityIndex from "../screens/tabs/payments/electricity-screens/ElectricityIndex";
@@ -138,6 +138,7 @@ const PaymentNavigator = () => {
     <Stack.Navigator
       screenOptions={(props) => ({
         headerTitleAlign: "center",
+
         headerLeft: () => (
           <TouchableOpacity
             onPress={() => props.navigation.goBack()}

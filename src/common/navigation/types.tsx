@@ -7,6 +7,9 @@ export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
   VaultWithdrawConfirm: VaultConfirmationParamsType;
+  SendMoneyFeature: undefined;
+  TransactionCertainty: undefined;
+  InviteUsers: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;

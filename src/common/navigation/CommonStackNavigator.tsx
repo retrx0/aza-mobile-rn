@@ -145,6 +145,10 @@ import ElectricityRecurring from "../../screens/tabs/payments/paymentRecurring/E
 import GiftCardEmail from "../../screens/tabs/payments/gift-card/EmailScreen";
 import CEOMessage from "../../screens/onboarding/CEOMessage";
 import VaultWithdrawConfirm from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
+import SendMoney from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
+import SendMoneyFeature from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
+import TransactionCertainty from "../../screens/transfer-modal/SendMoneyFeature/TransactionCertainty";
+import InviteUsers from "../../screens/transfer-modal/SendMoneyFeature/InviteUsers";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -744,6 +748,12 @@ const CommonStack = () => {
           name="SetNewRecurringTransfer"
           component={SetNewRecurringTransfer}
         />
+        <Stack.Screen name="SendMoneyFeature" component={SendMoneyFeature} />
+        <Stack.Screen
+          name="TransactionCertainty"
+          component={TransactionCertainty}
+        />
+        <Stack.Screen name="InviteUsers" component={InviteUsers} />
       </Stack.Group>
     </Stack.Navigator>
   );
