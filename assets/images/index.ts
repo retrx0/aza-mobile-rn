@@ -85,3 +85,5 @@ export const Chess = require("./common/Chess.png");
 
 export const SWIFT = require("./common/SWIFT.png");
 export const ZEAL = require("./common/ZEAL.png");
+
+export const VaultFeature = require("./common/VaultFeature.png");
