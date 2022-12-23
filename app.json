@@ -9,7 +9,6 @@
     "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-light.png",
     "scheme": "com.aza.azaapp",
-    "userInterfaceStyle": "automatic",
     "owner": "retro1",
     "notification": {},
     "splash": {
@@ -57,7 +56,8 @@
           "icon": "./assets/images/app/aza-app-icon-light.png",
           "color": "#ffffff"
         }
-      ]
+      ],
+      "@config-plugins/detox"
     ]
   },
   "infoPlist": {

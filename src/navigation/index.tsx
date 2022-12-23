@@ -38,12 +38,23 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { setPushToken } from "../redux/slice/newUserSlice";
 import ActivityModal from "../components/modal/ActivityModal";
 import { selectActivityModal } from "../redux/slice/activityModalSlice";
+import { selectAppTheme } from "../redux/slice/themeSlice";
+import CEOMessage from "../screens/onboarding/CEOMessage";
 
 const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
+  const _selectedTheme = useAppSelector(selectAppTheme);
+
+  const getDeviceTheme = () => {
+    if (_selectedTheme === "dark") return DarkTheme;
+    else if (_selectedTheme === "light") return DefaultTheme;
+    else {
+      return colorScheme === "dark" ? DarkTheme : DefaultTheme;
+    }
+  };
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      theme={getDeviceTheme()}
     >
       <RootNavigator />
     </NavigationContainer>
@@ -149,7 +160,7 @@ const RootNavigator = () => {
         <Stack.Screen
           name="Root"
           component={BottomTabNavigator}
-          options={{ headerShown: false, gestureEnabled: true }}
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <Stack.Screen
           name="Common"
@@ -163,6 +174,11 @@ const RootNavigator = () => {
         />
         <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
         <Stack.Screen name="QRCode" component={QRCodeScreen} />
+        <Stack.Screen
+          name="CEOMessage"
+          component={CEOMessage}
+          options={{ presentation: "modal" }}
+        />
       </Stack.Navigator>
     </UserInactivity>
   );

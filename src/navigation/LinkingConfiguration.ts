@@ -13,6 +13,10 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
+      Welcome: {},
+      QRCode: {},
+      SignIn: {},
+      SignUp: {},
       Root: {
         screens: {
           Home: {
@@ -25,9 +29,11 @@ const linking: LinkingOptions<RootStackParamList> = {
               VaultTab: "two",
             },
           },
+          Payments: { screens: {} },
+          Profile: { screens: {} },
+          Settings: { screens: {} },
         },
       },
-      Modal: "modal",
       NotFound: "*",
     },
   },

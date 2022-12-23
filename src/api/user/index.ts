@@ -5,6 +5,7 @@ import {
   STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
 } from "@env";
 import { toastError } from "../../common/util/ToastUtil";
+import { AxiosError } from "axios";
 
 export const changePassword = async (
   oldPassword: string,
@@ -26,7 +27,7 @@ export const changePassword = async (
     );
     return result;
   } catch (e) {
-    console.log("Error changing password: ", e as Error);
+    console.debug("Error changing password: ", e as AxiosError);
     toastError(
       "There was a problem changing your password ⚠️, please try again!"
     );
@@ -55,8 +56,10 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
     if (result.status === 200) return result.data;
     return undefined;
   } catch (e) {
-    console.log("Error registering user: ", e as Error);
-    toastError("We encountered a problem while creating your account ⚠️");
+    console.debug("Error registering user: ", e as AxiosError);
+    if ((e as AxiosError).response?.status! === 409)
+      toastError("User already registered");
+    else toastError("We encountered a problem while creating your account ⚠️");
   }
 };
 
@@ -72,7 +75,11 @@ export const getFullUserInfoAPI = async () => {
     if (result.status === 200) return result.data;
     return undefined;
   } catch (e) {
-    console.log("Error getting user info: ", e as Error);
+    console.log("Error getting user info: ", e as AxiosError);
     toastError("We encountered a problem ⚠️, please try again!");
   }
 };
+
+const deleteUser = async () => {};
+
+const getUserAccountStatus = async (email: string) => {};

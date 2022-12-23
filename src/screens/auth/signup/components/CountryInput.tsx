@@ -36,10 +36,10 @@ export const CountryBox = ({
     >
       <Pressable style={styles.countryContainer} onPress={onPress}>
         <SvgUri
-          uri={imageLink || null}
           style={styles.flag}
-          width={wp(25)}
-          height={wp(15)}
+          width={"25"}
+          height={"15"}
+          uri={imageLink!}
         />
         {/* <View style={styles.country}>
           <Text style={styles.countryName}>{short_name}</Text>

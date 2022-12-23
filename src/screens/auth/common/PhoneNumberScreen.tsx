@@ -35,6 +35,7 @@ const PhoneNumberScreen = ({
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
   const { loading, countries } = useCountries();
+
   const FetchedCountries = ({ item }: { item: CountryProps }) => {
     return <CountriesCard onPress={() => selectCountry(item)} {...item} />;
   };
@@ -143,7 +144,7 @@ const PhoneNumberScreen = ({
       <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>
         <View
           style={[
-            { borderRadius: hp(10) },
+            { borderRadius: hp(10), marginTop: hp(50), marginBottom: hp(50) },
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },

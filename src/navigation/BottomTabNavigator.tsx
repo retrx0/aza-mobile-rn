@@ -1,6 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AppState, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import Home from "../screens/tabs/home/Home";
@@ -68,10 +68,11 @@ const BottomTabNavigator = (
   return (
     <>
       <BottomTab.Navigator
-        initialRouteName="Home"
+        initialRouteName={"Home"}
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme].tint,
-        }}>
+        }}
+      >
         <BottomTab.Screen
           name="Home"
           component={Home}
@@ -95,7 +96,8 @@ const BottomTabNavigator = (
                 onPress={() => navigation.navigate("QRTransactions")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
-                })}>
+                })}
+              >
                 {colorScheme === "dark" ? (
                   <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
                 ) : (
@@ -113,7 +115,8 @@ const BottomTabNavigator = (
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                   marginLeft: 15,
-                })}>
+                })}
+              >
                 <MenuIcon size={25} color={Colors[colorScheme].text} />
               </Pressable>
             ),

@@ -143,7 +143,6 @@ import WaterRecurring from "../../screens/tabs/payments/paymentRecurring/WaterRe
 import CableRecurring from "../../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
 import ElectricityRecurring from "../../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
 import GiftCardEmail from "../../screens/tabs/payments/gift-card/EmailScreen";
-import CEOMessage from "../../screens/onboarding/CEOMessage";
 import VaultWithdrawConfirm from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
 import SendMoney from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
 import SendMoneyFeature from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
@@ -163,7 +162,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           flexDirection: "row",
           alignItems: "center",
           marginTop: hp(20),
-        }}>
+        }}
+      >
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -173,7 +173,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginLeft: hp(65),
-          }}>
+          }}
+        >
           Flight Ticket Vault
         </Text>
       </View>
@@ -195,7 +196,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             // marginTop: hp(30),
           },
         }}
-        initialRouteName="details">
+        initialRouteName="details"
+      >
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -234,15 +236,6 @@ const CommonStack = () => {
           name="VaultWithdrawConfirm"
           component={VaultWithdrawConfirm}
         />
-      </Stack.Group>
-
-      {/*  CeoMessage screen */}
-      <Stack.Group>
-        <Stack.Screen name="CEOMessage" component={CEOMessage} />
-        {/* <Stack.Screen
-          name="VaultWithdrawConfirm"
-          component={VaultWithdrawConfirm}
-        /> */}
       </Stack.Group>
 
       {/* Settings */}
@@ -418,7 +411,8 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={12}
@@ -429,7 +423,8 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}>
+                }}
+              >
                 Back
               </Text>
             </TouchableOpacity>
@@ -445,7 +440,8 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}>
+        })}
+      >
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -676,7 +672,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -686,7 +683,8 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
@@ -704,7 +702,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}>
+          })}
+        >
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}

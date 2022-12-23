@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { PhoneInput, Text, View } from "../../../components/Themed";
+import { Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignInScreenProps } from "../../../../types";
@@ -22,7 +22,8 @@ import { toastError } from "../../../common/util/ToastUtil";
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
-  const [isButtonLoading, setButtonLoading] = useState(false);
+
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const validationSchema = yup.object({
     email: yup.string().required("Email is required!").email(),
@@ -43,13 +44,13 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           requestOtpApi({
             email: "",
             phoneNumber: data.phoneNumber,
-          });
+          }).then(() => setButtonLoading(false));
           navigation.navigate("SignInOTP");
         }
       })
       .catch(() => {
-        setButtonLoading(false);
         toastError("Invalid email!");
+        setButtonLoading(false);
       });
   };
 
@@ -125,8 +126,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                         marginTop: 20,
                       },
                     ]}
+                    buttonLoading={buttonLoading}
                     disabled={!isValid}
-                    willCallAsync={isButtonLoading}
                   />
                 </View>
               );

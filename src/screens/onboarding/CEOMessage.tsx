@@ -1,4 +1,4 @@
-import { View, Text } from "../../components/Themed";
+import { View, Text, ScrollView } from "../../components/Themed";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import { RootStackScreenProps, RootTabScreenProps } from "../../../types";
@@ -8,24 +8,29 @@ import { AZALogo, Signature, ZEAL } from "../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";
 import MyButton from "../tabs/payments/sub-components/MyButton";
 import CustomSwitch from "../../components/input/CustomSwitch";
+import { storeItem } from "../../common/util/StorageUtil";
+import { CEO_MESSAGE_STORAGE_KEY } from "../../constants/AppConstants";
 
-const CEOMessage = (
-  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
-) => {
+const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [isEnabled, setIsEnabled] = useState(true);
+  const toggleSwitch = () => {
+    setIsEnabled((previousState) => !previousState);
+    storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
+  };
+
   return (
-    <>
+    <ScrollView>
       <SpacerWrapper>
         <View
           style={{
             height: "4%",
-            marginTop: hp(70),
+            marginTop: hp(50),
             marginBottom: hp(35),
             alignItems: "center",
-          }}>
+          }}
+        >
           <AZALogo
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
             size={24}
@@ -41,7 +46,8 @@ const CEOMessage = (
               marginBottom: hp(20),
               fontWeight: "600",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             Message from the CEO
           </Text>
           <Text
@@ -52,7 +58,8 @@ const CEOMessage = (
               lineHeight: hp(19),
               marginBottom: hp(35),
               fontWeight: "400",
-            }}>
+            }}
+          >
             Calling all Nigerians, the future is now. Gone are the times where
             we had to accept poorly made apps that frustrated the living out of
             us just because the companies were lazy, cared more about revenue,
@@ -70,7 +77,8 @@ const CEOMessage = (
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-            }}>
+            }}
+          >
             <ZEAL
               color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
               size={57}
@@ -86,7 +94,7 @@ const CEOMessage = (
             disabled={false}
             title="Continue"
             onPress={() => {
-              navigation.getParent()?.navigate("Home");
+              navigation.goBack();
             }}
           />
           <View
@@ -94,7 +102,9 @@ const CEOMessage = (
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+              marginBottom: hp(50),
+            }}
+          >
             <CustomSwitch
               title="Don’t show this again"
               onValueChange={toggleSwitch}
@@ -103,7 +113,7 @@ const CEOMessage = (
           </View>
         </View>
       </SpacerWrapper>
-    </>
+    </ScrollView>
   );
 };
 

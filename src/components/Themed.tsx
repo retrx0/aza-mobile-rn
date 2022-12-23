@@ -8,7 +8,7 @@ import {
   View as DefaultView,
   SafeAreaView as ThemedSafeAreaView,
   TextInput as ThemedTextInput,
-  ScrollView as DefaultScrollView
+  ScrollView as DefaultScrollView,
 } from "react-native";
 
 import Colors from "../constants/Colors";
@@ -19,7 +19,7 @@ import ThemedPhoneInput from "react-native-phone-input";
 import { Dimensions } from "react-native";
 
 export const useThemeColor = (
-  props: { light?: string; dark?: string },
+  props: { light?: string; dark?: string; system?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
 ) => {
   const theme = useColorScheme();
@@ -69,9 +69,14 @@ export const View = (props: ViewProps) => {
 
 export const ScrollView = (props: ViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, "background");
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    "background"
+  );
 
-  return <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
+  return (
+    <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />
+  );
 };
 
 export const SafeAreaView = (props: SafeAreaViewProps) => {
@@ -186,4 +191,6 @@ export const SIZES = {
 const appTheme = {
   SIZES,
 };
-export default appTheme;
+// export default appTheme;
+
+export default () => <></>;

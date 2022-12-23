@@ -18,7 +18,7 @@ type ButtonPropsType = {
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
   disabled?: boolean;
-  willCallAsync?: boolean;
+  buttonLoading?: boolean;
 };
 
 export const Button: FC<ButtonPropsType> = ({
@@ -28,13 +28,13 @@ export const Button: FC<ButtonPropsType> = ({
   style,
   styleText,
   disabled,
-  willCallAsync,
+  buttonLoading,
 }) => {
   const colorScheme = useColorScheme();
 
   return (
     <TouchableOpacity
-      disabled={disabled}
+      disabled={disabled || buttonLoading}
       activeOpacity={0.7}
       onPress={onPressButton}
       style={[
@@ -48,10 +48,11 @@ export const Button: FC<ButtonPropsType> = ({
           opacity: disabled ? 0.5 : 1,
         },
         style,
-      ]}>
+      ]}
+    >
       <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
-        {willCallAsync ? (
-          <ActivityIndicator animating={willCallAsync} />
+        {buttonLoading ? (
+          <ActivityIndicator animating={buttonLoading} />
         ) : (
           title
         )}

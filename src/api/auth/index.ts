@@ -3,6 +3,7 @@ import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { toastError } from "../../common/util/ToastUtil";
 import { getItemSecure, storeItemSecure } from "../../common/util/StorageUtil";
+import { AxiosError } from "axios";
 
 export const cancelToken = async () => {
   try {
@@ -63,8 +64,11 @@ export const loginUserAPI = async (data: {
       return response.headers["access-token"];
     }
   } catch (e) {
-    console.error("Error logging in user: ", e as Error);
-    toastError("We encountered a problem while loggin you in");
+    console.debug("Error logging in user: ", e as Error);
+    if ((e as AxiosError).response) {
+      if ((e as AxiosError).response?.status === 400) return "400";
+      else toastError("We encountered an error, please try again!");
+    }
   }
 };
 
@@ -74,6 +78,11 @@ export const getUserLoginInfoAPI = async (email: string) => {
     if (response.status === 200) return response.data.data;
     return undefined;
   } catch (e) {
-    console.error("Error get user login details: ", e as Error);
+    if ((e as AxiosError).response) {
+      if ((e as AxiosError).response?.status === 404)
+        toastError("Email address not valid!");
+      else toastError("We encountered an error, please try again!");
+    }
+    console.debug("Error get user login details: ", e as Error);
   }
 };
