@@ -184,7 +184,10 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
             Archived Vaults
           </Text>
           <TouchableOpacity>
-            <InfoIcon color={""} size={0} />
+            <InfoIcon
+              color={colorScheme === "dark" ? "#999999" : "#000000"}
+              size={0}
+            />
           </TouchableOpacity>
         </View>
         <View>
