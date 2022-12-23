@@ -122,7 +122,7 @@ const StatusScreen = ({
             }}
             style={{
               backgroundColor: Colors[colorScheme].button,
-              marginBottom: 20,
+              marginBottom: 15,
             }}
           />
           {receiptButton && (
