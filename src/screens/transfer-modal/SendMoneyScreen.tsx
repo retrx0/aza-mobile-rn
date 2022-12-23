@@ -1,5 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
@@ -16,6 +20,7 @@ import { useAppSelector } from "../../redux";
 import ContactsScene from "./ContactsScene";
 import { getUserContacts } from "../../hooks/useContacts";
 import { sendInviteToNonAzaContact } from "../../api/notification";
+import { InfoIcon } from "../../../assets/svg";
 
 const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   const [index, setIndex] = useState(0);
@@ -38,8 +43,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Send Money
         </Text>
       ),
@@ -49,6 +53,12 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
       headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("SendMoneyFeature")}>
+          <InfoIcon />
+        </TouchableOpacity>
+      ),
     });
   }, []);
 
@@ -107,8 +117,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );

@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet } from "react-native";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { View } from "../../../../components/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -20,6 +20,9 @@ import {
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { InfoIcon } from "../../../../../assets/svg";
+import BackButton from "../../../../components/buttons/BackButton";
+import navigation from "../../../../navigation";
 
 export default function GiftCardScreen({
   navigation,
@@ -144,3 +147,6 @@ const styles2 = StyleSheet.create({
     height: 45,
   },
 });
+function useLayoutEffect(arg0: () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
+}
