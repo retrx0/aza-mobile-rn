@@ -10,6 +10,7 @@ export type CommonStackParamList = {
   SendMoneyFeature: undefined;
   TransactionCertainty: undefined;
   InviteUsers: undefined;
+  RequestMoneyFeature: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
@@ -81,6 +82,8 @@ export type CommonStackParamList = {
   RecurringMoneyConfirmationScreen: undefined;
   Vault: undefined;
   VaultToBankAmount: undefined;
+  VaultFeature: undefined;
+  VaultLiberty: undefined;
 
   // Settings
   ChangePassword: undefined;
@@ -128,6 +131,7 @@ export type CommonStackParamList = {
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
   ContactUs: undefined;
+  QRFeature: undefined;
 
   //withdraw and deposit
   WithdrawDepositTabs: { screen: string };

@@ -148,6 +148,10 @@ import SendMoney from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
 import SendMoneyFeature from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
 import TransactionCertainty from "../../screens/transfer-modal/SendMoneyFeature/TransactionCertainty";
 import InviteUsers from "../../screens/transfer-modal/SendMoneyFeature/InviteUsers";
+import RequestMoneyFeature from "../../screens/transfer-modal/RequestMoneyFeature/RequestMoneyFeature";
+import VaultFeature from "../../screens/tabs/vault/VaultFeature/VaultFeature";
+import VaultLiberty from "../../screens/tabs/vault/VaultFeature/VaultLiberty";
+import QRFeature from "../../screens/qr-transactions/components/QRFeature";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -162,8 +166,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           flexDirection: "row",
           alignItems: "center",
           marginTop: hp(20),
-        }}
-      >
+        }}>
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -173,8 +176,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginLeft: hp(65),
-          }}
-        >
+          }}>
           Flight Ticket Vault
         </Text>
       </View>
@@ -196,8 +198,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             // marginTop: hp(30),
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -398,6 +399,16 @@ const CommonStack = () => {
           name="VaultToBankAmount"
           component={VaultToBankAmount}
         />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultFeature"
+          component={VaultFeature}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="VaultLiberty"
+          component={VaultLiberty}
+        />
       </Stack.Group>
 
       {/* Payments */}
@@ -411,8 +422,7 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={12}
@@ -423,8 +433,7 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}
-              >
+                }}>
                 Back
               </Text>
             </TouchableOpacity>
@@ -440,8 +449,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -662,6 +670,7 @@ const CommonStack = () => {
         <Stack.Screen name="FeesAndLimits" component={FeesAndLimitsScreen} />
         <Stack.Screen name="MonthlySummary" component={MonthlySummaryScreen} />
         <Stack.Screen name="ContactUs" component={ContactUsScreen} />
+        <Stack.Screen name="QRFeature" component={QRFeature} />
 
         <Stack.Group
           screenOptions={(props) => ({
@@ -672,8 +681,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -683,8 +691,7 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
@@ -702,8 +709,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}
@@ -753,6 +759,10 @@ const CommonStack = () => {
           component={TransactionCertainty}
         />
         <Stack.Screen name="InviteUsers" component={InviteUsers} />
+        <Stack.Screen
+          name="RequestMoneyFeature"
+          component={RequestMoneyFeature}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
