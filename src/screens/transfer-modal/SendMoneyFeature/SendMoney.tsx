@@ -53,32 +53,34 @@ const SendMoneyFeature = ({
             marginTop: hp(96),
             marginBottom: hp(96),
           }}>
-          <AzaLOGO />
+          <AzaLOGO color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
-        <Text
-          style={{
-            fontSize: hp(24),
-            fontWeight: "600",
-            fontFamily: "Euclid-Circular-A-Bold",
-            textAlign: "center",
-            // maxWidth: 350,
-            alignSelf: "center",
-            lineHeight: hp(30),
-          }}>
-          Lightning-fast transaction speed
-        </Text>
-        <Text
-          style={{
-            fontSize: hp(16),
-            lineHeight: hp(25),
-            fontFamily: "Euclid-Circular-A",
-            textAlign: "center",
-            fontWeight: "400",
-            alignSelf: "center",
-            marginTop: hp(20),
-          }}>
-          Send money to anyone on Aza or other banks at lightning speeds
-        </Text>
+        <View style={{ paddingHorizontal: 30 }}>
+          <Text
+            style={{
+              fontSize: hp(24),
+              fontWeight: "600",
+              fontFamily: "Euclid-Circular-A-Bold",
+              textAlign: "center",
+              alignSelf: "center",
+              lineHeight: hp(30),
+            }}>
+            Lightning-fast transaction speed
+          </Text>
+          <Text
+            style={{
+              fontSize: hp(16),
+              lineHeight: hp(25),
+              fontFamily: "Euclid-Circular-A",
+              textAlign: "center",
+              fontWeight: "400",
+              alignSelf: "center",
+              marginTop: hp(20),
+            }}>
+            Send money to anyone on Aza or other banks at lightning speeds
+          </Text>
+        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
