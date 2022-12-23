@@ -7,7 +7,6 @@ import Button from "../../../components/buttons/Button";
 import { useCountries } from "../signup/components/UseCountries";
 import { CountriesCard } from "../signup/components/CountriesCard";
 import { PhoneInput, Text, View } from "../../../components/Themed";
-import Phone from "./PhoneStage";
 
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -24,6 +23,7 @@ import {
 import { useAppDispatch } from "../../../redux";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { requestOtpApi } from "../../../api/auth";
+import Phone from "./PhoneStage";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -67,8 +67,7 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -148,8 +147,7 @@ const PhoneNumberScreen = ({
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },
-          ]}
-        >
+          ]}>
           <FlatList
             style={[
               {
