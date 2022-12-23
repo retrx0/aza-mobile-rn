@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { useWindowDimensions } from "react-native";
+import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { RootStackScreenProps } from "../../../types";
@@ -12,6 +12,7 @@ import { Text } from "../../components/Themed";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
+import { InfoIcon } from "../../../assets/svg";
 
 const QRTransactionsScreen = ({
   navigation,
@@ -36,8 +37,7 @@ const QRTransactionsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           QR Transactions
         </Text>
       ),
@@ -47,6 +47,11 @@ const QRTransactionsScreen = ({
       headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerRight: () => (
+        <TouchableOpacity onPress={() => navigation.navigate("QRFeature")}>
+          <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
+        </TouchableOpacity>
+      ),
     });
   }, []);
 
@@ -93,8 +98,7 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}
-                  >
+                    }}>
                     {route.title}
                   </Text>
                 );

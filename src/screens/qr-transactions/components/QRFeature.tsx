@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../common/navigation/types";
 
@@ -14,10 +14,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ExitButton from "../../../components/buttons/ExitButton";
 import { AddUsers } from "../../../../assets/svg";
 import Button from "../../../components/buttons/Button";
+import { RootStackScreenProps } from "../../../../types";
 
-const InviteUsers = ({
-  navigation,
-}: CommonScreenProps<"RecurringTransfer">) => {
+const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -32,7 +31,7 @@ const InviteUsers = ({
             fontSize: hp(16),
             fontWeight: "500",
           }}>
-          Send Money
+          QR Transaction
         </Text>
       ),
       // hide default back button which only shows in android
@@ -53,7 +52,15 @@ const InviteUsers = ({
             marginTop: hp(96),
             marginBottom: hp(96),
           }}>
-          <AddUsers color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
+          <Image
+            style={{
+              width: hp(150),
+              height: hp(150),
+              alignSelf: "center",
+              marginTop: hp(56),
+            }}
+            source={require("../../../../assets/images/common/QRFEATURE.png")}
+          />
         </View>
         <Text
           style={{
@@ -65,7 +72,7 @@ const InviteUsers = ({
             alignSelf: "center",
             lineHeight: hp(30),
           }}>
-          Invite new users to Aza
+          Effortless Payments
         </Text>
         <Text
           style={{
@@ -78,9 +85,8 @@ const InviteUsers = ({
             alignSelf: "center",
             textAlign: "center",
           }}>
-          Azarians can send money to users who don't even use Aza, after which
-          an sms will be sent to those users with a guide on how to create an
-          Aza account.
+          Use our QR Code feature to securely make swift transactions across
+          Aza.
         </Text>
         <View
           style={[
@@ -88,8 +94,8 @@ const InviteUsers = ({
             { bottom: insets.top || hp(45) },
           ]}>
           <Button
-            title="Go Back To Send Money"
-            onPressButton={() => navigation.navigate("SendMoney")}
+            title="Go Back to QR Transaction"
+            onPressButton={() => navigation.navigate("QRTransactions")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -105,7 +111,7 @@ const InviteUsers = ({
   );
 };
 
-export default InviteUsers;
+export default QRFeature;
 
 const styles = StyleSheet.create({
   container: {

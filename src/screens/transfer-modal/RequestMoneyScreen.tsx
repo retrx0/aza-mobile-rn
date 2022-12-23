@@ -1,5 +1,9 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import BackButton from "../../components/buttons/BackButton";
@@ -12,6 +16,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import ContactsScene from "./ContactsScene";
 import { sendInviteToNonAzaContact } from "../../api/notification";
+import { InfoIcon } from "../../../assets/svg";
 
 const RequestMoneyScreen = ({
   navigation,
@@ -34,8 +39,7 @@ const RequestMoneyScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Request Money
         </Text>
       ),
@@ -45,6 +49,12 @@ const RequestMoneyScreen = ({
       headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate("RequestMoneyFeature")}>
+          <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
+        </TouchableOpacity>
+      ),
     });
   }, []);
 
@@ -103,8 +113,7 @@ const RequestMoneyScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );

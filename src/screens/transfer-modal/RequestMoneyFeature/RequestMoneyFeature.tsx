@@ -12,10 +12,10 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ExitButton from "../../../components/buttons/ExitButton";
-import { AddUsers } from "../../../../assets/svg";
+import { AddUsers, RequestIcon } from "../../../../assets/svg";
 import Button from "../../../components/buttons/Button";
 
-const InviteUsers = ({
+const RequestMoneyFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
@@ -32,7 +32,7 @@ const InviteUsers = ({
             fontSize: hp(16),
             fontWeight: "500",
           }}>
-          Send Money
+          Request Money
         </Text>
       ),
       // hide default back button which only shows in android
@@ -53,7 +53,7 @@ const InviteUsers = ({
             marginTop: hp(96),
             marginBottom: hp(96),
           }}>
-          <AddUsers color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
+          <RequestIcon color={colorScheme === "dark" ? "#E7E9EA" : "#000000"} />
         </View>
         <Text
           style={{
@@ -65,7 +65,7 @@ const InviteUsers = ({
             alignSelf: "center",
             lineHeight: hp(30),
           }}>
-          Invite new users to Aza
+          Easy and convinient
         </Text>
         <Text
           style={{
@@ -78,9 +78,8 @@ const InviteUsers = ({
             alignSelf: "center",
             textAlign: "center",
           }}>
-          Azarians can send money to users who don't even use Aza, after which
-          an sms will be sent to those users with a guide on how to create an
-          Aza account.
+          Request money from your family and friends in a friendly manner,
+          effortlessly.
         </Text>
         <View
           style={[
@@ -88,8 +87,8 @@ const InviteUsers = ({
             { bottom: insets.top || hp(45) },
           ]}>
           <Button
-            title="Go Back To Send Money"
-            onPressButton={() => navigation.navigate("SendMoney")}
+            title="Go Back to Request Money"
+            onPressButton={() => navigation.navigate("RequestMoney")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -105,7 +104,7 @@ const InviteUsers = ({
   );
 };
 
-export default InviteUsers;
+export default RequestMoneyFeature;
 
 const styles = StyleSheet.create({
   container: {

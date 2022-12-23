@@ -53,7 +53,7 @@ const TransactionCertainty = ({
             marginTop: hp(96),
             marginBottom: hp(96),
           }}>
-          <MoneyTick />
+          <MoneyTick color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
         <Text
           style={{
@@ -74,7 +74,7 @@ const TransactionCertainty = ({
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",
             marginTop: hp(20),
-            maxWidth: 330,
+            maxWidth: 340,
             alignSelf: "center",
             textAlign: "center",
           }}>

@@ -56,7 +56,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate("SendMoneyFeature")}>
-          <InfoIcon />
+          <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
     });
