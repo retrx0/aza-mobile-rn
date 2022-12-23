@@ -36,8 +36,8 @@ const ArchieveList = [
 ];
 const swipeFromRightOpen = () => {
   /* TODO document why this arrow function is empty */
-  const navigation = useNavigation();
 };
+
 const ListItem = ({
   lockIcon,
   item,
@@ -49,7 +49,6 @@ const ListItem = ({
 }: VaultListProps) => {
   const navigation = useNavigation();
   const colorScheme = useColorScheme();
-
   return (
     <Swipeable
       renderRightActions={() => (

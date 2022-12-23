@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch } from "react-native";
+import { StyleSheet, Switch, TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
 import { Text, View } from "../../../components/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -14,6 +14,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { InfoIcon } from "../../../../assets/svg";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -39,6 +40,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: hp(30),
+            justifyContent: "space-between",
           }}>
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
@@ -48,10 +50,21 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(85),
+              marginRight: hp(20),
             }}>
             New Vault
           </Text>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Common", {
+                screen: "VaultFeature",
+              })
+            }>
+            <InfoIcon
+              style={{ marginRight: hp(20) }}
+              color={colorScheme === "dark" ? "#999999" : "#000000"}
+            />
+          </TouchableOpacity>
         </View>
         <View style={{ paddingHorizontal: 20 }}>
           <Text style={CommonStyles.descriptionStyle}>

@@ -23,6 +23,8 @@ import AddCoverImage from "./AddCoverImage";
 import NewUserVault from "./NewUserVault";
 import AddCoverImageSuccessful from "./SetVaultGoal";
 import ConfirmGoal from "./GoalConfirmation";
+import VaultFeature from "./VaultFeature/VaultFeature";
+import VaultLiberty from "./VaultFeature/VaultLiberty";
 
 const VaultStack = createNativeStackNavigator<VaultStackProps>();
 const Tab = createMaterialTopTabNavigator();
@@ -54,6 +56,8 @@ export type VaultStackProps = {
   VaultRecurringAmount: undefined;
   RecurringMoneyConfirmationScreen: undefined;
   VaultToBankAmount: undefined;
+  VaultFeature: undefined;
+  VaultLiberty: undefined;
 };
 
 export const VaultTabs = () => {
@@ -181,6 +185,16 @@ const VaultNavigator = () => {
         options={{ headerShown: false }}
         name="ConfirmGoal"
         component={ConfirmGoal}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="VaultFeature"
+        component={VaultFeature}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="VaultLiberty"
+        component={VaultLiberty}
       />
     </VaultStack.Navigator>
   );
