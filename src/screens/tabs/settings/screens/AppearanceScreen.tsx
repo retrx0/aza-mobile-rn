@@ -15,13 +15,14 @@ import {
 } from "../../../../../assets/svg";
 import Divider from "../../../../components/divider/Divider";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import { useAppDispatch } from "../../../../redux";
 import { setAppTheme } from "../../../../redux/slice/themeSlice";
 
 const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   const colorScheme = useColorScheme();
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [selectedAppearance, setSelectedAppearance] =
     useState<string>("System Mode");
 

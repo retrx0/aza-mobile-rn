@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
 import { Text, View } from "../../components/Themed";
@@ -12,6 +12,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as Haptics from "expo-haptics";
 
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 
@@ -35,7 +36,24 @@ const StatusScreen = ({
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
+      gestureEnabled: false,
     });
+  }, []);
+
+  useEffect(() => {
+    switch (statusIcon) {
+      case "Success":
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        break;
+
+      case "Warning":
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+        break;
+
+      default:
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        break;
+    }
   }, []);
 
   return (
@@ -45,7 +63,8 @@ const StatusScreen = ({
           style={[
             CommonStyles.col,
             { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
-          ]}>
+          ]}
+        >
           {statusIcon === "Success" ? (
             <StatusSuccessIcon />
           ) : (
@@ -60,7 +79,8 @@ const StatusScreen = ({
               textAlign: "center",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontWeight: "500",
-            }}>
+            }}
+          >
             {status}
           </Text>
           <Text
@@ -70,7 +90,8 @@ const StatusScreen = ({
               textAlign: "center",
               maxWidth: 350,
               fontFamily: "Euclid-Circular-A-Medium",
-            }}>
+            }}
+          >
             {statusMessage}
           </Text>
 
@@ -82,7 +103,8 @@ const StatusScreen = ({
               marginTop: hp(25),
               fontFamily: "Euclid-Circular-A-Medium",
               maxWidth: 350,
-            }}>
+            }}
+          >
             {statusMessage2}
           </Text>
         </View>
@@ -90,7 +112,8 @@ const StatusScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           {setupRecurringTransfer && (
             <Button
               title="Setup Recurring Transfer"

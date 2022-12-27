@@ -1,29 +1,47 @@
 import * as SecureStore from "expo-secure-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Keychain from "react-native-keychain";
+import { STORAGE_KEY_USER_CREDS } from "@env";
 
-export const storeUserCredentialsSecure = (
-  username: string,
-  password: string
-) => {
-  try {
-    Keychain.setGenericPassword(username, password, {
-      authenticationType:
-        Keychain.AUTHENTICATION_TYPE.DEVICE_PASSCODE_OR_BIOMETRICS,
-    });
-  } catch (e) {
-    console.debug(e as Error);
-    throw new Error((e as Error).message);
-  }
+// export const storeUserCredentialsSecure = (
+//   username: string,
+//   password: string
+// ) => {
+//   try {
+//     Keychain.setGenericPassword(username, password, {
+//       authenticationType:
+//         Keychain.AUTHENTICATION_TYPE.DEVICE_PASSCODE_OR_BIOMETRICS,
+//     });
+//   } catch (e) {
+//     console.debug(e as Error);
+//     throw new Error((e as Error).message);
+//   }
+// };
+
+// export const getUserCredentialsSecure = async () => {
+//   try {
+//     const credentials = await Keychain.getGenericPassword();
+//     if (credentials) return credentials;
+//   } catch (e) {
+//     console.debug(e as Error);
+//     throw new Error((e as Error).message);
+//   }
+// };
+
+export const storeUserCredentialsSecure = (value: string) => {
+  SecureStore.setItemAsync(STORAGE_KEY_USER_CREDS, value)
+    .then(() => console.debug("creds stored to secure store!"))
+    .catch((e) => console.error("Error storing item: " + e));
 };
 
 export const getUserCredentialsSecure = async () => {
   try {
-    const credentials = await Keychain.getGenericPassword();
-    if (credentials) return credentials;
+    const item = await SecureStore.getItemAsync(STORAGE_KEY_USER_CREDS, {
+      requireAuthentication: true,
+    });
+    return item;
   } catch (e) {
-    console.debug(e as Error);
-    throw new Error((e as Error).message);
+    console.debug("Error getting item: ", e as Error);
   }
 };
 

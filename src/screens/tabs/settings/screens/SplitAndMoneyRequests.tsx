@@ -10,12 +10,13 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const SplitAndMoneyRequestsScreen = ({
   navigation,
 }: CommonScreenProps<"SplitAndMoneyRequests">) => {
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -39,7 +40,8 @@ const SplitAndMoneyRequestsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Split and Money Requests
         </Text>
       ),
@@ -62,7 +64,8 @@ const SplitAndMoneyRequestsScreen = ({
           fontFamily: "Euclid-Circular-A",
 
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can disable this setting to reject all split and money requests from
         other users.
       </Text>

@@ -28,6 +28,11 @@ import {
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
 import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
 
+/**
+ * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
+ * https://reactnavigation.org/docs/bottom-tab-navigator
+ */
+
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = (
@@ -53,7 +58,7 @@ const BottomTabNavigator = (
     /* APP STATE CHANGES */
 
     const { name } = _navigation.route;
-    const appStateListener = AppState.addEventListener("change", (appState) => {
+    const appStateListener = AppState.addEventListener("blur", (appState) => {
       if (appState === "background") {
         if (name === "Root" || name === "Common")
           _navigation.navigation.navigate("SignIn");

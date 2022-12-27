@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useAppSelector } from "..";
+import Colors from "../../constants/Colors";
 import { RootState } from "../Store";
 
 // Define a type for the slice state
@@ -27,3 +29,22 @@ export const { setAppTheme } = themeSlice.actions;
 export const selectAppTheme = (state: RootState) => state.theme.theme;
 
 export default themeSlice.reducer;
+
+// export const useThemeColor = (
+//   props: { light?: string; dark?: string; system?: string },
+//   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+// ) => {
+//   const _selectedTheme = useAppSelector(selectAppTheme);
+//   // const theme = useColorScheme();
+//   const colorFromProps = props[_selectedTheme];
+
+//   if (colorFromProps) {
+//     return colorFromProps;
+//   } else {
+//     if (_selectedTheme === "dark") {
+//       return Colors["dark"][colorName];
+//     } else {
+//       return Colors["light"][colorName];
+//     }
+//   }
+// };

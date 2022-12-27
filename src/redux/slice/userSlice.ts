@@ -19,6 +19,7 @@ const initialState: UserState = {
   azaBalance: 0,
   emailAddress: "",
   accountVerified: false,
+  bvnVerified: false,
   accountStatus: "",
   recentTransactions: { loading: false, data: [] },
   accountCurency: "",
@@ -93,6 +94,15 @@ export const userSlice = createSlice({
     setVault: (state, action: PayloadAction<any>) => {
       state.vault = action.payload.vault;
     },
+    setBvnVerified: (state, action: PayloadAction<boolean>) => {
+      state.bvnVerified = action.payload;
+    },
+    setUserEmail: (state, action: PayloadAction<string>) => {
+      state.emailAddress = action.payload;
+    },
+    setUserPhoneNumber: (state, action: PayloadAction<string>) => {
+      state.phoneNumber = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -150,8 +160,15 @@ export const getUserTransactions = createAsyncThunk(
   }
 );
 
-export const { setUser, setUserPhoneAndFullName, setPushToken } =
-  userSlice.actions;
+export const {
+  setUser,
+  setUserPhoneAndFullName,
+  setPushToken,
+  setBvnVerified,
+  setUserEmail,
+  setUserPhoneNumber,
+  setVault,
+} = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectUser = (state: RootState) => state.user;

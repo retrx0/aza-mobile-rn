@@ -30,6 +30,7 @@ import {
   storeItem,
 } from "../../../common/util/StorageUtil";
 import { CEO_MESSAGE_STORAGE_KEY } from "../../../constants/AppConstants";
+import { Separator } from "../../../components/divider/Separator";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -179,8 +180,16 @@ const SignUpPasswordScreen = ({
                       password: passcode,
                     }).then((_jwt) => {
                       if (_jwt) {
-                        navigation.getParent()?.navigate("Root");
                         storeItemSecure(STORAGE_KEY_JWT_TOKEN, _jwt);
+                        storeUserCredentialsSecure(
+                          JSON.stringify({
+                            email: newUser.emailAddress,
+                            token: _jwt,
+                            password: passcode,
+                            phoneNumber: newUser.phoneNumber,
+                          })
+                        );
+                        navigation.getParent()?.navigate("Root");
                         if (!ceoMessageShown || ceoMessageShown === "null") {
                           //show CEO Message
                           navigation.getParent()?.navigate("CEOMessage");
@@ -214,16 +223,6 @@ const SignUpPasswordScreen = ({
         />
       </View>
     </SpacerWrapper>
-  );
-};
-
-const Separator = () => {
-  return (
-    <View
-      lightColor={Colors.light.separator}
-      darkColor={Colors.dark.separator}
-      style={[CommonStyles.separator]}
-    />
   );
 };
 

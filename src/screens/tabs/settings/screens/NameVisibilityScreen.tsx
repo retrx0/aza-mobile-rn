@@ -11,12 +11,13 @@ import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const NameVisibilityScreen = ({
   navigation,
 }: CommonScreenProps<"NameVisibility">) => {
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,7 +41,8 @@ const NameVisibilityScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Name Visibility
         </Text>
       ),
@@ -62,7 +64,8 @@ const NameVisibilityScreen = ({
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A",
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can disable this setting if you want your name to appear masked when
         others send or receive money from you
       </Text>
@@ -84,7 +87,8 @@ const NameVisibilityScreen = ({
               paddingVertical: 30,
               alignItems: "center",
             },
-          ]}>
+          ]}
+        >
           <View style={[CommonStyles.col]}>
             <Text
               lightColor={Colors.light.text}
@@ -94,7 +98,8 @@ const NameVisibilityScreen = ({
                 marginBottom: 10,
                 fontWeight: "400",
                 fontFamily: "Euclid-Circular-A",
-              }}>
+              }}
+            >
               With whom?
             </Text>
             <Text
@@ -104,7 +109,8 @@ const NameVisibilityScreen = ({
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Chiazondu Joseph
             </Text>
           </View>

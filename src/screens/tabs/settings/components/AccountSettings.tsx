@@ -70,17 +70,18 @@ export default function AccountSettings({
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "PrivacySettings" }),
     },
-    {
-      icon: <LoginOptionsIcon size={36} color={Colors[colorScheme].mainText} />,
-      name: "Login Options",
-      detail: "Connect your social media accounts",
-      disabled: false,
-      disabledIcon: (
-        <LoginOptionsIcon size={36} color={Colors[colorScheme].disabled} />
-      ),
-      handleNavigation: () =>
-        navigation.navigate("Common", { screen: "LoginOptions" }),
-    },
+    // TODO TO BE IMPLEMENTED LATER
+    // {
+    //   icon: <LoginOptionsIcon size={36} color={Colors[colorScheme].mainText} />,
+    //   name: "Login Options",
+    //   detail: "Connect your social media accounts",
+    //   disabled: false,
+    //   disabledIcon: (
+    //     <LoginOptionsIcon size={36} color={Colors[colorScheme].disabled} />
+    //   ),
+    //   handleNavigation: () =>
+    //     navigation.navigate("Common", { screen: "LoginOptions" }),
+    // },
   ];
 
   return (
@@ -93,7 +94,8 @@ export default function AccountSettings({
             fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
-          }}>
+          }}
+        >
           Account Settings
         </Text>
         <View

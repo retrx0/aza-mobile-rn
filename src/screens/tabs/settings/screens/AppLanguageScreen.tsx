@@ -14,13 +14,14 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 
 import { CheckIcon } from "../../../../../assets/svg";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const AppLanguageScreen = ({
   navigation,
 }: CommonScreenProps<"AppLanguage">) => {
   const colorScheme = useColorScheme();
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
 
   const languages = [
@@ -56,7 +57,8 @@ const AppLanguageScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           App Language
         </Text>
       ),
@@ -78,7 +80,8 @@ const AppLanguageScreen = ({
           fontFamily: "Euclid-Circular-A-Medium",
           fontSize: hp(16),
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can change the app language
       </Text>
       <View style={{ marginTop: hp(30) }}>
@@ -94,7 +97,8 @@ const AppLanguageScreen = ({
                   alignSelf: "stretch",
                   paddingVertical: 20,
                 },
-              ]}>
+              ]}
+            >
               <View>{icon}</View>
               <Text
                 lightColor={Colors.light.text}
@@ -105,7 +109,8 @@ const AppLanguageScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
-                }}>
+                }}
+              >
                 {name}
               </Text>
               {selectedLanguage === name && (

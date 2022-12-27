@@ -26,6 +26,7 @@ export interface UserState {
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;
+  bvnVerified: boolean;
   accountStatus: string;
   pushToken?: string;
   transfers: {

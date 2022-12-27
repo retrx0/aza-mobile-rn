@@ -12,7 +12,7 @@ export interface ISettings {
   appLanguage?: string;
 }
 
-export const useAsyncStorage = () => {
+export const useAppAsyncStorage = () => {
   const saveSettingsToStorage = async (settings: ISettings) => {
     const entries = await AsyncStorage.getItem(PREFERENCE_STORAGE_KEY);
     const parsedEntries = JSON.parse(entries as string);

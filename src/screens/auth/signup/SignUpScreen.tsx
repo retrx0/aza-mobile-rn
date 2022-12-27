@@ -156,11 +156,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
               }}
             />
           </View>
-          <Text style={[CommonStyles.orText]}>OR</Text>
-          <ThirdPartyAuthButtons
+          {/* <Text style={[CommonStyles.orText]}>OR</Text> */}
+          {/* // TODO TO BE IMPLEMENTED LATER */}
+          {/* <ThirdPartyAuthButtons
             authType="signup"
             onValidated={(email) => handleSubmission(email, true)}
-          />
+          /> */}
         </View>
       </HideKeyboardOnTouch>
     </SpacerWrapper>

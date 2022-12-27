@@ -15,6 +15,7 @@ import { hp, wp } from "../../../common/util/LayoutUtil";
 import { CautionIcon } from "../../../../assets/svg";
 import CEOMessage from "../../onboarding/CEOMessage";
 import { useState } from "react";
+import { selectUser } from "../../../redux/slice/userSlice";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   const [ceoMessageVisible, setceoMessageVisible] = useState(true);
@@ -38,11 +39,18 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   //     );
   //   }
   // });
+
+  const user = useAppSelector(selectUser);
+
   return (
     <View style={styles.container}>
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
-      <LinkBVN navigation={navigation} route={route} isBvnLinked={false} />
+      <LinkBVN
+        navigation={navigation}
+        route={route}
+        isBvnLinked={user.bvnVerified}
+      />
       <RecentTransactions navigation={navigation} route={route} />
       {/* <Modal visible={ceoMessageVisible}>
         <CEOMessage navigation={navigation} route={route} />

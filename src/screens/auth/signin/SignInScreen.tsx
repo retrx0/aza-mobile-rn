@@ -134,23 +134,12 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             }}
           </Formik>
 
-          <Text
-            style={{
-              fontSize: hp(14),
-              alignSelf: "center",
-              fontWeight: "500",
-              marginTop: hp(30),
-              marginBottom: hp(30),
-              lineHeight: hp(18),
-              color: Colors.general.grey,
-            }}
-          >
-            OR
-          </Text>
-          <ThirdPartyAuthButtons
+          {/* <Text style={[CommonStyles.orText]}>OR</Text> */}
+          {/* // TODO TO BE IMPLEMENTED LATER */}
+          {/* <ThirdPartyAuthButtons
             onValidated={(email) => handleSubmission(email)}
             authType="signin"
-          />
+          /> */}
         </View>
       </HideKeyboardOnTouch>
     </SpacerWrapper>
