@@ -27,7 +27,9 @@
       "usesIcloudStorage": false,
       "bundleIdentifier": "com.aza.azaapp",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "infoPlist": {}
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -54,7 +56,8 @@
         "expo-notifications",
         {
           "icon": "./assets/images/app/aza-app-icon-light.png",
-          "color": "#ffffff"
+          "color": "#ffffff",
+          "sounds": "./assets/sounds/notifications/coin-drop.wav"
         }
       ],
       "@config-plugins/detox"

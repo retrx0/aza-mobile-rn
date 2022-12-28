@@ -2,7 +2,13 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@screens/*": ["screens/*"],
+      "@components/*": ["components/*"]
+    }
   },
   "typeRoots": ["./src/types"]
 }

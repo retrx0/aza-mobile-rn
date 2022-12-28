@@ -27,7 +27,7 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   } = useNotifications();
 
   // Testing notification
-  // schedulePushNotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
+  schedulePushNotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
 
   // registerForPushNotificationsAsync().then((token) => {
   //   if (token) {

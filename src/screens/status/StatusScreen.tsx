@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import { Text, View } from "../../components/Themed";
@@ -15,6 +15,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Haptics from "expo-haptics";
 
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
+import { playSwooshSound } from "../../common/util/SoundUtil";
 
 const StatusScreen = ({
   navigation,
@@ -33,6 +34,7 @@ const StatusScreen = ({
     navigateTo,
     navigateToParams,
   } = route.params;
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -40,10 +42,13 @@ const StatusScreen = ({
     });
   }, []);
 
+  //TODO fix sound to only play on transcations
+
   useEffect(() => {
     switch (statusIcon) {
       case "Success":
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        playSwooshSound();
         break;
 
       case "Warning":

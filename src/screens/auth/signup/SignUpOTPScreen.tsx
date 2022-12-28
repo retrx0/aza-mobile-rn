@@ -36,7 +36,7 @@ const SignUpOTPScreen = ({
           emailAddress.length
         )}`
       : `Please enter the 6-digit code sent to **${phoneNumber?.substring(
-          phoneNumber.length - 4,
+          phoneNumber.length - 2,
           phoneNumber.length
         )}`;
   return (
