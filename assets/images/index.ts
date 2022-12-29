@@ -87,3 +87,6 @@ export const SWIFT = require("./common/SWIFT.png");
 export const ZEAL = require("./common/ZEAL.png");
 
 export const VaultFeature = require("./common/VaultFeature.png");
+
+export const WithdrawFeature = require("./common/WithdrawFeature.png");
+export const DepositFeature = require("./common/DepositFeature.png");
