@@ -59,7 +59,6 @@ const DepositFeature = ({
               alignSelf: "center",
               marginBottom: hp(61),
               marginTop: hp(61),
-
               resizeMode: "cover",
             }}
             source={require("../../../../../../assets/images/common//DepositFeature.png")}
@@ -75,7 +74,7 @@ const DepositFeature = ({
               alignSelf: "center",
               lineHeight: hp(30),
             }}>
-            Withdraw anytime
+            Deposit funds to your Aza
           </Text>
           <Text
             style={{
@@ -87,8 +86,7 @@ const DepositFeature = ({
               alignSelf: "center",
               marginTop: hp(20),
             }}>
-            Link your personal bank account to Aza and easily withdraw your Aza
-            funds to your bank.
+            Fund your Aza account via your debit/credit card, securely.
           </Text>
         </View>
 
