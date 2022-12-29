@@ -85,6 +85,7 @@ const SignInWelcomeBackScreen = ({
       }).then((jwt) => {
         if (jwt) {
           storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
+          console.log("token ========>", jwt);
           setScreenLoading(false);
           navigation.navigate("Root");
         } else {
