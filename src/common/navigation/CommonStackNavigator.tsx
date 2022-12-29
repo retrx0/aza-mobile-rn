@@ -6,7 +6,7 @@ import {
   AirtimeRecurringTab,
   AirtimeTabs,
   CharityTabs,
-} from "../../navigation/PaymensNavigation";
+} from "../../navigation/PaymentsNavigation";
 
 // Vault
 import AddVault from "../../screens/tabs/vault/AddVault";
@@ -30,7 +30,7 @@ import CommonStyles from "../styles/CommonStyles";
 import BackButton from "../../components/buttons/BackButton";
 import SpacerWrapper from "../util/SpacerWrapper";
 import Colors from "../../constants/Colors";
-import { BackIcon, ExitIcon } from "../../../assets/svg";
+import { BackIcon, ExitIcon, InfoIcon } from "../../../assets/svg";
 
 import StatusScreen from "../../screens/status/StatusScreen";
 
@@ -152,6 +152,9 @@ import RequestMoneyFeature from "../../screens/transfer-modal/RequestMoneyFeatur
 import VaultFeature from "../../screens/tabs/vault/VaultFeature/VaultFeature";
 import VaultLiberty from "../../screens/tabs/vault/VaultFeature/VaultLiberty";
 import QRFeature from "../../screens/qr-transactions/components/QRFeature";
+import GameCredit from "../../screens/tabs/payments/game/GameCredit";
+import WithdrawFeature from "../../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
+import DepositFeature from "../../screens/tabs/home/withdraw-deposit/deposit/DepositFeature";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -438,6 +441,7 @@ const CommonStack = () => {
               </Text>
             </TouchableOpacity>
           ),
+
           headerStyle: {
             backgroundColor:
               scheme == "light"
@@ -601,6 +605,11 @@ const CommonStack = () => {
           name="ElectricityRecurring"
           component={ElectricityRecurring}
         />
+        <Stack.Screen
+          options={{ title: "GameCredit" }}
+          name="GameCredit"
+          component={GameCredit}
+        />
       </Stack.Group>
 
       {/* Profile */}
@@ -696,7 +705,12 @@ const CommonStack = () => {
                 </Text>
               </TouchableOpacity>
             ),
-
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("WithdrawFeature")}>
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+              </TouchableOpacity>
+            ),
             headerStyle: {
               backgroundColor:
                 scheme == "light"
@@ -763,6 +777,8 @@ const CommonStack = () => {
           name="RequestMoneyFeature"
           component={RequestMoneyFeature}
         />
+        <Stack.Screen name="WithdrawFeature" component={WithdrawFeature} />
+        <Stack.Screen name="DepositFeature" component={DepositFeature} />
       </Stack.Group>
     </Stack.Navigator>
   );
