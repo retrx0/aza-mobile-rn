@@ -1,31 +1,17 @@
-import { Image, ScrollView, StyleSheet } from "react-native";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Text, View } from "../../../../components/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Input } from "../../../../components/input/input";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import ListItem from "../sub-components/ListItem";
-import {
-  AMAZON,
-  GAME,
-  GOOGLEPLAY,
-  ITUNES,
-  NETFLIX,
-  NINTENDO,
-  PSN,
-  RAZER,
-  SEPHORA,
-  STEAM,
-  XBOX,
-} from "../../../../../assets/images";
+import { GAME } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import navigation from "navigation";
+import { InfoIcon } from "../../../../../assets/svg";
+import BackButton from "../../../../components/buttons/BackButton";
 
-export default function GameScreen({
-  navigation,
-}: RootTabScreenProps<"Payments">) {
+const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -66,7 +52,7 @@ export default function GameScreen({
       </View>
     </SpacerWrapper>
   );
-}
+};
 
 const styles2 = StyleSheet.create({
   container: {
@@ -90,3 +76,8 @@ const styles2 = StyleSheet.create({
     height: 36,
   },
 });
+function useLayoutEffect(arg0: () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
+}
+
+export default GameScreen;
