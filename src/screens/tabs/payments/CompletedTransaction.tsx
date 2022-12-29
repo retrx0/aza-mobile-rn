@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { SuccessIcon } from "../../../../assets/svg";
 import MyButton from "./sub-components/MyButton";

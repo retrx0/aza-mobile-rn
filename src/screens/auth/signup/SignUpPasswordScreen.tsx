@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Platform, Switch } from "react-native";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
 import BackButton from "../../../components/buttons/BackButton";

@@ -2,7 +2,9 @@ import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { Input } from "../../../../components/input/input";
 import MyButton from "../sub-components/MyButton";
-import { ScrollView, Text, View } from "../../../../components/Themed";
+import { ScrollView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";
@@ -114,7 +116,8 @@ export default function CableConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => {

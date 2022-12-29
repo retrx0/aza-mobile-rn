@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image, ScrollView } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
@@ -33,7 +35,8 @@ const SplitConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -61,7 +64,8 @@ const SplitConfirmationScreen = ({
               marginBottom: hp(20),
               marginLeft: hp(5),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ position: "relative" }}>
@@ -73,7 +77,8 @@ const SplitConfirmationScreen = ({
                 fontSize: hp(14),
                 fontWeight: "400",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -112,7 +117,8 @@ const SplitConfirmationScreen = ({
                 paddingVertical: hp(30),
                 maxHeight: hp(300),
               },
-            ]}>
+            ]}
+          >
             <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <Text
                 // lightColor={Colors.light.secondaryText}
@@ -122,14 +128,16 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "400",
                   marginLeft: hp(5),
-                }}>
+                }}
+              >
                 Created By
               </Text>
               <View
                 style={[
                   CommonStyles.row,
                   { alignSelf: "stretch", marginTop: 10 },
-                ]}>
+                ]}
+              >
                 <Image
                   style={{ borderRadius: 50, width: 30, height: 30 }}
                   source={{
@@ -144,7 +152,8 @@ const SplitConfirmationScreen = ({
                     fontSize: hp(16),
                     fontWeight: "500",
                     marginLeft: hp(10),
-                  }}>
+                  }}
+                >
                   Chiazo
                 </Text>
                 <Text
@@ -154,7 +163,8 @@ const SplitConfirmationScreen = ({
                     fontWeight: "500",
                     marginLeft: "auto",
                     color: "#FF361A",
-                  }}>
+                  }}
+                >
                   {"\u20A6"}
                   {numberWithCommas(splitAmountForEachPerson.toFixed())}
                 </Text>
@@ -164,7 +174,8 @@ const SplitConfirmationScreen = ({
               style={[
                 CommonStyles.col,
                 { alignSelf: "stretch", marginTop: 30 },
-              ]}>
+              ]}
+            >
               <Text
                 // lightColor={Colors.light.secondaryText}
                 // darkColor={Colors.dark.secondaryText}
@@ -173,7 +184,8 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "400",
                   marginLeft: hp(5),
-                }}>
+                }}
+              >
                 Shared With
               </Text>
               {contacts.map(({ id, firstName }) => (
@@ -182,7 +194,8 @@ const SplitConfirmationScreen = ({
                   style={[
                     CommonStyles.row,
                     { alignSelf: "stretch", marginTop: 10 },
-                  ]}>
+                  ]}
+                >
                   <Image
                     style={{ borderRadius: 50, width: 30, height: 30 }}
                     source={{
@@ -197,7 +210,8 @@ const SplitConfirmationScreen = ({
                       fontSize: hp(14),
                       fontWeight: "500",
                       marginLeft: hp(10),
-                    }}>
+                    }}
+                  >
                     {firstName}
                   </Text>
                   <Text
@@ -207,7 +221,8 @@ const SplitConfirmationScreen = ({
                       fontWeight: "500",
                       marginLeft: "auto",
                       color: "#FF361A",
-                    }}>
+                    }}
+                  >
                     {"\u20A6"}
                     {numberWithCommas(splitAmountForEachPerson.toFixed())}
                   </Text>
@@ -224,7 +239,8 @@ const SplitConfirmationScreen = ({
                 fontSize: hp(16),
                 fontWeight: "400",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Total Amount
             </Text>
             <TextInput
@@ -252,7 +268,8 @@ const SplitConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => navigation.navigate("ChooseSplit")}

@@ -7,7 +7,8 @@ import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -45,7 +46,8 @@ const VaultRecurringTransfer = ({
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -55,7 +57,8 @@ const VaultRecurringTransfer = ({
               fontSize: hp(16),
               fontWeight: "600",
               marginLeft: hp(70),
-            }}>
+            }}
+          >
             Recurring Transfer
           </Text>
         </View>
@@ -66,7 +69,8 @@ const VaultRecurringTransfer = ({
           style={{
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}>
+          }}
+        >
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
@@ -75,7 +79,8 @@ const VaultRecurringTransfer = ({
               fontWeight: "400",
               marginBottom: hp(11),
               fontFamily: "Euclid-Circular-A",
-            }}>
+            }}
+          >
             Period
           </Text>
           <CustomDropdown
@@ -96,7 +101,8 @@ const VaultRecurringTransfer = ({
               lineHeight: hp(17.75),
               marginBottom: hp(11),
               fontFamily: "Euclid-Circular-A",
-            }}>
+            }}
+          >
             Day
           </Text>
 
@@ -113,7 +119,8 @@ const VaultRecurringTransfer = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

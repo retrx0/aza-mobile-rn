@@ -2,7 +2,8 @@ import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import CustomDropdown from "../../components/dropdown/CustomDropdown";
@@ -55,7 +56,8 @@ const SetupRecurringTransferScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Recurring Transfer
         </Text>
       ),
@@ -81,7 +83,8 @@ const SetupRecurringTransferScreen = ({
               fontSize: hp(16),
               marginTop: hp(20),
               marginBottom: hp(40),
-            }}>
+            }}
+          >
             Setup a recurring money transfer
           </Text>
           <View style={{ marginBottom: hp(40) }}>
@@ -93,7 +96,8 @@ const SetupRecurringTransferScreen = ({
                 fontWeight: "500",
 
                 fontFamily: "Euclid-Circular-A-Medium",
-              }}>
+              }}
+            >
               Period
             </Text>
             <CustomDropdown
@@ -113,7 +117,8 @@ const SetupRecurringTransferScreen = ({
                   fontSize: hp(16),
                   fontWeight: "500",
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}>
+                }}
+              >
                 Day
               </Text>
               <CustomDropdown
@@ -130,7 +135,8 @@ const SetupRecurringTransferScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

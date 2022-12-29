@@ -1,7 +1,8 @@
 import { Image, Keyboard, TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";

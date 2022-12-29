@@ -2,7 +2,9 @@ import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Divider from "../../../../components/divider/Divider";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -53,7 +55,8 @@ const SelectBankScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Select Bank
         </Text>
       ),
@@ -79,7 +82,8 @@ const SelectBankScreen = ({
               marginBottom: 20,
               marginLeft: hp(5),
             },
-          ]}>
+          ]}
+        >
           <SearchIcon color={Colors[colorScheme].secondaryText} size={16} />
           <TextInput
             style={{
@@ -113,14 +117,16 @@ const SelectBankScreen = ({
                       alignSelf: "stretch",
                       alignItems: "center",
                     },
-                  ]}>
+                  ]}
+                >
                   <Image source={logo} />
                 </TouchableOpacity>
                 <View
                   style={{
                     marginVertical: 25,
                     width: "100%",
-                  }}>
+                  }}
+                >
                   <Divider />
                 </View>
               </View>

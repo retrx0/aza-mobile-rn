@@ -4,7 +4,8 @@ import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -40,7 +41,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           QR Transactions
         </Text>
       ),
@@ -90,7 +92,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 14,
               marginVertical: 15,
-            }}>
+            }}
+          >
             {user.fullName}
           </Text>
           <View style={[CommonStyles.row]}>
@@ -110,7 +113,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(24),
                 marginLeft: 5,
-              }}>
+              }}
+            >
               {transaction.amount}
             </Text>
           </View>
@@ -131,7 +135,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Copy Link"
             styleText={{

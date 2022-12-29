@@ -1,6 +1,7 @@
 import { Text, ScrollView, Switch, StyleSheet } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, View } from "../../../../../components/Themed";
+import { SafeAreaView } from "../../../../../theme/Themed";
+import { View } from "../../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
@@ -92,7 +93,8 @@ export default function RecurringPlan({
           paddingHorizontal: hp(20),
           marginTop: hp(30),
           marginBottom: hp(40),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Bundle"
           data={period}
@@ -132,7 +134,8 @@ export default function RecurringPlan({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() =>

@@ -1,6 +1,7 @@
 import { Image, ScrollView, StyleSheet } from "react-native";
 import React from "react";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Input } from "../../../../components/input/input";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
@@ -40,7 +41,8 @@ export default function GameScreen({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -50,7 +52,8 @@ export default function GameScreen({
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Choose from hundreds of game brands
         </Text>
         <Image

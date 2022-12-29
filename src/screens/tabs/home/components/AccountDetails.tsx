@@ -7,10 +7,8 @@ import {
 } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import { useAppSelector } from "../../../../redux";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import Modal from "react-native-modal";
 import Divider from "../../../../components/divider/Divider";
@@ -18,8 +16,9 @@ import { useNavigation } from "@react-navigation/core";
 import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
+
 export default function AccountDetails({ isModalVisible, listItems }: any) {
-  const colorScheme = useColorScheme();
   const [secure, setSecure] = useState(true);
   const [ModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -46,14 +45,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             },
           ]}
         >
-          <Text
-            //TODO please export these constants to Colors.ts
-            lightColor={"#000000"}
-            darkColor={"#E7E9EA"}
-            style={{ fontSize: 14 }}
-          >
-            Naira
-          </Text>
+          <Text style={{ fontSize: 14 }}>Naira</Text>
           <Image
             source={NigeriaFlag}
             style={{
@@ -63,13 +55,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               marginLeft: hp(5),
             }}
           />
-          <Text
-            lightColor={"#000000"}
-            darkColor={"#E7E9EA"}
-            style={{ fontSize: 14, marginRight: 5 }}
-          >
-            NGN
-          </Text>
+          <Text style={{ fontSize: 14, marginRight: 5 }}>NGN</Text>
           {/* <OpenIcon color={Colors[colorScheme].button} /> */}
         </View>
         {/* </TouchableOpacity> */}
@@ -80,15 +66,6 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
           <>
             {secure ? (
               <>
-                <NairaIcon
-                  size={25}
-                  color={
-                    colorScheme === "dark"
-                      ? Colors.dark.mainText
-                      : Colors.light.text
-                  }
-                  style={{ marginRight: 2 }}
-                />
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
@@ -98,7 +75,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                     marginVertical: hp(10),
                   }}
                 >
-                  {user.azaBalance}
+                  {NAIRA_UNICODE + "" + user.azaBalance}
                 </Text>
               </>
             ) : (
@@ -118,8 +95,6 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
         </TouchableOpacity>
         <View style={[CommonStyles.row]}>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               marginLeft: 3,
               fontSize: hp(12),
@@ -129,8 +104,6 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             Aza Number:
           </Text>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               marginLeft: 3,
               fontSize: hp(12),
@@ -158,7 +131,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             onPress={() => setModalVisible(false)}
           >
             <CloseCircleLargeIcon
-              color={colorScheme === "dark" ? "#E7E9EA" : "#E7E9EA"}
+            // color={colorScheme === "dark" ? "#E7E9EA" : "#E7E9EA"}
             />
           </TouchableOpacity>
           <View
@@ -166,13 +139,13 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
-              backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
+              // backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
             }}
           >
             <View
               style={{
                 height: hp(335),
-                backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
+                // backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
               }}
             >
               <Text
@@ -199,16 +172,12 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   justifyContent: "space-between",
                   marginBottom: hp(30),
                   marginTop: hp(30),
-                  backgroundColor:
-                    colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
                 }}
               >
                 <View
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    backgroundColor:
-                      colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
                   }}
                 >
                   <Image
@@ -258,8 +227,6 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    backgroundColor:
-                      colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
                   }}
                 >
                   <Image

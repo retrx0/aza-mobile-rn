@@ -1,4 +1,6 @@
-import { View, Text, ScrollView } from "../../components/Themed";
+import { ScrollView } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
 import { RootStackScreenProps, RootTabScreenProps } from "../../../types";

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import BackButton from "../../../components/buttons/BackButton";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
@@ -27,7 +28,8 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -37,7 +39,8 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginLeft: hp(85),
-            }}>
+            }}
+          >
             Set a Goal
           </Text>
         </View>
@@ -46,7 +49,8 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             CommonStyles.selectStyle,
             { paddingHorizontal: hp(20) },
             { marginBottom: hp(40) },
-          ]}>
+          ]}
+        >
           You can determine the amount you want to save
         </Text>
         <>
@@ -80,7 +84,8 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 : Colors.light.text,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 36,
-            }}>
+            }}
+          >
             {!amount && " 0"} {numberWithCommas(amount)}
           </Text>
         </View>
@@ -88,14 +93,16 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             width: "100%",
             marginTop: hp(20),
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             disabled={!amount}
             title="Continue"

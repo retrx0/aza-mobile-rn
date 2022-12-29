@@ -2,7 +2,8 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Divider from "../sub-components/Divider";
 
@@ -28,7 +29,8 @@ export default function ListItem({
     <TouchableAnimated
       entering={FadeInDown.delay(200 * (index + 1))}
       onPress={onPress}
-      style={styles.listContainer}>
+      style={styles.listContainer}
+    >
       <View style={styles.mainItem}>
         <Text style={styles.text}>{title}</Text>
         <View style={styles.item}>

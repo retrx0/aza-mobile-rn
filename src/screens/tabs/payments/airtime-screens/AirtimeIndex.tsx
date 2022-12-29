@@ -1,6 +1,7 @@
 import { Switch } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, View } from "../../../../components/Themed";
+import { SafeAreaView, ScrollView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "./styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -152,7 +153,8 @@ export default function AirtimeIndex({
           flexWrap: "wrap",
           marginTop: hp(15),
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         {Network.map((item, index) => {
           return (
             <Card
@@ -193,7 +195,8 @@ export default function AirtimeIndex({
           paddingHorizontal: hp(20),
           marginTop: hp(10),
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         {route.name == "data bundle" && (
           <CustomDropdown
             data={period}
@@ -230,7 +233,8 @@ export default function AirtimeIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() => {

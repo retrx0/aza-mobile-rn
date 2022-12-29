@@ -23,6 +23,9 @@ import {
 import { RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { getAppTheme } from "../../../../theme";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 
 export const useBottomSheetType = (
   itemToReturn: string,
@@ -59,25 +62,25 @@ export const useBottomSheetType = (
     }
   };
 
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [isChoosePhoto, setChoosePhoto] = useState(false);
   const [items, _] = useState({
     menuBottomSheetListItems: [
       {
         itemName: "Split",
-        itemIcon: <SplitIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <SplitIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => navigation.navigate("Common", { screen: "Split" }),
       },
       {
         itemName: "Monthly Summary",
-        itemIcon: <GraphIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <GraphIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "MonthlySummary" }),
       },
       {
         itemName: "Fees & Limits",
         itemIcon: (
-          <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />
+          <FeesAndLimitsIcon size={16} color={Colors[appTheme].mainText} />
         ),
         onPress: () =>
           navigation.navigate("Common", { screen: "FeesAndLimits" }),
@@ -91,35 +94,31 @@ export const useBottomSheetType = (
       // },
       {
         itemName: "Contact Us",
-        itemIcon: (
-          <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <HeadphoneIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => navigation.navigate("Common", { screen: "ContactUs" }),
       },
     ],
     profileBottomSheetListItems: [
       {
         itemName: "Choose Profile Photo",
-        itemIcon: (
-          <GalleryIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => setChoosePhoto(true),
       },
       {
         itemName: "Account Details",
-        itemIcon: <UserIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <UserIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "AccountDetails" }),
       },
       {
         itemName: "Transaction History",
-        itemIcon: <ClockIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <ClockIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "TransactionHistory" }),
       },
       {
         itemName: "Bank Accounts",
-        itemIcon: <BankIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <BankIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () =>
           navigation.navigate("Common", {
             screen: "BankAccounts",
@@ -131,7 +130,7 @@ export const useBottomSheetType = (
       {
         itemName: "Debit/Credit Cards",
         itemIcon: (
-          <CreditCardIcon size={16} color={Colors[colorScheme].mainText} />
+          <CreditCardIcon size={16} color={Colors[appTheme].mainText} />
         ),
         onPress: () => {
           navigation.navigate("Common", { screen: "DebitCreditCards" });
@@ -139,7 +138,7 @@ export const useBottomSheetType = (
       },
       {
         itemName: "Sign out",
-        itemIcon: <LogoutIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <LogoutIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => {
           navigation.navigate("Welcome");
         },
@@ -151,7 +150,7 @@ export const useBottomSheetType = (
         itemIcon: (
           <SendMoneyIcon
             size={16}
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
           />
         ),
         onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
@@ -161,7 +160,7 @@ export const useBottomSheetType = (
         itemIcon: (
           <RequestMoneyIcon
             size={16}
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
           />
         ),
         onPress: () =>
@@ -172,7 +171,7 @@ export const useBottomSheetType = (
         itemIcon: (
           <RecurringTransferIcon
             size={16}
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
           />
         ),
         onPress: () =>
@@ -182,19 +181,17 @@ export const useBottomSheetType = (
     choosePhotoBottomSheetListItems: [
       {
         itemName: "Take Photo",
-        itemIcon: <CameraIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <CameraIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => takePhoto(),
       },
       {
         itemName: "Select from Gallery",
-        itemIcon: (
-          <GalleryIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => selectImageFromGallaery(),
       },
       {
         itemName: "Delete Profile Picture",
-        itemIcon: <TrashIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <TrashIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => console.log("called"),
       },
     ],

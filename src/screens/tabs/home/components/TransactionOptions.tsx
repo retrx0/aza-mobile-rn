@@ -10,11 +10,13 @@ import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
-import { Text, View } from "../../../../components/Themed";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { useBottomSheetType } from "../hooks/useBottomSheetType";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const TransactionOptions = ({
   navigation,
@@ -29,8 +31,8 @@ const TransactionOptions = ({
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  const colorScheme = useColorScheme();
-
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
   return (
     <>
       <View
@@ -65,7 +67,7 @@ const TransactionOptions = ({
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
-            <TransferIcon size={40} color={Colors[colorScheme].text} />
+            <TransferIcon size={40} color={Colors[appTheme].text} />
             <Text
               lightColor={Colors.light.text}
               darkColor={"#CCCCCC"}

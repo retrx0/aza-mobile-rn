@@ -1,5 +1,6 @@
 import { Image, TouchableOpacity } from "react-native";
-import { View, Text } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -51,13 +52,15 @@ const NewUserVault = (
 
             marginTop: hp(20),
             marginBottom: hp(10),
-          }}>
+          }}
+        >
           <Pressable
             onPress={toggleMenuModal}
             style={({ pressed }) => ({
               opacity: pressed ? 0.5 : 1,
               marginLeft: 15,
-            })}>
+            })}
+          >
             <MenuIcon size={25} color={Colors[colorScheme].text} />
           </Pressable>
           <AZALightningLogo
@@ -70,7 +73,8 @@ const NewUserVault = (
             onPress={() => navigation.navigate("QRTransactions")}
             style={({ pressed }) => ({
               opacity: pressed ? 0.5 : 1,
-            })}>
+            })}
+          >
             {colorScheme === "dark" ? (
               <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
             ) : (
@@ -97,7 +101,8 @@ const NewUserVault = (
                   justifyContent: "space-between",
                   borderRadius: hp(50),
                 },
-              ]}>
+              ]}
+            >
               <Image
                 style={{ width: 11, height: 11 }}
                 source={require("../../../../assets/images/icons/VaultLogo.png")}
@@ -111,7 +116,8 @@ const NewUserVault = (
                   fontFamily: "Euclid-Circular-A",
                   marginRight: hp(9),
                   marginLeft: hp(9),
-                }}>
+                }}
+              >
                 Vault
               </Text>
               <OpenIcon color={Colors[colorScheme].button} />
@@ -119,7 +125,8 @@ const NewUserVault = (
           </TouchableOpacity>
           <TouchableOpacity
             style={[CommonStyles.row]}
-            onPress={() => setSecure(!secure)}>
+            onPress={() => setSecure(!secure)}
+          >
             <>
               {secure ? (
                 <>
@@ -139,7 +146,8 @@ const NewUserVault = (
                       fontFamily: "Euclid-Circular-A-Semi-Bold",
                       fontSize: 26,
                       marginVertical: hp(10),
-                    }}>
+                    }}
+                  >
                     {user.azaBalance}
                   </Text>
                 </>
@@ -151,7 +159,8 @@ const NewUserVault = (
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: hp(24),
                     marginVertical: hp(10),
-                  }}>
+                  }}
+                >
                   **********
                 </Text>
               )}
@@ -162,7 +171,8 @@ const NewUserVault = (
               navigation.navigate("Common", {
                 screen: "Vault",
               })
-            }>
+            }
+          >
             <DepositIcon color="#2AD168" size={40} />
           </TouchableOpacity>
           <Text
@@ -172,7 +182,8 @@ const NewUserVault = (
               fontWeight: "400",
               marginBottom: hp(40),
               marginTop: hp(10),
-            }}>
+            }}
+          >
             New Vault
           </Text>
         </View>

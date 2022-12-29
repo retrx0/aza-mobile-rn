@@ -3,7 +3,8 @@ import { Animated, Easing, StyleSheet } from "react-native";
 import { Camera, CameraType, PermissionResponse } from "expo-camera";
 import Svg, { Path } from "react-native-svg";
 
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 
@@ -44,7 +45,8 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
             fontSize: hp(16),
             color: "#E7E9EA",
             fontWeight: "500",
-          }}>
+          }}
+        >
           Scan Card
         </Text>
       ),
@@ -106,7 +108,8 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
             },
           ],
           backgroundColor: "transparent",
-        }}>
+        }}
+      >
         <Svg width={30} height={30}>
           <Path d="M19,0 H 30 V 12 Q27,2 18,0" fill={"rgba(0,0,0, 0.7)"} />
         </Svg>
@@ -127,7 +130,8 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
                 fontSize: 16,
                 textAlign: "center",
                 lineHeight: 35,
-              }}>
+              }}
+            >
               1/2{"\n"}
               Place the front side of card in the purple box
             </Text>

@@ -2,7 +2,9 @@ import { FlatList, Modal, StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { PhoneInput, Text, View } from "../../../../components/Themed";
+import { PhoneInput } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
@@ -48,7 +50,8 @@ const ChangePhoneNumberScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           New Phone Number
         </Text>
       ),
@@ -75,14 +78,16 @@ const ChangePhoneNumberScreen = ({
               // marginTop: hp(30),
               // marginBottom: hp(30),
               marginLeft: hp(20),
-            }}>
+            }}
+          >
             Change your mobile phone number
           </Text>
           <View
             style={{
               marginBottom: 10,
               marginTop: 50,
-            }}>
+            }}
+          >
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
@@ -91,7 +96,8 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}>
+              }}
+            >
               Current Phone Number
             </Text>
             {/* <PhoneInput
@@ -143,7 +149,8 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}>
+              }}
+            >
               New Phone Number
             </Text>
             {/* <PhoneInput
@@ -211,7 +218,8 @@ const ChangePhoneNumberScreen = ({
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },
-          ]}>
+          ]}
+        >
           <FlatList
             style={[
               {

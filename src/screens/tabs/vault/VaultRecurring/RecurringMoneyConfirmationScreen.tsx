@@ -7,7 +7,8 @@ import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { Input } from "../../../../components/input/input";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../styles";
@@ -27,7 +28,8 @@ const RecurringMoneyConfirmationScreen = ({
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -37,7 +39,8 @@ const RecurringMoneyConfirmationScreen = ({
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(65),
-            }}>
+            }}
+          >
             Confirmation
           </Text>
         </View>
@@ -124,7 +127,8 @@ const RecurringMoneyConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

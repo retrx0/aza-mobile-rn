@@ -1,5 +1,7 @@
 import Button from "../../../../components/buttons/Button";
-import { ScrollView, Text, View } from "../../../../components/Themed";
+import { ScrollView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { CloseIcon, LockIcon, NairaIcon } from "../../../../../assets/svg";
@@ -40,7 +42,8 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
                   fontWeight: "600",
                   fontFamily: "Euclid-Circular-A-Bold",
                   marginTop: hp(2),
-                }}>
+                }}
+              >
                 {"\u20A62,000/"}
               </Text>
               <Text
@@ -49,7 +52,8 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
                   fontWeight: "600",
                   fontFamily: "Euclid-Circular-A-Bold",
                   color: Colors[colorScheme].secondaryText,
-                }}>
+                }}
+              >
                 {"\u20A6280,000"}
               </Text>
             </View>
@@ -61,13 +65,15 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             style={[
               CommonStyles.lockContainer,
               { backgroundColor: Colors[colorScheme].disabled },
-            ]}>
+            ]}
+          >
             <LockIcon color={Colors[colorScheme].button} />
             <View
               style={[
                 CommonStyles.timeContainer,
                 { backgroundColor: Colors[colorScheme].disabled },
-              ]}>
+              ]}
+            >
               <Text style={CommonStyles.time}>06</Text>
               <Text style={CommonStyles.seconds}>Days : </Text>
               <Text style={CommonStyles.time}>14</Text>
@@ -79,7 +85,8 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         </TouchableOpacity>
         <Text style={CommonStyles.maturity}>until maturity</Text>
         <View
-          style={[CommonStyles.vaultInputcontainer, { paddingHorizontal: 25 }]}>
+          style={[CommonStyles.vaultInputcontainer, { paddingHorizontal: 25 }]}
+        >
           <Input
             label={"Top up Vault"}
             labelStyle={undefined}
@@ -108,7 +115,8 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
             color: Colors[colorScheme].secondaryText,
             marginLeft: hp(15),
             marginTop: hp(5),
-          }}>
+          }}
+        >
           * This saves the selected percentage from your aza f balance
         </Text>
         <View

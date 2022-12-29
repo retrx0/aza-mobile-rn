@@ -1,7 +1,9 @@
 import { ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { PaymentStyles as styles } from "../styles";
-import { SafeAreaView, Text, View } from "../../../../components/Themed";
+import { SafeAreaView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { Header } from "../../../../components/text/header";
 import HeadrImage from "../sub-components/HeadrImage";
 import Divider from "../sub-components/Divider";
@@ -68,7 +70,8 @@ export default function PaymentRecurring({
             flexDirection: "row",
             alignItems: "center",
             marginBottom: hp(30),
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -78,7 +81,8 @@ export default function PaymentRecurring({
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(85),
-            }}>
+            }}
+          >
             Payments
           </Text>
         </View>

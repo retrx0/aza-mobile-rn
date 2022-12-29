@@ -4,7 +4,8 @@ import { StyleSheet, Image, ScrollView } from "react-native";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
@@ -33,7 +34,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Incoming Request
         </Text>
       ),
@@ -65,7 +67,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   alignItems: "center",
                   alignSelf: "stretch",
                 },
-              ]}>
+              ]}
+            >
               <Image
                 style={{ borderRadius: 50, width: 36, height: 36 }}
                 source={{
@@ -77,7 +80,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   display: "flex",
                   marginRight: "auto",
                   marginLeft: hp(20),
-                }}>
+                }}
+              >
                 <Text
                   // lightColor={Colors.light.mainText}
                   // darkColor={Colors.dark.mainText}
@@ -85,7 +89,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   Genesis Cinemas
                 </Text>
                 <View
@@ -96,7 +101,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                       marginBottom: hp(8),
                       alignSelf: "flex-start",
                     },
-                  ]}>
+                  ]}
+                >
                   <Text
                     // lightColor={Colors.light.mainText}
                     // darkColor={Colors.dark.mainText}
@@ -105,7 +111,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                       fontFamily: "Euclid-Circular-A",
                       fontSize: hp(14),
                       fontWeight: "500",
-                    }}>
+                    }}
+                  >
                     Payments
                   </Text>
                 </View>
@@ -115,13 +122,15 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 style={{
                   display: "flex",
                   alignItems: "flex-end",
-                }}>
+                }}
+              >
                 <Text
                   style={{
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: hp(16),
                     color: Colors.light.error,
-                  }}>
+                  }}
+                >
                   {"\u20A6"} {numberWithCommas(20000)}
                 </Text>
                 <Text
@@ -131,7 +140,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                     fontSize: hp(12),
                     marginTop: hp(3),
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   4 July 2022 04:26
                 </Text>
               </View>
@@ -143,7 +153,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
           style={{
             marginTop: hp(30),
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
@@ -152,7 +163,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
               fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
               fontWeight: "400",
-            }}>
+            }}
+          >
             Request Creator
           </Text>
           <View
@@ -163,7 +175,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 justifyContent: "space-between",
                 marginTop: hp(15),
               },
-            ]}>
+            ]}
+          >
             <Image
               style={{ borderRadius: 50, width: 45, height: 45 }}
               source={{
@@ -174,7 +187,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
               style={[
                 CommonStyles.col,
                 { marginLeft: 20, marginRight: "auto" },
-              ]}>
+              ]}
+            >
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
@@ -182,7 +196,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
-                }}>
+                }}
+              >
                 Chiazo
               </Text>
               <Text
@@ -191,7 +206,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   marginTop: 5,
                   color: "#FF361A",
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}>
+                }}
+              >
                 {"\u20A6"}
                 {numberWithCommas(6666)}
               </Text>
@@ -207,7 +223,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
             marginLeft: hp(20),
             marginTop: hp(30),
             fontWeight: "400",
-          }}>
+          }}
+        >
           Request Recipients
         </Text>
         <ScrollView>
@@ -221,7 +238,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                   marginTop: hp(15),
                   paddingHorizontal: hp(20),
                 },
-              ]}>
+              ]}
+            >
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
@@ -232,7 +250,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 style={[
                   CommonStyles.col,
                   { marginLeft: 20, marginRight: "auto" },
-                ]}>
+                ]}
+              >
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
@@ -240,7 +259,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                     fontSize: hp(16),
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   James
                 </Text>
                 <Text
@@ -249,7 +269,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                     marginTop: 5,
                     color: "#FF361A",
                     fontFamily: "Euclid-Circular-A-Medium",
-                  }}>
+                  }}
+                >
                   {"\u20A6"}
                   {numberWithCommas(6666)}
                 </Text>
@@ -261,7 +282,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Accept Request"
             onPressButton={() =>

@@ -1,7 +1,9 @@
 import { KeyboardAvoidingView, Platform, TouchableOpacity } from "react-native";
 import { CloseCircleLargeIcon } from "../../../../assets/svg";
 import Button from "../../../components/buttons/Button";
-import { Text, TextInput, View } from "../../../components/Themed";
+import { TextInput } from "../../../theme/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Modal from "react-native-modal";
@@ -42,10 +44,12 @@ const DescriptionModal = ({
   return (
     <Modal
       isVisible={visible}
-      style={{ justifyContent: "flex-end", margin: 0 }}>
+      style={{ justifyContent: "flex-end", margin: 0 }}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}>
+        keyboardVerticalOffset={Platform.OS === "android" ? -900 : 0}
+      >
         <TouchableOpacity
           onPress={() => setModalVisible(false)}
           style={{
@@ -53,7 +57,8 @@ const DescriptionModal = ({
             alignItems: "flex-end",
             marginBottom: 20,
             marginRight: 15,
-          }}>
+          }}
+        >
           <CloseCircleLargeIcon
             color={Colors[colorScheme].backgroundSecondary}
           />
@@ -68,14 +73,16 @@ const DescriptionModal = ({
             paddingBottom: 50,
             display: "flex",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 16,
-            }}>
+            }}
+          >
             Description
           </Text>
           <Text
@@ -84,7 +91,8 @@ const DescriptionModal = ({
             style={{
               marginTop: 10,
               fontSize: 14,
-            }}>
+            }}
+          >
             You can add a note to this transaction
           </Text>
           <TextInput

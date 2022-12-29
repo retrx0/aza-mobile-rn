@@ -10,6 +10,9 @@ import {
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 type ButtonPropsType = {
   title: string;
@@ -32,6 +35,8 @@ export const Button: FC<ButtonPropsType> = ({
 }) => {
   const colorScheme = useColorScheme();
 
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <TouchableOpacity
       disabled={disabled || buttonLoading}
@@ -42,15 +47,23 @@ export const Button: FC<ButtonPropsType> = ({
         isNext && styles.nextButton,
         style,
         disabled && {
-          backgroundColor: Colors[colorScheme].secondaryText,
+          backgroundColor: Colors[appTheme].secondaryText,
         },
         {
           opacity: disabled ? 0.5 : 1,
+          backgroundColor: Colors[appTheme].button,
         },
         style,
       ]}
     >
-      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
+      <Text
+        style={[
+          styles.doneText,
+          isNext && styles.nextText,
+          { color: Colors[appTheme].buttonText },
+          styleText,
+        ]}
+      >
         {buttonLoading ? (
           <ActivityIndicator animating={buttonLoading} />
         ) : (

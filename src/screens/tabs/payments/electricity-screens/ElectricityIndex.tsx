@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
+import { SafeAreaView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -82,7 +83,8 @@ export default function ElectricityIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {ElectricityList.map((item, index) => {
           return (
             <Card
@@ -100,7 +102,8 @@ export default function ElectricityIndex({
           paddingHorizontal: hp(20),
 
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Meter Type"
           data={period}
@@ -150,7 +153,8 @@ export default function ElectricityIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
           disabled={!bundles}
           title="Continue"

@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { SigninStyles as styles } from "../signin/styles";
 
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
@@ -30,7 +30,6 @@ type OtpProp = {
 
 const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onVerify, onResend } = props;
-  const colorScheme = useColorScheme();
   const {
     minutesToDisplay,
     secondsToDisplay,
@@ -77,7 +76,6 @@ const OtpScreen = (props: OtpProp) => {
               title="Resend code"
               onPressButton={resendCode}
               styleText={CommonStyles.resend}
-              color={Colors[colorScheme].text}
             />
           </TouchableOpacity>
         )}
@@ -85,16 +83,7 @@ const OtpScreen = (props: OtpProp) => {
       <Button
         title="Continue"
         onPressButton={onVerify}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-        }}
-        style={[
-          {
-            backgroundColor: Colors[colorScheme].button,
-            marginBottom: hp(10),
-          },
-          CommonStyles.otpbutton,
-        ]}
+        style={[{ marginBottom: hp(10) }, CommonStyles.otpbutton]}
         disabled={otpCode.length < 6 ? true : false}
       />
     </SpacerWrapper>

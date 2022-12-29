@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { CountriesType } from "../../../../types";
-import { PhoneInputProps } from "../../../components/Themed";
+import { PhoneInputProps } from "../../../theme/Themed";
 import { CountryBox } from "../signup/components/CountryInput";
 
 type StageOneProp = {

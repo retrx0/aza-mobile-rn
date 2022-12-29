@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { PhoneInput, Text, View } from "../../../components/Themed";
+import { PhoneInput } from "../../../theme/Themed";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import useColorScheme from "../../../hooks/useColorScheme";
-import { useAppDispatch } from "../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   requestOtp,
   setEmail as setReduxStoreEmail,
@@ -32,7 +32,6 @@ const validationSchema = yup.object({
 });
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
-  const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -132,8 +131,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                   <Button
                     title="Continue"
                     onPressButton={handleSubmit}
-                    styleText={{ color: Colors[colorScheme].buttonText }}
-                    style={[{ backgroundColor: Colors[colorScheme].button }]}
                     buttonLoading={buttonLoading}
                     disabled={!isValid}
                   />
@@ -148,7 +145,6 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             <CancelButtonWithUnderline
               title="Login"
               onPressButton={() => navigation.getParent()?.navigate("SignIn")}
-              color={Colors[colorScheme].text}
               styleText={{
                 fontSize: hp(14),
                 fontWeight: "500",

@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View } from "../../../../../components/Themed";
+import { SafeAreaView } from "../../../../../theme/Themed";
+import { View } from "../../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
@@ -104,7 +105,8 @@ export default function ElectricityRecurring({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}>
+        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}
+      >
         {ElectricityList.map((item, index) => {
           return (
             <Card
@@ -120,7 +122,8 @@ export default function ElectricityRecurring({
       <View
         style={{
           paddingHorizontal: hp(20),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Meter Type"
           data={meter}
@@ -174,7 +177,8 @@ export default function ElectricityRecurring({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
           disabled={!bundles}
           title="Continue"

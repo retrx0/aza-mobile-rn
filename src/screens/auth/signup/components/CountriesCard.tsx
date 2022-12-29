@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
 export const CountriesCard = ({

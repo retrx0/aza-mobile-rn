@@ -1,5 +1,6 @@
 import React from "react";
-import { OTPInput, Text, View } from "../../components/Themed";
+import { OTPInput } from "../../theme/Themed";
+import { View2 as View, Text2 as Text } from "../../theme/Themed";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 

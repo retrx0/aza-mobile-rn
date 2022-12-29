@@ -5,7 +5,8 @@ import { Contact } from "expo-contacts";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 import SplitListItem from "./components/SplitListItem";
 import Button from "../../components/buttons/Button";
@@ -38,7 +39,8 @@ const SplitEditContactsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Split
         </Text>
       ),
@@ -87,7 +89,8 @@ const SplitEditContactsScreen = ({
                 justifyContent: "space-between",
                 marginTop: hp(25),
               },
-            ]}>
+            ]}
+          >
             <Image
               style={{ borderRadius: 50, width: 45, height: 45 }}
               source={{
@@ -98,7 +101,8 @@ const SplitEditContactsScreen = ({
               style={[
                 CommonStyles.col,
                 { marginLeft: 20, marginRight: "auto" },
-              ]}>
+              ]}
+            >
               <Text
                 // lightColor={Colors.light.text}
                 // darkColor={Colors.dark.mainText}
@@ -106,7 +110,8 @@ const SplitEditContactsScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
-                }}>
+                }}
+              >
                 Chiazo
               </Text>
               <Text
@@ -115,7 +120,8 @@ const SplitEditContactsScreen = ({
                   marginTop: 5,
                   color: "#FF361A",
                   fontWeight: "400",
-                }}>
+                }}
+              >
                 {"\u20A6"}
                 {numberWithCommas(splitAmountForEachPerson.toFixed())}
               </Text>
@@ -132,11 +138,13 @@ const SplitEditContactsScreen = ({
                       .toFixed()
                       .toString(),
                   })
-                }>
+                }
+              >
                 <EditIcon color="#A6A6A6" size={20} />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => console.log("deleted request creator")}>
+                onPress={() => console.log("deleted request creator")}
+              >
                 <TrashIcon color="#FF361A" size={20} />
               </TouchableOpacity>
             </View>
@@ -154,7 +162,8 @@ const SplitEditContactsScreen = ({
                     justifyContent: "space-between",
                     marginTop: hp(25),
                   },
-                ]}>
+                ]}
+              >
                 <Image
                   style={{ borderRadius: 50, width: 45, height: 45 }}
                   source={{
@@ -165,7 +174,8 @@ const SplitEditContactsScreen = ({
                   style={[
                     CommonStyles.col,
                     { marginRight: "auto", marginLeft: 20 },
-                  ]}>
+                  ]}
+                >
                   <Text
                     lightColor={Colors.light.text}
                     darkColor={Colors.dark.mainText}
@@ -173,7 +183,8 @@ const SplitEditContactsScreen = ({
                       fontSize: hp(16),
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontWeight: "500",
-                    }}>
+                    }}
+                  >
                     {name}
                   </Text>
                   <Text
@@ -181,7 +192,8 @@ const SplitEditContactsScreen = ({
                       fontSize: hp(12),
                       marginTop: hp(5),
                       color: "#FF361A",
-                    }}>
+                    }}
+                  >
                     {"\u20A6"}
                     {numberWithCommas(splitAmountForEachPerson.toFixed())}
                   </Text>
@@ -198,7 +210,8 @@ const SplitEditContactsScreen = ({
                           .toFixed()
                           .toString(),
                       })
-                    }>
+                    }
+                  >
                     <EditIcon color="#A6A6A6" size={20} />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => removePerson(id)}>
@@ -214,7 +227,8 @@ const SplitEditContactsScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() =>

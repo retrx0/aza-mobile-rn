@@ -1,7 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import BackButton from "../../../../components/buttons/BackButton";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
@@ -38,7 +39,8 @@ const NewPasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           New Password
         </Text>
       ),
@@ -85,14 +87,16 @@ const NewPasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             marginLeft: hp(20),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Please enter your new password
         </Text>
         <View
           style={{
             marginTop: hp(50),
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <SegmentedInput
             value={newPassword}
             secureInput
@@ -110,7 +114,8 @@ const NewPasswordScreen = ({
             marginTop: hp(70),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <SegmentedInput
             value={newPasswordConfirmation}
             secureInput
@@ -125,7 +130,8 @@ const NewPasswordScreen = ({
             {
               marginBottom: hp(15),
             },
-          ]}>
+          ]}
+        >
           <Text style={{ fontSize: 12, marginRight: 10 }}>
             Use as transaction pin
           </Text>

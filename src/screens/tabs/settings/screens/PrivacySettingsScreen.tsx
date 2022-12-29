@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -41,7 +42,8 @@ const PrivacySettingsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Privacy Settings
         </Text>
       ),
@@ -63,7 +65,8 @@ const PrivacySettingsScreen = ({
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A-Medium",
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can change your privacy settings
       </Text>
       <View style={{ marginTop: hp(80) }}>

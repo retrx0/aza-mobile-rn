@@ -2,7 +2,8 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Divider from "../../../../components/divider/Divider";
 import CustomSwitch from "../../../../components/switch/CustomSwitch";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 
 interface ISwitch {
@@ -23,7 +24,8 @@ const SettingsSwitch = ({ text, isEnabled, onSwitchToggle }: ISwitch) => {
             paddingVertical: 30,
             alignItems: "center",
           },
-        ]}>
+        ]}
+      >
         <Text
           // lightColor={Colors.light.text}
           // darkColor={Colors.dark.mainText}
@@ -32,7 +34,8 @@ const SettingsSwitch = ({ text, isEnabled, onSwitchToggle }: ISwitch) => {
             fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
             fontWeight: "500",
-          }}>
+          }}
+        >
           {text}
         </Text>
         <CustomSwitch isEnabled={isEnabled} onSwitchToggle={onSwitchToggle} />

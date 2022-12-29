@@ -1,7 +1,9 @@
 import React from "react";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet } from "react-native";
 
@@ -22,7 +24,8 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
-          }}>
+          }}
+        >
           Blocked users won't be able to send you money, request money from you
           or split payments with you.
         </Text>
@@ -34,7 +37,8 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",
             marginTop: hp(30),
-          }}>
+          }}
+        >
           You can unblock these users anytime
         </Text>
         <View style={{ marginTop: hp(50) }}>

@@ -4,7 +4,8 @@ import {
   FlatList,
   I18nManager,
 } from "react-native";
-import { View, Text } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { Header } from "../../../components/text/header";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import {
@@ -64,7 +65,8 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}>
+          }}
+        >
           <TouchableOpacity
             style={{
               width: 77,
@@ -75,7 +77,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "AddVault" })
-            }>
+            }
+          >
             <UnarchiveIcon />
             <Text
               style={{
@@ -85,7 +88,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Unarchive
             </Text>
           </TouchableOpacity>
@@ -99,7 +103,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }>
+            }
+          >
             <TrashIcon color="white" size={24} />
             <Text
               style={{
@@ -109,7 +114,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Delete
             </Text>
           </TouchableOpacity>
@@ -117,7 +123,8 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}>
+      rightThreshold={40}
+    >
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
@@ -135,7 +142,8 @@ const ListItem = ({
                         ? Colors.general.green
                         : Colors.general.black,
                   },
-                ]}>
+                ]}
+              >
                 {"\u20A6"}
                 {amount}
               </Text>
@@ -170,7 +178,8 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
             justifyContent: "space-between",
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -180,7 +189,8 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginRight: hp(40),
-            }}>
+            }}
+          >
             Archived Vaults
           </Text>
           <TouchableOpacity>

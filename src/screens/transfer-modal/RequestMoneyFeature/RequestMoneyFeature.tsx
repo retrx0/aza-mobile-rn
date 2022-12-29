@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../common/navigation/types";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -31,7 +32,8 @@ const RequestMoneyFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Request Money
         </Text>
       ),
@@ -52,7 +54,8 @@ const RequestMoneyFeature = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <RequestIcon color={colorScheme === "dark" ? "#E7E9EA" : "#000000"} />
         </View>
         <Text
@@ -64,7 +67,8 @@ const RequestMoneyFeature = ({
             // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Easy and convinient
         </Text>
         <Text
@@ -77,7 +81,8 @@ const RequestMoneyFeature = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Request money from your family and friends in a friendly manner,
           effortlessly.
         </Text>
@@ -85,7 +90,8 @@ const RequestMoneyFeature = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Go Back to Request Money"
             onPressButton={() => navigation.navigate("RequestMoney")}

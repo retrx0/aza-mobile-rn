@@ -1,13 +1,17 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Platform } from "react-native";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { SafeAreaView } from "../../../../components/Themed";
+import { SafeAreaView } from "../../../../theme/Themed";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import DepositIndex from "./deposit/DepositIndex";
 import WithdrawIndex from "./withdraw/WithdrawIndex";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 export function WithdrawDepositTabs() {
-  const scheme = useColorScheme();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const scheme = getAppTheme(selectedTheme);
   const Tab = createMaterialTopTabNavigator();
   return (
     <SafeAreaView style={CommonStyles.parentContainer}>
@@ -30,7 +34,8 @@ export function WithdrawDepositTabs() {
             borderBottomWidth: 0.1,
           },
         }}
-        initialRouteName="WithdrawIndex">
+        initialRouteName="WithdrawIndex"
+      >
         <Tab.Screen
           options={{ title: "Withdraw" }}
           name="WithdrawIndex"

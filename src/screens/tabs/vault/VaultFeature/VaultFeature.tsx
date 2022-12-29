@@ -1,7 +1,8 @@
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -27,7 +28,8 @@ const VaultFeature = ({ navigation }: RootTabScreenProps<"Vault">) => {
             justifyContent: "space-between",
             paddingHorizontal: 20,
             // alignSelf: "center",
-          }}>
+          }}
+        >
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Bold",
@@ -35,7 +37,8 @@ const VaultFeature = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontWeight: "500",
               textAlign: "center",
               marginLeft: hp(160),
-            }}>
+            }}
+          >
             Vault
           </Text>
           <ExitButton onPress={() => navigation.goBack()} />
@@ -61,7 +64,8 @@ const VaultFeature = ({ navigation }: RootTabScreenProps<"Vault">) => {
             // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Stay financially-disciplined
         </Text>
         <Text
@@ -74,7 +78,8 @@ const VaultFeature = ({ navigation }: RootTabScreenProps<"Vault">) => {
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Save and Lockup your funds towards a particular goal, at any time
           frame of your choice.
         </Text>
@@ -82,7 +87,8 @@ const VaultFeature = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

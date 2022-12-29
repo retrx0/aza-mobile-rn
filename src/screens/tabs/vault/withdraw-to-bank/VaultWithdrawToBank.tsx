@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RootTabScreenProps } from "../../../../../types";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
@@ -28,7 +29,8 @@ const VaultToBank = () => {
             flexDirection: "row",
             alignItems: "center",
             paddingHorizontal: hp(10),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -38,7 +40,8 @@ const VaultToBank = () => {
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(90),
-            }}>
+            }}
+          >
             Withdraw
           </Text>
         </View>
@@ -50,7 +53,8 @@ const VaultToBank = () => {
             marginLeft: hp(14),
             marginTop: hp(30),
             marginBottom: hp(40),
-          }}>
+          }}
+        >
           Select the bank you wish to withdraw to
         </Text>
         <View
@@ -59,7 +63,8 @@ const VaultToBank = () => {
             {
               borderColor: "#EAEAEC",
             },
-          ]}>
+          ]}
+        >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
               source={require("../../../../../assets/images/AccessBank.png")}
@@ -74,7 +79,8 @@ const VaultToBank = () => {
             <TouchableOpacity
               activeOpacity={0.9}
               style={CommonStyles.selectContainer}
-              onPress={() => setClick(!click)}>
+              onPress={() => setClick(!click)}
+            >
               {click ? (
                 <View style={CommonStyles.onselect}>
                   <View style={CommonStyles.doneSelect} />
@@ -87,7 +93,8 @@ const VaultToBank = () => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <CancelButtonWithUnderline
             title="Add another Bank Account"
             onPressButton={() => navigation.getParent()?.navigate("TopBar")}

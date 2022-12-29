@@ -2,12 +2,36 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CountriesType } from "../../types";
 
+const staticCountries = [
+  {
+    code: "+234",
+    imageLink:
+      "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+    name: "Nigeria",
+    short_name: "NG",
+  },
+  {
+    code: "+36",
+    imageLink:
+      "https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg",
+    name: "Hungary",
+    short_name: "HU",
+  },
+  {
+    code: "+90",
+    imageLink:
+      "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
+    name: "Turkey",
+    short_name: "TR",
+  },
+];
+
 export const useCountries = () => {
   const [loading, setLoading] = useState(false);
-  const [countries, setCountries] = useState<CountriesType[]>([]);
+  const [countries, setCountries] = useState<CountriesType[]>(staticCountries);
 
   useEffect(() => {
-    fetchCountry();
+    // fetchCountry();
   }, []);
 
   const fetchCountry = () => {

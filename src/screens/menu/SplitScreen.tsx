@@ -4,7 +4,8 @@ import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 
 import Colors from "../../constants/Colors";
@@ -32,7 +33,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Split
         </Text>
       ),
@@ -71,7 +73,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           <View key={i}>
             <TouchableOpacity
               onPress={handleNavigation}
-              style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+              style={[CommonStyles.col, { alignSelf: "stretch" }]}
+            >
               <View
                 style={[
                   CommonStyles.row,
@@ -81,13 +84,15 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     marginVertical: hp(20),
                     marginLeft: hp(3),
                   },
-                ]}>
+                ]}
+              >
                 <View>{icon}</View>
                 <View
                   style={[
                     CommonStyles.col,
                     { marginRight: "auto", marginLeft: 20 },
-                  ]}>
+                  ]}
+                >
                   <Text
                     // lightColor={Colors.light.text}
                     // darkColor={Colors.dark.mainText}
@@ -95,7 +100,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),
                       fontWeight: "600",
-                    }}>
+                    }}
+                  >
                     {name}
                   </Text>
                 </View>

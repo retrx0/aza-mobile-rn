@@ -3,7 +3,8 @@ import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../common/navigation/types";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -30,7 +31,8 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           QR Transaction
         </Text>
       ),
@@ -51,7 +53,8 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <Image
             style={{
               width: hp(150),
@@ -71,7 +74,8 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
             // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Effortless Payments
         </Text>
         <Text
@@ -84,7 +88,8 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Use our QR Code feature to securely make swift transactions across
           Aza.
         </Text>
@@ -92,7 +97,8 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Go Back to QR Transaction"
             onPressButton={() => navigation.navigate("QRTransactions")}

@@ -8,7 +8,8 @@ import {
 } from "../../../../../assets/svg";
 import { VaultActivitytProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
@@ -101,7 +102,8 @@ export const ActivityCard = ({
                     ? Colors.general.lightGreen
                     : Colors.light.backgroundSecondary,
               },
-            ]}>
+            ]}
+          >
             {send}
           </View>
           <Text style={styles.status}>{status}</Text>
@@ -117,7 +119,8 @@ export const ActivityCard = ({
                       ? Colors.general.red
                       : Colors.general.green,
                 },
-              ]}>
+              ]}
+            >
               {amount}
             </Text>
           </View>

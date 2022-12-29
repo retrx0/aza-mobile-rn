@@ -3,7 +3,8 @@ import { Image } from "react-native";
 import { NairaLargeIcon } from "../../../../assets/svg";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { UserState } from "../../../redux/slice/userSlice";
@@ -32,7 +33,8 @@ const SenderDetails = ({
           fontFamily: "Euclid-Circular-A-Semi-Bold",
           fontSize: 14,
           marginTop: 15,
-        }}>
+        }}
+      >
         {userData.fullName}
       </Text>
       <View
@@ -48,11 +50,13 @@ const SenderDetails = ({
             justifyContent: "center",
             borderRadius: 50,
           },
-        ]}>
+        ]}
+      >
         <Text
           lightColor={Colors.general.darkGrey}
           darkColor={"#CCCCCC"}
-          style={{ fontSize: 12 }}>
+          style={{ fontSize: 12 }}
+        >
           Nigerian Naira
         </Text>
         <Image
@@ -67,7 +71,8 @@ const SenderDetails = ({
         <Text
           lightColor={Colors.general.darkGrey}
           darkColor={"#CCCCCC"}
-          style={{ fontSize: 12 }}>
+          style={{ fontSize: 12 }}
+        >
           NGN
         </Text>
       </View>
@@ -87,7 +92,8 @@ const SenderDetails = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 36,
             marginVertical: 15,
-          }}>
+          }}
+        >
           {!amount && " 0"} {numberWithCommas(amount)}
         </Text>
       </View>
@@ -97,7 +103,8 @@ const SenderDetails = ({
           darkColor={Colors.dark.secondaryText}
           style={{
             fontSize: 12,
-          }}>
+          }}
+        >
           Aza Balance:
         </Text>
         <Text
@@ -107,7 +114,8 @@ const SenderDetails = ({
             marginLeft: 3,
             fontSize: 12,
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-          }}>
+          }}
+        >
           {"\u20A6"} {userData.azaBalance}
         </Text>
       </View>

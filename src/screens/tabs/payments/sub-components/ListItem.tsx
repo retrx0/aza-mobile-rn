@@ -3,7 +3,7 @@ import React from "react";
 import Divider from "./Divider";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 type Props = {
@@ -28,7 +28,8 @@ export default function ListItem({
     <View style={styles.listContainer}>
       <TouchableAnimated
         entering={FadeInDown.delay(200 * (index + 1))}
-        onPress={onPress}>
+        onPress={onPress}
+      >
         <View style={styles.mainItem}>
           <View style={styles.item}>
             <Icon />

@@ -54,8 +54,8 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
           }
         }}
         phoneNumber={""}
-        otpTitle={`Please enter the 6-digit code sent to **${user.phoneNumber?.substring(
-          user.phoneNumber.length - 4,
+        otpTitle={`Please enter the 6-digit code sent to ***${user.phoneNumber?.substring(
+          user.phoneNumber.length - 2,
           user.phoneNumber.length
         )}`}
       />

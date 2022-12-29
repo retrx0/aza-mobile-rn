@@ -3,12 +3,9 @@ import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { Input } from "../../../components/input/input";
 import MyButton from "./sub-components/MyButton";
-import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-} from "../../../components/Themed";
+import { SafeAreaView, ScrollView } from "../../../theme/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";

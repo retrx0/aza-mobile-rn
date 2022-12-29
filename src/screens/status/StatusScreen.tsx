@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../components/Themed";
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -16,12 +15,16 @@ import * as Haptics from "expo-haptics";
 
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 import { playSwooshSound } from "../../common/util/SoundUtil";
+import { View2 as View, Text2 as Text } from "../../theme/Themed";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const StatusScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"StatusScreen">) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const insets = useSafeAreaInsets();
   const {
     statusIcon,
@@ -78,7 +81,7 @@ const StatusScreen = ({
           <Text
             style={{
               color:
-                statusIcon === "Success" ? "#2A9E17" : Colors[colorScheme].text,
+                statusIcon === "Success" ? "#2A9E17" : Colors[appTheme].text,
               fontSize: hp(24),
               marginVertical: hp(20),
               textAlign: "center",
@@ -90,7 +93,6 @@ const StatusScreen = ({
           </Text>
           <Text
             style={{
-              color: Colors[colorScheme].text,
               fontSize: 14,
               textAlign: "center",
               maxWidth: 350,
@@ -102,7 +104,6 @@ const StatusScreen = ({
 
           <Text
             style={{
-              color: Colors[colorScheme].text,
               fontSize: 14,
               textAlign: "center",
               marginTop: hp(25),
@@ -127,16 +128,15 @@ const StatusScreen = ({
               }
               style={[
                 {
-                  backgroundColor:
-                    colorScheme === "dark" ? "#000000" : "#ffffff",
-                  borderColor: colorScheme === "dark" ? "#E7E9EA" : "#121212",
+                  backgroundColor: appTheme === "dark" ? "#000000" : "#ffffff",
+                  borderColor: appTheme === "dark" ? "#E7E9EA" : "#121212",
                   borderWidth: 1,
                   marginTop: hp(20),
                 },
                 { marginBottom: 20 },
               ]}
               styleText={{
-                color: colorScheme === "dark" ? "#E7E9EA" : "#121212",
+                color: appTheme === "dark" ? "#E7E9EA" : "#121212",
               }}
             />
           )}
@@ -146,17 +146,17 @@ const StatusScreen = ({
               navigation.getParent()?.navigate(navigateTo, navigateToParams)
             }
             styleText={{
-              color: Colors[colorScheme].buttonText,
+              color: Colors[appTheme].buttonText,
             }}
             style={{
-              backgroundColor: Colors[colorScheme].button,
+              backgroundColor: Colors[appTheme].button,
               marginBottom: 15,
             }}
           />
           {receiptButton && (
             <ButtonWithUnderline
               title="Receipt"
-              color={Colors[colorScheme].text}
+              color={Colors[appTheme].text}
               onPressButton={() => console.log("called receipt")}
             />
           )}
@@ -164,7 +164,7 @@ const StatusScreen = ({
             <ButtonWithUnderline
               title="Cancel"
               styleText={CommonStyles.cancelStyle}
-              color={Colors[colorScheme].error}
+              color={Colors[appTheme].error}
               onPressButton={() => navigation.goBack()}
             />
           )}

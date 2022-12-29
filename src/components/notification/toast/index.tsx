@@ -1,6 +1,7 @@
 import { ToastConfig, ToastData, ToastProps } from "react-native-toast-message";
 import { hp } from "../../../common/util/LayoutUtil";
-import { Text, View } from "../../Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 export const toastConfig: ToastConfig = {
   error: ({ text1, text2 }: ToastData) => (

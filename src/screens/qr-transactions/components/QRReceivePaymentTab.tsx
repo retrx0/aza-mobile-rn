@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import DescriptionModal from "../../keypad/modal/DescriptionModal";
 
 import { hp } from "../../../common/util/LayoutUtil";
@@ -39,7 +40,8 @@ const QRReceivePaymentTab = ({
           style={{
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -48,7 +50,8 @@ const QRReceivePaymentTab = ({
               fontSize: hp(14),
               marginTop: hp(60),
               marginBottom: hp(20),
-            }}>
+            }}
+          >
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -70,7 +73,8 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -80,7 +84,8 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: hp(60),
             marginBottom: hp(60),
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
         <Button

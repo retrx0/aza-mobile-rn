@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
@@ -32,7 +34,8 @@ const RecurringTransferConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -57,7 +60,8 @@ const RecurringTransferConfirmationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(20),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -69,7 +73,8 @@ const RecurringTransferConfirmationScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 color: colorScheme === "dark" ? "#999999" : "#000000",
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -181,7 +186,8 @@ const RecurringTransferConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

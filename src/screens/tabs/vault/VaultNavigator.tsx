@@ -8,7 +8,7 @@ import VaultDetails from "./withdraw-to-aza/VaultDetails";
 import VaultActivity from "./withdraw-to-aza/VaultActivity";
 import { Platform } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { SafeAreaView } from "../../../components/Themed";
+import { SafeAreaView } from "../../../theme/Themed";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import VaulToBank from "./withdraw-to-bank/VaultWithdrawToBank";
@@ -78,7 +78,8 @@ export const VaultTabs = () => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName="VaultDetails">
+        initialRouteName="VaultDetails"
+      >
         <Tab.Screen name="VaultDetails" component={VaultDetails} />
         <Tab.Screen name="VaultActivity" component={VaultActivity} />
       </Tab.Navigator>

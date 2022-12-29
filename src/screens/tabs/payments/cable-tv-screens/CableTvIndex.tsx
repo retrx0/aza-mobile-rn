@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Switch, StyleSheet } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView } from "../../../../components/Themed";
+import { SafeAreaView } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -90,7 +90,8 @@ export default function CableTvIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {Cable.map((item, index) => {
           return (
             <Card
@@ -126,7 +127,8 @@ export default function CableTvIndex({
           paddingHorizontal: hp(20),
           marginBottom: hp(20),
           marginTop: hp(20),
-        }}>
+        }}
+      >
         <Text
           // lightColor={Colors.light.secondaryText}
           // darkColor={Colors.dark.secondaryText}
@@ -136,7 +138,8 @@ export default function CableTvIndex({
             fontFamily: "Euclid-Circular-A",
 
             color: colorScheme === "dark" ? "#ffffff" : "#000000",
-          }}>
+          }}
+        >
           Subscription Package
         </Text>
         <CustomDropdown
@@ -157,7 +160,8 @@ export default function CableTvIndex({
             lineHeight: hp(17.75),
             color: colorScheme === "dark" ? "#ffffff" : "#000000",
             fontFamily: "Euclid-Circular-A",
-          }}>
+          }}
+        >
           Subscription Amount
         </Text>
 
@@ -174,7 +178,8 @@ export default function CableTvIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
           disabled={false}
           title="Continue"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "../../../../../components/Themed";
+import { View } from "../../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
@@ -107,7 +107,8 @@ export default function AirtimeRecurring({
             flexDirection: "row",
             flexWrap: "wrap",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           {Network.map((item, index) => {
             return (
               <Card
@@ -189,7 +190,8 @@ export default function AirtimeRecurring({
         <View
           style={{
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           {route.name == "data bundle" && (
             <>
               <CustomDropdown
@@ -211,7 +213,8 @@ export default function AirtimeRecurring({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="continue"
             // onPressButton={() =>

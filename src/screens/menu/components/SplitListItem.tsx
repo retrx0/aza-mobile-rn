@@ -1,6 +1,7 @@
 import { Image } from "react-native";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
@@ -38,7 +39,8 @@ const SplitListItem = ({
           alignSelf: "stretch",
           paddingVertical: 10,
         },
-      ]}>
+      ]}
+    >
       <Image
         style={{
           borderRadius: 50,
@@ -55,7 +57,8 @@ const SplitListItem = ({
           display: "flex",
           marginRight: "auto",
           marginLeft: 20,
-        }}>
+        }}
+      >
         <Text
           // lightColor={Colors.light.mainText}
           // darkColor={Colors.dark.mainText}
@@ -63,7 +66,8 @@ const SplitListItem = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           {name}
         </Text>
         <View
@@ -73,7 +77,8 @@ const SplitListItem = ({
               marginTop: 3,
               alignSelf: "flex-start",
             },
-          ]}>
+          ]}
+        >
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
@@ -81,13 +86,15 @@ const SplitListItem = ({
               fontSize: hp(14),
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
-            }}>
+            }}
+          >
             Payments
           </Text>
         </View>
         {showCreatorAndRecipients && (
           <View
-            style={[CommonStyles.row, { alignSelf: "stretch", marginTop: 8 }]}>
+            style={[CommonStyles.row, { alignSelf: "stretch", marginTop: 8 }]}
+          >
             <View style={[CommonStyles.row]}>
               <Image
                 style={{
@@ -154,7 +161,8 @@ const SplitListItem = ({
                   color: Colors[colorScheme].secondaryText,
                   marginLeft: 5,
                   fontSize: 10,
-                }}>
+                }}
+              >
                 +2 more
               </Text>
             </View>
@@ -167,21 +175,24 @@ const SplitListItem = ({
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-        }}>
+        }}
+      >
         <View
           style={{
             display: "flex",
             alignItems: "flex-end",
 
             marginRight: 10,
-          }}>
+          }}
+        >
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
               fontSize: hp(16),
               color: Colors.light.error,
-            }}>
+            }}
+          >
             {"\u20A6"}
             {numberWithCommas(amount)}
           </Text>
@@ -193,7 +204,8 @@ const SplitListItem = ({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "300",
               fontSize: hp(10),
-            }}>
+            }}
+          >
             {date}
           </Text>
         </View>

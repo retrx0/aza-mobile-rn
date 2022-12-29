@@ -2,7 +2,8 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+// import { View } from "../../../../theme/components/View";
+// import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -14,33 +15,42 @@ import {
   SystemModeIcon,
 } from "../../../../../assets/svg";
 import Divider from "../../../../components/divider/Divider";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import { useAppDispatch } from "../../../../redux";
 import { setAppTheme } from "../../../../redux/slice/themeSlice";
+import { AppThemeType, getAppTheme } from "../../../../theme";
 
 const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   const colorScheme = useColorScheme();
+
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [selectedAppearance, setSelectedAppearance] =
-    useState<string>("System Mode");
+    useState<AppThemeType>("system");
 
   const dispatch = useAppDispatch();
 
-  const options = [
+  const appTheme = getAppTheme(selectedAppearance);
+
+  const options: {
+    icon: JSX.Element;
+    name: string;
+    value: AppThemeType;
+  }[] = [
     {
-      icon: <DarkModeIcon color={Colors[colorScheme].mainText} size={16} />,
+      icon: <DarkModeIcon color={Colors[appTheme].mainText} size={16} />,
       name: "Dark Mode",
       value: "dark",
     },
     {
-      icon: <LightModeIcon color={Colors[colorScheme].mainText} size={16} />,
+      icon: <LightModeIcon color={Colors[appTheme].mainText} size={16} />,
       name: "Light Mode",
       value: "light",
     },
     {
-      icon: <SystemModeIcon color={Colors[colorScheme].mainText} size={0} />,
+      icon: <SystemModeIcon color={Colors[appTheme].mainText} size={0} />,
       name: "System Mode",
       value: "system",
     },
@@ -49,7 +59,13 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
       setting?.appearance !== undefined &&
-        setSelectedAppearance(setting?.appearance);
+        setSelectedAppearance(
+          setting?.appearance === "light"
+            ? "light"
+            : setting?.appearance === "dark"
+            ? "dark"
+            : "system"
+        );
     });
   }, []);
 
@@ -61,8 +77,6 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -89,7 +103,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
           <View key={i}>
             <TouchableOpacity
               onPress={() => {
-                setSelectedAppearance(name);
+                setSelectedAppearance(value);
                 if (value === "light")
                   dispatch(setAppTheme({ theme: "light" }));
                 else if (value === "dark")
@@ -107,8 +121,6 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
             >
               <View>{icon}</View>
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.mainText}
                 style={{
                   marginRight: "auto",
                   marginLeft: 15,
@@ -118,7 +130,7 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
               >
                 {name}
               </Text>
-              {selectedAppearance === name && (
+              {selectedAppearance === value && (
                 <CheckIcon size={20} color={"#2A9E17"} />
               )}
             </TouchableOpacity>

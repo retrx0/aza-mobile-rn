@@ -1,6 +1,7 @@
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { NairaIcon, UnlockIcon } from "../../../../../assets/svg";
@@ -36,7 +37,8 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 fontFamily: "Euclid-Circular-A-Bold",
                 marginTop: hp(2),
                 textAlign: "center",
-              }}>
+              }}
+            >
               {"\u20A62,000"}
             </Text>
           </View>
@@ -46,13 +48,15 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             CommonStyles.matureContainer,
             { backgroundColor: Colors[colorScheme].mature },
             { borderColor: Colors[colorScheme].unlock },
-          ]}>
+          ]}
+        >
           <UnlockIcon color={Colors[colorScheme].unlock} size={0} />
           <Text
             style={[
               CommonStyles.matured,
               { color: Colors[colorScheme].unlock },
-            ]}>
+            ]}
+          >
             Matured
           </Text>
         </View>
@@ -66,7 +70,8 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Withdraw to Aza"
             onPressButton={() =>
