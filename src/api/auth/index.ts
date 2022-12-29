@@ -1,25 +1,39 @@
-import api from "..";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
-import { toastError } from "../../common/util/ToastUtil";
-import { getItemSecure, storeItemSecure } from "../../common/util/StorageUtil";
 import { AxiosError } from "axios";
 
-export const cancelToken = async () => {
+import api from "..";
+
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { toastError } from "../../common/util/ToastUtil";
+
+export const checkAuthEndpointHealthAPI = async () => {
   try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.post(
-      "/api/v1/auth/cancel-token",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result;
+    const result = await api.get("/api/v1/auth/health");
+    if (result.status === 200) return result.data;
+    return undefined;
   } catch (e) {
-    console.error("Error canceling token: ", e as Error);
+    console.log(e);
+  }
+};
+
+export const loginUserAPI = async (data: {
+  email: string;
+  phoneNumber: string;
+  password: string;
+}) => {
+  try {
+    console.log(data);
+    const response = await api.post("/api/v1/auth/login", data);
+    if (response.status === 200) {
+      return response.headers["access-token"];
+    }
+    return undefined;
+  } catch (e) {
+    console.debug("Error logging in user: ", e as Error);
+    if ((e as AxiosError).response) {
+      if ((e as AxiosError).response?.status === 400) return "400";
+      else toastError("We encountered an error, please try again!");
+    }
   }
 };
 
@@ -53,38 +67,20 @@ export const verifyOtpApi = async (
   }
 };
 
-export const loginUserAPI = async (data: {
-  email: string;
-  phoneNumber: string;
-  password: string;
-}) => {
+export const cancelToken = async () => {
   try {
-    console.log(data);
-    const response = await api.post("/api/v1/auth/login", data);
-    if (response.status === 200) {
-      return response.headers["access-token"];
-    }
-    return undefined;
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.post(
+      "/api/v1/auth/cancel-token",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return result.data;
   } catch (e) {
-    console.debug("Error logging in user: ", e as Error);
-    if ((e as AxiosError).response) {
-      if ((e as AxiosError).response?.status === 400) return "400";
-      else toastError("We encountered an error, please try again!");
-    }
-  }
-};
-
-export const getUserLoginInfoAPI = async (email: string) => {
-  try {
-    const response = await api.get(`/api/v1/user/${email}`);
-    if (response.status === 200) return response.data.data;
-    return undefined;
-  } catch (e) {
-    if ((e as AxiosError).response) {
-      if ((e as AxiosError).response?.status === 404)
-        toastError("Email address not valid!");
-      else toastError("We encountered an error, please try again!");
-    }
-    console.debug("Error get user login details: ", e as Error);
+    console.error("Error canceling token: ", e as Error);
   }
 };

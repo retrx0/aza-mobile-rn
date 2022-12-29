@@ -1,20 +1,26 @@
 /* eslint-disable no-console */
 import React, { useState } from "react";
+import { Formik } from "formik";
+import * as yup from "yup";
+
 import Colors from "../../../constants/Colors";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import CommonStyles from "../../../common/styles/CommonStyles";
+
 import { Text, View } from "../../../components/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
+import InputFormEmail from "../../../components/input/InputFormFieldNormal";
+
+import { requestOtpApi } from "../../../api/auth";
+import { getUserLoginInfoAPI } from "../../../api/user";
+
+import { useAppDispatch } from "../../../redux";
+import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
+
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { useAppDispatch } from "../../../redux";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
-import InputFormEmail from "../../../components/input/InputFormFieldNormal";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { getUserLoginInfoAPI, requestOtpApi } from "../../../api/auth";
-import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
