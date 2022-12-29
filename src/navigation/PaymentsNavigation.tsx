@@ -36,6 +36,7 @@ import RecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRec
 import WaterRecurring from "../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
 import CableRecurring from "../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
 import ElectricityRecurring from "../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
+import Colors from "../constants/Colors";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -135,34 +136,7 @@ export function CharityTabs() {
 const PaymentNavigator = () => {
   const scheme = useColorScheme();
   return (
-    <Stack.Navigator
-      screenOptions={(props) => ({
-        headerTitleAlign: "center",
-
-        headerLeft: () => (
-          <TouchableOpacity
-            onPress={() => props.navigation.goBack()}
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}>
-            <BackIcon
-              color={scheme == "light" ? "#000000" : "#ffffff"}
-              size={24}
-            />
-            <Text style={{ marginLeft: 5, fontSize: 16 }}>Back</Text>
-          </TouchableOpacity>
-        ),
-
-        headerStyle: {
-          backgroundColor: "",
-        },
-        headerTransparent: true,
-        headerTitleStyle: {
-          fontSize: 16,
-          fontWeight: "600",
-        },
-      })}>
+    <Stack.Navigator>
       <Stack.Screen
         options={{
           headerShown: false,
@@ -251,7 +225,6 @@ const PaymentNavigator = () => {
         name="charity_detail"
         component={CharityTabs}
       />
-
       <Stack.Screen
         options={({ route }: { route: any }) => ({ title: route.params.name })}
         name="GiftCard"

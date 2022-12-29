@@ -14,6 +14,12 @@ export type CommonStackParamList = {
   GameCredit: undefined;
   WithdrawFeature: undefined;
   DepositFeature: undefined;
+  GameFeature: undefined;
+  CharitySupport: undefined;
+  CharityFeature: undefined;
+  GiftCardEasy: undefined;
+  GiftCardFit: undefined;
+  GiftCardChoice: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;

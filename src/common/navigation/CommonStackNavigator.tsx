@@ -155,6 +155,12 @@ import QRFeature from "../../screens/qr-transactions/components/QRFeature";
 import GameCredit from "../../screens/tabs/payments/game/GameCredit";
 import WithdrawFeature from "../../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
 import DepositFeature from "../../screens/tabs/home/withdraw-deposit/deposit/DepositFeature";
+import GameFeature from "../../screens/tabs/payments/game/GameFeature";
+import CharityFeature from "../../screens/tabs/payments/charity-screens/CharityFeature";
+import CharitySupport from "../../screens/tabs/payments/charity-screens/CharitySupport";
+import GiftCardEasy from "../../screens/tabs/payments/gift-card/GiftCardEasy";
+import GiftCardChoice from "../../screens/tabs/payments/gift-card/GiftCardChoice";
+import GiftCardFit from "../../screens/tabs/payments/gift-card/GiftCardFit";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -441,7 +447,11 @@ const CommonStack = () => {
               </Text>
             </TouchableOpacity>
           ),
-
+          // headerRight: () => (
+          //   <TouchableOpacity>
+          //     <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+          //   </TouchableOpacity>
+          // ),
           headerStyle: {
             backgroundColor:
               scheme == "light"
@@ -509,21 +519,126 @@ const CommonStack = () => {
           name="InternetPlans"
           component={InternetPlans}
         />
-        <Stack.Screen
-          options={{ title: "Gift Cards" }}
-          name="GiftCard"
-          component={GiftCardScreen}
-        />
+        <Stack.Group
+          screenOptions={(props) => ({
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.goBack()}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <BackIcon
+                  color={scheme == "light" ? "#000000" : "#ffffff"}
+                  size={24}
+                />
+                <Text
+                  style={{
+                    fontSize: hp(16),
+                    fontWeight: "600",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("GiftCardEasy")}>
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+              </TouchableOpacity>
+            ),
+            headerStyle: {
+              backgroundColor:
+                scheme == "light"
+                  ? Colors.light.background
+                  : Colors.dark.background,
+            },
+            headerTransparent: true,
+            headerTitleStyle: {
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+            },
+          })}>
+          <Stack.Screen
+            options={{ title: "Gift Cards" }}
+            name="GiftCard"
+            component={GiftCardScreen}
+          />
+        </Stack.Group>
+
         <Stack.Screen
           options={{ title: "iTunes" }}
           name="GiftCardDetails"
           component={GiftCardDetails}
         />
         <Stack.Screen
-          options={{ title: "Game Credits" }}
-          name="GameScreen"
-          component={GameScreen}
+          options={{ title: "GiftCardEasy" }}
+          name="GiftCardEasy"
+          component={GiftCardEasy}
         />
+        <Stack.Screen
+          options={{ title: "GiftCardChoice" }}
+          name="GiftCardChoice"
+          component={GiftCardChoice}
+        />
+        <Stack.Screen
+          options={{ title: "GiftCardFit" }}
+          name="GiftCardFit"
+          component={GiftCardFit}
+        />
+        <Stack.Group
+          screenOptions={(props) => ({
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.goBack()}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <BackIcon
+                  color={scheme == "light" ? "#000000" : "#ffffff"}
+                  size={24}
+                />
+                <Text
+                  style={{
+                    fontSize: hp(16),
+                    fontWeight: "600",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("GameCredit")}>
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+              </TouchableOpacity>
+            ),
+            headerStyle: {
+              backgroundColor:
+                scheme == "light"
+                  ? Colors.light.background
+                  : Colors.dark.background,
+            },
+            headerTransparent: true,
+            headerTitleStyle: {
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+            },
+          })}>
+          <Stack.Screen
+            options={{ title: "Game Credits" }}
+            name="GameScreen"
+            component={GameScreen}
+          />
+        </Stack.Group>
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="GiftCardEmail"
@@ -549,7 +664,116 @@ const CommonStack = () => {
           name="Water"
           component={WaterScreen}
         />
-        <Stack.Screen name="Charity" component={CharityIndexScreen} />
+        <Stack.Group
+          screenOptions={(props) => ({
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.goBack()}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <BackIcon
+                  color={scheme == "light" ? "#000000" : "#ffffff"}
+                  size={24}
+                />
+                <Text
+                  style={{
+                    fontSize: hp(16),
+                    fontWeight: "600",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("CharityFeature")}>
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+              </TouchableOpacity>
+            ),
+            headerStyle: {
+              backgroundColor:
+                scheme == "light"
+                  ? Colors.light.background
+                  : Colors.dark.background,
+            },
+            headerTransparent: true,
+            headerTitleStyle: {
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+            },
+          })}>
+          <Stack.Screen name="Charity" component={CharityIndexScreen} />
+        </Stack.Group>
+
+        <Stack.Group
+          screenOptions={(props) => ({
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.goBack()}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <BackIcon
+                  color={scheme == "light" ? "#000000" : "#ffffff"}
+                  size={24}
+                />
+                <Text
+                  style={{
+                    fontSize: hp(16),
+                    fontWeight: "600",
+                    fontFamily: "Euclid-Circular-A",
+                  }}>
+                  Back
+                </Text>
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("GameCredit")}>
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+              </TouchableOpacity>
+            ),
+            headerStyle: {
+              backgroundColor:
+                scheme == "light"
+                  ? Colors.light.background
+                  : Colors.dark.background,
+            },
+            headerTransparent: true,
+            headerTitleStyle: {
+              fontSize: hp(16),
+              fontWeight: "500",
+              fontFamily: "Euclid-Circular-A-Medium",
+            },
+          })}>
+          <Stack.Screen
+            options={{ title: "GameCredit" }}
+            name="GameCredit"
+            component={GameCredit}
+          />
+        </Stack.Group>
+        <Stack.Screen
+          options={{ title: "GameCredit" }}
+          name="GameFeature"
+          component={GameFeature}
+        />
+        <Stack.Screen
+          options={{ title: "CharitySupport" }}
+          name="CharitySupport"
+          component={CharitySupport}
+        />
+        <Stack.Screen
+          options={{ title: "CharityFeature" }}
+          name="CharityFeature"
+          component={CharityFeature}
+        />
         <Stack.Screen
           options={({ route }: { route: any }) => ({
             title: route.params.name,
@@ -604,11 +828,6 @@ const CommonStack = () => {
           options={{ title: "Electricity" }}
           name="ElectricityRecurring"
           component={ElectricityRecurring}
-        />
-        <Stack.Screen
-          options={{ title: "GameCredit" }}
-          name="GameCredit"
-          component={GameCredit}
         />
       </Stack.Group>
 
@@ -705,12 +924,7 @@ const CommonStack = () => {
                 </Text>
               </TouchableOpacity>
             ),
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => props.navigation.navigate("WithdrawFeature")}>
-                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
-              </TouchableOpacity>
-            ),
+
             headerStyle: {
               backgroundColor:
                 scheme == "light"
@@ -723,6 +937,13 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
+
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("WithdrawFeature")}>
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+              </TouchableOpacity>
+            ),
           })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
