@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React, { useLayoutEffect } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { View } from "../../../../../components/Themed";
+import { Text, View } from "../../../../../components/Themed";
 import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";
@@ -12,11 +12,36 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { hp } from "../../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
+import { InfoIcon } from "../../../../../../assets/svg";
+import useColorScheme from "../../../../../hooks/useColorScheme";
 
 export default function WithdrawIndex({
   navigation,
 }: RootTabScreenProps<"Home">) {
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <Text
+          // lightColor={Colors.light.text}
+          // darkColor={Colors.dark.mainText}
+          style={{
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
+          Withdraw
+        </Text>
+      ),
+      // hide default back button which only shows in android
+      headerBackVisible: false,
+      //center it in android
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+    });
+  }, []);
 
   return (
     <SpacerWrapper>
