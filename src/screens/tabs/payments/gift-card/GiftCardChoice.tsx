@@ -12,7 +12,9 @@ import ExitButton from "../../../../components/buttons/ExitButton";
 import { AddUsers } from "../../../../../assets/svg";
 import Button from "../../../../components/buttons/Button";
 
-const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
+const GiftCardChoice = ({
+  navigation,
+}: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -27,7 +29,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             fontSize: hp(16),
             fontWeight: "500",
           }}>
-          Game Credits
+          Giftcards
         </Text>
       ),
       // hide default back button which only shows in android
@@ -44,15 +46,15 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
       <View style={[CommonStyles.vaultcontainer]}>
         <Image
           style={{
-            width: hp(200),
-            height: hp(200),
+            width: hp(215),
+            height: hp(202),
             alignSelf: "center",
             marginBottom: hp(59),
             marginTop: hp(59),
 
             resizeMode: "cover",
           }}
-          source={require("../../../../../assets/images/common/GameCredit.png")}
+          source={require("../../../../../assets/images/common/GiftCardEasy.png")}
         />
         <Text
           style={{
@@ -60,11 +62,10 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             fontWeight: "600",
             fontFamily: "Euclid-Circular-A-Bold",
             textAlign: "center",
-            maxWidth: 250,
             alignSelf: "center",
             lineHeight: hp(30),
           }}>
-          Maximum gaming experience
+          The choice is yours
         </Text>
         <Text
           style={{
@@ -77,8 +78,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             alignSelf: "center",
             textAlign: "center",
           }}>
-          Enhance your gameplay by purchasing in-game credits for your favorite
-          video games.
+          Choose from a wide variety of Gift Cards, from multiple regions.
         </Text>
         <View
           style={[
@@ -87,7 +87,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
           ]}>
           <Button
             title="Continue"
-            onPressButton={() => navigation.navigate("GameFeature")}
+            onPressButton={() => navigation.navigate("GiftCardFit")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -103,7 +103,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
   );
 };
 
-export default GameCredit;
+export default GiftCardChoice;
 
 const styles = StyleSheet.create({
   container: {

@@ -12,7 +12,9 @@ import ExitButton from "../../../../components/buttons/ExitButton";
 import { AddUsers } from "../../../../../assets/svg";
 import Button from "../../../../components/buttons/Button";
 
-const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
+const CharitySupport = ({
+  navigation,
+}: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -27,7 +29,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             fontSize: hp(16),
             fontWeight: "500",
           }}>
-          Game Credits
+          Charity
         </Text>
       ),
       // hide default back button which only shows in android
@@ -52,7 +54,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
 
             resizeMode: "cover",
           }}
-          source={require("../../../../../assets/images/common/GameCredit.png")}
+          source={require("../../../../../assets/images/common/CharityFeature.png")}
         />
         <Text
           style={{
@@ -60,11 +62,11 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             fontWeight: "600",
             fontFamily: "Euclid-Circular-A-Bold",
             textAlign: "center",
-            maxWidth: 250,
+
             alignSelf: "center",
             lineHeight: hp(30),
           }}>
-          Maximum gaming experience
+          Personalized experience
         </Text>
         <Text
           style={{
@@ -77,8 +79,10 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             alignSelf: "center",
             textAlign: "center",
           }}>
-          Enhance your gameplay by purchasing in-game credits for your favorite
-          video games.
+          Learn more about the charities you support, and donate either in your
+          name or someone else. Azarians can also setup a recurring transfer to
+          automatically donate a certain amount to any charity of their choice
+          at periodic time frames.
         </Text>
         <View
           style={[
@@ -86,8 +90,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             { bottom: insets.top || hp(45) },
           ]}>
           <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate("GameFeature")}
+            title="Go Back to Charity"
+            onPressButton={() => navigation.navigate("Charity")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -103,7 +107,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
   );
 };
 
-export default GameCredit;
+export default CharitySupport;
 
 const styles = StyleSheet.create({
   container: {

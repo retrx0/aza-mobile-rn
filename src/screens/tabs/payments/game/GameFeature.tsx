@@ -12,7 +12,9 @@ import ExitButton from "../../../../components/buttons/ExitButton";
 import { AddUsers } from "../../../../../assets/svg";
 import Button from "../../../../components/buttons/Button";
 
-const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
+const GameFeature = ({
+  navigation,
+}: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -60,11 +62,11 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             fontWeight: "600",
             fontFamily: "Euclid-Circular-A-Bold",
             textAlign: "center",
-            maxWidth: 250,
+            // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
           }}>
-          Maximum gaming experience
+          You can have it all
         </Text>
         <Text
           style={{
@@ -77,8 +79,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             alignSelf: "center",
             textAlign: "center",
           }}>
-          Enhance your gameplay by purchasing in-game credits for your favorite
-          video games.
+          Azarians have the liberty to choose from multiple regions and
+          platforms of their choice. What are you waiting for?
         </Text>
         <View
           style={[
@@ -86,8 +88,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             { bottom: insets.top || hp(45) },
           ]}>
           <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate("GameFeature")}
+            title="Go Back To Game Credits"
+            onPressButton={() => navigation.navigate("GameScreen")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -103,7 +105,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
   );
 };
 
-export default GameCredit;
+export default GameFeature;
 
 const styles = StyleSheet.create({
   container: {
