@@ -11,6 +11,9 @@ export type CommonStackParamList = {
   TransactionCertainty: undefined;
   InviteUsers: undefined;
   RequestMoneyFeature: undefined;
+  GameCredit: undefined;
+  WithdrawFeature: undefined;
+  DepositFeature: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
