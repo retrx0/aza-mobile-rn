@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { Text, View } from "../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -28,7 +28,8 @@ const CharityFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Charity
         </Text>
       ),
@@ -64,7 +65,8 @@ const CharityFeature = ({
             textAlign: "center",
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Be the difference
         </Text>
         <Text
@@ -77,7 +79,8 @@ const CharityFeature = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Make a difference by donating to charities you genuinely believe in.
           Azarians are also making a difference just by using Aza, since 10% of
           Aza's quarterly profits goes to charity organizations.
@@ -86,7 +89,8 @@ const CharityFeature = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("CharitySupport")}

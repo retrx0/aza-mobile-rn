@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { Text, View } from "../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -28,7 +28,8 @@ const GiftCardEasy = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Giftcards
         </Text>
       ),
@@ -64,7 +65,8 @@ const GiftCardEasy = ({
             textAlign: "center",
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Gift Cards made easy
         </Text>
         <Text
@@ -77,7 +79,8 @@ const GiftCardEasy = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Purchase any Gift Card of your choice effortlessly with affordable
           rates.
         </Text>
@@ -85,7 +88,8 @@ const GiftCardEasy = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("GiftCardChoice")}

@@ -3,7 +3,7 @@ import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../../../common/navigation/types";
 
-import { Text, View } from "../../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../../theme/Themed";
 
 import Colors from "../../../../../constants/Colors";
 import { hp } from "../../../../../common/util/LayoutUtil";
@@ -30,7 +30,8 @@ const DepositFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Deposit
         </Text>
       ),
@@ -51,7 +52,8 @@ const DepositFeature = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <Image
             style={{
               width: hp(250),
@@ -73,7 +75,8 @@ const DepositFeature = ({
               textAlign: "center",
               alignSelf: "center",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             Deposit funds to your Aza
           </Text>
           <Text
@@ -85,7 +88,8 @@ const DepositFeature = ({
               fontWeight: "400",
               alignSelf: "center",
               marginTop: hp(20),
-            }}>
+            }}
+          >
             Fund your Aza account via your debit/credit card, securely.
           </Text>
         </View>
@@ -94,7 +98,8 @@ const DepositFeature = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

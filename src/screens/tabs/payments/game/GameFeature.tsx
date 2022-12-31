@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { Text, View } from "../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -28,7 +28,8 @@ const GameFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Game Credits
         </Text>
       ),
@@ -65,7 +66,8 @@ const GameFeature = ({
             // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           You can have it all
         </Text>
         <Text
@@ -78,7 +80,8 @@ const GameFeature = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Azarians have the liberty to choose from multiple regions and
           platforms of their choice. What are you waiting for?
         </Text>
@@ -86,7 +89,8 @@ const GameFeature = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Go Back To Game Credits"
             onPressButton={() => navigation.navigate("GameScreen")}

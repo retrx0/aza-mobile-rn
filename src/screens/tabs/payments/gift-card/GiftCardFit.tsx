@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { Text, View } from "../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -28,7 +28,8 @@ const GiftCardFit = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Giftcards
         </Text>
       ),
@@ -64,7 +65,8 @@ const GiftCardFit = ({
             textAlign: "center",
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Anyhow you see fit
         </Text>
         <Text
@@ -77,7 +79,8 @@ const GiftCardFit = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           You can buy a Gift Card either for yourself or for another person and
           have the code swiftly delivered to the provided Email Address.{" "}
         </Text>
@@ -85,7 +88,8 @@ const GiftCardFit = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("GiftCard")}

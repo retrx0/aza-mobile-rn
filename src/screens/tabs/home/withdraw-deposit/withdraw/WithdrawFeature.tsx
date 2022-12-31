@@ -3,7 +3,7 @@ import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../../../common/navigation/types";
 
-import { Text, View } from "../../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../../theme/Themed";
 
 import Colors from "../../../../../constants/Colors";
 import { hp } from "../../../../../common/util/LayoutUtil";
@@ -30,7 +30,8 @@ const WithdrawFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Withdraw
         </Text>
       ),
@@ -51,7 +52,8 @@ const WithdrawFeature = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <Image
             style={{
               width: hp(250),
@@ -74,7 +76,8 @@ const WithdrawFeature = ({
               textAlign: "center",
               alignSelf: "center",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             Withdraw anytime
           </Text>
           <Text
@@ -86,7 +89,8 @@ const WithdrawFeature = ({
               fontWeight: "400",
               alignSelf: "center",
               marginTop: hp(20),
-            }}>
+            }}
+          >
             Link your personal bank account to Aza and easily withdraw your Aza
             funds to your bank.
           </Text>
@@ -96,7 +100,8 @@ const WithdrawFeature = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("DepositFeature")}

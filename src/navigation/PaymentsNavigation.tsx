@@ -3,7 +3,7 @@ import { PaymentsStackParamList } from "../../types";
 import AirtimeIndex from "../screens/tabs/payments/airtime-screens/AirtimeIndex";
 import PaymentIndexScreen from "../screens/tabs/payments/Payments";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { SafeAreaView, Text } from "../components/Themed";
+import { SafeAreaView } from "../theme/Themed";
 import CommonStyles from "../common/styles/CommonStyles";
 import ConfirmTransaction from "../screens/tabs/payments/ConfirmTransaction";
 import CompletedTransaction from "../screens/tabs/payments/CompletedTransaction";

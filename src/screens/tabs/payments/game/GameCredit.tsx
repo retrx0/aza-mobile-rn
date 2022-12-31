@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { Text, View } from "../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -26,7 +26,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Game Credits
         </Text>
       ),
@@ -63,7 +64,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             maxWidth: 250,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Maximum gaming experience
         </Text>
         <Text
@@ -76,7 +78,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Enhance your gameplay by purchasing in-game credits for your favorite
           video games.
         </Text>
@@ -84,7 +87,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("GameFeature")}

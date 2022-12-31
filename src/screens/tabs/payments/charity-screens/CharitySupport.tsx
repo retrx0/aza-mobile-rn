@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { Text, View } from "../../../../components/Themed";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -28,7 +28,8 @@ const CharitySupport = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Charity
         </Text>
       ),
@@ -65,7 +66,8 @@ const CharitySupport = ({
 
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Personalized experience
         </Text>
         <Text
@@ -78,7 +80,8 @@ const CharitySupport = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Learn more about the charities you support, and donate either in your
           name or someone else. Azarians can also setup a recurring transfer to
           automatically donate a certain amount to any charity of their choice
@@ -88,7 +91,8 @@ const CharitySupport = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Go Back to Charity"
             onPressButton={() => navigation.navigate("Charity")}
