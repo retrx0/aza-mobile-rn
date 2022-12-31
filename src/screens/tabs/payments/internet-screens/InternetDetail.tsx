@@ -74,7 +74,8 @@ export default function InternetDetail({
           paddingHorizontal: hp(20),
           marginTop: hp(30),
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Bundle"
           data={period}
@@ -112,11 +113,12 @@ export default function InternetDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() =>
-            navigation.navigate("Common", { screen: "InternetConfirmation" })
+            navigation.navigate("Common", { screen: "Confirm" })
           }
           styleText={{
             color: Colors[colorScheme].buttonText,

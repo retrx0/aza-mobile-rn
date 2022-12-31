@@ -1,110 +1,165 @@
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import { Input } from "../../../components/input/input";
+import { Input } from "./../../../components/input/input";
 import MyButton from "./sub-components/MyButton";
-import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-} from "../../../components/Themed";
-import { RootTabScreenProps } from "../../../../types";
-import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import Colors from "../../../constants/Colors";
-import Button from "../../../components/buttons/Button";
+import { ScrollView, Text, View } from "./../../../components/Themed";
+import { RootTabScreenProps } from "./../../../../types";
+import CancelButtonWithUnderline from "./../../../components/buttons/CancelButtonWithUnderline";
+import Colors from "./../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../hooks/useColorScheme";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { hp, wp } from "../../../common/util/LayoutUtil";
+import useColorScheme from "./../../../hooks/useColorScheme";
+import { hp } from "./../../../common/util/LayoutUtil";
 import { ImageInput } from "./sub-components/ImageInput";
+import { Glo, Ie, Mtn } from "./../../../../assets/images";
+import SpacerWrapper from "./../../../common/util/SpacerWrapper";
+import CommonStyles from "./../../../common/styles/CommonStyles";
+import Button from "./../../../components/buttons/Button";
+import { Formik } from "formik";
+import { TextInput } from "./../../../components/Themed";
+import { useAppSelector } from "./../../../redux";
+import { selectTransaction } from "./../../../redux/slice/transactionSlice";
 
-export default function Confirmation({
+import InputFormFieldNormal from "./../../../components/input/InputFormFieldNormal";
+import * as yup from "yup";
+import { selectPayment, PaymentState } from "../../../redux/slice/paymentSlice";
+// style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}
+
+export default function AirtimeConfirmation({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [confirmed, setConfirm] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
-
+  const payment: PaymentState = useAppSelector(selectPayment);
   return (
-    <ScrollView style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}>
-      <View style={{ paddingHorizontal: 20 }}>
-        <Text style={styles.txt}>
-          Kindly confirm the details of this transaction
-        </Text>
-        <ImageInput
-          label={""}
-          placeholder={""}
-          source={undefined}
-          icon={undefined}
-        />
-        <Input
-          icon={null}
-          keyboardType="phone-pad"
-          inputStyle={styles.input}
-          labelStyle={{
-            fontFamily: "Euclid-Circular-A",
-            fontWeight: "400",
-            fontSize: hp(16),
-          }}
-          label="Phone Number"
-          placeholder="08164942224"
-        />
-        <Input
-          icon={null}
-          keyboardType="phone-pad"
-          inputStyle={styles.input}
-          labelStyle={{
-            fontFamily: "Euclid-Circular-A",
-            fontWeight: "400",
-            fontSize: hp(16),
-          }}
-          label="Amount"
-          placeholder="N2,000 (Airtime)"
-        />
-        <Input
-          icon={null}
-          keyboardType="phone-pad"
-          inputStyle={styles.input}
-          labelStyle={{
-            fontFamily: "Euclid-Circular-A",
-            fontWeight: "400",
-            fontSize: hp(16),
-          }}
-          label="Payment Method"
-          placeholder="Aza Account"
-        />
+    <SpacerWrapper>
+      <View
+        style={[
+          CommonStyles.vaultcontainer,
+          { marginTop: Platform.OS == "android" ? 50 : 0 },
+        ]}
+      >
+        <View style={{ paddingHorizontal: hp(23) }}>
+          <Text style={styles.txt}>
+            Kindly confirm the details of this transaction
+          </Text>
+
+          <ImageInput
+            label={"To"}
+            placeholder={payment.to}
+            source={Glo}
+            icon={undefined}
+            value={""}
+          />
+
+          <Input
+            icon={null}
+            keyboardType="phone-pad"
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={{
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "400",
+              fontSize: hp(16),
+              color: colorScheme === "dark" ? "#999999" : "#000000",
+            }}
+            label={payment.detailHeader}
+            value={payment.detailValue}
+            placeholderTextColor={
+              colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            }
+          />
+
+          <Input
+            icon={null}
+            keyboardType="phone-pad"
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={{
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "500",
+              fontSize: hp(16),
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+            }}
+            label="Amount"
+            // placeholder="Select your payment method"
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
+            value={`\u20A6${payment.amount} (${payment.paymentType})`}
+            returnKeyType="done"
+          />
+
+          <Input
+            icon={null}
+            keyboardType="default"
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={{
+              fontFamily: "Euclid-Circular-A",
+              fontWeight: "500",
+              fontSize: hp(16),
+              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+            }}
+            label="Payment Method"
+            // placeholder="Select your payment method"
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
+            value={payment.paymentMethod}
+          />
+        </View>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
+          <Button
+            title="Confirm"
+            onPressButton={() => {
+              navigation.navigate("StatusScreen", {
+                statusIcon: "Success",
+                status: "Successful",
+                statusMessage: "Your internet purchase was successful",
+                navigateTo: "Payments",
+              });
+            }}
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
+          />
+          <CancelButtonWithUnderline
+            title="Cancel Transaction"
+            onPressButton={() => {
+              navigation.goBack();
+            }}
+            style={{ borderBottomColor: Colors.general.red }}
+            styleText={CommonStyles.cancelStyle}
+          />
+        </View>
       </View>
-      <MyButton
-        style={{ marginTop: hp(200), marginBottom: hp(5) }}
-        disabled={false}
-        title="Confirm"
-        onPress={() => {
-          navigation.navigate("StatusScreen", {
-            statusIcon: "Success",
-            status: "Successful",
-            statusMessage: "Your internet purchase was successful",
-            navigateTo: "Payments",
-          });
-        }}
-      />
-      <CancelButtonWithUnderline
-        onPressButton={() => {
-          navigation.goBack();
-        }}
-        title="Cancel Transaction"
-        style={{ borderBottomColor: Colors.general.red }}
-        styleText={{
-          textAlign: "center",
-          color: Colors.general.red,
-          fontSize: hp(16),
-          fontWeight: "500",
-          lineHeight: hp(17),
-          fontFamily: "Euclid-Circular-A",
-          marginTop: hp(20),
-        }}
-      />
-    </ScrollView>
+    </SpacerWrapper>
   );
 }
 
@@ -116,8 +171,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     marginBottom: hp(40),
-    marginTop: hp(30),
-
+    marginTop: hp(20),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
@@ -126,8 +180,8 @@ const styles = StyleSheet.create({
     width: "100%",
     borderColor: "#EAEAEC",
     borderBottomWidth: 1,
-    marginBottom: 20,
-    fontFamily: "Euclid-Circular-A",
+    marginBottom: 30,
+    fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),
   },

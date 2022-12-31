@@ -82,7 +82,8 @@ export default function ElectricityIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {ElectricityList.map((item, index) => {
           return (
             <Card
@@ -100,7 +101,8 @@ export default function ElectricityIndex({
           paddingHorizontal: hp(20),
 
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Meter Type"
           data={period}
@@ -150,13 +152,14 @@ export default function ElectricityIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
           disabled={!bundles}
           title="Continue"
           onPress={() => {
             navigation.navigate("Common", {
-              screen: "ElectricityConfirmation",
+              screen: "Confirm",
             });
           }}
           // style={{ marginTop: hp(250) }}

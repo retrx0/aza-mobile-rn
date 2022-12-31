@@ -94,7 +94,8 @@ export default function WaterScreen({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {WaterList.map((item, index) => {
           return (
             <Card
@@ -145,12 +146,13 @@ export default function WaterScreen({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
           disabled={false}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "WaterConfirmation" });
+            navigation.navigate("Common", { screen: "Confirm" });
           }}
         />
       </View>

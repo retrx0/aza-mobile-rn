@@ -33,7 +33,12 @@ export default function AirtimeConfirmation({
 
   return (
     <SpacerWrapper>
-      <View style={CommonStyles.vaultcontainer}>
+      <View
+        style={[
+          CommonStyles.vaultcontainer,
+          { marginTop: Platform.OS == "android" ? 50 : 0 },
+        ]}
+      >
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -123,7 +128,8 @@ export default function AirtimeConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => {

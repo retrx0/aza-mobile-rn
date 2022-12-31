@@ -23,7 +23,7 @@ import {
 import { useAppDispatch } from "../../../redux";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { requestOtpApi } from "../../../api/auth";
-import Phone from "./PhoneStage";
+import Phone from "./phoneStage";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -68,7 +68,8 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -148,7 +149,8 @@ const PhoneNumberScreen = ({
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },
-          ]}>
+          ]}
+        >
           <FlatList
             style={[
               {
