@@ -2,9 +2,6 @@ import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { Input } from "./../../../components/input/input";
 import MyButton from "./sub-components/MyButton";
-import { SafeAreaView, ScrollView } from "../../../theme/Themed";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
@@ -16,9 +13,12 @@ import { ImageInput } from "./sub-components/ImageInput";
 import { Glo, Ie, Mtn } from "./../../../../assets/images";
 import SpacerWrapper from "./../../../common/util/SpacerWrapper";
 import CommonStyles from "./../../../common/styles/CommonStyles";
-import Button from "./../../../components/buttons/Button";
 import { Formik } from "formik";
-import { TextInput } from "./../../../components/Themed";
+import {
+  TextInput,
+  View2 as View,
+  Text2 as Text,
+} from "./../../../theme/Themed";
 import { useAppSelector } from "./../../../redux";
 import { selectTransaction } from "./../../../redux/slice/transactionSlice";
 

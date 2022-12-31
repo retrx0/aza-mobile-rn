@@ -7,9 +7,11 @@ import {
   I18nManager,
   Image,
 } from "react-native";
-import { SafeAreaView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import {
+  SafeAreaView,
+  View2 as View,
+  Text2 as Text,
+} from "../../../../theme/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {

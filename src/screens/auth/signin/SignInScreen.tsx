@@ -20,14 +20,11 @@ import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
 
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
-import { Text2 as Text } from "../../../theme/components/Text2";
-import { View2 as View } from "../../../theme/components/View2";
+import { Text2 as Text, View2 as View } from "../../../theme/Themed";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const dispatch = useAppDispatch();

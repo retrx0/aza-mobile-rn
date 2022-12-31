@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleProp, Text, ViewStyle } from "react-native";
+import { StyleProp, Text, ViewStyle, View } from "react-native";
 import Svg, {
   Path,
   Circle,
@@ -12,7 +12,6 @@ import Svg, {
   ClipPath,
   Styles,
 } from "react-native-svg";
-import { View } from "../../src/theme/components/View";
 import useColorScheme from "../../src/hooks/useColorScheme";
 
 type SvgIconProps = {
