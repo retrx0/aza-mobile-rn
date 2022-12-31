@@ -2,8 +2,7 @@ import { StyleSheet } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
@@ -20,7 +19,6 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 const ChangePasswordScreen = ({
   navigation,
 }: CommonScreenProps<"ChangePassword">) => {
-  const colorScheme = useColorScheme();
   const [password, setPassword] = useState("");
 
   const dispatch = useAppDispatch();
@@ -112,13 +110,11 @@ const ChangePasswordScreen = ({
           disabled={password.length < 6 ? true : false}
           onPressButton={() => verifyPassword()}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
             marginTop: hp(100),
-            backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>

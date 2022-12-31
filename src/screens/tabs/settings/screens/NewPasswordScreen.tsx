@@ -1,8 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import BackButton from "../../../../components/buttons/BackButton";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
@@ -11,7 +10,6 @@ import Divider from "../../../../components/divider/Divider";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import CustomSwitch from "../../../../components/switch/CustomSwitch";
 
@@ -22,7 +20,6 @@ const NewPasswordScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"NewPassword">) => {
-  const colorScheme = useColorScheme();
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("");
   const [isTransactionPin, setTransactionPin] = useState<boolean>(false);
@@ -148,13 +145,11 @@ const NewPasswordScreen = ({
           disabled={checkIfPasswordsMatch()}
           onPressButton={() => updatePassword()}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
             marginTop: hp(10),
-            backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>

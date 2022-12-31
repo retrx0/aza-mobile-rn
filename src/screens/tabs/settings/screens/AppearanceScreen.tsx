@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Appearance, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
@@ -21,6 +21,7 @@ import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import { useAppDispatch } from "../../../../redux";
 import { setAppTheme } from "../../../../redux/slice/themeSlice";
 import { AppThemeType, getAppTheme } from "../../../../theme";
+import * as StatusBar from "expo-status-bar";
 
 const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   const colorScheme = useColorScheme();
@@ -104,11 +105,16 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
             <TouchableOpacity
               onPress={() => {
                 setSelectedAppearance(value);
-                if (value === "light")
+                if (value === "light") {
                   dispatch(setAppTheme({ theme: "light" }));
-                else if (value === "dark")
+                  StatusBar.setStatusBarStyle("dark");
+                } else if (value === "dark") {
                   dispatch(setAppTheme({ theme: "dark" }));
-                else dispatch(setAppTheme({ theme: "system" }));
+                  StatusBar.setStatusBarStyle("light");
+                } else {
+                  dispatch(setAppTheme({ theme: "system" }));
+                  StatusBar.setStatusBarStyle("auto");
+                }
               }}
               style={[
                 CommonStyles.row,

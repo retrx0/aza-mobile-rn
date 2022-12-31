@@ -2,8 +2,7 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -72,13 +71,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           </Text>
         </View>
         <View style={{ alignSelf: "center", marginTop: hp(40) }}>
-          <UndrawCancelIcon
-            color={colorScheme === "dark" ? "#2AD168" : "#000000"}
-            size={30}
-          />
+          <UndrawCancelIcon size={30} />
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -99,15 +93,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           <Button
             title="Block A User"
             onPressButton={() => navigation.navigate("BlockNewUser")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[CommonStyles.button]}
           />
           <ButtonWithUnderline
             title="Cancel"

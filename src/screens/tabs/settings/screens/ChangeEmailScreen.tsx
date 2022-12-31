@@ -2,12 +2,10 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import BoxTextInput from "../../../../components/input/BoxTextInput";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
@@ -20,8 +18,6 @@ const ChangeEmailScreen = ({
 }: CommonScreenProps<"ChangeEmail">) => {
   const user = useAppSelector(selectUser);
 
-  const colorScheme = useColorScheme();
-  const [currentEmail, _] = useState(user.emailAddress);
   const [newEmail, setNewEmail] = useState("");
   const insets = useSafeAreaInsets();
 
@@ -54,8 +50,6 @@ const ChangeEmailScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Medium",
@@ -68,9 +62,9 @@ const ChangeEmailScreen = ({
           <View style={{ marginBottom: 10, marginTop: 30 }}>
             <BoxTextInput
               placeHolder="Current Email"
-              required={false}
-              value={currentEmail}
-              onChange={(e) => setNewEmail(e.nativeEvent.text)}
+              required={true}
+              value={user.emailAddress}
+              onChange={() => {}}
               labelStyle={{
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A",
@@ -79,10 +73,16 @@ const ChangeEmailScreen = ({
               }}
               inputStyle={undefined}
               containerStyle={undefined}
+              inputProps={{
+                keyboardType: "email-address",
+                textContentType: "emailAddress",
+                autoComplete: "email",
+                editable: false,
+              }}
             />
             <BoxTextInput
               placeHolder="New Email"
-              required={false}
+              required={true}
               value={newEmail}
               onChange={(e) => setNewEmail(e.nativeEvent.text)}
               labelStyle={{
@@ -91,8 +91,13 @@ const ChangeEmailScreen = ({
                 marginLeft: hp(5),
                 fontWeight: "500",
               }}
-              inputStyle={undefined}
+              inputStyle={{}}
               containerStyle={undefined}
+              inputProps={{
+                keyboardType: "email-address",
+                textContentType: "emailAddress",
+                autoComplete: "email",
+              }}
             />
           </View>
         </View>
@@ -100,15 +105,13 @@ const ChangeEmailScreen = ({
           title="Continue"
           onPressButton={() => navigation.getParent()?.navigate("Settings")}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(14),
           }}
           style={{
             marginTop: hp(47),
-            backgroundColor: Colors[colorScheme].button,
           }}
-          disabled={!currentEmail}
+          disabled={!user.emailAddress && !newEmail}
         />
       </View>
     </SpacerWrapper>

@@ -2,11 +2,9 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import SettingsListItem from "../components/SettingsListItem";
 
 const PrivacySettingsScreen = ({
@@ -30,7 +28,6 @@ const PrivacySettingsScreen = ({
       handleNavigation: () => navigation.navigate("BlockUsers"),
     },
   ];
-  const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -74,7 +71,7 @@ const PrivacySettingsScreen = ({
           style={{
             backgroundColor: "transparent",
             borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
+            borderBottomColor: Colors["general"].grey,
           }}
         />
         {privacySettings.map(({ name, handleNavigation }, i) => (

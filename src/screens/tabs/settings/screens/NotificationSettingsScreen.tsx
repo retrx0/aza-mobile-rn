@@ -2,8 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
@@ -35,8 +34,6 @@ const NotificationSettingsScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -59,8 +56,6 @@ const NotificationSettingsScreen = ({
     <View style={styles.container}>
       <View>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
@@ -71,8 +66,6 @@ const NotificationSettingsScreen = ({
         </Text>
 
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(16),
@@ -83,8 +76,6 @@ const NotificationSettingsScreen = ({
           You can receive notifications if you enable this setting.
         </Text>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(16),

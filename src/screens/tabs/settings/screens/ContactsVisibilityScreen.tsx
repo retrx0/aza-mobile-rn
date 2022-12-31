@@ -2,8 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
@@ -37,8 +36,6 @@ const ContactsVisibilityScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -74,8 +71,6 @@ const ContactsVisibilityScreen = ({
       </Text>
 
       <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A",
@@ -106,8 +101,6 @@ const ContactsVisibilityScreen = ({
             ]}
           >
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A",

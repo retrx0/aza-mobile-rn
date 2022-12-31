@@ -129,6 +129,8 @@ export const TextInput = (props: TextInputProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const selectedTheme = useAppSelector(selectAppTheme);
 
+  const appTheme = getAppTheme(selectedTheme);
+
   const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
     "backgroundSecondary",
@@ -155,6 +157,7 @@ export const TextInput = (props: TextInputProps) => {
     <ThemedTextInput
       placeholderTextColor={placeholderText}
       style={[{ backgroundColor, color, borderColor }, style]}
+      keyboardAppearance={appTheme}
       {...otherProps}
     />
   );
@@ -184,6 +187,8 @@ export const OTPInput = (props: OTPInputViewProps) => {
     props;
 
   const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+
   const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
     "backgroundSecondary",
@@ -209,6 +214,7 @@ export const OTPInput = (props: OTPInputViewProps) => {
         borderColor: border,
         ...codeInputFieldStyle,
       }}
+      keyboardAppearance={appTheme}
       {...otherProps}
     />
   );

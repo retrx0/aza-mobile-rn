@@ -3,8 +3,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
 import { PhoneInput } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
@@ -44,8 +43,6 @@ const ChangePhoneNumberScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -69,8 +66,6 @@ const ChangePhoneNumberScreen = ({
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Medium",
@@ -100,26 +95,6 @@ const ChangePhoneNumberScreen = ({
             >
               Current Phone Number
             </Text>
-            {/* <PhoneInput
-            initialValue={currentPhoneNumber}
-            disabled
-            initialCountry="ng"
-            autoFormat
-            textStyle={{
-              fontSize: 16,
-              padding: 3,
-            }}
-            style={{
-              alignSelf: "center",
-              height: 50,
-              width: "100%",
-              padding: 10,
-              borderWidth: 1,
-              borderStyle: "solid",
-              borderRadius: 5,
-              marginBottom: hp(40),
-            }}
-          /> */}
             <Phone
               country={country}
               phoneNumber={phoneNumber}
@@ -142,8 +117,6 @@ const ChangePhoneNumberScreen = ({
             />
 
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
               style={{
                 fontSize: 16,
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -153,29 +126,6 @@ const ChangePhoneNumberScreen = ({
             >
               New Phone Number
             </Text>
-            {/* <PhoneInput
-              initialValue={newPhoneNumber}
-              onChangePhoneNumber={(p) => setNewPhoneNumber(p)}
-              initialCountry="ng"
-              autoFormat
-              textStyle={{
-                fontSize: 16,
-                padding: 3,
-              }}
-              textProps={{
-                placeholder: "Enter new phone number",
-              }}
-              style={{
-                alignSelf: "center",
-                height: 50,
-                width: "100%",
-                padding: 10,
-                borderWidth: 1,
-                borderStyle: "solid",
-                borderRadius: 5,
-                marginBottom: hp(47),
-              }}
-            /> */}
             <Phone
               country={country}
               phoneNumber={phoneNumber}
@@ -201,25 +151,15 @@ const ChangePhoneNumberScreen = ({
             title="Continue"
             onPressButton={() => navigation.navigate("ChangePhoneNumberOTP")}
             styleText={{
-              color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
             }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={{}}
           />
         </View>
       </SpacerWrapper>
       <Modal visible={modalVisible}>
-        <View
-          style={[
-            { borderRadius: hp(10) },
-            // {
-            //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
-            // },
-          ]}
-        >
+        <View style={[{ borderRadius: hp(10) }]}>
           <FlatList
             style={[
               {

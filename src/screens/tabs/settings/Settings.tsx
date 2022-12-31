@@ -1,6 +1,5 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
-// import { View } from "../../../theme/components/View";
 import AccountSettings from "./components/AccountSettings";
 import ApplicationSettings from "./components/ApplicationSettings";
 import { View2 as View } from "../../../theme/Themed";

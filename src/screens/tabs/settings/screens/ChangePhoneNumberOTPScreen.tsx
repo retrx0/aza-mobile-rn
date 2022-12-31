@@ -2,20 +2,17 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const ChangePhoneNumberOTPScreen = ({
   navigation,
 }: CommonScreenProps<"ChangePhoneNumberOTP">) => {
-  const colorScheme = useColorScheme();
   const [otp, setOTP] = useState("");
 
   useLayoutEffect(() => {
@@ -75,13 +72,10 @@ const ChangePhoneNumberOTPScreen = ({
           title="Continue"
           onPressButton={() => navigation.getParent()?.navigate("Settings")}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(14),
           }}
-          style={{
-            backgroundColor: Colors[colorScheme].button,
-          }}
+          style={{}}
         />
       </View>
     </SpacerWrapper>

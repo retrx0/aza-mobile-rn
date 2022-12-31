@@ -2,8 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
@@ -44,8 +43,6 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -68,8 +65,6 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
     <View style={styles.container}>
       <View>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),

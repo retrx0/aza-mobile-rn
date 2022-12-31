@@ -1,19 +1,18 @@
 import React from "react";
-import {
-  Text,
-  View,
-  TextInput,
-  StyleSheet,
-  TextInputProps,
-  Pressable,
-} from "react-native";
+import { StyleSheet, TextInputProps, Pressable } from "react-native";
 import { SvgUri } from "react-native-svg";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
+import {
+  View2 as View,
+  Text2 as Text,
+  TextInput,
+} from "../../../../theme/Themed";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import Colors from "../../../../constants/Colors";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 export const CountryBox = ({
   code,
@@ -28,11 +27,9 @@ export const CountryBox = ({
 
   return (
     <View
-      style={[
-        styles.container,
-        { borderColor: Colors[colorScheme].border },
-        { backgroundColor: colorScheme === "dark" ? "#262626" : "#F2F2F2" },
-      ]}
+      lightColor={Colors["light"].backgroundSecondary}
+      darkColor={Colors["dark"].backgroundSecondary}
+      style={[styles.container]}
     >
       <Pressable style={styles.countryContainer} onPress={onPress}>
         <SvgUri
@@ -44,15 +41,11 @@ export const CountryBox = ({
         {/* <View style={styles.country}>
           <Text style={styles.countryName}>{short_name}</Text>
         </View> */}
-        <Text
-          style={[
-            styles.countryName,
-            { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
-          ]}
+        <Text style={[styles.countryName]}>{code}</Text>
+        <View
+          lightColor={Colors["light"].backgroundSecondary}
+          darkColor={Colors["dark"].backgroundSecondary}
         >
-          {code}
-        </Text>
-        <View>
           <SelectIcon />
         </View>
         <View
@@ -65,14 +58,10 @@ export const CountryBox = ({
         />
       </Pressable>
       <TextInput
-        style={[
-          styles.textInput,
-          { color: colorScheme === "dark" ? "#E5E5E5" : "#000000" },
-        ]}
-        placeholder=""
+        style={[styles.textInput]}
+        placeholder="80 11 22"
         keyboardType="number-pad"
         {...rest}
-        placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
         maxLength={15}
         returnKeyType="done"
       />
@@ -84,11 +73,6 @@ const styles = StyleSheet.create({
     width: wp(15),
     height: hp(15),
     marginRight: wp(10),
-  },
-  country: {
-    color: "black",
-    fontSize: 17,
-    paddingHorizontal: wp(2),
   },
   container: {
     flexDirection: "row",
@@ -120,6 +104,6 @@ const styles = StyleSheet.create({
     fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
-    width: "100%",
+    width: "60%",
   },
 });

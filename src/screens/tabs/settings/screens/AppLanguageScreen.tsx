@@ -4,23 +4,18 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-
 import { CheckIcon } from "../../../../../assets/svg";
-
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const AppLanguageScreen = ({
   navigation,
 }: CommonScreenProps<"AppLanguage">) => {
-  const colorScheme = useColorScheme();
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
@@ -121,8 +116,7 @@ const AppLanguageScreen = ({
             <View
               style={{
                 borderBottomWidth: 0.6,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: Colors.general.grey,
               }}
             />
           </View>
