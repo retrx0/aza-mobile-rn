@@ -5,9 +5,7 @@ import { FlatList } from "react-native";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { CountriesCard } from "../signup/components/CountriesCard";
-import { PhoneInput } from "../../../theme/Themed";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -75,26 +73,6 @@ const PhoneNumberScreen = ({
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
-
-        {/* <View
-          style={[
-            CommonStyles.phoneStyle,
-            { flexDirection: "row", alignItems: "center" },
-          ]}>
-          <PhoneInput
-            initialValue={phone}
-            onChangePhoneNumber={(p) => setPhone(p)}
-            initialCountry="ng"
-            autoFormat
-            textStyle={[CommonStyles.textStyle]}
-            textProps={{
-              placeholder: "Enter a phone number...",
-            }}
-            pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
-            offset={20}
-          />
-          <SelectIcon />
-        </View> */}
         <Phone
           country={country}
           phoneNumber={phoneNumber}
@@ -132,15 +110,8 @@ const PhoneNumberScreen = ({
               otpScreenType: "phone",
             });
           }}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
-          style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-            },
-            CommonStyles.button,
-          ]}
+          styleText={{}}
+          style={[CommonStyles.button]}
           disabled={phoneNumber.length < 7}
         />
       </SpacerWrapper>

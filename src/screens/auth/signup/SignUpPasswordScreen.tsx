@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Platform, Switch } from "react-native";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
 import BackButton from "../../../components/buttons/BackButton";
@@ -48,11 +47,7 @@ const SignUpPasswordScreen = ({
   const [loading, setLoading] = useState(false);
   const [ceoMessageShown, setCeoMessageShown] = useState(undefined);
 
-  const colorScheme = useColorScheme();
   const notification = useNotifications();
-
-  const switchColor = Colors[colorScheme].backgroundSecondary;
-  const switchOnColor = Colors[colorScheme].success;
 
   const dispatch = useAppDispatch();
   const newUser = useAppSelector(selectNewUser);
@@ -125,9 +120,12 @@ const SignUpPasswordScreen = ({
           </Text>
 
           <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
+            trackColor={{
+              false: Colors.general.secondary,
+              true: Colors.general.green,
+            }}
             thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
-            ios_backgroundColor={switchColor}
+            ios_backgroundColor={Colors.general.secondary}
             onValueChange={toggleSwitch}
             value={isUsePasscodeAsPin}
             style={{
@@ -208,14 +206,11 @@ const SignUpPasswordScreen = ({
               }
             }
           }}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
+          styleText={{}}
           style={[
             {
-              backgroundColor: Colors[colorScheme].button,
               marginTop: 5,
-              width: 365,
+              width: "100%",
             },
             CommonStyles.button,
           ]}

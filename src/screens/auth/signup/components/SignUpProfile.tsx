@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
@@ -9,7 +8,6 @@ import { hp, wp } from "../../../../common/util/LayoutUtil";
 import RNPickerSelect from "react-native-picker-select";
 import { FEMALE, Gender, MALE } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
@@ -22,12 +20,6 @@ import {
 } from "../../../../redux/slice/newUserSlice";
 import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
 import * as yup from "yup";
-import {
-  ArrowDownIcon,
-  NairaIcon,
-  OutgoingTransferIcon,
-  Select,
-} from "../../../../../assets/svg";
 
 const SignUpProfile = ({
   navigation,
@@ -38,7 +30,6 @@ const SignUpProfile = ({
     key: -1,
     color: Colors.general.black,
   };
-  const colorScheme = useColorScheme();
 
   const dispatch = useAppDispatch();
 
@@ -117,13 +108,7 @@ const SignUpProfile = ({
               }}
               autoFocus={false}
             />
-            <TextHeader
-              label="Gender"
-              style={[
-                CommonStyles.genderstyle,
-                { color: Colors[colorScheme].text },
-              ]}
-            />
+            <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
             <View
               style={{
                 flexDirection: "row",
@@ -147,10 +132,8 @@ const SignUpProfile = ({
                 value={values.gender}
                 items={Gender}
                 pickerProps={{
-                  style: {
-                    backgroundColor: Colors[colorScheme].backgroundSecondary,
-                  },
-                  itemStyle: { color: Colors[colorScheme].text },
+                  style: {},
+                  itemStyle: {},
                 }}
                 style={{
                   placeholder: {
@@ -169,16 +152,8 @@ const SignUpProfile = ({
             <Button
               title="Continue"
               onPressButton={handleSubmit}
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={[
-                {
-                  backgroundColor: Colors[colorScheme].button,
-                },
-                CommonStyles.container,
-                { bottom: hp(60) },
-              ]}
+              styleText={{}}
+              style={[CommonStyles.container, { bottom: hp(60) }]}
               disabled={!isValid}
             />
           </>
