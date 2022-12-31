@@ -4,7 +4,8 @@ import Modal from "react-native-modal";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 // import { useNavigation } from "@react-navigation/core";
 import { hp } from "../../../common/util/LayoutUtil";
 // import navigation from "../../../navigation";
@@ -27,7 +28,8 @@ const SummaryModal = ({
     <Modal
       onBackdropPress={() => setModalVisible(false)}
       isVisible={visible}
-      style={{ justifyContent: "flex-end", margin: 0 }}>
+      style={{ justifyContent: "flex-end", margin: 0 }}
+    >
       <View
         style={{
           backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
@@ -37,7 +39,8 @@ const SummaryModal = ({
           paddingTop: 20,
           paddingBottom: 50,
           height: 326,
-        }}>
+        }}
+      >
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -47,7 +50,8 @@ const SummaryModal = ({
             textAlign: "center",
             marginBottom: hp(20),
             fontWeight: "400",
-          }}>
+          }}
+        >
           Download the Summary
         </Text>
         <Text
@@ -60,7 +64,8 @@ const SummaryModal = ({
             marginBottom: hp(49),
             color: colorScheme === "dark" ? "#999999" : "#000000",
             fontWeight: "400",
-          }}>
+          }}
+        >
           Your Monthly Summary document will be sent to your email address
         </Text>
 

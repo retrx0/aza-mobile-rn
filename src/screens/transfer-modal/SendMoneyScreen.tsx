@@ -9,7 +9,7 @@ import { TabView, TabBar } from "react-native-tab-view";
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../components/Themed";
+import { Text } from "../../theme/components/Text";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -21,6 +21,8 @@ import ContactsScene from "./ContactsScene";
 import { getUserContacts } from "../../hooks/useContacts";
 import { sendInviteToNonAzaContact } from "../../api/notification";
 import { InfoIcon } from "../../../assets/svg";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   const [index, setIndex] = useState(0);
@@ -28,8 +30,9 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
     { key: "first", title: "Mobile Number" },
     { key: "second", title: "Aza Number/Bank" },
   ]);
-  const colorScheme = useColorScheme();
   const layout = useWindowDimensions();
+
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   // const user = useAppSelector(user)
 
@@ -43,7 +46,8 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Send Money
         </Text>
       ),
@@ -55,8 +59,9 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate("SendMoneyFeature")}>
-          <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
+          onPress={() => navigation.navigate("SendMoneyFeature")}
+        >
+          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
     });
@@ -97,11 +102,11 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             style={{
               elevation: 0,
               backgroundColor: "transparent",
-              borderBottomColor: Colors[colorScheme].secondaryText,
+              borderBottomColor: Colors[appTheme].secondaryText,
               borderBottomWidth: 2,
             }}
             indicatorStyle={{
-              backgroundColor: Colors[colorScheme].text,
+              backgroundColor: Colors[appTheme].text,
               marginBottom: -2,
             }}
             renderLabel={({ focused, route }) => {
@@ -117,7 +122,8 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

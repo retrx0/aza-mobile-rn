@@ -1,6 +1,7 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
-import { Text, View } from "../Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import { ArrowFowardIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 

@@ -2,7 +2,8 @@ import React from "react";
 import { Image } from "react-native";
 import { MessageIcon, ReceivedIcon, SendIcon } from "../../../assets/svg";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { Text, View } from "../Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
@@ -36,7 +37,8 @@ export default function TransactionListItem({
           alignItems: "flex-start",
           alignSelf: "stretch",
         },
-      ]}>
+      ]}
+    >
       <Image
         style={{ borderRadius: 45, width: 45, height: 45 }}
         source={{
@@ -49,7 +51,8 @@ export default function TransactionListItem({
             fontFamily: "Euclid-Circular-A-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           {name}
         </Text>
         <View
@@ -60,7 +63,8 @@ export default function TransactionListItem({
               marginBottom: hp(8),
               alignSelf: "flex-start",
             },
-          ]}>
+          ]}
+        >
           {transactionType === "incoming" ? (
             <ReceivedIcon color="#2A9E17" />
           ) : (
@@ -74,7 +78,8 @@ export default function TransactionListItem({
               fontSize: hp(14),
               fontWeight: "400",
               fontFamily: "Euclid-Circular-A-Medium",
-            }}>
+            }}
+          >
             {transactionTitle}
           </Text>
         </View>
@@ -89,7 +94,8 @@ export default function TransactionListItem({
                 fontSize: hp(12),
                 fontFamily: "Euclid-Circular-A",
                 fontWeight: "300",
-              }}>
+              }}
+            >
               {transactionMessage}
             </Text>
           </View>
@@ -100,7 +106,8 @@ export default function TransactionListItem({
         style={{
           display: "flex",
           alignItems: "flex-end",
-        }}>
+        }}
+      >
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -108,7 +115,8 @@ export default function TransactionListItem({
             fontWeight: "600",
             color:
               transactionType === "incoming" ? "#2A9E17" : Colors.light.error,
-          }}>
+          }}
+        >
           {"\u20A6"}
           {amount}
         </Text>
@@ -120,7 +128,8 @@ export default function TransactionListItem({
             marginTop: 3,
             fontFamily: "Euclid-Circular-A",
             fontWeight: "300",
-          }}>
+          }}
+        >
           {date}
         </Text>
       </View>

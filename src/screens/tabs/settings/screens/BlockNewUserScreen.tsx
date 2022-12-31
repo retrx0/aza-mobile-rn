@@ -2,7 +2,7 @@ import { useWindowDimensions } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text } from "../../../../components/Themed";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -39,7 +39,8 @@ const BlockNewUserScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Block New User
         </Text>
       ),
@@ -94,7 +95,8 @@ const BlockNewUserScreen = ({
                   style={{
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: 16,
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

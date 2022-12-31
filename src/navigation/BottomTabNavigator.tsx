@@ -13,7 +13,6 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../../types";
-import useColorScheme from "../hooks/useColorScheme";
 import {
   HomeIcon,
   QRCodeIcon,
@@ -27,6 +26,9 @@ import {
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
 import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
+import { getAppTheme } from "../theme";
+import { useAppSelector } from "../redux";
+import { selectAppTheme } from "../redux/slice/themeSlice";
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -40,7 +42,9 @@ const BottomTabNavigator = (
 ) => {
   const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
-  const colorScheme = useColorScheme();
+
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const toggleProfileModal = () => {
     setProfileModalVisible(!isProfileModalVisible);
@@ -58,7 +62,7 @@ const BottomTabNavigator = (
     /* APP STATE CHANGES */
 
     const { name } = _navigation.route;
-    const appStateListener = AppState.addEventListener("blur", (appState) => {
+    const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") {
         if (name === "Root" || name === "Common")
           _navigation.navigation.navigate("SignIn");
@@ -75,7 +79,7 @@ const BottomTabNavigator = (
       <BottomTab.Navigator
         initialRouteName={"Home"}
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme].tint,
+          tabBarActiveTintColor: Colors[appTheme].tint,
         }}
       >
         <BottomTab.Screen
@@ -88,9 +92,7 @@ const BottomTabNavigator = (
               <AZALightningLogo
                 size={25}
                 color={
-                  colorScheme === "dark"
-                    ? Colors.dark.mainText
-                    : Colors.light.text
+                  appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
                 }
               />
             ),
@@ -103,7 +105,7 @@ const BottomTabNavigator = (
                   opacity: pressed ? 0.5 : 1,
                 })}
               >
-                {colorScheme === "dark" ? (
+                {appTheme === "dark" ? (
                   <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
                 ) : (
                   <QRCodeIcon
@@ -122,7 +124,7 @@ const BottomTabNavigator = (
                   marginLeft: 15,
                 })}
               >
-                <MenuIcon size={25} color={Colors[colorScheme].text} />
+                <MenuIcon size={25} color={Colors[appTheme].text} />
               </Pressable>
             ),
             headerShadowVisible: false,

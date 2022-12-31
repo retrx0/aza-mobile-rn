@@ -5,7 +5,7 @@ import { TabView, TabBar } from "react-native-tab-view";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../components/Themed";
+import { Text } from "../../theme/components/Text";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -36,7 +36,8 @@ const FeesAndLimitsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Fees & Limits
         </Text>
       ),
@@ -91,7 +92,8 @@ const FeesAndLimitsScreen = ({
                     }
                     style={{
                       fontSize: hp(16),
-                    }}>
+                    }}
+                  >
                     {route.title}
                   </Text>
                 );

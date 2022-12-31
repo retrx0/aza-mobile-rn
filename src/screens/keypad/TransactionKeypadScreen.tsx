@@ -4,7 +4,8 @@ import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import VirtualKeyboard from "../../components/input/VirtualKeyboard";
 import Button from "../../components/buttons/Button";
 
@@ -55,7 +56,8 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -93,7 +95,8 @@ const TransactionKeypadScreen = ({
               fontSize: hp(16),
               marginTop: hp(15),
               marginBottom: hp(15),
-            }}>
+            }}
+          >
             {beneficiary.fullName}
           </Text>
           <View
@@ -110,11 +113,13 @@ const TransactionKeypadScreen = ({
                 borderRadius: 50,
                 marginBottom: hp(20),
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               Nigerian Naira
             </Text>
             <Image
@@ -129,7 +134,8 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               NGN
             </Text>
           </View>
@@ -153,7 +159,8 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(36),
                 marginVertical: hp(10),
-              }}>
+              }}
+            >
               {!amount && "0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -165,7 +172,8 @@ const TransactionKeypadScreen = ({
                 fontSize: hp(14),
                 fontWeight: "400",
                 marginVertical: hp(10),
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -176,7 +184,8 @@ const TransactionKeypadScreen = ({
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontWeight: "600",
-              }}>
+              }}
+            >
               {"\u20A6"}
               {user.azaBalance}
             </Text>
@@ -187,7 +196,8 @@ const TransactionKeypadScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             disabled={!amount}

@@ -4,7 +4,8 @@ import { StyleSheet, Image, ScrollView } from "react-native";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 import SplitListItem from "./components/SplitListItem";
 
@@ -27,7 +28,8 @@ const CompletedSplitRequestDetailsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Request details
         </Text>
       ),
@@ -54,7 +56,8 @@ const CompletedSplitRequestDetailsScreen = ({
         <View
           style={{
             marginTop: hp(25),
-          }}>
+          }}
+        >
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
@@ -63,7 +66,8 @@ const CompletedSplitRequestDetailsScreen = ({
               fontWeight: "400",
               fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Request Creator
           </Text>
           <View
@@ -74,7 +78,8 @@ const CompletedSplitRequestDetailsScreen = ({
                 justifyContent: "space-between",
                 marginTop: hp(15),
               },
-            ]}>
+            ]}
+          >
             <Image
               style={{ borderRadius: 50, width: 45, height: 45 }}
               source={{
@@ -85,7 +90,8 @@ const CompletedSplitRequestDetailsScreen = ({
               style={[
                 CommonStyles.col,
                 { marginLeft: 20, marginRight: "auto" },
-              ]}>
+              ]}
+            >
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
@@ -93,7 +99,8 @@ const CompletedSplitRequestDetailsScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
-                }}>
+                }}
+              >
                 Chiazo
               </Text>
               <Text style={{ fontSize: 12, marginTop: 5, color: "#2A9E17" }}>
@@ -113,7 +120,8 @@ const CompletedSplitRequestDetailsScreen = ({
             marginTop: hp(25),
             fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
-          }}>
+          }}
+        >
           Request Recipients
         </Text>
         <ScrollView>
@@ -125,7 +133,8 @@ const CompletedSplitRequestDetailsScreen = ({
                 justifyContent: "space-between",
                 marginTop: hp(15),
               },
-            ]}>
+            ]}
+          >
             <Image
               style={{ borderRadius: 50, width: 45, height: 45 }}
               source={{
@@ -136,7 +145,8 @@ const CompletedSplitRequestDetailsScreen = ({
               style={[
                 CommonStyles.col,
                 { marginLeft: 20, marginRight: "auto" },
-              ]}>
+              ]}
+            >
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
@@ -144,7 +154,8 @@ const CompletedSplitRequestDetailsScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "500",
-                }}>
+                }}
+              >
                 James
               </Text>
               <Text
@@ -153,7 +164,8 @@ const CompletedSplitRequestDetailsScreen = ({
                   marginTop: 5,
                   color: "#2A9E17",
                   fontFamily: "Euclid-Circular-A",
-                }}>
+                }}
+              >
                 {"\u20A6"}
                 {numberWithCommas(6666)}
               </Text>

@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Button from "../../../../components/buttons/Button";
 
 import Colors from "../../../../constants/Colors";
@@ -31,7 +33,8 @@ const AddBankAccountConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -57,7 +60,8 @@ const AddBankAccountConfirmationScreen = ({
               marginVertical: hp(30),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Kindly confirm the details of your bank account
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -69,7 +73,8 @@ const AddBankAccountConfirmationScreen = ({
                 fontSize: hp(15),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Bank
             </Text>
             <TextInput
@@ -114,7 +119,8 @@ const AddBankAccountConfirmationScreen = ({
                 fontSize: hp(15),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Number
             </Text>
             <TextInput
@@ -144,7 +150,8 @@ const AddBankAccountConfirmationScreen = ({
                 fontSize: hp(15),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Name
             </Text>
             <TextInput
@@ -170,7 +177,8 @@ const AddBankAccountConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

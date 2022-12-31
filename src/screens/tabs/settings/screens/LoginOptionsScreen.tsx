@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
@@ -23,7 +24,8 @@ const LoginOptionsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Login Options
         </Text>
       ),
@@ -43,7 +45,8 @@ const LoginOptionsScreen = ({
           style={{
             paddingHorizontal: hp(23),
             marginTop: hp(30),
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -51,7 +54,8 @@ const LoginOptionsScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Login quickly by connecting your Aza account to your social media
             account.
           </Text>

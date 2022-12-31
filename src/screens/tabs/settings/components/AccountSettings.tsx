@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+// import { View, Text } from "react-native";
 import React from "react";
 import SettingsListItem from "./SettingsListItem";
 import Colors from "../../../../constants/Colors";
@@ -13,21 +13,25 @@ import {
 import { hp } from "../../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../../types";
 
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+
 export default function AccountSettings({
   navigation,
 }: RootTabScreenProps<"Settings">) {
-  const colorScheme = useColorScheme();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const accountSettings = [
     {
-      icon: (
-        <ChangePasswordIcon size={36} color={Colors[colorScheme].mainText} />
-      ),
+      icon: <ChangePasswordIcon size={36} color={Colors[appTheme].mainText} />,
       name: "Change Password",
       detail: "Change your Aza account password",
       disabled: false,
       disabledIcon: (
-        <ChangePasswordIcon size={36} color={Colors[colorScheme].disabled} />
+        <ChangePasswordIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "ChangePassword" }),
@@ -35,37 +39,35 @@ export default function AccountSettings({
 
     {
       icon: (
-        <ChangePhoneNumberIcon size={36} color={Colors[colorScheme].mainText} />
+        <ChangePhoneNumberIcon size={36} color={Colors[appTheme].mainText} />
       ),
       name: "Change Mobile Phone Number",
       detail: "Change your mobile number",
       disabled: false,
       disabledIcon: (
-        <ChangePhoneNumberIcon size={36} color={Colors[colorScheme].disabled} />
+        <ChangePhoneNumberIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "ChangePhoneNumber" }),
     },
     {
-      icon: <ChangeEmailIcon size={36} color={Colors[colorScheme].mainText} />,
+      icon: <ChangeEmailIcon size={36} color={Colors[appTheme].mainText} />,
       name: "Change Email Address",
       detail: "Change your email address",
       disabled: false,
       disabledIcon: (
-        <ChangeEmailIcon size={36} color={Colors[colorScheme].disabled} />
+        <ChangeEmailIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "ChangeEmail" }),
     },
     {
-      icon: (
-        <PrivacySettingsIcon size={36} color={Colors[colorScheme].mainText} />
-      ),
+      icon: <PrivacySettingsIcon size={36} color={Colors[appTheme].mainText} />,
       name: "Privacy Settings",
       detail: "Change your privacy settings",
       disabled: false,
       disabledIcon: (
-        <PrivacySettingsIcon size={36} color={Colors[colorScheme].disabled} />
+        <PrivacySettingsIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "PrivacySettings" }),
@@ -89,7 +91,6 @@ export default function AccountSettings({
       <View>
         <Text
           style={{
-            color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(14),
             fontWeight: "400",
@@ -103,7 +104,7 @@ export default function AccountSettings({
             backgroundColor: "transparent",
             marginTop: hp(10),
             borderBottomWidth: 0.8,
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />
       </View>

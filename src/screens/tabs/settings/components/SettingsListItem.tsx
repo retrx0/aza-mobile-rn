@@ -4,9 +4,11 @@ import { ChevronRightIcon } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Divider from "../../../../components/divider/Divider";
-import { Text, View } from "../../../../components/Themed";
+// import { View } from "../../../../theme/components/View";
+// import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 
 interface SettingsListItemsProps {
   name: string;
@@ -32,7 +34,8 @@ const SettingsListItem = ({
       <TouchableOpacity
         disabled={disabled}
         onPress={handleNavigation}
-        style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+        style={[CommonStyles.col, { alignSelf: "stretch" }]}
+      >
         <View
           style={[
             CommonStyles.row,
@@ -41,13 +44,15 @@ const SettingsListItem = ({
               justifyContent: "space-between",
               marginVertical: hp(20),
             },
-          ]}>
+          ]}
+        >
           <View>{disabled ? disabledIcon : icon}</View>
           <View
             style={[
               CommonStyles.col,
               { marginRight: "auto", marginLeft: icon ? 20 : 0 },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={
                 disabled ? Colors[colorScheme].disabled : Colors.light.text
@@ -59,7 +64,8 @@ const SettingsListItem = ({
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "500",
-              }}>
+              }}
+            >
               {name}
             </Text>
             {detail && (
@@ -77,7 +83,8 @@ const SettingsListItem = ({
                   fontFamily: "Euclid-Circular-A",
                   fontWeight: "400",
                   marginTop: hp(4),
-                }}>
+                }}
+              >
                 {detail}
               </Text>
             )}

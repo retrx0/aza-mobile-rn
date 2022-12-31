@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
@@ -34,7 +35,8 @@ const ChangeEmailScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           New Email
         </Text>
       ),
@@ -59,7 +61,8 @@ const ChangeEmailScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
               // marginTop: hp(30),
-            }}>
+            }}
+          >
             Change your email
           </Text>
           <View style={{ marginBottom: 10, marginTop: 30 }}>

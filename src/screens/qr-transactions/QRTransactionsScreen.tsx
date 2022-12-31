@@ -7,7 +7,7 @@ import { RootStackScreenProps } from "../../../types";
 import QRMakePaymentTab from "./components/QRMakePaymentTab";
 import QRReceivePaymentTab from "./components/QRReceivePaymentTab";
 import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../components/Themed";
+import { Text } from "../../theme/components/Text";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -37,7 +37,8 @@ const QRTransactionsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           QR Transactions
         </Text>
       ),
@@ -98,7 +99,8 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}>
+                    }}
+                  >
                     {route.title}
                   </Text>
                 );

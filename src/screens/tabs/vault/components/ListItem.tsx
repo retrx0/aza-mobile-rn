@@ -1,7 +1,8 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 

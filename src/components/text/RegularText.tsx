@@ -1,6 +1,6 @@
 import React from "react";
 import { hp } from "../../common/util/LayoutUtil";
-import { Text } from "../Themed";
+import { Text } from "../../theme/components/Text";
 
 export default function RegularText({
   text,
@@ -18,7 +18,8 @@ export default function RegularText({
           fontWeight: "500",
           fontSize: hp(16),
         },
-      ]}>
+      ]}
+    >
       {text}
     </Text>
   );

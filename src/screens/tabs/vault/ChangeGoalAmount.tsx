@@ -3,7 +3,8 @@ import BackButton from "../../../components/buttons/BackButton";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
@@ -26,7 +27,8 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -36,7 +38,8 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginLeft: hp(65),
-            }}>
+            }}
+          >
             Change Goal Amount
           </Text>
         </View>
@@ -45,7 +48,8 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             CommonStyles.selectStyle,
             { marginLeft: hp(20) },
             { marginTop: 50 },
-          ]}>
+          ]}
+        >
           You can determine the amount you want to save
         </Text>
         <View style={[CommonStyles.row]}>
@@ -67,7 +71,8 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 : Colors.light.text,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 36,
-            }}>
+            }}
+          >
             {!amount && " 0"} {numberWithCommas(amount)}
           </Text>
         </View>
@@ -76,14 +81,16 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             width: "100%",
             marginTop: 60,
             marginBottom: "auto",
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             disabled={!amount}
             title="Save Change"

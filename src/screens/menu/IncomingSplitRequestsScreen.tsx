@@ -9,7 +9,8 @@ import { TabView, TabBar } from "react-native-tab-view";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 
 import Colors from "../../constants/Colors";
@@ -39,7 +40,8 @@ const IncomingSplitRequestsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Incoming Requests
         </Text>
       ),
@@ -91,7 +93,8 @@ const IncomingSplitRequestsScreen = ({
                   }}
                   onPress={() =>
                     navigation.navigate("IncomingSplitRequestAcceptance")
-                  }>
+                  }
+                >
                   <SplitListItem
                     amount={amount}
                     date={date}
@@ -119,7 +122,8 @@ const IncomingSplitRequestsScreen = ({
                   }}
                   onPress={() =>
                     navigation.navigate("CompletedSplitRequestDetails")
-                  }>
+                  }
+                >
                   <SplitListItem
                     amount={amount}
                     date={date}
@@ -170,7 +174,8 @@ const IncomingSplitRequestsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}>
+                    }}
+                  >
                     {route.title}
                   </Text>
                 );

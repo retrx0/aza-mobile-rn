@@ -15,7 +15,7 @@ import * as Device from "expo-device";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  const { isLoadingComplete } = useCachedResources();
+  const { isLoadingComplete, userPreferences } = useCachedResources();
   const colorScheme = useColorScheme();
 
   const [isDeviceRooted, setisDeviceRooted] = useState(false);
@@ -31,9 +31,18 @@ const App = () => {
   } else {
     return (
       <SafeAreaProvider>
-        <StatusBar />
+        <StatusBar
+          style={
+            userPreferences?.appearance && userPreferences.appearance === "dark"
+              ? "light"
+              : "dark"
+          }
+        />
         <Provider store={Store}>
-          <Navigation colorScheme={colorScheme} />
+          <Navigation
+            colorScheme={colorScheme}
+            loadedPreference={userPreferences}
+          />
         </Provider>
         <Toast config={toastConfig} />
       </SafeAreaProvider>

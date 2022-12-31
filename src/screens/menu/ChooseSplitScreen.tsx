@@ -4,7 +4,8 @@ import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 import SplitListItem from "./components/SplitListItem";
 
@@ -24,7 +25,8 @@ const ChooseSplitScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Choose Transaction
         </Text>
       ),
@@ -105,7 +107,8 @@ const ChooseSplitScreen = ({
                   splitImage,
                   name,
                 })
-              }>
+              }
+            >
               <SplitListItem
                 key={i}
                 amount={amount}

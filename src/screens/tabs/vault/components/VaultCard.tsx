@@ -7,7 +7,8 @@ import {
   VaultListProps,
 } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 
 export const PercentageList = [

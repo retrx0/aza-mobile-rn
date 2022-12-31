@@ -8,7 +8,10 @@ import {
 import { BackIcon, ExitIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { Text, useThemeColor } from "../Themed";
+import { useAppThemeColor } from "../../theme/Themed";
+import { Text } from "../../theme/components/Text";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 type ExitProps = {
   style?: StyleProp<ViewStyle>;
@@ -16,9 +19,11 @@ type ExitProps = {
 };
 
 const ExitButton = ({ style, onPress }: ExitProps) => {
-  const color = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const color = useAppThemeColor(
     { light: Colors.general.black, dark: Colors.dark.text },
-    "text"
+    "text",
+    selectedTheme
   );
   return (
     <TouchableOpacity onPress={onPress}>

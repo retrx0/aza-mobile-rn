@@ -1,7 +1,8 @@
 import { Image, TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { Header } from "../../../components/text/header";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -26,7 +27,8 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: hp(30),
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -36,7 +38,8 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(100),
-            }}>
+            }}
+          >
             Vault
           </Text>
         </View>
@@ -51,7 +54,8 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             style={[
               CommonStyles.createNewVault,
               { color: Colors[colorScheme].Text },
-            ]}>
+            ]}
+          >
             Click New Vault to create a new vault
           </Text>
           <TouchableOpacity>
@@ -70,7 +74,8 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="New Vault"
             onPressButton={() =>

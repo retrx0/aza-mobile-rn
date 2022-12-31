@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
-import { Text } from "../Themed";
+import { Text } from "../../theme/components/Text";
 
 const ButtonMd = (props: {
   title: string;
@@ -20,13 +20,15 @@ const ButtonMd = (props: {
   return (
     <TouchableOpacity
       style={[styles.buttonContainer, { backgroundColor: props.color }]}
-      onPress={props.onPress}>
+      onPress={props.onPress}
+    >
       <Text
         style={[
           styles.buttonText,
           { color: props.alt ? "black" : "white" },
           props.style,
-        ]}>
+        ]}
+      >
         {props.title}
       </Text>
     </TouchableOpacity>

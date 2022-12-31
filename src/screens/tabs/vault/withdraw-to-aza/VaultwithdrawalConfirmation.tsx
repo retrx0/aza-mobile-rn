@@ -1,5 +1,6 @@
 import Button from "../../../../components/buttons/Button";
-import { View, Text } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -24,7 +25,8 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -34,7 +36,8 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(80),
-            }}>
+            }}
+          >
             Confirmation
           </Text>
         </View>
@@ -76,7 +79,8 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

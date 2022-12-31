@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../common/navigation/types";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -31,7 +32,8 @@ const InviteUsers = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Send Money
         </Text>
       ),
@@ -52,7 +54,8 @@ const InviteUsers = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <AddUsers color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
         <Text
@@ -64,7 +67,8 @@ const InviteUsers = ({
             // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Invite new users to Aza
         </Text>
         <Text
@@ -77,7 +81,8 @@ const InviteUsers = ({
             maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Azarians can send money to users who don't even use Aza, after which
           an sms will be sent to those users with a guide on how to create an
           Aza account.
@@ -86,7 +91,8 @@ const InviteUsers = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Go Back To Send Money"
             onPressButton={() => navigation.navigate("SendMoney")}

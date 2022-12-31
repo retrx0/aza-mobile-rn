@@ -1,7 +1,8 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { Header } from "../../../components/text/header";
 import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -29,7 +30,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             justifyContent: "space-between",
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -39,7 +41,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginRight: hp(50),
-            }}>
+            }}
+          >
             Vault
           </Text>
           <TouchableOpacity>
@@ -53,7 +56,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             marginBottom: hp(40),
             marginLeft: hp(19),
-          }}>
+          }}
+        >
           Choose a vault to view/edit details
         </Text>
         <View
@@ -67,7 +71,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <CancelButtonWithUnderline
             title="Archived Vaults"
             onPressButton={() =>

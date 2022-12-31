@@ -4,7 +4,8 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Divider from "../../../../components/divider/Divider";
 
 import Colors from "../../../../constants/Colors";

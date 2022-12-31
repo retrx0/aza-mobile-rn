@@ -11,7 +11,9 @@ import * as Contacts from "expo-contacts";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Divider from "../../components/divider/Divider";
 import ContactListItem from "../../components/ListItem/ContactListItem";
 import SplitListItem from "./components/SplitListItem";
@@ -51,7 +53,8 @@ const SplitSelectContactsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Split
         </Text>
       ),
@@ -148,7 +151,8 @@ const SplitSelectContactsScreen = ({
                 showsHorizontalScrollIndicator={false}
                 style={{
                   marginTop: hp(15),
-                }}>
+                }}
+              >
                 <View style={[CommonStyles.row]}>
                   <View style={[CommonStyles.col, { alignItems: "center" }]}>
                     <Image
@@ -160,7 +164,8 @@ const SplitSelectContactsScreen = ({
                     <Text
                       // lightColor={Colors.light.text}
                       // darkColor={Colors.dark.mainText}
-                      style={{ fontSize: 10, marginTop: 5 }}>
+                      style={{ fontSize: 10, marginTop: 5 }}
+                    >
                       Chiazo
                     </Text>
                   </View>
@@ -187,7 +192,8 @@ const SplitSelectContactsScreen = ({
               fontFamily: "Euclid-Circular-A",
               marginLeft: hp(5),
               fontWeight: "400",
-            }}>
+            }}
+          >
             {search.length > 0 ? "Contacts" : "Quick contacts"}
           </Text>
           <FlatList
@@ -197,7 +203,8 @@ const SplitSelectContactsScreen = ({
               return (
                 <TouchableOpacity
                   activeOpacity={0.5}
-                  onPress={() => addContact(item)}>
+                  onPress={() => addContact(item)}
+                >
                   <ContactListItem
                     image={
                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
@@ -222,7 +229,8 @@ const SplitSelectContactsScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             disabled={disabledButton}

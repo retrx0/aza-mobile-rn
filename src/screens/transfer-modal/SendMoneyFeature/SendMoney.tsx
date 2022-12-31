@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../common/navigation/types";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -31,7 +32,8 @@ const SendMoneyFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Send Money
         </Text>
       ),
@@ -52,7 +54,8 @@ const SendMoneyFeature = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <AzaLOGO color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
         <View style={{ paddingHorizontal: 30 }}>
@@ -64,7 +67,8 @@ const SendMoneyFeature = ({
               textAlign: "center",
               alignSelf: "center",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             Lightning-fast transaction speed
           </Text>
           <Text
@@ -76,7 +80,8 @@ const SendMoneyFeature = ({
               fontWeight: "400",
               alignSelf: "center",
               marginTop: hp(20),
-            }}>
+            }}
+          >
             Send money to anyone on Aza or other banks at lightning speeds
           </Text>
         </View>
@@ -85,7 +90,8 @@ const SendMoneyFeature = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("TransactionCertainty")}

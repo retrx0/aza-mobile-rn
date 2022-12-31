@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, Switch, TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { Input } from "../../../components/input/input";
@@ -41,7 +42,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             alignItems: "center",
             marginBottom: hp(30),
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -51,7 +53,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "500",
               marginRight: hp(20),
-            }}>
+            }}
+          >
             New Vault
           </Text>
           <TouchableOpacity
@@ -59,7 +62,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               navigation.navigate("Common", {
                 screen: "VaultFeature",
               })
-            }>
+            }
+          >
             <InfoIcon
               style={{ marginRight: hp(20) }}
               color={colorScheme === "dark" ? "#999999" : "#000000"}
@@ -88,7 +92,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <View
             style={{
               marginTop: hp(20),
-            }}>
+            }}
+          >
             <Text
               // lightColor={Colors.light.secondaryText}
               // darkColor={Colors.dark.secondaryText}
@@ -98,7 +103,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 lineHeight: hp(17.75),
                 marginBottom: hp(11),
                 fontFamily: "Euclid-Circular-A",
-              }}>
+              }}
+            >
               Period
             </Text>
             <CustomDropdown
@@ -132,7 +138,8 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           {/* <View style={CommonStyles.periodContainer}>
             <Text style={CommonStyles.everyMonth}>
               Save this amount every month

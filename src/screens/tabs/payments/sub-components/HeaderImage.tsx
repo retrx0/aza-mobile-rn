@@ -1,7 +1,8 @@
 import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { TickIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 
@@ -33,7 +34,8 @@ export default function HeaderImage({
         {
           height: amount ? 120 : 70,
         },
-      ]}>
+      ]}
+    >
       <View
         style={[
           styles.imageContainer,
@@ -41,7 +43,8 @@ export default function HeaderImage({
             borderWidth: amount ? 1 : 0,
             borderColor: amount ? "#A6A6A6" : "",
           },
-        ]}>
+        ]}
+      >
         <Image
           style={[
             styles.image,

@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View } from "../../../../components/Themed";
+import { SafeAreaView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";

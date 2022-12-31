@@ -2,7 +2,8 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Button from "../../../../components/buttons/Button";
 import Divider from "../../../../components/divider/Divider";
@@ -31,7 +32,8 @@ const DebitCreditCardsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Debit/Credit Cards
         </Text>
       ),
@@ -57,7 +59,8 @@ const DebitCreditCardsScreen = ({
               marginVertical: hp(30),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Securely manage all your debit and credit cards connected to Aza
             right here. Tap a card for more options.
           </Text>
@@ -69,7 +72,8 @@ const DebitCreditCardsScreen = ({
                 style={[
                   CommonStyles.row,
                   { alignSelf: "stretch", paddingVertical: 15 },
-                ]}>
+                ]}
+              >
                 <Image
                   source={{
                     uri: "https://download.logo.wine/logo/Visa_Inc./Visa_Inc.-Logo.wine.png",
@@ -89,7 +93,8 @@ const DebitCreditCardsScreen = ({
                     marginLeft: hp(20),
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: hp(14),
-                  }}>
+                  }}
+                >
                   Visa (**** **** **** 1234)
                 </Text>
               </View>
@@ -101,7 +106,8 @@ const DebitCreditCardsScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Add New Card"
             onPressButton={() =>

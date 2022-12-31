@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import useColorScheme from "../../hooks/useColorScheme";
 
 export type InputProps = {
@@ -62,7 +63,8 @@ export const Input = ({
                 // marginTop: 10,
               },
               placeholderStyle,
-            ]}></TextInput>
+            ]}
+          ></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}

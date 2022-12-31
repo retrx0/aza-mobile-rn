@@ -3,7 +3,8 @@ import React from "react";
 import { ChevronRightIcon } from "../../../assets/svg";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import { Text, View } from "../Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import { StyleProp, TextStyle } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
@@ -42,7 +43,8 @@ const CustomDropdown = ({
           fontWeight: "400",
           fontSize: hp(16),
           marginBottom: 3,
-        }}>
+        }}
+      >
         {label}
       </Text>
 
@@ -95,13 +97,15 @@ const CustomDropdown = ({
                 justifyContent: "space-between",
                 backgroundColor: colorScheme === "dark" ? "#E7E9EA;" : "white",
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
               style={{
                 fontSize: 14,
-              }}>
+              }}
+            >
               {item.label}
             </Text>
           </View>

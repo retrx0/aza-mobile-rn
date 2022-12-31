@@ -1,6 +1,6 @@
 import { View, ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "../../../../../components/Themed";
+import { SafeAreaView } from "../../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
@@ -107,7 +107,8 @@ export default function CableRecurring({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}>
+        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}
+      >
         {Cable.map((item, index) => {
           return (
             <Card
@@ -146,7 +147,8 @@ export default function CableRecurring({
           paddingHorizontal: hp(20),
           marginTop: hp(15),
           marginBottom: hp(25),
-        }}>
+        }}
+      >
         <CustomDropdown
           data={subscription}
           placeholder="Choose a subscription package"
@@ -186,7 +188,8 @@ export default function CableRecurring({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
           disabled={false}
           title="Continue"

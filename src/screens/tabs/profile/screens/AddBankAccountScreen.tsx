@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Button from "../../../../components/buttons/Button";
 
 import Colors from "../../../../constants/Colors";
@@ -32,7 +34,8 @@ const AddBankAccountScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Add Bank Account
         </Text>
       ),
@@ -59,7 +62,8 @@ const AddBankAccountScreen = ({
               marginLeft: hp(5),
               fontWeight: "500",
               marginTop: hp(30),
-            }}>
+            }}
+          >
             Add your bank account to receive withdrawals from your Aza account
           </Text>
           <View>
@@ -71,7 +75,8 @@ const AddBankAccountScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Number
             </Text>
             <TextInput
@@ -99,7 +104,8 @@ const AddBankAccountScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

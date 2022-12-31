@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
@@ -27,7 +28,8 @@ const ChangePhoneNumberOTPScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           OTP
         </Text>
       ),
@@ -51,7 +53,8 @@ const ChangePhoneNumberOTPScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}>
+          }}
+        >
           Please enter the OTP sent to your phone via SMS
         </Text>
         <View
@@ -59,7 +62,8 @@ const ChangePhoneNumberOTPScreen = ({
             marginBottom: 89,
             marginTop: 78,
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <SegmentedInput
             value={otp}
             secureInput={false}

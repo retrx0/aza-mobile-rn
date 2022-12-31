@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
@@ -79,7 +80,8 @@ const SignUpProfile = ({
           navigation.navigate("SignUpPassword", {
             passwordScreenType: "Create",
           });
-        }}>
+        }}
+      >
         {({
           handleChange,
           handleBlur,
@@ -134,7 +136,8 @@ const SignUpProfile = ({
                 marginTop: hp(7),
                 paddingVertical: hp(15),
                 justifyContent: "space-between",
-              }}>
+              }}
+            >
               <RNPickerSelect
                 placeholder={placeholder}
                 onValueChange={(value) => {

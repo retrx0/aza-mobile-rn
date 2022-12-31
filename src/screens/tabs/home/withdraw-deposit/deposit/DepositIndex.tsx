@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import { View } from "../../../../../components/Themed";
+import { View2 as View } from "../../../../../theme/Themed";
 import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import { RootTabScreenProps } from "../../../../../../types";
@@ -34,7 +34,8 @@ export default function DepositIndex({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Cancel"
             style={styles.button}

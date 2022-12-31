@@ -1,6 +1,8 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, Text, View } from "../../../../components/Themed";
+import { SafeAreaView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -68,7 +70,8 @@ export default function GiftCardDetails({
           flexWrap: "wrap",
           marginTop: hp(30),
           marginBottom: hp(35),
-        }}>
+        }}
+      >
         {CountryList.map((item, index) => {
           return (
             <Card
@@ -88,7 +91,8 @@ export default function GiftCardDetails({
             fontSize: hp(16),
             fontWeight: "500",
             fontFamily: "Euclid-Circular-A-Medium",
-          }}>
+          }}
+        >
           Select Package
         </Text>
         <Divider />

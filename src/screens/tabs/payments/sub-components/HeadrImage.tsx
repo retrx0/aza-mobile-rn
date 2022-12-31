@@ -7,8 +7,7 @@ import {
 import React from "react";
 import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 
 type HeaderImageProps = {
   image: ImageSourcePropType;
@@ -38,7 +37,8 @@ export default function HeadrImage({
         {
           height: amount ? 120 : 70,
         },
-      ]}>
+      ]}
+    >
       <View
         style={[
           styles.imageContainer,
@@ -46,7 +46,8 @@ export default function HeadrImage({
             borderWidth: amount ? 1 : 0,
             borderColor: amount ? "#A6A6A6" : "",
           },
-        ]}>
+        ]}
+      >
         <Image
           style={[
             styles.image,
@@ -72,14 +73,12 @@ export default function HeadrImage({
 
 const styles = StyleSheet.create({
   mainConatiner: {
-    backgroundColor: "transparent",
     alignItems: "center",
     marginRight: 33.5,
   },
   imageContainer: {
     width: 45,
     height: 45,
-    backgroundColor: "transparent",
     borderRadius: 22,
     justifyContent: "center",
     alignItems: "center",

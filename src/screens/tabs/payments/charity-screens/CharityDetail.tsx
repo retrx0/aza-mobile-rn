@@ -1,6 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import { CharityStyles as styles } from "../styles";
 import { InfoIcon } from "../../../../../assets/svg";
 import { Input } from "../../../../components/input/input";
@@ -105,7 +106,8 @@ export default function CharityDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <View style={styles.check}>
           <CustomSwitch
             title="Recurring monthly donation"

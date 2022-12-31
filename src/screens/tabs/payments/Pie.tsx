@@ -1,6 +1,7 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PieChart } from "react-native-gifted-charts";
 import RegularText from "../../../components/text/RegularText";
@@ -68,7 +69,8 @@ export default function Pie() {
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
-                style={[styles.colors, { backgroundColor: item.color }]}></View>
+                style={[styles.colors, { backgroundColor: item.color }]}
+              ></View>
               <Text style={{ fontSize: hp(15) }}>{item.text}</Text>
             </View>
           ))}

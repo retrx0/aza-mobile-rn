@@ -3,12 +3,12 @@
   "compilerOptions": {
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src/",
-    "paths": {
-      "@screens/*": ["screens/*"],
-      "@components/*": ["components/*"]
-    }
+    "forceConsistentCasingInFileNames": true
+    // "baseUrl": "./",
+    // "paths": {
+    //   "@screens/*": ["/src/screens/*"],
+    //   "@components/*": ["/src/components/*"]
+    // }
   },
   "typeRoots": ["./src/types"]
 }

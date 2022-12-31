@@ -3,7 +3,8 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
@@ -32,7 +33,8 @@ export default function BlockUserModal({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-      }}>
+      }}
+    >
       <View
         style={{
           backgroundColor: Colors[colorScheme].backgroundSecondary,
@@ -44,7 +46,8 @@ export default function BlockUserModal({
           alignItems: "center",
           width: "90%",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -52,7 +55,8 @@ export default function BlockUserModal({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
             fontWeight: "600",
-          }}>
+          }}
+        >
           Block User
         </Text>
         <Text
@@ -63,13 +67,15 @@ export default function BlockUserModal({
             marginVertical: 15,
             maxWidth: 300,
             textAlign: "center",
-          }}>
+          }}
+        >
           The user{" "}
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(15),
-            }}>
+            }}
+          >
             {user}
           </Text>{" "}
           will be blocked. Do you confirm?

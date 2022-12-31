@@ -1,7 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import BackButton from "../../../../components/buttons/BackButton";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";

@@ -7,7 +7,7 @@ import {
 import { TabView, TabBar } from "react-native-tab-view";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../components/Themed";
+import { Text } from "../../theme/components/Text";
 
 import Colors from "../../constants/Colors";
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
@@ -39,7 +39,8 @@ const RequestMoneyScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Request Money
         </Text>
       ),
@@ -51,7 +52,8 @@ const RequestMoneyScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate("RequestMoneyFeature")}>
+          onPress={() => navigation.navigate("RequestMoneyFeature")}
+        >
           <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
@@ -113,7 +115,8 @@ const RequestMoneyScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

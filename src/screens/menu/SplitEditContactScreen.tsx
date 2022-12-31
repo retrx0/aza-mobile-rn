@@ -2,7 +2,9 @@ import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
@@ -34,7 +36,8 @@ const SplitEditContactScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Edit
         </Text>
       ),
@@ -60,7 +63,8 @@ const SplitEditContactScreen = ({
               marginBottom: hp(50),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             You can edit the split amount
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -72,7 +76,8 @@ const SplitEditContactScreen = ({
                 marginLeft: hp(5),
                 fontWeight: "500",
                 fontFamily: "Euclid-Circular-A",
-              }}>
+              }}
+            >
               With whom?
             </Text>
             <TextInput
@@ -106,7 +111,8 @@ const SplitEditContactScreen = ({
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Amount
             </Text>
             <View
@@ -118,11 +124,13 @@ const SplitEditContactScreen = ({
                   position: "relative",
                   marginLeft: 5,
                 },
-              ]}>
+              ]}
+            >
               <Text
                 // lightColor={Colors.light.mainText}
                 // darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}>
+                style={{ position: "absolute", paddingBottom: 5 }}
+              >
                 {"\u20A6"}
               </Text>
               <TextInput
@@ -148,7 +156,8 @@ const SplitEditContactScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => navigation.goBack()}

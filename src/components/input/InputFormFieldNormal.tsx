@@ -4,7 +4,8 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import { Text, TextInput } from "../Themed";
+import { TextInput } from "../../theme/Themed";
+import { Text2 as Text } from "../../theme/Themed";
 
 const InputFormFieldNormal = ({
   value,
@@ -23,8 +24,6 @@ const InputFormFieldNormal = ({
   formikProps: { errors: any; touched: any };
   type: "email" | "firstname" | "lastname";
 }) => {
-  const colorScheme = useColorScheme();
-
   const typeOfEmail = type === "email";
 
   let EMAIL_REGEX = /^w+(-?w+)*@w+(-?w+)*(.ww+)+$/;
@@ -39,7 +38,8 @@ const InputFormFieldNormal = ({
               fontSize: hp(18),
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
-            }}>
+            }}
+          >
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </Text>
           <Text style={{ color: "red" }}>*</Text>
@@ -48,21 +48,13 @@ const InputFormFieldNormal = ({
         <></>
       )}
       <TextInput
-        style={[
-          CommonStyles.textInput,
-          {
-            backgroundColor: Colors[colorScheme].backgroundSecondary,
-            borderColor: Colors[colorScheme].border,
-            color: Colors[colorScheme].text,
-          },
-        ]}
+        style={[CommonStyles.textInput]}
         onChangeText={onChangeText}
         onBlur={onBlur}
         value={value}
         autoFocus={autoFocus}
         autoCapitalize="none"
         keyboardType={typeOfEmail ? "email-address" : "default"}
-        placeholderTextColor={Colors[colorScheme].secondaryText}
         autoComplete={
           typeOfEmail
             ? "email"

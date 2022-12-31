@@ -2,7 +2,8 @@ import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -30,7 +31,8 @@ const TransactionHistoryScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Transaction History
         </Text>
       ),
@@ -43,7 +45,8 @@ const TransactionHistoryScreen = ({
       headerRight: () => (
         <TouchableOpacity
           style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-          onPress={() => setModalVisible(true)}>
+          onPress={() => setModalVisible(true)}
+        >
           <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
           <Text
             style={{
@@ -51,7 +54,8 @@ const TransactionHistoryScreen = ({
               fontSize: 12,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               textAlign: "center",
-            }}>
+            }}
+          >
             Download
           </Text>
         </TouchableOpacity>
@@ -200,7 +204,8 @@ const TransactionHistoryScreen = ({
               ({ dateOfTransactions, transactions }, i) => (
                 <View
                   key={i}
-                  style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+                  style={[CommonStyles.col, { alignSelf: "stretch" }]}
+                >
                   <Text
                     lightColor={Colors.light.text}
                     darkColor={Colors.dark.secondaryText}
@@ -210,7 +215,8 @@ const TransactionHistoryScreen = ({
                       fontFamily: "Euclid-Circular-A",
                       fontWeight: "500",
                       marginLeft: hp(5),
-                    }}>
+                    }}
+                  >
                     {dateOfTransactions}
                   </Text>
                   {transactions.map(

@@ -8,7 +8,8 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import { CommonScreenProps } from "../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -32,7 +33,8 @@ const AccountLimitsTab = ({
               fontSize: hp(14),
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}>
+            }}
+          >
             My Level:{" "}
             <Text
               // lightColor={Colors.light.text}
@@ -40,7 +42,8 @@ const AccountLimitsTab = ({
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
-              }}>
+              }}
+            >
               Tier {isVerified ? "1" : "0"}
             </Text>
           </Text>
@@ -65,7 +68,8 @@ const AccountLimitsTab = ({
               marginTop: hp(35),
               paddingHorizontal: hp(20),
             },
-          ]}>
+          ]}
+        >
           <VerifyIcon
             color={
               isVerified ? "#2A9E17" : Colors[colorScheme].backgroundSecondary
@@ -76,7 +80,8 @@ const AccountLimitsTab = ({
             style={[
               CommonStyles.col,
               { width: "100%", marginRight: "auto", marginLeft: 25 },
-            ]}>
+            ]}
+          >
             <Text
               style={{
                 fontSize: hp(15),
@@ -86,7 +91,8 @@ const AccountLimitsTab = ({
                 color: isVerified
                   ? "#2A9E17"
                   : Colors[colorScheme].secondaryText,
-              }}>
+              }}
+            >
               {isVerified ? "Verified" : "Not verified"}
             </Text>
             <Text
@@ -98,13 +104,15 @@ const AccountLimitsTab = ({
                 fontWeight: "600",
 
                 // color: Colors[colorScheme].secondaryText,
-              }}>
+              }}
+            >
               Tier 1
             </Text>
             <View
               style={{
                 marginTop: 10,
-              }}>
+              }}
+            >
               <Text
                 // lightColor={Colors.light.text}
                 // darkColor={Colors.dark.secondaryText}
@@ -113,7 +121,8 @@ const AccountLimitsTab = ({
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
                   color: colorScheme === "dark" ? "#999999" : "#000000",
-                }}>
+                }}
+              >
                 Daily Transaction Limit:
               </Text>
               <Text
@@ -124,21 +133,24 @@ const AccountLimitsTab = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "600",
                   marginTop: hp(5),
-                }}>
+                }}
+              >
                 {"\u20A650,000"}
               </Text>
             </View>
             <View
               style={{
                 marginTop: 10,
-              }}>
+              }}
+            >
               <Text
                 style={{
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
                   color: colorScheme === "dark" ? "#999999" : "#000000",
-                }}>
+                }}
+              >
                 Maximum Balance:
               </Text>
               <Text
@@ -149,7 +161,8 @@ const AccountLimitsTab = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "600",
                   marginTop: hp(5),
-                }}>
+                }}
+              >
                 {"\u20A6200,000"}
               </Text>
             </View>
@@ -160,7 +173,8 @@ const AccountLimitsTab = ({
                   alignSelf: "flex-start",
                   marginTop: 20,
                 },
-              ]}>
+              ]}
+            >
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
@@ -169,7 +183,8 @@ const AccountLimitsTab = ({
                   marginBottom: hp(5),
                   fontWeight: "600",
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}>
+                }}
+              >
                 Verify BVN
               </Text>
               {isVerified && <SmallVerifyIcon color={"#2A9E17"} />}
@@ -186,7 +201,8 @@ const AccountLimitsTab = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Upgrade Account"
           disabled={isVerified}

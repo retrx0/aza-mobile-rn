@@ -5,7 +5,8 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import Colors from "../../../constants/Colors";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import Divider from "../../../components/divider/Divider";
 import useColorScheme from "../../../hooks/useColorScheme";
 
@@ -56,7 +57,8 @@ const TransactionFeesTab = () => {
                 justifyContent: "space-between",
                 paddingHorizontal: hp(15),
               },
-            ]}>
+            ]}
+          >
             <View style={[CommonStyles.col, { maxWidth: wp(300) }]}>
               <Text
                 // lightColor={Colors.light.text}
@@ -66,7 +68,8 @@ const TransactionFeesTab = () => {
                   fontSize: hp(16),
                   fontWeight: "600",
                   marginLeft: hp(5),
-                }}>
+                }}
+              >
                 {transaction}
               </Text>
               {detail && (
@@ -79,7 +82,8 @@ const TransactionFeesTab = () => {
                     marginLeft: hp(5),
                     fontWeight: "400",
                     color: colorScheme === "dark" ? "#999999" : "#000000",
-                  }}>
+                  }}
+                >
                   {detail}
                 </Text>
               )}
@@ -92,14 +96,16 @@ const TransactionFeesTab = () => {
                 fontFamily: "Euclid-Circular-A",
                 fontWeight: "400",
                 color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-              }}>
+              }}
+            >
               {charge}
             </Text>
           </View>
           <View
             style={{
               paddingVertical: hp(35),
-            }}>
+            }}
+          >
             <Divider />
           </View>
         </View>

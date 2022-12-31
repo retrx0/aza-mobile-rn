@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../common/navigation/types";
 
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -31,7 +32,8 @@ const TransactionCertainty = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Send Money
         </Text>
       ),
@@ -52,7 +54,8 @@ const TransactionCertainty = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           <MoneyTick color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
         <Text
@@ -64,7 +67,8 @@ const TransactionCertainty = ({
             // maxWidth: 350,
             alignSelf: "center",
             lineHeight: hp(30),
-          }}>
+          }}
+        >
           Transaction Certainty
         </Text>
         <Text
@@ -77,7 +81,8 @@ const TransactionCertainty = ({
             maxWidth: 340,
             alignSelf: "center",
             textAlign: "center",
-          }}>
+          }}
+        >
           Send money with Aza and instantly carry on with your life, knowing
           that the transaction will go through without fail.
         </Text>
@@ -85,7 +90,8 @@ const TransactionCertainty = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("InviteUsers")}

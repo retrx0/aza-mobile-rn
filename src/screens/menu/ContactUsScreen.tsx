@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -28,7 +30,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Contact Us
         </Text>
       ),
@@ -55,7 +58,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               marginBottom: hp(40),
 
               fontWeight: "400",
-            }}>
+            }}
+          >
             Contact us with any questions. We are ready to help
           </Text>
           <View style={{ marginBottom: hp(40) }}>
@@ -66,7 +70,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               Email
             </Text>
             <Text
@@ -75,7 +80,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
                 marginTop: 10,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(16),
-              }}>
+              }}
+            >
               customersupport@aza.com
             </Text>
             <Divider />
@@ -85,7 +91,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <TouchableOpacity
             activeOpacity={0.7}
             style={{
@@ -98,7 +105,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               flexDirection: "row",
               justifyContent: "center",
               alignSelf: "center",
-            }}>
+            }}
+          >
             <Image
               source={WhatsappLogo}
               style={{ marginRight: 10, width: hp(22), height: hp(23) }}
@@ -109,7 +117,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(14),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Whatsapp Customer Support
             </Text>
           </TouchableOpacity>

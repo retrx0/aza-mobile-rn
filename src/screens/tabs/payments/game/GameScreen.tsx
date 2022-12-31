@@ -1,6 +1,7 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { GAME } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
@@ -26,7 +27,8 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -36,7 +38,8 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Choose from hundreds of game brands
         </Text>
         <Image

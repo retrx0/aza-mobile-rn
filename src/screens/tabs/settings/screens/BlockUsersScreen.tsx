@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -27,7 +28,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Block Users
         </Text>
       ),
@@ -51,7 +53,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
-            }}>
+            }}
+          >
             Blocked users won't be able to send you money, request money from
             you or split payments with you.
           </Text>
@@ -63,7 +66,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               marginTop: hp(30),
-            }}>
+            }}
+          >
             You can unblock these users anytime
           </Text>
         </View>
@@ -80,7 +84,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: hp(30),
               textAlign: "center",
-            }}>
+            }}
+          >
             You have not blocked anyone
           </Text>
         </View>
@@ -89,7 +94,8 @@ const BlockUsersScreen = ({ navigation }: CommonScreenProps<"BlockUsers">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Block A User"
             onPressButton={() => navigation.navigate("BlockNewUser")}

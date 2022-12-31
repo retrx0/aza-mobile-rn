@@ -7,7 +7,8 @@ import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import { Input } from "../../../components/input/input";
-import { Text, View } from "../../../components/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
@@ -24,7 +25,8 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -34,7 +36,8 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginLeft: hp(85),
-            }}>
+            }}
+          >
             Confirmation
           </Text>
         </View>
@@ -59,7 +62,8 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               {
                 borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
               },
-            ]}>
+            ]}
+          >
             <Input
               icon={null}
               keyboardType="default"
@@ -110,7 +114,8 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() =>

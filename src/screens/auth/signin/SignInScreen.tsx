@@ -4,8 +4,10 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 import Colors from "../../../constants/Colors";
-
-import { Text, View } from "../../../components/Themed";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../common/styles/CommonStyles";
+// import { View } from "../../../theme/components/View";
+// import { Text } from "../../../theme/components/Text";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import InputFormEmail from "../../../components/input/InputFormFieldNormal";
@@ -24,9 +26,10 @@ import { hp } from "../../../common/util/LayoutUtil";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
+import { Text2 as Text } from "../../../theme/components/Text2";
+import { View2 as View } from "../../../theme/components/View2";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
-  const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -47,10 +50,10 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
               fullName: data.fullName,
             })
           );
-          requestOtpApi({
-            email: "",
-            phoneNumber: data.phoneNumber,
-          }).then(() => setButtonLoading(false));
+          // requestOtpApi({
+          //   email: "",
+          //   phoneNumber: data.phoneNumber,
+          // }).then(() => setButtonLoading(false));
           navigation.navigate("SignInOTP");
         }
       })
@@ -123,12 +126,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                   <Button
                     title="Continue"
                     onPressButton={handleSubmit}
-                    styleText={{
-                      color: Colors[colorScheme].buttonText,
-                    }}
                     style={[
                       {
-                        backgroundColor: Colors[colorScheme].button,
                         marginTop: 20,
                       },
                     ]}

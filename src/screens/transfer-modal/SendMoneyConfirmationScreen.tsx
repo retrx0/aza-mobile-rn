@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -38,7 +40,8 @@ const SendMoneyConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -62,7 +65,8 @@ const SendMoneyConfirmationScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               marginVertical: hp(30),
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -73,7 +77,8 @@ const SendMoneyConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -171,7 +176,8 @@ const SendMoneyConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

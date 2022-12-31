@@ -1,6 +1,6 @@
 import React from "react";
 import { Platform, View } from "react-native";
-import { SafeAreaView } from "../../components/Themed";
+import { SafeAreaView } from "../../theme/Themed";
 
 import * as Safety from "react-native-safe-area-context";
 

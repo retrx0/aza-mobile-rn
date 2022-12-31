@@ -17,6 +17,9 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import ThemedOTPInputView from "@twotalltotems/react-native-otp-input";
 import ThemedPhoneInput from "react-native-phone-input";
 import { Dimensions } from "react-native";
+import { getAppTheme } from ".";
+import { useAppSelector } from "../redux";
+import { selectAppTheme } from "../redux/slice/themeSlice";
 
 export const useThemeColor = (
   props: { light?: string; dark?: string; system?: string },
@@ -29,6 +32,23 @@ export const useThemeColor = (
     return colorFromProps;
   } else {
     return Colors[theme][colorName];
+  }
+};
+
+export const useAppThemeColor = (
+  props: { light?: string; dark?: string },
+  colorName: keyof typeof Colors.light & keyof typeof Colors.dark,
+  selectedTheme: "light" | "dark" | "system"
+) => {
+  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(selectedTheme);
+
+  const colorFromProps = props[appTheme];
+
+  if (colorFromProps) {
+    return colorFromProps;
+  } else {
+    return Colors[appTheme][colorName];
   }
 };
 
@@ -45,9 +65,16 @@ export type SafeAreaViewProps = ThemeProps & ThemedSafeAreaView["props"];
 export type OTPInputViewProps = ThemeProps & ThemedOTPInputView["props"];
 export type PhoneInputProps = ThemeProps & ThemedPhoneInput["props"];
 
-export const Text = (props: TextProps) => {
+export const Text2 = (props: TextProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+
+  const selectedTheme = useAppSelector(selectAppTheme);
+
+  const color = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "text",
+    selectedTheme
+  );
 
   return (
     <DefaultText
@@ -57,11 +84,14 @@ export const Text = (props: TextProps) => {
   );
 };
 
-export const View = (props: ViewProps) => {
+export const View2 = (props: ViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
+
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "background"
+    "background",
+    selectedTheme
   );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
@@ -69,9 +99,11 @@ export const View = (props: ViewProps) => {
 
 export const ScrollView = (props: ViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "background"
+    "background",
+    selectedTheme
   );
 
   return (
@@ -81,9 +113,11 @@ export const ScrollView = (props: ViewProps) => {
 
 export const SafeAreaView = (props: SafeAreaViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "background"
+    "background",
+    selectedTheme
   );
 
   return (
@@ -93,14 +127,34 @@ export const SafeAreaView = (props: SafeAreaViewProps) => {
 
 export const TextInput = (props: TextInputProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "backgroundSecondary"
+    "backgroundSecondary",
+    selectedTheme
   );
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const color = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "text",
+    selectedTheme
+  );
+
+  const borderColor = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "border",
+    selectedTheme
+  );
+
+  const placeholderText = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "secondaryText",
+    selectedTheme
+  );
   return (
     <ThemedTextInput
-      style={[{ backgroundColor, color }, style]}
+      placeholderTextColor={placeholderText}
+      style={[{ backgroundColor, color, borderColor }, style]}
       {...otherProps}
     />
   );
@@ -108,11 +162,17 @@ export const TextInput = (props: TextInputProps) => {
 
 export const ThemedFAIcon = (props: IconProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "background"
+    "background",
+    selectedTheme
   );
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const color = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "text",
+    selectedTheme
+  );
 
   return (
     <FontAwesome style={[{ backgroundColor, color }, style]} {...otherProps} />
@@ -122,14 +182,22 @@ export const ThemedFAIcon = (props: IconProps) => {
 export const OTPInput = (props: OTPInputViewProps) => {
   const { style, codeInputFieldStyle, lightColor, darkColor, ...otherProps } =
     props;
-  const backgroundColor = useThemeColor(
+
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "backgroundSecondary"
+    "backgroundSecondary",
+    selectedTheme
   );
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
-  const border = useThemeColor(
+  const color = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "border"
+    "text",
+    selectedTheme
+  );
+  const border = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "border",
+    selectedTheme
   );
 
   return (
@@ -148,14 +216,21 @@ export const OTPInput = (props: OTPInputViewProps) => {
 
 export const PhoneInput = (props: PhoneInputProps) => {
   const { style, textStyle, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const backgroundColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "backgroundSecondary"
+    "backgroundSecondary",
+    selectedTheme
   );
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
-  const borderColor = useThemeColor(
+  const color = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "border"
+    "text",
+    selectedTheme
+  );
+  const borderColor = useAppThemeColor(
+    { light: lightColor, dark: darkColor },
+    "border",
+    selectedTheme
   );
 
   return (
@@ -191,6 +266,3 @@ export const SIZES = {
 const appTheme = {
   SIZES,
 };
-// export default appTheme;
-
-export default () => <></>;

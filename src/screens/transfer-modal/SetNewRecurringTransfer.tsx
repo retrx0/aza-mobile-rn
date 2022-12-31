@@ -4,7 +4,8 @@ import { StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
@@ -32,7 +33,8 @@ const SetNewRecurringTransfer = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Recurring Money Transfer
         </Text>
       ),
@@ -51,7 +53,8 @@ const SetNewRecurringTransfer = ({
         <Text
           // lightColor={Colors.light.text}
           // darkColor={Colors.dark.mainText}
-          style={[CommonStyles.descriptionStyle, { marginLeft: 20 }]}>
+          style={[CommonStyles.descriptionStyle, { marginLeft: 20 }]}
+        >
           You can add and edit daily, weekly and monthly recurring money
           transfer orders.
         </Text>
@@ -66,7 +69,8 @@ const SetNewRecurringTransfer = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="New Recurring Transfer"
             onPressButton={() =>

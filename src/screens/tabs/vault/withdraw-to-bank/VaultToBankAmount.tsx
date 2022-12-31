@@ -9,7 +9,8 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
@@ -26,7 +27,8 @@ const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 10 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -37,7 +39,8 @@ const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontWeight: "600",
               textAlign: "center",
               marginRight: 140,
-            }}>
+            }}
+          >
             Change Goal Amount
           </Text>
         </View>
@@ -63,7 +66,8 @@ const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 : Colors.light.text,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 36,
-            }}>
+            }}
+          >
             {!amount && " 0"} {numberWithCommas(amount)}
           </Text>
         </View>
@@ -72,7 +76,8 @@ const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             width: "100%",
             marginTop: 80,
             marginBottom: "auto",
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>

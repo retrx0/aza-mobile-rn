@@ -11,24 +11,41 @@ import {
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import LinkingConfiguration from "./LinkingConfiguration";
-import { selectAppTheme } from "../redux/slice/themeSlice";
+import { selectAppTheme, setAppTheme } from "../redux/slice/themeSlice";
 import RootNavigator from "./RootNavigator";
-import { useAppSelector } from "../redux";
+import { useAppDispatch, useAppSelector } from "../redux";
+import { getDeviceTheme } from "../theme";
+import useCachedResources from "../hooks/useCachedResources";
+import { ISettings } from "../hooks/useAsyncStorage";
 
-const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
+const Navigation = ({
+  colorScheme,
+  loadedPreference,
+}: {
+  colorScheme: ColorSchemeName;
+  loadedPreference: ISettings | undefined;
+}) => {
   const _selectedTheme = useAppSelector(selectAppTheme);
+  const dispatch = useAppDispatch();
 
-  const getDeviceTheme = () => {
-    if (_selectedTheme === "dark") return DarkTheme;
-    else if (_selectedTheme === "light") return DefaultTheme;
-    else {
-      return colorScheme === "dark" ? DarkTheme : DefaultTheme;
-    }
-  };
+  React.useEffect(() => {
+    if (loadedPreference?.appearance)
+      dispatch(
+        setAppTheme({
+          theme:
+            loadedPreference.appearance === "dark"
+              ? "dark"
+              : loadedPreference.appearance === "light"
+              ? "light"
+              : "system",
+        })
+      );
+  }, []);
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={getDeviceTheme()}
+      theme={getDeviceTheme(_selectedTheme)}
     >
       <RootNavigator />
     </NavigationContainer>

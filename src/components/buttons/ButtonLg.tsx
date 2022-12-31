@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
-import { Text, View } from "../Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 
 const ButtonLg = (props: {
   title: string;
@@ -26,7 +27,8 @@ const ButtonLg = (props: {
   return (
     <View
       {...props}
-      style={[styles.button, { backgroundColor: props.color }, props.style]}>
+      style={[styles.button, { backgroundColor: props.color }, props.style]}
+    >
       <TouchableOpacity onPress={props.onPress}>
         <View style={[styles.row, { backgroundColor: "transparent" }]}>
           <View
@@ -34,7 +36,8 @@ const ButtonLg = (props: {
               backgroundColor: "transparent",
               marginLeft: hp(28),
               marginRight: hp(63),
-            }}>
+            }}
+          >
             {props.icon}
           </View>
           <Text
@@ -46,7 +49,8 @@ const ButtonLg = (props: {
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
               },
               props.titleStyle,
-            ]}>
+            ]}
+          >
             {props.title}
           </Text>
         </View>

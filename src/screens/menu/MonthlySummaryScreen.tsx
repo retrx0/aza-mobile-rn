@@ -3,7 +3,8 @@ import { StyleSheet, ScrollView, TouchableOpacity, Modal } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import SummaryModal from "./components/Summary";
 
 import { CommonScreenProps } from "../../common/navigation/types";
@@ -79,7 +80,8 @@ const MonthlySummaryScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Monthly Summary
         </Text>
       ),
@@ -92,7 +94,8 @@ const MonthlySummaryScreen = ({
       headerRight: () => (
         <TouchableOpacity
           style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-          onPress={() => setModalVisible(true)}>
+          onPress={() => setModalVisible(true)}
+        >
           <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
           <Text
             style={{
@@ -101,7 +104,8 @@ const MonthlySummaryScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               textAlign: "center",
               fontWeight: "600",
-            }}>
+            }}
+          >
             Download
           </Text>
         </TouchableOpacity>
@@ -151,7 +155,8 @@ const MonthlySummaryScreen = ({
               {
                 alignSelf: "center",
               },
-            ]}>
+            ]}
+          >
             <View style={[CommonStyles.row]}>
               <TouchableOpacity onPress={() => showSummaries("previous")}>
                 <ArrowLeftIcon color={Colors[colorScheme].mainText} />
@@ -171,12 +176,14 @@ const MonthlySummaryScreen = ({
               contentContainerStyle={{
                 justifyContent: "space-between",
                 marginLeft: 10,
-              }}>
+              }}
+            >
               {filterBy.map((filterItem, i) => (
                 <TouchableOpacity
                   onPress={() => setFilter(filterItem)}
                   key={i}
-                  activeOpacity={0.9}>
+                  activeOpacity={0.9}
+                >
                   <Text
                     lightColor={
                       filterItem === filter ? "" : Colors.light.secondaryText
@@ -184,7 +191,8 @@ const MonthlySummaryScreen = ({
                     darkColor={
                       filterItem === filter ? "" : Colors.dark.secondaryText
                     }
-                    style={styles.filterItem}>
+                    style={styles.filterItem}
+                  >
                     {filterItem}
                   </Text>
                 </TouchableOpacity>
@@ -192,7 +200,8 @@ const MonthlySummaryScreen = ({
             </ScrollView>
             <ScrollView
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingBottom: 150 }}>
+              contentContainerStyle={{ paddingBottom: 150 }}
+            >
               {currentSummariesToShow.summaries
                 .filter((item) =>
                   filter === "Summary"
@@ -223,7 +232,8 @@ const MonthlySummaryScreen = ({
                           alignItems: "center",
                           paddingTop: hp(40),
                         },
-                      ]}>
+                      ]}
+                    >
                       <View
                         style={[
                           styles.transactionIcon,
@@ -233,13 +243,15 @@ const MonthlySummaryScreen = ({
                                 ? "#FF361A"
                                 : "#2AD168",
                           },
-                        ]}>
+                        ]}
+                      >
                         {transactionIcons[transactionIconName]}
                       </View>
                       <Text
                         lightColor={Colors.light.text}
                         darkColor={Colors.dark.mainText}
-                        style={styles.transactionNameStyle}>
+                        style={styles.transactionNameStyle}
+                      >
                         {transactionName}
                       </Text>
                       {totalAmount && (
@@ -252,7 +264,8 @@ const MonthlySummaryScreen = ({
                                   ? "#FF361A"
                                   : "#2A9E17",
                             },
-                          ]}>
+                          ]}
+                        >
                           {"\u20A6"} {numberWithCommas(totalAmount)}
                         </Text>
                       )}
@@ -263,7 +276,8 @@ const MonthlySummaryScreen = ({
                             {
                               color: Colors[colorScheme].secondaryText,
                             },
-                          ]}>
+                          ]}
+                        >
                           {info}
                         </Text>
                       )}
@@ -281,7 +295,8 @@ const MonthlySummaryScreen = ({
                           style={[
                             CommonStyles.col,
                             { alignSelf: "stretch", alignItems: "center" },
-                          ]}>
+                          ]}
+                        >
                           <View
                             style={[
                               styles.transactionDetailsIcons,
@@ -289,7 +304,8 @@ const MonthlySummaryScreen = ({
                                 backgroundColor:
                                   colorScheme === "dark" ? "#3A3D42" : "black",
                               },
-                            ]}>
+                            ]}
+                          >
                             {
                               transactionDetailsIcons[
                                 transaction.detailIconName
@@ -305,7 +321,8 @@ const MonthlySummaryScreen = ({
                                     ? "#FF361A"
                                     : "#2A9E17",
                               },
-                            ]}>
+                            ]}
+                          >
                             {"\u20A6"}{" "}
                             {numberWithCommas(transaction.detailAmount)}
                           </Text>
@@ -315,7 +332,8 @@ const MonthlySummaryScreen = ({
                               {
                                 color: Colors[colorScheme].secondaryText,
                               },
-                            ]}>
+                            ]}
+                          >
                             {transaction.detailInfo}
                           </Text>
                           {length - 1 !== i && (
@@ -338,7 +356,8 @@ const MonthlySummaryScreen = ({
                     color: Colors[colorScheme].secondaryText,
                     alignSelf: "center",
                   },
-                ]}>
+                ]}
+              >
                 See distribution of money spent in a chart
               </Text>
               <View style={styles.chartContainer}>
@@ -353,7 +372,8 @@ const MonthlySummaryScreen = ({
                           darkColor={Colors.dark.secondaryText}
                           style={{
                             fontSize: 14,
-                          }}>
+                          }}
+                        >
                           Total
                         </Text>
                         <Text
@@ -362,7 +382,8 @@ const MonthlySummaryScreen = ({
                           style={{
                             fontFamily: "Euclid-Circular-A-Semi-Bold",
                             fontSize: hp(16),
-                          }}>
+                          }}
+                        >
                           {"\u20A6"} {numberWithCommas(65000)}
                         </Text>
                       </View>
@@ -378,7 +399,8 @@ const MonthlySummaryScreen = ({
                         style={[
                           CommonStyles.row,
                           { marginRight: 10, marginTop: 15 },
-                        ]}>
+                        ]}
+                      >
                         <View
                           style={[
                             styles.legendBox,
@@ -392,7 +414,8 @@ const MonthlySummaryScreen = ({
                           darkColor={Colors.dark.secondaryText}
                           style={{
                             fontSize: 16,
-                          }}>
+                          }}
+                        >
                           {text}
                         </Text>
                       </View>
@@ -405,7 +428,8 @@ const MonthlySummaryScreen = ({
                 style={[
                   CommonStyles.col,
                   { alignSelf: "stretch", alignItems: "center", marginTop: 20 },
-                ]}>
+                ]}
+              >
                 <View
                   style={[
                     styles.donationIconContainer,
@@ -413,7 +437,8 @@ const MonthlySummaryScreen = ({
                       backgroundColor:
                         colorScheme === "dark" ? "#3A3D42" : "black",
                     },
-                  ]}>
+                  ]}
+                >
                   <HeartIcon color="#FF361A" size={20} />
                 </View>
                 <Text style={styles.donationAmount}>
@@ -428,7 +453,8 @@ const MonthlySummaryScreen = ({
                     {
                       color: Colors[colorScheme].secondaryText,
                     },
-                  ]}>
+                  ]}
+                >
                   Worth of donations made
                 </Text>
               </View>

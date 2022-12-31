@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { Text, View } from "../../../../../components/Themed";
+import { View } from "../../../../../theme/components/View";
 import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";
@@ -31,7 +31,8 @@ export default function WithdrawIndex({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Withdraw
         </Text>
       ),
@@ -64,7 +65,8 @@ export default function WithdrawIndex({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Cancel"
             style={styles.button}

@@ -1,7 +1,8 @@
 import { ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { PaymentStyles as styles } from "./styles";
-import { SafeAreaView, Text, View } from "../../../components/Themed";
+import { SafeAreaView } from "../../../theme/Themed";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import HeadrImage from "./sub-components/HeadrImage";
 import Divider from "./sub-components/Divider";
@@ -19,7 +20,6 @@ import {
 } from "../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../types";
 import { Dstv, Fctwb, Ie, Mtn, Swift } from "../../../../assets/images";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import * as Images from "../../../../assets/images/index";
 import { Card } from "./sub-components/Card";
@@ -56,9 +56,6 @@ import { PaymentsCard } from "./sub-components/PaymentsCard";
 export default function Payments({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  const scheme = useColorScheme();
-  const [active, setActive] = useState("");
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -67,7 +64,8 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Pie" });
           }}
-          style={styles.icon}>
+          style={styles.icon}
+        >
           <PieIcon style={styles.imageIcon} />
         </TouchableOpacity>
       </View>
@@ -89,7 +87,8 @@ export default function Payments({
           backgroundColor: "transparent",
           marginLeft: hp(20),
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <HeadrImage
           selected
           index={0}

@@ -1,6 +1,7 @@
 import { Switch } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, View } from "../../../../components/Themed";
+import { SafeAreaView, ScrollView } from "../../../../theme/Themed";
+import { View } from "../../../../theme/components/View";
 import { AIrtimeStyles as styles } from "./styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";

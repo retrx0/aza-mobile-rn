@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -34,7 +36,8 @@ const RequestMoneyConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -60,7 +63,8 @@ const RequestMoneyConfirmationScreen = ({
               marginTop: hp(15),
               fontWeight: "500",
               marginBottom: hp(50),
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -71,7 +75,8 @@ const RequestMoneyConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -114,7 +119,8 @@ const RequestMoneyConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Amount
             </Text>
             <View
@@ -125,7 +131,8 @@ const RequestMoneyConfirmationScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}>
+              ]}
+            >
               <TextInput
                 // lightColor={Colors.light.mainText}
                 // darkColor={Colors.dark.mainText}
@@ -152,7 +159,8 @@ const RequestMoneyConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Description
             </Text>
             <TextInput
@@ -178,7 +186,8 @@ const RequestMoneyConfirmationScreen = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() =>

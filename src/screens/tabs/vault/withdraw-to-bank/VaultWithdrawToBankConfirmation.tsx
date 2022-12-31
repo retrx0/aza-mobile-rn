@@ -4,7 +4,8 @@ import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
 import Button from "../../../../components/buttons/Button";
 import Colors from "../../../../constants/Colors";
@@ -48,7 +49,8 @@ const VaultWithdrawConfirm = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -110,11 +112,13 @@ const VaultWithdrawConfirm = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12, marginHorizontal: 5 }}>
+              style={{ fontSize: 12, marginHorizontal: 5 }}
+            >
               Nigerian
             </Text>
             <Image
@@ -128,7 +132,8 @@ const VaultWithdrawConfirm = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12, marginHorizontal: 5 }}>
+              style={{ fontSize: 12, marginHorizontal: 5 }}
+            >
               NGN
             </Text>
           </View>
@@ -152,7 +157,8 @@ const VaultWithdrawConfirm = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 10,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -162,7 +168,8 @@ const VaultWithdrawConfirm = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -172,7 +179,8 @@ const VaultWithdrawConfirm = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}>
+              }}
+            >
               {"\u20A6"}
               {user.azaBalance}
             </Text>

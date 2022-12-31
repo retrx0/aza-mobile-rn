@@ -3,7 +3,8 @@ import { ArrowRightIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import { Text, View } from "../Themed";
+import { View } from "../../theme/components/View";
+import { Text } from "../../theme/components/Text";
 
 interface IProps {
   value: string;
@@ -36,7 +37,8 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
         style={{
           flex: 1,
           justifyContent: "center",
-        }}>
+        }}
+      >
         {key === "backIcon" ? (
           <View
             style={{
@@ -44,7 +46,8 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
               justifyContent: "center",
               alignItems: "center",
               transform: [{ rotate: "180deg" }],
-            }}>
+            }}
+          >
             <ArrowRightIcon
               color={
                 colorScheme === "dark"
@@ -63,7 +66,8 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
               fontSize: hp(24),
               padding: 10,
               textAlign: "center",
-            }}>
+            }}
+          >
             {key}
           </Text>
         )}
@@ -79,7 +83,8 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
           marginTop: 15,
           alignItems: "center",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         {cells}
       </View>
     );
