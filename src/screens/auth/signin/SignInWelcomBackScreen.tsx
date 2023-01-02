@@ -28,7 +28,6 @@ import {
   storeUserCredentialsSecure,
 } from "../../../common/util/StorageUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import ActivityScreen from "../../ActivityScreen";
 import ActivityModal from "../../../components/modal/ActivityModal";
 import useCountdownTimer from "../../../hooks/useCountdownTimer";
 import { EMAILS } from "expo-contacts";

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "redux/Store";
+import { RootState } from "../Store";
 
 export interface PaymentState {
   detailHeader: string;

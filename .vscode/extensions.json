@@ -1,6 +1,8 @@
 {
   "recommendations": [
     "SonarSource.sonarlint-vscode",
+    "Orta.vscode-jest",
+    "firsttris.vscode-jest-runner",
     "VisualStudioExptTeam.vscodeintellicode",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
