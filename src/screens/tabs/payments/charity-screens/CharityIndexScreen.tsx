@@ -1,6 +1,6 @@
 import { Image, ScrollView, StyleSheet } from "react-native";
 import React from "react";
-import { View } from "../../../../theme/components/View";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
@@ -22,24 +22,16 @@ import {
 } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 
 export default function CharityIndexScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  const colorScheme = useColorScheme();
-
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
         style={styles2.mainInput}
         icon={null}
-        inputStyle={[
-          styles2.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
+        inputStyle={[styles2.input]}
         labelStyle={styles.label}
         label=""
         placeholder="Search for charitable organizations"

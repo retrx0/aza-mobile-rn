@@ -1,6 +1,6 @@
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { View } from "../../../../theme/components/View";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";

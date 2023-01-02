@@ -53,6 +53,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
 
             resizeMode: "cover",
           }}
+          // TODO move the below path to images/index.ts
           source={require("../../../../../assets/images/common/GameCredit.png")}
         />
         <Text
@@ -92,14 +93,8 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate("GameFeature")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
         </View>
       </View>

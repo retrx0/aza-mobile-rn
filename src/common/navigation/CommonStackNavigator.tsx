@@ -162,12 +162,15 @@ import CharitySupport from "../../screens/tabs/payments/charity-screens/CharityS
 import GiftCardEasy from "../../screens/tabs/payments/gift-card/GiftCardEasy";
 import GiftCardChoice from "../../screens/tabs/payments/gift-card/GiftCardChoice";
 import GiftCardFit from "../../screens/tabs/payments/gift-card/GiftCardFit";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
 
 export const TopBar = ({ navigation }: { navigation: any }) => {
-  const scheme = useColorScheme();
+  const scheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <SpacerWrapper>
@@ -220,7 +223,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
 };
 
 const CommonStack = () => {
-  const scheme = useColorScheme();
+  const scheme = getAppTheme(useAppSelector(selectAppTheme));
   return (
     <Stack.Navigator defaultScreenOptions={{ headerShown: false }}>
       <Stack.Group>

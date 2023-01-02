@@ -1,7 +1,6 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
+import { SafeAreaView, View2 as View } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -24,6 +23,7 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { TickIcon } from "../../../../../assets/svg";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
+import Button from "../../../../components/buttons/Button";
 
 const WaterList = [
   {
@@ -149,10 +149,10 @@ export default function WaterScreen({
           { bottom: insets.top || hp(45) },
         ]}
       >
-        <MyButton
+        <Button
           disabled={false}
           title="Continue"
-          onPress={() => {
+          onPressButton={() => {
             navigation.navigate("Common", { screen: "Confirm" });
           }}
         />

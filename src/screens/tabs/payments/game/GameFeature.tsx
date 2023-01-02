@@ -94,14 +94,8 @@ const GameFeature = ({
           <Button
             title="Go Back To Game Credits"
             onPressButton={() => navigation.navigate("GameScreen")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
         </View>
       </View>

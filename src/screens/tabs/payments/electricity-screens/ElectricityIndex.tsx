@@ -1,16 +1,10 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
+import { SafeAreaView, View2 as View } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import MyButton from "../sub-components/MyButton";
-import SelectInput from "../../../../components/input/SelectInput";
-import { AEDC, EEDC, EKEDC, Ie, PH } from "../../../../../assets/images";
-import HeaderImage from "../sub-components/HeaderImage";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -19,6 +13,7 @@ import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
+import Button from "../../../../components/buttons/Button";
 
 const ElectricityList = [
   {
@@ -155,10 +150,10 @@ export default function ElectricityIndex({
           { bottom: insets.top || hp(45) },
         ]}
       >
-        <MyButton
+        <Button
           disabled={!bundles}
           title="Continue"
-          onPress={() => {
+          onPressButton={() => {
             navigation.navigate("Common", {
               screen: "Confirm",
             });
