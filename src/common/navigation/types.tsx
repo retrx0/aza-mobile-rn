@@ -217,6 +217,7 @@ export type StatusScreenParamsType = {
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;
+  screenType?: "transaction" | "status" | "other";
 };
 
 /* Payments Tab */

@@ -87,8 +87,6 @@ const ContactsScene = ({
               </View>
 
               <TextInput
-                lightColor={Colors.light.mainText}
-                darkColor={Colors.dark.mainText}
                 // placeholderTextColor={Colors[colorScheme].secondaryText}
                 value={searchContact}
                 returnKeyType="search"

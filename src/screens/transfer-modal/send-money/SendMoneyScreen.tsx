@@ -1,9 +1,5 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native";
+import React, { useLayoutEffect, useState } from "react";
+import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import {
@@ -15,13 +11,10 @@ import BackButton from "../../../components/buttons/BackButton";
 import { Text } from "../../../theme/components/Text";
 
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { hp } from "../../../common/util/LayoutUtil";
-import { Contact } from "expo-contacts";
 import { useAppSelector } from "../../../redux";
 import ContactsScene from "../../contacts/ContactsScene";
-import { getUserContacts } from "../../../hooks/useContacts";
 import { sendInviteToNonAzaContact } from "../../../api/notification";
 import { InfoIcon } from "../../../../assets/svg";
 import { getAppTheme } from "../../../theme";

@@ -5,8 +5,10 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getAppTheme } from "../../theme";
+import { View, Text } from "../../theme/Themed";
 
 interface IContact {
   image: string;
@@ -23,7 +25,7 @@ const ContactListItem = ({
   image,
   isContactOnAza,
 }: IContact) => {
-  const scheme = useColorScheme();
+  const scheme = getAppTheme(useAppSelector(selectAppTheme));
   return (
     <View
       style={{

@@ -14,7 +14,7 @@ import Svg, {
 } from "react-native-svg";
 import useColorScheme from "../../src/hooks/useColorScheme";
 
-type SvgIconProps = {
+export type SvgIconProps = {
   color?: string;
   size?: number;
   style?: StyleProp<ViewStyle>;

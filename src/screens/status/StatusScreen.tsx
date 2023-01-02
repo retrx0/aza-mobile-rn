@@ -36,6 +36,7 @@ const StatusScreen = ({
     cancelButton,
     navigateTo,
     navigateToParams,
+    screenType,
   } = route.params;
 
   useLayoutEffect(() => {
@@ -50,8 +51,11 @@ const StatusScreen = ({
   useEffect(() => {
     switch (statusIcon) {
       case "Success":
-        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        playSwooshSound();
+        if (screenType && screenType === "transaction") {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          playSwooshSound();
+        }
+
         break;
 
       case "Warning":

@@ -4,8 +4,7 @@ import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View, Text } from "../../theme/Themed";
 import VirtualKeyboard from "../../components/input/VirtualKeyboard";
 import Button from "../../components/buttons/Button";
 
@@ -25,6 +24,10 @@ import transactionSlice, {
 } from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
+import { NAIRA_UNICODE } from "../../constants/AppConstants";
+import { NigeriaFlag } from "../../../assets/images";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -37,7 +40,7 @@ const TransactionKeypadScreen = ({
 
   const user = useAppSelector(selectUser);
 
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const { headerTitle, transactionType } = route.params;
   const { beneficiary, type } = transactionType;
@@ -51,8 +54,6 @@ const TransactionKeypadScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
@@ -83,13 +84,11 @@ const TransactionKeypadScreen = ({
                   : getInitialsAvatar({
                       firstName: beneficiary.fullName,
                       lastName: beneficiary.lastName,
-                      scheme: colorScheme,
+                      scheme: appTheme,
                     }),
             }}
           />
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
@@ -100,8 +99,6 @@ const TransactionKeypadScreen = ({
             {beneficiary.fullName}
           </Text>
           <View
-            lightColor="#eaeaec"
-            darkColor="#1D1D20"
             style={[
               CommonStyles.row,
               {
@@ -129,7 +126,7 @@ const TransactionKeypadScreen = ({
                 marginHorizontal: 5,
                 resizeMode: "cover",
               }}
-              source={require("../../../assets/images/icons/NigerianFlag.png")}
+              source={NigeriaFlag}
             />
             <Text
               lightColor={Colors.general.darkGrey}
@@ -143,8 +140,8 @@ const TransactionKeypadScreen = ({
             <NairaLargeIcon
               color={
                 !amount
-                  ? Colors[colorScheme].secondaryText
-                  : colorScheme === "dark"
+                  ? Colors[appTheme].secondaryText
+                  : appTheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text
               }
@@ -152,8 +149,8 @@ const TransactionKeypadScreen = ({
             <Text
               style={{
                 color: !amount
-                  ? Colors[colorScheme].secondaryText
-                  : colorScheme === "dark"
+                  ? Colors[appTheme].secondaryText
+                  : appTheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -166,8 +163,6 @@ const TransactionKeypadScreen = ({
           </View>
           <View style={[CommonStyles.row]}>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: hp(14),
                 fontWeight: "400",
@@ -177,8 +172,6 @@ const TransactionKeypadScreen = ({
               Aza Balance:
             </Text>
             <Text
-              lightColor={Colors.light.mainText}
-              darkColor={Colors.dark.mainText}
               style={{
                 marginLeft: 3,
                 fontSize: hp(14),
@@ -186,12 +179,17 @@ const TransactionKeypadScreen = ({
                 fontWeight: "600",
               }}
             >
-              {"\u20A6"}
+              {NAIRA_UNICODE}
               {user.azaBalance}
             </Text>
           </View>
         </View>
-        <VirtualKeyboard value={amount} setValue={setAmount} />
+        <VirtualKeyboard
+          value={amount}
+          setValue={(amt) => {
+            if (amount.length < 9) setAmount(amt);
+          }}
+        />
         <View
           style={[
             CommonStyles.passwordContainer,
@@ -243,26 +241,22 @@ const TransactionKeypadScreen = ({
 
                 //}
 
-                transactionType.openDescriptionModal && setDescModalOpen(true);
+                // transactionType.openDescriptionModal && setDescModalOpen(true);
               } else {
                 // TODO create and pass required params
                 navigation.navigate("RecurringTransferConfirmation");
               }
             }}
             styleText={{
-              color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
             }}
-            style={{
-              // marginTop: 30,
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={{}}
           />
         </View>
       </View>
       {/* description modal */}
-      <DescriptionModal
+      {/* <DescriptionModal
         visible={descModal}
         setModalVisible={setDescModalOpen}
         description={description}
@@ -272,19 +266,9 @@ const TransactionKeypadScreen = ({
         recurringTransaction={recurringTransaction}
         transactionType={transactionType}
         // transactionParams={description}
-      />
+      /> */}
     </SpacerWrapper>
   );
 };
 
 export default TransactionKeypadScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(10),
-    paddingHorizontal: 15,
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-});

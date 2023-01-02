@@ -2,9 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
-import { TextInput } from "../../../theme/Themed";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { TextInput, View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
@@ -19,23 +17,21 @@ import { selectTransaction } from "../../../redux/slice/transactionSlice";
 import { getInitialsAvatar } from "../../../common/util/AppUtil";
 import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import TransactionConfirmationScreen from "../common/TransactionConfirmationScreen";
 
 const SendMoneyConfirmationScreen = ({
   navigation,
+  route,
 }: CommonScreenProps<"SendMoneyConfirmation">) => {
   const colorScheme = useColorScheme();
 
   const transferObject = useAppSelector(selectTransaction);
   const insets = useSafeAreaInsets();
 
-  console.log(transferObject);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -59,8 +55,6 @@ const SendMoneyConfirmationScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
@@ -71,8 +65,6 @@ const SendMoneyConfirmationScreen = ({
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -82,8 +74,6 @@ const SendMoneyConfirmationScreen = ({
               To
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -192,15 +182,8 @@ const SendMoneyConfirmationScreen = ({
                 navigateTo: "SendMoney",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[CommonStyles.button]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"
@@ -210,6 +193,14 @@ const SendMoneyConfirmationScreen = ({
           />
         </View>
       </View>
+
+      {/* <TransactionConfirmationScreen
+        navigation={navigation}
+        route={route}
+        confirmationType={"send"}
+        beneficiary={transferObject.beneficairy}
+        transactionDetails={transferObject}
+      /> */}
     </SpacerWrapper>
   );
 };

@@ -11,28 +11,41 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { CommonScreenProps } from "../../../common/navigation/types";
+import {
+  Beneficiary,
+  CommonScreenProps,
+} from "../../../common/navigation/types";
 import { useAppSelector } from "../../../redux";
-import { selectTransaction } from "../../../redux/slice/transactionSlice";
+import {
+  selectTransaction,
+  TransactionState,
+} from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import TransactionConfirmationScreen from "../common/TransactionConfirmationScreen";
+import { Transaction } from "../../../redux/types";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
-const RequestMoneyConfirmationScreen = ({
+type TransactionScreenProps = {
+  confirmationType: "send" | "request";
+  beneficiary: Beneficiary;
+  transactionDetails: TransactionState;
+};
+
+const TransactionConfirmationScreen = ({
   navigation,
   route,
-}: CommonScreenProps<"RequestMoneyConfirmation">) => {
+  beneficiary,
+  transactionDetails,
+  confirmationType,
+}: CommonScreenProps<"RequestMoneyConfirmation"> & TransactionScreenProps) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
-  const transaction = useAppSelector(selectTransaction);
   console.log(useAppSelector(selectTransaction));
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -51,13 +64,28 @@ const RequestMoneyConfirmationScreen = ({
     });
   }, []);
 
+  const makeTransaction = () => {
+    // do some validation
+
+    navigation.navigate("StatusScreen", {
+      status: "Successful",
+      statusIcon: "Success",
+      //TODO update message to accept JSX
+      statusMessage: `You have successfully ${
+        confirmationType === "request" ? "requested for" : "send"
+      } ${NAIRA_UNICODE} ${transactionDetails.amount} ${
+        confirmationType === "request" ? "from" : "to"
+      } ${beneficiary.fullName}`,
+      navigateTo: "Home",
+      screenType: "transaction",
+    });
+  };
+
   return (
     <SpacerWrapper>
-      {/* <View style={[CommonStyles.vaultcontainer]}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
@@ -70,8 +98,6 @@ const RequestMoneyConfirmationScreen = ({
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -81,8 +107,6 @@ const RequestMoneyConfirmationScreen = ({
               To
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -95,11 +119,11 @@ const RequestMoneyConfirmationScreen = ({
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
-              value={"Chiazondu Joseph"}
+              value={beneficiary.fullName}
             />
             <Image
               source={{
-                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                uri: beneficiary.pictureUrl,
               }}
               style={{
                 position: "absolute",
@@ -114,8 +138,6 @@ const RequestMoneyConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -135,8 +157,6 @@ const RequestMoneyConfirmationScreen = ({
               ]}
             >
               <TextInput
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
                 placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={{
                   flex: 1,
@@ -148,14 +168,12 @@ const RequestMoneyConfirmationScreen = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}
                 showSoftInputOnFocus={false}
-                value={"\u20A680,000"}
+                value={`${NAIRA_UNICODE} ${transactionDetails.amount}`}
               />
             </View>
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -165,8 +183,6 @@ const RequestMoneyConfirmationScreen = ({
               Description
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -178,7 +194,7 @@ const RequestMoneyConfirmationScreen = ({
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
-              value={"Chop life my gee ❤️"}
+              value={transactionDetails.description}
             />
           </View>
         </View>
@@ -191,16 +207,7 @@ const RequestMoneyConfirmationScreen = ({
       >
         <Button
           title="Continue"
-          onPressButton={() =>
-            navigation.navigate("StatusScreen", {
-              status: "Successful",
-              statusIcon: "Success",
-              //TODO update message to accept JSX
-              statusMessage:
-                "You have successfully requested for 80,000 from Chiazondu Joseph",
-              navigateTo: "Home",
-            })
-          }
+          onPressButton={() => makeTransaction()}
           styleText={{}}
           style={[{}]}
         />
@@ -211,16 +218,9 @@ const RequestMoneyConfirmationScreen = ({
           onPressButton={() => navigation.goBack()}
           style={{ marginTop: 5 }}
         />
-      </View> */}
-      <TransactionConfirmationScreen
-        navigation={navigation}
-        route={route}
-        confirmationType={"request"}
-        beneficiary={transaction.beneficairy}
-        transactionDetails={transaction}
-      />
+      </View>
     </SpacerWrapper>
   );
 };
 
-export default RequestMoneyConfirmationScreen;
+export default TransactionConfirmationScreen;
