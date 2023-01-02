@@ -10,7 +10,7 @@ import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import Phone from "../../../auth/common/phoneStage";
+import Phone from "../../../auth/common/PhoneStage";
 import {
   CountriesType,
   CountryDetails,
