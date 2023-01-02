@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/core";
 import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
-import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text2 as Text } from "../../../../theme/Themed";
 
 export default function AccountDetails({ isModalVisible, listItems }: any) {
   const [secure, setSecure] = useState(true);

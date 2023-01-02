@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 
-import { Text2 as Text, View2 as View } from "../../theme/Themed";
+import { Text2 as Text, View as View } from "../../theme/Themed";
 import Colors from "../../constants/Colors";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp } from "../../common/util/LayoutUtil";

@@ -4,7 +4,7 @@ import { DangerIcon } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
-import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text2 as Text } from "../../../../theme/Themed";
 
 interface IProps {
   isBvnLinked: boolean;

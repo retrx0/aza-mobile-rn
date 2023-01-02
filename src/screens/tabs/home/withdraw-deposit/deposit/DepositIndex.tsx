@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import { View2 as View } from "../../../../../theme/Themed";
+import { View as View } from "../../../../../theme/Themed";
 import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import { RootTabScreenProps } from "../../../../../../types";

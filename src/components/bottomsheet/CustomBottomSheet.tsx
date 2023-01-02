@@ -3,7 +3,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import Button from "../buttons/Button";
-import { View2 as View } from "../../theme/Themed";
+import { View as View } from "../../theme/Themed";
 import BottomSheetListItem from "./BottomSheetListItem";
 export default function CustomBottomSheet({
   toggleModal,

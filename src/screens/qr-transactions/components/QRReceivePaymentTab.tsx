@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import Button from "../../../components/buttons/Button";
-import { View2 as View, Text2 as Text } from "../../../theme/Themed";
+import { View as View, Text2 as Text } from "../../../theme/Themed";
 import DescriptionModal from "../../keypad/modal/DescriptionModal";
 
 import { hp } from "../../../common/util/LayoutUtil";

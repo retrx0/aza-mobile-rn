@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { View2 as View, Text2 as Text } from "../../../../../theme/Themed";
+import { View as View, Text2 as Text } from "../../../../../theme/Themed";
 import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
 import {
-  View2 as View,
+  View as View,
   Text2 as Text,
   TextInput,
   TextInputProps,

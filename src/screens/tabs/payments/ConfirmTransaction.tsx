@@ -16,7 +16,7 @@ import CommonStyles from "./../../../common/styles/CommonStyles";
 import { Formik } from "formik";
 import {
   TextInput,
-  View2 as View,
+  View as View,
   Text2 as Text,
 } from "./../../../theme/Themed";
 import { useAppSelector } from "./../../../redux";

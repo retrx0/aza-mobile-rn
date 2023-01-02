@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { PaymentStyles as styles } from "./styles";
 import {
   SafeAreaView,
-  View2 as View,
+  View as View,
   Text2 as Text,
 } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";

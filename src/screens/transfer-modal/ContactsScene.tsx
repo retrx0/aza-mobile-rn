@@ -16,7 +16,7 @@ import Button from "../../components/buttons/Button";
 import ButtonLg from "../../components/buttons/ButtonLg";
 import ContactListItem from "../../components/ListItem/ContactListItem";
 import { TextInput } from "../../theme/Themed";
-import { View2 as View, Text2 as Text } from "../../theme/Themed";
+import { View as View, Text2 as Text } from "../../theme/Themed";
 import Colors from "../../constants/Colors";
 import { useAppSelector } from "../../redux";
 import useColorScheme from "../../hooks/useColorScheme";

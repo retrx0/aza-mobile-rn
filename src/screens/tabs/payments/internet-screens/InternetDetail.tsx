@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import {
   SafeAreaView,
-  View2 as View,
+  View as View,
   Text2 as Text,
 } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";

@@ -4,7 +4,7 @@ import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import {
   ScrollView,
-  View2 as View,
+  View as View,
   Text2 as Text,
 } from "../../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../../types";

@@ -15,7 +15,7 @@ import * as Haptics from "expo-haptics";
 
 import { StatusSuccessIcon, StatusWarningIcon } from "../../../assets/svg";
 import { playSwooshSound } from "../../common/util/SoundUtil";
-import { View2 as View, Text2 as Text } from "../../theme/Themed";
+import { View as View, Text2 as Text } from "../../theme/Themed";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";

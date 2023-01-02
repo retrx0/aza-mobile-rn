@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
 import AccountSettings from "./components/AccountSettings";
 import ApplicationSettings from "./components/ApplicationSettings";
-import { View2 as View } from "../../../theme/Themed";
+import { View as View } from "../../../theme/Themed";
 
 const Settings = ({ navigation, route }: RootTabScreenProps<"Settings">) => {
   return (

@@ -84,7 +84,7 @@ export const Text2 = (props: TextProps) => {
   );
 };
 
-export const View2 = (props: ViewProps) => {
+export const View = (props: ViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
 
   const selectedTheme = useAppSelector(selectAppTheme);

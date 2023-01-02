@@ -2,7 +2,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Divider from "../../../../components/divider/Divider";
 import CustomSwitch from "../../../../components/switch/CustomSwitch";
-import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text2 as Text } from "../../../../theme/Themed";
 
 interface ISwitch {
   text: string;

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import {
   SafeAreaView,
-  View2 as View,
+  View as View,
   Text2 as Text,
 } from "../../../../theme/Themed";
 

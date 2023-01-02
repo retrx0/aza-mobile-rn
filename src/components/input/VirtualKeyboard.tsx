@@ -5,7 +5,7 @@ import Colors from "../../constants/Colors";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getAppTheme } from "../../theme";
-import { View2 as View, Text2 as Text } from "../../theme/Themed";
+import { View as View, Text2 as Text } from "../../theme/Themed";
 
 interface IProps {
   value: string;

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { TickIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
+import { Text2 as Text, View as View } from "../../../../theme/Themed";
 
 type AirtimeProps = {
   title: string;

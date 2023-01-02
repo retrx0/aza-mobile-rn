@@ -24,7 +24,7 @@ import { hp } from "../../../common/util/LayoutUtil";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
-import { Text2 as Text, View2 as View } from "../../../theme/Themed";
+import { Text2 as Text, View as View } from "../../../theme/Themed";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const dispatch = useAppDispatch();

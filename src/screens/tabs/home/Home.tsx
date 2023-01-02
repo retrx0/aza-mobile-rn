@@ -1,7 +1,5 @@
 import { Modal, StyleSheet } from "react-native";
 
-// import { View } from "../../../theme/components/View";
-// import { Text } from "../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../types";
 
 import AccountDetails from "./components/AccountDetails";
@@ -12,11 +10,9 @@ import { useAppSelector } from "../../../redux";
 import { useNotifications } from "../../../hooks/useNotifications";
 import { useState } from "react";
 import { selectUser } from "../../../redux/slice/userSlice";
-import { View2 as View } from "../../../theme/Themed";
+import { View as View } from "../../../theme/Themed";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
-  const [ceoMessageVisible, setceoMessageVisible] = useState(true);
-
   const {
     schedulePushNotification,
     registerForPushNotificationsAsync,
@@ -49,9 +45,6 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
         isBvnLinked={user.bvnVerified}
       />
       <RecentTransactions navigation={navigation} route={route} />
-      {/* <Modal visible={ceoMessageVisible}>
-        <CEOMessage navigation={navigation} route={route} />
-      </Modal> */}
     </View>
   );
 };

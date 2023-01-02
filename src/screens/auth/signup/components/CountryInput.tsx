@@ -6,7 +6,7 @@ import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import {
-  View2 as View,
+  View as View,
   Text2 as Text,
   TextInput,
 } from "../../../../theme/Themed";

@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text2 as Text } from "../../../../theme/Themed";
 import { CharityStyles as styles } from "../styles";
 import { InfoIcon } from "../../../../../assets/svg";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
