@@ -19,13 +19,23 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import Button from "../../../../components/buttons/Button";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { fetchAirtimeOperators } from "../../../../api/airtime";
+// import { fetchAirtimeOperators } from "../../../../api/airtime";
 import api from "../../../../api";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import HeaderImage from "../sub-components/HeaderImage";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
+import {
+  setAmount,
+  setDetailHeader,
+  setDetailValue,
+  setLogo,
+  setPaymentMethod,
+  setPaymentTYpe,
+  setTo,
+} from "../../../../redux/slice/paymentSlice";
+import { useDispatch } from "react-redux";
 
 const Network = [
   {
@@ -58,6 +68,9 @@ export default function AirtimeIndex({
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
   const [active, setActive] = useState("");
+  const [phone, setPhone] = useState("");
+  const [amount, settAmount] = useState(0);
+  const dispatch = useDispatch();
   // const { icon } = route.params;
 
   const period = [
@@ -161,7 +174,11 @@ export default function AirtimeIndex({
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
+              onPress={() => {
+                setActive(item.icon);
+                dispatch(setTo(item.title));
+                dispatch(setLogo(item.icon));
+              }}
               isActive={item.icon === active}
             />
           );
@@ -183,6 +200,9 @@ export default function AirtimeIndex({
           label="Phone Number"
           placeholder="Enter a phone number"
           returnKeyType="done"
+          onChangeText={(text) => {
+            setPhone(text);
+          }}
         />
         <CustomSwitch
           title="My number"
@@ -226,6 +246,9 @@ export default function AirtimeIndex({
           placeholder="Enter an amount"
           keyboardType="number-pad"
           returnKeyType="done"
+          onChangeText={(text) => {
+            settAmount(text);
+          }}
         />
       </View>
 
@@ -238,6 +261,16 @@ export default function AirtimeIndex({
         <Button
           title="Continue"
           onPressButton={() => {
+            dispatch(
+              setDetailHeader(
+                route.name == "data bundle" ? "Data bundle" : "Phone number"
+              )
+            );
+            dispatch(
+              setPaymentTYpe(route.name == "data bundle" ? "Data" : "Airtime")
+            );
+            dispatch(setDetailValue(phone));
+            dispatch(setAmount(amount));
             navigation.navigate("Common", { screen: "Confirm" });
           }}
           disabled={!CustomSwitch}

@@ -7,7 +7,8 @@ import { View } from "../../../theme/components/View";
 import { Text } from "../../../theme/components/Text";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { UserState } from "../../../redux/slice/userSlice";
+import { UserState } from "../../../redux/types";
+// import { UserState } from "../../../redux/slice/userSlice";
 
 const SenderDetails = ({
   userData,

@@ -97,7 +97,7 @@ const RootNavigator = () => {
         initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
         screenOptions={{ gestureEnabled: false }}
       >
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
           options={{ headerShown: false }}
@@ -111,7 +111,7 @@ const RootNavigator = () => {
           name="SignIn"
           component={LoginNavigator}
           options={{ headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           name="Root"
           component={BottomTabNavigator}

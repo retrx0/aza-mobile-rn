@@ -111,7 +111,7 @@ import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScree
 import { WithdrawDepositTabs } from "../../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import { hp } from "../util/LayoutUtil";
-import NewUserVault from "../../screens/tabs/vault/NewUserVault";
+import NewUserVault from "../../screens/tabs/vault/NewuserVault";
 import AddCoverImage from "../../screens/tabs/vault/AddCoverImage";
 import AddCoverImageSuccessful from "../../screens/tabs/vault/SetVaultGoal";
 import SetVaultGoal from "../../screens/tabs/vault/SetVaultGoal";

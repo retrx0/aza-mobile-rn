@@ -8,7 +8,7 @@ import { RootTabScreenProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import navigation from "navigation";
+// import navigation from "navigation";
 import { InfoIcon } from "../../../../../assets/svg";
 import BackButton from "../../../../components/buttons/BackButton";
 
