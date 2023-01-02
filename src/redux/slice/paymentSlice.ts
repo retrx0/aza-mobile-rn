@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "redux/Store";
+import { RootState } from "../Store";
 
 export interface PaymentState {
   detailHeader: string;
@@ -47,7 +47,7 @@ export const paymentSlice = createSlice({
       state.paymentType = action.payload;
     },
     setDetailValue: (state, action: PayloadAction<string>) => {
-      state.paymentType = action.payload;
+      state.detailValue = action.payload;
     },
   },
 });
@@ -59,6 +59,7 @@ export const {
   setTo,
   setPaymentTYpe,
   setDetailHeader,
+  setDetailValue,
 } = paymentSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

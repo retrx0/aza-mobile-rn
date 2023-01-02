@@ -50,7 +50,7 @@ export default function AirtimeConfirmation({
           <ImageInput
             label={"To"}
             placeholder={payment.to}
-            source={Glo}
+            source={payment.logo}
             icon={undefined}
             value={""}
           />
