@@ -61,6 +61,7 @@ export type TextProps = ThemeProps & DefaultText["props"];
 export type TextInputProps = ThemeProps & ThemedTextInput["props"];
 export type IconProps = ThemeProps & typeof FontAwesome["defaultProps"];
 export type ViewProps = ThemeProps & DefaultView["props"];
+export type ScrollViewProps = ThemeProps & DefaultScrollView["props"];
 export type SafeAreaViewProps = ThemeProps & ThemedSafeAreaView["props"];
 export type OTPInputViewProps = ThemeProps & ThemedOTPInputView["props"];
 export type PhoneInputProps = ThemeProps & ThemedPhoneInput["props"];
@@ -97,7 +98,7 @@ export const View = (props: ViewProps) => {
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 };
 
-export const ScrollView = (props: ViewProps) => {
+export const ScrollView = (props: ScrollViewProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const selectedTheme = useAppSelector(selectAppTheme);
   const backgroundColor = useAppThemeColor(

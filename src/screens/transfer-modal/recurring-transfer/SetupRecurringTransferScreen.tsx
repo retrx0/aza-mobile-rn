@@ -1,21 +1,21 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
-import Button from "../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
-import CustomDropdown from "../../components/dropdown/CustomDropdown";
+import BackButton from "../../../components/buttons/BackButton";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
+import Button from "../../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import CustomDropdown from "../../../components/dropdown/CustomDropdown";
 
-import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
-import { hp } from "../../common/util/LayoutUtil";
-import CommonStyles from "../../common/styles/CommonStyles";
-import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { CommonScreenProps } from "../../common/navigation/types";
+import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
+import { hp } from "../../../common/util/LayoutUtil";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { CommonScreenProps } from "../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ExitButton from "../../components/buttons/ExitButton";
+import ExitButton from "../../../components/buttons/ExitButton";
 
 const SetupRecurringTransferScreen = ({
   navigation,
@@ -145,24 +145,16 @@ const SetupRecurringTransferScreen = ({
                 transactionType: {
                   type: "recurring",
                   beneficiary: {
-                    beneficiaryAccount: "",
-                    beneficiaryImage: "",
-                    beneficiaryName: "",
+                    azaAccountNumber: "",
+                    fullName: "",
                   },
                   period: periodValue,
                   day: dayValue,
                 },
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[CommonStyles.button]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -6,35 +6,31 @@ import {
 } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
-import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
+import BackButton from "../../../components/buttons/BackButton";
+import { Text } from "../../../theme/components/Text";
 
-import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../theme/components/Text";
+import Colors from "../../../constants/Colors";
+import {
+  Beneficiary,
+  CommonScreenProps,
+} from "../../../common/navigation/types";
+import useColorScheme from "../../../hooks/useColorScheme";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { hp } from "../../../common/util/LayoutUtil";
+import ContactsScene from "../../contacts/ContactsScene";
+import { sendInviteToNonAzaContact } from "../../../api/notification";
+import { InfoIcon } from "../../../../assets/svg";
 
-import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
-import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { hp } from "../../common/util/LayoutUtil";
-import { Contact } from "expo-contacts";
-import { useAppSelector } from "../../redux";
-import ContactsScene from "./ContactsScene";
-import { getUserContacts } from "../../hooks/useContacts";
-import { sendInviteToNonAzaContact } from "../../api/notification";
-import { InfoIcon } from "../../../assets/svg";
-import { getAppTheme } from "../../theme";
-import { selectAppTheme } from "../../redux/slice/themeSlice";
-
-const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
+const RequestMoneyScreen = ({
+  navigation,
+}: CommonScreenProps<"RequestMoney">) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },
-    { key: "second", title: "Aza Number/Bank" },
+    { key: "second", title: "Aza Number" },
   ]);
+  const colorScheme = useColorScheme();
   const layout = useWindowDimensions();
-
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
-
-  // const user = useAppSelector(user)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -48,7 +44,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             fontWeight: "500",
           }}
         >
-          Send Money
+          Request Money
         </Text>
       ),
       // hide default back button which only shows in android
@@ -59,9 +55,9 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate("SendMoneyFeature")}
+          onPress={() => navigation.navigate("RequestMoneyFeature")}
         >
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+          <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
     });
@@ -72,7 +68,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
     navigation.navigate("TransactionKeypad", {
       headerTitle: "Send Money",
       transactionType: {
-        transaction: "send",
+        transaction: "request",
         type: "normal",
         beneficiary: beneficiary,
         openDescriptionModal: true,
@@ -87,7 +83,7 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
         renderScene={({ route }) => (
           <ContactsScene
             route={route}
-            azaContactOnPress={(beneficiary) => azaContactOnClick(beneficiary)}
+            azaContactOnPress={(_b) => azaContactOnClick(_b)}
             nonAzaContactOnPress={({ email, phone }) =>
               sendInviteToNonAzaContact({ email: email!, phoneNumber: phone! })
             }
@@ -102,11 +98,11 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
             style={{
               elevation: 0,
               backgroundColor: "transparent",
-              borderBottomColor: Colors[appTheme].secondaryText,
+              borderBottomColor: Colors[colorScheme].secondaryText,
               borderBottomWidth: 2,
             }}
             indicatorStyle={{
-              backgroundColor: Colors[appTheme].text,
+              backgroundColor: Colors[colorScheme].text,
               marginBottom: -2,
             }}
             renderLabel={({ focused, route }) => {
@@ -135,4 +131,4 @@ const SendMoneyScreen = ({ navigation }: CommonScreenProps<"SendMoney">) => {
   );
 };
 
-export default SendMoneyScreen;
+export default RequestMoneyScreen;

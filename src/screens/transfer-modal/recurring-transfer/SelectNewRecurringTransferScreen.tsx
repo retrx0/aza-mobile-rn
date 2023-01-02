@@ -1,17 +1,17 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useLayoutEffect } from "react";
 
-import { CommonScreenProps } from "../../common/navigation/types";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
-import Divider from "../../components/divider/Divider";
+import BackButton from "../../../components/buttons/BackButton";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
+import Divider from "../../../components/divider/Divider";
 
-import Colors from "../../constants/Colors";
-import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
-import CommonStyles from "../../common/styles/CommonStyles";
+import Colors from "../../../constants/Colors";
+import { hp } from "../../../common/util/LayoutUtil";
+import useColorScheme from "../../../hooks/useColorScheme";
+import CommonStyles from "../../../common/styles/CommonStyles";
 
 import {
   BillIcon,
@@ -19,8 +19,8 @@ import {
   HeartOutlinedIcon,
   MoneyTransferNairaIcon,
   VaultLargeIcon,
-} from "../../../assets/svg";
-import SpacerWrapper from "../../common/util/SpacerWrapper";
+} from "../../../../assets/svg";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
 
 const SelectNewRecurringTransferScreen = ({
   navigation,

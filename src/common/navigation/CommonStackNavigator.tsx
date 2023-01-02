@@ -95,14 +95,14 @@ import FeesAndLimitsScreen from "../../screens/menu/FeesAndLimitsScreen";
 import ContactUsScreen from "../../screens/menu/ContactUsScreen";
 
 // transfer modal screens
-import SendMoneyScreen from "../../screens/transfer-modal/SendMoneyScreen";
-import RequestMoneyScreen from "../../screens/transfer-modal/RequestMoneyScreen";
-import RequestMoneyConfirmationScreen from "../../screens/transfer-modal/RequestMoneyConfirmationScreen";
-import SendMoneyConfirmationScreen from "../../screens/transfer-modal/SendMoneyConfirmationScreen";
-import RecurringTransferScreen from "../../screens/transfer-modal/RecurringTransferScreen";
-import SelectNewRecurringTransferScreen from "../../screens/transfer-modal/SelectNewRecurringTransferScreen";
-import SetupRecurringTransferScreen from "../../screens/transfer-modal/SetupRecurringTransferScreen";
-import RecurringTransferConfirmationScreen from "../../screens/transfer-modal/RecurringTransferConfirmationScreen";
+import SendMoneyScreen from "../../screens/transfer-modal/send-money/SendMoneyScreen";
+import RequestMoneyScreen from "../../screens/transfer-modal/request-money/RequestMoneyScreen";
+import RequestMoneyConfirmationScreen from "../../screens/transfer-modal/request-money/RequestMoneyConfirmationScreen";
+import SendMoneyConfirmationScreen from "../../screens/transfer-modal/send-money/SendMoneyConfirmationScreen";
+import RecurringTransferScreen from "../../screens/transfer-modal/recurring-transfer/RecurringTransferScreen";
+import SelectNewRecurringTransferScreen from "../../screens/transfer-modal/recurring-transfer/SelectNewRecurringTransferScreen";
+import SetupRecurringTransferScreen from "../../screens/transfer-modal/recurring-transfer/SetupRecurringTransferScreen";
+import RecurringTransferConfirmationScreen from "../../screens/transfer-modal/recurring-transfer/RecurringTransferConfirmationScreen";
 
 // transaction keypad screen
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
@@ -135,7 +135,7 @@ import GiftCardScreen from "../../screens/tabs/payments/gift-card/GiftCardScreen
 import GiftCardConfirmation from "../../screens/tabs/payments/gift-card/GiftCardConfirmation";
 import GiftCardDetails from "../../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../../screens/tabs/payments/game/GameScreen";
-import SetNewRecurringTransfer from "../../screens/transfer-modal/SetNewRecurringTransfer";
+import SetNewRecurringTransfer from "../../screens/transfer-modal/recurring-transfer/SetNewRecurringTransfer";
 import PaymentRecurring from "../../screens/tabs/payments/paymentRecurring/PaymentRecurring";
 import AirtimeRecurring from "../../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
 import InternetRecurring from "../../screens/tabs/payments/paymentRecurring/InternetRecurring/InternetRecurring";
@@ -145,11 +145,11 @@ import CableRecurring from "../../screens/tabs/payments/paymentRecurring/CableRe
 import ElectricityRecurring from "../../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
 import GiftCardEmail from "../../screens/tabs/payments/gift-card/EmailScreen";
 import VaultWithdrawConfirm from "../../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
-import SendMoney from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
-import SendMoneyFeature from "../../screens/transfer-modal/SendMoneyFeature/SendMoney";
-import TransactionCertainty from "../../screens/transfer-modal/SendMoneyFeature/TransactionCertainty";
-import InviteUsers from "../../screens/transfer-modal/SendMoneyFeature/InviteUsers";
-import RequestMoneyFeature from "../../screens/transfer-modal/RequestMoneyFeature/RequestMoneyFeature";
+import SendMoney from "../../screens/transfer-modal/send-money/feature/SendMoney";
+import SendMoneyFeature from "../../screens/transfer-modal/send-money/feature/SendMoney";
+import TransactionCertainty from "../../screens/transfer-modal/send-money/feature/TransactionCertainty";
+import InviteUsers from "../../screens/transfer-modal/send-money/feature/InviteUsers";
+import RequestMoneyFeature from "../../screens/transfer-modal/request-money/feature/RequestMoneyFeature";
 import VaultFeature from "../../screens/tabs/vault/VaultFeature/VaultFeature";
 import VaultLiberty from "../../screens/tabs/vault/VaultFeature/VaultLiberty";
 import QRFeature from "../../screens/qr-transactions/components/QRFeature";

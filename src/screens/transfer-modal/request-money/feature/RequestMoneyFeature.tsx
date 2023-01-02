@@ -1,20 +1,20 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import { CommonScreenProps } from "../../../common/navigation/types";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View } from "../../../../theme/components/View";
+import { Text } from "../../../../theme/components/Text";
 
-import Colors from "../../../constants/Colors";
-import { hp } from "../../../common/util/LayoutUtil";
-import useColorScheme from "../../../hooks/useColorScheme";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ExitButton from "../../../components/buttons/ExitButton";
-import { AddUsers, RequestIcon } from "../../../../assets/svg";
-import Button from "../../../components/buttons/Button";
+import ExitButton from "../../../../components/buttons/ExitButton";
+import { AddUsers, RequestIcon } from "../../../../../assets/svg";
+import Button from "../../../../components/buttons/Button";
 
 const RequestMoneyFeature = ({
   navigation,

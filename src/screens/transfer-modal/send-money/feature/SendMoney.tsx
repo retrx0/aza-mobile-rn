@@ -1,22 +1,21 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import { CommonScreenProps } from "../../../common/navigation/types";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
 
-import Colors from "../../../constants/Colors";
-import { hp } from "../../../common/util/LayoutUtil";
-import useColorScheme from "../../../hooks/useColorScheme";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ExitButton from "../../../components/buttons/ExitButton";
-import { AddUsers } from "../../../../assets/svg";
-import Button from "../../../components/buttons/Button";
+import ExitButton from "../../../../components/buttons/ExitButton";
+import { AzaLOGO, AZALogo } from "../../../../../assets/svg";
+import Button from "../../../../components/buttons/Button";
 
-const InviteUsers = ({
+const SendMoneyFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
@@ -56,37 +55,36 @@ const InviteUsers = ({
             marginBottom: hp(96),
           }}
         >
-          <AddUsers color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
+          <AzaLOGO color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
-        <Text
-          style={{
-            fontSize: hp(24),
-            fontWeight: "600",
-            fontFamily: "Euclid-Circular-A-Bold",
-            textAlign: "center",
-            // maxWidth: 350,
-            alignSelf: "center",
-            lineHeight: hp(30),
-          }}
-        >
-          Invite new users to Aza
-        </Text>
-        <Text
-          style={{
-            fontSize: hp(16),
-            lineHeight: hp(25),
-            fontFamily: "Euclid-Circular-A",
-            fontWeight: "400",
-            marginTop: hp(20),
-            maxWidth: 350,
-            alignSelf: "center",
-            textAlign: "center",
-          }}
-        >
-          Azarians can send money to users who don't even use Aza, after which
-          an sms will be sent to those users with a guide on how to create an
-          Aza account.
-        </Text>
+        <View style={{ paddingHorizontal: 30 }}>
+          <Text
+            style={{
+              fontSize: hp(24),
+              fontWeight: "600",
+              fontFamily: "Euclid-Circular-A-Bold",
+              textAlign: "center",
+              alignSelf: "center",
+              lineHeight: hp(30),
+            }}
+          >
+            Lightning-fast transaction speed
+          </Text>
+          <Text
+            style={{
+              fontSize: hp(16),
+              lineHeight: hp(25),
+              fontFamily: "Euclid-Circular-A",
+              textAlign: "center",
+              fontWeight: "400",
+              alignSelf: "center",
+              marginTop: hp(20),
+            }}
+          >
+            Send money to anyone on Aza or other banks at lightning speeds
+          </Text>
+        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
@@ -94,8 +92,8 @@ const InviteUsers = ({
           ]}
         >
           <Button
-            title="Go Back To Send Money"
-            onPressButton={() => navigation.navigate("SendMoney")}
+            title="Continue"
+            onPressButton={() => navigation.navigate("TransactionCertainty")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -111,7 +109,7 @@ const InviteUsers = ({
   );
 };
 
-export default InviteUsers;
+export default SendMoneyFeature;
 
 const styles = StyleSheet.create({
   container: {

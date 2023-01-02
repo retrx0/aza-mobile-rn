@@ -1,22 +1,20 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import { CommonScreenProps } from "../../../common/navigation/types";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
-
-import Colors from "../../../constants/Colors";
-import { hp } from "../../../common/util/LayoutUtil";
-import useColorScheme from "../../../hooks/useColorScheme";
-import CommonStyles from "../../../common/styles/CommonStyles";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ExitButton from "../../../components/buttons/ExitButton";
-import { AzaLOGO, AZALogo, MoneyTick } from "../../../../assets/svg";
-import Button from "../../../components/buttons/Button";
+import ExitButton from "../../../../components/buttons/ExitButton";
+import { AddUsers } from "../../../../../assets/svg";
+import Button from "../../../../components/buttons/Button";
+import { Text, View } from "../../../../theme/Themed";
 
-const TransactionCertainty = ({
+const InviteUsers = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
@@ -26,8 +24,6 @@ const TransactionCertainty = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -56,7 +52,7 @@ const TransactionCertainty = ({
             marginBottom: hp(96),
           }}
         >
-          <MoneyTick color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
+          <AddUsers color={colorScheme === "dark" ? "#FFFFFF" : "#000000"} />
         </View>
         <Text
           style={{
@@ -69,7 +65,7 @@ const TransactionCertainty = ({
             lineHeight: hp(30),
           }}
         >
-          Transaction Certainty
+          Invite new users to Aza
         </Text>
         <Text
           style={{
@@ -78,13 +74,14 @@ const TransactionCertainty = ({
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",
             marginTop: hp(20),
-            maxWidth: 340,
+            maxWidth: 350,
             alignSelf: "center",
             textAlign: "center",
           }}
         >
-          Send money with Aza and instantly carry on with your life, knowing
-          that the transaction will go through without fail.
+          Azarians can send money to users who don't even use Aza, after which
+          an sms will be sent to those users with a guide on how to create an
+          Aza account.
         </Text>
         <View
           style={[
@@ -93,16 +90,10 @@ const TransactionCertainty = ({
           ]}
         >
           <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate("InviteUsers")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            title="Go Back To Send Money"
+            onPressButton={() => navigation.navigate("SendMoney")}
+            styleText={{}}
+            style={[]}
           />
         </View>
       </View>
@@ -110,7 +101,7 @@ const TransactionCertainty = ({
   );
 };
 
-export default TransactionCertainty;
+export default InviteUsers;
 
 const styles = StyleSheet.create({
   container: {

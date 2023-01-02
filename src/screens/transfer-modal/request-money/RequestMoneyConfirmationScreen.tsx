@@ -1,21 +1,21 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
-import BackButton from "../../components/buttons/BackButton";
-import { TextInput } from "../../theme/Themed";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
-import Button from "../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+import BackButton from "../../../components/buttons/BackButton";
+import { TextInput } from "../../../theme/Themed";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
+import Button from "../../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
-import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
-import { hp } from "../../common/util/LayoutUtil";
-import CommonStyles from "../../common/styles/CommonStyles";
-import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { CommonScreenProps } from "../../common/navigation/types";
-import { useAppSelector } from "../../redux";
-import { selectTransaction } from "../../redux/slice/transactionSlice";
+import Colors from "../../../constants/Colors";
+import useColorScheme from "../../../hooks/useColorScheme";
+import { hp } from "../../../common/util/LayoutUtil";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { CommonScreenProps } from "../../../common/navigation/types";
+import { useAppSelector } from "../../../redux";
+import { selectTransaction } from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RequestMoneyConfirmationScreen = ({

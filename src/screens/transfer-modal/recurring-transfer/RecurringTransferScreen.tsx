@@ -1,23 +1,22 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import { CommonScreenProps } from "../../common/navigation/types";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
-import Button from "../../components/buttons/Button";
+import BackButton from "../../../components/buttons/BackButton";
+import { View } from "../../../theme/components/View";
+import { Text } from "../../../theme/components/Text";
+import Button from "../../../components/buttons/Button";
 
-import Colors from "../../constants/Colors";
-import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
-import CommonStyles from "../../common/styles/CommonStyles";
-import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { CloseIcon, UndrawCalendarIcon } from "../../../assets/svg";
+import Colors from "../../../constants/Colors";
+import { hp } from "../../../common/util/LayoutUtil";
+import useColorScheme from "../../../hooks/useColorScheme";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { CloseIcon, UndrawCalendarIcon } from "../../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ExitButton from "../../components/buttons/ExitButton";
 
-const SetNewRecurringTransfer = ({
+const RecurringTransferScreen = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const colorScheme = useColorScheme();
@@ -43,7 +42,7 @@ const SetNewRecurringTransfer = ({
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
 
@@ -59,7 +58,7 @@ const SetNewRecurringTransfer = ({
           transfer orders.
         </Text>
 
-        <View style={{ marginTop: hp(70), alignSelf: "center" }}>
+        <View style={{ marginTop: hp(100), alignSelf: "center" }}>
           <UndrawCalendarIcon
             color={colorScheme === "dark" ? "#999999" : "#000"}
             size={30}
@@ -73,9 +72,7 @@ const SetNewRecurringTransfer = ({
         >
           <Button
             title="New Recurring Transfer"
-            onPressButton={() =>
-              navigation.navigate("SelectNewRecurringTransfer")
-            }
+            onPressButton={() => navigation.navigate("SetNewRecurringTransfer")}
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
@@ -91,7 +88,7 @@ const SetNewRecurringTransfer = ({
   );
 };
 
-export default SetNewRecurringTransfer;
+export default RecurringTransferScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -100,5 +97,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
 });
-
-// SelectNewRecurringTransfer

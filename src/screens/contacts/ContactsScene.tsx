@@ -1,22 +1,14 @@
 import { Contact } from "expo-contacts";
 import React, { useEffect, useState } from "react";
-import {
-  Image,
-  ScrollView,
-  SectionList,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { SectionList, StyleSheet, TouchableOpacity } from "react-native";
 import { verifyAzaNumber } from "../../api/aza";
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { hp } from "../../common/util/LayoutUtil";
 import Button from "../../components/buttons/Button";
-import ButtonLg from "../../components/buttons/ButtonLg";
 import ContactListItem from "../../components/ListItem/ContactListItem";
-import { TextInput } from "../../theme/Themed";
-import { View as View, Text as Text } from "../../theme/Themed";
+import { TextInput, View, Text, ScrollView } from "../../theme/Themed";
 import Colors from "../../constants/Colors";
 import { useAppSelector } from "../../redux";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -25,6 +17,9 @@ import { selectUser } from "../../redux/slice/userSlice";
 import SectionListSeparator from "../tabs/home/components/SectionListSeparator";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { QuickContactView } from "./QuickContactView";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const ContactsScene = ({
   route,
@@ -35,7 +30,7 @@ const ContactsScene = ({
   azaContactOnPress: (beneficiary: Beneficiary) => void;
   nonAzaContactOnPress: (beneficiary: Beneficiary) => void;
 }) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [contacts, setContacts] = useState<any[]>([]);
   const [userQuickContacts, setUserQuickContacts] = useState<Beneficiary[]>([]);
   const [userAzaContacts, setUserAzaContacts] = useState<Beneficiary[]>([]);
@@ -63,10 +58,6 @@ const ContactsScene = ({
             <View>
               <Text
                 style={{
-                  color:
-                    colorScheme === "dark"
-                      ? Colors.dark.mainText
-                      : Colors.light.text,
                   fontSize: hp(14),
                   fontWeight: "500",
                   marginLeft: hp(5),
@@ -85,7 +76,7 @@ const ContactsScene = ({
                         lastName=""
                         photoUrl={getInitialsAvatar({
                           firstName: _contct.fullName!,
-                          scheme: colorScheme,
+                          scheme: appTheme,
                         })}
                         onPress={() => azaContactOnPress(_contct)}
                         key={i}
@@ -110,7 +101,7 @@ const ContactsScene = ({
                   paddingBottom: 10,
                   borderBottomWidth: 1,
                   borderBottomColor:
-                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                   marginLeft: hp(5),
                   fontSize: hp(16),
                 }}
@@ -168,7 +159,7 @@ const ContactsScene = ({
                             image={getInitialsAvatar({
                               firstName: item?.fullName,
                               lastName: item.lastName,
-                              scheme: colorScheme,
+                              scheme: appTheme,
                             })}
                             name={item.fullName}
                             phoneNumber={item.phone || ""}
@@ -192,7 +183,7 @@ const ContactsScene = ({
                           image={getInitialsAvatar({
                             firstName: item?.firstName,
                             lastName: item.lastName,
-                            scheme: colorScheme,
+                            scheme: appTheme,
                           })}
                           name={item.name}
                           phoneNumber={item.phoneNumbers[0].number || ""}
@@ -217,10 +208,6 @@ const ContactsScene = ({
           <View style={{ paddingHorizontal: hp(20) }}>
             <Text
               style={{
-                color:
-                  colorScheme === "dark"
-                    ? Colors.dark.mainText
-                    : Colors.light.text,
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),
@@ -238,7 +225,7 @@ const ContactsScene = ({
                     lastName=""
                     photoUrl={getInitialsAvatar({
                       firstName: _contct.fullName!,
-                      scheme: colorScheme,
+                      scheme: appTheme,
                     })}
                     onPress={() => azaContactOnPress(_contct)}
                     key={i}
@@ -247,9 +234,6 @@ const ContactsScene = ({
               </View>
             </View>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              // placeholderTextColor={Colors[colorScheme].secondaryText}
               keyboardType={"number-pad"}
               returnKeyType={"send"}
               returnKeyLabel={"Send"}
@@ -262,8 +246,6 @@ const ContactsScene = ({
                 marginTop: hp(15),
                 borderBottomWidth: 1,
                 fontSize: hp(16),
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
               }}
               placeholder="Aza Number"
@@ -276,14 +258,8 @@ const ContactsScene = ({
                 sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
               }}
               disabled={receipientAzaNumber.length < 5}
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={[
-                {
-                  backgroundColor: Colors[colorScheme].button,
-                },
-              ]}
+              styleText={{}}
+              style={[]}
             />
           </View>
         </View>
@@ -305,44 +281,6 @@ const sentToAzaNumber = (
     } else {
     }
   });
-};
-
-const QuickContactView = ({
-  firstName,
-  lastName,
-  photoUrl,
-  onPress,
-}: {
-  firstName: string;
-  lastName: string;
-  photoUrl: string;
-  onPress: () => void;
-}) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <View
-        style={[CommonStyles.col, { alignItems: "center", marginRight: 20 }]}
-      >
-        <Image
-          style={{
-            borderRadius: 50,
-            width: 45,
-            height: 45,
-          }}
-          source={{
-            uri: photoUrl,
-          }}
-        />
-        <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
-          style={{ fontSize: hp(12), marginTop: 5 }}
-        >
-          {firstName}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
 };
 
 const styles = StyleSheet.create({
