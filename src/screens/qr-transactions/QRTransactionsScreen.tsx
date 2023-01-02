@@ -7,12 +7,14 @@ import { RootStackScreenProps } from "../../../types";
 import QRMakePaymentTab from "./components/QRMakePaymentTab";
 import QRReceivePaymentTab from "./components/QRReceivePaymentTab";
 import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../theme/components/Text";
+import { Text2 as Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { InfoIcon } from "../../../assets/svg";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const QRTransactionsScreen = ({
   navigation,
@@ -25,7 +27,7 @@ const QRTransactionsScreen = ({
     { key: "second", title: "Receive Payment" },
   ]);
 
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
   useLayoutEffect(() => {
@@ -49,8 +51,11 @@ const QRTransactionsScreen = ({
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("QRFeature")}>
-          <InfoIcon color={colorScheme === "dark" ? "#999999" : "#000000"} />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}
+        >
+          {/* TODO Add these colors to Colors.ts and import them */}
+          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
     });
@@ -80,11 +85,11 @@ const QRTransactionsScreen = ({
               style={{
                 elevation: 0,
                 backgroundColor: "transparent",
-                borderBottomColor: Colors[colorScheme].secondaryText,
+                borderBottomColor: Colors[appTheme].secondaryText,
                 borderBottomWidth: 2,
               }}
               indicatorStyle={{
-                backgroundColor: Colors[colorScheme].text,
+                backgroundColor: Colors[appTheme].text,
                 marginBottom: -2,
               }}
               renderLabel={({ focused, route }) => {

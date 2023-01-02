@@ -4,13 +4,11 @@ import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
 import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../theme/Themed";
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
@@ -22,10 +20,11 @@ import { selectUser } from "../../redux/slice/userSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Toast from "react-native-toast-message";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [, requestPermission] = MediaLibrary.usePermissions();
 
   const user = useAppSelector(selectUser);
@@ -81,7 +80,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                   : getInitialsAvatar({
                       firstName: user.firstName,
                       lastName: user.lastName,
-                      scheme: colorScheme,
+                      scheme: appTheme,
                     }),
             }}
           />
@@ -99,15 +98,13 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           <View style={[CommonStyles.row]}>
             <NairaIcon
               color={
-                colorScheme === "dark"
-                  ? Colors.dark.mainText
-                  : Colors.light.text
+                appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
               }
             />
             <Text
               style={{
                 color:
-                  colorScheme === "dark"
+                  appTheme === "dark"
                     ? Colors.dark.mainText
                     : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -127,7 +124,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             })}
             codeStyle="circle"
             color={
-              colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text
+              appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
             }
           />
         </View>
@@ -137,7 +134,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             { bottom: insets.bottom || hp(45) },
           ]}
         >
-          <Button
+          {/* <Button
             title="Copy Link"
             styleText={{
               color: Colors[colorScheme].buttonText,
@@ -153,10 +150,10 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 text1: "👍🏻 Link successfully copied!",
               });
             }}
-          />
+          /> */}
           <ButtonWithUnderline
             title="Save to Gallery"
-            color={Colors[colorScheme].text}
+            color={Colors[appTheme].text}
             onPressButton={captureScreenAndSaveToGallery}
             style={{ marginTop: 5 }}
           />

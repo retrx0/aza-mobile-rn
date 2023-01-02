@@ -1,10 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 
-import { CommonScreenProps } from "../../../common/navigation/types";
-
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -13,7 +10,6 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ExitButton from "../../../components/buttons/ExitButton";
-import { AddUsers } from "../../../../assets/svg";
 import Button from "../../../components/buttons/Button";
 import { RootStackScreenProps } from "../../../../types";
 
@@ -62,6 +58,7 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
               alignSelf: "center",
               marginTop: hp(56),
             }}
+            // TODO Add this picture to /images/index.ts
             source={require("../../../../assets/images/common/QRFEATURE.png")}
           />
         </View>
@@ -102,14 +99,8 @@ const QRFeature = ({ navigation }: RootStackScreenProps<"QRTransactions">) => {
           <Button
             title="Go Back to QR Transaction"
             onPressButton={() => navigation.navigate("QRTransactions")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
         </View>
       </View>

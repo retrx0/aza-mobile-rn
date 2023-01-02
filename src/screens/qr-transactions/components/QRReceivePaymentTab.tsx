@@ -2,15 +2,13 @@ import React, { useState } from "react";
 
 import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../theme/Themed";
 import DescriptionModal from "../../keypad/modal/DescriptionModal";
 
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { RootStackScreenProps } from "../../../../types";
 
 import { NairaLargeIcon } from "../../../../assets/svg";
@@ -19,6 +17,8 @@ import { setTransaction } from "../../../redux/slice/transactionSlice";
 import userSlice, { selectUser } from "../../../redux/slice/userSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { getAppTheme } from "../../../theme";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const QRReceivePaymentTab = ({
   navigation,
@@ -27,7 +27,7 @@ const QRReceivePaymentTab = ({
   const [description, setDescription] = useState("");
   const [isDescModalVisible, setDescModalVisible] = useState(false);
 
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
@@ -58,8 +58,8 @@ const QRReceivePaymentTab = ({
             <NairaLargeIcon
               color={
                 !amount
-                  ? Colors[colorScheme].secondaryText
-                  : colorScheme === "dark"
+                  ? Colors[appTheme].secondaryText
+                  : appTheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text
               }
@@ -67,8 +67,8 @@ const QRReceivePaymentTab = ({
             <Text
               style={{
                 color: !amount
-                  ? Colors[colorScheme].secondaryText
-                  : colorScheme === "dark"
+                  ? Colors[appTheme].secondaryText
+                  : appTheme === "dark"
                   ? Colors.dark.mainText
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -111,13 +111,11 @@ const QRReceivePaymentTab = ({
             setDescModalVisible(true);
           }}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
             marginBottom: "auto",
-            backgroundColor: Colors[colorScheme].button,
           }}
         />
       </View>

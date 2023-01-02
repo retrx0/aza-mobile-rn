@@ -9,7 +9,7 @@ import {
 } from "expo-camera";
 
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/components/View";
+import { View2 as View } from "../../../theme/Themed";
 
 import { hp } from "../../../common/util/LayoutUtil";
 import { RootStackScreenProps } from "../../../../types";

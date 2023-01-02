@@ -2,9 +2,10 @@ import { TouchableOpacity } from "react-native";
 import { ArrowRightIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getAppTheme } from "../../theme";
+import { View2 as View, Text2 as Text } from "../../theme/Themed";
 
 interface IProps {
   value: string;
@@ -12,7 +13,7 @@ interface IProps {
 }
 
 const VirtualKeyboard = ({ value, setValue }: IProps) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const onKeyPress = (key: string) => {
     if ((value === "" && key === "0") || (value === "" && key === ",")) {
@@ -50,17 +51,13 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
           >
             <ArrowRightIcon
               color={
-                colorScheme === "dark"
-                  ? Colors.dark.mainText
-                  : Colors.light.text
+                appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
               }
               size={24}
             />
           </View>
         ) : (
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(24),
