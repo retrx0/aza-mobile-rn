@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { ScrollView } from "../../../../theme/Themed";
 import { View } from "../../../../theme/components/View";
@@ -38,7 +38,7 @@ export default function CharityConfirmation({
             icon={undefined}
             value={""}
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -64,7 +64,7 @@ export default function CharityConfirmation({
             returnKeyType="done"
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[

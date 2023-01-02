@@ -6,7 +6,7 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
 import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
 import {
@@ -110,7 +110,7 @@ export default function WaterScreen({
         })}
       </ScrollView>
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           style={styles2.input}
           icon={null}
           keyboardType="phone-pad"
@@ -126,7 +126,7 @@ export default function WaterScreen({
           placeholder="Enter your customer account number"
         />
 
-        <Input
+        <UnderlinedInput
           style={styles2.input}
           icon={null}
           inputStyle={[

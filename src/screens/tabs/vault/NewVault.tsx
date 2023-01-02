@@ -5,7 +5,7 @@ import { View } from "../../../theme/components/View";
 import { Text } from "../../../theme/components/Text";
 import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
-import { Input } from "../../../components/input/input";
+import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import CustomDropdown from "../../../components/dropdown/CustomDropdown";
 import { PercentageCard, PercentageList } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -75,7 +75,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Save and lock part of your Aza funds temporarily, for future use
           </Text>
           <View style={CommonStyles.vaultInputContainer}>
-            <Input
+            <UnderlinedInput
               label={"Vault Name"}
               labelStyle={undefined}
               placeholder="Give your vault a name"

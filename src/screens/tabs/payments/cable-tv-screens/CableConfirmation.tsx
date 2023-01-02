@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { ScrollView } from "../../../../theme/Themed";
 import { View } from "../../../../theme/components/View";
@@ -40,7 +40,7 @@ export default function CableConfirmation({
             icon={undefined}
             value={""}
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -64,7 +64,7 @@ export default function CableConfirmation({
             value="1234ueydjThs567890"
             returnKeyType="done"
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -89,7 +89,7 @@ export default function CableConfirmation({
             value={"\u20A621,000 (DSTV Premium)"}
             returnKeyType="done"
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[

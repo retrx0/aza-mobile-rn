@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { ScrollView } from "../../../../theme/Themed";
 import { View } from "../../../../theme/components/View";
@@ -32,7 +32,7 @@ export default function GiftCardConfirmation({
             confirmation. The code would be sent to you via email and SMS.
           </Text>
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -56,7 +56,7 @@ export default function GiftCardConfirmation({
             value="iTunes USD100"
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -80,7 +80,7 @@ export default function GiftCardConfirmation({
             value={"\u20A660,000"}
             returnKeyType="done"
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[

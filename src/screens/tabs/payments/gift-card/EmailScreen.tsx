@@ -11,7 +11,7 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BackButton from "../../../../components/buttons/BackButton";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import { useState } from "react";
 import { AIrtimeStyles as styles } from "../../payments/airtime-screens/styles";
@@ -65,7 +65,7 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
           </Text>
         </View>
         <View style={{ paddingHorizontal: hp(20) }}>
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[

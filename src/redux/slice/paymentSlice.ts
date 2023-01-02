@@ -4,7 +4,7 @@ import { RootState } from "../Store";
 export interface PaymentState {
   detailHeader: string;
   detailValue: string;
-  amount: number;
+  amount: string;
   paymentMethod: "Aza Account" | "Bank Account";
   to: string;
   logo: string;
@@ -13,7 +13,7 @@ export interface PaymentState {
 
 const initialState: PaymentState = {
   detailHeader: "",
-  amount: 0,
+  amount: "",
   paymentMethod: "Aza Account",
   to: "",
   logo: "",
@@ -28,7 +28,7 @@ export const paymentSlice = createSlice({
     setDetailHeader: (state, action: PayloadAction<string>) => {
       state.detailHeader = action.payload;
     },
-    setAmount: (state, action: PayloadAction<number>) => {
+    setAmount: (state, action: PayloadAction<string>) => {
       state.amount = action.payload;
     },
     setTo: (state, action: PayloadAction<string>) => {

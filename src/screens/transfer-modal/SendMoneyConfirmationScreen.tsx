@@ -17,7 +17,7 @@ import { CommonScreenProps } from "../../common/navigation/types";
 import { useAppSelector } from "../../redux";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { getInitialsAvatar } from "../../common/util/AppUtil";
-import { Input } from "../../components/input/input";
+import { UnderlinedInput } from "../../components/input/UnderlinedInput";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SendMoneyConfirmationScreen = ({
@@ -124,7 +124,7 @@ const SendMoneyConfirmationScreen = ({
             />
           </View>
           <View style={{ marginBottom: 30 }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               inputStyle={[
                 styles.input,
@@ -149,7 +149,7 @@ const SendMoneyConfirmationScreen = ({
             />
           </View>
           <View style={{ marginBottom: 30 }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               inputStyle={[
                 styles.input,

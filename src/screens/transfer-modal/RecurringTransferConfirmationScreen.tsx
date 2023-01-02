@@ -15,7 +15,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
-import { Input } from "../../components/input/input";
+import { UnderlinedInput } from "../../components/input/UnderlinedInput";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RecurringTransferConfirmationScreen = ({
@@ -112,7 +112,7 @@ const RecurringTransferConfirmationScreen = ({
             />
           </View>
           <View style={{ marginBottom: hp(30) }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               inputStyle={[
                 styles.input,
@@ -137,7 +137,7 @@ const RecurringTransferConfirmationScreen = ({
             />
           </View>
           <View style={{ marginBottom: 30 }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               inputStyle={[
                 styles.input,
@@ -160,7 +160,7 @@ const RecurringTransferConfirmationScreen = ({
             />
           </View>
 
-          <Input
+          <UnderlinedInput
             icon={null}
             inputStyle={[
               styles.input,

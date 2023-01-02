@@ -4,7 +4,7 @@ import { View } from "../../../../theme/components/View";
 import { Text } from "../../../../theme/components/Text";
 import { CharityStyles as styles } from "../styles";
 import { InfoIcon } from "../../../../../assets/svg";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MySwitch from "../sub-components/MySwitch";
 import Divider from "../sub-components/Divider";
 import MyButton from "../sub-components/MyButton";
@@ -39,7 +39,7 @@ export default function CharityDetail({
       </View>
       {route.name == "For Someone Else" && (
         <>
-          <Input
+          <UnderlinedInput
             style={styles.mainInput}
             icon={null}
             inputStyle={[
@@ -54,7 +54,7 @@ export default function CharityDetail({
             placeholder="Name and Surname"
           />
 
-          <Input
+          <UnderlinedInput
             style={styles.mainInput}
             icon={null}
             inputStyle={[
@@ -70,7 +70,7 @@ export default function CharityDetail({
           />
         </>
       )}
-      <Input
+      <UnderlinedInput
         style={styles.mainInput}
         icon={null}
         inputStyle={[

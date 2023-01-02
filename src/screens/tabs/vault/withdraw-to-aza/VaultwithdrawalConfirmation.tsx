@@ -7,7 +7,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { VaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -46,7 +46,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Kindly confirm the details of this transaction
           </Text>
           <View style={CommonStyles.vaultInputcontainer}>
-            <Input
+            <UnderlinedInput
               icon={null}
               inputStyle={[
                 CommonStyles.inputStyle,
@@ -60,7 +60,7 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
             />
           </View>
           <View style={CommonStyles.vaultInputcontainer}>
-            <Input
+            <UnderlinedInput
               icon={null}
               inputStyle={[
                 CommonStyles.inputStyle,

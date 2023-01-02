@@ -1,11 +1,10 @@
-import { Image, StyleSheet, Text } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import React from "react";
-import { View } from "../../../../theme/components/View";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
-import { BackIcon, LoveIcon } from "../../../../../assets/svg";
 import {
   cobra,
   ipnx,
@@ -26,7 +25,7 @@ export default function InternetPlans({
 
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
-      <Input
+      <UnderlinedInput
         icon={null}
         inputStyle={[
           styles2.input,

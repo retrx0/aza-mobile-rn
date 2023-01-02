@@ -1,6 +1,4 @@
 import { StyleSheet, StatusBar, Platform, Appearance } from "react-native";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 export const AIrtimeStyles = StyleSheet.create({

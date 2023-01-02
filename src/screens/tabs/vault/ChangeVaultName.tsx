@@ -4,7 +4,7 @@ import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
-import { Input } from "../../../components/input/input";
+import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import { Header } from "../../../components/text/header";
 import { View } from "../../../theme/components/View";
 import { Text } from "../../../theme/components/Text";
@@ -45,7 +45,7 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
             Change the name of your vault
           </Text>
           <View style={{ marginTop: hp(100) }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               keyboardType="default"
               inputStyle={{

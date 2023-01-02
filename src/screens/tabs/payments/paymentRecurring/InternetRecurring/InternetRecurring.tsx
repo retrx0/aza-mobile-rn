@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text } from "react-native";
 import React from "react";
 import { View } from "../../../../../theme/components/View";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
-import { Input } from "../../../../../components/input/input";
+import { UnderlinedInput } from "../../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import ListItem from "../../sub-components/ListItem";
 import { BackIcon, LoveIcon } from "../../../../../../assets/svg";
@@ -26,7 +26,7 @@ export default function InternetRecurring({
 
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
-      <Input
+      <UnderlinedInput
         icon={null}
         inputStyle={[
           styles2.input,

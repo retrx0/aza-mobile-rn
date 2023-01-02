@@ -4,7 +4,7 @@ import { SafeAreaView } from "../../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
-import { Input } from "../../../../../components/input/input";
+import { UnderlinedInput } from "../../../../../components/input/UnderlinedInput";
 import MyButton from "../../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
 import { RootTabScreenProps } from "../../../../../../types";
@@ -123,7 +123,7 @@ export default function CableRecurring({
       </ScrollView>
 
       <View style={{ paddingHorizontal: hp(20), marginBottom: hp(15) }}>
-        <Input
+        <UnderlinedInput
           icon={null}
           keyboardType="phone-pad"
           inputStyle={[

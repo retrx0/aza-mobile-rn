@@ -1,10 +1,9 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { ScrollView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View2 as View, Text2 as Text } from "../../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";
@@ -23,6 +22,7 @@ import { selectTransaction } from "../../../../redux/slice/transactionSlice";
 
 import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
 import * as yup from "yup";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 // style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}
 
 export default function AirtimeConfirmation({
@@ -54,30 +54,20 @@ export default function AirtimeConfirmation({
             value={""}
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Phone Number"
-            value="1234ueydjThs567890"
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            value=""
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -91,18 +81,17 @@ export default function AirtimeConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Amount"
             // placeholder="Select your payment method"
             // placeholderTextColor={
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
-            value={"\u20A62,000 (Airtime)"}
+            value={`${NAIRA_UNICODE} ,000 (Airtime)`}
             returnKeyType="done"
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[
@@ -116,7 +105,6 @@ export default function AirtimeConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Payment Method"
             // placeholder="Select your payment method"
@@ -142,14 +130,8 @@ export default function AirtimeConfirmation({
                 navigateTo: "Payments",
               });
             }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"

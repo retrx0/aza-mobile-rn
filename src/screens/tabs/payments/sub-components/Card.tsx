@@ -3,15 +3,13 @@ import {
   Image,
   StyleProp,
   StyleSheet,
-  Text,
   TextStyle,
   TouchableOpacity,
-  View,
   ViewStyle,
 } from "react-native";
 import { TickIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
+import { Text2 as Text, View2 as View } from "../../../../theme/Themed";
 
 type AirtimeProps = {
   title: string;
@@ -23,8 +21,6 @@ type AirtimeProps = {
 };
 
 export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
-  const colorScheme = useColorScheme();
-
   return (
     <>
       <View>
@@ -36,16 +32,7 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
             </View>
           ) : null}
         </TouchableOpacity>
-        <Text
-          style={[
-            styles.title,
-            {
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-            },
-            isActive && styles.title2,
-          ]}>
-          {title}
-        </Text>
+        <Text style={[styles.title, isActive && styles.title2]}>{title}</Text>
       </View>
     </>
   );

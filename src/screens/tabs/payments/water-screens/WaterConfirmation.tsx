@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { ScrollView } from "../../../../theme/Themed";
 import { View } from "../../../../theme/components/View";
@@ -38,7 +38,7 @@ export default function WaterConfirmation({
             icon={undefined}
             value={""}
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -61,7 +61,7 @@ export default function WaterConfirmation({
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -85,7 +85,7 @@ export default function WaterConfirmation({
             //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
             // }
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[

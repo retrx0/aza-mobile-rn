@@ -1,29 +1,17 @@
-import { Switch } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView, ScrollView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
+import React, { useState } from "react";
+import { View2 as View } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "./styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
-import ButtonLg from "../../../../components/buttons/ButtonLg";
-import MyButton from "../sub-components/MyButton";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { useRoute } from "@react-navigation/native";
-import SelectInput from "../../../../components/input/SelectInput";
-import { Glo, Mtn } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
-import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import Button from "../../../../components/buttons/Button";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 // import { fetchAirtimeOperators } from "../../../../api/airtime";
-import api from "../../../../api";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { hp } from "../../../../common/util/LayoutUtil";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import HeaderImage from "../sub-components/HeaderImage";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 import {
@@ -31,7 +19,6 @@ import {
   setDetailHeader,
   setDetailValue,
   setLogo,
-  setPaymentMethod,
   setPaymentTYpe,
   setTo,
 } from "../../../../redux/slice/paymentSlice";
@@ -64,12 +51,11 @@ export default function AirtimeIndex({
   const route = useRoute();
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   // const bundles = ["100mb", "200mb", "500mb"];
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
   const [active, setActive] = useState("");
   const [phone, setPhone] = useState("");
-  const [amount, settAmount] = useState(0);
+  const [amount, settAmount] = useState("");
   const dispatch = useDispatch();
   // const { icon } = route.params;
 
@@ -186,23 +172,16 @@ export default function AirtimeIndex({
       </View>
 
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           icon={null}
           keyboardType="phone-pad"
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           style={{ marginTop: hp(10) }}
           label="Phone Number"
           placeholder="Enter a phone number"
           returnKeyType="done"
-          onChangeText={(text) => {
-            setPhone(text);
-          }}
+          onChangeText={(text) => setPhone(text)}
         />
         <CustomSwitch
           title="My number"
@@ -233,14 +212,9 @@ export default function AirtimeIndex({
         )}
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={[styles.label]}
           label="Amount"
           placeholder="Enter an amount"
@@ -274,14 +248,8 @@ export default function AirtimeIndex({
             navigation.navigate("Common", { screen: "Confirm" });
           }}
           disabled={!CustomSwitch}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
-          style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-            },
-          ]}
+          styleText={{}}
+          style={[{}]}
         />
       </View>
     </View>

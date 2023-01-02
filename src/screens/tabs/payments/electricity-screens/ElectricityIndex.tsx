@@ -6,7 +6,7 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
 import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import SelectInput from "../../../../components/input/SelectInput";
 import { AEDC, EEDC, EKEDC, Ie, PH } from "../../../../../assets/images";
@@ -118,7 +118,7 @@ export default function ElectricityIndex({
         />
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           icon={null}
           inputStyle={[
             styles.input,
@@ -133,7 +133,7 @@ export default function ElectricityIndex({
           returnKeyType="done"
         />
 
-        <Input
+        <UnderlinedInput
           icon={null}
           inputStyle={[
             styles.input,

@@ -7,7 +7,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { CloseIcon, LockIcon, NairaIcon } from "../../../../../assets/svg";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { VaultStyles } from "../styles";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { PercentageCard, PercentageList } from "../components/VaultCard";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
@@ -87,7 +87,7 @@ const UnMatureVault = ({ setMatured }: { setMatured: () => void }) => {
         <View
           style={[CommonStyles.vaultInputcontainer, { paddingHorizontal: 25 }]}
         >
-          <Input
+          <UnderlinedInput
             label={"Top up Vault"}
             labelStyle={undefined}
             placeholder="Add more funds from your Aza balance"

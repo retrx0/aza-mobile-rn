@@ -5,7 +5,7 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
 import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
 import MyButton from "../sub-components/MyButton";
 import MySwitch from "../sub-components/MySwitch";
@@ -106,7 +106,7 @@ export default function CableTvIndex({
       </ScrollView>
 
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           icon={null}
           keyboardType="number-pad"
           inputStyle={[

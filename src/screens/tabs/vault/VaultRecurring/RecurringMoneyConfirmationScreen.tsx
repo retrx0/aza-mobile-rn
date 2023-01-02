@@ -6,7 +6,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { View } from "../../../../theme/components/View";
 import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
@@ -58,7 +58,7 @@ const RecurringMoneyConfirmationScreen = ({
             />
           </View>
           <View style={{ marginBottom: 20 }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               keyboardType="phone-pad"
               inputStyle={{
@@ -80,7 +80,7 @@ const RecurringMoneyConfirmationScreen = ({
             />
           </View>
           <View style={{ marginBottom: 20 }}>
-            <Input
+            <UnderlinedInput
               icon={null}
               keyboardType="default"
               inputStyle={{
@@ -101,7 +101,7 @@ const RecurringMoneyConfirmationScreen = ({
             />
           </View>
           <View style={CommonStyles.vaultInputcontainer}>
-            <Input
+            <UnderlinedInput
               icon={null}
               keyboardType="default"
               inputStyle={{

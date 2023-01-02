@@ -1,17 +1,15 @@
-import { Text, ScrollView, Switch, StyleSheet } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
+import { StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  SafeAreaView,
+  View2 as View,
+  Text2 as Text,
+} from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
-import ButtonLg from "../../../../components/buttons/ButtonLg";
-import MyButton from "../sub-components/MyButton";
-import MySwitch from "../sub-components/MySwitch";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { useRoute } from "@react-navigation/native";
-import SelectInput from "../../../../components/input/SelectInput";
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -55,7 +53,7 @@ export default function InternetDetail({
         heading="Subscribe to an internet plan"
       />
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           icon={null}
           keyboardType="default"
           inputStyle={[
@@ -91,7 +89,7 @@ export default function InternetDetail({
         />
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
-        <Input
+        <UnderlinedInput
           keyboardType="phone-pad"
           icon={null}
           inputStyle={[

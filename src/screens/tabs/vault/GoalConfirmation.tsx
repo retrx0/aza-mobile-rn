@@ -6,7 +6,7 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import { Input } from "../../../components/input/input";
+import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import { View } from "../../../theme/components/View";
 import { Text } from "../../../theme/components/Text";
 import Colors from "../../../constants/Colors";
@@ -64,7 +64,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               },
             ]}
           >
-            <Input
+            <UnderlinedInput
               icon={null}
               keyboardType="default"
               labelStyle={styles.label}
@@ -89,7 +89,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             />
           </View>
           <View style={CommonStyles.vaultInputcontainer}>
-            <Input
+            <UnderlinedInput
               icon={null}
               keyboardType="phone-pad"
               inputStyle={[

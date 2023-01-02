@@ -1,7 +1,6 @@
 import React from "react";
 import {
   StyleSheet,
-  TextInput,
   TextInputProps,
   StyleProp,
   ViewStyle,
@@ -10,9 +9,7 @@ import {
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
-import useColorScheme from "../../hooks/useColorScheme";
+import { TextInput, View2 as View, Text2 as Text } from "../../theme/Themed";
 
 export type InputProps = {
   label: string;
@@ -25,7 +22,7 @@ export type InputProps = {
   placeholderStyle?: StyleProp<TextStyle>;
 };
 
-export const Input = ({
+export const UnderlinedInput = ({
   label,
   style,
   labelStyle,
@@ -37,8 +34,6 @@ export const Input = ({
   placeholderStyle,
   ...rest
 }: InputProps & TextInputProps) => {
-  const colorScheme = useColorScheme();
-
   return (
     <View style={[styles.container, style, containerStyle]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
@@ -56,14 +51,7 @@ export const Input = ({
           <TextInput
             placeholder={placeholder}
             {...rest}
-            style={[
-              inputStyle,
-              {
-                color: Colors[colorScheme].text,
-                // marginTop: 10,
-              },
-              placeholderStyle,
-            ]}
+            style={[inputStyle, {}, placeholderStyle]}
           ></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>

@@ -1,10 +1,12 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
-import { ScrollView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import {
+  ScrollView,
+  View2 as View,
+  Text2 as Text,
+} from "../../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";
@@ -38,7 +40,7 @@ export default function InternetConfirmation({
             icon={undefined}
             value={""}
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[
@@ -61,7 +63,7 @@ export default function InternetConfirmation({
             // }
             value="1234ueydjThs567890"
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -85,7 +87,7 @@ export default function InternetConfirmation({
             value={"\u20A680,000 (Unlimited plan)"}
             returnKeyType="done"
           />
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[

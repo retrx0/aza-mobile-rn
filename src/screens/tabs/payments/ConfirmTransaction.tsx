@@ -1,6 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Input } from "./../../../components/input/input";
+import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import MyButton from "./sub-components/MyButton";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
@@ -55,7 +55,7 @@ export default function AirtimeConfirmation({
             value={""}
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -78,7 +78,7 @@ export default function AirtimeConfirmation({
             }
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[
@@ -103,7 +103,7 @@ export default function AirtimeConfirmation({
             returnKeyType="done"
           />
 
-          <Input
+          <UnderlinedInput
             icon={null}
             keyboardType="default"
             inputStyle={[

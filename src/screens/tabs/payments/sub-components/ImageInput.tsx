@@ -8,7 +8,7 @@ import {
   TextStyle,
 } from "react-native";
 import React from "react";
-import { Input } from "../../../../components/input/input";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { Mtn } from "../../../../../assets/images";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
@@ -32,7 +32,7 @@ export const ImageInput = ({
   const colorScheme = useColorScheme();
   return (
     <View style={styles.container}>
-      <Input
+      <UnderlinedInput
         icon={null}
         keyboardType="default"
         placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
