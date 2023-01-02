@@ -14,7 +14,7 @@ import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
-import CommonStack from "../common/navigation/CommonStackNavigator";
+import CommonStack from "./CommonStackNavigator";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
 import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";

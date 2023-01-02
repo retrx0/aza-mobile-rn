@@ -7,7 +7,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../../types";
-import { TopBar } from "../../../../common/navigation/CommonStackNavigator";
+import { TopBar } from "../../../../navigation/CommonStackNavigator";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
 
