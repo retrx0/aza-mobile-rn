@@ -7,7 +7,7 @@ import { RootStackScreenProps } from "../../../types";
 import QRMakePaymentTab from "./components/QRMakePaymentTab";
 import QRReceivePaymentTab from "./components/QRReceivePaymentTab";
 import BackButton from "../../components/buttons/BackButton";
-import { Text2 as Text } from "../../theme/Themed";
+import { Text as Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
 import SpacerWrapper from "../../common/util/SpacerWrapper";

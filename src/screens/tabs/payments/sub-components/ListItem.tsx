@@ -3,7 +3,7 @@ import React from "react";
 import Divider from "./Divider";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 type Props = {

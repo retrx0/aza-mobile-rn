@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {
   SafeAreaView,
   View as View,
-  Text2 as Text,
+  Text as Text,
 } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";

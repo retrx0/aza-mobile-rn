@@ -5,7 +5,7 @@ import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { TextInput } from "../../theme/Themed";
-import { Text2 as Text } from "../../theme/Themed";
+import { Text as Text } from "../../theme/Themed";
 
 const InputFormFieldNormal = ({
   value,

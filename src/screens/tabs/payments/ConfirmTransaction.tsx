@@ -14,11 +14,7 @@ import { Glo, Ie, Mtn } from "./../../../../assets/images";
 import SpacerWrapper from "./../../../common/util/SpacerWrapper";
 import CommonStyles from "./../../../common/styles/CommonStyles";
 import { Formik } from "formik";
-import {
-  TextInput,
-  View as View,
-  Text2 as Text,
-} from "./../../../theme/Themed";
+import { TextInput, View as View, Text as Text } from "./../../../theme/Themed";
 import { useAppSelector } from "./../../../redux";
 import { selectTransaction } from "./../../../redux/slice/transactionSlice";
 

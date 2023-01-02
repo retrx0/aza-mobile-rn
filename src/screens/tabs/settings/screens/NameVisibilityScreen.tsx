@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Image, StyleSheet } from "react-native";
 
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import BackButton from "../../../../components/buttons/BackButton";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";

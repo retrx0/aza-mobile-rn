@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
 
-import { View as View, Text2 as Text } from "../../../theme/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";

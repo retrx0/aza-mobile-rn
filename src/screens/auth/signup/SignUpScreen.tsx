@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PhoneInput } from "../../../theme/Themed";
-import { View as View, Text2 as Text } from "../../../theme/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";

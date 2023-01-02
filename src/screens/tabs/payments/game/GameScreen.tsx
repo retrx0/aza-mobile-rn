@@ -1,6 +1,6 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { GAME } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";

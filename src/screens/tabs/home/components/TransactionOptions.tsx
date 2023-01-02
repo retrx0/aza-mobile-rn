@@ -10,7 +10,7 @@ import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import { useBottomSheetType } from "../hooks/useBottomSheetType";

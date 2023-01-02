@@ -9,7 +9,7 @@ import {
 import { hp } from "../../common/util/LayoutUtil";
 import {
   View as View,
-  Text2 as Text,
+  Text as Text,
   TextInput,
   TextInputProps,
 } from "../../theme/Themed";

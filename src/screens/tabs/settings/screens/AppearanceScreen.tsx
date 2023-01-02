@@ -15,7 +15,7 @@ import {
   SystemModeIcon,
 } from "../../../../../assets/svg";
 import Divider from "../../../../components/divider/Divider";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import { useAppDispatch } from "../../../../redux";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";

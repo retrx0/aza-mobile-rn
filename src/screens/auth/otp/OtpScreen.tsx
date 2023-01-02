@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { SigninStyles as styles } from "../signin/styles";
 
 import Button from "../../../components/buttons/Button";
-import { View as View, Text2 as Text } from "../../../theme/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";

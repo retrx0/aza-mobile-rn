@@ -5,7 +5,7 @@ import { FlatList } from "react-native";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { CountriesCard } from "../signup/components/CountriesCard";
-import { View as View, Text2 as Text } from "../../../theme/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";

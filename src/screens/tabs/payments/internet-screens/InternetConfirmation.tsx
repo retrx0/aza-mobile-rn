@@ -5,7 +5,7 @@ import MyButton from "../sub-components/MyButton";
 import {
   ScrollView,
   View as View,
-  Text2 as Text,
+  Text as Text,
 } from "../../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import { ScrollView } from "../../../../theme/Themed";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";

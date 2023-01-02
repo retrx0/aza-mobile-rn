@@ -4,7 +4,7 @@ import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
 import BackButton from "../../components/buttons/BackButton";
-import { View as View, Text2 as Text } from "../../theme/Themed";
+import { View as View, Text as Text } from "../../theme/Themed";
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 

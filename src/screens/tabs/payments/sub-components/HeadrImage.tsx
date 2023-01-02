@@ -7,7 +7,7 @@ import {
 import React from "react";
 import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 type HeaderImageProps = {
   image: ImageSourcePropType;

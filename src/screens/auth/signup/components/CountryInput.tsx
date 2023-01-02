@@ -7,7 +7,7 @@ import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import {
   View as View,
-  Text2 as Text,
+  Text as Text,
   TextInput,
 } from "../../../../theme/Themed";
 import useColorScheme from "../../../../hooks/useColorScheme";

@@ -4,7 +4,7 @@ import { PaymentStyles as styles } from "./styles";
 import {
   SafeAreaView,
   View as View,
-  Text2 as Text,
+  Text as Text,
 } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import HeadrImage from "./sub-components/HeadrImage";

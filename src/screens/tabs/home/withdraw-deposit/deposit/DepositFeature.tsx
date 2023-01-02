@@ -3,7 +3,7 @@ import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../../../common/navigation/types";
 
-import { Text2 as Text, View as View } from "../../../../../theme/Themed";
+import { Text as Text, View as View } from "../../../../../theme/Themed";
 
 import Colors from "../../../../../constants/Colors";
 import { hp } from "../../../../../common/util/LayoutUtil";

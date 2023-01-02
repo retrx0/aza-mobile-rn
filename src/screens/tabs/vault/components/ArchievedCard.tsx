@@ -10,7 +10,7 @@ import {
 import {
   SafeAreaView,
   View as View,
-  Text2 as Text,
+  Text as Text,
 } from "../../../../theme/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";

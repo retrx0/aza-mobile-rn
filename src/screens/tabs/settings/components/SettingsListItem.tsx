@@ -8,7 +8,7 @@ import Divider from "../../../../components/divider/Divider";
 // import { Text } from "../../../../theme/components/Text";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { View as View, Text2 as Text } from "../../../../theme/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 interface SettingsListItemsProps {
   name: string;

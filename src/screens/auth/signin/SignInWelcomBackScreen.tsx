@@ -5,7 +5,7 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
-import { View as View, Text2 as Text } from "../../../theme/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 import api from "../../../api";
 import { Alert, AppState, TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";

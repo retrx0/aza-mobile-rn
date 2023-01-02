@@ -3,7 +3,7 @@ import React from "react";
 import { ChevronRightIcon } from "../../../assets/svg";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import { View as View, Text2 as Text } from "../../theme/Themed";
+import { View as View, Text as Text } from "../../theme/Themed";
 import { StyleProp, TextStyle } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
 import SpacerWrapper from "../../common/util/SpacerWrapper";

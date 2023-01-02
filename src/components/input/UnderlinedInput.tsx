@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { TextInput, View as View, Text2 as Text } from "../../theme/Themed";
+import { TextInput, View as View, Text as Text } from "../../theme/Themed";
 
 export type InputProps = {
   label: string;

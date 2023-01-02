@@ -65,7 +65,7 @@ export type SafeAreaViewProps = ThemeProps & ThemedSafeAreaView["props"];
 export type OTPInputViewProps = ThemeProps & ThemedOTPInputView["props"];
 export type PhoneInputProps = ThemeProps & ThemedPhoneInput["props"];
 
-export const Text2 = (props: TextProps) => {
+export const Text = (props: TextProps) => {
   const { style, lightColor, darkColor, ...otherProps } = props;
 
   const selectedTheme = useAppSelector(selectAppTheme);
