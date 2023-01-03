@@ -10,7 +10,6 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 import Button from "../../../../components/buttons/Button";
@@ -78,8 +77,7 @@ export default function ElectricityIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {ElectricityList.map((item, index) => {
           return (
             <Card
@@ -97,8 +95,7 @@ export default function ElectricityIndex({
           paddingHorizontal: hp(20),
 
           marginBottom: hp(10),
-        }}
-      >
+        }}>
         <CustomDropdown
           label="Meter Type"
           data={period}
@@ -115,12 +112,7 @@ export default function ElectricityIndex({
       <View style={{ paddingHorizontal: hp(20) }}>
         <UnderlinedInput
           icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           label="Meter Number"
           placeholder="Enter your meter number"
@@ -130,12 +122,7 @@ export default function ElectricityIndex({
 
         <UnderlinedInput
           icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           label="Amount"
           placeholder="Enter an amount to be paid"
@@ -148,8 +135,7 @@ export default function ElectricityIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           disabled={!bundles}
           title="Continue"

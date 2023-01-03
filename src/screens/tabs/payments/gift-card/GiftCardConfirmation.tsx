@@ -34,13 +34,7 @@ export default function GiftCardConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -58,13 +52,7 @@ export default function GiftCardConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -82,13 +70,7 @@ export default function GiftCardConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -108,8 +90,7 @@ export default function GiftCardConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => {

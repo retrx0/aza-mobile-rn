@@ -78,8 +78,7 @@ export const CharityStyles = StyleSheet.create({
   input: {
     marginLeft: 20,
     width: "90%",
-
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),
     fontWeight: "500",

@@ -1,8 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import MyButton from "../sub-components/MyButton";
-import { ScrollView } from "../../../../theme/Themed";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
@@ -11,18 +9,15 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { ImageInput } from "../sub-components/ImageInput";
-import { Glo, Ie, Mtn } from "../../../../../assets/images";
+import { Glo } from "../../../../../assets/images";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Button from "../../../../components/buttons/Button";
-import { Formik } from "formik";
-import { TextInput } from "../../../../theme/Themed";
-import { useAppSelector } from "../../../../redux";
 import { selectTransaction } from "../../../../redux/slice/transactionSlice";
-
-import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
-import * as yup from "yup";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import { useAppSelector } from "../../../../redux";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 // style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}
 
 export default function AirtimeConfirmation({
@@ -32,6 +27,7 @@ export default function AirtimeConfirmation({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const transferObject = useAppSelector(selectTransaction);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <SpacerWrapper>
@@ -39,8 +35,7 @@ export default function AirtimeConfirmation({
         style={[
           CommonStyles.vaultcontainer,
           { marginTop: Platform.OS == "android" ? 50 : 0 },
-        ]}
-      >
+        ]}>
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -57,7 +52,10 @@ export default function AirtimeConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              { backgroundColor: Colors[appTheme].background },
+            ]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -75,6 +73,7 @@ export default function AirtimeConfirmation({
               {
                 borderBottomColor:
                   colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                backgroundColor: Colors[appTheme].background,
               },
             ]}
             labelStyle={{
@@ -118,8 +117,7 @@ export default function AirtimeConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => {

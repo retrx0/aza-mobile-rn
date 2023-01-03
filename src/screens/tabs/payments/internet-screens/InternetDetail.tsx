@@ -56,12 +56,7 @@ export default function InternetDetail({
         <UnderlinedInput
           icon={null}
           keyboardType="default"
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={[styles.label]}
           label="Account/User ID"
           placeholder="Enter your User ID"
@@ -73,8 +68,7 @@ export default function InternetDetail({
           paddingHorizontal: hp(20),
           marginTop: hp(30),
           marginBottom: hp(10),
-        }}
-      >
+        }}>
         <CustomDropdown
           label="Bundle"
           data={period}
@@ -92,12 +86,7 @@ export default function InternetDetail({
         <UnderlinedInput
           keyboardType="phone-pad"
           icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={[
             styles.label,
             { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
@@ -112,8 +101,7 @@ export default function InternetDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           title="Continue"
           onPressButton={() =>

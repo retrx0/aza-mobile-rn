@@ -1,17 +1,12 @@
-import { View, Text, ScrollView, Switch, StyleSheet } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import ButtonLg from "../../../../components/buttons/ButtonLg";
 import MyButton from "../sub-components/MyButton";
-import MySwitch from "../sub-components/MySwitch";
 import { useRoute } from "@react-navigation/native";
-import SelectInput from "../../../../components/input/SelectInput";
-import { Dstv, Gotv, Ie, Startimes } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -90,8 +85,7 @@ export default function CableTvIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {Cable.map((item, index) => {
           return (
             <Card
@@ -109,12 +103,7 @@ export default function CableTvIndex({
         <UnderlinedInput
           icon={null}
           keyboardType="number-pad"
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           label="Smart Card Number"
           placeholder="Enter your smart card number"
@@ -127,8 +116,7 @@ export default function CableTvIndex({
           paddingHorizontal: hp(20),
           marginBottom: hp(20),
           marginTop: hp(20),
-        }}
-      >
+        }}>
         <Text
           // lightColor={Colors.light.secondaryText}
           // darkColor={Colors.dark.secondaryText}
@@ -138,8 +126,7 @@ export default function CableTvIndex({
             fontFamily: "Euclid-Circular-A",
 
             color: colorScheme === "dark" ? "#ffffff" : "#000000",
-          }}
-        >
+          }}>
           Subscription Package
         </Text>
         <CustomDropdown
@@ -160,8 +147,7 @@ export default function CableTvIndex({
             lineHeight: hp(17.75),
             color: colorScheme === "dark" ? "#ffffff" : "#000000",
             fontFamily: "Euclid-Circular-A",
-          }}
-        >
+          }}>
           Subscription Amount
         </Text>
 
@@ -178,8 +164,7 @@ export default function CableTvIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <MyButton
           disabled={false}
           title="Continue"

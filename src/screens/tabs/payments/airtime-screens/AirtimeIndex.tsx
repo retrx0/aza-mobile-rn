@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { View as View } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "./styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -14,6 +13,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
+
 import {
   setAmount,
   setDetailHeader,
@@ -23,6 +23,7 @@ import {
   setTo,
 } from "../../../../redux/slice/paymentSlice";
 import { useDispatch } from "react-redux";
+import { View } from "../../../../theme/Themed";
 
 const Network = [
   {
@@ -152,8 +153,7 @@ export default function AirtimeIndex({
           flexWrap: "wrap",
           marginTop: hp(15),
           justifyContent: "space-between",
-        }}
-      >
+        }}>
         {Network.map((item, index) => {
           return (
             <Card
@@ -194,8 +194,7 @@ export default function AirtimeIndex({
           paddingHorizontal: hp(20),
           marginTop: hp(10),
           marginBottom: hp(10),
-        }}
-      >
+        }}>
         {route.name == "data bundle" && (
           <CustomDropdown
             data={period}
@@ -230,8 +229,7 @@ export default function AirtimeIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           title="Continue"
           onPressButton={() => {

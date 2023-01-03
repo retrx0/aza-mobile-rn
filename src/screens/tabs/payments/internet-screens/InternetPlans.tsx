@@ -18,6 +18,7 @@ import {
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
+
 export default function InternetPlans({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -27,12 +28,7 @@ export default function InternetPlans({
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
         icon={null}
-        inputStyle={[
-          styles2.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
+        inputStyle={[styles2.input]}
         labelStyle={[styles.label]}
         label=""
         placeholder="Search for internet provider"
@@ -109,7 +105,7 @@ const styles2 = StyleSheet.create({
   input: {
     width: "100%",
     borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     fontSize: hp(16),
     fontWeight: "500",
     fontFamily: "Euclid-Circular-A",
