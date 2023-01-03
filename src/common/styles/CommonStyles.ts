@@ -3,6 +3,10 @@ import Colors from "../../constants/Colors";
 import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
+  gameImage: {
+    width: wp(200),
+    height: hp(200),
+  },
   flightcontainer: {
     flexDirection: "row",
     marginLeft: hp(20),
