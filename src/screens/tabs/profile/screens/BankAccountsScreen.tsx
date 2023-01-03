@@ -2,8 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline, {
   CancelButtonWithUnderline,
@@ -23,6 +22,9 @@ import {
   ChevronRightIcon,
   UndrawAccountIcon,
 } from "../../../../../assets/svg";
+import { AccessBank } from "../../../../../assets/images";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const BankAccountsScreen = ({
   navigation,
@@ -33,6 +35,8 @@ const BankAccountsScreen = ({
   const [accountAvailable] = useState(true);
   const insets = useSafeAreaInsets();
   const { screenType } = route.params;
+
+  const user = useAppSelector(selectUser);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -59,7 +63,7 @@ const BankAccountsScreen = ({
 
   const accounts = [
     {
-      image: require("../../../../../assets/images/AccessBank.png"),
+      image: AccessBank,
       name: "Access Bank (123........)",
     },
   ];
@@ -70,8 +74,6 @@ const BankAccountsScreen = ({
         <View style={[CommonStyles.vaultcontainer]}>
           <View style={{ paddingHorizontal: 15 }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(16),
@@ -83,58 +85,61 @@ const BankAccountsScreen = ({
               Select the bank you wish to withdraw to
             </Text>
             <Divider />
-            {accounts.map(({ image, name }, i) => (
-              <View key={i}>
-                <TouchableOpacity onPress={() => setSelectedAccount(name)}>
-                  <View
-                    style={[
-                      CommonStyles.row,
-                      { alignSelf: "stretch", paddingVertical: 15 },
-                    ]}
+            {user.bankAccounts.data.map(
+              ({ logoUrl, bankName, accountNumber }, i) => (
+                <View key={i}>
+                  <TouchableOpacity
+                    onPress={() => setSelectedAccount(bankName)}
                   >
-                    <Image
-                      source={image}
-                      style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 50,
-                      }}
-                    />
-                    <Text
-                      // lightColor={Colors.light.mainText}
-                      // darkColor={Colors.dark.mainText}
-                      style={{
-                        marginLeft: hp(20),
-                        fontFamily: "Euclid-Circular-A-Semi-Bold",
-                        fontSize: hp(14),
-                      }}
-                    >
-                      Access Bank (123........)
-                    </Text>
                     <View
-                      style={{
-                        marginLeft: "auto",
-                        width: hp(20),
-                        height: hp(20),
-                        borderRadius: hp(10),
-                        borderColor:
-                          selectedAccount === name
-                            ? Colors.general.green
-                            : "#3A3D42",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderWidth: hp(1),
-                      }}
+                      style={[
+                        CommonStyles.row,
+                        { alignSelf: "stretch", paddingVertical: 15 },
+                      ]}
                     >
-                      {selectedAccount === name && (
-                        <View style={CommonStyles.doneSelect} />
-                      )}
+                      <Image
+                        source={{ uri: logoUrl }}
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: 50,
+                        }}
+                      />
+
+                      <Text
+                        style={{
+                          marginLeft: hp(20),
+                          fontFamily: "Euclid-Circular-A-Semi-Bold",
+                          fontSize: hp(14),
+                        }}
+                      >
+                        {`${bankName} (${accountNumber.substring(0, 3)}.....)`}
+                      </Text>
+                      <View
+                        style={{
+                          marginLeft: "auto",
+                          width: hp(20),
+                          height: hp(20),
+                          borderRadius: hp(10),
+                          borderColor:
+                            selectedAccount === bankName
+                              ? Colors.general.green
+                              : "#3A3D42",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          borderWidth: hp(1),
+                        }}
+                      >
+                        {selectedAccount === bankName && (
+                          <View style={CommonStyles.doneSelect} />
+                        )}
+                      </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-                <Divider />
-              </View>
-            ))}
+                  </TouchableOpacity>
+                  <Divider />
+                </View>
+              )
+            )}
           </View>
           <View
             style={[
@@ -162,21 +167,14 @@ const BankAccountsScreen = ({
                     transaction: "deposit",
                     type: "normal",
                     beneficiary: {
-                      beneficiaryAccount: "",
-                      beneficiaryImage: "",
-                      beneficiaryName: "",
+                      azaAccountNumber: "",
+                      fullName: "",
                     },
                   },
                 })
               }
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={[
-                {
-                  backgroundColor: Colors[colorScheme].button,
-                },
-              ]}
+              styleText={{}}
+              style={[{}]}
             />
             <CancelButtonWithUnderline
               title="Cancel"
@@ -196,8 +194,6 @@ const BankAccountsScreen = ({
         <View style={[CommonStyles.vaultcontainer]}>
           <View style={{ paddingHorizontal: hp(15) }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(16),
@@ -210,44 +206,46 @@ const BankAccountsScreen = ({
               Select a bank account to perform any activity
             </Text>
             <Divider />
-            {accounts.map(({ image, name }, i) => (
-              <View key={i}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("EditBankAccountDetails")}
-                >
-                  <View
-                    style={[
-                      CommonStyles.row,
-                      { alignSelf: "stretch", paddingVertical: 15 },
-                    ]}
+            {user.bankAccounts.data.map(
+              ({ logoUrl, bankName, accountNumber }, i) => (
+                <View key={i}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("EditBankAccountDetails")
+                    }
                   >
-                    <Image
-                      source={image}
-                      style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 50,
-                      }}
-                    />
-                    <Text
-                      // lightColor={Colors.light.mainText}
-                      // darkColor={Colors.dark.mainText}
-                      style={{
-                        marginLeft: hp(20),
-                        fontFamily: "Euclid-Circular-A-Semi-Bold",
-                        fontSize: hp(14),
-                      }}
+                    <View
+                      style={[
+                        CommonStyles.row,
+                        { alignSelf: "stretch", paddingVertical: 15 },
+                      ]}
                     >
-                      Access Bank (123........)
-                    </Text>
-                    <View style={{ marginLeft: "auto" }}>
-                      <ChevronRightIcon color={"#2A9E17"} size={20} />
+                      <Image
+                        source={{ uri: logoUrl }}
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: 50,
+                        }}
+                      />
+                      <Text
+                        style={{
+                          marginLeft: hp(20),
+                          fontFamily: "Euclid-Circular-A-Semi-Bold",
+                          fontSize: hp(14),
+                        }}
+                      >
+                        {`${bankName} (${accountNumber.substring(0, 3)}.....)`}
+                      </Text>
+                      <View style={{ marginLeft: "auto" }}>
+                        <ChevronRightIcon color={"#2A9E17"} size={20} />
+                      </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-                <Divider />
-              </View>
-            ))}
+                  </TouchableOpacity>
+                  <Divider />
+                </View>
+              )
+            )}
           </View>
           <View
             style={[
@@ -262,14 +260,8 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={[
-                {
-                  backgroundColor: Colors[colorScheme].button,
-                },
-              ]}
+              styleText={{}}
+              style={[{}]}
             />
           </View>
         </View>

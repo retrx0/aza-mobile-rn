@@ -17,6 +17,7 @@ import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
+import { numberWithCommas } from "../../../../common/util/NumberUtils";
 
 export default function AccountDetails({ isModalVisible, listItems }: any) {
   const [secure, setSecure] = useState(true);
@@ -75,7 +76,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                     marginVertical: hp(10),
                   }}
                 >
-                  {NAIRA_UNICODE + "" + user.azaBalance}
+                  {NAIRA_UNICODE + "" + numberWithCommas(user.azaBalance)}
                 </Text>
               </>
             ) : (
@@ -139,13 +140,11 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
-              // backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
             }}
           >
             <View
               style={{
                 height: hp(335),
-                // backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
               }}
             >
               <Text

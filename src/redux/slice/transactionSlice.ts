@@ -8,7 +8,7 @@ import { RootState } from "../Store";
 // Define a type for the slice state
 
 export interface TransactionState {
-  beneficairy: Beneficiary;
+  beneficiary: Beneficiary;
   amount: number;
   description?: string;
   transferType: "send" | "request";
@@ -18,7 +18,7 @@ export interface TransactionState {
 const initialState: TransactionState = {
   amount: 0,
   description: "",
-  beneficairy: {
+  beneficiary: {
     azaAccountNumber: "",
     fullName: "",
     phone: "",
@@ -36,14 +36,50 @@ export const transactionSlice = createSlice({
   initialState,
   reducers: {
     setTransaction: (state, action: PayloadAction<TransactionState>) => {
-      state = action.payload;
+      state.amount = action.payload.amount;
+      state.beneficiary = action.payload.beneficiary;
+      state.transferType = action.payload.transferType;
+      state.description = action.payload.description;
+    },
+    setTransactionAmount: (state, action: PayloadAction<number>) => {
+      state.amount = action.payload;
+    },
+    setTransactionBeneficiary: (state, action: PayloadAction<Beneficiary>) => {
+      state.beneficiary = action.payload;
+    },
+    setTransactionBeneficairyAndAmount: (
+      state,
+      action: PayloadAction<{ amount: number; beneficiary: Beneficiary }>
+    ) => {
+      state.amount = action.payload.amount;
+      state.beneficiary = action.payload.beneficiary;
+    },
+    setTransactionDescription: (state, action: PayloadAction<string>) => {
+      state.description = action.payload;
+    },
+    setTransactionTransferType: (
+      state,
+      action: PayloadAction<"send" | "request">
+    ) => {
+      state.transferType = action.payload;
     },
   },
 });
 
-export const { setTransaction: setTransaction } = transactionSlice.actions;
+export const {
+  setTransaction: setTransaction,
+  setTransactionBeneficiary,
+  setTransactionAmount,
+  setTransactionTransferType,
+  setTransactionBeneficairyAndAmount,
+  setTransactionDescription,
+} = transactionSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectTransaction = (state: RootState) => state.transaction;
+export const selectTransactionBeneficiary = (state: RootState) =>
+  state.transaction.beneficiary;
+export const selectTransactionAmount = (state: RootState) =>
+  state.transaction.amount;
 
 export default transactionSlice.reducer;

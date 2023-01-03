@@ -31,7 +31,7 @@ export const Etisalat = require("./common/Etisalat.png");
 export const Airtel = require("./common/Airtel.png");
 
 export const Aleemz = require("./Aleemz.png");
-export const AccessBank = require("./AccessBank.png");
+export const AccessBank = require("./logo/banks/AccessBank.png");
 export const UbaBank = require("./UbaBank.png");
 export const Swift = require("./Swift.png");
 export const AccessBankLogoWithName = require("./accessBankLogoWithName.png");

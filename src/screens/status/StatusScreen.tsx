@@ -52,10 +52,9 @@ const StatusScreen = ({
     switch (statusIcon) {
       case "Success":
         if (screenType && screenType === "transaction") {
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           playSwooshSound();
         }
-
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         break;
 
       case "Warning":

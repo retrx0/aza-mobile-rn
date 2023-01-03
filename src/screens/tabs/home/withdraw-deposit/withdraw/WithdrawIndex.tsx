@@ -12,14 +12,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { hp } from "../../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
-import { InfoIcon } from "../../../../../../assets/svg";
-import useColorScheme from "../../../../../hooks/useColorScheme";
 
 export default function WithdrawIndex({
   navigation,
 }: RootTabScreenProps<"Home">) {
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
     navigation.setOptions({

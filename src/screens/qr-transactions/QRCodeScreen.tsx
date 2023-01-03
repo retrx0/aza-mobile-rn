@@ -4,7 +4,7 @@ import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
 import BackButton from "../../components/buttons/BackButton";
-import { View as View, Text as Text } from "../../theme/Themed";
+import { View, Text } from "../../theme/Themed";
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -22,6 +22,7 @@ import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { toastError, toastSuccess } from "../../common/util/ToastUtil";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -60,10 +61,22 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
       ? captureScreen({
           format: "jpg",
           quality: 0.8,
-        }).then(
-          (uri) => MediaLibrary.saveToLibraryAsync(uri),
-          (error) => console.error("Oops, snapshot failed", error)
-        )
+        })
+          .then(
+            (uri) => {
+              MediaLibrary.saveToLibraryAsync(uri);
+              toastSuccess("QR Code saved to images");
+              navigation.goBack();
+            },
+            (error) => {
+              console.error("Oops, snapshot failed", error);
+              toastError("Could not save QR Code to images!");
+            }
+          )
+          .catch((e) => {
+            console.debug(e as Error);
+            toastError("Could not save QR Code to images!");
+          })
       : Alert.alert("Permission not granted");
   };
 

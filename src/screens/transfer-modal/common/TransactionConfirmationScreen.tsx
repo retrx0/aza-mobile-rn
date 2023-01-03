@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
@@ -11,36 +11,36 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import {
-  Beneficiary,
-  CommonScreenProps,
-} from "../../../common/navigation/types";
-import { useAppSelector } from "../../../redux";
+import { CommonScreenProps } from "../../../common/navigation/types";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   selectTransaction,
+  setTransactionDescription,
   TransactionState,
 } from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Transaction } from "../../../redux/types";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
-  beneficiary: Beneficiary;
-  transactionDetails: TransactionState;
 };
 
 const TransactionConfirmationScreen = ({
   navigation,
   route,
-  beneficiary,
-  transactionDetails,
   confirmationType,
-}: CommonScreenProps<"RequestMoneyConfirmation"> & TransactionScreenProps) => {
+}: CommonScreenProps<"Common"> & TransactionScreenProps) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
-  console.log(useAppSelector(selectTransaction));
+  const { beneficiary, amount, transferType, description } =
+    useAppSelector(selectTransaction);
+
+  const [transDescription, setTransDescription] = useState(description);
+
+  console.log({ beneficiary, amount, description, transferType });
+
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -67,15 +67,26 @@ const TransactionConfirmationScreen = ({
   const makeTransaction = () => {
     // do some validation
 
+    dispatch(setTransactionDescription("" + transDescription));
+
     navigation.navigate("StatusScreen", {
-      status: "Successful",
+      status:
+        confirmationType === "request"
+          ? "Successful"
+          : "Your Transaction was successful",
       statusIcon: "Success",
       //TODO update message to accept JSX
       statusMessage: `You have successfully ${
-        confirmationType === "request" ? "requested for" : "send"
-      } ${NAIRA_UNICODE} ${transactionDetails.amount} ${
+        confirmationType === "request" ? "requested" : "sent"
+      } ${NAIRA_UNICODE} ${amount} ${
         confirmationType === "request" ? "from" : "to"
       } ${beneficiary.fullName}`,
+      statusMessage2:
+        confirmationType === "send"
+          ? "You can perform this transaction automatically by giving a Recurring Transfer order"
+          : "",
+      receiptButton: confirmationType === "send",
+      setupRecurringTransfer: confirmationType === "send",
       navigateTo: "Home",
       screenType: "transaction",
     });
@@ -120,6 +131,7 @@ const TransactionConfirmationScreen = ({
               }}
               showSoftInputOnFocus={false}
               value={beneficiary.fullName}
+              editable={false}
             />
             <Image
               source={{
@@ -156,6 +168,16 @@ const TransactionConfirmationScreen = ({
                 },
               ]}
             >
+              <Text
+                style={{
+                  fontSize: hp(16),
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  paddingBottom: 5,
+                  paddingRight: 5,
+                }}
+              >
+                {NAIRA_UNICODE}
+              </Text>
               <TextInput
                 placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={{
@@ -167,8 +189,9 @@ const TransactionConfirmationScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}
+                value={"" + amount}
                 showSoftInputOnFocus={false}
-                value={`${NAIRA_UNICODE} ${transactionDetails.amount}`}
+                editable={false}
               />
             </View>
           </View>
@@ -193,8 +216,8 @@ const TransactionConfirmationScreen = ({
                 borderBottomColor: Colors[colorScheme].separator,
                 fontSize: hp(16),
               }}
-              showSoftInputOnFocus={false}
-              value={transactionDetails.description}
+              onChangeText={setTransDescription}
+              value={transDescription}
             />
           </View>
         </View>

@@ -86,7 +86,7 @@ const QRReceivePaymentTab = ({
             marginBottom: hp(60),
           }}
         >
-          <VirtualKeyboard value={amount} setValue={setAmount} />
+          <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <Button
           title="Continue"
@@ -95,7 +95,7 @@ const QRReceivePaymentTab = ({
             dispatch(
               setTransaction({
                 amount: Number(amount),
-                beneficairy: {
+                beneficiary: {
                   fullName: user.fullName,
                   azaAccountNumber: "" + user.azaAccountNumber,
                   firstName: user.firstName,

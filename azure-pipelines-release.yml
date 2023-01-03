@@ -18,4 +18,9 @@ steps:
     displayName: "Run Jest tests"
 
   - script: yarn run lint
-  displayName: "Code Analysis"
+    displayName: "Code Analysis"
+
+  - script: |
+      eas update:configure
+      eas upadate
+    displayName: "Deploy to Expo"

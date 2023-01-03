@@ -14,6 +14,7 @@ import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useNavigation } from "@react-navigation/core";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { AccessBank } from "../../../../../assets/images";
 
 const VaultToBank = () => {
   const [click, setClick] = useState(false);
@@ -67,7 +68,7 @@ const VaultToBank = () => {
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
-              source={require("../../../../../assets/images/AccessBank.png")}
+              source={AccessBank}
               resizeMode="cover"
               style={[CommonStyles.accessBank]}
             />

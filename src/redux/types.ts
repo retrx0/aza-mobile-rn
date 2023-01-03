@@ -44,6 +44,14 @@ export interface UserState {
   payments: { loading: boolean; recentPayments: [] };
   recentTransactions: { loading: boolean; data: Transaction[] };
   azaContacts: { loading: boolean; data: Beneficiary[] };
+  bankAccounts: { loading: boolean; data: BankAccount[] };
+}
+
+export interface BankAccount {
+  bankName: string;
+  logoUrl?: string;
+  accountNumber: string;
+  accountName: string;
 }
 
 interface Vault {}

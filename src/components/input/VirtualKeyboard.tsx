@@ -5,14 +5,15 @@ import Colors from "../../constants/Colors";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getAppTheme } from "../../theme";
-import { View as View, Text as Text } from "../../theme/Themed";
+import { View, Text } from "../../theme/Themed";
 
 interface IProps {
   value: string;
   setValue: (value: string) => void;
+  maxLength: number;
 }
 
-const VirtualKeyboard = ({ value, setValue }: IProps) => {
+const VirtualKeyboard = ({ value, setValue, maxLength }: IProps) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const onKeyPress = (key: string) => {
@@ -22,8 +23,10 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
     }
     let currentText = value;
     if (key !== "backIcon") {
-      currentText += key;
-      setValue(currentText);
+      if (currentText.length <= maxLength) {
+        currentText += key;
+        setValue(currentText);
+      }
     } else {
       currentText = currentText.slice(0, -1);
       setValue(currentText);

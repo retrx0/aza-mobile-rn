@@ -159,6 +159,9 @@ export type CommonStackParamList = {
 
   // CEOMessage screen
   CEOMessage: undefined;
+
+  // Common!!!
+  Common: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
