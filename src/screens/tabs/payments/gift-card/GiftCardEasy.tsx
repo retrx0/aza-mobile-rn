@@ -21,6 +21,8 @@ const GiftCardEasy = ({
         "Purchase any Gift Card of your choice effortlessly with affordable rates."
       }
       nextScreenToNavigateTo={"GiftCardChoice"}
+      isImage
+      source={GiftEasy}
     />
   );
 };

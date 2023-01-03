@@ -21,6 +21,8 @@ const GiftCardChoice = ({
         "Choose from a wide variety of Gift Cards, from multiple regions."
       }
       nextScreenToNavigateTo={"GiftCardFit"}
+      isImage
+      source={GiftEasy}
     />
   );
 };

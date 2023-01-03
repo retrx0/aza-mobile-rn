@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
@@ -24,6 +24,8 @@ type FeatureScreenProps = {
   featureText: string;
   Icon: ({ color }: SvgIconProps) => JSX.Element;
   nextScreenToNavigateTo: any;
+  source: any;
+  isImage: any;
 };
 
 const FeatureScreen = ({
@@ -32,6 +34,8 @@ const FeatureScreen = ({
   featureTitle,
   featureText,
   Icon,
+  source,
+  isImage,
   nextScreenToNavigateTo,
 }: CommonScreenProps<"RecurringTransfer"> & FeatureScreenProps) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -45,8 +49,7 @@ const FeatureScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           {headerTitle}
         </Text>
       ),
@@ -67,10 +70,14 @@ const FeatureScreen = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}
-        >
-          <Icon color={Colors[appTheme].Text} />
+          }}>
+          {isImage ? (
+            <Image style={CommonStyles.gameImage} source={source} />
+          ) : (
+            <Icon color={Colors[appTheme].Text} />
+          )}
         </View>
+
         <View style={{ paddingHorizontal: 30 }}>
           <Text
             style={{
@@ -80,8 +87,7 @@ const FeatureScreen = ({
               textAlign: "center",
               alignSelf: "center",
               lineHeight: hp(30),
-            }}
-          >
+            }}>
             {featureTitle}
           </Text>
           <Text
@@ -93,8 +99,8 @@ const FeatureScreen = ({
               fontWeight: "400",
               alignSelf: "center",
               marginTop: hp(20),
-            }}
-          >
+              maxWidth: 350,
+            }}>
             {featureText}
           </Text>
         </View>
@@ -103,8 +109,7 @@ const FeatureScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate(nextScreenToNavigateTo)}

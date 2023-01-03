@@ -4,7 +4,6 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import FeatureScreen from "../../../feature/FeatureScreen";
 import { Text } from "../../../../theme/Themed";
-import { GameIcon, RequestIcon, SvgIconProps } from "../../../../../assets/svg";
 import { GAMES } from "../../../../../assets/images";
 
 const GameCredit = ({
@@ -21,7 +20,8 @@ const GameCredit = ({
         "Enhance your gameplay by purchasing in-game credits for your favorite video games.."
       }
       nextScreenToNavigateTo={"GameFeature"}
-      Icon={RequestIcon}
+      source={GAMES}
+      isImage
     />
   );
 };

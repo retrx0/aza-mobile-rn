@@ -4,6 +4,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import FeatureScreen from "../../../feature/FeatureScreen";
 import { RequestIcon } from "../../../../../assets/svg";
+import { GAMES } from "../../../../../assets/images";
 
 const GameFeature = ({
   navigation,
@@ -20,6 +21,8 @@ const GameFeature = ({
         "Azarians have the liberty to choose from multiple regions and platforms of their choice. What are you waiting for?."
       }
       nextScreenToNavigateTo={"GameScreen"}
+      isImage
+      source={GAMES}
     />
   );
 };

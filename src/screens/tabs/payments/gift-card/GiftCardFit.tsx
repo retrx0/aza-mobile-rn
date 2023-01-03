@@ -21,6 +21,8 @@ const GiftCardFit = ({
         "You can buy a Gift Card either for yourself or for another person and have the code swiftly delivered to the provided Email Address."
       }
       nextScreenToNavigateTo={"GiftCard"}
+      isImage
+      source={GiftEasy}
     />
   );
 };
