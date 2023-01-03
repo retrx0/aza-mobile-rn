@@ -91,5 +91,5 @@ export const VaultFeature = require("./common/VaultFeature.png");
 export const WithdrawFeature = require("./common/WithdrawFeature.png");
 export const DepositFeature = require("./common/DepositFeature.png");
 export const CharityFeature = require("./common/CharityFeature.png");
-export const GameCredit = require("./common/GameCredit.png");
-export const GiftCardEasy = require("./common/GiftCardEasy.png");
+export const GAMES = require("./common/GAMES.png");
+export const GiftEasy = require("./common/GiftEasy.png");
