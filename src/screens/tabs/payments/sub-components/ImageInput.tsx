@@ -13,6 +13,9 @@ import { Mtn } from "../../../../../assets/images";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { useAppSelector } from "./../../../../redux";
 
 type ImagePropsType = {
   label: string;
@@ -30,6 +33,8 @@ export const ImageInput = ({
   value,
 }: ImagePropsType) => {
   const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <View style={styles.container}>
       <UnderlinedInput
@@ -39,7 +44,8 @@ export const ImageInput = ({
         inputStyle={[
           styles.input,
           {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+            backgroundColor: Colors[appTheme].background,
           },
         ]}
         labelStyle={{

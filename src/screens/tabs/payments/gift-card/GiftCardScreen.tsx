@@ -1,6 +1,6 @@
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, ScrollView, StyleSheet } from "react-native";
 import React from "react";
-import { View as View, Text as Text } from "../../../../theme/Themed";
+import { View as View } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
@@ -20,9 +20,6 @@ import {
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { InfoIcon } from "../../../../../assets/svg";
-import BackButton from "../../../../components/buttons/BackButton";
-import navigation from "../../../../navigation";
 
 export default function GiftCardScreen({
   navigation,
@@ -34,12 +31,7 @@ export default function GiftCardScreen({
       <UnderlinedInput
         style={styles2.mainInput}
         icon={null}
-        inputStyle={[
-          styles2.input,
-          {
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
+        inputStyle={[styles2.input]}
         labelStyle={styles.label}
         label=""
         placeholder="Search for gift card"
@@ -133,7 +125,7 @@ const styles2 = StyleSheet.create({
   input: {
     width: "100%",
     borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),
     fontWeight: "500",

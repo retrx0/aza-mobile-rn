@@ -147,7 +147,7 @@ const styles2 = StyleSheet.create({
   input: {
     width: "100%",
     borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),
     fontWeight: "500",

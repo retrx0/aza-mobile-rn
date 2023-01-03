@@ -1,7 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
-import MyButton from "./sub-components/MyButton";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
@@ -10,17 +9,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "./../../../hooks/useColorScheme";
 import { hp } from "./../../../common/util/LayoutUtil";
 import { ImageInput } from "./sub-components/ImageInput";
-import { Glo, Ie, Mtn } from "./../../../../assets/images";
 import SpacerWrapper from "./../../../common/util/SpacerWrapper";
 import CommonStyles from "./../../../common/styles/CommonStyles";
-import { Formik } from "formik";
-import { TextInput, View as View, Text as Text } from "./../../../theme/Themed";
+import { View as View, Text as Text } from "./../../../theme/Themed";
 import { useAppSelector } from "./../../../redux";
-import { selectTransaction } from "./../../../redux/slice/transactionSlice";
 
-import InputFormFieldNormal from "./../../../components/input/InputFormFieldNormal";
-import * as yup from "yup";
 import { selectPayment, PaymentState } from "../../../redux/slice/paymentSlice";
+
 // style={[{ paddingTop: Platform.OS == "android" ? 100 : 100 }]}
 
 export default function AirtimeConfirmation({
@@ -30,14 +25,14 @@ export default function AirtimeConfirmation({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const payment: PaymentState = useAppSelector(selectPayment);
+
   return (
     <SpacerWrapper>
       <View
         style={[
           CommonStyles.vaultcontainer,
           { marginTop: Platform.OS == "android" ? 50 : 0 },
-        ]}
-      >
+        ]}>
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -54,13 +49,7 @@ export default function AirtimeConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -77,13 +66,7 @@ export default function AirtimeConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
@@ -102,18 +85,13 @@ export default function AirtimeConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="default"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
               color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+              marginTop: hp(20),
             }}
             label="Payment Method"
             // placeholder="Select your payment method"
@@ -127,8 +105,7 @@ export default function AirtimeConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => {
@@ -178,8 +155,8 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     borderColor: "#EAEAEC",
-    borderBottomWidth: 1,
-    marginBottom: 30,
+    borderBottomWidth: 0.3,
+    marginBottom: hp(20),
     fontFamily: "Euclid-Circular-A-Medium",
     fontWeight: "500",
     fontSize: hp(16),

@@ -13,7 +13,7 @@ export const AIrtimeStyles = StyleSheet.create({
   },
   input: {
     width: "100%",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),

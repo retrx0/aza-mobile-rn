@@ -1,8 +1,6 @@
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import MyButton from "../sub-components/MyButton";
-import { ScrollView } from "../../../../theme/Themed";
 import { View } from "../../../../theme/components/View";
 import { Text } from "../../../../theme/components/Text";
 import { RootTabScreenProps } from "../../../../../types";
@@ -12,10 +10,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { ImageInput } from "../sub-components/ImageInput";
-import { CHESS, Ie } from "../../../../../assets/images";
+
 import Button from "../../../../components/buttons/Button";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { Chess } from "../../../../../assets/images";
 
 export default function CharityConfirmation({
   navigation,
@@ -34,20 +33,14 @@ export default function CharityConfirmation({
           <ImageInput
             label={"To"}
             placeholder={"Chess in Slums"}
-            source={CHESS}
+            source={Chess}
             icon={undefined}
             value={""}
           />
           <UnderlinedInput
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -67,13 +60,7 @@ export default function CharityConfirmation({
           <UnderlinedInput
             icon={null}
             keyboardType="default"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={{
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
@@ -93,8 +80,7 @@ export default function CharityConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => {
@@ -145,7 +131,7 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     borderColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     marginBottom: 20,
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",

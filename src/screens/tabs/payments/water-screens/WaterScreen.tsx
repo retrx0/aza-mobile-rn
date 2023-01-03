@@ -4,23 +4,12 @@ import { SafeAreaView, View as View } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
-import {
-  Crswb,
-  Enswc,
-  Fctwb,
-  Ie,
-  Lswc,
-  Vws,
-} from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { TickIcon } from "../../../../../assets/svg";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 import Button from "../../../../components/buttons/Button";
@@ -95,8 +84,7 @@ export default function WaterScreen({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {WaterList.map((item, index) => {
           return (
             <Card
@@ -115,12 +103,7 @@ export default function WaterScreen({
           icon={null}
           keyboardType="phone-pad"
           returnKeyType="done"
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           label="Customer Account Number"
           placeholder="Enter your customer account number"
@@ -129,12 +112,7 @@ export default function WaterScreen({
         <UnderlinedInput
           style={styles2.input}
           icon={null}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           label="Amount"
           placeholder="Enter an amount to be paid"
@@ -147,8 +125,7 @@ export default function WaterScreen({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           disabled={false}
           title="Continue"

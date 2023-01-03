@@ -10,6 +10,9 @@ import {
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import { TextInput, View as View, Text as Text } from "../../theme/Themed";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { useAppSelector } from "./../../redux";
 
 export type InputProps = {
   label: string;
@@ -34,6 +37,8 @@ export const UnderlinedInput = ({
   placeholderStyle,
   ...rest
 }: InputProps & TextInputProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <View style={[styles.container, style, containerStyle]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
@@ -51,8 +56,15 @@ export const UnderlinedInput = ({
           <TextInput
             placeholder={placeholder}
             {...rest}
-            style={[inputStyle, {}, placeholderStyle]}
-          ></TextInput>
+            style={[
+              {
+                borderBottomColor: Colors[appTheme].borderColor,
+                backgroundColor: Colors[appTheme].background,
+              },
+              inputStyle,
+              {},
+              placeholderStyle,
+            ]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}

@@ -36,8 +36,7 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: hp(30),
-          }}
-        >
+          }}>
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -47,8 +46,7 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(80),
-            }}
-          >
+            }}>
             Email Address
           </Text>
         </View>
@@ -59,8 +57,7 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
               fontWeight: "500",
               marginBottom: hp(40),
               fontFamily: "Euclid-Circular-A-Medium",
-            }}
-          >
+            }}>
             Enter your email address to get your digital code
           </Text>
         </View>
@@ -68,13 +65,7 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
           <UnderlinedInput
             icon={null}
             keyboardType="default"
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
+            inputStyle={[styles.input]}
             labelStyle={styles.label}
             style={{ marginTop: hp(10) }}
             label="Enter Email Address"
@@ -90,8 +81,7 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>

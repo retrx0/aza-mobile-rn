@@ -10,7 +10,7 @@ import Button from "../../../../components/buttons/Button";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import Phone from "../../../auth/common/PhoneStage";
+import Phone from "../../../auth/common/phoneStage";
 import {
   CountriesType,
   CountryDetails,
@@ -47,8 +47,7 @@ const ChangePhoneNumberScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           New Phone Number
         </Text>
       ),
@@ -73,16 +72,14 @@ const ChangePhoneNumberScreen = ({
               // marginTop: hp(30),
               // marginBottom: hp(30),
               marginLeft: hp(20),
-            }}
-          >
+            }}>
             Change your mobile phone number
           </Text>
           <View
             style={{
               marginBottom: 10,
               marginTop: 50,
-            }}
-          >
+            }}>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
@@ -91,8 +88,7 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}
-            >
+              }}>
               Current Phone Number
             </Text>
             <Phone
@@ -122,8 +118,7 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}
-            >
+              }}>
               New Phone Number
             </Text>
             <Phone

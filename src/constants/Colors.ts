@@ -7,7 +7,7 @@ export default {
     text: "#121212",
     mainText: "#4D4D4D",
     secondaryText: "#A6A6A6",
-    background: "#fff",
+    background: "#ffffff",
     backgroundSecondary: "#F2F2F2",
     tint: tintColorLight,
     tabIconDefault: tabIconColorDefault,
@@ -24,8 +24,11 @@ export default {
     Text: "#000000",
     disabledButton: "#A6A6A6",
     disabledButtonText: "#CCCCCC",
+    BACKGROUND: " #E5E5E5",
+    borderColor: "#EAEAEC",
   },
   dark: {
+    borderColor: "#262626",
     text: "#fff",
     mainText: "#E7E9EA",
     secondaryText: "#999999",
@@ -46,6 +49,7 @@ export default {
     Text: "#999999",
     disabledButton: "#262626",
     disabledButtonText: "#999999",
+    BACKGROUND: " #3A3D42",
   },
   general: {
     text: "#FFFFFF",
