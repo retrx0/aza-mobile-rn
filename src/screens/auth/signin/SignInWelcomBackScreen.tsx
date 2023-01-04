@@ -101,25 +101,27 @@ const SignInWelcomeBackScreen = ({
         email: user.emailAddress,
         password: code,
         phoneNumber: user.phoneNumber,
-      }).then((response) => {
-        if (response && response !== "400") {
-          storeItemSecure(STORAGE_KEY_JWT_TOKEN, response);
-          storeUserCredentialsSecure(
-            JSON.stringify({
-              email: user.emailAddress,
-              token: response,
-              password: code,
-              phoneNumber: user.phoneNumber,
-            })
-          );
-          setScreenLoading(false);
-          navigation.getParent()?.navigate("Root");
-        } else {
+      })
+        .then((response) => {
+          if (response) {
+            storeItemSecure(STORAGE_KEY_JWT_TOKEN, response);
+            storeUserCredentialsSecure(
+              JSON.stringify({
+                email: user.emailAddress,
+                token: response,
+                password: code,
+                phoneNumber: user.phoneNumber,
+              })
+            );
+            setScreenLoading(false);
+            navigation.getParent()?.navigate("Root");
+          }
+        })
+        .catch(() => {
           setScreenLoading(false);
           setLoginAttemptCounter((s) => s + 1);
           toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
-        }
-      });
+        });
     }
   };
 

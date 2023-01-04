@@ -14,22 +14,6 @@ const initialState: AuthState = {
   error: "",
 };
 
-export const loginThunk = createAsyncThunk(
-  "auth/login",
-  async (props: any, { rejectWithValue, fulfillWithValue }) => {
-    try {
-      const result = await api.post("/api/v1/auth/login", {
-        email: props.email,
-        phoneNumber: props.phone,
-        password: props.password,
-      });
-      return fulfillWithValue(result.data);
-    } catch (err: any) {
-      return rejectWithValue(err.response.data.message);
-    }
-  }
-);
-
 export const authSlice = createSlice({
   name: "auth",
   // `createSlice` will infer the state type from the `initialState` argument
@@ -41,16 +25,6 @@ export const authSlice = createSlice({
     logOut: (state) => {
       state.isLoggedIn = false;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(loginThunk.rejected, (state, { payload }) => {
-      state.error = payload;
-      state.isLoggedIn = false;
-    }),
-      builder.addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.isLoggedIn = true;
-        state.error = "";
-      });
   },
 });
 

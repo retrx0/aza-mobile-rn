@@ -82,14 +82,11 @@ export const changePasswordAPI = async (
       }
     );
     if (result.status === 204) {
-      toastSuccess("The password has been successfully changed.");
       return result;
     }
   } catch (e) {
     console.debug("Error changing password: ", e as AxiosError);
-    toastError(
-      "There was a problem changing your password ⚠️, please try again!"
-    );
+    throw Error();
   }
 };
 
@@ -123,7 +120,7 @@ export const createPinAPI = async (newTransactionPin: string) => {
     );
     return result.data;
   } catch (e) {
-    console.log(e as Error);
+    throw Error("Error creating pin");
   }
 };
 

@@ -1,35 +1,37 @@
-import { StyleSheet } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { CommonScreenProps } from "../../../../common/navigation/types";
+import React, { useLayoutEffect, useState } from "react";
+
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
+
 import BackButton from "../../../../components/buttons/BackButton";
-import { View as View, Text as Text } from "../../../../theme/Themed";
-import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import { useAppDispatch, useAppSelector } from "../../../../redux";
-import { selectUser } from "../../../../redux/slice/userSlice";
-import { loginThunk } from "../../../../redux/slice/authSlice";
-import Toast from "react-native-toast-message";
-import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
+import { View as View, Text as Text } from "../../../../theme/Themed";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
+import { storeItemSecure } from "../../../../common/util/StorageUtil";
+import { toastError } from "../../../../common/util/ToastUtil";
+
+import { loginUserAPI } from "../../../../api/auth";
+
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const ChangePasswordScreen = ({
   navigation,
 }: CommonScreenProps<"ChangePassword">) => {
   const [password, setPassword] = useState("");
+  const [isButtonLoading, setButtonLoading] = useState(false);
 
-  const dispatch = useAppDispatch();
   const { phoneNumber, emailAddress } = useAppSelector(selectUser);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -49,26 +51,25 @@ const ChangePasswordScreen = ({
   }, []);
 
   const verifyPassword = async () => {
-    dispatch(toggleActivityModal(true));
-    const payloadItem = await dispatch(
-      loginThunk({
-        email: emailAddress,
-        phoneNumber,
-        password: password,
+    setButtonLoading(true);
+    loginUserAPI({
+      email: emailAddress,
+      phoneNumber: phoneNumber,
+      password,
+    })
+      .then((token) => {
+        if (token) {
+          storeItemSecure(STORAGE_KEY_JWT_TOKEN, token);
+          setButtonLoading(false);
+          navigation.navigate("NewPassword", {
+            oldPassword: password,
+          });
+        }
       })
-    );
-    if (payloadItem.payload === "Invalid crendential") {
-      dispatch(toggleActivityModal(false));
-      Toast.show({
-        type: "error",
-        text1: payloadItem.payload,
+      .catch(() => {
+        setButtonLoading(false);
+        toastError("Invalid password");
       });
-    } else {
-      dispatch(toggleActivityModal(false));
-      navigation.navigate("NewPassword", {
-        oldPassword: password,
-      });
-    }
   };
 
   return (
@@ -116,6 +117,7 @@ const ChangePasswordScreen = ({
           style={{
             marginTop: hp(100),
           }}
+          buttonLoading={isButtonLoading}
         />
       </View>
     </SpacerWrapper>
@@ -123,11 +125,3 @@ const ChangePasswordScreen = ({
 };
 
 export default ChangePasswordScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
-  },
-});

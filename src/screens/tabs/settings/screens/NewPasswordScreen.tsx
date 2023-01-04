@@ -1,20 +1,20 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet } from "react-native";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import BackButton from "../../../../components/buttons/BackButton";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
 import Divider from "../../../../components/divider/Divider";
+import CustomSwitch from "../../../../components/switch/CustomSwitch";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import CustomSwitch from "../../../../components/switch/CustomSwitch";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { toastError } from "../../../../common/util/ToastUtil";
 
 import { changePasswordAPI } from "../../../../api/user";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 const NewPasswordScreen = ({
   navigation,
@@ -23,6 +23,7 @@ const NewPasswordScreen = ({
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("");
   const [isTransactionPin, setTransactionPin] = useState<boolean>(false);
+  const [isButtonLoading, setButtonLoading] = useState(false);
 
   const { oldPassword } = route.params;
 
@@ -54,7 +55,8 @@ const NewPasswordScreen = ({
     if (
       newPassword !== newPasswordConfirmation ||
       newPassword === "" ||
-      newPasswordConfirmation === ""
+      newPasswordConfirmation === "" ||
+      newPassword === oldPassword
     ) {
       return true;
     }
@@ -62,17 +64,23 @@ const NewPasswordScreen = ({
   };
 
   const updatePassword = async () => {
-    const result = await changePasswordAPI(oldPassword, newPassword);
-    if (result?.status === 204) {
-      navigation.navigate("StatusScreen", {
-        statusIcon: "Success",
-        status: "Successful",
-        statusMessage: "We have successfully updated your password",
-        navigateTo: "Settings",
-      });
-    }
+    setButtonLoading(true);
+    changePasswordAPI(oldPassword, newPassword)
+      .then(() => {
+        setButtonLoading(false);
+        navigation.navigate("StatusScreen", {
+          statusIcon: "Success",
+          status: "Successful",
+          statusMessage: "We have successfully updated your password",
+          navigateTo: "Settings",
+        });
+      })
+      .catch(() =>
+        toastError(
+          "There was a problem changing your password ⚠️, please try again!"
+        )
+      );
   };
-
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -151,6 +159,7 @@ const NewPasswordScreen = ({
           style={{
             marginTop: hp(10),
           }}
+          buttonLoading={isButtonLoading}
         />
       </View>
     </SpacerWrapper>
@@ -158,11 +167,3 @@ const NewPasswordScreen = ({
 };
 
 export default NewPasswordScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
-  },
-});

@@ -22,7 +22,6 @@ export const loginUserAPI = async (data: {
   password: string;
 }) => {
   try {
-    console.log(data);
     const response = await api.post("/api/v1/auth/login", data);
     if (response.status === 200) {
       return response.headers["access-token"];
@@ -31,7 +30,7 @@ export const loginUserAPI = async (data: {
   } catch (e) {
     console.debug("Error logging in user: ", e as Error);
     if ((e as AxiosError).response) {
-      if ((e as AxiosError).response?.status === 400) return "400";
+      if ((e as AxiosError).response?.status === 400) throw Error();
       else toastError("We encountered an error, please try again!");
     }
   }

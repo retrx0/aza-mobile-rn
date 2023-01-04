@@ -17,7 +17,7 @@ import {
   setNewUser,
   setPassword,
 } from "../../../redux/slice/newUserSlice";
-import { registerUserAPI } from "../../../api/user";
+import { createPinAPI, registerUserAPI } from "../../../api/user";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
@@ -161,6 +161,11 @@ const SignUpPasswordScreen = ({
             } else {
               if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
+                if (isUsePasscodeAsPin) {
+                  createPinAPI(passcode)
+                    .then((res) => console.log(res))
+                    .catch((err: Error) => console.log(err.message));
+                }
                 registerUserAPI({
                   email: newUser.emailAddress!,
                   firstName: newUser.firstName!,
