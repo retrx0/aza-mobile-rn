@@ -93,3 +93,4 @@ export const DepositFeature = require("./common/DepositFeature.png");
 export const CHARITY = require("./common/CHARITY.png");
 export const GAMES = require("./common/GAMES.png");
 export const GiftEasy = require("./common/GiftEasy.png");
+export const CoverImage = require("./icons/CoverImage.png");
