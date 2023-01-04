@@ -66,7 +66,7 @@ export function AirtimeTabs() {
         initialRouteName="airtime"
       >
         <Tab.Screen name="airtime" component={AirtimeIndex} />
-        <Tab.Screen name="data bundle" component={AirtimeIndex} />
+        <Tab.Screen name="data-bundle" component={AirtimeIndex} />
       </Tab.Navigator>
     </SafeAreaView>
   );

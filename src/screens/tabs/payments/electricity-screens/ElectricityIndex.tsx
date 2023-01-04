@@ -13,6 +13,15 @@ import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 import Button from "../../../../components/buttons/Button";
+import {
+  setAmount,
+  setDetailHeader,
+  setDetailValue,
+  setLogo,
+  setPaymentTYpe,
+  setTo,
+} from "../../../../redux/slice/paymentSlice";
+import { useDispatch } from "react-redux";
 
 const ElectricityList = [
   {
@@ -45,8 +54,10 @@ export default function ElectricityIndex({
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
   const [active, setActive] = useState("");
-
+  const dispatch = useDispatch();
+  const [meterNumber, setMeterNumber] = useState("");
   const [periodValue, setPeriodValue] = useState("");
+  const [amount, settAmount] = useState(0);
 
   const period = [
     { label: "Prepaid", value: "1" },
@@ -77,14 +88,19 @@ export default function ElectricityIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {ElectricityList.map((item, index) => {
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
+              onPress={() => {
+                setActive(item.icon);
+                dispatch(setTo(item.title));
+                dispatch(setLogo(item.icon));
+              }}
               isActive={item.icon === active}
             />
           );
@@ -95,7 +111,8 @@ export default function ElectricityIndex({
           paddingHorizontal: hp(20),
 
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Meter Type"
           data={period}
@@ -118,6 +135,9 @@ export default function ElectricityIndex({
           placeholder="Enter your meter number"
           keyboardType="number-pad"
           returnKeyType="done"
+          onChangeText={(text) => {
+            setMeterNumber(text);
+          }}
         />
 
         <UnderlinedInput
@@ -128,6 +148,9 @@ export default function ElectricityIndex({
           placeholder="Enter an amount to be paid"
           keyboardType="number-pad"
           returnKeyType="done"
+          onChangeText={(text) => {
+            settAmount(text);
+          }}
         />
       </View>
 
@@ -135,11 +158,16 @@ export default function ElectricityIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           disabled={!bundles}
           title="Continue"
           onPressButton={() => {
+            dispatch(setDetailHeader("Meter Number"));
+            dispatch(setDetailValue(meterNumber));
+            dispatch(setAmount(amount));
+            dispatch(setPaymentTYpe("Electricty"));
             navigation.navigate("Common", {
               screen: "Confirm",
             });

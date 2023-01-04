@@ -61,11 +61,11 @@ export default function AirtimeIndex({
   // const { icon } = route.params;
 
   const period = [
-    { label: "100 ", value: "1" },
-    { label: "200 ", value: "1" },
-    { label: "500 ", value: "1" },
-    { label: "1gb ", value: "1" },
-    { label: "1.5gb ", value: "1" },
+    { label: "100 ", value: 100 },
+    { label: "200 ", value: 200 },
+    { label: "500 ", value: 300 },
+    { label: "1gb ", value: 500 },
+    { label: "1.5gb ", value: 1000 },
   ];
 
   // const [airtimeOperators, setAirtimeOperators] = useState<
@@ -153,7 +153,8 @@ export default function AirtimeIndex({
           flexWrap: "wrap",
           marginTop: hp(15),
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         {Network.map((item, index) => {
           return (
             <Card
@@ -194,12 +195,15 @@ export default function AirtimeIndex({
           paddingHorizontal: hp(20),
           marginTop: hp(10),
           marginBottom: hp(10),
-        }}>
-        {route.name == "data bundle" && (
+        }}
+      >
+        {route.name == "data-bundle" && (
           <CustomDropdown
             data={period}
-            placeholder="Choose a bundle"
-            setValue={setPeriodValue}
+            placeholder="Choose abundle"
+            setValue={(val) => {
+              settAmount(val);
+            }}
             value={periodValue}
             style={[
               { fontFamily: "Euclid-Circular-A" },
@@ -212,6 +216,8 @@ export default function AirtimeIndex({
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
         <UnderlinedInput
+          value={`\u20A6${amount}`}
+          disabled={route.name == "data-bundle"}
           icon={null}
           inputStyle={[styles.input]}
           labelStyle={[styles.label]}
@@ -229,17 +235,14 @@ export default function AirtimeIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() => {
+            dispatch(setDetailHeader("Phone number"));
             dispatch(
-              setDetailHeader(
-                route.name == "data bundle" ? "Data bundle" : "Phone number"
-              )
-            );
-            dispatch(
-              setPaymentTYpe(route.name == "data bundle" ? "Data" : "Airtime")
+              setPaymentTYpe(route.name == "data-bundle" ? "Data" : "Airtime")
             );
             dispatch(setDetailValue(phone));
             dispatch(setAmount(amount));

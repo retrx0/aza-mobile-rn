@@ -14,11 +14,11 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 interface IProps {
   data: Array<{
     label: string;
-    value: string;
+    value: string | number;
   }>;
 
   value: string;
-  setValue: (value: string) => void;
+  setValue: (value: string | number) => void;
   placeholder: string;
   placeholderstyle?: StyleProp<TextStyle>;
   label: string;
@@ -44,7 +44,8 @@ const CustomDropdown = ({
           fontWeight: "400",
           fontSize: hp(16),
           marginBottom: 3,
-        }}>
+        }}
+      >
         {label}
       </Text>
 
@@ -96,11 +97,13 @@ const CustomDropdown = ({
                 justifyContent: "space-between",
                 backgroundColor: Colors[appTheme].BACKGROUND,
               },
-            ]}>
+            ]}
+          >
             <Text
               style={{
                 fontSize: 14,
-              }}>
+              }}
+            >
               {item.label}
             </Text>
           </View>
