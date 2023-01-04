@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet, Image, Alert } from "react-native";
+import { Image, Alert } from "react-native";
 import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
@@ -59,7 +59,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
     const permission = await requestPermission();
     permission.granted
       ? captureScreen({
-          format: "jpg",
+          format: "png",
           quality: 0.8,
         })
           .then(
@@ -177,11 +177,3 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
 };
 
 export default QRCodeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "space-between",
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-  },
-});

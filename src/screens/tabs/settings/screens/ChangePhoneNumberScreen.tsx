@@ -1,4 +1,4 @@
-import { FlatList, Modal, StyleSheet } from "react-native";
+import { FlatList, Modal } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
@@ -18,18 +18,18 @@ import {
 } from "../../../../../types";
 import { useCountries } from "../../../../hooks/useCountries";
 import { CountriesCard } from "../../../auth/signup/components/CountriesCard";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const ChangePhoneNumberScreen = ({
   navigation,
 }: CommonScreenProps<"ChangePhoneNumber">) => {
   const colorScheme = useColorScheme();
-  const [currentPhoneNumber, _] = useState("");
-  const [newPhoneNumber, setNewPhoneNumber] = useState("");
-  const [phone, setPhone] = useState<string>("");
+  const [newPhoneNumber, setNewPhoneNumber] = useState<string>("");
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
   const { loading, countries } = useCountries();
-  const FetchedCountries = ({ item }: { item: CountryProps }) => {
+  const fetchedCountries = ({ item }: { item: CountryProps }) => {
     return <CountriesCard onPress={() => selectCountry(item)} {...item} />;
   };
   const selectCountry = (item: CountriesType) => {
@@ -37,7 +37,7 @@ const ChangePhoneNumberScreen = ({
     setModalVisible(false);
   };
 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const { phoneNumber } = useAppSelector(selectUser);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -47,7 +47,8 @@ const ChangePhoneNumberScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           New Phone Number
         </Text>
       ),
@@ -72,14 +73,16 @@ const ChangePhoneNumberScreen = ({
               // marginTop: hp(30),
               // marginBottom: hp(30),
               marginLeft: hp(20),
-            }}>
+            }}
+          >
             Change your mobile phone number
           </Text>
           <View
             style={{
               marginBottom: 10,
               marginTop: 50,
-            }}>
+            }}
+          >
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
@@ -88,20 +91,16 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}>
+              }}
+            >
               Current Phone Number
             </Text>
             <Phone
               country={country}
               phoneNumber={phoneNumber}
-              onCountryPress={() => setModalVisible(true)}
-              onChangeText={(ttt) => {
-                setPhoneNumber(ttt);
-                console.log(ttt);
-              }}
-              onChangePhoneNumber={(p: React.SetStateAction<string>) =>
-                setPhone(p)
-              }
+              onCountryPress={() => {}}
+              onChangeText={() => {}}
+              onChangePhoneNumber={() => {}}
               initialValue={phoneNumber}
               autoFormat
               textStyle={[CommonStyles.textStyle]}
@@ -118,20 +117,16 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}>
+              }}
+            >
               New Phone Number
             </Text>
             <Phone
               country={country}
-              phoneNumber={phoneNumber}
+              phoneNumber={newPhoneNumber}
               onCountryPress={() => setModalVisible(true)}
-              onChangeText={(ttt) => {
-                setPhoneNumber(ttt);
-                console.log(ttt);
-              }}
-              onChangePhoneNumber={(p: React.SetStateAction<string>) =>
-                setPhone(p)
-              }
+              onChangeText={(e) => setNewPhoneNumber(e)}
+              onChangePhoneNumber={() => {}}
               initialValue={phoneNumber}
               autoFormat
               textStyle={[CommonStyles.textStyle]}
@@ -149,7 +144,7 @@ const ChangePhoneNumberScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
             }}
-            style={{}}
+            disabled={newPhoneNumber.length < 10}
           />
         </View>
       </SpacerWrapper>
@@ -164,7 +159,7 @@ const ChangePhoneNumberScreen = ({
               },
             ]}
             data={countries}
-            renderItem={FetchedCountries}
+            renderItem={fetchedCountries}
           />
         </View>
       </Modal>
@@ -173,11 +168,3 @@ const ChangePhoneNumberScreen = ({
 };
 
 export default ChangePhoneNumberScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
-  },
-});

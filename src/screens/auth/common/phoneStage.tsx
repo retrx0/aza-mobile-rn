@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { CountriesType } from "../../../../types";
 import { PhoneInputProps } from "../../../theme/Themed";
 import { CountryBox } from "../signup/components/CountryInput";
@@ -35,7 +34,5 @@ const Phone = (props: StageOneProp & PhoneInputProps) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Phone;

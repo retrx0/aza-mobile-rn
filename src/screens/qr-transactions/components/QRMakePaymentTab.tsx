@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Platform, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { BarCodeScanner } from "expo-barcode-scanner";
 import {
   BarCodeScanningResult,
   Camera,
@@ -12,6 +13,7 @@ import Button from "../../../components/buttons/Button";
 import { View } from "../../../theme/Themed";
 
 import { hp } from "../../../common/util/LayoutUtil";
+import { toastError } from "../../../common/util/ToastUtil";
 import { RootStackScreenProps } from "../../../../types";
 
 const QRMakePaymentTab = ({
@@ -66,25 +68,31 @@ const QRMakePaymentTab = ({
     );
   };
 
-  const selectImageFromGallery = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      const { uri } = result;
-      console.log("selected");
-    }
-  };
-
   const onBarCodeScanned = (code: BarCodeScanningResult) => {
     if (code.type === "org.iso.QRCode") {
       console.log("Code Scanned " + code.data);
       navigation.navigate("Common", {
         screen: "SendMoneyConfirmation",
       });
+    }
+  };
+
+  const selectImageFromGalleryAndDecode = async () => {
+    try {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status === "granted") {
+        const imageData = await ImagePicker.launchImageLibraryAsync();
+        const { uri } = imageData as ImagePicker.ImageInfo;
+        const results = await BarCodeScanner.scanFromURLAsync(uri);
+        if (results.length > 0) {
+          console.log("qr code data: ", results[0].data);
+        } else {
+          toastError("The QR code could not be decoded");
+        }
+      }
+    } catch (error) {
+      console.debug(error);
     }
   };
 
@@ -112,7 +120,7 @@ const QRMakePaymentTab = ({
           <View style={styles.container3}>
             <Button
               title="Select from Gallery"
-              onPressButton={() => selectImageFromGallery()}
+              onPressButton={() => selectImageFromGalleryAndDecode()}
               styleText={styles.buttonText}
               style={styles.button}
             />

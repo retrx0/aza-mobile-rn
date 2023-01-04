@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
@@ -119,11 +118,3 @@ const ChangeEmailScreen = ({
 };
 
 export default ChangeEmailScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
-  },
-});
