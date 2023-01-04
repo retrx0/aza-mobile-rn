@@ -1,10 +1,15 @@
 import { Beneficiary } from "../common/navigation/types";
 
+export interface Transactions {
+  transactions: Transaction[];
+  dateOfTransactions: string;
+}
+
 export interface Transaction {
   id: number;
-  image: string;
+  imageUrl: string;
   name: string;
-  transactionType: string;
+  transactionType: "incoming" | "outgoing";
   transactionTitle: string;
   transactionMessage: string;
   amount: string;
@@ -42,7 +47,7 @@ export interface UserState {
   };
   vault: { loading: boolean; recentTransaction: [] };
   payments: { loading: boolean; recentPayments: [] };
-  recentTransactions: { loading: boolean; data: Transaction[] };
+  recentTransactions: { loading: boolean; data: Transactions[] };
   azaContacts: { loading: boolean; data: Beneficiary[] };
   bankAccounts: { loading: boolean; data: BankAccount[] };
 }

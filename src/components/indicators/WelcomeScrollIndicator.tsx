@@ -1,7 +1,7 @@
 import React from "react";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { View } from "../../theme/components/View";
+import { View, Text } from "../../theme/Themed";
 
 const WelcomeScrollIndicator = (props: {
   count: number;

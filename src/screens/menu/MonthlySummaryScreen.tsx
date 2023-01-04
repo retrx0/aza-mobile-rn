@@ -3,8 +3,8 @@ import { StyleSheet, ScrollView, TouchableOpacity, Modal } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 
 import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View, Text } from "../../theme/Themed";
+
 import SummaryModal from "./components/Summary";
 
 import { CommonScreenProps } from "../../common/navigation/types";

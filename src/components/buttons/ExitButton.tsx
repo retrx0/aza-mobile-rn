@@ -9,7 +9,7 @@ import { BackIcon, ExitIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import { useAppThemeColor } from "../../theme/Themed";
-import { Text } from "../../theme/components/Text";
+
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 

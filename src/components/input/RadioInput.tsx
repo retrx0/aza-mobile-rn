@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import { View } from "../../theme/components/View";
 import Animated, {
   interpolate,
   interpolateColor,

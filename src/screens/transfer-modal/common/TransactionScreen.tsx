@@ -7,7 +7,7 @@ import {
 import { TabView, TabBar } from "react-native-tab-view";
 
 import BackButton from "../../../components/buttons/BackButton";
-import { Text } from "../../../theme/components/Text";
+import { Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
 import {

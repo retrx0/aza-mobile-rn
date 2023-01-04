@@ -5,7 +5,7 @@ import api from "../../api";
 import { Beneficiary } from "../../common/navigation/types";
 import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
-import { Transaction, UserState } from "../types";
+import { Transactions, UserState } from "../types";
 
 // Define the initial state using that type
 const initialState: UserState = {
@@ -21,7 +21,72 @@ const initialState: UserState = {
   accountVerified: false,
   bvnVerified: false,
   accountStatus: "",
-  recentTransactions: { loading: false, data: [] },
+  recentTransactions: {
+    loading: false,
+    data: [
+      {
+        dateOfTransactions: "15 June 2022",
+        transactions: [
+          {
+            id: 1,
+            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+            name: "Test User 1",
+            transactionType: "incoming",
+            transactionTitle: "Incoming Transfer",
+            transactionMessage: "Chop life my gee ",
+            amount: "28,000.00",
+            date: "4 July 2022 04:26",
+          },
+          {
+            id: 2,
+            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+            name: "Test User 2",
+            transactionType: "outgoing",
+            transactionTitle: "Transfer to Bank",
+            transactionMessage: "",
+            amount: "328,000.00",
+            date: "4 July 2022 04:26",
+          },
+          {
+            id: 3,
+            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+            name: "Test User 3",
+            transactionType: "incoming",
+            transactionTitle: "Incoming Transfer",
+            transactionMessage: "",
+            amount: "28,000.00",
+            date: "4 July 2022 04:26",
+          },
+        ],
+      },
+      {
+        dateOfTransactions: "9 June 2022",
+        transactions: [
+          {
+            id: 9,
+            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+            name: "Test User 1",
+            transactionType: "outgoing",
+            transactionTitle: "Outgoing Transfer",
+            transactionMessage: "Chop life my gee ",
+            amount: "28,000.00",
+            date: "4 July 2022 04:26",
+          },
+
+          {
+            id: 10,
+            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+            name: "Test User 2",
+            transactionType: "outgoing",
+            transactionTitle: "Outgoing Transfer",
+            transactionMessage: "Chop life my gee ",
+            amount: "28,000.00",
+            date: "4 July 2022 04:26",
+          },
+        ],
+      },
+    ],
+  },
   accountCurency: "",
   pushToken: "",
   transfers: {
@@ -165,10 +230,28 @@ export const getUserTransactions = createAsyncThunk(
   ) => {
     try {
       const result = await api.get(
-        `/api/v1/account/${accountNumber}/trnasactions`,
+        `/api/v1/account/${accountNumber}/transactions`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       return fulfillWithValue(result.data);
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const addBankAccount = createAsyncThunk(
+  "user/addBankAccount",
+  async (
+    { accountNumber, token }: { accountNumber: number; token: string },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      //   const result = await api.post(
+      //     `/api/v1/account/${accountNumber}/trnasactions`,
+      //     { headers: { Authorization: `Bearer ${token}` } }
+      //   );
+      return fulfillWithValue(null);
     } catch (err: any) {
       return rejectWithValue(err.response.data.message);
     }

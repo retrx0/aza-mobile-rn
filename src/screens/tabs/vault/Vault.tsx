@@ -1,8 +1,7 @@
 import { Image, TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../types";
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -13,9 +12,12 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import VaultUndrawSVG from "../../../../assets/svg/VaultUndraw";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BackButton from "../../../components/buttons/BackButton";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const insets = useSafeAreaInsets();
 
@@ -50,12 +52,7 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
 
         <Text style={[CommonStyles.vaultText]}>You dont have any vaults</Text>
         <View style={CommonStyles.createVaultContainer}>
-          <Text
-            style={[
-              CommonStyles.createNewVault,
-              { color: Colors[colorScheme].Text },
-            ]}
-          >
+          <Text style={[CommonStyles.createNewVault]}>
             Click New Vault to create a new vault
           </Text>
           <TouchableOpacity>
@@ -81,16 +78,8 @@ const Vault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "NewVault" })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[{}, CommonStyles.button]}
             disabled={false}
           />
         </View>

@@ -19,6 +19,8 @@ const TransactionCertainty = ({
         "Send money with Aza and instantly carry on with your life, knowing that the transaction will go through without fail."
       }
       nextScreenToNavigateTo={"InviteUsers"}
+      imageSource={undefined}
+      isImage={false}
     />
   );
 };

@@ -7,8 +7,7 @@ import {
   Image,
 } from "react-native";
 import { SafeAreaView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { ArchieveIcon, CloseIcon, TrashIcon } from "../../../../../assets/svg";

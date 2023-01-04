@@ -1,8 +1,8 @@
 import { Image, Keyboard, TouchableOpacity } from "react-native";
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
@@ -36,7 +36,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
             flexDirection: "row",
             alignItems: "center",
             marginBottom: hp(30),
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -46,7 +47,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(80),
-            }}>
+            }}
+          >
             Email Address
           </Text>
         </View>
@@ -57,7 +59,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
               fontWeight: "500",
               marginBottom: hp(40),
               fontFamily: "Euclid-Circular-A-Medium",
-            }}>
+            }}
+          >
             Enter your email address to get your digital code
           </Text>
         </View>
@@ -81,7 +84,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

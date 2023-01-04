@@ -23,8 +23,7 @@ import {
   setTo,
 } from "../../../../redux/slice/paymentSlice";
 import { useDispatch } from "react-redux";
-import { View } from "../../../../theme/Themed";
-
+import { View, Text } from "../../../../theme/Themed";
 const Network = [
   {
     title: "Glo",
@@ -201,9 +200,7 @@ export default function AirtimeIndex({
           <CustomDropdown
             data={period}
             placeholder="Choose abundle"
-            setValue={(val) => {
-              settAmount(val);
-            }}
+            setValue={settAmount}
             value={periodValue}
             style={[
               { fontFamily: "Euclid-Circular-A" },

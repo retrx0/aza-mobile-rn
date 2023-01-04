@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import BackButton from "../../../components/buttons/BackButton";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
@@ -14,11 +13,15 @@ import useColorScheme from "../../../hooks/useColorScheme";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "react-native";
+import { CoverImage } from "../../../../assets/images";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
   const insets = useSafeAreaInsets();
 
   return (
@@ -61,7 +64,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               alignSelf: "center",
               marginBottom: hp(40),
             }}
-            source={require("../../../../assets/images/icons/CoverImage.png")}
+            source={CoverImage}
           />
         </>
 
@@ -95,7 +98,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             marginTop: hp(20),
           }}
         >
-          <VirtualKeyboard value={amount} setValue={setAmount} />
+          <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <View
           style={[
@@ -111,16 +114,8 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "ConfirmGoal" })
             }
-            style={[
-              [CommonStyles.toBankbutton],
-              {
-                backgroundColor: colorScheme === "dark" ? "white" : "black",
-              },
-            ]}
-            styleText={[
-              CommonStyles.toBankbuttonText,
-              { color: colorScheme === "dark" ? "black" : "white" },
-            ]}
+            style={[[CommonStyles.toBankbutton], {}]}
+            styleText={[CommonStyles.toBankbuttonText]}
           />
         </View>
       </View>

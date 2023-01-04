@@ -8,16 +8,20 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
+
 import { CommonScreenProps } from "../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const AccountLimitsTab = ({
   navigation,
 }: CommonScreenProps<"FeesAndLimits">) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
   const insets = useSafeAreaInsets();
 
   const [isVerified] = useState(false);
@@ -135,7 +139,8 @@ const AccountLimitsTab = ({
                   marginTop: hp(5),
                 }}
               >
-                {"\u20A650,000"}
+                {NAIRA_UNICODE}
+                {"50,000"}
               </Text>
             </View>
             <View
@@ -163,7 +168,8 @@ const AccountLimitsTab = ({
                   marginTop: hp(5),
                 }}
               >
-                {"\u20A6200,000"}
+                {NAIRA_UNICODE}
+                {"200,000"}
               </Text>
             </View>
             <View
@@ -230,10 +236,3 @@ const AccountLimitsTab = ({
 };
 
 export default AccountLimitsTab;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(35),
-  },
-});

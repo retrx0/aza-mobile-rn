@@ -2,8 +2,8 @@ import React from "react";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { TextInput } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet } from "react-native";
 

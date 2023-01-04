@@ -4,8 +4,7 @@ import { StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../common/navigation/types";
 
 import BackButton from "../../../components/buttons/BackButton";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 
 import Colors from "../../../constants/Colors";
@@ -26,8 +25,6 @@ const RecurringTransferScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -49,11 +46,7 @@ const RecurringTransferScreen = ({
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
-        <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
-          style={[CommonStyles.descriptionStyle, { marginLeft: 20 }]}
-        >
+        <Text style={[CommonStyles.descriptionStyle, { marginLeft: 20 }]}>
           You can add and edit daily, weekly and monthly recurring money
           transfer orders.
         </Text>

@@ -9,8 +9,8 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

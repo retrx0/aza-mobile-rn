@@ -20,7 +20,7 @@ const GameCredit = ({
         "Enhance your gameplay by purchasing in-game credits for your favorite video games.."
       }
       nextScreenToNavigateTo={"GameFeature"}
-      source={GAMES}
+      imageSource={GAMES}
       isImage
     />
   );

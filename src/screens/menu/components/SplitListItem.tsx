@@ -1,7 +1,6 @@
 import { Image } from "react-native";
 
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
@@ -10,6 +9,7 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { ArrowRightIcon, ChevronRightIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
 interface SplitItem {
   splitImage: string;
@@ -158,7 +158,6 @@ const SplitListItem = ({
               />
               <Text
                 style={{
-                  color: Colors[colorScheme].secondaryText,
                   marginLeft: 5,
                   fontSize: 10,
                 }}
@@ -193,12 +192,10 @@ const SplitListItem = ({
               color: Colors.light.error,
             }}
           >
-            {"\u20A6"}
+            {NAIRA_UNICODE}
             {numberWithCommas(amount)}
           </Text>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.secondaryText}
             style={{
               marginTop: 3,
               fontFamily: "Euclid-Circular-A",

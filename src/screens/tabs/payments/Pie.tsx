@@ -1,7 +1,6 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PieChart } from "react-native-gifted-charts";
 import RegularText from "../../../components/text/RegularText";
@@ -9,6 +8,9 @@ import { ArrowLeftIcon, ArrowRightIcon } from "../../../../assets/svg";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const data = [
   { value: 54, color: "#2A9E17", text: "Cable Tv" },
@@ -17,7 +19,7 @@ const data = [
 ];
 
 export default function Pie() {
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
   // const [date, setDate] = useState("10-06-2022");
 
   return (

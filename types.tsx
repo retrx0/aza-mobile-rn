@@ -203,13 +203,3 @@ export const CountryDetails: CountriesType[] = [
     name: "Ghana",
   },
 ];
-
-export type UserData = {
-  userAzaAccountNumber: number;
-  userAzaBalance: number;
-  userFistName: string;
-  userLastName: string;
-  userFullName: string;
-  userPhoneNumber: number;
-  userEmail: string;
-};

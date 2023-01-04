@@ -1,7 +1,7 @@
 import { Image, StyleSheet } from "react-native";
 import React from "react";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { Auth } from "../../../../../assets/images";
 

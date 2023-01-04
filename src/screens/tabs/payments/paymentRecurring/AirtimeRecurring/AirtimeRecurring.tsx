@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "../../../../../theme/components/View";
+import { View, Text } from "../../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";

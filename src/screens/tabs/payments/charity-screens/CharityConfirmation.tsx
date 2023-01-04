@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import { RootTabScreenProps } from "../../../../../types";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";
@@ -80,7 +80,8 @@ export default function CharityConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => {

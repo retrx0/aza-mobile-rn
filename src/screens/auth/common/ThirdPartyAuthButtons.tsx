@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Platform } from "react-native";
 import { AppleIcon, FacebookIcon, GoogleIcon } from "../../../../assets/svg";
 import ButtonLg from "../../../components/buttons/ButtonLg";
-import { View } from "../../../theme/components/View";
+import { View } from "../../../theme/Themed";
 import Colors from "../../../constants/Colors";
 import {
   fetchThirdPartyUserInfo,

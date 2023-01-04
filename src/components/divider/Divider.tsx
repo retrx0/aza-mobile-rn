@@ -1,6 +1,6 @@
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
-import { View } from "../../theme/components/View";
+import { View, Text } from "../../theme/Themed";
 
 const Divider = () => {
   const colorScheme = useColorScheme();

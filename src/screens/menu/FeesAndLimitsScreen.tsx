@@ -5,7 +5,6 @@ import { TabView, TabBar } from "react-native-tab-view";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text } from "../../theme/components/Text";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -13,6 +12,10 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import AccountLimitsTab from "./components/AccountLimitsTab";
 import TransactionFeesTab from "./components/TransactionFeesTab";
 import { hp } from "../../common/util/LayoutUtil";
+import { Text } from "../../theme/Themed";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const FeesAndLimitsScreen = ({
   navigation,
@@ -23,7 +26,7 @@ const FeesAndLimitsScreen = ({
     { key: "first", title: "Transaction Fees" },
     { key: "second", title: "Account Limits" },
   ]);
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
   useLayoutEffect(() => {

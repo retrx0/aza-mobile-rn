@@ -1,8 +1,8 @@
 import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import { TickIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 

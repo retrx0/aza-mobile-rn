@@ -4,8 +4,7 @@ import {
   FlatList,
   I18nManager,
 } from "react-native";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import {
@@ -154,12 +153,7 @@ const ListItem = ({
             <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
           </View>
         </View>
-        <View
-          style={[
-            styles.separator,
-            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
-          ]}
-        />
+        <View style={[styles.separator]} />
       </View>
     </Swipeable>
   );

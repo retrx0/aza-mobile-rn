@@ -4,8 +4,8 @@ import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { TextInput } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import ContactListItem from "../../../../components/ListItem/ContactListItem";
 import { AZALargeLightningLogo } from "../../../../../assets/svg";
 

@@ -17,13 +17,10 @@ import {
 } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 
 export default function InternetPlans({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  const colorScheme = useColorScheme();
-
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput

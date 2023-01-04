@@ -22,7 +22,7 @@ const GiftCardEasy = ({
       }
       nextScreenToNavigateTo={"GiftCardChoice"}
       isImage
-      source={GiftEasy}
+      imageSource={GiftEasy}
     />
   );
 };

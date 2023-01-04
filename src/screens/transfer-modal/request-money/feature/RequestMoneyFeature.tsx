@@ -20,6 +20,8 @@ const RequestMoneyFeature = ({
         "Request money from your family and friends in a friendly manner, effortlessly."
       }
       nextScreenToNavigateTo={"RequestMoney"}
+      imageSource={undefined}
+      isImage={false}
     />
   );
 };
