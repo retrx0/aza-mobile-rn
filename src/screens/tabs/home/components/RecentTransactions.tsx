@@ -8,14 +8,19 @@ import { SendIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { View as View, Text as Text } from "../../../../theme/Themed";
+import {
+  View as View,
+  Text as Text,
+  ScrollView,
+} from "../../../../theme/Themed";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import SegmentedTransactionView from "../../profile/screens/SegmentedTransactionView";
 
 export default function RecentTransactions({
   navigation,
 }: RootTabScreenProps<"Home">) {
-  const user = useAppSelector(selectUser);
+  const { recentTransactions } = useAppSelector(selectUser);
   const theme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(theme);
 
@@ -50,8 +55,8 @@ export default function RecentTransactions({
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
-        data={user.recentTransactions.data}
+        keyExtractor={(item, i) => i.toString()}
+        data={recentTransactions.data.filter((_, i) => i === 0)}
         contentContainerStyle={{ paddingBottom: 250 }}
         ItemSeparatorComponent={() => {
           return (
@@ -62,25 +67,11 @@ export default function RecentTransactions({
             />
           );
         }}
-        renderItem={({
-          item: {
-            amount,
-            date,
-            image,
-            name,
-            transactionMessage,
-            transactionTitle,
-            transactionType,
-          },
-        }) => (
-          <TransactionListItem
-            amount={amount}
-            date={date}
-            image={image}
-            name={name}
-            transactionMessage={transactionMessage}
-            transactionTitle={transactionTitle}
-            transactionType={transactionType}
+        renderItem={({ item: { dateOfTransactions, transactions }, index }) => (
+          <SegmentedTransactionView
+            key={index}
+            dateOfTransactions={dateOfTransactions}
+            transactions={transactions}
           />
         )}
       />
