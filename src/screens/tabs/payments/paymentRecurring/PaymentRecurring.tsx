@@ -2,8 +2,8 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { PaymentStyles as styles } from "../styles";
 import { SafeAreaView } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import { Header } from "../../../../components/text/header";
 import HeadrImage from "../sub-components/HeadrImage";
 import Divider from "../sub-components/Divider";

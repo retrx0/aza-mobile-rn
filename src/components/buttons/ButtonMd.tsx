@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
-import { Text } from "../../theme/components/Text";
+import { Text } from "../../theme/Themed";
 
 const ButtonMd = (props: {
   title: string;

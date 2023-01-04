@@ -3,8 +3,8 @@ import { StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
 import { TextInput } from "../../../../theme/Themed";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import Divider from "../../../../components/divider/Divider";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";

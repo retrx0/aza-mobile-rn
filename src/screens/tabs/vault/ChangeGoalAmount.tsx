@@ -3,8 +3,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
@@ -83,7 +82,7 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             marginBottom: "auto",
           }}
         >
-          <VirtualKeyboard value={amount} setValue={setAmount} />
+          <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <View
           style={[

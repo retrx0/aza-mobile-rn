@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, StyleSheet } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { View } from "../../../../theme/components/View";
+import { View, Text } from "../../../../theme/Themed";
 import useColorScheme from "../../../../hooks/useColorScheme";
 
 export const CountriesCard = ({

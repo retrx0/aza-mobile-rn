@@ -5,8 +5,8 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import Colors from "../../../constants/Colors";
 
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
+
 import Divider from "../../../components/divider/Divider";
 import useColorScheme from "../../../hooks/useColorScheme";
 
@@ -61,8 +61,6 @@ const TransactionFeesTab = () => {
           >
             <View style={[CommonStyles.col, { maxWidth: wp(300) }]}>
               <Text
-                // lightColor={Colors.light.text}
-                // darkColor={Colors.dark.mainText}
                 style={{
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontSize: hp(16),
@@ -74,14 +72,11 @@ const TransactionFeesTab = () => {
               </Text>
               {detail && (
                 <Text
-                  // lightColor={Colors.light.text}
-                  // darkColor={Colors.dark.secondaryText}
                   style={{
                     fontSize: hp(14),
                     marginTop: hp(4),
                     marginLeft: hp(5),
                     fontWeight: "400",
-                    color: colorScheme === "dark" ? "#999999" : "#000000",
                   }}
                 >
                   {detail}
@@ -89,13 +84,10 @@ const TransactionFeesTab = () => {
               )}
             </View>
             <Text
-              // lightColor={Colors.light.text}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A",
                 fontWeight: "400",
-                color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
               }}
             >
               {charge}

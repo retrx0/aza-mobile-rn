@@ -20,6 +20,8 @@ const SendMoneyFeature = ({
         "Send money to anyone on Aza or other banks at lightning speeds"
       }
       nextScreenToNavigateTo={"TransactionCertainty"}
+      imageSource={undefined}
+      isImage={false}
     />
   );
 };

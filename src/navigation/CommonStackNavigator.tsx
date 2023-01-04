@@ -24,9 +24,7 @@ import LockVault from "../screens/tabs/vault/LockVault";
 import ArchievedVault from "../screens/tabs/vault/ArchievedVault";
 
 import { CommonStackParamList } from "../common/navigation/types";
-import useColorScheme from "../hooks/useColorScheme";
-import { View } from "../theme/components/View";
-import { Text } from "../theme/components/Text";
+import { View, Text } from "../theme/Themed";
 import CommonStyles from "../common/styles/CommonStyles";
 import BackButton from "../components/buttons/BackButton";
 import SpacerWrapper from "../common/util/SpacerWrapper";

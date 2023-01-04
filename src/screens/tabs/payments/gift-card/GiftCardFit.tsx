@@ -22,7 +22,7 @@ const GiftCardFit = ({
       }
       nextScreenToNavigateTo={"GiftCard"}
       isImage
-      source={GiftEasy}
+      imageSource={GiftEasy}
     />
   );
 };

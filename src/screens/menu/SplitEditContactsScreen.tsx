@@ -5,8 +5,8 @@ import { Contact } from "expo-contacts";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View, Text } from "../../theme/Themed";
+
 import Divider from "../../components/divider/Divider";
 import SplitListItem from "./components/SplitListItem";
 import Button from "../../components/buttons/Button";

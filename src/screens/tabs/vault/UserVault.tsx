@@ -1,6 +1,5 @@
 import { FlatList, Image, TouchableOpacity, Pressable } from "react-native";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../common/util/LayoutUtil";
@@ -26,11 +25,14 @@ import TransactionListItem from "../../../components/ListItem/TransactionListIte
 import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
+import { VaultLogo } from "../../../../assets/images";
+import { getAppTheme } from "../../../theme";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const UserVault = (
   _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
 ) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
   const navigation = useNavigation();
   const [secure, setSecure] = useState(true);
   const user = useAppSelector(selectUser);
@@ -103,10 +105,7 @@ const UserVault = (
                 },
               ]}
             >
-              <Image
-                style={{ width: 11, height: 11 }}
-                source={require("../../../../assets/images/icons/VaultLogo.png")}
-              />
+              <Image style={{ width: 11, height: 11 }} source={VaultLogo} />
               <Text
                 lightColor={"#000000"}
                 darkColor={"#CCCCCC"}

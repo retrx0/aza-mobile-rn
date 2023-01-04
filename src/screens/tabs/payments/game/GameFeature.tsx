@@ -22,7 +22,7 @@ const GameFeature = ({
       }
       nextScreenToNavigateTo={"GameScreen"}
       isImage
-      source={GAMES}
+      imageSource={GAMES}
     />
   );
 };

@@ -3,8 +3,8 @@ import { Animated, Easing, StyleSheet } from "react-native";
 import { Camera, CameraType, PermissionResponse } from "expo-camera";
 import Svg, { Path } from "react-native-svg";
 
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 

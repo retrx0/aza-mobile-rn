@@ -20,6 +20,8 @@ const InviteUsers = ({
         " Azarians can send money to users who don't even use Aza, after which an sms will be sent to those users with a guide on how to create an Aza account."
       }
       nextScreenToNavigateTo={"SendMoney"}
+      imageSource={undefined}
+      isImage={false}
     />
   );
 };

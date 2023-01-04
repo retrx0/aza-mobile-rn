@@ -1,10 +1,6 @@
 import { StyleSheet } from "react-native";
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  View as View,
-  Text as Text,
-} from "../../../../theme/Themed";
+import { SafeAreaView, View, Text } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
@@ -68,7 +64,8 @@ export default function InternetDetail({
           paddingHorizontal: hp(20),
           marginTop: hp(30),
           marginBottom: hp(10),
-        }}>
+        }}
+      >
         <CustomDropdown
           label="Bundle"
           data={period}
@@ -101,7 +98,8 @@ export default function InternetDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() =>

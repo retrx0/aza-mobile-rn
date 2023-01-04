@@ -24,7 +24,7 @@ type FeatureScreenProps = {
   featureText: string;
   Icon: ({ color }: SvgIconProps) => JSX.Element;
   nextScreenToNavigateTo: any;
-  source: any;
+  imageSource: any;
   isImage: any;
 };
 
@@ -34,7 +34,7 @@ const FeatureScreen = ({
   featureTitle,
   featureText,
   Icon,
-  source,
+  imageSource,
   isImage,
   nextScreenToNavigateTo,
 }: CommonScreenProps<"RecurringTransfer"> & FeatureScreenProps) => {
@@ -49,7 +49,8 @@ const FeatureScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -70,9 +71,10 @@ const FeatureScreen = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           {isImage ? (
-            <Image style={CommonStyles.gameImage} source={source} />
+            <Image style={CommonStyles.gameImage} source={imageSource} />
           ) : (
             <Icon color={Colors[appTheme].Text} />
           )}
@@ -87,7 +89,8 @@ const FeatureScreen = ({
               textAlign: "center",
               alignSelf: "center",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             {featureTitle}
           </Text>
           <Text
@@ -100,7 +103,8 @@ const FeatureScreen = ({
               alignSelf: "center",
               marginTop: hp(20),
               maxWidth: 350,
-            }}>
+            }}
+          >
             {featureText}
           </Text>
         </View>
@@ -109,7 +113,8 @@ const FeatureScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.navigate(nextScreenToNavigateTo)}

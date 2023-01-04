@@ -6,8 +6,8 @@ import * as yup from "yup";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-// import { View } from "../../../theme/components/View";
-// import { Text } from "../../../theme/components/Text";
+// import { View, Text } from "../../../theme/Themed";
+//
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import InputFormEmail from "../../../components/input/InputFormFieldNormal";

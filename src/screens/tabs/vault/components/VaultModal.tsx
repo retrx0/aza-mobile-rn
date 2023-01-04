@@ -3,8 +3,8 @@ import { TouchableOpacity, Image } from "react-native";
 import Modal from "react-native-modal";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 // import { useNavigation } from "@react-navigation/core";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";

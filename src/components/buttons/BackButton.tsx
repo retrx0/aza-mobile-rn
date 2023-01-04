@@ -11,7 +11,7 @@ import Colors from "../../constants/Colors";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppThemeColor } from "../../theme/Themed";
-// import { Text } from "../../theme/components/Text";
+//
 import { View as View, Text as Text } from "../../theme/Themed";
 
 type BackButtonType = {

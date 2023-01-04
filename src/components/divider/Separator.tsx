@@ -1,6 +1,6 @@
 import CommonStyles from "../../common/styles/CommonStyles";
 import Colors from "../../constants/Colors";
-import { View } from "../../theme/components/View";
+import { View, Text } from "../../theme/Themed";
 
 export const Separator = () => {
   return (

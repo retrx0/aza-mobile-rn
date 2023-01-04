@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Switch, TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
 import { Header } from "../../../components/text/header";
 import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
@@ -10,12 +9,14 @@ import CustomDropdown from "../../../components/dropdown/CustomDropdown";
 import { PercentageCard, PercentageList } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { InfoIcon } from "../../../../assets/svg";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -31,7 +32,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
     { label: "1 Month", value: "1" },
   ];
 
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <SpacerWrapper>
@@ -79,12 +80,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               label={"Vault Name"}
               labelStyle={undefined}
               placeholder="Give your vault a name"
-              inputStyle={[
-                CommonStyles.inputStyle,
-                {
-                  borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-                },
-              ]}
+              inputStyle={[CommonStyles.inputStyle]}
               icon={undefined}
               containerStyle={undefined}
             />
@@ -95,8 +91,6 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             }}
           >
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: hp(16),
                 fontWeight: "400",

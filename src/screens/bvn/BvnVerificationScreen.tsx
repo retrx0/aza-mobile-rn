@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
 import { TextInput } from "../../theme/Themed";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View, Text } from "../../theme/Themed";
+
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
@@ -54,8 +54,6 @@ const BvnVerificationScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -67,8 +65,6 @@ const BvnVerificationScreen = ({
           </Text>
           <View>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -79,8 +75,6 @@ const BvnVerificationScreen = ({
               BVN
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -118,13 +112,10 @@ const BvnVerificationScreen = ({
               })
             }
             styleText={{
-              color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
             }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={{}}
           />
           <CancelButtonWithUnderline
             title="Cancel"

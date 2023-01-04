@@ -1,6 +1,6 @@
-import { Image, StyleSheet, Text } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import React from "react";
-import { View } from "../../../../../theme/components/View";
+import { View, Text } from "../../../../../theme/Themed";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";

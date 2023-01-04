@@ -1,7 +1,7 @@
 import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
-import { View } from "../../../../theme/components/View";
-import { Text } from "../../../../theme/components/Text";
+import { View, Text } from "../../../../theme/Themed";
+
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { NairaIcon, UnlockIcon } from "../../../../../assets/svg";

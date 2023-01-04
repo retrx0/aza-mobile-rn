@@ -2,8 +2,8 @@ import React from "react";
 import { Image } from "react-native";
 import { MessageIcon, ReceivedIcon, SendIcon } from "../../../assets/svg";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View, Text } from "../../theme/Themed";
+
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";

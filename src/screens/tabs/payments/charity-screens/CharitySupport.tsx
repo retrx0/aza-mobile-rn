@@ -20,7 +20,7 @@ const CharitySupport = ({
       }
       nextScreenToNavigateTo={"Charity"}
       isImage
-      source={CHARITY}
+      imageSource={CHARITY}
     />
   );
 };

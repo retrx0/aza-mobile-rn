@@ -2,9 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
-import { TextInput } from "../../../theme/Themed";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { TextInput, View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 
 import Colors from "../../../constants/Colors";

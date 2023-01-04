@@ -5,16 +5,11 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
-import { Header } from "../../../components/text/header";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
-import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
+import { View, Text } from "../../../theme/Themed";
 import { VaultStyles as styles } from "../vault/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -56,9 +51,6 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 borderColor: "#EAEAEC",
                 paddingVertical: hp(8),
                 width: "100%",
-
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               labelStyle={styles.label}
               label="Vault Name"
@@ -77,15 +69,8 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "TopBar" })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[{}, CommonStyles.button]}
           />
         </View>
       </View>

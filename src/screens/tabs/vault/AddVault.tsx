@@ -1,8 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/components/View";
-import { Text } from "../../../theme/components/Text";
+import { View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -11,13 +10,10 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
 import { hp } from "../../../common/util/LayoutUtil";
-import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -60,12 +56,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           Choose a vault to view/edit details
         </Text>
-        <View
-          style={[
-            CommonStyles.lineDivider,
-            { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
-          ]}
-        />
+        <View style={[CommonStyles.lineDivider]} />
         <ArchievedComponents />
         <View
           style={[
@@ -78,7 +69,6 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.getParent()?.navigate("ArchievedVault")
             }
-            color={Colors[colorScheme].text}
             style={{ marginBottom: 10 }}
           />
           <Button
@@ -86,14 +76,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             onPressButton={() =>
               navigation.navigate("Common", { screen: "NewVault" })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
         </View>
       </View>
