@@ -4,13 +4,11 @@ import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { View } from "../../theme/components/View";
-import { Text } from "../../theme/components/Text";
+import { View, Text } from "../../theme/Themed";
 import Divider from "../../components/divider/Divider";
 
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
 
 import {
@@ -19,16 +17,17 @@ import {
   SendIcon,
   SplitIcon,
 } from "../../../assets/svg";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),

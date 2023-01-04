@@ -165,10 +165,28 @@ export const getUserTransactions = createAsyncThunk(
   ) => {
     try {
       const result = await api.get(
-        `/api/v1/account/${accountNumber}/trnasactions`,
+        `/api/v1/account/${accountNumber}/transactions`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       return fulfillWithValue(result.data);
+    } catch (err: any) {
+      return rejectWithValue(err.response.data.message);
+    }
+  }
+);
+
+export const addBankAccount = createAsyncThunk(
+  "user/addBankAccount",
+  async (
+    { accountNumber, token }: { accountNumber: number; token: string },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      //   const result = await api.post(
+      //     `/api/v1/account/${accountNumber}/trnasactions`,
+      //     { headers: { Authorization: `Bearer ${token}` } }
+      //   );
+      return fulfillWithValue(null);
     } catch (err: any) {
       return rejectWithValue(err.response.data.message);
     }
