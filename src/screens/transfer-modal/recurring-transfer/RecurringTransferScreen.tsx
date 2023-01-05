@@ -12,7 +12,7 @@ import { hp } from "../../../common/util/LayoutUtil";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { CloseIcon, UndrawCalendarIcon } from "../../../../assets/svg";
+import { UndrawCalendarIcon } from "../../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RecurringTransferScreen = ({
@@ -65,7 +65,9 @@ const RecurringTransferScreen = ({
         >
           <Button
             title="New Recurring Transfer"
-            onPressButton={() => navigation.navigate("SetNewRecurringTransfer")}
+            onPressButton={() =>
+              navigation.navigate("SelectNewRecurringTransfer")
+            }
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}

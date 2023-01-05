@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
 import { View, Text } from "../../../theme/Themed";
@@ -8,20 +7,19 @@ import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonW
 import CustomDropdown from "../../../components/dropdown/CustomDropdown";
 
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ExitButton from "../../../components/buttons/ExitButton";
 
 const SetupRecurringTransferScreen = ({
   navigation,
+  route,
 }: CommonScreenProps<"SetupRecurringTransfer">) => {
   const [periodValue, setPeriodValue] = useState("");
   const [dayValue, setDayValue] = useState("");
-  const colorScheme = useColorScheme();
+  const beneficiary = route.params;
 
   const period = [
     { label: "Monthly", value: "monthly" },
@@ -65,7 +63,7 @@ const SetupRecurringTransferScreen = ({
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
   const insets = useSafeAreaInsets();
@@ -143,10 +141,7 @@ const SetupRecurringTransferScreen = ({
                 headerTitle: "Recurring Transfer",
                 transactionType: {
                   type: "recurring",
-                  beneficiary: {
-                    azaAccountNumber: "",
-                    fullName: "",
-                  },
+                  beneficiary: beneficiary,
                   period: periodValue,
                   day: dayValue,
                 },
@@ -168,12 +163,3 @@ const SetupRecurringTransferScreen = ({
 };
 
 export default SetupRecurringTransferScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "space-between",
-    paddingHorizontal: hp(23),
-  },
-});

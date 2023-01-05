@@ -86,7 +86,8 @@ const TransactionConfirmationScreen = ({
           ? "You can perform this transaction automatically by giving a Recurring Transfer order"
           : "",
       receiptButton: confirmationType === "send",
-      setupRecurringTransfer: confirmationType === "send",
+      recurringTransferBeneficiary:
+        confirmationType === "send" ? beneficiary : undefined,
       navigateTo: "Home",
       screenType: "transaction",
     });

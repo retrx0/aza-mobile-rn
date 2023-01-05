@@ -65,6 +65,9 @@ const NewPasswordScreen = ({
 
   const updatePassword = async () => {
     setButtonLoading(true);
+    if (isTransactionPin) {
+      // TODO: update pin with updatePinAPI
+    }
     changePasswordAPI(oldPassword, newPassword)
       .then(() => {
         setButtonLoading(false);

@@ -151,11 +151,15 @@ export type CommonStackParamList = {
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
   SendMoneyConfirmation: undefined;
-  SetupRecurringTransfer: undefined;
+  SetupRecurringTransfer: Beneficiary;
   RecurringTransfer: undefined;
   SelectNewRecurringTransfer: undefined;
-  RecurringTransferConfirmation: undefined;
-  SetNewRecurringTransfer: undefined;
+  RecurringTransferConfirmation: {
+    amount: string;
+    beneficiary: Beneficiary;
+    period: string;
+    day: string;
+  };
 
   // CEOMessage screen
   CEOMessage: undefined;
@@ -216,7 +220,7 @@ export type StatusScreenParamsType = {
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
   receiptButton?: boolean;
-  setupRecurringTransfer?: boolean;
+  recurringTransferBeneficiary?: Beneficiary;
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;

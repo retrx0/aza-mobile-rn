@@ -133,7 +133,6 @@ import GiftCardScreen from "../screens/tabs/payments/gift-card/GiftCardScreen";
 import GiftCardConfirmation from "../screens/tabs/payments/gift-card/GiftCardConfirmation";
 import GiftCardDetails from "../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../screens/tabs/payments/game/GameScreen";
-import SetNewRecurringTransfer from "../screens/transfer-modal/recurring-transfer/SetNewRecurringTransfer";
 import PaymentRecurring from "../screens/tabs/payments/paymentRecurring/PaymentRecurring";
 import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
 import InternetRecurring from "../screens/tabs/payments/paymentRecurring/InternetRecurring/InternetRecurring";
@@ -1011,10 +1010,6 @@ const CommonStack = () => {
         <Stack.Screen
           name="RecurringTransferConfirmation"
           component={RecurringTransferConfirmationScreen}
-        />
-        <Stack.Screen
-          name="SetNewRecurringTransfer"
-          component={SetNewRecurringTransfer}
         />
         <Stack.Screen name="SendMoneyFeature" component={SendMoneyFeature} />
         <Stack.Screen

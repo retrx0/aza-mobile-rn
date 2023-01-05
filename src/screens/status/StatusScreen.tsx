@@ -1,11 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import React, { useEffect, useLayoutEffect } from "react";
 
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
@@ -32,7 +30,7 @@ const StatusScreen = ({
     statusMessage,
     statusMessage2,
     receiptButton,
-    setupRecurringTransfer,
+    recurringTransferBeneficiary,
     cancelButton,
     navigateTo,
     navigateToParams,
@@ -123,11 +121,14 @@ const StatusScreen = ({
             { bottom: insets.top || hp(45) },
           ]}
         >
-          {setupRecurringTransfer && (
+          {recurringTransferBeneficiary !== undefined && (
             <Button
               title="Setup Recurring Transfer"
               onPressButton={() =>
-                navigation.navigate("SetupRecurringTransfer")
+                navigation.navigate(
+                  "SetupRecurringTransfer",
+                  recurringTransferBeneficiary
+                )
               }
               style={[
                 {
@@ -178,11 +179,3 @@ const StatusScreen = ({
 };
 
 export default StatusScreen;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
-  },
-});

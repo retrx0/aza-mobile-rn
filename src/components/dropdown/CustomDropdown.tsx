@@ -13,11 +13,11 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 interface IProps {
   data: Array<{
     label: string;
-    value: string | number;
+    value: string;
   }>;
 
   value: string;
-  setValue: (value: string | number) => void;
+  setValue: (value: string) => void;
   placeholder: string;
   placeholderstyle?: StyleProp<TextStyle>;
   label: string;

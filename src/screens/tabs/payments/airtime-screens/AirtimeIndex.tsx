@@ -60,11 +60,11 @@ export default function AirtimeIndex({
   // const { icon } = route.params;
 
   const period = [
-    { label: "100 ", value: 100 },
-    { label: "200 ", value: 200 },
-    { label: "500 ", value: 300 },
-    { label: "1gb ", value: 500 },
-    { label: "1.5gb ", value: 1000 },
+    { label: "100 ", value: "100" },
+    { label: "200 ", value: "200" },
+    { label: "500 ", value: "300" },
+    { label: "1gb ", value: "500" },
+    { label: "1.5gb ", value: "1000" },
   ];
 
   // const [airtimeOperators, setAirtimeOperators] = useState<

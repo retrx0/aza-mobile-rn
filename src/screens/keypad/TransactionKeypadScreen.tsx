@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
@@ -112,7 +112,13 @@ const TransactionKeypadScreen = ({
       // transactionType.openDescriptionModal && setDescModalOpen(true);
     } else {
       // TODO create and pass required params
-      navigation.navigate("RecurringTransferConfirmation");
+
+      navigation.navigate("RecurringTransferConfirmation", {
+        amount,
+        beneficiary: beneficiary,
+        day: transactionType.day,
+        period: transactionType.period,
+      });
     }
   };
 
