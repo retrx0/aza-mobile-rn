@@ -21,6 +21,7 @@ const TransactionCertainty = ({
       nextScreenToNavigateTo={"InviteUsers"}
       imageSource={undefined}
       isImage={false}
+      buttontitle={"Continue"}
     />
   );
 };

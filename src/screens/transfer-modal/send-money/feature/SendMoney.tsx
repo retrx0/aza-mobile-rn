@@ -22,6 +22,7 @@ const SendMoneyFeature = ({
       nextScreenToNavigateTo={"TransactionCertainty"}
       imageSource={undefined}
       isImage={false}
+      buttontitle={"Continue"}
     />
   );
 };

@@ -22,6 +22,7 @@ const InviteUsers = ({
       nextScreenToNavigateTo={"SendMoney"}
       imageSource={undefined}
       isImage={false}
+      buttontitle={"Go Back To Send Money"}
     />
   );
 };
