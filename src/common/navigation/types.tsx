@@ -21,6 +21,8 @@ export type CommonStackParamList = {
   GiftCardFit: undefined;
   GiftCardChoice: undefined;
   QRFeature: undefined;
+  CloseAccountScreen: undefined;
+  AccountClosureSurveyScreen: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;

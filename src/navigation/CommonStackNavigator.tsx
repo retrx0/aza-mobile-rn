@@ -163,6 +163,8 @@ import GiftCardFit from "../screens/tabs/payments/gift-card/GiftCardFit";
 import { getAppTheme } from "../theme";
 import { useAppSelector } from "../redux";
 import { selectAppTheme } from "../redux/slice/themeSlice";
+import CloseAccountScreen from "../screens/tabs/settings/closeAccount/CloseAccountScreen";
+import AccountClosureSurveyScreen from "../screens/tabs/settings/closeAccount/AccountClosureSurvey";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -286,6 +288,14 @@ const CommonStack = () => {
         <Stack.Screen name="LoginOptions" component={LoginOptionsScreen} />
         <Stack.Screen name="Appearance" component={AppearanceScreen} />
         <Stack.Screen name="AppLanguage" component={AppLanguageScreen} />
+        <Stack.Screen
+          name="CloseAccountScreen"
+          component={CloseAccountScreen}
+        />
+        <Stack.Screen
+          name="AccountClosureSurveyScreen"
+          component={AccountClosureSurveyScreen}
+        />
       </Stack.Group>
 
       {/* Vault */}
