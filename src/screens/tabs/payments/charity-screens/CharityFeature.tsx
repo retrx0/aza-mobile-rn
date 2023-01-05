@@ -4,6 +4,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import FeatureScreen from "../../../feature/FeatureScreen";
 import { CHARITY } from "../../../../../assets/images";
+import { RequestIcon } from "../../../../../assets/svg";
 
 const CharityFeature = ({
   navigation,
@@ -11,6 +12,7 @@ const CharityFeature = ({
 }: CommonScreenProps<"RecurringTransfer">) => {
   return (
     <FeatureScreen
+      Icon={RequestIcon}
       headerTitle="Giftcards"
       navigation={navigation}
       route={route}
@@ -21,6 +23,7 @@ const CharityFeature = ({
       nextScreenToNavigateTo={"CharitySupport"}
       isImage
       imageSource={CHARITY}
+      buttontitle={"Continue"}
     />
   );
 };

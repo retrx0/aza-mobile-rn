@@ -4,6 +4,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import FeatureScreen from "../../../feature/FeatureScreen";
 import { CHARITY } from "../../../../../assets/images";
+import { RequestIcon } from "../../../../../assets/svg";
 
 const CharitySupport = ({
   navigation,
@@ -21,6 +22,8 @@ const CharitySupport = ({
       nextScreenToNavigateTo={"Charity"}
       isImage
       imageSource={CHARITY}
+      Icon={RequestIcon}
+      buttontitle={"Go Back to Charity"}
     />
   );
 };
