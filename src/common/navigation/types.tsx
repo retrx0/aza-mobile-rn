@@ -20,6 +20,9 @@ export type CommonStackParamList = {
   GiftCardEasy: undefined;
   GiftCardFit: undefined;
   GiftCardChoice: undefined;
+  QRFeature: undefined;
+  CloseAccountScreen: undefined;
+  AccountClosureSurveyScreen: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
@@ -140,7 +143,6 @@ export type CommonStackParamList = {
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
   ContactUs: undefined;
-  QRFeature: undefined;
 
   //withdraw and deposit
   WithdrawDepositTabs: { screen: string };

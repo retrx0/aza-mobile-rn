@@ -22,6 +22,7 @@ const RequestMoneyFeature = ({
       nextScreenToNavigateTo={"RequestMoney"}
       imageSource={undefined}
       isImage={false}
+      buttontitle={"Go Back to Request Money"}
     />
   );
 };

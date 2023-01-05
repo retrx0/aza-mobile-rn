@@ -23,6 +23,7 @@ const GiftCardChoice = ({
       nextScreenToNavigateTo={"GiftCardFit"}
       isImage
       imageSource={GiftEasy}
+      buttontitle={"Continue"}
     />
   );
 };

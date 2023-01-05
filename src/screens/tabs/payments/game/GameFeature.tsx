@@ -13,7 +13,6 @@ const GameFeature = ({
   return (
     <FeatureScreen
       headerTitle="GameCredits"
-      Icon={RequestIcon}
       navigation={navigation}
       route={route}
       featureTitle={"You can have it all"}
@@ -23,6 +22,8 @@ const GameFeature = ({
       nextScreenToNavigateTo={"GameScreen"}
       isImage
       imageSource={GAMES}
+      Icon={RequestIcon}
+      buttontitle={"Go Back To Game Credits"}
     />
   );
 };

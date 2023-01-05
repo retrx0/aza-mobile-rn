@@ -5,6 +5,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import FeatureScreen from "../../../feature/FeatureScreen";
 import { Text } from "../../../../theme/Themed";
 import { GAMES } from "../../../../../assets/images";
+import { RequestIcon } from "../../../../../assets/svg";
 
 const GameCredit = ({
   navigation,
@@ -12,7 +13,7 @@ const GameCredit = ({
 }: CommonScreenProps<"RecurringTransfer">) => {
   return (
     <FeatureScreen
-      headerTitle="GameCredits"
+      headerTitle="Game Credits"
       navigation={navigation}
       route={route}
       featureTitle={"Maximum gaming experience"}
@@ -22,6 +23,8 @@ const GameCredit = ({
       nextScreenToNavigateTo={"GameFeature"}
       imageSource={GAMES}
       isImage
+      Icon={RequestIcon}
+      buttontitle={"Continue"}
     />
   );
 };

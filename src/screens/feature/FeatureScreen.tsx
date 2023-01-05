@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleProp, StyleSheet, ViewStyle } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
@@ -26,6 +26,7 @@ type FeatureScreenProps = {
   nextScreenToNavigateTo: any;
   imageSource: any;
   isImage: any;
+  buttontitle: string;
 };
 
 const FeatureScreen = ({
@@ -36,6 +37,7 @@ const FeatureScreen = ({
   Icon,
   imageSource,
   isImage,
+  buttontitle,
   nextScreenToNavigateTo,
 }: CommonScreenProps<"RecurringTransfer"> & FeatureScreenProps) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -49,8 +51,7 @@ const FeatureScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           {headerTitle}
         </Text>
       ),
@@ -71,8 +72,7 @@ const FeatureScreen = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}
-        >
+          }}>
           {isImage ? (
             <Image style={CommonStyles.gameImage} source={imageSource} />
           ) : (
@@ -89,8 +89,8 @@ const FeatureScreen = ({
               textAlign: "center",
               alignSelf: "center",
               lineHeight: hp(30),
-            }}
-          >
+              maxWidth: 335,
+            }}>
             {featureTitle}
           </Text>
           <Text
@@ -102,9 +102,8 @@ const FeatureScreen = ({
               fontWeight: "400",
               alignSelf: "center",
               marginTop: hp(20),
-              maxWidth: 350,
-            }}
-          >
+              maxWidth: 335,
+            }}>
             {featureText}
           </Text>
         </View>
@@ -113,10 +112,9 @@ const FeatureScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
-            title="Continue"
+            title={buttontitle}
             onPressButton={() => navigation.navigate(nextScreenToNavigateTo)}
             styleText={{}}
             style={[{}]}
