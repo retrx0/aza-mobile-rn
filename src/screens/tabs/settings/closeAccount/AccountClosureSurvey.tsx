@@ -1,0 +1,174 @@
+import React, { useLayoutEffect, useState } from "react";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+
+import BackButton from "../../../../components/buttons/BackButton";
+import { View, Text } from "../../../../theme/Themed";
+
+import Button from "../../../../components/buttons/Button";
+import { CancelButtonWithUnderline } from "../../../../components/buttons/CancelButtonWithUnderline";
+import Divider from "../../../../components/divider/Divider";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../../../constants/Colors";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as Images from "../../../../../assets/images";
+
+import { AccessBank } from "../../../../../assets/images";
+import SegmentedInput from "../../../../components/input/SegmentedInput";
+
+const AccountClosureSurveyScreen = ({
+  navigation,
+}: CommonScreenProps<"CloseAccountScreen">) => {
+  const colorScheme = useColorScheme();
+  const [selectedCard, setSelectedCard] = useState();
+  const insets = useSafeAreaInsets();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+          }}>
+          Account Closure Survey
+        </Text>
+      ),
+      // hide default back button which only shows in android
+      headerBackVisible: false,
+      //center it in android
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+    });
+  }, []);
+
+  const accounts = [
+    {
+      surveyToppings: "Poor user experience or technical issues with the app.",
+    },
+    {
+      surveyToppings: "Difficulties with customer service or support.",
+    },
+    {
+      surveyToppings: "Financial issues, such as subscription costs or fees.",
+    },
+    {
+      surveyToppings:
+        "Changes to the app's terms of service or policies that are unacceptable.",
+    },
+    {
+      surveyToppings: "Privacy concerns or data breaches.",
+    },
+    {
+      surveyToppings: "Others",
+    },
+  ];
+
+  return (
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(15) }}>
+          <Text
+            // lightColor={Colors.light.mainText}
+            // darkColor={Colors.dark.mainText}
+            style={{
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(16),
+              marginBottom: hp(30),
+              fontWeight: "500",
+              paddingLeft: hp(7),
+              maxWidth: wp(350),
+            }}>
+            We would love to know why you decided to close your account
+          </Text>
+          {accounts.map(({ surveyToppings }, i) => (
+            <View key={i}>
+              <>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingVertical: hp(20),
+                  }}>
+                  <TouchableOpacity
+                    onPress={() => setSelectedCard(surveyToppings)}
+                    style={{
+                      width: hp(20),
+                      height: hp(20),
+                      borderRadius: hp(10),
+                      borderColor:
+                        selectedCard === surveyToppings
+                          ? Colors.general.green
+                          : "#3A3D42",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderWidth: hp(1),
+                    }}>
+                    {selectedCard === surveyToppings && (
+                      <View style={CommonStyles.doneSelect} />
+                    )}
+                  </TouchableOpacity>
+                  <Text
+                    // lightColor={Colors.light.mainText}
+                    // darkColor={Colors.dark.mainText}
+                    style={{
+                      marginLeft: 20,
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontSize: hp(16),
+                      maxWidth: 350,
+                    }}>
+                    {surveyToppings}
+                  </Text>
+                </View>
+              </>
+            </View>
+          ))}
+        </View>
+        <View
+          style={[
+            CommonStyles.passwordContainer,
+            { bottom: insets.bottom || hp(45) },
+          ]}>
+          <Button
+            disabled={!selectedCard}
+            title="Continue"
+            onPressButton={() =>
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                //TODO update message to accept JSX
+                statusMessage: "Survey has been successfully filled and sent",
+                navigateTo: "Home",
+              })
+            }
+            styleText={{
+              color: Colors[colorScheme].buttonText,
+            }}
+            style={[
+              {
+                backgroundColor: Colors[colorScheme].button,
+              },
+            ]}
+          />
+        </View>
+      </View>
+    </SpacerWrapper>
+  );
+};
+
+export default AccountClosureSurveyScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: hp(20),
+    paddingHorizontal: 15,
+  },
+});

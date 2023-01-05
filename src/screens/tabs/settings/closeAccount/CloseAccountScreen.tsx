@@ -1,33 +1,34 @@
 import React, { useLayoutEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../../components/buttons/BackButton";
-import { View, Text } from "../../../../../theme/Themed";
+import BackButton from "../../../../components/buttons/BackButton";
+import { View, Text } from "../../../../theme/Themed";
 
-import Button from "../../../../../components/buttons/Button";
-import ButtonWithUnderline, {
-  CancelButtonWithUnderline,
-} from "../../../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../../../components/divider/Divider";
+import Button from "../../../../components/buttons/Button";
+import { CancelButtonWithUnderline } from "../../../../components/buttons/CancelButtonWithUnderline";
+import Divider from "../../../../components/divider/Divider";
 
-import { CommonScreenProps } from "../../../../../common/navigation/types";
-import Colors from "../../../../../constants/Colors";
-import { hp } from "../../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../../hooks/useColorScheme";
-import CommonStyles from "../../../../../common/styles/CommonStyles";
-import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../../../constants/Colors";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as Images from "../../../../../assets/images";
 
-import {
-  ArrowDownIcon,
-  UndrawCreditCardIcon,
-} from "../../../../../../assets/svg";
+import { AccessBank } from "../../../../../assets/images";
+import SegmentedInput from "../../../../components/input/SegmentedInput";
 
-const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
+const CloseAccountScreen = ({
+  navigation,
+}: CommonScreenProps<"CloseAccountScreen">) => {
   const colorScheme = useColorScheme();
   const [selectedCard, setSelectedCard] = useState("");
-  const [cardsAvailable] = useState(true);
+  const [fundsAvailable] = useState(true);
   const insets = useSafeAreaInsets();
+  const [password, setPassword] = useState("");
+  const [isButtonLoading, setButtonLoading] = useState(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -39,7 +40,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
           }}>
-          Deposit
+          Close Account
         </Text>
       ),
       // hide default back button which only shows in android
@@ -51,15 +52,23 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
     });
   }, []);
 
+  <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <Image
+      source={AccessBank}
+      resizeMode="cover"
+      style={[CommonStyles.accessBank]}
+    />
+    <Text style={CommonStyles.accountNumber}>Access Bank (123........)</Text>
+  </View>;
+
   const accounts = [
     {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrjzgYSElVPPXddqi8InFnxHHBzkx524woJQ&usqp=CAU",
-      name: "Visa (**** **** **** 1234)",
+      image: Images.AccessBank,
+      name: "Access Bank (123........)",
     },
   ];
 
-  if (cardsAvailable) {
+  if (fundsAvailable) {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -73,8 +82,10 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 marginBottom: hp(30),
                 fontWeight: "500",
                 paddingLeft: hp(7),
+                maxWidth: wp(350),
               }}>
-              Select the card you wish to deposit money to your Aza from
+              You would need to empty your account first. Choose a bank you wish
+              to withdraw your funds to
             </Text>
             <Divider />
             {accounts.map(({ image, name }, i) => (
@@ -86,7 +97,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                       { alignSelf: "stretch", paddingVertical: 15 },
                     ]}>
                     <Image
-                      source={{ uri: image }}
+                      source={image}
                       style={{
                         width: 36,
                         height: 36,
@@ -134,12 +145,13 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               { bottom: insets.bottom || hp(45) },
             ]}>
             <CancelButtonWithUnderline
-              title="Add New Card"
-              onPressButton={() =>
-                navigation.navigate("AddNewCard", {
-                  navigateBackTo: "Deposit",
-                })
-              }
+              title="Add another bank Account"
+              onPressButton={() => {
+                navigation.navigate("Common", {
+                  screen: "AddBankAccount",
+                  params: { screenType: "Deposit" },
+                });
+              }}
               color={Colors[colorScheme].text}
               style={{ marginBottom: hp(10) }}
             />
@@ -180,84 +192,64 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
     );
   }
 
+  const verifyPassword = async () => {
+    setButtonLoading(true);
+  };
+
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontWeight: "500",
+            marginLeft: hp(20),
+          }}>
+          Please enter your password
+        </Text>
         <View
-          style={[
-            CommonStyles.col,
-            { marginTop: "auto", marginBottom: "auto" },
-          ]}>
-          <UndrawCreditCardIcon
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-          />
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
-            style={{
-              fontSize: 16,
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-              marginTop: hp(30),
-              textAlign: "center",
-            }}>
-            You do not have any credit/debit cards
-          </Text>
-          <View style={[CommonStyles.row, { marginTop: hp(10) }]}>
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.secondaryText}
-              style={{
-                fontSize: 14,
-                maxWidth: 300,
-                marginRight: 5,
-                textAlign: "center",
-              }}>
-              Click ‘Add New Card’ to add a new card
-            </Text>
-            <ArrowDownIcon
-              color={
-                colorScheme === "dark"
-                  ? Colors.dark.secondaryText
-                  : Colors.light.text
-              }
-              size={16}
-            />
-          </View>
-        </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
-          ]}>
-          <Button
-            title="Add New Card"
-            onPressButton={() =>
-              navigation.navigate("AddNewCard", {
-                navigateBackTo: "Deposit",
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
+          style={{
+            marginTop: hp(80),
+            marginBottom: hp(100),
+            paddingHorizontal: hp(20),
+          }}>
+          <SegmentedInput
+            value={password}
+            secureInput
+            headerText="Password"
+            onValueChanged={(pass) => setPassword(pass)}
+            headerstyle={{
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(16),
+              fontWeight: "500",
             }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
-          />
-          <ButtonWithUnderline
-            title="Cancel"
-            onPressButton={() => navigation.goBack()}
-            styleText={CommonStyles.cancelStyle}
-            style={{ borderBottomColor: Colors.general.red }}
           />
         </View>
+        <Button
+          title="Continue"
+          // disabled={password.length < 6 ? true : false}
+          // onPressButton={() => verifyPassword()}
+          onPressButton={() => {
+            navigation.navigate("AccountClosureSurveyScreen");
+          }}
+          styleText={{
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{
+            marginTop: hp(100),
+          }}
+          buttonLoading={isButtonLoading}
+        />
       </View>
     </SpacerWrapper>
   );
 };
 
-export default DepositScreen;
+export default CloseAccountScreen;
 
 const styles = StyleSheet.create({
   container: {
