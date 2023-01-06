@@ -9,7 +9,7 @@ const Divider = () => {
     <View
       style={{
         backgroundColor: "transparent",
-        borderBottomWidth: 0.8,
+        borderBottomWidth: 0.3,
         borderBottomColor: colorScheme === "dark" ? "#484B51" : "#EAEAEC",
       }}
     />

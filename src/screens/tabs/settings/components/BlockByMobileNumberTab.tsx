@@ -26,8 +26,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
-          }}
-        >
+          }}>
           Blocked users won't be able to send you money, request money from you
           or split payments with you.
         </Text>
@@ -40,8 +39,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
 
             fontWeight: "400",
             marginTop: hp(30),
-          }}
-        >
+          }}>
           You can unblock these users anytime
         </Text>
         <View style={{ marginTop: hp(50) }}>
@@ -73,14 +71,12 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
             marginLeft: hp(5),
             fontWeight: "400",
             marginBottom: hp(20),
-          }}
-        >
+          }}>
           Your Aza Contacts
         </Text>
         <ScrollView
           contentContainerStyle={{ paddingBottom: hp(300) }}
-          showsVerticalScrollIndicator={false}
-        >
+          showsVerticalScrollIndicator={false}>
           {Array(20)
             .fill("")
             .map((_, i) => (

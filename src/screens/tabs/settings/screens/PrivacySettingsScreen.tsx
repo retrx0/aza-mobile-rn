@@ -6,6 +6,7 @@ import { View as View, Text as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SettingsListItem from "../components/SettingsListItem";
+import Divider from "../../../../components/divider/Divider";
 
 const PrivacySettingsScreen = ({
   navigation,
@@ -39,8 +40,7 @@ const PrivacySettingsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Privacy Settings
         </Text>
       ),
@@ -62,18 +62,11 @@ const PrivacySettingsScreen = ({
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A-Medium",
           fontWeight: "500",
-        }}
-      >
+        }}>
         You can change your privacy settings
       </Text>
       <View style={{ marginTop: hp(80) }}>
-        <View
-          style={{
-            backgroundColor: "transparent",
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors["general"].grey,
-          }}
-        />
+        <Divider />
         {privacySettings.map(({ name, handleNavigation }, i) => (
           <SettingsListItem
             name={name}
