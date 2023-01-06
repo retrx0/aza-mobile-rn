@@ -17,18 +17,15 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Images from "../../../../../assets/images";
 
-import { AccessBank } from "../../../../../assets/images";
+// import { AccessBank } from "../../../../../assets/images";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 
-const CloseAccountScreen = ({
-  navigation,
-}: CommonScreenProps<"CloseAccountScreen">) => {
+const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
   const colorScheme = useColorScheme();
   const [selectedCard, setSelectedCard] = useState("");
-  const [fundsAvailable] = useState(true);
+  const [fundsAvailable] = useState(false);
   const insets = useSafeAreaInsets();
   const [password, setPassword] = useState("");
-  const [isButtonLoading, setButtonLoading] = useState(false);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -51,15 +48,6 @@ const CloseAccountScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
-
-  <View style={{ flexDirection: "row", alignItems: "center" }}>
-    <Image
-      source={AccessBank}
-      resizeMode="cover"
-      style={[CommonStyles.accessBank]}
-    />
-    <Text style={CommonStyles.accountNumber}>Access Bank (123........)</Text>
-  </View>;
 
   const accounts = [
     {
@@ -109,8 +97,8 @@ const CloseAccountScreen = ({
                       // darkColor={Colors.dark.mainText}
                       style={{
                         marginLeft: 20,
-                        fontFamily: "Euclid-Circular-A-Semi-Bold",
-                        fontSize: 14,
+                        fontFamily: "Euclid-Circular-A",
+                        fontSize: hp(16),
                       }}>
                       {name}
                     </Text>
@@ -149,7 +137,7 @@ const CloseAccountScreen = ({
               onPressButton={() => {
                 navigation.navigate("Common", {
                   screen: "AddBankAccount",
-                  params: { screenType: "Deposit" },
+                  params: { screenType: "withdraw" },
                 });
               }}
               color={Colors[colorScheme].text}
@@ -160,9 +148,9 @@ const CloseAccountScreen = ({
               title="Continue"
               onPressButton={() =>
                 navigation.navigate("TransactionKeypad", {
-                  headerTitle: "Amount",
+                  headerTitle: "Close Account",
                   transactionType: {
-                    transaction: "deposit",
+                    transaction: "withdraw",
                     type: "normal",
                     beneficiary: {
                       azaAccountNumber: "",
@@ -192,9 +180,9 @@ const CloseAccountScreen = ({
     );
   }
 
-  const verifyPassword = async () => {
-    setButtonLoading(true);
-  };
+  // const verifyPassword = async () => {
+  //   setButtonLoading(true);
+  // };
 
   return (
     <SpacerWrapper>
@@ -242,7 +230,7 @@ const CloseAccountScreen = ({
           style={{
             marginTop: hp(100),
           }}
-          buttonLoading={isButtonLoading}
+          // buttonLoading={isButtonLoading}
         />
       </View>
     </SpacerWrapper>
@@ -250,11 +238,3 @@ const CloseAccountScreen = ({
 };
 
 export default CloseAccountScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: 15,
-  },
-});

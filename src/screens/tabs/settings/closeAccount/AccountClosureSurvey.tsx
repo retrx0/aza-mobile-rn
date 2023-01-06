@@ -1,13 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
-
+import { StyleSheet, TouchableOpacity } from "react-native";
 import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
-
 import Button from "../../../../components/buttons/Button";
-import { CancelButtonWithUnderline } from "../../../../components/buttons/CancelButtonWithUnderline";
-import Divider from "../../../../components/divider/Divider";
-
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
@@ -15,10 +10,6 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as Images from "../../../../../assets/images";
-
-import { AccessBank } from "../../../../../assets/images";
-import SegmentedInput from "../../../../components/input/SegmentedInput";
 
 const AccountClosureSurveyScreen = ({
   navigation,
@@ -134,7 +125,7 @@ const AccountClosureSurveyScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             disabled={!selectedCard}

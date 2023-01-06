@@ -88,8 +88,8 @@ export const ZEAL = require("./common/ZEAL.png");
 
 export const VaultFeature = require("./common/VaultFeature.png");
 
-export const WITHDRAWFEATURE = require("./common/WithdrawFeature.png");
-export const DEPOSITFEATURE = require("./common/DepositFeature.png");
+export const WithdrawFeature = require("./common/WithdrawFeature.png");
+export const DepositFeature = require("./common/DepositFeature.png");
 export const CHARITY = require("./common/CHARITY.png");
 export const GAMES = require("./common/GAMES.png");
 export const GiftEasy = require("./common/GiftEasy.png");

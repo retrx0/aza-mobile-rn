@@ -267,7 +267,7 @@ const CommonStyles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: hp(17),
     fontFamily: "Euclid-Circular-A",
-    marginTop: hp(10),
+    marginTop: hp(5),
   },
   actionContainer: {
     alignSelf: "center",

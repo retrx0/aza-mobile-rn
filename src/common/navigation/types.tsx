@@ -23,6 +23,8 @@ export type CommonStackParamList = {
   QRFeature: undefined;
   CloseAccountScreen: undefined;
   AccountClosureSurveyScreen: undefined;
+  WithdrawKeyPad: undefined;
+  CloseAccount: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
