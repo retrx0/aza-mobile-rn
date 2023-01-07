@@ -15,7 +15,7 @@ const AccountClosureSurveyScreen = ({
   navigation,
 }: CommonScreenProps<"CloseAccountScreen">) => {
   const colorScheme = useColorScheme();
-  const [selectedCard, setSelectedCard] = useState();
+  const [selectedCard, setSelectedCard] = useState("");
   const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
@@ -27,7 +27,8 @@ const AccountClosureSurveyScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Account Closure Survey
         </Text>
       ),
@@ -67,8 +68,6 @@ const AccountClosureSurveyScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -76,47 +75,55 @@ const AccountClosureSurveyScreen = ({
               fontWeight: "500",
               paddingLeft: hp(7),
               maxWidth: wp(350),
-            }}>
+            }}
+          >
             We would love to know why you decided to close your account
           </Text>
           {accounts.map(({ surveyToppings }, i) => (
             <View key={i}>
               <>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    paddingVertical: hp(20),
-                  }}>
+                <View style={{}}>
                   <TouchableOpacity
                     onPress={() => setSelectedCard(surveyToppings)}
                     style={{
-                      width: hp(20),
-                      height: hp(20),
-                      borderRadius: hp(10),
-                      borderColor:
-                        selectedCard === surveyToppings
-                          ? Colors.general.green
-                          : "#3A3D42",
+                      flexDirection: "row",
                       alignItems: "center",
-                      justifyContent: "center",
-                      borderWidth: hp(1),
-                    }}>
-                    {selectedCard === surveyToppings && (
-                      <View style={CommonStyles.doneSelect} />
-                    )}
+                      paddingVertical: hp(20),
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: hp(20),
+                        height: hp(20),
+                        borderRadius: hp(10),
+                        borderColor:
+                          selectedCard === surveyToppings
+                            ? Colors.general.green
+                            : "#3A3D42",
+
+                        borderWidth: hp(1),
+                      }}
+                    >
+                      {selectedCard === surveyToppings && (
+                        <View
+                          style={[
+                            CommonStyles.doneSelect,
+                            { marginLeft: wp(2), marginTop: wp(2) },
+                          ]}
+                        />
+                      )}
+                    </View>
+                    <Text
+                      style={{
+                        marginLeft: 20,
+                        fontFamily: "Euclid-Circular-A-Medium",
+                        fontSize: hp(16),
+                        maxWidth: 350,
+                      }}
+                    >
+                      {surveyToppings}
+                    </Text>
                   </TouchableOpacity>
-                  <Text
-                    // lightColor={Colors.light.mainText}
-                    // darkColor={Colors.dark.mainText}
-                    style={{
-                      marginLeft: 20,
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: hp(16),
-                      maxWidth: 350,
-                    }}>
-                    {surveyToppings}
-                  </Text>
                 </View>
               </>
             </View>
@@ -126,7 +133,8 @@ const AccountClosureSurveyScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             disabled={!selectedCard}
             title="Continue"
@@ -139,14 +147,8 @@ const AccountClosureSurveyScreen = ({
                 navigateTo: "Home",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
         </View>
       </View>
@@ -155,11 +157,3 @@ const AccountClosureSurveyScreen = ({
 };
 
 export default AccountClosureSurveyScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: 15,
-  },
-});

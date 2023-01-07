@@ -9,7 +9,6 @@ import Button from "../../../../components/buttons/Button";
 import Divider from "../../../../components/divider/Divider";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -19,7 +18,6 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 const DebitCreditCardsScreen = ({
   navigation,
 }: CommonScreenProps<"DebitCreditCards">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
@@ -51,8 +49,6 @@ const DebitCreditCardsScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -115,14 +111,8 @@ const DebitCreditCardsScreen = ({
                 navigateBackTo: "DebitCreditCards",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

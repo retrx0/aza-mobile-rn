@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
 
-import { Text as Text } from "../../theme/Themed";
+import { Text } from "../../theme/Themed";
 
 type ButtonPropsType = {
   title: string;

@@ -69,7 +69,6 @@ export default function RecentTransactions({
         }}
         renderItem={({ item: { dateOfTransactions, transactions }, index }) => (
           <SegmentedTransactionView
-            key={index}
             dateOfTransactions={dateOfTransactions}
             transactions={transactions}
           />

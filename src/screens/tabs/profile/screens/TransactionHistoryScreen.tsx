@@ -74,7 +74,6 @@ const TransactionHistoryScreen = ({
             {recentTransactions.data.map(
               ({ dateOfTransactions, transactions }, i) => (
                 <SegmentedTransactionView
-                  key={i}
                   dateOfTransactions={dateOfTransactions}
                   transactions={transactions}
                 />

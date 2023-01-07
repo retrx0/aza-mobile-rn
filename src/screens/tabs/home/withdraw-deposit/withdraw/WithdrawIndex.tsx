@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { View as View, Text as Text } from "../../../../../theme/Themed";
+import { View, Text } from "../../../../../theme/Themed";
 import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";
@@ -22,8 +22,6 @@ export default function WithdrawIndex({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),

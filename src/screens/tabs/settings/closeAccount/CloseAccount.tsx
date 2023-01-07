@@ -27,7 +27,8 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Close Account
         </Text>
       ),
@@ -45,8 +46,6 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(24),
@@ -54,8 +53,9 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
               maxWidth: wp(350),
               alignSelf: "center",
               marginTop: hp(330),
-            }}>
-            We’re sad to see you go
+            }}
+          >
+            We're sad to see you go
           </Text>
         </View>
 
@@ -63,7 +63,8 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>
@@ -75,14 +76,8 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
                 navigateTo: "AccountClosureSurveyScreen",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
         </View>
       </View>

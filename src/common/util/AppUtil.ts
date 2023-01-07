@@ -10,16 +10,20 @@ export const getCurrencyUnicode = (currencyCode: string) => {
   return getSymbolFromCurrency(currencyCode);
 };
 
-export const getInitialsAvatar = (item: {
+export const getDefaultPictureUrl = (item: {
   firstName: string;
   lastName?: string;
   backgroundColor?: string;
   foreground?: string;
+  pictureUrl?: string;
   scheme: "light" | "dark";
 }) => {
-  return `https://ui-avatars.com/api/?name=${item.firstName}+${
-    item.lastName ? item.lastName : ""
-  }&background=${Colors[item.scheme].backgroundSecondary}&color=${
-    Colors[item.scheme].mainText
-  }`;
+  if (item.pictureUrl && item.pictureUrl !== "") {
+    return item.pictureUrl;
+  } else
+    return `https://ui-avatars.com/api/?name=${item.firstName}+${
+      item.lastName ? item.lastName : ""
+    }&background=${Colors[item.scheme].backgroundSecondary}&color=${
+      Colors[item.scheme].mainText
+    }`;
 };

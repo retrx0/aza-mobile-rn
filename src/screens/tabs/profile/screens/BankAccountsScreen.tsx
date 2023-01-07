@@ -25,13 +25,14 @@ import {
 import { AccessBank } from "../../../../../assets/images";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import { BankAccount } from "../../../../redux/types";
 
 const BankAccountsScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BankAccounts">) => {
   const colorScheme = useColorScheme();
-  const [selectedAccount, setSelectedAccount] = useState("");
+  const [selectedAccount, setSelectedAccount] = useState<BankAccount>();
   const [accountAvailable] = useState(true);
   const insets = useSafeAreaInsets();
   const { screenType } = route.params;
@@ -61,13 +62,6 @@ const BankAccountsScreen = ({
     });
   }, []);
 
-  const accounts = [
-    {
-      image: AccessBank,
-      name: "Access Bank (123........)",
-    },
-  ];
-
   if (accountAvailable && screenType === "Withdraw") {
     return (
       <SpacerWrapper>
@@ -85,61 +79,61 @@ const BankAccountsScreen = ({
               Select the bank you wish to withdraw to
             </Text>
             <Divider />
-            {user.bankAccounts.data.map(
-              ({ logoUrl, bankName, accountNumber }, i) => (
-                <View key={i}>
-                  <TouchableOpacity
-                    onPress={() => setSelectedAccount(bankName)}
+            {user.bankAccounts.data.map((_account, i) => (
+              <View key={i}>
+                <TouchableOpacity onPress={() => setSelectedAccount(_account)}>
+                  <View
+                    style={[
+                      CommonStyles.row,
+                      { alignSelf: "stretch", paddingVertical: 15 },
+                    ]}
                   >
-                    <View
-                      style={[
-                        CommonStyles.row,
-                        { alignSelf: "stretch", paddingVertical: 15 },
-                      ]}
-                    >
-                      <Image
-                        source={{ uri: logoUrl }}
-                        style={{
-                          width: 36,
-                          height: 36,
-                          borderRadius: 50,
-                        }}
-                      />
+                    <Image
+                      source={{ uri: _account.logoUrl }}
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 50,
+                      }}
+                    />
 
-                      <Text
-                        style={{
-                          marginLeft: hp(20),
-                          fontFamily: "Euclid-Circular-A-Semi-Bold",
-                          fontSize: hp(14),
-                        }}
-                      >
-                        {`${bankName} (${accountNumber.substring(0, 3)}.....)`}
-                      </Text>
-                      <View
-                        style={{
-                          marginLeft: "auto",
-                          width: hp(20),
-                          height: hp(20),
-                          borderRadius: hp(10),
-                          borderColor:
-                            selectedAccount === bankName
-                              ? Colors.general.green
-                              : "#3A3D42",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          borderWidth: hp(1),
-                        }}
-                      >
-                        {selectedAccount === bankName && (
-                          <View style={CommonStyles.doneSelect} />
-                        )}
-                      </View>
+                    <Text
+                      style={{
+                        marginLeft: hp(20),
+                        fontFamily: "Euclid-Circular-A-Semi-Bold",
+                        fontSize: hp(14),
+                      }}
+                    >
+                      {`${
+                        _account.bankName
+                      } (${_account.accountNumber.substring(0, 3)}.....)`}
+                    </Text>
+                    <View
+                      style={{
+                        marginLeft: "auto",
+                        width: hp(20),
+                        height: hp(20),
+                        borderRadius: hp(10),
+                        borderColor:
+                          selectedAccount?.accountNumber ===
+                          _account.accountNumber
+                            ? Colors.general.green
+                            : "#3A3D42",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderWidth: hp(1),
+                      }}
+                    >
+                      {selectedAccount?.accountNumber ===
+                        _account.accountNumber && (
+                        <View style={CommonStyles.doneSelect} />
+                      )}
                     </View>
-                  </TouchableOpacity>
-                  <Divider />
-                </View>
-              )
-            )}
+                  </View>
+                </TouchableOpacity>
+                <Divider />
+              </View>
+            ))}
           </View>
           <View
             style={[
@@ -164,11 +158,12 @@ const BankAccountsScreen = ({
                 navigation.navigate("TransactionKeypad", {
                   headerTitle: "Amount",
                   transactionType: {
-                    transaction: "deposit",
+                    transaction: "withdraw",
                     type: "normal",
                     beneficiary: {
-                      azaAccountNumber: "",
-                      fullName: "",
+                      azaAccountNumber: selectedAccount?.accountNumber!,
+                      pictureUrl: user.pictureUrl,
+                      fullName: user.fullName,
                     },
                   },
                 })

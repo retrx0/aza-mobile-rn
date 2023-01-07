@@ -4,7 +4,7 @@ import { SectionList, StyleSheet, TouchableOpacity } from "react-native";
 import { verifyAzaNumber } from "../../api/aza";
 import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { getInitialsAvatar } from "../../common/util/AppUtil";
+import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import { hp } from "../../common/util/LayoutUtil";
 import Button from "../../components/buttons/Button";
 import ContactListItem from "../../components/ListItem/ContactListItem";
@@ -74,7 +74,7 @@ const ContactsScene = ({
                       <QuickContactView
                         firstName={_contct.firstName!}
                         lastName=""
-                        photoUrl={getInitialsAvatar({
+                        photoUrl={getDefaultPictureUrl({
                           firstName: _contct.fullName!,
                           scheme: appTheme,
                         })}
@@ -154,7 +154,7 @@ const ContactsScene = ({
                           }}
                         >
                           <ContactListItem
-                            image={getInitialsAvatar({
+                            image={getDefaultPictureUrl({
                               firstName: item?.fullName,
                               lastName: item.lastName,
                               scheme: appTheme,
@@ -178,7 +178,7 @@ const ContactsScene = ({
                         }}
                       >
                         <ContactListItem
-                          image={getInitialsAvatar({
+                          image={getDefaultPictureUrl({
                             firstName: item?.firstName,
                             lastName: item.lastName,
                             scheme: appTheme,
@@ -221,7 +221,7 @@ const ContactsScene = ({
                   <QuickContactView
                     firstName={_contct.firstName!}
                     lastName=""
-                    photoUrl={getInitialsAvatar({
+                    photoUrl={getDefaultPictureUrl({
                       firstName: _contct.fullName!,
                       scheme: appTheme,
                     })}

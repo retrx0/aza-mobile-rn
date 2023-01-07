@@ -16,7 +16,7 @@ import { numberWithCommas } from "../../common/util/NumberUtils";
 
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
-import { getInitialsAvatar } from "../../common/util/AppUtil";
+import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import transactionSlice, {
   setTransaction,
   setTransactionBeneficiary,
@@ -54,7 +54,8 @@ const TransactionKeypadScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -142,26 +143,33 @@ const TransactionKeypadScreen = ({
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ alignItems: "center" }}>
-          <Image
-            style={{ borderRadius: 50, width: 50, height: 50 }}
-            source={{
-              uri:
-                beneficiary.pictureUrl && beneficiary.pictureUrl !== ""
-                  ? beneficiary.pictureUrl
-                  : getInitialsAvatar({
-                      firstName: beneficiary.fullName,
-                      lastName: beneficiary.lastName,
-                      scheme: appTheme,
-                    }),
-            }}
-          />
+          {normalTransaction ? (
+            transactionType.transaction === "deposit" ? (
+              <></>
+            ) : (
+              <Image
+                style={{ borderRadius: 50, width: 50, height: 50 }}
+                source={{
+                  uri: getDefaultPictureUrl({
+                    firstName: beneficiary.fullName,
+                    lastName: beneficiary.lastName,
+                    scheme: appTheme,
+                    pictureUrl: beneficiary.pictureUrl,
+                  }),
+                }}
+              />
+            )
+          ) : (
+            <></>
+          )}
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               marginTop: hp(15),
               marginBottom: hp(15),
-            }}>
+            }}
+          >
             {beneficiary.fullName}
           </Text>
           <View
@@ -176,11 +184,13 @@ const TransactionKeypadScreen = ({
                 borderRadius: 50,
                 marginBottom: hp(20),
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               Nigerian Naira
             </Text>
             <Image
@@ -195,7 +205,8 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               NGN
             </Text>
           </View>
@@ -219,7 +230,8 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(36),
                 marginVertical: hp(10),
-              }}>
+              }}
+            >
               {!amount && "0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -229,7 +241,8 @@ const TransactionKeypadScreen = ({
                 fontSize: hp(14),
                 fontWeight: "400",
                 marginVertical: hp(10),
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -238,7 +251,8 @@ const TransactionKeypadScreen = ({
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontWeight: "600",
-              }}>
+              }}
+            >
               {NAIRA_UNICODE}
               {numberWithCommas(user.azaBalance)}
             </Text>
@@ -249,10 +263,18 @@ const TransactionKeypadScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
-            disabled={!amount || Number(amount) > user.azaBalance}
+            disabled={
+              !amount ||
+              (normalTransaction
+                ? transactionType.transaction !== "deposit"
+                  ? Number(amount) > user.azaBalance
+                  : false
+                : false)
+            }
             onPressButton={validateTransaction}
             styleText={{
               fontFamily: "Euclid-Circular-A-Medium",

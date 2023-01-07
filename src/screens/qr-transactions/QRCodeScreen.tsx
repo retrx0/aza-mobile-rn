@@ -17,7 +17,7 @@ import { RootStackScreenProps } from "../../../types";
 import { NairaIcon } from "../../../assets/svg";
 import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
-import { getInitialsAvatar } from "../../common/util/AppUtil";
+import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
@@ -90,7 +90,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               uri:
                 user.pictureUrl && user.pictureUrl !== ""
                   ? user.pictureUrl
-                  : getInitialsAvatar({
+                  : getDefaultPictureUrl({
                       firstName: user.firstName,
                       lastName: user.lastName,
                       scheme: appTheme,
