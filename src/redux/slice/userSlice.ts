@@ -1,5 +1,6 @@
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import { boolean, number } from "yup";
 import api from "../../api";
 import { Beneficiary } from "../../common/navigation/types";
@@ -268,10 +269,8 @@ export const addBankAccount = createAsyncThunk(
 export const uploadProfilePicThunk = createAsyncThunk(
   "user/upload",
   async (formData: FormData, { rejectWithValue, fulfillWithValue }) => {
-    // const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
 
-    const jwt =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExZTNmZTJlLWZhMTAtNDljNC05Y2U0LTMxNTI3YWFlMmMzZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFiZHVsZ3VtaTc3QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiKzIzNDgxMzU1MjQ2NDkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWJkdWxsYWgiLCJleHAiOjE2NzMxMjQ5NzUsImlzcyI6Imh0dHBzOi8vYXphLm1vYmlsZS5jb20ubmciLCJhdWQiOiJodHRwczovL2F6YS5tb2JpbGUuY29tLm5nIn0.hiomDpkIhyhjN6Lz8Um0d4wnwL5YirtH0akQr8WGxCQ";
     return api
       .patch("/api/v1/user/photo-upload", formData, {
         headers: {
@@ -282,8 +281,8 @@ export const uploadProfilePicThunk = createAsyncThunk(
         (response) => {
           return fulfillWithValue(response.data.data);
         },
-        (error) => {
-          return rejectWithValue(error);
+        (error: AxiosError) => {
+          return rejectWithValue(error.message);
         }
       );
   }

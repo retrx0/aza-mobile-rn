@@ -52,13 +52,12 @@ export const useBottomSheetType = (
       } as any);
 
       dispatch(uploadProfilePicThunk(formData))
+        .unwrap()
         .then(() => {
           toastSuccess("Your picture has been successfully uploaded");
         })
-        .catch((error) => {
+        .catch(() => {
           toastError("Error uploading profile picture");
-
-          console.log("error", error);
         });
     }
   };
@@ -81,6 +80,7 @@ export const useBottomSheetType = (
         } as any);
 
         dispatch(uploadProfilePicThunk(formData))
+          .unwrap()
           .then(() => {
             toastSuccess("Your picture has been successfully uploaded");
           })
