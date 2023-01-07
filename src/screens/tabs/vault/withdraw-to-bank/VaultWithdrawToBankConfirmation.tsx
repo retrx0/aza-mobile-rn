@@ -17,7 +17,7 @@ import { numberWithCommas } from "../../../../common/util/NumberUtils";
 
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { getInitialsAvatar } from "../../../../common/util/AppUtil";
+import { getDefaultPictureUrl } from "../../../../common/util/AppUtil";
 import { setTransaction } from "../../../../redux/slice/transactionSlice";
 
 const VaultWithdrawConfirm = ({
@@ -73,7 +73,7 @@ const VaultWithdrawConfirm = ({
               uri:
                 beneficiary.pictureUrl && beneficiary.pictureUrl !== ""
                   ? beneficiary.pictureUrl
-                  : getInitialsAvatar({
+                  : getDefaultPictureUrl({
                       firstName: beneficiary.fullName,
                       lastName: beneficiary.lastName,
                       scheme: colorScheme,

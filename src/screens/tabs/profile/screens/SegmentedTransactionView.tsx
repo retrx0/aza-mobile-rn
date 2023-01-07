@@ -7,16 +7,14 @@ import { Transaction } from "../../../../redux/types";
 import { Text, View } from "../../../../theme/Themed";
 
 const SegmentedTransactionView = ({
-  key,
   dateOfTransactions,
   transactions,
 }: {
-  key: number;
   dateOfTransactions: string;
   transactions: Transaction[];
 }) => {
   return (
-    <View key={key} style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+    <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
       <Text
         lightColor={Colors.light.text}
         darkColor={Colors.dark.secondaryText}

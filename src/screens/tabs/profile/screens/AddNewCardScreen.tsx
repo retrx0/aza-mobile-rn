@@ -9,7 +9,6 @@ import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -22,7 +21,6 @@ const AddNewCardScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddNewCard">) => {
-  const colorScheme = useColorScheme();
   const { navigateBackTo } = route.params;
   const insets = useSafeAreaInsets();
 
@@ -42,8 +40,6 @@ const AddNewCardScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -94,15 +90,12 @@ const AddNewCardScreen = ({
             <TextInput
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your card number"
               keyboardType="number-pad"
@@ -116,8 +109,6 @@ const AddNewCardScreen = ({
           </View>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -129,15 +120,12 @@ const AddNewCardScreen = ({
             <TextInput
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="MM/YY"
               keyboardType="number-pad"
@@ -151,8 +139,6 @@ const AddNewCardScreen = ({
           </View>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
@@ -165,15 +151,12 @@ const AddNewCardScreen = ({
               secureTextEntry
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your security code behind card"
               keyboardType="number-pad"
@@ -194,7 +177,7 @@ const AddNewCardScreen = ({
         >
           <CancelButtonWithUnderline
             title="Scan Card instead"
-            color={Colors[colorScheme].mainText}
+            color={Colors.general.grey}
             onPressButton={() => navigation.navigate("ScanCard")}
             style={{ marginBottom: hp(10) }}
           />
@@ -214,19 +197,12 @@ const AddNewCardScreen = ({
               } else {
               }
             }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
 
           <CancelButtonWithUnderline
             title="Cancel"
-            color={Colors[colorScheme].mainText}
             onPressButton={() => navigation.goBack()}
             styleText={CommonStyles.cancelStyle}
             style={{ borderBottomColor: Colors.general.red }}

@@ -108,7 +108,8 @@ const QRReceivePaymentTab = ({
                 description: description,
               })
             );
-            setDescModalVisible(true);
+            navigation.navigate("QRCode");
+            // setDescModalVisible(true);
           }}
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",
@@ -119,7 +120,7 @@ const QRReceivePaymentTab = ({
           }}
         />
       </View>
-      <DescriptionModal
+      {/* <DescriptionModal
         description={description}
         navigation={navigation}
         setDescription={setDescription}
@@ -127,7 +128,7 @@ const QRReceivePaymentTab = ({
         // TODO pass proper type for qr transactions
         transactionType={null}
         visible={isDescModalVisible}
-      />
+      /> */}
     </SpacerWrapper>
   );
 };

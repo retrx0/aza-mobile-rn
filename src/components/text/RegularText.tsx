@@ -1,5 +1,6 @@
 import React from "react";
 import { hp } from "../../common/util/LayoutUtil";
+import { Text } from "../../theme/Themed";
 
 export default function RegularText({
   text,

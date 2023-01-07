@@ -14,7 +14,7 @@ const initialState: UserState = {
   fullName: "",
   firstName: "",
   lastName: "",
-  pictureUrl: undefined,
+  pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
   azaAccountNumber: 0,
   azaBalance: 100000,
   emailAddress: "",
@@ -142,7 +142,7 @@ const initialState: UserState = {
     data: [
       {
         accountName: "Test Account",
-        accountNumber: "000111222",
+        accountNumber: "000111221",
         bankName: "GT Bank",
       },
       {

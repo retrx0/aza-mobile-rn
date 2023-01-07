@@ -17,7 +17,7 @@ import { selectUser } from "../../../../redux/slice/userSlice";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import {
   getCurrencyUnicode,
-  getInitialsAvatar,
+  getDefaultPictureUrl,
 } from "../../../../common/util/AppUtil";
 
 interface Detail {
@@ -172,7 +172,7 @@ const AccountDetailsScreen = ({
             source={{
               uri: user.pictureUrl
                 ? user.pictureUrl
-                : getInitialsAvatar({
+                : getDefaultPictureUrl({
                     firstName: user.firstName,
                     lastName: user.lastName,
                     scheme: colorScheme,
