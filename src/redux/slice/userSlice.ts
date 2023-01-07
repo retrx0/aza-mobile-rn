@@ -153,6 +153,7 @@ const initialState: UserState = {
     ],
   },
 };
+
 export const userSlice = createSlice({
   name: "user",
   // `createSlice` will infer the state type from the `initialState` argument
@@ -183,6 +184,9 @@ export const userSlice = createSlice({
     setUserPhoneNumber: (state, action: PayloadAction<string>) => {
       state.phoneNumber = action.payload;
     },
+    setProfilePicture: (state, action: PayloadAction<string>) => {
+      state.pictureUrl = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -203,6 +207,9 @@ export const userSlice = createSlice({
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
         // state.firstName = action.payload.
+      })
+      .addCase(uploadProfilePicThunk.fulfilled, (state, action) => {
+        state.pictureUrl = action.payload as any;
       });
   },
 });
@@ -258,6 +265,30 @@ export const addBankAccount = createAsyncThunk(
   }
 );
 
+export const uploadProfilePicThunk = createAsyncThunk(
+  "user/upload",
+  async (formData: FormData, { rejectWithValue, fulfillWithValue }) => {
+    // const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+
+    const jwt =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExZTNmZTJlLWZhMTAtNDljNC05Y2U0LTMxNTI3YWFlMmMzZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFiZHVsZ3VtaTc3QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiKzIzNDgxMzU1MjQ2NDkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWJkdWxsYWgiLCJleHAiOjE2NzMxMjQ5NzUsImlzcyI6Imh0dHBzOi8vYXphLm1vYmlsZS5jb20ubmciLCJhdWQiOiJodHRwczovL2F6YS5tb2JpbGUuY29tLm5nIn0.hiomDpkIhyhjN6Lz8Um0d4wnwL5YirtH0akQr8WGxCQ";
+    return api
+      .patch("/api/v1/user/photo-upload", formData, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+      .then(
+        (response) => {
+          return fulfillWithValue(response.data.data);
+        },
+        (error) => {
+          return rejectWithValue(error);
+        }
+      );
+  }
+);
+
 export const {
   setUser,
   setUserPhoneAndFullName,
@@ -266,6 +297,7 @@ export const {
   setUserEmail,
   setUserPhoneNumber,
   setVault,
+  setProfilePicture,
 } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

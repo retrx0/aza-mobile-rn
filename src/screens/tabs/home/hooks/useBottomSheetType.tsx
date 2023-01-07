@@ -22,27 +22,44 @@ import {
 
 import { RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { getAppTheme } from "../../../../theme";
-import { useAppSelector } from "../../../../redux";
+
+import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { uploadProfilePicThunk } from "../../../../redux/slice/userSlice";
 
 export const useBottomSheetType = (
   itemToReturn: string,
   { navigation }: RootTabScreenProps<"Home">
 ) => {
-  const [image, setImage] = useState("");
+  const dispatch = useAppDispatch();
 
   const selectImageFromGallaery = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      aspect: [4, 3],
-      quality: 1,
+      quality: 0.5,
     });
 
     if (!result.cancelled) {
       const { uri } = result;
-      setImage(uri);
+      const formData = new FormData();
+      formData.append("ProfilePicture", {
+        uri,
+        name: `image.${uri.split(".").pop()}`,
+        type: `image/${uri.split(".").pop()}`,
+      } as any);
+
+      dispatch(uploadProfilePicThunk(formData))
+        .then(() => {
+          toastSuccess("Your picture has been successfully uploaded");
+        })
+        .catch((error) => {
+          toastError("Error uploading profile picture");
+
+          console.log("error", error);
+        });
     }
   };
 
@@ -51,13 +68,27 @@ export const useBottomSheetType = (
     if (permissionStatus.status === "granted") {
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        aspect: [4, 3],
-        quality: 1,
+        quality: 0.5,
       });
 
       if (!result.cancelled) {
         const { uri } = result;
-        setImage(uri);
+        const formData = new FormData();
+        formData.append("ProfilePicture", {
+          uri,
+          name: `image.${uri.split(".").pop()}`,
+          type: `image/${uri.split(".").pop()}`,
+        } as any);
+
+        dispatch(uploadProfilePicThunk(formData))
+          .then(() => {
+            toastSuccess("Your picture has been successfully uploaded");
+          })
+          .catch((error) => {
+            toastError("Error uploading profile picture");
+
+            console.log("error", error);
+          });
       }
     }
   };
