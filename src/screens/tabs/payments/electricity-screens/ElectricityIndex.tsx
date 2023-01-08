@@ -1,18 +1,23 @@
 import { ScrollView, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { SafeAreaView, View as View } from "../../../../theme/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
 import { Header } from "../../../../components/text/header";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import { RootTabScreenProps } from "../../../../../types";
-import { hp } from "../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 import Button from "../../../../components/buttons/Button";
+
+import { RootTabScreenProps } from "../../../../../types";
+import { hp } from "../../../../common/util/LayoutUtil";
+
+import * as Images from "../../../../../assets/images/index";
+
+import { AIrtimeStyles as styles } from "../airtime-screens/styles";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+import { toastError } from "../../../../common/util/ToastUtil";
+
 import {
   setAmount,
   setDetailHeader,
@@ -22,47 +27,86 @@ import {
   setTo,
 } from "../../../../redux/slice/paymentSlice";
 import { useDispatch } from "react-redux";
-
-const ElectricityList = [
-  {
-    title: "IE",
-    icon: Images.Ie,
-  },
-  {
-    title: "AEDC",
-    icon: Images.AEDC,
-  },
-  {
-    title: "EEDC",
-    icon: Images.EEDC,
-  },
-  {
-    title: "EKEDC",
-    icon: Images.EKEDC,
-  },
-  {
-    title: "PHED",
-    icon: Images.PH,
-  },
-];
+import { fetchElectricityBillersAPI } from "../../../../api/utility-bill";
 
 export default function ElectricityIndex({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const bundles = ["Prepaid", "Postpaid"];
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
   const [active, setActive] = useState("");
   const dispatch = useDispatch();
+  const [providers, setProviders] = useState([]);
   const [meterNumber, setMeterNumber] = useState("");
   const [periodValue, setPeriodValue] = useState("");
   const [amount, settAmount] = useState(0);
 
-  const period = [
-    { label: "Prepaid", value: "1" },
-    { label: "Postpaid", value: "1" },
+  const meterType = [
+    { label: "Prepaid", value: "PREPAID" },
+    { label: "Postpaid", value: "POSTPAID" },
   ];
+
+  useEffect(() => {
+    fetchElectricityBillersAPI()
+      .then(({ data }) => {
+        const billers = data;
+        for (const element of billers) {
+          switch (element.name) {
+            case "Ikeja Electricity Postpaid":
+            case "Ikeja Electricity Prepaid":
+              element.icon = Images.Ie;
+              element.title = "IE";
+              break;
+            case "Abuja Electricity Postpaid":
+            case "Abuja Electricity Prepaid":
+              element.icon = Images.AEDC;
+              element.title = "AEDC";
+              break;
+            case "Eko Electricity Postpaid":
+            case "Eko Electricity Prepaid":
+              element.icon = Images.EKEDC;
+              element.title = "EKEDC";
+              break;
+            case "Ibadan Electricity Postpaid":
+            case "Ibadan Electricity Prepaid":
+              element.icon = Images.IBEDC;
+              element.title = "IBEDC";
+              break;
+            case "Enugu Electricity Postpaid":
+            case "Enugu Electricity Prepaid":
+              element.icon = Images.EEDC;
+              element.title = "EEDC";
+              break;
+            case "Port Harcourt Electricity Postpaid":
+            case "Port Harcourt Electricity Prepaid":
+              element.icon = Images.PH;
+              element.title = "PH";
+              break;
+            case "Kano Electricity Postpaid":
+            case "Kano Electricity Prepaid":
+              element.icon = Images.KEDCO;
+              element.title = "KEDCO";
+              break;
+            case "Kaduna Electricity Postpaid":
+            case "Kaduna Electricity Prepaid":
+              element.icon = Images.KE;
+              element.title = "KE";
+              break;
+            case "Jos Electricity Postpaid":
+            case "Jos Electricity Prepaid":
+              element.icon = Images.JEDP;
+              element.title = "JEDP";
+              break;
+            default:
+              break;
+          }
+        }
+        setProviders(billers);
+        console.log(billers);
+      })
+      .catch(() => toastError("Error while retrieving electricity providers"));
+  }, []);
+
+  const displayedBiller = new Set();
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -77,20 +121,16 @@ export default function ElectricityIndex({
         }}
         heading="Select electricity provider"
       />
-
-      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeaderImage selected index={0} image={Ie} title="IE" />
-        <HeaderImage selected index={0} image={AEDC} title="AEDC" />
-        <HeaderImage selected index={0} image={EEDC} title="EEDC" />
-        <HeaderImage selected index={0} image={EKEDC} title="EKEDC" />
-        <HeaderImage selected index={0} image={PH} title="PHED" />
-      </ScrollView> */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         style={CommonStyles.imageHeaderContainer}
       >
-        {ElectricityList.map((item, index) => {
+        {providers.map((item: any, index) => {
+          if (displayedBiller.has(item.title)) {
+            return null;
+          }
+          displayedBiller.add(item.title);
           return (
             <Card
               key={index}
@@ -115,7 +155,7 @@ export default function ElectricityIndex({
       >
         <CustomDropdown
           label="Meter Type"
-          data={period}
+          data={meterType}
           placeholder="Choose your meter type"
           setValue={setPeriodValue}
           value={periodValue}
@@ -161,7 +201,6 @@ export default function ElectricityIndex({
         ]}
       >
         <Button
-          disabled={!bundles}
           title="Continue"
           onPressButton={() => {
             dispatch(setDetailHeader("Meter Number"));

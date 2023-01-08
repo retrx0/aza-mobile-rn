@@ -15,6 +15,11 @@ export const Dstv = require("./common/Dstv.png");
 
 export const EEDC = require("./common/EEDC.png");
 export const EKEDC = require("./common/EKEDC.png");
+export const IBEDC = require("./common/IBEDC.png");
+export const JEDP = require("./common/JEDP.jpg");
+export const KE = require("./common/KE.jpg");
+export const KEDCO = require("./common/KEDCO.png");
+
 export const ipnx = require("./common/ipnx.png");
 export const legend = require("./common/legend.png");
 export const smile = require("./common/smile.png");
