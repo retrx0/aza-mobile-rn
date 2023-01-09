@@ -11,7 +11,7 @@ import { Transactions, UserState } from "../types";
 // Define the initial state using that type
 const initialState: UserState = {
   loading: false,
-  phoneNumber: "",
+  phoneNumber: "+2348135524649",
   fullName: "",
   firstName: "",
   lastName: "",

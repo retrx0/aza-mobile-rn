@@ -25,7 +25,11 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
     <>
       <View>
         <TouchableOpacity style={[styles.card]} onPress={onPress}>
-          <Image resizeMode="cover" style={styles.image} source={icon} />
+          <Image
+            resizeMode="cover"
+            style={styles.image}
+            source={{ uri: icon }}
+          />
           {isActive ? (
             <View style={styles.icon}>
               <TickIcon />

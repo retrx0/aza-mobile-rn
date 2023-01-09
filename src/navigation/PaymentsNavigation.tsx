@@ -65,8 +65,16 @@ export function AirtimeTabs() {
         }}
         initialRouteName="airtime"
       >
-        <Tab.Screen name="airtime" component={AirtimeIndex} />
-        <Tab.Screen name="data-bundle" component={AirtimeIndex} />
+        <Tab.Screen
+          name="airtime"
+          component={AirtimeIndex}
+          initialParams={{ type: "airtime" }}
+        />
+        <Tab.Screen
+          name="data-bundle"
+          component={AirtimeIndex}
+          initialParams={{ type: "data-bundle" }}
+        />
       </Tab.Navigator>
     </SafeAreaView>
   );

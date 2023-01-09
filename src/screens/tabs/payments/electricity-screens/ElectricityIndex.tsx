@@ -106,7 +106,8 @@ export default function ElectricityIndex({
       .catch(() => toastError("Error while retrieving electricity providers"));
   }, []);
 
-  const displayedBiller = new Set();
+  // removes duplicated providers
+  const displayedProviders = new Set();
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -127,10 +128,10 @@ export default function ElectricityIndex({
         style={CommonStyles.imageHeaderContainer}
       >
         {providers.map((item: any, index) => {
-          if (displayedBiller.has(item.title)) {
+          if (displayedProviders.has(item.title)) {
             return null;
           }
-          displayedBiller.add(item.title);
+          displayedProviders.add(item.title);
           return (
             <Card
               key={index}
