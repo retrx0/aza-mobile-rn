@@ -25,6 +25,7 @@ export type CommonStackParamList = {
   AccountClosureSurveyScreen: undefined;
   WithdrawKeyPad: undefined;
   CloseAccount: undefined;
+  AlternativeSurvey: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
@@ -196,7 +197,7 @@ export interface RecurringTransaction {
 }
 export interface NormalTransaction {
   type: "normal";
-  transaction: "withdraw" | "deposit" | "send" | "request";
+  transaction: "withdraw" | "deposit" | "send" | "request" | "debit";
   beneficiary: Beneficiary;
   openDescriptionModal?: boolean;
 }
