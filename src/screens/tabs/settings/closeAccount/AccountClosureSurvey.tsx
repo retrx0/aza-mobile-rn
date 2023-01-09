@@ -27,8 +27,7 @@ const AccountClosureSurveyScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}
-        >
+          }}>
           Account Closure Survey
         </Text>
       ),
@@ -75,8 +74,7 @@ const AccountClosureSurveyScreen = ({
               fontWeight: "500",
               paddingLeft: hp(7),
               maxWidth: wp(350),
-            }}
-          >
+            }}>
             We would love to know why you decided to close your account
           </Text>
           {accounts.map(({ surveyToppings }, i) => (
@@ -89,8 +87,7 @@ const AccountClosureSurveyScreen = ({
                       flexDirection: "row",
                       alignItems: "center",
                       paddingVertical: hp(20),
-                    }}
-                  >
+                    }}>
                     <View
                       style={{
                         width: hp(20),
@@ -102,8 +99,7 @@ const AccountClosureSurveyScreen = ({
                             : "#3A3D42",
 
                         borderWidth: hp(1),
-                      }}
-                    >
+                      }}>
                       {selectedCard === surveyToppings && (
                         <View
                           style={[
@@ -116,11 +112,10 @@ const AccountClosureSurveyScreen = ({
                     <Text
                       style={{
                         marginLeft: 20,
-                        fontFamily: "Euclid-Circular-A-Medium",
+                        fontFamily: "Euclid-Circular-A",
                         fontSize: hp(16),
                         maxWidth: 350,
-                      }}
-                    >
+                      }}>
                       {surveyToppings}
                     </Text>
                   </TouchableOpacity>
@@ -133,20 +128,19 @@ const AccountClosureSurveyScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             disabled={!selectedCard}
             title="Continue"
-            onPressButton={() =>
+            onPressButton={() => {
               navigation.navigate("StatusScreen", {
                 status: "Successful",
                 statusIcon: "Success",
                 //TODO update message to accept JSX
                 statusMessage: "Survey has been successfully filled and sent",
                 navigateTo: "Home",
-              })
-            }
+              });
+            }}
             styleText={{}}
             style={[{}]}
           />
@@ -157,3 +151,15 @@ const AccountClosureSurveyScreen = ({
 };
 
 export default AccountClosureSurveyScreen;
+
+// if (accounts.map("Others")) {
+//   navigation.navigate("AlternativeSurvey");
+// } else {
+//   navigation.navigate("StatusScreen", {
+//     status: "Successful",
+//     statusIcon: "Success",
+//     //TODO update message to accept JSX
+//     statusMessage: "Survey has been successfully filled and sent",
+//     navigateTo: "Home",
+//   });
+// }

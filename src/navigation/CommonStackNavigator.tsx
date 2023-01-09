@@ -165,6 +165,7 @@ import { selectAppTheme } from "../redux/slice/themeSlice";
 import CloseAccountScreen from "../screens/tabs/settings/closeAccount/CloseAccountScreen";
 import AccountClosureSurveyScreen from "../screens/tabs/settings/closeAccount/AccountClosureSurvey";
 import CloseAccount from "../screens/tabs/settings/closeAccount/CloseAccount";
+import AlternativeSurvey from "../screens/tabs/settings/closeAccount/AlternativeSurvey";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -297,6 +298,7 @@ const CommonStack = () => {
           name="AccountClosureSurveyScreen"
           component={AccountClosureSurveyScreen}
         />
+        <Stack.Screen name="AlternativeSurvey" component={AlternativeSurvey} />
       </Stack.Group>
 
       {/* Vault */}

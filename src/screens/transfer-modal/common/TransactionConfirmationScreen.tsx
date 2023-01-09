@@ -50,8 +50,7 @@ const TransactionConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Confirmation
         </Text>
       ),
@@ -104,8 +103,7 @@ const TransactionConfirmationScreen = ({
               marginTop: hp(15),
               fontWeight: "500",
               marginBottom: hp(50),
-            }}
-          >
+            }}>
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -114,8 +112,7 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               To
             </Text>
             <TextInput
@@ -155,8 +152,7 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Amount
             </Text>
             <View
@@ -167,18 +163,15 @@ const TransactionConfirmationScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}
-            >
-              <Text
+              ]}>
+              {/* <Text
                 style={{
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                   paddingBottom: 5,
-                  paddingRight: 5,
-                }}
-              >
+                }}>
                 {NAIRA_UNICODE}
-              </Text>
+              </Text> */}
               <TextInput
                 placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={{
@@ -190,7 +183,7 @@ const TransactionConfirmationScreen = ({
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}
-                value={"" + amount}
+                value={NAIRA_UNICODE + "" + amount}
                 showSoftInputOnFocus={false}
                 editable={false}
               />
@@ -202,8 +195,7 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Description
             </Text>
             <TextInput
@@ -227,8 +219,7 @@ const TransactionConfirmationScreen = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           title="Continue"
           onPressButton={() => makeTransaction()}

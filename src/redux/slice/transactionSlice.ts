@@ -11,7 +11,7 @@ export interface TransactionState {
   beneficiary: Beneficiary;
   amount: number;
   description?: string;
-  transferType: "send" | "request" | "withdraw";
+  transferType: "send" | "request" | "withdraw" | "debit";
 }
 
 // Define the initial state using that type

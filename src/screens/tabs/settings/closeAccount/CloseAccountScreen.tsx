@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
@@ -150,7 +150,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                 navigation.navigate("TransactionKeypad", {
                   headerTitle: "Close Account",
                   transactionType: {
-                    transaction: "withdraw",
+                    transaction: "debit",
                     type: "normal",
                     beneficiary: {
                       azaAccountNumber: "",
