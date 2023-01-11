@@ -22,14 +22,6 @@ import { useAppSelector } from "../../../../redux";
 import { useDispatch } from "react-redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
-import {
-  setAmount as setAmountRedux,
-  setDetailHeader,
-  setDetailValue,
-  setLogo,
-  setPaymentTYpe,
-  setTo,
-} from "../../../../redux/slice/paymentSlice";
 
 import {
   detectNetworkOperatorAPI,
@@ -41,7 +33,15 @@ export default function AirtimeIndex({
   navigation,
 }: CommonScreenProps<"AirtimeData">) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [selectedProvider, setSelectedProvider] = useState<any>("");
+  const [selectedProvider, setSelectedProvider] = useState<{
+    name: any;
+    logoUrls: string[];
+    operatorId: number;
+  }>({
+    name: "",
+    logoUrls: [],
+    operatorId: 0,
+  });
   const [mobileNumber, setMobileNumber] = useState("");
   const [amount, setAmount] = useState("");
   const [airtimeOperators, setAirtimeOperators] = useState<
@@ -71,8 +71,10 @@ export default function AirtimeIndex({
   }, [isEnabled]);
 
   useEffect(() => {
-    if (route.name === "data-bundle" && selectedProvider) {
-      fetchNetworkOperatorDataPlansAPI(selectedProvider.toUpperCase())
+    if (route.name === "data-bundle" && selectedProvider.name) {
+      fetchNetworkOperatorDataPlansAPI(
+        selectedProvider.name.split(" ")[0].toUpperCase()
+      )
         .then(({ data }) => {
           const entires = Object.entries(data.fixedAmountsDescriptions).map(
             ([value, label]) => ({ value, label: label as string })
@@ -81,14 +83,14 @@ export default function AirtimeIndex({
         })
         .catch((err) => console.log(err));
     }
-  }, [route.name, selectedProvider]);
+  }, [route.name, selectedProvider.name]);
 
   const detectNetworkProvider = (number: string) => {
     dispatch(toggleActivityModal(true));
     detectNetworkOperatorAPI(number.replace("+", ""))
       .then((res) => {
         setMobileNumber(number);
-        setSelectedProvider(res.data.name.split(" ")[0]);
+        setSelectedProvider(res.data);
         dispatch(toggleActivityModal(false));
       })
       .catch(() => {
@@ -135,23 +137,24 @@ export default function AirtimeIndex({
           width: "100%",
         }}
       >
-        {airtimeOperators.map(({ logoUrls, name, operatorId }, index) => {
-          if (displayedOperators.has(name.split(" ")[0])) {
+        {airtimeOperators.map((operator, index) => {
+          if (displayedOperators.has(operator.name.split(" ")[0])) {
             return null;
           }
-          displayedOperators.add(name.split(" ")[0]);
+          displayedOperators.add(operator.name.split(" ")[0]);
 
           return (
             <Card
               key={index}
-              title={name.split(" ")[0]}
-              icon={logoUrls[0]}
+              title={operator.name.split(" ")[0]}
+              icon={operator.logoUrls[0]}
               onPress={() => {
-                setSelectedProvider(name.split(" ")[0]);
-                dispatch(setTo(name));
-                dispatch(setLogo(logoUrls[0]));
+                setSelectedProvider(operator);
               }}
-              isActive={name.split(" ")[0] === selectedProvider}
+              isActive={
+                operator.name.split(" ")[0] ===
+                selectedProvider.name.split(" ")[0]
+              }
             />
           );
         })}
@@ -177,7 +180,7 @@ export default function AirtimeIndex({
           isEnabled={isEnabled}
         />
       </View>
-      {route.name == "data-bundle" && (
+      {route.name === "data-bundle" && (
         <View
           style={{
             paddingHorizontal: hp(20),
@@ -207,7 +210,7 @@ export default function AirtimeIndex({
             : amount
         }
         style={{ paddingHorizontal: hp(20) }}
-        disabled={route.name == "data-bundle"}
+        disabled={route.name === "data-bundle"}
         icon={null}
         inputStyle={[styles.input]}
         labelStyle={[styles.label]}
@@ -225,13 +228,14 @@ export default function AirtimeIndex({
         <Button
           title="Continue"
           onPressButton={() => {
-            dispatch(setDetailHeader("Phone number"));
-            dispatch(
-              setPaymentTYpe(route.name == "data-bundle" ? "Data" : "Airtime")
-            );
-            dispatch(setDetailValue(mobileNumber));
-            dispatch(setAmountRedux(amount));
-            navigation.navigate("Confirm");
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              beneficiaryLogo: selectedProvider.logoUrls[0],
+              beneficiaryName: selectedProvider.name,
+              purchaseName: route.name == "data-bundle" ? "Data" : "Airtime",
+              paymentMethod: "Aza Account",
+              phoneNumber: mobileNumber,
+            });
           }}
           disabled={!amount || !selectedProvider || mobileNumber.length < 13}
         />

@@ -1,18 +1,20 @@
-import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView, View as View } from "../../../../theme/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
+import { ScrollView, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { Header } from "../../../../components/text/header";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../types";
-import { hp } from "../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import * as Images from "../../../../../assets/images/index";
+import { SafeAreaView, View as View } from "../../../../theme/Themed";
 import { Card } from "../sub-components/Card";
 import Button from "../../../../components/buttons/Button";
+
+import { AIrtimeStyles as styles } from "../airtime-screens/styles";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+
+import { hp } from "../../../../common/util/LayoutUtil";
+import * as Images from "../../../../../assets/images/index";
 
 const WaterList = [
   {
@@ -39,16 +41,14 @@ const WaterList = [
 
 export default function WaterScreen({
   navigation,
-}: RootTabScreenProps<"Payments">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [currentIndex, setCurrent] = useState(0);
-  const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+}: CommonScreenProps<"Water">) {
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
-  const [selected, setSelected] = useState(false);
-  const [active, setActive] = useState("");
+  const [selectedProvider, setSelectedProvider] = useState<{
+    title: string;
+    icon: string;
+  }>({ title: "", icon: "" });
+  const [amount, setAmount] = useState("");
+  const [customerAccountNumber, setCustomerAccountNumber] = useState("");
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -65,34 +65,19 @@ export default function WaterScreen({
         }}
         heading="Select water provider"
       />
-
-      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage
-          index={0}
-          image={Fctwb}
-          title="FCTWB"
-          selected={selected === false}
-          onSelect={() => {
-            setSelected(false);
-          }}
-        />
-        <HeadrImage selected index={0} image={Lswc} title="LSWC" />
-        <HeadrImage selected index={0} image={Crswb} title="CRSWB" />
-        <HeadrImage selected index={0} image={Vws} title="VWS" />
-        <HeadrImage selected index={0} image={Enswc} title="ENSWC" />
-      </ScrollView> */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {WaterList.map((item, index) => {
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
-              isActive={item.icon === active}
+              onPress={() => setSelectedProvider(item)}
+              isActive={item.title === selectedProvider.title}
             />
           );
         })}
@@ -107,6 +92,10 @@ export default function WaterScreen({
           labelStyle={styles.label}
           label="Customer Account Number"
           placeholder="Enter your customer account number"
+          value={customerAccountNumber}
+          onChangeText={(text) => {
+            setCustomerAccountNumber(text);
+          }}
         />
 
         <UnderlinedInput
@@ -118,6 +107,10 @@ export default function WaterScreen({
           placeholder="Enter an amount to be paid"
           keyboardType="number-pad"
           returnKeyType="done"
+          value={amount}
+          onChangeText={(text) => {
+            setAmount(text);
+          }}
         />
       </View>
 
@@ -125,12 +118,21 @@ export default function WaterScreen({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
-          disabled={false}
+          disabled={
+            !amount || !selectedProvider.title || !customerAccountNumber
+          }
           title="Continue"
           onPressButton={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              customerAccountNumber,
+              beneficiaryLogo: selectedProvider.icon,
+              beneficiaryName: selectedProvider.title,
+              purchaseName: "water",
+            });
           }}
         />
       </View>

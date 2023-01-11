@@ -1,19 +1,22 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "../../../../theme/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { Header } from "../../../../components/text/header";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../types";
-import { hp } from "../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import { Card } from "../sub-components/Card";
+import { SafeAreaView } from "../../../../theme/Themed";
+
+import { AIrtimeStyles as styles } from "../airtime-screens/styles";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+
+import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import * as Images from "../../../../../assets/images/index";
-import { Card } from "../sub-components/Card";
 
 const Cable = [
   {
@@ -32,34 +35,24 @@ const Cable = [
 
 export default function CableTvIndex({
   navigation,
-}: RootTabScreenProps<"Payments">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [currentIndex, setCurrent] = useState(0);
-  const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+}: CommonScreenProps<"CableTV">) {
+  const [selectedCable, setSelectedCable] = useState<{
+    title: string;
+    icon: string;
+  }>({ title: "", icon: "" });
+  const [amount, setAmount] = useState("");
+  const [smartCardNumber, setSmartCardNumber] = useState("");
+
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
-  const [active, setActive] = useState("");
-  const [periodValue, setPeriodValue] = useState("");
-  const [dayValue, setDayValue] = useState("");
 
   const period = [
-    { label: "DSTV Padi", value: "1" },
-    { label: "DSTV Yanga", value: "2" },
-    { label: "DSTV Confam", value: "3" },
-    { label: "DSTV Compact", value: "4" },
-    { label: "DSTV Compact Plus", value: "5" },
-    { label: "DSTV Premium", value: "6" },
-  ];
-
-  const day = [
-    { label: "\u20A62,150", value: "1" },
-    { label: "\u20A62,950", value: "2" },
-    { label: "\u20A65,300", value: "3" },
-    { label: "\u20A69000", value: "4" },
-    { label: "\u20A614,250", value: "5" },
-    { label: "\u20A621,000", value: "6" },
+    { label: "DSTV Padi", value: "10000" },
+    { label: "DSTV Yanga", value: "1000" },
+    { label: "DSTV Confam", value: "3500" },
+    { label: "DSTV Compact", value: "4000" },
+    { label: "DSTV Compact Plus", value: "5000" },
+    { label: "DSTV Premium", value: "6000" },
   ];
 
   return (
@@ -76,24 +69,19 @@ export default function CableTvIndex({
         heading="Select Cable TV"
       />
 
-      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={Dstv} title="DSTV" />
-        <HeadrImage selected index={0} image={Gotv} title="GOTV" />
-        <HeadrImage selected index={0} image={Startimes} title="Startimes" />
-      </ScrollView> */}
-
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}>
+        style={CommonStyles.imageHeaderContainer}
+      >
         {Cable.map((item, index) => {
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
-              isActive={item.icon === active}
+              onPress={() => setSelectedCable(item)}
+              isActive={item.title === selectedCable.title}
             />
           );
         })}
@@ -108,6 +96,10 @@ export default function CableTvIndex({
           label="Smart Card Number"
           placeholder="Enter your smart card number"
           returnKeyType="done"
+          value={smartCardNumber}
+          onChangeText={(text) => {
+            setSmartCardNumber(text);
+          }}
         />
       </View>
 
@@ -116,46 +108,24 @@ export default function CableTvIndex({
           paddingHorizontal: hp(20),
           marginBottom: hp(20),
           marginTop: hp(20),
-        }}>
+        }}
+      >
         <Text
-          // lightColor={Colors.light.secondaryText}
-          // darkColor={Colors.dark.secondaryText}
           style={{
             fontSize: hp(16),
             fontWeight: "400",
             fontFamily: "Euclid-Circular-A",
 
             color: colorScheme === "dark" ? "#ffffff" : "#000000",
-          }}>
+          }}
+        >
           Subscription Package
         </Text>
         <CustomDropdown
           data={period}
           placeholder="Select your subscription"
-          setValue={setPeriodValue}
-          value={periodValue}
-          label={""}
-        />
-      </View>
-      <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
-        <Text
-          // lightColor={Colors.light.secondaryText}
-          // darkColor={Colors.dark.secondaryText}
-          style={{
-            fontSize: hp(16),
-            fontWeight: "400",
-            lineHeight: hp(17.75),
-            color: colorScheme === "dark" ? "#ffffff" : "#000000",
-            fontFamily: "Euclid-Circular-A",
-          }}>
-          Subscription Amount
-        </Text>
-
-        <CustomDropdown
-          data={day}
-          placeholder="Amount"
-          setValue={setPeriodValue}
-          value={periodValue}
+          setValue={setAmount}
+          value={amount}
           label={""}
         />
       </View>
@@ -164,14 +134,21 @@ export default function CableTvIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <MyButton
-          disabled={false}
+          disabled={!amount || !smartCardNumber || !selectedCable.title}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              beneficiaryLogo: selectedCable.icon,
+              beneficiaryName: selectedCable.title,
+              purchaseName: "TV subscription",
+              smartCardNumber,
+              paymentMethod: "Aza Account",
+            });
           }}
-          // style={{ marginTop: 330 }}
         />
       </View>
     </SafeAreaView>

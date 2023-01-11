@@ -1,24 +1,26 @@
-import { TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { TouchableOpacity } from "react-native";
+import { useRoute } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { View as View, Text as Text } from "../../../../theme/Themed";
-import { CharityStyles as styles } from "../styles";
-import { InfoIcon } from "../../../../../assets/svg";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import MySwitch from "../sub-components/MySwitch";
 import Divider from "../sub-components/Divider";
 import MyButton from "../sub-components/MyButton";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../types";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+
+import { CharityStyles as styles } from "../styles";
+import { InfoIcon } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 export default function CharityDetail({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"CharityDetail">) {
+  const [amount, setAmount] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const route = useRoute();
@@ -88,7 +90,8 @@ export default function CharityDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <View style={styles.check}>
           <CustomSwitch
             title="Recurring monthly donation"
@@ -109,7 +112,13 @@ export default function CharityDetail({
           disabled={false}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "CharityConfirmation" });
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              paymentMethod: "Aza Account",
+              purchaseName: "Charity",
+              beneficiaryLogo: "",
+              beneficiaryName: "",
+            });
           }}
         />
         <CancelButtonWithUnderline

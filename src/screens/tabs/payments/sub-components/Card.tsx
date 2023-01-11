@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
+import { number } from "yup/lib/locale";
 import { TickIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { Text as Text, View as View } from "../../../../theme/Themed";
@@ -25,11 +26,15 @@ export const Card = ({ title, isActive, icon, onPress }: AirtimeProps) => {
     <>
       <View>
         <TouchableOpacity style={[styles.card]} onPress={onPress}>
-          <Image
-            resizeMode="cover"
-            style={styles.image}
-            source={{ uri: icon }}
-          />
+          {typeof icon === "string" ? (
+            <Image
+              resizeMode="cover"
+              style={styles.image}
+              source={{ uri: icon }}
+            />
+          ) : (
+            <Image resizeMode="cover" style={styles.image} source={icon} />
+          )}
           {isActive ? (
             <View style={styles.icon}>
               <TickIcon />

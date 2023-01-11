@@ -36,7 +36,6 @@ export type CommonStackParamList = {
   //Payments
   AirtimeData: undefined;
   Confirm: undefined;
-  ConfirmTransaction: undefined;
   CompleteTransaction: undefined;
   InternetPlans: undefined;
   InternetPlanDetail: { name: string };
@@ -47,10 +46,18 @@ export type CommonStackParamList = {
   Charity: undefined;
   CharityDetail: { name: string };
   ElectricityConfirmation: undefined;
-  AirtimeConfirmation: undefined;
-  InternetConfirmation: undefined;
-  CableConfirmation: undefined;
-  WaterConfirmation: undefined;
+  PaymentConfirmation: {
+    beneficiaryLogo: string;
+    beneficiaryName: string;
+    phoneNumber?: string;
+    amount: string;
+    paymentMethod?: string;
+    purchaseName: string;
+    meterNumber?: string;
+    accountOrUserId?: string;
+    smartCardNumber?: string;
+    customerAccountNumber?: string;
+  };
   GiftCardConfirmation: undefined;
   CharityConfirmation: undefined;
   GiftCard: undefined;
