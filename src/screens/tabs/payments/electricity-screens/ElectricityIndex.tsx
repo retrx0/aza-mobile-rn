@@ -9,7 +9,7 @@ import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import { Card } from "../sub-components/Card";
 import Button from "../../../../components/buttons/Button";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import * as Images from "../../../../../assets/images/index";
@@ -18,27 +18,18 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { toastError } from "../../../../common/util/ToastUtil";
 
-import {
-  setAmount,
-  setDetailHeader,
-  setDetailValue,
-  setLogo,
-  setPaymentTYpe,
-  setTo,
-} from "../../../../redux/slice/paymentSlice";
-import { useDispatch } from "react-redux";
 import { fetchElectricityBillersAPI } from "../../../../api/utility-bill";
 
 export default function ElectricityIndex({
   navigation,
-}: RootTabScreenProps<"Payments">) {
-  const insets = useSafeAreaInsets();
-  const [active, setActive] = useState("");
-  const dispatch = useDispatch();
+}: CommonScreenProps<"Electricity">) {
+  const [selectedProvider, setSelectedProvider] = useState<any>("");
   const [providers, setProviders] = useState([]);
   const [meterNumber, setMeterNumber] = useState("");
-  const [periodValue, setPeriodValue] = useState("");
-  const [amount, settAmount] = useState(0);
+  const [selectedMeterType, setSelectedMeterType] = useState("");
+  const [amount, setAmount] = useState("");
+
+  const insets = useSafeAreaInsets();
 
   const meterType = [
     { label: "Prepaid", value: "PREPAID" },
@@ -101,12 +92,12 @@ export default function ElectricityIndex({
           }
         }
         setProviders(billers);
-        console.log(billers);
       })
       .catch(() => toastError("Error while retrieving electricity providers"));
   }, []);
 
-  const displayedBiller = new Set();
+  // removes duplicated providers
+  const displayedProviders = new Set();
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -127,21 +118,19 @@ export default function ElectricityIndex({
         style={CommonStyles.imageHeaderContainer}
       >
         {providers.map((item: any, index) => {
-          if (displayedBiller.has(item.title)) {
+          if (displayedProviders.has(item.title)) {
             return null;
           }
-          displayedBiller.add(item.title);
+          displayedProviders.add(item.title);
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
               onPress={() => {
-                setActive(item.icon);
-                dispatch(setTo(item.title));
-                dispatch(setLogo(item.icon));
+                setSelectedProvider(item);
               }}
-              isActive={item.icon === active}
+              isActive={item.name === selectedProvider.name}
             />
           );
         })}
@@ -149,7 +138,6 @@ export default function ElectricityIndex({
       <View
         style={{
           paddingHorizontal: hp(20),
-
           marginBottom: hp(10),
         }}
       >
@@ -157,8 +145,8 @@ export default function ElectricityIndex({
           label="Meter Type"
           data={meterType}
           placeholder="Choose your meter type"
-          setValue={setPeriodValue}
-          value={periodValue}
+          setValue={setSelectedMeterType}
+          value={selectedMeterType}
           placeholderstyle={[
             { fontFamily: "Euclid-Circular-A" },
             { fontWeight: "400" },
@@ -189,7 +177,7 @@ export default function ElectricityIndex({
           keyboardType="number-pad"
           returnKeyType="done"
           onChangeText={(text) => {
-            settAmount(text);
+            setAmount(text);
           }}
         />
       </View>
@@ -203,15 +191,18 @@ export default function ElectricityIndex({
         <Button
           title="Continue"
           onPressButton={() => {
-            dispatch(setDetailHeader("Meter Number"));
-            dispatch(setDetailValue(meterNumber));
-            dispatch(setAmount(amount));
-            dispatch(setPaymentTYpe("Electricty"));
-            navigation.navigate("Common", {
-              screen: "Confirm",
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              beneficiaryLogo: selectedProvider.icon,
+              beneficiaryName: selectedProvider.name,
+              purchaseName: "Electricity",
+              paymentMethod: "Aza Account",
+              meterNumber,
             });
           }}
-          // style={{ marginTop: hp(250) }}
+          disabled={
+            !amount || !meterNumber || !meterType || !selectedProvider.name
+          }
         />
       </View>
     </SafeAreaView>

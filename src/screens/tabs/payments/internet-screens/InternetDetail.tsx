@@ -1,30 +1,33 @@
+import React, { useImperativeHandle, useState } from "react";
 import { StyleSheet } from "react-native";
-import React, { useState } from "react";
-import { SafeAreaView, View, Text } from "../../../../theme/Themed";
-import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { Header } from "../../../../components/text/header";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import { SafeAreaView, View } from "../../../../theme/Themed";
+
+import { AIrtimeStyles as styles } from "../airtime-screens/styles";
+import CommonStyles from "../../../../common/styles/CommonStyles";
+
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 export default function InternetDetail({
   navigation,
-}: RootTabScreenProps<"Payments">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [currentIndex, setCurrent] = useState(0);
-  const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+  route,
+}: CommonScreenProps<"InternetPlanDetail">) {
+  const [amount, setAmount] = useState("");
+  const [accountOrUserId, setAccountOrUserId] = useState("");
+  const [selectedBundle, setSelectedBundle] = useState("");
+
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
-  const [periodValue, setPeriodValue] = useState("");
+
+  const { name } = route.params;
 
   const period = [
     { label: "100 ", value: "1" },
@@ -56,6 +59,10 @@ export default function InternetDetail({
           labelStyle={[styles.label]}
           label="Account/User ID"
           placeholder="Enter your User ID"
+          value={accountOrUserId}
+          onChangeText={(text) => {
+            setAccountOrUserId(text);
+          }}
         />
       </View>
 
@@ -70,8 +77,8 @@ export default function InternetDetail({
           label="Bundle"
           data={period}
           placeholder="Choose a bundle"
-          setValue={setPeriodValue}
-          value={periodValue}
+          setValue={setSelectedBundle}
+          value={selectedBundle}
           placeholderstyle={[
             { fontFamily: "Euclid-Circular-A" },
             { fontWeight: "400" },
@@ -91,6 +98,10 @@ export default function InternetDetail({
           label="Amount"
           placeholder="Enter an amount"
           returnKeyType="done"
+          value={amount}
+          onChangeText={(text) => {
+            setAmount(text);
+          }}
         />
       </View>
 
@@ -102,8 +113,16 @@ export default function InternetDetail({
       >
         <Button
           title="Continue"
+          disabled={!amount || !selectedBundle || !useImperativeHandle}
           onPressButton={() =>
-            navigation.navigate("Common", { screen: "Confirm" })
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              beneficiaryLogo: "",
+              beneficiaryName: name,
+              purchaseName: "internet",
+              paymentMethod: "Aza Account",
+              accountOrUserId,
+            })
           }
           styleText={{
             color: Colors[colorScheme].buttonText,

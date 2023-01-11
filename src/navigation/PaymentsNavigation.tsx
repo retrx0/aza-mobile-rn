@@ -5,10 +5,8 @@ import PaymentIndexScreen from "../screens/tabs/payments/Payments";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { SafeAreaView } from "../theme/Themed";
 import CommonStyles from "../common/styles/CommonStyles";
-import ConfirmTransaction from "../screens/tabs/payments/ConfirmTransaction";
 import CompletedTransaction from "../screens/tabs/payments/CompletedTransaction";
-import { Platform, TouchableOpacity } from "react-native";
-import { BackIcon, CableTvIcon, InfoIcon } from "../../assets/svg";
+import { Platform } from "react-native";
 import InternetPlans from "../screens/tabs/payments/internet-screens/InternetPlans";
 import InternetDetail from "../screens/tabs/payments/internet-screens/InternetDetail";
 import ElectricityIndex from "../screens/tabs/payments/electricity-screens/ElectricityIndex";
@@ -19,24 +17,17 @@ import CharityIndexScreen from "../screens/tabs/payments/charity-screens/Charity
 import CharityDetail from "../screens/tabs/payments/charity-screens/CharityDetail";
 import useColorScheme from "../hooks/useColorScheme";
 import { hp } from "../common/util/LayoutUtil";
-import ElectricityConfirmation from "../screens/tabs/payments/electricity-screens/ElectricityConfirmation";
 import CharityConfirmation from "../screens/tabs/payments/charity-screens/CharityConfirmation";
-import AirtimeConfirmation from "../screens/tabs/payments/airtime-screens/AirtimeConfirmation";
-import InternetConfirmation from "../screens/tabs/payments/internet-screens/InternetConfirmation";
-import CableConfirmation from "../screens/tabs/payments/cable-tv-screens/CableConfirmation";
-import WaterConfirmation from "../screens/tabs/payments/water-screens/WaterConfirmation";
 import GiftCardScreen from "../screens/tabs/payments/gift-card/GiftCardScreen";
 import GiftCardDetails from "../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../screens/tabs/payments/game/GameScreen";
 import PaymentRecurring from "../screens/tabs/payments/paymentRecurring/PaymentRecurring";
 import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
 import InternetRecurring from "../screens/tabs/payments/paymentRecurring/InternetRecurring/InternetRecurring";
-import InternetRecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRecurring/RecurringPlan";
 import RecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRecurring/RecurringPlan";
 import WaterRecurring from "../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
 import CableRecurring from "../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
 import ElectricityRecurring from "../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
-import Colors from "../constants/Colors";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -65,8 +56,16 @@ export function AirtimeTabs() {
         }}
         initialRouteName="airtime"
       >
-        <Tab.Screen name="airtime" component={AirtimeIndex} />
-        <Tab.Screen name="data-bundle" component={AirtimeIndex} />
+        <Tab.Screen
+          name="airtime"
+          component={AirtimeIndex}
+          initialParams={{ type: "airtime" }}
+        />
+        <Tab.Screen
+          name="data-bundle"
+          component={AirtimeIndex}
+          initialParams={{ type: "data-bundle" }}
+        />
       </Tab.Navigator>
     </SafeAreaView>
   );
@@ -137,7 +136,6 @@ export function CharityTabs() {
 }
 
 const PaymentNavigator = () => {
-  const scheme = useColorScheme();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -156,41 +154,6 @@ const PaymentNavigator = () => {
         options={{ presentation: "fullScreenModal", title: "" }}
         name="pie"
         component={Pie}
-      />
-      {/* <Stack.Screen
-        options={{ title: "Confirmation" }}
-        name="confirm"
-        component={Confirmation}
-      /> */}
-      <Stack.Screen
-        options={{ title: "Confirmation" }}
-        name="confirm_transaction"
-        component={ConfirmTransaction}
-      />
-      <Stack.Screen
-        options={{ title: "Confirmation" }}
-        name="AirtimeConfirmation"
-        component={AirtimeConfirmation}
-      />
-      <Stack.Screen
-        options={{ title: "Confirmation" }}
-        name="InternetConfirmation"
-        component={InternetConfirmation}
-      />
-      <Stack.Screen
-        options={{ title: "Password" }}
-        name="ElectricityConfirmation"
-        component={ElectricityConfirmation}
-      />
-      <Stack.Screen
-        options={{ title: "Confirmation" }}
-        name="CableConfirmation"
-        component={CableConfirmation}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="WaterConfirmation"
-        component={WaterConfirmation}
       />
       <Stack.Screen
         options={{ title: "GameScreen" }}

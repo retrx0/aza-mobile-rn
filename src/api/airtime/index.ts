@@ -3,7 +3,21 @@ import api from "..";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { getItemSecure } from "../../common/util/StorageUtil";
 
-type NetworkOperator = 345 | 645 | 646 | 647;
+type NetworkOperatorMap = {
+  MTN: 345;
+  "9MOBILE": 645;
+  AIRTEL: 646;
+  GLO: 647;
+};
+
+type NetworkOperator = keyof NetworkOperatorMap;
+
+const networkOperators: NetworkOperatorMap = {
+  MTN: 345,
+  "9MOBILE": 645,
+  AIRTEL: 646,
+  GLO: 647,
+};
 
 export const checkAirtimeEndpointHealthAPI = async () => {
   try {
@@ -26,7 +40,7 @@ export const topUpAirtimeAPI = async (
     const result = await api.post(
       "/api/top-up/airtime",
       {
-        networkOperator,
+        networkOperator: networkOperators[networkOperator],
         airtimeAmount,
         phoneNumberToTopup,
         sourceAccount,
@@ -55,7 +69,7 @@ export const topUpDataAPI = async (
     const result = await api.post(
       "/api/top-up/data",
       {
-        networkOperator,
+        networkOperator: networkOperators[networkOperator],
         airtimeAmount,
         phoneNumberToTopup,
         sourceAccount,
@@ -83,7 +97,7 @@ export const detectNetworkOperatorAPI = async (phoneNumber: string) => {
     if (result.status === 200) return result.data;
     return undefined;
   } catch (e) {
-    console.log(e);
+    throw new Error();
   }
 };
 
@@ -92,7 +106,7 @@ export const fetchNetworkOperatorDataPlansAPI = async (
 ) => {
   try {
     const result = await api.get(
-      `/api/top-up/operators/data/${networkOperator}`
+      `/api/top-up/operators/data/${networkOperators[networkOperator]}`
     );
     if (result.status === 200) return result.data;
     return undefined;

@@ -72,7 +72,7 @@ const TransactionConfirmationScreen = ({
       status:
         confirmationType === "request"
           ? "Successful"
-          : "Your Transaction was successful",
+          : "Your transaction was \n successful",
       statusIcon: "Success",
       //TODO update message to accept JSX
       statusMessage: `You have successfully ${

@@ -1,83 +1,119 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
+import { useRoute } from "@react-navigation/native";
+
 import { AIrtimeStyles as styles } from "./styles";
-import CommonStyles from "../../../../common/styles/CommonStyles";
+
+import { hp } from "../../../../common/util/LayoutUtil";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import { toastError } from "../../../../common/util/ToastUtil";
+import { numberWithCommas } from "../../../../common/util/NumberUtils";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+
+import { View } from "../../../../theme/Themed";
 import { Header } from "../../../../components/text/header";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../types";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import Button from "../../../../components/buttons/Button";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-// import { fetchAirtimeOperators } from "../../../../api/airtime";
-import { hp } from "../../../../common/util/LayoutUtil";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 
-import {
-  setAmount,
-  setDetailHeader,
-  setDetailValue,
-  setLogo,
-  setPaymentTYpe,
-  setTo,
-} from "../../../../redux/slice/paymentSlice";
+import { useAppSelector } from "../../../../redux";
 import { useDispatch } from "react-redux";
-import { View, Text } from "../../../../theme/Themed";
-const Network = [
-  {
-    title: "Glo",
-    icon: Images.Glo,
-  },
-  {
-    title: "MTN",
-    icon: Images.Mtn,
-  },
-  {
-    title: "Airtel",
-    icon: Images.Airtel,
-  },
-  {
-    title: "9mobile",
-    icon: Images.Etisalat,
-  },
-];
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
+
+import {
+  detectNetworkOperatorAPI,
+  fetchAirtimeOperatorsAPI,
+  fetchNetworkOperatorDataPlansAPI,
+} from "../../../../api/airtime";
+
 export default function AirtimeIndex({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"AirtimeData">) {
   const [isEnabled, setIsEnabled] = useState(false);
-  // const [selected, setSelected] = useState(false);
-  // const [currentIndex, setCurrent] = useState(0);
+  const [selectedProvider, setSelectedProvider] = useState<{
+    name: any;
+    logoUrls: string[];
+    operatorId: number;
+  }>({
+    name: "",
+    logoUrls: [],
+    operatorId: 0,
+  });
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [amount, setAmount] = useState("");
+  const [airtimeOperators, setAirtimeOperators] = useState<
+    {
+      name: string;
+      logoUrls: string[];
+      operatorId: number;
+    }[]
+  >([]);
+
+  const [dataBundles, setDataBundles] = useState<
+    { label: string; value: string }[]
+  >([]);
+
   const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  // const bundles = ["100mb", "200mb", "500mb"];
-  const insets = useSafeAreaInsets();
-  const [periodValue, setPeriodValue] = useState("");
-  const [active, setActive] = useState("");
-  const [phone, setPhone] = useState("");
-  const [amount, settAmount] = useState("");
   const dispatch = useDispatch();
-  // const { icon } = route.params;
+  const user = useAppSelector(selectUser);
 
-  const period = [
-    { label: "100 ", value: "100" },
-    { label: "200 ", value: "200" },
-    { label: "500 ", value: "300" },
-    { label: "1gb ", value: "500" },
-    { label: "1.5gb ", value: "1000" },
-  ];
+  useEffect(() => {
+    fetchAirtimeOperatorsAPI().then((r) => setAirtimeOperators(r.data.data));
+  }, []);
 
-  // const [airtimeOperators, setAirtimeOperators] = useState<
-  //   {
-  //     name: string;
-  //     logoUrls: string[];
-  //     operatorId: number;
-  //   }[]
-  // >([]);
+  useEffect(() => {
+    if (isEnabled) {
+      detectNetworkProvider(user.phoneNumber);
+    }
+  }, [isEnabled]);
 
-  // useEffect(() => {
-  //   fetchAirtimeOperators().then((r) => setAirtimeOperators(r.data.data));
-  // }, []);
+  useEffect(() => {
+    if (route.name === "data-bundle" && selectedProvider.name) {
+      fetchNetworkOperatorDataPlansAPI(
+        selectedProvider.name.split(" ")[0].toUpperCase()
+      )
+        .then(({ data }) => {
+          const entires = Object.entries(data.fixedAmountsDescriptions).map(
+            ([value, label]) => ({ value, label: label as string })
+          );
+          setDataBundles(entires);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [route.name, selectedProvider.name]);
+
+  const detectNetworkProvider = (number: string) => {
+    dispatch(toggleActivityModal(true));
+    detectNetworkOperatorAPI(number.replace("+", ""))
+      .then((res) => {
+        setMobileNumber(number);
+        setSelectedProvider(res.data);
+        dispatch(toggleActivityModal(false));
+      })
+      .catch(() => {
+        dispatch(toggleActivityModal(false));
+        toastError("Error detecting provider. Please select manually");
+      });
+  };
+
+  const handleChange = (text: string) => {
+    let updatedText = text;
+    if (text.charAt(0) === "0") {
+      updatedText = text.substring(1);
+    }
+    if (updatedText.length === 13) {
+      detectNetworkProvider(updatedText);
+    }
+    setMobileNumber(
+      mobileNumber.startsWith("234") ? updatedText : `234${updatedText}`
+    );
+  };
+
+  // removes duplicated operators
+  const displayedOperators = new Set();
 
   return (
     <View style={styles.container}>
@@ -92,116 +128,71 @@ export default function AirtimeIndex({
         }}
         heading="Select Network Provider"
       />
-      {/* <ScrollView
+      <ScrollView
         horizontal
-        style={CommonStyles.imageHeaderContainer}
-        showsHorizontalScrollIndicator={false}>
-        {airtimeOperators.map((op, i) => {
-          return (
-            <HeaderImage
-              selected={selected === i}
-              onSelect={() => {
-                setSelected(i);
-              }}
-              index={0}
-              image={{ uri: op.logoUrls[-0] }}
-            />
-          );
-        })} */}
-      {/* <HeadrImage
-          selected={selected}
-          onSelect={() => {
-            setSelected(true);
-          }}
-          index={0}
-          image={Mtn}
-          title="MTN"
-        />
-        <HeadrImage
-          selected={selected}
-          index={1}
-          image={Glo}
-          title="Glo"
-          onSelect={() => {
-            setSelected(true);
-          }}
-        />
-        <HeadrImage
-          selected={selected}
-          index={2}
-          image={airtel}
-          title="Airtel"
-          onSelect={() => {
-            setSelected(true);
-          }}
-        />
-        <HeadrImage
-          selected={selected}
-          index={3}
-          image={etisalat}
-          title="9mobile"
-          onSelect={() => {
-            setSelected(true);
-          }}
-        /> */}
-      {/* </ScrollView> */}
-
-      <View
-        style={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          marginTop: hp(15),
+        showsHorizontalScrollIndicator={false}
+        style={{ marginTop: hp(15), maxHeight: 80 }}
+        contentContainerStyle={{
           justifyContent: "space-between",
+          width: "100%",
         }}
       >
-        {Network.map((item, index) => {
+        {airtimeOperators.map((operator, index) => {
+          if (displayedOperators.has(operator.name.split(" ")[0])) {
+            return null;
+          }
+          displayedOperators.add(operator.name.split(" ")[0]);
+
           return (
             <Card
               key={index}
-              title={item.title}
-              icon={item.icon}
+              title={operator.name.split(" ")[0]}
+              icon={operator.logoUrls[0]}
               onPress={() => {
-                setActive(item.icon);
-                dispatch(setTo(item.title));
-                dispatch(setLogo(item.icon));
+                setSelectedProvider(operator);
               }}
-              isActive={item.icon === active}
+              isActive={
+                operator.name.split(" ")[0] ===
+                selectedProvider.name.split(" ")[0]
+              }
             />
           );
         })}
-      </View>
+      </ScrollView>
 
       <View style={{ paddingHorizontal: hp(20) }}>
         <UnderlinedInput
           icon={null}
+          maxLength={13}
           keyboardType="phone-pad"
+          value={isEnabled ? user.phoneNumber : mobileNumber}
           inputStyle={[styles.input]}
           labelStyle={styles.label}
           style={{ marginTop: hp(10) }}
           label="Phone Number"
           placeholder="Enter a phone number"
           returnKeyType="done"
-          onChangeText={(text) => setPhone(text)}
+          onChangeText={handleChange}
         />
         <CustomSwitch
           title="My number"
-          onValueChange={toggleSwitch}
+          onValueChange={() => setIsEnabled((previousState) => !previousState)}
           isEnabled={isEnabled}
         />
       </View>
-      <View
-        style={{
-          paddingHorizontal: hp(20),
-          marginTop: hp(10),
-          marginBottom: hp(10),
-        }}
-      >
-        {route.name == "data-bundle" && (
+      {route.name === "data-bundle" && (
+        <View
+          style={{
+            paddingHorizontal: hp(20),
+            marginTop: hp(10),
+            marginBottom: hp(10),
+          }}
+        >
           <CustomDropdown
-            data={period}
-            placeholder="Choose abundle"
-            setValue={settAmount}
-            value={periodValue}
+            data={dataBundles}
+            placeholder="Choose a bundle"
+            setValue={setAmount}
+            value={amount}
             style={[
               { fontFamily: "Euclid-Circular-A" },
               { fontWeight: "400" },
@@ -209,45 +200,44 @@ export default function AirtimeIndex({
             ]}
             label={"Bundle"}
           />
-        )}
-      </View>
-      <View style={{ paddingHorizontal: hp(20) }}>
-        <UnderlinedInput
-          value={`\u20A6${amount}`}
-          disabled={route.name == "data-bundle"}
-          icon={null}
-          inputStyle={[styles.input]}
-          labelStyle={[styles.label]}
-          label="Amount"
-          placeholder="Enter an amount"
-          keyboardType="number-pad"
-          returnKeyType="done"
-          onChangeText={(text) => {
-            settAmount(text);
-          }}
-        />
-      </View>
+        </View>
+      )}
 
-      <View
-        style={[
-          CommonStyles.passwordContainer,
-          { bottom: insets.top || hp(45) },
-        ]}
-      >
+      <UnderlinedInput
+        value={
+          route.name == "data-bundle"
+            ? NAIRA_UNICODE + numberWithCommas(amount)
+            : amount
+        }
+        style={{ paddingHorizontal: hp(20) }}
+        disabled={route.name === "data-bundle"}
+        icon={null}
+        inputStyle={[styles.input]}
+        labelStyle={[styles.label]}
+        label="Amount"
+        placeholder="Enter an amount"
+        keyboardType="number-pad"
+        returnKeyType={route.name !== "data-bundle" ? "done" : "none"}
+        showSoftInputOnFocus={route.name !== "data-bundle"}
+        onChangeText={(text) => {
+          setAmount(text);
+        }}
+      />
+
+      <View style={{ marginTop: "auto", marginBottom: hp(45) }}>
         <Button
           title="Continue"
           onPressButton={() => {
-            dispatch(setDetailHeader("Phone number"));
-            dispatch(
-              setPaymentTYpe(route.name == "data-bundle" ? "Data" : "Airtime")
-            );
-            dispatch(setDetailValue(phone));
-            dispatch(setAmount(amount));
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              beneficiaryLogo: selectedProvider.logoUrls[0],
+              beneficiaryName: selectedProvider.name,
+              purchaseName: route.name == "data-bundle" ? "Data" : "Airtime",
+              paymentMethod: "Aza Account",
+              phoneNumber: mobileNumber,
+            });
           }}
-          disabled={!CustomSwitch}
-          styleText={{}}
-          style={[{}]}
+          disabled={!amount || !selectedProvider || mobileNumber.length < 13}
         />
       </View>
     </View>
