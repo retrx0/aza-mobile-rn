@@ -17,7 +17,6 @@ const AlternativeSurvey = ({
   navigation,
 }: CommonScreenProps<"CloseAccountScreen">) => {
   const colorScheme = useColorScheme();
-  const [reason, setReason] = useState("");
   const insets = useSafeAreaInsets();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
