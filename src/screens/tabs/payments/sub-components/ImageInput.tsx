@@ -1,15 +1,6 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImagePropTypes,
-  StyleProp,
-  TextStyle,
-} from "react-native";
+import { View, StyleSheet, Image, StyleProp, TextStyle } from "react-native";
 import React from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import { Mtn } from "../../../../../assets/images";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";

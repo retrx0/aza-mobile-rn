@@ -81,8 +81,6 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
                 navigateTo: "AccountClosureSurveyScreen",
               })
             }
-            styleText={{}}
-            style={[{}]}
           />
         </View>
       </View>

@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
 import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text, TextInput } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
@@ -106,11 +105,9 @@ const AlternativeSurvey = ({
                 statusIcon: "Success",
                 //TODO update message to accept JSX
                 statusMessage: "Survey has been successfully filled and sent",
-                navigateTo: "Home",
+                navigateTo: "Settings",
               })
             }
-            styleText={{}}
-            style={[{}]}
           />
         </View>
       </View>

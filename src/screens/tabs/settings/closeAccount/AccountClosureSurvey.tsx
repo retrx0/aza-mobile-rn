@@ -15,7 +15,7 @@ const AccountClosureSurveyScreen = ({
   navigation,
 }: CommonScreenProps<"CloseAccountScreen">) => {
   const colorScheme = useColorScheme();
-  const [selectedCard, setSelectedCard] = useState("");
+  const [selectToppings, setSelectToppings] = useState("");
   const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
@@ -77,12 +77,13 @@ const AccountClosureSurveyScreen = ({
             }}>
             We would love to know why you decided to close your account
           </Text>
+
           {accounts.map(({ surveyToppings }, i) => (
             <View key={i}>
               <>
                 <View style={{}}>
                   <TouchableOpacity
-                    onPress={() => setSelectedCard(surveyToppings)}
+                    onPress={() => setSelectToppings(surveyToppings)}
                     style={{
                       flexDirection: "row",
                       alignItems: "center",
@@ -94,13 +95,13 @@ const AccountClosureSurveyScreen = ({
                         height: hp(20),
                         borderRadius: hp(10),
                         borderColor:
-                          selectedCard === surveyToppings
+                          selectToppings === surveyToppings
                             ? Colors.general.green
                             : "#3A3D42",
 
                         borderWidth: hp(1),
                       }}>
-                      {selectedCard === surveyToppings && (
+                      {selectToppings === surveyToppings && (
                         <View
                           style={[
                             CommonStyles.doneSelect,
@@ -109,6 +110,7 @@ const AccountClosureSurveyScreen = ({
                         />
                       )}
                     </View>
+
                     <Text
                       style={{
                         marginLeft: 20,
@@ -124,22 +126,27 @@ const AccountClosureSurveyScreen = ({
             </View>
           ))}
         </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
           ]}>
           <Button
-            disabled={!selectedCard}
+            disabled={!selectToppings}
             title="Continue"
             onPressButton={() => {
-              navigation.navigate("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                //TODO update message to accept JSX
-                statusMessage: "Survey has been successfully filled and sent",
-                navigateTo: "Home",
-              });
+              if (accounts === "Others") {
+                navigation.navigate("AlternativeSurvey");
+              } else {
+                navigation.navigate("StatusScreen", {
+                  status: "Successful",
+                  statusIcon: "Success",
+                  //TODO update message to accept JSX
+                  statusMessage: "Survey has been successfully filled and sent",
+                  navigateTo: "Home",
+                });
+              }
             }}
             styleText={{}}
             style={[{}]}
