@@ -12,9 +12,14 @@ import ArchievedComponents from "./components/ArchievedCard";
 import { hp } from "../../../common/util/LayoutUtil";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import Divider from "../payments/sub-components/Divider";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <SpacerWrapper>
@@ -26,8 +31,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             justifyContent: "space-between",
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}
-        >
+          }}>
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -37,12 +41,11 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginRight: hp(50),
-            }}
-          >
+            }}>
             Vault
           </Text>
           <TouchableOpacity>
-            <InfoIcon color={""} size={0} />
+            <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
           </TouchableOpacity>
         </View>
         <Text
@@ -52,18 +55,16 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             marginBottom: hp(40),
             marginLeft: hp(19),
-          }}
-        >
+          }}>
           Choose a vault to view/edit details
         </Text>
-        <View style={[CommonStyles.lineDivider]} />
+        <Divider />
         <ArchievedComponents />
         <View
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <CancelButtonWithUnderline
             title="Archived Vaults"
             onPressButton={() =>
