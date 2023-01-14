@@ -27,10 +27,14 @@ import { hp } from "../../../common/util/LayoutUtil";
 import * as Images from "../../../../assets/images/index";
 import { Card } from "./sub-components/Card";
 import { PaymentsCard } from "./sub-components/PaymentsCard";
+import { useAppSelector } from "../../../redux";
+import { selectUser } from "../../../redux/slice/userSlice";
 
 export default function Payments({
   navigation,
 }: RootTabScreenProps<"Payments">) {
+  const user = useAppSelector(selectUser);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -55,56 +59,31 @@ export default function Payments({
         style={styles.subHead}
         heading="Recent Payments"
       />
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        style={{
-          marginLeft: hp(20),
-          marginBottom: hp(10),
-          maxHeight: 120,
-        }}
-      >
-        <HeadrImage
-          selected
-          index={0}
-          header="Paid"
-          title="MTN"
-          amount="2,050"
-          image={Mtn}
-        />
-        <HeadrImage
-          selected
-          index={0}
-          header="Paid"
-          title="Swift N"
-          amount="20,000"
-          image={Images.SWIFT}
-        />
-        <HeadrImage
-          selected
-          index={0}
-          header="Paid"
-          title="DSTV"
-          amount="21,000"
-          image={Dstv}
-        />
-        <HeadrImage
-          selected
-          index={0}
-          header="Paid"
-          title="Ikeja El..."
-          amount="2,150"
-          image={Ie}
-        />
-        <HeadrImage
-          selected
-          index={0}
-          header="Paid"
-          title="FCT Wat"
-          amount="2,150"
-          image={Fctwb}
-        />
-      </ScrollView>
+      {user.payments.recentPayments.length > 0 && (
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          style={{
+            marginLeft: hp(20),
+            marginBottom: hp(10),
+            maxHeight: 120,
+          }}
+        >
+          {user.payments.recentPayments.map((payment, i) => {
+            return (
+              <HeadrImage
+                key={i}
+                selected
+                index={i}
+                header={payment.status}
+                title={payment.vendorName}
+                amount={"" + payment.amount}
+                image={Mtn}
+              />
+            );
+          })}
+        </ScrollView>
+      )}
 
       <ScrollView style={styles.itemListContainer}>
         <ListItem

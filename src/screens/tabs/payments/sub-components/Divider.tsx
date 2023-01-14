@@ -1,20 +1,15 @@
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import React from "react";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
+import { View } from "../../../../theme/Themed";
 
 export default function Divider({ style }: { style?: ViewStyle }) {
-  const colorScheme = useColorScheme();
-
   return (
     <View
-      style={[
-        styles.divider,
-        style,
-        {
-          backgroundColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-        },
-      ]}></View>
+      lightColor={Colors.light.borderColor}
+      darkColor={Colors.dark.borderColor}
+      style={[styles.divider, style]}
+    ></View>
   );
 }
 const styles = StyleSheet.create({

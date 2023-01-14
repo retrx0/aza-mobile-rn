@@ -102,7 +102,39 @@ const initialState: UserState = {
     totalMonthlyOutgoingTransferAmount: 0,
   },
   vault: { loading: false, recentTransaction: [] },
-  payments: { loading: false, recentPayments: [] },
+  payments: {
+    loading: false,
+    recentPayments: [
+      {
+        amount: "2000",
+        status: "Paid",
+        vendorName: "MTN",
+        vendorLogo: "",
+        date: "4 July 2022 04:26",
+      },
+      {
+        amount: "20300",
+        status: "Paid",
+        vendorName: "DSTV",
+        vendorLogo: "",
+        date: "4 July 2022 04:26",
+      },
+      {
+        amount: "2000",
+        status: "Paid",
+        vendorName: "IET",
+        vendorLogo: "",
+        date: "4 July 2022 04:26",
+      },
+      {
+        amount: "5000",
+        status: "Paid",
+        vendorName: "FCT Wat",
+        vendorLogo: "",
+        date: "4 July 2022 04:26",
+      },
+    ],
+  },
   azaContacts: {
     loading: false,
     data: [

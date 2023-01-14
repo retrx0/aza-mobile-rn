@@ -2,6 +2,24 @@ const tintColorLight = "#121212";
 const tintColorDark = "#fff";
 const tabIconColorDefault = "#A6A6A6";
 
+interface ThemeColor {
+  text: string;
+  mainText: string;
+  secondaryText: string;
+  background: string;
+  backgroundSecondary: string;
+  tint: string;
+  tabIconDefault: string;
+  tabIconSelected: string;
+  error: string;
+  success: string;
+  separator: string;
+  buttonText: string;
+  disabledButtonBackground: string;
+  disabledButtonTextColor: string;
+  borderColor: string;
+}
+
 export default {
   light: {
     text: "#121212",
@@ -29,7 +47,7 @@ export default {
   },
   dark: {
     borderColor: "#262626",
-    text: "#fff",
+    text: "#FFFFFF",
     mainText: "#E7E9EA",
     secondaryText: "#999999",
     background: "#121212",

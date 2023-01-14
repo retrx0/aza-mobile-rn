@@ -11,6 +11,8 @@ import SplitListItem from "./components/SplitListItem";
 
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
+import { useAppSelector } from "../../redux";
+import { selectUser } from "../../redux/slice/userSlice";
 
 const ChooseSplitScreen = ({
   navigation,
@@ -38,6 +40,8 @@ const ChooseSplitScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+
+  const user = useAppSelector(selectUser);
 
   const splitsListItems = [
     {
@@ -96,31 +100,33 @@ const ChooseSplitScreen = ({
     <View style={styles.container}>
       <ScrollView>
         <Divider />
-        {splitsListItems.map(({ amount, date, splitImage, name }, i) => (
-          <View key={i}>
-            <TouchableOpacity
-              style={{}}
-              onPress={() =>
-                navigation.navigate("SplitSelectContacts", {
-                  amount,
-                  date,
-                  splitImage,
-                  name,
-                })
-              }
-            >
-              <SplitListItem
-                key={i}
-                amount={amount}
-                date={date}
-                splitImage={splitImage}
-                name={name}
-                showChevron
-              />
-            </TouchableOpacity>
-            <Divider />
-          </View>
-        ))}
+        {user.payments.recentPayments.map(
+          ({ amount, date, vendorLogo, vendorName }, i) => (
+            <View key={i}>
+              <TouchableOpacity
+                style={{}}
+                onPress={() =>
+                  navigation.navigate("SplitSelectContacts", {
+                    amount,
+                    date,
+                    splitImage: vendorLogo,
+                    name: vendorName,
+                  })
+                }
+              >
+                <SplitListItem
+                  key={i}
+                  amount={amount}
+                  date={date}
+                  splitImage={vendorLogo}
+                  name={vendorName}
+                  showChevron
+                />
+              </TouchableOpacity>
+              <Divider />
+            </View>
+          )
+        )}
       </ScrollView>
     </View>
   );

@@ -27,7 +27,8 @@ const AccountClosureSurveyScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Account Closure Survey
         </Text>
       ),
@@ -72,9 +73,10 @@ const AccountClosureSurveyScreen = ({
               fontSize: hp(16),
               marginBottom: hp(30),
               fontWeight: "500",
-              paddingLeft: hp(7),
+              paddingLeft: hp(15),
               maxWidth: wp(350),
-            }}>
+            }}
+          >
             We would love to know why you decided to close your account
           </Text>
 
@@ -88,7 +90,8 @@ const AccountClosureSurveyScreen = ({
                       flexDirection: "row",
                       alignItems: "center",
                       paddingVertical: hp(20),
-                    }}>
+                    }}
+                  >
                     <View
                       style={{
                         width: hp(20),
@@ -97,15 +100,16 @@ const AccountClosureSurveyScreen = ({
                         borderColor:
                           selectToppings === surveyToppings
                             ? Colors.general.green
-                            : "#3A3D42",
+                            : Colors.dark.backgroundSecondary,
 
                         borderWidth: hp(1),
-                      }}>
+                      }}
+                    >
                       {selectToppings === surveyToppings && (
                         <View
                           style={[
                             CommonStyles.doneSelect,
-                            { marginLeft: wp(2), marginTop: wp(2) },
+                            { marginHorizontal: wp(2), marginTop: wp(2) },
                           ]}
                         />
                       )}
@@ -116,8 +120,9 @@ const AccountClosureSurveyScreen = ({
                         marginLeft: 20,
                         fontFamily: "Euclid-Circular-A",
                         fontSize: hp(16),
-                        maxWidth: 350,
-                      }}>
+                        maxWidth: 300,
+                      }}
+                    >
                       {surveyToppings}
                     </Text>
                   </TouchableOpacity>
@@ -131,12 +136,13 @@ const AccountClosureSurveyScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             disabled={!selectToppings}
             title="Continue"
             onPressButton={() => {
-              if (accounts === "Others") {
+              if (selectToppings === "Others") {
                 navigation.navigate("AlternativeSurvey");
               } else {
                 navigation.navigate("StatusScreen", {

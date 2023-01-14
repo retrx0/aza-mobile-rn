@@ -130,24 +130,24 @@ export const useBottomSheetType = (
     profileBottomSheetListItems: [
       {
         itemName: "Choose Profile Photo",
-        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => setChoosePhoto(true),
       },
       {
         itemName: "Account Details",
-        itemIcon: <UserIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <UserIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "AccountDetails" }),
       },
       {
         itemName: "Transaction History",
-        itemIcon: <ClockIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <ClockIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "TransactionHistory" }),
       },
       {
         itemName: "Bank Accounts",
-        itemIcon: <BankIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <BankIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", {
             screen: "BankAccounts",
@@ -158,16 +158,14 @@ export const useBottomSheetType = (
       },
       {
         itemName: "Debit/Credit Cards",
-        itemIcon: (
-          <CreditCardIcon size={16} color={Colors[appTheme].mainText} />
-        ),
+        itemIcon: <CreditCardIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => {
           navigation.navigate("Common", { screen: "DebitCreditCards" });
         },
       },
       {
         itemName: "Sign out",
-        itemIcon: <LogoutIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <LogoutIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => {
           navigation.navigate("Welcome");
         },
@@ -176,32 +174,19 @@ export const useBottomSheetType = (
     transferBottomSheetListItems: [
       {
         itemName: "Send Money",
-        itemIcon: (
-          <SendMoneyIcon
-            size={16}
-            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
-          />
-        ),
+        itemIcon: <SendMoneyIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
       },
       {
         itemName: "Request Money",
-        itemIcon: (
-          <RequestMoneyIcon
-            size={16}
-            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
-          />
-        ),
+        itemIcon: <RequestMoneyIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "RequestMoney" }),
       },
       {
         itemName: "Recurring Transfer",
         itemIcon: (
-          <RecurringTransferIcon
-            size={16}
-            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
-          />
+          <RecurringTransferIcon size={16} color={Colors[appTheme].text} />
         ),
         onPress: () =>
           navigation.navigate("Common", { screen: "RecurringTransfer" }),
@@ -210,17 +195,17 @@ export const useBottomSheetType = (
     choosePhotoBottomSheetListItems: [
       {
         itemName: "Take Photo",
-        itemIcon: <CameraIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <CameraIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => takePhoto(),
       },
       {
         itemName: "Select from Gallery",
-        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => selectImageFromGallaery(),
       },
       {
         itemName: "Delete Profile Picture",
-        itemIcon: <TrashIcon size={16} color={Colors[appTheme].mainText} />,
+        itemIcon: <TrashIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => console.log("called"),
       },
     ],

@@ -1,3 +1,4 @@
+import { string } from "yup";
 import { Beneficiary } from "../common/navigation/types";
 
 export interface Transactions {
@@ -46,7 +47,7 @@ export interface UserState {
     totalMonthlyOutgoingTransferAmount: number;
   };
   vault: { loading: boolean; recentTransaction: [] };
-  payments: { loading: boolean; recentPayments: [] };
+  payments: { loading: boolean; recentPayments: Payment[] };
   recentTransactions: { loading: boolean; data: Transactions[] };
   azaContacts: { loading: boolean; data: Beneficiary[] };
   bankAccounts: { loading: boolean; data: BankAccount[] };
@@ -59,8 +60,14 @@ export interface BankAccount {
   accountName: string;
 }
 
+export interface Payment {
+  status: "Paid" | "Pending";
+  amount: string;
+  vendorName: string;
+  vendorLogo: string;
+  date: string;
+}
 interface Vault {}
-interface Payment {}
 export type Gender = "Male" | "Female" | "Unknown";
 
 type PaymentMethodCardType = "Master Card" | "Visa";
