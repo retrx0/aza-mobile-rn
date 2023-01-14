@@ -1,12 +1,11 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -14,7 +13,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const AccountClosureSurveyScreen = ({
   navigation,
 }: CommonScreenProps<"CloseAccountScreen">) => {
-  const colorScheme = useColorScheme();
   const [selectToppings, setSelectToppings] = useState("");
   const insets = useSafeAreaInsets();
 
@@ -27,7 +25,8 @@ const AccountClosureSurveyScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Account Closure Survey
         </Text>
       ),
@@ -74,7 +73,8 @@ const AccountClosureSurveyScreen = ({
               fontWeight: "500",
               paddingLeft: hp(7),
               maxWidth: wp(350),
-            }}>
+            }}
+          >
             We would love to know why you decided to close your account
           </Text>
 
@@ -88,7 +88,8 @@ const AccountClosureSurveyScreen = ({
                       flexDirection: "row",
                       alignItems: "center",
                       paddingVertical: hp(20),
-                    }}>
+                    }}
+                  >
                     <View
                       style={{
                         width: hp(20),
@@ -100,7 +101,8 @@ const AccountClosureSurveyScreen = ({
                             : "#3A3D42",
 
                         borderWidth: hp(1),
-                      }}>
+                      }}
+                    >
                       {selectToppings === surveyToppings && (
                         <View
                           style={[
@@ -117,7 +119,8 @@ const AccountClosureSurveyScreen = ({
                         fontFamily: "Euclid-Circular-A",
                         fontSize: hp(16),
                         maxWidth: 350,
-                      }}>
+                      }}
+                    >
                       {surveyToppings}
                     </Text>
                   </TouchableOpacity>
@@ -131,12 +134,13 @@ const AccountClosureSurveyScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             disabled={!selectToppings}
             title="Continue"
             onPressButton={() => {
-              if (accounts === "Others") {
+              if (selectToppings === "Others") {
                 navigation.navigate("AlternativeSurvey");
               } else {
                 navigation.navigate("StatusScreen", {
@@ -148,8 +152,6 @@ const AccountClosureSurveyScreen = ({
                 });
               }
             }}
-            styleText={{}}
-            style={[{}]}
           />
         </View>
       </View>
