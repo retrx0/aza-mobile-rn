@@ -1,23 +1,22 @@
 import React, { useLayoutEffect, useState } from "react";
-import {
-  useWindowDimensions,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { useWindowDimensions, TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { View, Text } from "../../theme/Themed";
+import { View, Text, ScrollView } from "../../theme/Themed";
 
 import Divider from "../../components/divider/Divider";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import SplitListItem from "./components/SplitListItem";
 import { hp } from "../../common/util/LayoutUtil";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getAppTheme } from "../../theme";
+import { selectUser } from "../../redux/slice/userSlice";
 
 const IncomingSplitRequestsScreen = ({
   navigation,
@@ -27,15 +26,15 @@ const IncomingSplitRequestsScreen = ({
     { key: "first", title: "Pending" },
     { key: "second", title: "Completed" },
   ]);
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
+
+  const { paymentRequests } = useAppSelector(selectUser);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -83,58 +82,90 @@ const IncomingSplitRequestsScreen = ({
       case "first":
         return (
           <ScrollView>
-            {listItems.map(({ amount, date, splitImage, name }, i) => (
-              <View key={i}>
-                <TouchableOpacity
-                  style={{
-                    paddingTop: 20,
-                    paddingBottom: 15,
-                    paddingHorizontal: 15,
-                  }}
-                  onPress={() =>
-                    navigation.navigate("IncomingSplitRequestAcceptance")
-                  }
-                >
-                  <SplitListItem
-                    amount={amount}
-                    date={date}
-                    name={name}
-                    splitImage={splitImage}
-                    showCreatorAndRecipients
-                    showChevron
-                  />
-                </TouchableOpacity>
-                <Divider />
-              </View>
-            ))}
+            {paymentRequests.data
+              .filter((r) => r.status === "Pending")
+              .map(
+                (
+                  {
+                    amount,
+                    date,
+                    vendorLogo,
+                    vendorName,
+                    requestees,
+                    requestor,
+                  },
+                  i
+                ) => (
+                  <View key={i}>
+                    <TouchableOpacity
+                      style={{
+                        paddingTop: 20,
+                        paddingBottom: 15,
+                        paddingHorizontal: 15,
+                      }}
+                      onPress={() =>
+                        navigation.navigate("IncomingSplitRequestAcceptance")
+                      }
+                    >
+                      <SplitListItem
+                        amount={amount}
+                        date={date}
+                        name={vendorName}
+                        splitImage={vendorLogo}
+                        showCreatorAndRecipients
+                        showChevron
+                        requestees={requestees}
+                        requestor={requestor}
+                      />
+                    </TouchableOpacity>
+                    <Divider />
+                  </View>
+                )
+              )}
           </ScrollView>
         );
       case "second":
         return (
           <ScrollView>
-            {listItems.map(({ amount, date, splitImage, name }, i) => (
-              <View key={i}>
-                <TouchableOpacity
-                  style={{
-                    paddingTop: 20,
-                    paddingBottom: 15,
-                    paddingHorizontal: 15,
-                  }}
-                  onPress={() =>
-                    navigation.navigate("CompletedSplitRequestDetails")
-                  }
-                >
-                  <SplitListItem
-                    amount={amount}
-                    date={date}
-                    name={name}
-                    splitImage={splitImage}
-                    showCreatorAndRecipients
-                  />
-                </TouchableOpacity>
-                <Divider />
-              </View>
-            ))}
+            {paymentRequests.data
+              .filter((r) => r.status === "Paid")
+              .map(
+                (
+                  {
+                    amount,
+                    date,
+                    vendorLogo,
+                    vendorName,
+                    requestees,
+                    requestor,
+                  },
+                  i
+                ) => (
+                  <View key={i}>
+                    <TouchableOpacity
+                      style={{
+                        paddingTop: 20,
+                        paddingBottom: 15,
+                        paddingHorizontal: 15,
+                      }}
+                      onPress={() =>
+                        navigation.navigate("CompletedSplitRequestDetails")
+                      }
+                    >
+                      <SplitListItem
+                        amount={amount}
+                        date={date}
+                        name={vendorName}
+                        splitImage={vendorLogo}
+                        showCreatorAndRecipients
+                        requestees={requestees}
+                        requestor={requestor}
+                      />
+                    </TouchableOpacity>
+                    <Divider />
+                  </View>
+                )
+              )}
           </ScrollView>
         );
     }
@@ -155,11 +186,11 @@ const IncomingSplitRequestsScreen = ({
               style={{
                 elevation: 0,
                 backgroundColor: "transparent",
-                borderBottomColor: Colors[colorScheme].secondaryText,
+                borderBottomColor: Colors[appTheme].secondaryText,
                 borderBottomWidth: 2,
               }}
               indicatorStyle={{
-                backgroundColor: Colors[colorScheme].text,
+                backgroundColor: Colors[appTheme].text,
                 marginBottom: -2,
               }}
               renderLabel={({ focused, route }) => {

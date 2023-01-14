@@ -51,6 +51,8 @@ const CompletedSplitRequestDetailsScreen = ({
           date="4 July 2022 04:26"
           name="KFC"
           splitImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiwr_jykU8Gdf9mpFXyUFwKAbCEaLFPFJbfA&usqp=CAU"
+          requestees={[]}
+          requestor={{ azaAccountNumber: "", fullName: "" }}
         />
         <Divider />
         <View

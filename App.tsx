@@ -13,6 +13,8 @@ import { Store } from "./src/redux/Store";
 import { toastConfig } from "./src/components/notification/toast";
 import * as Device from "expo-device";
 import { useEffect, useState } from "react";
+import NetInfo from "@react-native-community/netinfo";
+import { toastError } from "./src/common/util/ToastUtil";
 
 const App = () => {
   const { isLoadingComplete, userPreferences } = useCachedResources();
@@ -24,6 +26,16 @@ const App = () => {
     Device.isRootedExperimentalAsync().then((rooted) =>
       setisDeviceRooted(rooted)
     );
+
+    // TODO fix below code
+    NetInfo.addEventListener((netChange) => {
+      if (
+        netChange.isConnected === false &&
+        netChange.isInternetReachable === false
+      ) {
+        toastError("Couldn't connect to internet");
+      }
+    });
   }, []);
 
   if (!isLoadingComplete || isDeviceRooted) {

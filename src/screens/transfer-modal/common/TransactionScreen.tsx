@@ -10,10 +10,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import { Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
-import {
-  Beneficiary,
-  CommonScreenProps,
-} from "../../../common/navigation/types";
+import { CommonScreenProps } from "../../../common/navigation/types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { hp } from "../../../common/util/LayoutUtil";
 import ContactsScene from "../../contacts/ContactsScene";
@@ -22,6 +19,7 @@ import { InfoIcon } from "../../../../assets/svg";
 import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { IBeneficiary } from "../../../redux/types";
 
 type TransactionScreenProps = {
   headerTitle: string;
@@ -75,7 +73,7 @@ const TransactionScreen = ({
     });
   }, []);
 
-  const azaContactOnClick = (beneficiary: Beneficiary) => {
+  const azaContactOnClick = (beneficiary: IBeneficiary) => {
     //TODO replace with redux slice
     navigation.navigate("TransactionKeypad", {
       headerTitle: headerTitle,

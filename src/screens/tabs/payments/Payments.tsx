@@ -78,7 +78,7 @@ export default function Payments({
                 header={payment.status}
                 title={payment.vendorName}
                 amount={"" + payment.amount}
-                image={Mtn}
+                image={{ uri: payment.vendorLogo, cache: "default" }}
               />
             );
           })}

@@ -5,11 +5,10 @@ import { View, Text } from "../../../theme/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import Colors from "../../../constants/Colors";
-
-import useColorScheme from "../../../hooks/useColorScheme";
 import { ArrowRightIcon, ChevronRightIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import { IBeneficiary } from "../../../redux/types";
 
 interface SplitItem {
   splitImage: string;
@@ -18,6 +17,8 @@ interface SplitItem {
   date: string;
   showChevron?: boolean;
   showCreatorAndRecipients?: boolean;
+  requestor: IBeneficiary;
+  requestees: IBeneficiary[];
 }
 
 const SplitListItem = ({
@@ -27,9 +28,9 @@ const SplitListItem = ({
   date,
   showChevron,
   showCreatorAndRecipients,
+  requestees,
+  requestor,
 }: SplitItem) => {
-  const colorScheme = useColorScheme();
-
   return (
     <View
       style={[
@@ -60,8 +61,6 @@ const SplitListItem = ({
         }}
       >
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -80,8 +79,6 @@ const SplitListItem = ({
           ]}
         >
           <Text
-            // lightColor={Colors.light.secondaryText}
-            // darkColor={Colors.dark.secondaryText}
             style={{
               fontSize: hp(14),
               fontFamily: "Euclid-Circular-A",
@@ -103,67 +100,38 @@ const SplitListItem = ({
                   height: 20,
                   resizeMode: "cover",
                 }}
-                source={{
-                  uri: "https://images.unsplash.com/photo-1587085580271-cf1389892268?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fHNlbGZpZSUyMG1hbiUyMGJsYWNrfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                }}
+                source={{ uri: requestor.pictureUrl }}
               />
               <View style={{ marginHorizontal: 5 }}>
-                <ArrowRightIcon
-                  size={14}
-                  color={Colors[colorScheme].secondaryText}
-                />
+                <ArrowRightIcon size={14} color={Colors["general"].grey} />
               </View>
             </View>
             <View style={[CommonStyles.row, { position: "relative" }]}>
-              <Image
-                style={{
-                  borderColor: "white",
-                  borderWidth: 0.5,
-                  resizeMode: "cover",
-                  borderRadius: 50,
-                  width: 20,
-                  height: 20,
-                }}
-                source={{
-                  uri: "https://images.unsplash.com/photo-1612601006505-1254db3e290d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2VsZmllJTIwbWFuJTIwYmxhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-                }}
-              />
-              <Image
-                style={{
-                  borderColor: "white",
-                  borderWidth: 0.5,
-                  borderRadius: 50,
-                  width: 20,
-                  resizeMode: "cover",
-                  height: 20,
-                  marginLeft: -10,
-                }}
-                source={{
-                  uri: "https://images.unsplash.com/photo-1606459249576-f00b2e5e0917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHNlbGZpZSUyMG1hbiUyMGJsYWNrfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                }}
-              />
-              <Image
-                style={{
-                  borderColor: "white",
-                  borderWidth: 0.5,
-                  borderRadius: 50,
-                  width: 20,
-                  resizeMode: "cover",
-                  height: 20,
-                  marginLeft: -10,
-                }}
-                source={{
-                  uri: "https://images.unsplash.com/photo-1565884280295-98eb83e41c65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2VsZmllJTIwbWFuJTIwYmxhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-                }}
-              />
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontSize: 10,
-                }}
-              >
-                +2 more
-              </Text>
+              {requestees.map(({ pictureUrl }) => {
+                return (
+                  <Image
+                    style={{
+                      borderColor: "white",
+                      borderWidth: 0.5,
+                      resizeMode: "cover",
+                      borderRadius: 50,
+                      width: 20,
+                      height: 20,
+                    }}
+                    source={{ uri: pictureUrl }}
+                  />
+                );
+              })}
+              {requestees.length > 3 && (
+                <Text
+                  style={{
+                    marginLeft: 5,
+                    fontSize: 10,
+                  }}
+                >
+                  +{requestees.length - 3} more
+                </Text>
+              )}
             </View>
           </View>
         )}

@@ -45,7 +45,7 @@ export default function InternetPlans({
         route=""
         index={0}
         title="Spectranet"
-        Icon={() => <Image style={styles2.img} source={Spectranet} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: Spectranet }} />}
       />
 
       <ListItem
@@ -53,42 +53,42 @@ export default function InternetPlans({
         route=""
         index={2}
         title="NTEL"
-        Icon={() => <Image style={styles2.img} source={Ntel} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: Ntel }} />}
       />
       <ListItem
         onPress={() => {}}
         route=""
         index={2}
         title="Smile Communications"
-        Icon={() => <Image style={styles2.img} source={smile} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: smile }} />}
       />
       <ListItem
         onPress={() => {}}
         route=""
         index={2}
         title="Swift Networks"
-        Icon={() => <Image style={styles2.img} source={SWIFT} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: SWIFT }} />}
       />
       <ListItem
         onPress={() => {}}
         route=""
         index={2}
         title="Legend"
-        Icon={() => <Image style={styles2.img} source={legend} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: legend }} />}
       />
       <ListItem
         onPress={() => {}}
         route=""
         index={2}
         title="ipNX"
-        Icon={() => <Image style={styles2.img} source={ipnx} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: ipnx }} />}
       />
       <ListItem
         onPress={() => {}}
         route=""
         index={2}
         title="CobraNet"
-        Icon={() => <Image style={styles2.img} source={cobra} />}
+        Icon={() => <Image style={styles2.img} source={{ uri: cobra }} />}
       />
     </View>
   );

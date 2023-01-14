@@ -12,24 +12,21 @@ import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWith
 
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SplitListItem from "./components/SplitListItem";
 
 const IncomingSplitRequestAcceptanceScreen = ({
   navigation,
 }: CommonScreenProps<"IncomingSplitRequestAcceptance">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -55,100 +52,17 @@ const IncomingSplitRequestAcceptanceScreen = ({
           style={{
             backgroundColor: "transparent",
             borderBottomWidth: 0.6,
-            borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+            borderBottomColor: Colors.general.grey,
           }}
         />
-        <View>
-          <View style={{ paddingVertical: hp(15), paddingHorizontal: hp(20) }}>
-            <View
-              style={[
-                CommonStyles.row,
-                {
-                  alignItems: "center",
-                  alignSelf: "stretch",
-                },
-              ]}
-            >
-              <Image
-                style={{ borderRadius: 50, width: 36, height: 36 }}
-                source={{
-                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThTumpKjOB5PtCkHk3DUZ_6px9A073NcfLPA&usqp=CAU",
-                }}
-              />
-              <View
-                style={{
-                  display: "flex",
-                  marginRight: "auto",
-                  marginLeft: hp(20),
-                }}
-              >
-                <Text
-                  // lightColor={Colors.light.mainText}
-                  // darkColor={Colors.dark.mainText}
-                  style={{
-                    fontFamily: "Euclid-Circular-A-Semi-Bold",
-                    fontSize: hp(16),
-                    fontWeight: "500",
-                  }}
-                >
-                  Genesis Cinemas
-                </Text>
-                <View
-                  style={[
-                    CommonStyles.row,
-                    {
-                      marginTop: hp(3),
-                      marginBottom: hp(8),
-                      alignSelf: "flex-start",
-                    },
-                  ]}
-                >
-                  <Text
-                    // lightColor={Colors.light.mainText}
-                    // darkColor={Colors.dark.mainText}
-                    style={{
-                      marginLeft: hp(3),
-                      fontFamily: "Euclid-Circular-A",
-                      fontSize: hp(14),
-                      fontWeight: "500",
-                    }}
-                  >
-                    Payments
-                  </Text>
-                </View>
-              </View>
-
-              <View
-                style={{
-                  display: "flex",
-                  alignItems: "flex-end",
-                }}
-              >
-                <Text
-                  style={{
-                    fontFamily: "Euclid-Circular-A-Semi-Bold",
-                    fontSize: hp(16),
-                    color: Colors.light.error,
-                  }}
-                >
-                  {"\u20A6"} {numberWithCommas(20000)}
-                </Text>
-                <Text
-                  lightColor={Colors.light.mainText}
-                  darkColor={Colors.dark.mainText}
-                  style={{
-                    fontSize: hp(12),
-                    marginTop: hp(3),
-                    fontFamily: "Euclid-Circular-A",
-                  }}
-                >
-                  4 July 2022 04:26
-                </Text>
-              </View>
-            </View>
-          </View>
-          <Divider />
-        </View>
+        <SplitListItem
+          amount="20000"
+          date=""
+          name=""
+          requestees={[]}
+          requestor={{ azaAccountNumber: "", fullName: "" }}
+          splitImage={""}
+        />
         <View
           style={{
             marginTop: hp(30),
@@ -295,14 +209,8 @@ const IncomingSplitRequestAcceptanceScreen = ({
                 navigateTo: "IncomingSplitRequests",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
           <CancelButtonWithUnderline
             title="Decline"

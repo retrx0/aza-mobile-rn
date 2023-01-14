@@ -2,7 +2,7 @@ const tintColorLight = "#121212";
 const tintColorDark = "#fff";
 const tabIconColorDefault = "#A6A6A6";
 
-interface ThemeColor {
+interface IThemeColor {
   text: string;
   mainText: string;
   secondaryText: string;

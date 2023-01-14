@@ -3,7 +3,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
 import Colors from "../../../../constants/Colors";
-import { Transaction } from "../../../../redux/types";
+import { ITransaction } from "../../../../redux/types";
 import { Text, View } from "../../../../theme/Themed";
 
 const SegmentedTransactionView = ({
@@ -11,7 +11,7 @@ const SegmentedTransactionView = ({
   transactions,
 }: {
   dateOfTransactions: string;
-  transactions: Transaction[];
+  transactions: ITransaction[];
 }) => {
   return (
     <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
