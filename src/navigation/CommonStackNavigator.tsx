@@ -84,7 +84,7 @@ import SplitEditContactsScreen from "../screens/menu/SplitEditContactsScreen";
 import SplitEditContactScreen from "../screens/menu/SplitEditContactScreen";
 import SplitConfirmationScreen from "../screens/menu/SplitConfirmationScreen";
 import IncomingSplitRequestsScreen from "../screens/menu/IncomingSplitRequestsScreen";
-import IncomingSplitRequestAcceptanceScreen from "../screens/menu/IncomingSplitRequestAcceptanceScreen";
+import IncomingSplitRequestAcceptanceScreen from "../screens/menu/PendingRequestAcceptanceScreen";
 import CompletedSplitRequestDetailsScreen from "../screens/menu/CompletedSplitRequestDetailsScreen";
 import OutgoingSplitRequestsScreen from "../screens/menu/OutgoingSplitRequestsScreen";
 import MonthlySummaryScreen from "../screens/menu/MonthlySummaryScreen";

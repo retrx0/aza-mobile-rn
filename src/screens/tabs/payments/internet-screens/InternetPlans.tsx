@@ -13,7 +13,6 @@ import {
   smile,
   Spectranet,
   SWIFT,
-  Swift,
 } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";

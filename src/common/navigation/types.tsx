@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
-import { IBeneficiary } from "../../redux/types";
+import { IBeneficiary, IRequest } from "../../redux/types";
 
 /* Common screens */
 
@@ -148,8 +148,8 @@ export type CommonStackParamList = {
   SplitEditContact: SplitEditContactParamsType;
   SplitConfirmation: SplitConfirmationParamsType;
   IncomingSplitRequests: undefined;
-  IncomingSplitRequestAcceptance: undefined;
-  CompletedSplitRequestDetails: undefined;
+  IncomingSplitRequestAcceptance: { requestItem: IRequest };
+  CompletedSplitRequestDetails: { requestItem: IRequest };
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;

@@ -22,7 +22,7 @@ import {
 import { useAppDispatch } from "../../../redux";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";
 import { requestOtpApi } from "../../../api/auth";
-import Phone from "./phoneStage";
+import Phone from "./PhoneStage";
 import { useCountries } from "../../../hooks/useCountries";
 
 const PhoneNumberScreen = ({

@@ -2,7 +2,6 @@ import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { TextInput } from "../../theme/Themed";
 import { View, Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
@@ -48,8 +47,6 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
@@ -63,8 +60,6 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
           </Text>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
@@ -96,7 +91,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             activeOpacity={0.7}
             style={{
               borderWidth: 1,
-              borderColor: Colors[colorScheme].text,
+              borderColor: Colors["general"].grey,
               width: "90%",
               height: hp(50),
               borderRadius: hp(10),
@@ -112,7 +107,6 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             />
             <Text
               style={{
-                color: Colors[colorScheme].text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(14),
                 fontWeight: "500",

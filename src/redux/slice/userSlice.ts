@@ -2,7 +2,7 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { boolean, number } from "yup";
-import { Dstv, Fctwb, IET, Mtn } from "../../../assets/images";
+import { Dstv, Fctwb, Ie, IET, Mtn } from "../../../assets/images";
 import api from "../../api";
 import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
@@ -12,14 +12,14 @@ import { ITransactions, UserState } from "../types";
 const initialState: UserState = {
   loading: false,
   phoneNumber: "+2348135524649",
-  fullName: "",
-  firstName: "",
-  lastName: "",
+  fullName: "Test User",
+  firstName: "Test",
+  lastName: "User",
   pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-  azaAccountNumber: 0,
+  azaAccountNumber: 1234556644,
   azaBalance: 100000,
-  emailAddress: "",
-  accountVerified: false,
+  emailAddress: "testuser@azanaija.com",
+  accountVerified: true,
   bvnVerified: false,
   accountStatus: "",
   recentTransactions: {
@@ -88,7 +88,7 @@ const initialState: UserState = {
       },
     ],
   },
-  accountCurency: "",
+  accountCurency: "NGN",
   pushToken: "",
   transfers: {
     loading: false,
@@ -120,17 +120,10 @@ const initialState: UserState = {
         date: "4 July 2022 04:26",
       },
       {
-        amount: "2000",
-        status: "Paid",
-        vendorName: "IET",
-        vendorLogo: "",
-        date: "4 July 2022 04:26",
-      },
-      {
         amount: "5000",
         status: "Paid",
         vendorName: "FCT Wat",
-        vendorLogo: Fctwb,
+        vendorLogo: Ie,
         date: "4 July 2022 04:26",
       },
     ],
@@ -206,6 +199,36 @@ const initialState: UserState = {
             fullName: "Testing user",
             pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
           },
+          {
+            azaAccountNumber: "234421",
+            fullName: "Testing user 2",
+            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+          },
+        ],
+      },
+      {
+        type: "outgoing",
+        amount: "20300",
+        status: "Paid",
+        vendorName: "DSTV",
+        vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
+        date: "4 July 2022 04:26",
+        requestor: {
+          azaAccountNumber: "123324354",
+          fullName: "Test User",
+          pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+        },
+        requestees: [
+          {
+            azaAccountNumber: "2342421",
+            fullName: "Testing user",
+            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+          },
+          {
+            azaAccountNumber: "234421",
+            fullName: "Testing user 2",
+            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+          },
         ],
       },
       {
@@ -224,6 +247,36 @@ const initialState: UserState = {
           {
             azaAccountNumber: "2342421",
             fullName: "Testing user",
+            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+          },
+          {
+            azaAccountNumber: "232421",
+            fullName: "Testing user 4",
+            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+          },
+        ],
+      },
+      {
+        type: "incoming",
+        amount: "20300",
+        status: "Pending",
+        vendorName: "DSTV",
+        vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
+        date: "4 July 2022 04:26",
+        requestor: {
+          azaAccountNumber: "123324354",
+          fullName: "Test User",
+          pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+        },
+        requestees: [
+          {
+            azaAccountNumber: "2342421",
+            fullName: "Testing user",
+            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+          },
+          {
+            azaAccountNumber: "232421",
+            fullName: "Testing user 4",
             pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
           },
         ],

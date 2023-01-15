@@ -18,7 +18,7 @@ interface Tier {
   maximumBalance: "200000" | "";
   upgradeComment:
     | "Verify BVN"
-    | "NIN card, International Passport, University ID, Driver’s license or Voters Card";
+    | "NIN card, International Passport, University ID, Driver's license or Voters Card";
 }
 
 const Tiers = {

@@ -1,11 +1,7 @@
 import { ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { PaymentStyles as styles } from "./styles";
-import {
-  SafeAreaView,
-  View as View,
-  Text as Text,
-} from "../../../theme/Themed";
+import { SafeAreaView, View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import HeadrImage from "./sub-components/HeadrImage";
 import Divider from "./sub-components/Divider";
@@ -22,9 +18,7 @@ import {
   WifiIcon,
 } from "../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../types";
-import { Dstv, Fctwb, Ie, Mtn, Swift } from "../../../../assets/images";
 import { hp } from "../../../common/util/LayoutUtil";
-import * as Images from "../../../../assets/images/index";
 import { Card } from "./sub-components/Card";
 import { PaymentsCard } from "./sub-components/PaymentsCard";
 import { useAppSelector } from "../../../redux";

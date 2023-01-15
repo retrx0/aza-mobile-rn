@@ -30,8 +30,6 @@ const SplitEditContactScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -55,8 +53,6 @@ const SplitEditContactScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
@@ -69,8 +65,6 @@ const SplitEditContactScreen = ({
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: hp(14),
                 marginLeft: hp(5),
@@ -81,9 +75,6 @@ const SplitEditContactScreen = ({
               With whom?
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
               style={[
                 styles.input1,
                 {
@@ -104,8 +95,6 @@ const SplitEditContactScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
@@ -126,17 +115,10 @@ const SplitEditContactScreen = ({
                 },
               ]}
             >
-              <Text
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}
-              >
+              <Text style={{ position: "absolute", paddingBottom: 5 }}>
                 {"\u20A6"}
               </Text>
               <TextInput
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
-                placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={[
                   styles.input2,
                   {
@@ -161,14 +143,8 @@ const SplitEditContactScreen = ({
           <Button
             title="Confirm"
             onPressButton={() => navigation.goBack()}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel"
