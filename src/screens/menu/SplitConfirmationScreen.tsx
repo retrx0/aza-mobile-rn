@@ -40,8 +40,7 @@ const SplitConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Confirmation
         </Text>
       ),
@@ -67,8 +66,7 @@ const SplitConfirmationScreen = ({
               marginBottom: hp(20),
               marginLeft: hp(5),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ position: "relative" }}>
@@ -78,8 +76,7 @@ const SplitConfirmationScreen = ({
                 fontSize: hp(14),
                 fontWeight: "400",
                 marginLeft: hp(5),
-              }}
-            >
+              }}>
               To
             </Text>
             <TextInput
@@ -90,6 +87,7 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "500",
                   marginLeft: hp(5),
+                  borderBottomColor: Colors[appTheme].borderColor,
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -112,8 +110,7 @@ const SplitConfirmationScreen = ({
                 paddingVertical: hp(30),
                 maxHeight: hp(300),
               },
-            ]}
-          >
+            ]}>
             <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <Text
                 style={{
@@ -121,8 +118,7 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "400",
                   marginLeft: hp(5),
-                }}
-              >
+                }}>
                 Created By
               </Text>
               <SplitDetailItem
@@ -136,16 +132,14 @@ const SplitConfirmationScreen = ({
               style={[
                 CommonStyles.col,
                 { alignSelf: "stretch", marginTop: 30 },
-              ]}
-            >
+              ]}>
               <Text
                 style={{
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
                   fontWeight: "400",
                   marginLeft: hp(5),
-                }}
-              >
+                }}>
                 Shared With
               </Text>
               {contacts.map(({ id, firstName, name }) => (
@@ -169,8 +163,7 @@ const SplitConfirmationScreen = ({
                 fontSize: hp(16),
                 fontWeight: "400",
                 marginLeft: hp(5),
-              }}
-            >
+              }}>
               Total Amount
             </Text>
             <TextInput
@@ -181,6 +174,7 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(14),
                   fontWeight: "500",
                   marginLeft: hp(5),
+                  borderBottomColor: Colors[appTheme].borderColor,
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -192,8 +186,7 @@ const SplitConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={() => navigation.navigate("ChooseSplit")}
