@@ -9,7 +9,6 @@ import Button from "../../../components/buttons/Button";
 
 import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
-import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { UndrawCalendarIcon } from "../../../../assets/svg";
@@ -18,7 +17,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const RecurringTransferScreen = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   useLayoutEffect(() => {
@@ -52,10 +50,7 @@ const RecurringTransferScreen = ({
         </Text>
 
         <View style={{ marginTop: hp(100), alignSelf: "center" }}>
-          <UndrawCalendarIcon
-            color={colorScheme === "dark" ? "#999999" : "#000"}
-            size={30}
-          />
+          <UndrawCalendarIcon color={Colors.general.grey} size={30} />
         </View>
         <View
           style={[
@@ -68,14 +63,8 @@ const RecurringTransferScreen = ({
             onPressButton={() =>
               navigation.navigate("SelectNewRecurringTransfer")
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
         </View>
       </View>
@@ -84,11 +73,3 @@ const RecurringTransferScreen = ({
 };
 
 export default RecurringTransferScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: 15,
-  },
-});

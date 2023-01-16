@@ -144,9 +144,8 @@ export default function RecurringPlan({
               transactionType: {
                 type: "recurring",
                 beneficiary: {
-                  beneficiaryAccount: "",
-                  beneficiaryImage: "",
-                  beneficiaryName: "",
+                  azaAccountNumber: "",
+                  fullName: "",
                 },
                 period: periodValue,
                 day: dayValue,

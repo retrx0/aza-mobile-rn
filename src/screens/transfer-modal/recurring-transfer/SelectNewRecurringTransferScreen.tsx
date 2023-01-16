@@ -26,7 +26,7 @@ import { selectAppTheme } from "../../../redux/slice/themeSlice";
 const SelectNewRecurringTransferScreen = ({
   navigation,
 }: CommonScreenProps<"SelectNewRecurringTransfer">) => {
-  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -54,33 +54,28 @@ const SelectNewRecurringTransferScreen = ({
     {
       name: "Charity",
       handleNavigation: () => navigation.navigate("Charity"),
-      icon: (
-        <HeartOutlinedIcon size={24} color={Colors[colorScheme].mainText} />
-      ),
+      icon: <HeartOutlinedIcon size={24} color={Colors[appTheme].mainText} />,
     },
     {
       name: "Money Transfer",
       handleNavigation: () => navigation.navigate("SendMoney"),
       icon: (
-        <MoneyTransferNairaIcon
-          size={24}
-          color={Colors[colorScheme].mainText}
-        />
+        <MoneyTransferNairaIcon size={24} color={Colors[appTheme].mainText} />
       ),
     },
     {
       name: "Bill payment",
       handleNavigation: () =>
         navigation.getParent()?.navigate("PaymentRecurring"),
-      icon: <BillIcon size={24} color={Colors[colorScheme].mainText} />,
+      icon: <BillIcon size={24} color={Colors[appTheme].mainText} />,
     },
 
-    {
-      name: "Vault",
-      handleNavigation: () =>
-        navigation.getParent()?.navigate("Common", { screen: "Vault" }),
-      icon: <VaultLargeIcon size={24} color={Colors[colorScheme].mainText} />,
-    },
+    // {
+    //   name: "Vault",
+    //   handleNavigation: () =>
+    //     navigation.getParent()?.navigate("Common", { screen: "Vault" }),
+    //   icon: <VaultLargeIcon size={24} color={Colors[colorScheme].mainText} />,
+    // },
   ];
 
   return (
@@ -112,8 +107,6 @@ const SelectNewRecurringTransferScreen = ({
                     ]}
                   >
                     <Text
-                      // lightColor={Colors.light.text}
-                      // darkColor={Colors.dark.mainText}
                       style={{
                         fontSize: hp(16),
                         fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -123,7 +116,7 @@ const SelectNewRecurringTransferScreen = ({
                       {name}
                     </Text>
                   </View>
-                  <ChevronRightIcon color={"#2A9E17"} size={20} />
+                  <ChevronRightIcon color={Colors.general.green} size={20} />
                 </View>
               </TouchableOpacity>
               <Divider />
