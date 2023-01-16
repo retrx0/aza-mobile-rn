@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import api from "../../api";
-import { Beneficiary } from "../../common/navigation/types";
 import { RootState } from "../Store";
+import { IBeneficiary } from "../types";
 
 //TODO to be replaced with api call only!
 
@@ -18,7 +18,7 @@ interface TransferState {
 }
 
 export interface TransferObject {
-  beneficairy: Beneficiary;
+  beneficairy: IBeneficiary;
   amount: number;
   description: string;
   transferType: "normal" | "recurring";

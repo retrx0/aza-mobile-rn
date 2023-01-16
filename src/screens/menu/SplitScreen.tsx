@@ -93,8 +93,6 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                   ]}
                 >
                   <Text
-                    // lightColor={Colors.light.text}
-                    // darkColor={Colors.dark.mainText}
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),

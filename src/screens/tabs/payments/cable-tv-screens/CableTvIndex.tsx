@@ -17,6 +17,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import * as Images from "../../../../../assets/images/index";
+import Button from "../../../../components/buttons/Button";
 
 const Cable = [
   {
@@ -136,10 +137,10 @@ export default function CableTvIndex({
           { bottom: insets.top || hp(45) },
         ]}
       >
-        <MyButton
+        <Button
           disabled={!amount || !smartCardNumber || !selectedCable.title}
           title="Continue"
-          onPress={() => {
+          onPressButton={() => {
             navigation.navigate("PaymentConfirmation", {
               amount,
               beneficiaryLogo: selectedCable.icon,

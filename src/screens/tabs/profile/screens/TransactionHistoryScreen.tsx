@@ -28,8 +28,6 @@ const TransactionHistoryScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -74,6 +72,7 @@ const TransactionHistoryScreen = ({
             {recentTransactions.data.map(
               ({ dateOfTransactions, transactions }, i) => (
                 <SegmentedTransactionView
+                  key={i}
                   dateOfTransactions={dateOfTransactions}
                   transactions={transactions}
                 />

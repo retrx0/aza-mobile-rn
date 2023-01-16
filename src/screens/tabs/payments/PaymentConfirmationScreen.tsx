@@ -219,14 +219,8 @@ export default function PaymentConfirmationScreen({
             title="Confirm"
             onPressButton={onConfirm}
             buttonLoading={isButtonLoading}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"
