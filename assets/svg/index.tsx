@@ -40,8 +40,7 @@ export const InviteIcon = () => {
         borderRadius: 5,
         paddingHorizontal: 10,
         paddingVertical: 2,
-      }}
-    >
+      }}>
       <Text style={{ color: "white", fontSize: 10 }}>Invite</Text>
     </View>
   );
@@ -111,8 +110,7 @@ export const ProfileIcon = ({
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1"
-        >
+          height="1">
           <Use
             href="#image0_1093_6630"
             transform="translate(-0.25) scale(0.003125)"
@@ -367,8 +365,7 @@ export const ArrowRightIcon = ({ style, color, size }: SvgIconProps) => {
       width={size}
       height={size}
       viewBox="0 0 16 16"
-      fill="none"
-    >
+      fill="none">
       <Path
         d="M9.62 3.95337L13.6667 8.00004L9.62 12.0467"
         stroke={color}
@@ -434,8 +431,7 @@ export const FlagIcon = () => {
           id="pattern0"
           patternContentUnits="objectBoundingBox"
           width="1"
-          height="1"
-        >
+          height="1">
           <Use
             xlinkHref="#image0_295_18064"
             transform="translate(-0.124378) scale(0.00497512)"
@@ -568,8 +564,7 @@ export const RequestIcon = ({ style, color }: SvgIconProps) => {
       width="150"
       height="150"
       viewBox="0 0 150 150"
-      fill="none"
-    >
+      fill="none">
       <Circle
         cx="75"
         cy="75"
@@ -621,8 +616,7 @@ export const AddUsers = ({ style, color }: SvgIconProps) => {
       width="100"
       height="100"
       viewBox="0 0 100 100"
-      fill="none"
-    >
+      fill="none">
       <Path
         d="M91.5417 9.70768C88.5417 6.29102 84.0833 4.16602 79.1667 4.16602C74.5 4.16602 70.25 6.08268 67.2083 9.20768C65.4583 10.9993 64.125 13.166 63.3333 15.5827C62.7917 17.2493 62.5 18.9993 62.5 20.8327C62.5 23.9577 63.375 26.916 64.9167 29.416C65.75 30.8327 66.8333 32.1243 68.0833 33.2077C71 35.8743 74.875 37.4993 79.1667 37.4993C81 37.4993 82.75 37.2077 84.375 36.6243C88.2083 35.416 91.4167 32.791 93.4167 29.416C94.2917 27.9993 94.9583 26.3743 95.3333 24.7077C95.6667 23.4577 95.8333 22.166 95.8333 20.8327C95.8333 16.5827 94.2083 12.666 91.5417 9.70768ZM85.375 23.8743H82.2917V27.1243C82.2917 28.8327 80.875 30.2493 79.1667 30.2493C77.4583 30.2493 76.0417 28.8327 76.0417 27.1243V23.8743H72.9583C71.25 23.8743 69.8333 22.4577 69.8333 20.7493C69.8333 19.041 71.25 17.6243 72.9583 17.6243H76.0417V14.666C76.0417 12.9577 77.4583 11.541 79.1667 11.541C80.875 11.541 82.2917 12.9577 82.2917 14.666V17.6243H85.375C87.0833 17.6243 88.5 19.041 88.5 20.7493C88.5 22.4577 87.125 23.8743 85.375 23.8743Z"
         fill={color}
@@ -646,8 +640,7 @@ export const MoneyTick = ({ style, color }: SvgIconProps) => {
       width="100"
       height="100"
       viewBox="0 0 100 100"
-      fill="none"
-    >
+      fill="none">
       <Path
         d="M70.834 16.666H29.1673C16.6673 16.666 8.33398 22.916 8.33398 37.4994V52.3327C8.33398 53.8744 9.91732 54.8327 11.2923 54.2077C15.3757 52.3327 20.084 51.6244 25.0423 52.4994C36.0007 54.4577 44.0423 64.6244 43.7507 75.7494C43.709 77.4994 43.459 79.2077 43.0007 80.8744C42.6673 82.166 43.709 83.3744 45.0423 83.3744H70.834C83.334 83.3744 91.6673 77.1244 91.6673 62.541V37.4994C91.6673 22.916 83.334 16.666 70.834 16.666ZM50.0007 60.416C44.2507 60.416 39.584 55.7494 39.584 49.9994C39.584 44.2494 44.2507 39.5827 50.0007 39.5827C55.7507 39.5827 60.4173 44.2494 60.4173 49.9994C60.4173 55.7494 55.7507 60.416 50.0007 60.416ZM80.209 58.3327C80.209 60.041 78.7923 61.4577 77.084 61.4577C75.3757 61.4577 73.959 60.041 73.959 58.3327V41.666C73.959 39.9577 75.3757 38.541 77.084 38.541C78.7923 38.541 80.209 39.9577 80.209 41.666V58.3327Z"
         fill={color}
@@ -672,23 +665,25 @@ export const AzaLOGO = ({ color }: SvgIconProps) => {
 
 export const InfoIcon = ({ style, color }: SvgIconProps) => {
   return (
-    <Svg style={style} width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <Svg style={style} width="24" height="24" viewBox="0 0 24 24" fill="none">
       <Path
-        d="M10 18.3333C14.5834 18.3333 18.3334 14.5833 18.3334 9.99996C18.3334 5.41663 14.5834 1.66663 10 1.66663C5.41669 1.66663 1.66669 5.41663 1.66669 9.99996C1.66669 14.5833 5.41669 18.3333 10 18.3333Z"
+        d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
         stroke={color}
+        stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
-        d="M9.99835 12.9163V8.74959"
+        d="M11.998 15.4995V10.4995"
         stroke={color}
+        stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
-        d="M10.0029 6.24878H9.99544"
+        d="M12.0035 7.49854H11.9945"
         stroke={color}
-        stroke-width="1.5"
+        stroke-width="2.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
