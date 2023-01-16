@@ -105,7 +105,7 @@ export default function ApplicationSettings({
           style={{
             backgroundColor: "transparent",
             marginTop: hp(10),
-            borderBottomWidth: 0.8,
+            borderBottomWidth: 1,
             borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />

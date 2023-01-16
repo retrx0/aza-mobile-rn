@@ -38,8 +38,7 @@ const NotificationSettingsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Notification Settings
         </Text>
       ),
@@ -54,14 +53,13 @@ const NotificationSettingsScreen = ({
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{ marginLeft: 5 }}>
         <Text
           style={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Do you want us to inform you about your account
         </Text>
 
@@ -71,8 +69,7 @@ const NotificationSettingsScreen = ({
             fontSize: hp(16),
             fontWeight: "400",
             marginTop: hp(40),
-          }}
-        >
+          }}>
           You can receive notifications if you enable this setting.
         </Text>
         <Text
@@ -82,8 +79,7 @@ const NotificationSettingsScreen = ({
             fontWeight: "400",
 
             marginTop: hp(10),
-          }}
-        >
+          }}>
           You can revoke this permission at any time.
         </Text>
       </View>

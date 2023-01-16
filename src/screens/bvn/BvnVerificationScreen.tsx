@@ -15,13 +15,17 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { useAppSelector } from "../../redux";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const { onVerifyNavigateBackTo } = route.params;
 
@@ -33,8 +37,7 @@ const BvnVerificationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}
-        >
+          }}>
           Tier 1 Verification
         </Text>
       ),
@@ -57,8 +60,7 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Verify your BVN
           </Text>
           <View>
@@ -68,21 +70,18 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-              }}
-            >
+              }}>
               BVN
             </Text>
             <TextInput
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
-
+                borderBottomColor: Colors[appTheme].borderColor,
                 fontSize: hp(16),
                 fontWeight: "500",
               }}
@@ -96,8 +95,7 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Verify"
             onPressButton={() =>

@@ -95,15 +95,14 @@ export default function AccountSettings({
             fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
-          }}
-        >
+          }}>
           Account Settings
         </Text>
         <View
           style={{
             backgroundColor: "transparent",
             marginTop: hp(10),
-            borderBottomWidth: 0.8,
+            borderBottomWidth: 1,
             borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />

@@ -52,8 +52,7 @@ const TransactionScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           {headerTitle}
         </Text>
       ),
@@ -65,9 +64,8 @@ const TransactionScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate(featureNavigationScreen)}
-        >
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+          onPress={() => navigation.navigate(featureNavigationScreen)}>
+          <InfoIcon color={Colors[appTheme].Text} />
         </TouchableOpacity>
       ),
     });
@@ -125,8 +123,7 @@ const TransactionScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );
