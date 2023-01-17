@@ -3,6 +3,14 @@ import Colors from "../../constants/Colors";
 import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
+  dot: {
+    backgroundColor: Colors.light.disabledButton,
+  },
+
+  activedot: {
+    backgroundColor: Colors.dark.buttonText,
+  },
+
   gameImage: {
     width: wp(200),
     height: hp(200),
