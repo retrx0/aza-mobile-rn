@@ -91,10 +91,7 @@ export default function InternetDetail({
           keyboardType="phone-pad"
           icon={null}
           inputStyle={[styles.input]}
-          labelStyle={[
-            styles.label,
-            { color: colorScheme === "dark" ? "#E7E9EA" : "#000000" },
-          ]}
+          labelStyle={[styles.label]}
           label="Amount"
           placeholder="Enter an amount"
           returnKeyType="done"
@@ -124,14 +121,8 @@ export default function InternetDetail({
               accountOrUserId,
             })
           }
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
-          style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-            },
-          ]}
+          styleText={{}}
+          style={[]}
         />
       </View>
     </SafeAreaView>

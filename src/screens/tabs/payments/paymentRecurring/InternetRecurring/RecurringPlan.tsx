@@ -152,14 +152,8 @@ export default function RecurringPlan({
               },
             })
           }
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
-          style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-            },
-          ]}
+          styleText={{}}
+          style={[]}
         />
       </View>
     </SafeAreaView>

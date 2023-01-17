@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { TextInput, View as View, Text as Text } from "../../theme/Themed";
+import { TextInput, View, Text } from "../../theme/Themed";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector } from "./../../redux";
