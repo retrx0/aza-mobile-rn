@@ -665,25 +665,30 @@ export const AzaLOGO = ({ color }: SvgIconProps) => {
 
 export const InfoIcon = ({ style, color }: SvgIconProps) => {
   return (
-    <Svg style={style} width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <Svg
+      style={style}
+      width="24.5"
+      height="24.5"
+      viewBox="0 0 24 24"
+      fill="none">
       <Path
-        d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+        d="M11 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
         stroke={color}
-        stroke-width="2"
+        stroke-width="4"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M11.998 15.4995V10.4995"
         stroke={color}
-        stroke-width="2"
+        stroke-width="4"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
-        d="M12.0035 7.49854H11.9945"
+        d="M11.0035 7.49854H11.9945"
         stroke={color}
-        stroke-width="2.5"
+        stroke-width="4"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
