@@ -53,8 +53,7 @@ export default function InternetPlans({
           fontSize: hp(16),
           fontWeight: "500",
         }}
-        onChange={(text) => filterSearch(text)}
-        value={undefined}
+        onChangeText={(text: any) => filterSearch(text)}
       />
 
       <View>

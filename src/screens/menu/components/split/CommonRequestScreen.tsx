@@ -68,6 +68,7 @@ const CommonRequestScreen = ({
                     requestor,
                     status,
                     type,
+                    category,
                   },
                   i
                 ) => (
@@ -89,6 +90,7 @@ const CommonRequestScreen = ({
                             vendorLogo: vendorLogo,
                             status: status,
                             type: type,
+                            category: category,
                           },
                         })
                       }
@@ -126,6 +128,7 @@ const CommonRequestScreen = ({
                     requestor,
                     status,
                     type,
+                    category,
                   },
                   i
                 ) => (
@@ -147,6 +150,7 @@ const CommonRequestScreen = ({
                             vendorLogo: vendorLogo,
                             status: status,
                             type: type,
+                            category: category,
                           },
                         })
                       }

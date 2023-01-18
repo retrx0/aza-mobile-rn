@@ -69,12 +69,23 @@ export interface IBankAccount {
   accountName: string;
 }
 
+export type PaymentCategory =
+  | "Internet"
+  | "Cable Tv"
+  | "Airtime & Data"
+  | "Electricity"
+  | "Water"
+  | "Gift Cards"
+  | "Charity"
+  | "Game Credits";
+
 export interface IPayment {
   status: "Paid" | "Pending";
   amount: string;
   vendorName: string;
   vendorLogo: string;
   date: string;
+  category: PaymentCategory;
 }
 
 export interface IRequest extends IPayment {

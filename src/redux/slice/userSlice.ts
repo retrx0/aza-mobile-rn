@@ -111,6 +111,7 @@ const initialState: UserState = {
         vendorName: "MTN",
         vendorLogo: Mtn,
         date: "4 July 2022 04:26",
+        category: "Airtime & Data",
       },
       {
         amount: "20300",
@@ -118,6 +119,7 @@ const initialState: UserState = {
         vendorName: "DSTV",
         vendorLogo: Dstv,
         date: "4 July 2022 04:26",
+        category: "Cable Tv",
       },
       {
         amount: "5000",
@@ -125,6 +127,7 @@ const initialState: UserState = {
         vendorName: "FCT Wat",
         vendorLogo: Ie,
         date: "4 July 2022 04:26",
+        category: "Electricity",
       },
     ],
   },
@@ -188,6 +191,7 @@ const initialState: UserState = {
         vendorName: "DSTV",
         vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
         date: "4 July 2022 04:26",
+        category: "Cable Tv",
         requestor: {
           azaAccountNumber: "123324354",
           fullName: "Test User",
@@ -211,6 +215,7 @@ const initialState: UserState = {
         amount: "20300",
         status: "Paid",
         vendorName: "DSTV",
+        category: "Cable Tv",
         vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
         date: "4 July 2022 04:26",
         requestor: {
@@ -236,6 +241,7 @@ const initialState: UserState = {
         amount: "20300",
         status: "Paid",
         vendorName: "DSTV",
+        category: "Cable Tv",
         vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
         date: "4 July 2022 04:26",
         requestor: {
@@ -261,6 +267,7 @@ const initialState: UserState = {
         amount: "20300",
         status: "Pending",
         vendorName: "DSTV",
+        category: "Cable Tv",
         vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
         date: "4 July 2022 04:26",
         requestor: {

@@ -13,18 +13,67 @@ import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectUser } from "../../../redux/slice/userSlice";
 import Colors from "../../../constants/Colors";
-
-const data = [
-  { value: 54, color: "#2A9E17", text: "Cable Tv" },
-  { value: 40, color: "#ED8A0A", text: "Internet" },
-  { value: 20, color: "#753FF6", text: "Charity" },
-];
+import { IPayment, PaymentCategory } from "../../../redux/types";
 
 export default function Pie() {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const { payments } = useAppSelector(selectUser);
   // const [date, setDate] = useState("10-06-2022");
   const [total, setTotal] = useState(0);
+
+  const calculatePaymentSum = (
+    payments: IPayment[],
+    category: PaymentCategory
+  ): number => {
+    return payments
+      .filter((p) => p.category === category)
+      .map((p) => Number(p.amount))
+      .reduce((p, i) => p + i, 0);
+  };
+
+  const data = [
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Airtime & Data"),
+      color: "#2A9E17",
+      text: "Airtime & Data",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Cable Tv"),
+      color: "#ED8A0A",
+      text: "Cable Tv",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Charity"),
+      color: "#753FF6",
+      text: "Charity",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Electricity"),
+      color: "#a1ea19",
+      text: "Electricity",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Game Credits"),
+      color: "#56179e",
+      text: "Game Credits",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Gift Cards"),
+      color: "#c71c1c",
+      text: "Gift Cards",
+    },
+
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Internet"),
+      color: "#176f9e",
+      text: "Internet",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Water"),
+      color: "#9c179e",
+      text: "Water",
+    },
+  ];
 
   useEffect(() => {
     var _t = 0;
@@ -80,13 +129,13 @@ export default function Pie() {
           />
         </View>
 
-        <View style={styles.labels}>
+        <View style={(styles.labels, { maxWidth: "100%" })}>
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
                 style={[styles.colors, { backgroundColor: item.color }]}
               ></View>
-              <Text style={{ fontSize: hp(15) }}>{item.text}</Text>
+              <Text style={{ fontSize: hp(15), padding: 5 }}>{item.text}</Text>
             </View>
           ))}
         </View>
