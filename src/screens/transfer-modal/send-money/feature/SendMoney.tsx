@@ -6,16 +6,12 @@ import { Text, View } from "../../../../theme/Themed";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useAppSelector } from "../../../../redux";
-import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { getAppTheme } from "../../../../theme";
 import Colors from "../../../../constants/Colors";
 import ExitButton from "../../../../components/buttons/ExitButton";
 
 const SendMoneyFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -42,7 +38,7 @@ const SendMoneyFeature = ({
       featureTitle: "Lightning-fast transaction speed",
       featureText:
         "Send money to anyone on Aza or other banks at lightning speeds.",
-      icon: <AzaLOGO color={Colors[appTheme].Text} />,
+      icon: <AzaLOGO color={Colors.dark.Text} />,
     },
 
     {
@@ -50,7 +46,7 @@ const SendMoneyFeature = ({
       featureTitle: "Transaction Certainty",
       featureText:
         "Send money with Aza and instantly carry on with your life, knowing that the transaction will go through without fail.",
-      icon: <MoneyTick color={Colors[appTheme].Text} />,
+      icon: <MoneyTick color={Colors.dark.Text} />,
     },
 
     {
@@ -58,7 +54,7 @@ const SendMoneyFeature = ({
       featureTitle: "Invite new users to Aza",
       featureText:
         "Azarians can send money to users who don't even use Aza, after which an sms will be sent to those users with a guide on how to create an Aza account.",
-      icon: <AddUsers color={Colors[appTheme].Text} />,
+      icon: <AddUsers color={Colors.dark.Text} />,
     },
   ];
 

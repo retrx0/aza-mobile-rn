@@ -1,16 +1,11 @@
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../../common/navigation/types";
 import { AddUsers, AzaLOGO, MoneyTick } from "../../../../../../assets/svg";
-// import FeatureScreen from "../../../feature/FeatureScreen";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { Text, View } from "../../../../../theme/Themed";
 import { hp } from "../../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
-import { useAppSelector } from "../../../../../redux";
-import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
-import { getAppTheme } from "../../../../../theme";
-import Colors from "../../../../../constants/Colors";
 import ExitButton from "../../../../../components/buttons/ExitButton";
 import * as Images from "../../../../../../assets/images";
 import { Image } from "react-native";
@@ -21,10 +16,7 @@ type WithdrawScreenProps = {
 
 const WithdrawFeature = ({
   navigation,
-  headerTitle,
 }: CommonScreenProps<"RecurringTransfer"> & WithdrawScreenProps) => {
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
-
   const slides = [
     {
       key: 1,
@@ -64,7 +56,7 @@ const WithdrawFeature = ({
       headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
     });
   }, []);
-  const _renderItem = ({ item }) => {
+  const _renderItem = ({ item }: any) => {
     return (
       <View>
         <View>

@@ -6,15 +6,11 @@ import { Text, View } from "../../../../theme/Themed";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useAppSelector } from "../../../../redux";
-import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { getAppTheme } from "../../../../theme";
 import ExitButton from "../../../../components/buttons/ExitButton";
 
 const RequestMoneyFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -45,7 +41,7 @@ const RequestMoneyFeature = ({
     },
   ];
 
-  const _renderItem = ({ item }) => {
+  const _renderItem = ({ item }: any) => {
     return (
       <View>
         <View>
