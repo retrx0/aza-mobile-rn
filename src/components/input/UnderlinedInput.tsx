@@ -24,6 +24,8 @@ export type InputProps = {
   containerStyle?: StyleProp<ViewStyle>;
   placeholderStyle?: StyleProp<TextStyle>;
   disabled?: boolean;
+  value: any;
+  onChange: any;
 };
 
 export const UnderlinedInput = ({
@@ -37,6 +39,8 @@ export const UnderlinedInput = ({
   containerStyle,
   placeholderStyle,
   disabled,
+  value,
+  onChange,
   ...rest
 }: InputProps & TextInputProps) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -48,8 +52,7 @@ export const UnderlinedInput = ({
         style,
         containerStyle,
         { opacity: disabled ? 0.3 : 1 },
-      ]}
-    >
+      ]}>
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
@@ -65,6 +68,8 @@ export const UnderlinedInput = ({
           <TextInput
             placeholder={placeholder}
             {...rest}
+            onChangeText={onChange}
+            value={value}
             style={[
               {
                 borderBottomColor: Colors[appTheme].borderColor,
@@ -73,8 +78,7 @@ export const UnderlinedInput = ({
               inputStyle,
               {},
               placeholderStyle,
-            ]}
-          ></TextInput>
+            ]}></TextInput>
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}

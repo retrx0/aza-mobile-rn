@@ -26,8 +26,7 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}
-        >
+          }}>
           Coming Soon
         </Text>
         <Text
@@ -37,8 +36,7 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Choose from hundreds of game brands
         </Text>
         <Image
@@ -78,8 +76,5 @@ const styles2 = StyleSheet.create({
     height: 36,
   },
 });
-function useLayoutEffect(arg0: () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
-}
 
 export default GameScreen;
