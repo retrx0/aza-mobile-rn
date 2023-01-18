@@ -62,7 +62,7 @@ const SendMoneyFeature = ({
     },
   ];
 
-  const _renderItem = ({ item }) => {
+  const _renderItem = ({ item }: any) => {
     return (
       <View>
         <View>

@@ -118,3 +118,4 @@ export const GiftEasy = require("./common/GiftEasy.png");
 export const CoverImage = require("./icons/CoverImage.png");
 export const QRFEATURE = require("./common/QRFEATURE.png");
 export const Undraw = require("./common/Undraw.png");
+export const AnnouncementDraw = require("./common/AnnouncementDraw.png");

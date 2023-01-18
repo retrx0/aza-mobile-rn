@@ -24,14 +24,11 @@ export default function InternetPlans({
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
         icon={null}
+        style={styles2.mainInput}
         inputStyle={[styles2.input]}
         labelStyle={[styles.label]}
         label=""
         placeholder="Search for internet provider"
-        placeholderStyle={{
-          fontSize: hp(16),
-          fontWeight: "500",
-        }}
       />
 
       <ListItem
@@ -100,11 +97,14 @@ const styles2 = StyleSheet.create({
   },
   input: {
     width: "100%",
-    borderBottomColor: "#EAEAEC",
     borderBottomWidth: 0.3,
+    height: 40,
     fontSize: hp(16),
     fontWeight: "500",
     fontFamily: "Euclid-Circular-A",
+  },
+  mainInput: {
+    marginTop: 0,
   },
   img: {
     width: 45,
