@@ -147,7 +147,7 @@ import QRFeature from "../screens/qr-transactions/components/QRFeature";
 import GameCredit from "../screens/tabs/payments/game/GameCredit";
 import WithdrawFeature from "../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
 // import DepositFeature from "../screens/tabs/home/withdraw-deposit/deposit/DepositFeature";
-import GameFeature from "../screens/tabs/payments/game/GameFeature";
+// import GameFeature from "../screens/tabs/payments/game/GameFeature";
 import CharityFeature from "../screens/tabs/payments/charity-screens/CharityFeature";
 // import CharitySupport from "../screens/tabs/payments/charity-screens/CharitySupport";
 import GiftCardEasy from "../screens/tabs/payments/gift-card/GiftCardEasy";
@@ -743,11 +743,11 @@ const CommonStack = () => {
             component={GameCredit}
           />
         </Stack.Group>
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ title: "GameCredit" }}
           name="GameFeature"
           component={GameFeature}
-        />
+        /> */}
         {/* <Stack.Screen
           options={{ title: "CharitySupport" }}
           name="CharitySupport"
