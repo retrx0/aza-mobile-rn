@@ -1,26 +1,85 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { View, Text } from "../../../theme/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PieChart } from "react-native-gifted-charts";
 import RegularText from "../../../components/text/RegularText";
 import { ArrowLeftIcon, ArrowRightIcon } from "../../../../assets/svg";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
-
-const data = [
-  { value: 54, color: "#2A9E17", text: "Cable Tv" },
-  { value: 40, color: "#ED8A0A", text: "Internet" },
-  { value: 20, color: "#753FF6", text: "Charity" },
-];
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import { selectUser } from "../../../redux/slice/userSlice";
+import Colors from "../../../constants/Colors";
+import { IPayment, PaymentCategory } from "../../../redux/types";
 
 export default function Pie() {
-  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const { payments } = useAppSelector(selectUser);
   // const [date, setDate] = useState("10-06-2022");
+  const [total, setTotal] = useState(0);
+
+  const calculatePaymentSum = (
+    payments: IPayment[],
+    category: PaymentCategory
+  ): number => {
+    return payments
+      .filter((p) => p.category === category)
+      .map((p) => Number(p.amount))
+      .reduce((p, i) => p + i, 0);
+  };
+
+  const data = [
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Airtime & Data"),
+      color: "#2A9E17",
+      text: "Airtime & Data",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Cable Tv"),
+      color: "#ED8A0A",
+      text: "Cable Tv",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Charity"),
+      color: "#753FF6",
+      text: "Charity",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Electricity"),
+      color: "#a1ea19",
+      text: "Electricity",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Game Credits"),
+      color: "#56179e",
+      text: "Game Credits",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Gift Cards"),
+      color: "#c71c1c",
+      text: "Gift Cards",
+    },
+
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Internet"),
+      color: "#176f9e",
+      text: "Internet",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Water"),
+      color: "#9c179e",
+      text: "Water",
+    },
+  ];
+
+  useEffect(() => {
+    var _t = 0;
+    payments.recentPayments.forEach((p) => (_t += Number(p.amount)));
+    setTotal(_t);
+  }, [payments.recentPayments]);
 
   return (
     <SpacerWrapper>
@@ -28,7 +87,7 @@ export default function Pie() {
         <View style={styles.month}>
           <TouchableOpacity>
             <ArrowLeftIcon
-              color={colorScheme == "light" ? "#292D32" : "white"}
+              color={appTheme == "light" ? "#292D32" : "white"}
               size={0}
             />
           </TouchableOpacity>
@@ -36,7 +95,7 @@ export default function Pie() {
 
           <TouchableOpacity>
             <ArrowRightIcon
-              color={colorScheme == "light" ? "#292D32" : "white"}
+              color={appTheme == "light" ? "#292D32" : "white"}
               size={16}
             />
           </TouchableOpacity>
@@ -51,14 +110,17 @@ export default function Pie() {
             showValuesAsLabels
             centerLabelComponent={() => (
               <View style={[styles.centerLabel]}>
-                <Text darkColor="#000000" lightColor="#000000">
+                <Text
+                  darkColor={Colors.general.black}
+                  lightColor={Colors.general.black}
+                >
                   Total
                 </Text>
                 <RegularText
-                  text={"\u20A638,000"}
+                  text={NAIRA_UNICODE + total}
                   style={[
                     {
-                      color: colorScheme === "dark" ? "#000000" : "#000000",
+                      color: Colors.general.black,
                     },
                   ]}
                 />
@@ -67,13 +129,13 @@ export default function Pie() {
           />
         </View>
 
-        <View style={styles.labels}>
+        <View style={(styles.labels, { maxWidth: "100%" })}>
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
                 style={[styles.colors, { backgroundColor: item.color }]}
               ></View>
-              <Text style={{ fontSize: hp(15) }}>{item.text}</Text>
+              <Text style={{ fontSize: hp(15), padding: 5 }}>{item.text}</Text>
             </View>
           ))}
         </View>

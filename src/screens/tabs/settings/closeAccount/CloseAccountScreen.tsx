@@ -36,7 +36,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Close Account
         </Text>
       ),
@@ -71,7 +72,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                 fontWeight: "500",
                 paddingLeft: hp(7),
                 maxWidth: wp(350),
-              }}>
+              }}
+            >
               You would need to empty your account first. Choose a bank you wish
               to withdraw your funds to
             </Text>
@@ -83,7 +85,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                     style={[
                       CommonStyles.row,
                       { alignSelf: "stretch", paddingVertical: 15 },
-                    ]}>
+                    ]}
+                  >
                     <Image
                       source={image}
                       style={{
@@ -93,13 +96,12 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                       }}
                     />
                     <Text
-                      // lightColor={Colors.light.mainText}
-                      // darkColor={Colors.dark.mainText}
                       style={{
                         marginLeft: 20,
                         fontFamily: "Euclid-Circular-A",
                         fontSize: hp(16),
-                      }}>
+                      }}
+                    >
                       {name}
                     </Text>
                     <View
@@ -115,7 +117,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                         alignItems: "center",
                         justifyContent: "center",
                         borderWidth: hp(1),
-                      }}>
+                      }}
+                    >
                       {selectedCard === name && (
                         <View style={CommonStyles.doneSelect} />
                       )}
@@ -131,7 +134,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
             style={[
               CommonStyles.passwordContainer,
               { bottom: insets.bottom || hp(45) },
-            ]}>
+            ]}
+          >
             <CancelButtonWithUnderline
               title="Add another bank Account"
               onPressButton={() => {
@@ -159,14 +163,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                   },
                 })
               }
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={[
-                {
-                  backgroundColor: Colors[colorScheme].button,
-                },
-              ]}
+              styleText={{}}
+              style={[]}
             />
             <CancelButtonWithUnderline
               title="Cancel"
@@ -195,7 +193,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}>
+          }}
+        >
           Please enter your password
         </Text>
         <View
@@ -203,7 +202,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
             marginTop: hp(80),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <SegmentedInput
             value={password}
             secureInput

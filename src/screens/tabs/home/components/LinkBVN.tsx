@@ -38,7 +38,7 @@ export const LinkBVN = ({
         }}
       >
         <Text
-          darkColor={Colors["dark"].Text}
+          darkColor={Colors["general"].black}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -47,7 +47,7 @@ export const LinkBVN = ({
           Link your BVN to start using AZA
         </Text>
         <Text
-          darkColor={Colors["dark"].Text}
+          darkColor={Colors["general"].black}
           style={{
             fontSize: hp(12),
             marginTop: 5,

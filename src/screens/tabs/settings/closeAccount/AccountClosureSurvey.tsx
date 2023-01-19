@@ -71,7 +71,7 @@ const AccountClosureSurveyScreen = ({
               fontSize: hp(16),
               marginBottom: hp(30),
               fontWeight: "500",
-              paddingLeft: hp(7),
+              paddingLeft: hp(15),
               maxWidth: wp(350),
             }}
           >
@@ -98,7 +98,7 @@ const AccountClosureSurveyScreen = ({
                         borderColor:
                           selectToppings === surveyToppings
                             ? Colors.general.green
-                            : "#3A3D42",
+                            : Colors.dark.backgroundSecondary,
 
                         borderWidth: hp(1),
                       }}
@@ -107,7 +107,7 @@ const AccountClosureSurveyScreen = ({
                         <View
                           style={[
                             CommonStyles.doneSelect,
-                            { marginLeft: wp(2), marginTop: wp(2) },
+                            { marginHorizontal: wp(2), marginTop: wp(2) },
                           ]}
                         />
                       )}
@@ -118,7 +118,7 @@ const AccountClosureSurveyScreen = ({
                         marginLeft: 20,
                         fontFamily: "Euclid-Circular-A",
                         fontSize: hp(16),
-                        maxWidth: 350,
+                        maxWidth: 300,
                       }}
                     >
                       {surveyToppings}
@@ -160,15 +160,3 @@ const AccountClosureSurveyScreen = ({
 };
 
 export default AccountClosureSurveyScreen;
-
-// if (accounts.map("Others")) {
-//   navigation.navigate("AlternativeSurvey");
-// } else {
-//   navigation.navigate("StatusScreen", {
-//     status: "Successful",
-//     statusIcon: "Success",
-//     //TODO update message to accept JSX
-//     statusMessage: "Survey has been successfully filled and sent",
-//     navigateTo: "Home",
-//   });
-// }

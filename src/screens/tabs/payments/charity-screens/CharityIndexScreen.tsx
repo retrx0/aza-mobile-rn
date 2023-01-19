@@ -1,31 +1,52 @@
+import React, { useState } from "react";
 import { Image, ScrollView, StyleSheet } from "react-native";
-import React from "react";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
-import {
-  Chess,
-  DORCAS,
-  FOUNTAIN,
-  HOPE,
-  ICICE,
-  IET,
-  IREDE,
-  OVIE,
-  REAL,
-  SAINTS,
-  SAVE,
-  TIMEOUT,
-  YARA,
-} from "../../../../../assets/images";
+// import {
+//   Chess,
+//   DORCAS,
+//   FOUNTAIN,
+//   HOPE,
+//   ICICE,
+//   IET,
+//   IREDE,
+//   OVIE,
+//   REAL,
+//   SAINTS,
+//   SAVE,
+//   TIMEOUT,
+//   YARA,
+// } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
+import { CharityCard, CharityList } from "../sub-components/Filters";
 
 export default function CharityIndexScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
+  // set all the items in the array to state
+  const [allCharity, setCharity] = useState([...CharityList]);
+
+  // create filter function to be passed into thr onchangetext
+  const filterSearch = (value: string) => {
+    // assign item to be filtered to all the available item
+    const ListtoFilter = allCharity;
+    // return the overall items if value is not input yet
+    if (!value) {
+      return setCharity([...CharityList]);
+    }
+    // filter the item here and check for all cases of input(its included in the data to filter, and not case sensitive )
+    const filterItem = ListtoFilter.filter((item: { title: string }) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    );
+    // display filtered data
+    setCharity([...filterItem]);
+  };
+
+  const dataLength = allCharity.length;
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
@@ -35,9 +56,52 @@ export default function CharityIndexScreen({
         labelStyle={styles.label}
         label=""
         placeholder="Search for charitable organizations"
+        onChangeText={(text: any) => filterSearch(text)}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <ListItem
+        {dataLength < 1
+          ? null
+          : allCharity.map((item, index) => {
+              return (
+                <CharityCard
+                  key={index}
+                  icon={item.icon}
+                  title={item.title}
+                  ImageSource={item.ImageSource}
+                  index={0}
+                />
+              );
+            })}
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles2 = StyleSheet.create({
+  container: {
+    paddingTop: 80,
+    padding: 20,
+  },
+  input: {
+    width: "100%",
+    borderBottomColor: "#EAEAEC",
+    borderBottomWidth: 0.3,
+    height: 40,
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A",
+  },
+  mainInput: {
+    marginTop: 0,
+  },
+  img: {
+    width: 45,
+    height: 45,
+  },
+});
+
+{
+  /* <ListItem
           onPress={() => {}}
           route=""
           index={2}
@@ -133,31 +197,5 @@ export default function CharityIndexScreen({
           index={2}
           title="Ovie Brume Foundation"
           Icon={() => <Image style={styles2.img} source={OVIE} />}
-        />
-      </ScrollView>
-    </View>
-  );
+        /> */
 }
-
-const styles2 = StyleSheet.create({
-  container: {
-    paddingTop: 80,
-    padding: 20,
-  },
-  input: {
-    width: "100%",
-    borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 0.3,
-    height: 40,
-    fontSize: hp(16),
-    fontWeight: "500",
-    fontFamily: "Euclid-Circular-A",
-  },
-  mainInput: {
-    marginTop: 0,
-  },
-  img: {
-    width: 45,
-    height: 45,
-  },
-});

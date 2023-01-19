@@ -84,7 +84,7 @@ import SplitEditContactsScreen from "../screens/menu/SplitEditContactsScreen";
 import SplitEditContactScreen from "../screens/menu/SplitEditContactScreen";
 import SplitConfirmationScreen from "../screens/menu/SplitConfirmationScreen";
 import IncomingSplitRequestsScreen from "../screens/menu/IncomingSplitRequestsScreen";
-import IncomingSplitRequestAcceptanceScreen from "../screens/menu/IncomingSplitRequestAcceptanceScreen";
+import IncomingSplitRequestAcceptanceScreen from "../screens/menu/PendingRequestAcceptanceScreen";
 import CompletedSplitRequestDetailsScreen from "../screens/menu/CompletedSplitRequestDetailsScreen";
 import OutgoingSplitRequestsScreen from "../screens/menu/OutgoingSplitRequestsScreen";
 import MonthlySummaryScreen from "../screens/menu/MonthlySummaryScreen";
@@ -110,7 +110,7 @@ import DepositScreen from "../screens/tabs/home/withdraw-deposit/deposit/Deposit
 import { hp } from "../common/util/LayoutUtil";
 import NewUserVault from "../screens/tabs/vault/NewUserVault";
 import AddCoverImage from "../screens/tabs/vault/AddCoverImage";
-import AddCoverImageSuccessful from "../screens/tabs/vault/SetVaultGoal";
+// import AddCoverImageSuccessful from "../screens/tabs/vault/SetVaultGoal";
 import SetVaultGoal from "../screens/tabs/vault/SetVaultGoal";
 import ConfirmGoal from "../screens/tabs/vault/GoalConfirmation";
 import UserVault from "../screens/tabs/vault/UserVault";
@@ -121,14 +121,14 @@ import VaultRecurringAmount from "../screens/tabs/vault/VaultRecurring/VaultRecu
 import RecurringMoneyConfirmationScreen from "../screens/tabs/vault/VaultRecurring/RecurringMoneyConfirmationScreen";
 import Vault from "../screens/tabs/vault/Vault";
 import VaultToBankAmount from "../screens/tabs/vault/withdraw-to-bank/VaultToBankAmount";
-import VaultConfirmation from "../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
+// import VaultConfirmation from "../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
 import CharityConfirmation from "../screens/tabs/payments/charity-screens/CharityConfirmation";
 import GiftCardScreen from "../screens/tabs/payments/gift-card/GiftCardScreen";
 import GiftCardConfirmation from "../screens/tabs/payments/gift-card/GiftCardConfirmation";
 import GiftCardDetails from "../screens/tabs/payments/gift-card/GiftCard_Details";
 import GameScreen from "../screens/tabs/payments/game/GameScreen";
 import PaymentRecurring from "../screens/tabs/payments/paymentRecurring/PaymentRecurring";
-import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
+// import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
 import InternetRecurring from "../screens/tabs/payments/paymentRecurring/InternetRecurring/InternetRecurring";
 import RecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRecurring/RecurringPlan";
 import WaterRecurring from "../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
@@ -136,23 +136,23 @@ import CableRecurring from "../screens/tabs/payments/paymentRecurring/CableRecur
 import ElectricityRecurring from "../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
 import GiftCardEmail from "../screens/tabs/payments/gift-card/EmailScreen";
 import VaultWithdrawConfirm from "../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
-import SendMoney from "../screens/transfer-modal/send-money/feature/SendMoney";
+// import SendMoney from "../screens/transfer-modal/send-money/feature/SendMoney";
 import SendMoneyFeature from "../screens/transfer-modal/send-money/feature/SendMoney";
-import TransactionCertainty from "../screens/transfer-modal/send-money/feature/TransactionCertainty";
-import InviteUsers from "../screens/transfer-modal/send-money/feature/InviteUsers";
+// import TransactionCertainty from "../screens/transfer-modal/send-money/feature/TransactionCertainty";
+// import InviteUsers from "../screens/transfer-modal/send-money/feature/InviteUsers";
 import RequestMoneyFeature from "../screens/transfer-modal/request-money/feature/RequestMoneyFeature";
 import VaultFeature from "../screens/tabs/vault/VaultFeature/VaultFeature";
 import VaultLiberty from "../screens/tabs/vault/VaultFeature/VaultLiberty";
 import QRFeature from "../screens/qr-transactions/components/QRFeature";
 import GameCredit from "../screens/tabs/payments/game/GameCredit";
 import WithdrawFeature from "../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
-import DepositFeature from "../screens/tabs/home/withdraw-deposit/deposit/DepositFeature";
-import GameFeature from "../screens/tabs/payments/game/GameFeature";
+// import DepositFeature from "../screens/tabs/home/withdraw-deposit/deposit/DepositFeature";
+// import GameFeature from "../screens/tabs/payments/game/GameFeature";
 import CharityFeature from "../screens/tabs/payments/charity-screens/CharityFeature";
-import CharitySupport from "../screens/tabs/payments/charity-screens/CharitySupport";
+// import CharitySupport from "../screens/tabs/payments/charity-screens/CharitySupport";
 import GiftCardEasy from "../screens/tabs/payments/gift-card/GiftCardEasy";
-import GiftCardChoice from "../screens/tabs/payments/gift-card/GiftCardChoice";
-import GiftCardFit from "../screens/tabs/payments/gift-card/GiftCardFit";
+// import GiftCardChoice from "../screens/tabs/payments/gift-card/GiftCardChoice";
+// import GiftCardFit from "../screens/tabs/payments/gift-card/GiftCardFit";
 import { getAppTheme } from "../theme";
 import { useAppSelector } from "../redux";
 import { selectAppTheme } from "../redux/slice/themeSlice";
@@ -174,8 +174,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           flexDirection: "row",
           alignItems: "center",
           marginTop: hp(20),
-        }}
-      >
+        }}>
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -185,8 +184,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginLeft: hp(65),
-          }}
-        >
+          }}>
           Flight Ticket Vault
         </Text>
       </View>
@@ -208,8 +206,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             // marginTop: hp(30),
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -443,8 +440,7 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={12}
@@ -455,8 +451,7 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}
-              >
+                }}>
                 Back
               </Text>
             </TouchableOpacity>
@@ -477,8 +472,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -518,8 +512,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -529,16 +522,14 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GiftCardEasy")}
-              >
+                onPress={() => props.navigation.navigate("GiftCardEasy")}>
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -554,8 +545,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             options={{ title: "Gift Cards" }}
             name="GiftCard"
@@ -573,16 +563,16 @@ const CommonStack = () => {
           name="GiftCardEasy"
           component={GiftCardEasy}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ title: "GiftCardChoice" }}
           name="GiftCardChoice"
           component={GiftCardChoice}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           options={{ title: "GiftCardFit" }}
           name="GiftCardFit"
           component={GiftCardFit}
-        />
+        /> */}
         <Stack.Group
           screenOptions={(props) => ({
             headerTitleAlign: "center",
@@ -592,8 +582,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -603,16 +592,14 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GameCredit")}
-              >
+                onPress={() => props.navigation.navigate("GameCredit")}>
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -628,8 +615,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             options={{ title: "Game Credits" }}
             name="GameScreen"
@@ -671,8 +657,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -682,16 +667,14 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("CharityFeature")}
-              >
+                onPress={() => props.navigation.navigate("CharityFeature")}>
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -707,8 +690,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen name="Charity" component={CharityIndexScreen} />
         </Stack.Group>
 
@@ -721,8 +703,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -732,16 +713,14 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GameCredit")}
-              >
+                onPress={() => props.navigation.navigate("GameCredit")}>
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -757,24 +736,23 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             options={{ title: "GameCredit" }}
             name="GameCredit"
             component={GameCredit}
           />
         </Stack.Group>
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ title: "GameCredit" }}
           name="GameFeature"
           component={GameFeature}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           options={{ title: "CharitySupport" }}
           name="CharitySupport"
           component={CharitySupport}
-        />
+        /> */}
         <Stack.Screen
           options={{ title: "CharityFeature" }}
           name="CharityFeature"
@@ -915,8 +893,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -926,8 +903,7 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
@@ -948,13 +924,11 @@ const CommonStack = () => {
 
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("WithdrawFeature")}
-              >
+                onPress={() => props.navigation.navigate("WithdrawFeature")}>
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
-          })}
-        >
+          })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}
@@ -995,17 +969,17 @@ const CommonStack = () => {
           component={RecurringTransferConfirmationScreen}
         />
         <Stack.Screen name="SendMoneyFeature" component={SendMoneyFeature} />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="TransactionCertainty"
           component={TransactionCertainty}
-        />
-        <Stack.Screen name="InviteUsers" component={InviteUsers} />
+        /> */}
+        {/* <Stack.Screen name="InviteUsers" component={InviteUsers} /> */}
         <Stack.Screen
           name="RequestMoneyFeature"
           component={RequestMoneyFeature}
         />
         <Stack.Screen name="WithdrawFeature" component={WithdrawFeature} />
-        <Stack.Screen name="DepositFeature" component={DepositFeature} />
+        {/* <Stack.Screen name="DepositFeature" component={DepositFeature} /> */}
       </Stack.Group>
     </Stack.Navigator>
   );

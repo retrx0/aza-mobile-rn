@@ -26,7 +26,7 @@ const FeesAndLimitsScreen = ({
     { key: "first", title: "Transaction Fees" },
     { key: "second", title: "Account Limits" },
   ]);
-  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
   useLayoutEffect(() => {
@@ -77,11 +77,11 @@ const FeesAndLimitsScreen = ({
               style={{
                 elevation: 0,
                 backgroundColor: "transparent",
-                borderBottomColor: Colors[colorScheme].secondaryText,
+                borderBottomColor: Colors[appTheme].secondaryText,
                 borderBottomWidth: 2,
               }}
               indicatorStyle={{
-                backgroundColor: Colors[colorScheme].text,
+                backgroundColor: Colors[appTheme].text,
                 marginBottom: -2,
               }}
               renderLabel={({ focused, route }) => {

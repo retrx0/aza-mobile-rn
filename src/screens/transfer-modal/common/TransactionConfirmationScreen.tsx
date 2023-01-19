@@ -20,6 +20,8 @@ import {
 } from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../theme";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -32,13 +34,13 @@ const TransactionConfirmationScreen = ({
 }: CommonScreenProps<"Common"> & TransactionScreenProps) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
 
   const [transDescription, setTransDescription] = useState(description);
-
-  console.log({ beneficiary, amount, description, transferType });
 
   const dispatch = useAppDispatch();
 
@@ -74,7 +76,6 @@ const TransactionConfirmationScreen = ({
           ? "Successful"
           : "Your transaction was \n successful",
       statusIcon: "Success",
-      //TODO update message to accept JSX
       statusMessage: `You have successfully ${
         confirmationType === "request" ? "requested" : "sent"
       } ${NAIRA_UNICODE} ${amount} ${
@@ -88,7 +89,8 @@ const TransactionConfirmationScreen = ({
       recurringTransferBeneficiary:
         confirmationType === "send" ? beneficiary : undefined,
       navigateTo: "Home",
-      screenType: "transaction",
+      // to disallow swoosh sound in request screen
+      screenType: confirmationType === "send" ? "transaction" : undefined,
     });
   };
 
@@ -123,8 +125,7 @@ const TransactionConfirmationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-
+                borderBottomColor: Colors[appTheme].borderColor,
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
@@ -173,13 +174,13 @@ const TransactionConfirmationScreen = ({
                 {NAIRA_UNICODE}
               </Text> */}
               <TextInput
-                placeholderTextColor={Colors[colorScheme].secondaryText}
+                placeholderTextColor={Colors[appTheme].secondaryText}
                 style={{
                   flex: 1,
                   backgroundColor: "transparent",
                   paddingBottom: 5,
                   borderBottomWidth: 1,
-                  borderBottomColor: Colors[colorScheme].separator,
+                  borderBottomColor: Colors[appTheme].borderColor,
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}
@@ -206,7 +207,7 @@ const TransactionConfirmationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor: Colors[appTheme].borderColor,
                 fontSize: hp(16),
               }}
               onChangeText={setTransDescription}

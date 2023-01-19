@@ -1,16 +1,22 @@
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import { View, Text } from "../../theme/Themed";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getAppTheme } from "../../theme";
+import { hp } from "../../common/util/LayoutUtil";
 
 const Divider = () => {
-  const colorScheme = useColorScheme();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   return (
     <View
       style={{
         backgroundColor: "transparent",
-        borderBottomWidth: 0.3,
-        borderBottomColor: colorScheme === "dark" ? "#484B51" : "#EAEAEC",
+        marginTop: hp(10),
+        borderBottomWidth: 0.8,
+        borderBottomColor: Colors[appTheme].borderColor,
       }}
     />
   );

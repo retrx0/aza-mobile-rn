@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import api from "../../api";
-import { Beneficiary } from "../../common/navigation/types";
 import { RootState } from "../Store";
+import { IBeneficiary } from "../types";
 
 //TODO to be replaced with api call only!
 
 // Define a type for the slice state
 
 export interface TransactionState {
-  beneficiary: Beneficiary;
+  beneficiary: IBeneficiary;
   amount: number;
   description?: string;
   transferType: "send" | "request" | "withdraw" | "debit";
@@ -44,12 +44,12 @@ export const transactionSlice = createSlice({
     setTransactionAmount: (state, action: PayloadAction<number>) => {
       state.amount = action.payload;
     },
-    setTransactionBeneficiary: (state, action: PayloadAction<Beneficiary>) => {
+    setTransactionBeneficiary: (state, action: PayloadAction<IBeneficiary>) => {
       state.beneficiary = action.payload;
     },
     setTransactionBeneficairyAndAmount: (
       state,
-      action: PayloadAction<{ amount: number; beneficiary: Beneficiary }>
+      action: PayloadAction<{ amount: number; beneficiary: IBeneficiary }>
     ) => {
       state.amount = action.payload.amount;
       state.beneficiary = action.payload.beneficiary;

@@ -144,23 +144,16 @@ export default function RecurringPlan({
               transactionType: {
                 type: "recurring",
                 beneficiary: {
-                  beneficiaryAccount: "",
-                  beneficiaryImage: "",
-                  beneficiaryName: "",
+                  azaAccountNumber: "",
+                  fullName: "",
                 },
                 period: periodValue,
                 day: dayValue,
               },
             })
           }
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
-          style={[
-            {
-              backgroundColor: Colors[colorScheme].button,
-            },
-          ]}
+          styleText={{}}
+          style={[]}
         />
       </View>
     </SafeAreaView>

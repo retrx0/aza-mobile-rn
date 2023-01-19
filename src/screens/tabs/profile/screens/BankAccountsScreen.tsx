@@ -25,14 +25,14 @@ import {
 import { AccessBank } from "../../../../../assets/images";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { BankAccount } from "../../../../redux/types";
+import { IBankAccount } from "../../../../redux/types";
 
 const BankAccountsScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BankAccounts">) => {
   const colorScheme = useColorScheme();
-  const [selectedAccount, setSelectedAccount] = useState<BankAccount>();
+  const [selectedAccount, setSelectedAccount] = useState<IBankAccount>();
   const [accountAvailable] = useState(true);
   const insets = useSafeAreaInsets();
   const { screenType } = route.params;

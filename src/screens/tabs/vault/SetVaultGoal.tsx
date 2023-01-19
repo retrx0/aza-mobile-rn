@@ -31,8 +31,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}
-        >
+          }}>
           <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -42,8 +41,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginLeft: hp(85),
-            }}
-          >
+            }}>
             Set a Goal
           </Text>
         </View>
@@ -52,8 +50,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
             CommonStyles.selectStyle,
             { paddingHorizontal: hp(20) },
             { marginBottom: hp(40) },
-          ]}
-        >
+          ]}>
           You can determine the amount you want to save
         </Text>
         <>
@@ -87,8 +84,7 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 : Colors.light.text,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: 36,
-            }}
-          >
+            }}>
             {!amount && " 0"} {numberWithCommas(amount)}
           </Text>
         </View>
@@ -96,16 +92,14 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             width: "100%",
             marginTop: hp(20),
-          }}
-        >
+          }}>
           <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             disabled={!amount}
             title="Continue"
@@ -114,8 +108,8 @@ const SetVaultGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 .getParent()
                 ?.navigate("Common", { screen: "ConfirmGoal" })
             }
-            style={[[CommonStyles.toBankbutton], {}]}
-            styleText={[CommonStyles.toBankbuttonText]}
+            // style={[[CommonStyles.toBankbutton], {}]}
+            // styleText={[CommonStyles.toBankbuttonText]}
           />
         </View>
       </View>

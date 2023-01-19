@@ -124,7 +124,6 @@ const styles2 = StyleSheet.create({
   },
   input: {
     width: "100%",
-    borderBottomColor: "#EAEAEC",
     borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),
@@ -139,6 +138,3 @@ const styles2 = StyleSheet.create({
     height: 45,
   },
 });
-function useLayoutEffect(arg0: () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
-}

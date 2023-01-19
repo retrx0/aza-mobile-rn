@@ -90,8 +90,7 @@ export default function CharityDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <View style={styles.check}>
           <CustomSwitch
             title="Recurring monthly donation"

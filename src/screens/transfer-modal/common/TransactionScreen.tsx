@@ -10,10 +10,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import { Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
-import {
-  Beneficiary,
-  CommonScreenProps,
-} from "../../../common/navigation/types";
+import { CommonScreenProps } from "../../../common/navigation/types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { hp } from "../../../common/util/LayoutUtil";
 import ContactsScene from "../../contacts/ContactsScene";
@@ -22,6 +19,7 @@ import { InfoIcon } from "../../../../assets/svg";
 import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { IBeneficiary } from "../../../redux/types";
 
 type TransactionScreenProps = {
   headerTitle: string;
@@ -54,8 +52,7 @@ const TransactionScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           {headerTitle}
         </Text>
       ),
@@ -67,15 +64,14 @@ const TransactionScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate(featureNavigationScreen)}
-        >
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+          onPress={() => navigation.navigate(featureNavigationScreen)}>
+          <InfoIcon color={Colors[appTheme].Text} />
         </TouchableOpacity>
       ),
     });
   }, []);
 
-  const azaContactOnClick = (beneficiary: Beneficiary) => {
+  const azaContactOnClick = (beneficiary: IBeneficiary) => {
     //TODO replace with redux slice
     navigation.navigate("TransactionKeypad", {
       headerTitle: headerTitle,
@@ -127,8 +123,7 @@ const TransactionScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );

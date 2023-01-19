@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
+import { IBeneficiary, IRequest } from "../../redux/types";
 
 /* Common screens */
 
@@ -147,8 +148,8 @@ export type CommonStackParamList = {
   SplitEditContact: SplitEditContactParamsType;
   SplitConfirmation: SplitConfirmationParamsType;
   IncomingSplitRequests: undefined;
-  IncomingSplitRequestAcceptance: undefined;
-  CompletedSplitRequestDetails: undefined;
+  IncomingSplitRequestAcceptance: { requestItem: IRequest };
+  CompletedSplitRequestDetails: { requestItem: IRequest };
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
@@ -163,12 +164,12 @@ export type CommonStackParamList = {
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
   SendMoneyConfirmation: undefined;
-  SetupRecurringTransfer: Beneficiary;
+  SetupRecurringTransfer: IBeneficiary;
   RecurringTransfer: undefined;
   SelectNewRecurringTransfer: undefined;
   RecurringTransferConfirmation: {
     amount: string;
-    beneficiary: Beneficiary;
+    beneficiary: IBeneficiary;
     period: string;
     day: string;
   };
@@ -185,27 +186,16 @@ export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
 
 // Page with virtual keyboard
 
-export interface Beneficiary {
-  fullName: string;
-  firstName?: string;
-  lastName?: string;
-  pictureUrl?: string;
-  azaAccountNumber: string;
-  currency?: string;
-  phone?: string;
-  email?: string;
-}
-
 export interface RecurringTransaction {
   type: "recurring";
-  beneficiary: Beneficiary;
+  beneficiary: IBeneficiary;
   period: string;
   day: string;
 }
 export interface NormalTransaction {
   type: "normal";
   transaction: "withdraw" | "deposit" | "send" | "request" | "debit";
-  beneficiary: Beneficiary;
+  beneficiary: IBeneficiary;
   openDescriptionModal?: boolean;
 }
 
@@ -232,7 +222,7 @@ export type StatusScreenParamsType = {
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
   receiptButton?: boolean;
-  recurringTransferBeneficiary?: Beneficiary;
+  recurringTransferBeneficiary?: IBeneficiary;
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;

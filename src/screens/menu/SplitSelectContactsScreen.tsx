@@ -1,18 +1,11 @@
 import React, { useLayoutEffect, useState, useEffect } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, Image, FlatList } from "react-native";
 import * as Contacts from "expo-contacts";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { TextInput } from "../../theme/Themed";
-import { View, Text } from "../../theme/Themed";
+import { View, Text, ScrollView, TextInput } from "../../theme/Themed";
 
 import Divider from "../../components/divider/Divider";
 import ContactListItem from "../../components/ListItem/ContactListItem";
@@ -21,7 +14,6 @@ import SelectedContactsScroll from "./components/SelectedContactsScroll";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
-import useColorScheme from "../../hooks/useColorScheme";
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
@@ -29,6 +21,11 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 import { ArrowRightIcon, CheckIcon } from "../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getDefaultPictureUrl } from "../../common/util/AppUtil";
+import { selectUser } from "../../redux/slice/userSlice";
 
 const SplitSelectContactsScreen = ({
   navigation,
@@ -39,7 +36,8 @@ const SplitSelectContactsScreen = ({
   const [selectedContacts, setSelectedContacts] = useState<Contacts.Contact[]>(
     []
   );
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const user = useAppSelector(selectUser);
   const { amount, date, splitImage, name } = route.params;
   const insets = useSafeAreaInsets();
 
@@ -47,8 +45,6 @@ const SplitSelectContactsScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -118,6 +114,11 @@ const SplitSelectContactsScreen = ({
             date={date}
             name={name}
             splitImage={splitImage}
+            requestor={{
+              azaAccountNumber: "" + user.azaAccountNumber,
+              fullName: user.fullName,
+            }}
+            requestees={[]}
           />
           <Divider />
         </View>
@@ -125,12 +126,10 @@ const SplitSelectContactsScreen = ({
           <TextInput
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
-            placeholderTextColor={Colors[colorScheme].secondaryText}
             style={[
               styles.input,
               {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
 
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A",
@@ -158,34 +157,30 @@ const SplitSelectContactsScreen = ({
                     <Image
                       style={{ borderRadius: 50, width: 45, height: 45 }}
                       source={{
-                        uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                        uri: user.pictureUrl,
                       }}
                     />
-                    <Text
-                      // lightColor={Colors.light.text}
-                      // darkColor={Colors.dark.mainText}
-                      style={{ fontSize: 10, marginTop: 5 }}
-                    >
-                      Chiazo
+                    <Text style={{ fontSize: 10, marginTop: 5 }}>
+                      {user.firstName}
                     </Text>
                   </View>
                   <View style={{ marginHorizontal: 15 }}>
                     <ArrowRightIcon
                       size={24}
-                      color={Colors[colorScheme].mainText}
+                      color={Colors[appTheme].mainText}
                     />
                   </View>
                 </View>
                 <SelectedContactsScroll
                   deSelectContact={deSelectContact}
                   selectedContacts={selectedContacts}
+                  scheme={appTheme}
                 />
               </ScrollView>
             </View>
           )}
           <Text
             style={{
-              // color: Colors[colorScheme].secondaryText,
               marginTop: hp(40),
               fontSize: hp(14),
               marginBottom: hp(10),
@@ -206,9 +201,11 @@ const SplitSelectContactsScreen = ({
                   onPress={() => addContact(item)}
                 >
                   <ContactListItem
-                    image={
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-                    }
+                    image={getDefaultPictureUrl({
+                      firstName: item.firstName ? item.firstName : item.name,
+                      lastName: item.lastName,
+                      scheme: appTheme,
+                    })}
                     name={item.name}
                     // phoneNumber={item.phoneNumbers[0].number}
                     phoneNumber={"08167753429"}
@@ -228,7 +225,7 @@ const SplitSelectContactsScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
+            { bottom: 0, paddingBottom: 55, paddingTop: 5 },
           ]}
         >
           <Button
@@ -243,15 +240,8 @@ const SplitSelectContactsScreen = ({
                 contacts: selectedContacts,
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[CommonStyles.button]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

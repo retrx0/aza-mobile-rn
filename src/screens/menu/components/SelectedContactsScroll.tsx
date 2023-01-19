@@ -9,19 +9,22 @@ import Colors from "../../../constants/Colors";
 import { CloseCircleIcon } from "../../../../assets/svg";
 import { Contact } from "expo-contacts";
 import { hp } from "../../../common/util/LayoutUtil";
+import { getDefaultPictureUrl } from "../../../common/util/AppUtil";
 
 interface IProps {
   deSelectContact: (id: Contact["id"]) => void;
   selectedContacts: Contact[];
+  scheme: any;
 }
 
 const SelectedContactsScroll = ({
   deSelectContact,
   selectedContacts,
+  scheme,
 }: IProps) => {
   return (
     <>
-      {selectedContacts?.map(({ firstName, id }) => (
+      {selectedContacts?.map(({ firstName, lastName, id, name }) => (
         <View key={id} style={[CommonStyles.row, { alignItems: "center" }]}>
           <View
             style={[
@@ -40,7 +43,11 @@ const SelectedContactsScroll = ({
               <Image
                 style={{ borderRadius: 50, width: 45, height: 45 }}
                 source={{
-                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
+                  uri: getDefaultPictureUrl({
+                    firstName: firstName ? firstName : name,
+                    lastName: lastName,
+                    scheme: scheme,
+                  }),
                 }}
               />
               <TouchableOpacity
