@@ -16,7 +16,7 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 // } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { InternetCard, InternetList } from "../sub-components/filters";
+import { InternetCard, InternetList } from "../sub-components/Filters";
 
 export default function InternetPlans({
   navigation,

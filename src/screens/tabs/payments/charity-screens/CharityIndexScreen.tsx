@@ -22,7 +22,7 @@ import ListItem from "../sub-components/ListItem";
 // } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { CharityCard, CharityList } from "../sub-components/filters";
+import { CharityCard, CharityList } from "../sub-components/Filters";
 
 export default function CharityIndexScreen({
   navigation,

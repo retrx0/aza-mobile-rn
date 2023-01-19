@@ -1,9 +1,8 @@
 import React from "react";
 import * as Images from "../../../../../assets/images";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { hp } from "../../../../common/util/LayoutUtil";
 import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
-import { Ntel, Spectranet } from "../../../../../assets/images";
 import Divider from "../../../../components/divider/Divider";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
@@ -201,12 +200,7 @@ export const CharityCard = ({
           alignItems: "center",
         }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            source={{
-              uri: ImageSource,
-            }}
-            style={styles.img}
-          />
+          <Image source={ImageSource} style={styles.img} />
           <Text style={styles.text}>{title}</Text>
         </View>
         <View>{icon}</View>
