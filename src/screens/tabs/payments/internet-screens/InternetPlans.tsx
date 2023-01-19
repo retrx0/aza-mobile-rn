@@ -16,7 +16,7 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 // } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { InternetCard, InternetList } from "../sub-components/Internetfilter";
+import { InternetCard, InternetList } from "../sub-components/filters";
 
 export default function InternetPlans({
   navigation,
@@ -62,6 +62,7 @@ export default function InternetPlans({
           : allInternet.map((item, index) => {
               return (
                 <InternetCard
+                  key={index}
                   icon={item.icon}
                   title={item.title}
                   ImageSource={item.ImageSource}

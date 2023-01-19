@@ -7,14 +7,14 @@ import { Ntel, Spectranet } from "../../../../../assets/images";
 import Divider from "../../../../components/divider/Divider";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
-export type InternetItem = {
+export type FilterItem = {
   ImageSource: string;
   title: string;
   icon: any;
   onPress?: () => void;
   index: number;
 };
-export const InternetList: InternetItem[] = [
+export const InternetList: FilterItem[] = [
   {
     index: 0,
     ImageSource: Images.Spectranet,
@@ -68,7 +68,126 @@ export const InternetCard = ({
   icon,
   index,
   onPress,
-}: InternetItem) => {
+}: FilterItem) => {
+  const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
+
+  return (
+    <View style={styles.listContainer}>
+      <TouchableAnimated
+        entering={FadeInDown.delay(200 * (index + 1))}
+        onPress={onPress}
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Image
+            source={{
+              uri: ImageSource,
+            }}
+            style={styles.img}
+          />
+          <Text style={styles.text}>{title}</Text>
+        </View>
+        <View>{icon}</View>
+      </TouchableAnimated>
+      <Divider />
+    </View>
+  );
+};
+
+export const CharityList: FilterItem[] = [
+  {
+    index: 0,
+    ImageSource: Images.ICICE,
+    title: "ICICE",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
+    index: 1,
+    ImageSource: Images.IET,
+    title: "IET",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 2,
+    ImageSource: Images.FOUNTAIN,
+    title: "Living Fountain Orphanage",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
+    index: 3,
+    ImageSource: Images.SAINTS,
+    title: "Little Saints Orphanage",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 4,
+    ImageSource: Images.HOPE,
+    title: "Hope Motherless Babies Home",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
+    index: 5,
+    ImageSource: Images.Chess,
+    title: "Chess in Slums",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 6,
+    ImageSource: Images.DORCAS,
+    title: "Aunty Dorcas Orphanage",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 7,
+    ImageSource: Images.TIMEOUT,
+    title: "Timeout 4 Africa",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 8,
+    ImageSource: Images.SAVE,
+    title: "Save the Children",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 9,
+    ImageSource: Images.IREDE,
+    title: "The Irede Foundation",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 10,
+    ImageSource: Images.YARA,
+    title: "The CeCe Yara Foundation",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 11,
+    ImageSource: Images.REAL,
+    title: "Keeping it real Foundation",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 12,
+    ImageSource: Images.OVIE,
+    title: "Ovie  Brume Foundation",
+    icon: <ArrowFowardIcon />,
+  },
+];
+
+export const CharityCard = ({
+  title,
+  ImageSource,
+  icon,
+  index,
+  onPress,
+}: FilterItem) => {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
