@@ -26,6 +26,7 @@ type OtpProp = {
   phoneNumber: string;
   onBackButtonPressed: () => void;
   otpTitle: string;
+  buttonLoading?: boolean;
 };
 
 const OtpScreen = (props: OtpProp) => {
@@ -85,6 +86,7 @@ const OtpScreen = (props: OtpProp) => {
         onPressButton={onVerify}
         style={[{ marginBottom: hp(10) }, CommonStyles.otpbutton]}
         disabled={otpCode.length < 6 ? true : false}
+        buttonLoading={props.buttonLoading ? props.buttonLoading : false}
       />
     </SpacerWrapper>
   );

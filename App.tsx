@@ -15,6 +15,7 @@ import * as Device from "expo-device";
 import { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo";
 import { toastError } from "./src/common/util/ToastUtil";
+import { ENV, SENTRY_DSN } from "@env";
 
 const App = () => {
   const { isLoadingComplete, userPreferences } = useCachedResources();
@@ -64,12 +65,12 @@ const App = () => {
 
 // Sentry report config
 Sentry.init({
-  dsn: "https://e0cda68987dd4b5197008ef21096f2ca@o4503908022550528.ingest.sentry.io/4503908024188928",
+  dsn: SENTRY_DSN,
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
   // We recommend adjusting this value in production.
   tracesSampleRate: 1.0,
-  enableInExpoDevelopment: true,
-  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  enableInExpoDevelopment: ENV === "developement",
+  debug: ENV === "developement", // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
 
 export default App;

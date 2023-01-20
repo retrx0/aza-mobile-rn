@@ -10,9 +10,7 @@ import {
   Text as Text,
   TextInput,
 } from "../../../../theme/Themed";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import Colors from "../../../../constants/Colors";
-import CommonStyles from "../../../../common/styles/CommonStyles";
 
 export const CountryBox = ({
   code,
@@ -23,8 +21,6 @@ export const CountryBox = ({
   onChangePhoneNumber,
   ...rest
 }: CountryProps & TextInputProps) => {
-  const colorScheme = useColorScheme();
-
   return (
     <View
       lightColor={Colors["light"].backgroundSecondary}

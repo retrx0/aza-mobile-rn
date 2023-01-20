@@ -81,7 +81,8 @@ export const InternetCard = ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-        }}>
+        }}
+      >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={{
@@ -200,9 +201,10 @@ export const CharityCard = ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-        }}>
+        }}
+      >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image source={ImageSource} style={styles.img} />
+          <Image source={{ uri: ImageSource }} style={styles.img} />
           <Text style={styles.text}>{title}</Text>
         </View>
         <View>{icon}</View>

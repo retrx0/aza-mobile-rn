@@ -4,7 +4,7 @@ import { SvgUri } from "react-native-svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { View, Text } from "../../../../theme/Themed";
-import useColorScheme from "../../../../hooks/useColorScheme";
+import Colors from "../../../../constants/Colors";
 
 export const CountriesCard = ({
   code,
@@ -13,71 +13,28 @@ export const CountriesCard = ({
   imageLink,
   onPress,
 }: CountryProps) => {
-  const colorScheme = useColorScheme();
-
-  // TODO: MAKE USE OF THE COMPONENTS FROM THEMED.TSX INSTEAD OF USING COLOR SCHEME EVERYWHERE!
-
   return (
     <View>
       <TouchableOpacity
         style={[
           styles.countryCard,
           {
-            // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
-            borderColor: colorScheme === "dark" ? "#E5E5E5" : "#F2F2F2",
+            borderColor: Colors.general.grey,
           },
         ]}
         onPress={onPress}
         activeOpacity={0.7}
       >
-        {/* <Image
-          source={{
-            uri: imageLink,
-          }}
-          style={styles.flag}
-          resizeMode="contain"
-        /> */}
-
-        {/* <SvgUri
+        <SvgUri
           style={styles.flag}
           width={"25"}
           height={"15"}
           uri={imageLink ? imageLink : ""}
-        /> */}
+        />
 
-        <Text
-          style={[
-            styles.countryName,
-            {
-              // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
-              color: colorScheme === "dark" ? "#E5E5E5" : "#000000",
-            },
-          ]}
-        >
-          {`(${code})`}
-        </Text>
-        {/* <Text
-          style={[
-            styles.countryName,
-            {
-              // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
-              color: colorScheme === "dark" ? "#E5E5E5" : "#000000",
-            },
-          ]}
-        >
-          {short_name}
-        </Text> */}
-        <Text
-          style={[
-            styles.countryName,
-            {
-              // backgroundColor: colorScheme === "dark" ? "white" : "#dark",
-              color: colorScheme === "dark" ? "#E5E5E5" : "#000000",
-            },
-          ]}
-        >
-          {name}
-        </Text>
+        <Text style={[styles.countryName]}>{`(${code})`}</Text>
+        {/* <Text style={[styles.countryName]}>{short_name}</Text> */}
+        <Text style={[styles.countryName]}>{name}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -12,7 +12,7 @@
     "owner": "retro1",
     "notification": {},
     "splash": {
-      "image": "./assets/images/app/aza-splash.jpg",
+      "image": "./assets/images/app/aza-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -57,7 +57,7 @@
         {
           "icon": "./assets/images/app/aza-app-icon-light.png",
           "color": "#ffffff",
-          "sounds": "./assets/sounds/notifications/coin-drop.wav"
+          "sounds": ["./assets/sounds/notifications/coin-drop.wav"]
         }
       ],
       "@config-plugins/detox"

@@ -5,7 +5,6 @@ import PaymentIndexScreen from "../screens/tabs/payments/Payments";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { SafeAreaView } from "../theme/Themed";
 import CommonStyles from "../common/styles/CommonStyles";
-import CompletedTransaction from "../screens/tabs/payments/CompletedTransaction";
 import { Platform } from "react-native";
 import InternetPlans from "../screens/tabs/payments/internet-screens/InternetPlans";
 import InternetDetail from "../screens/tabs/payments/internet-screens/InternetDetail";
@@ -205,14 +204,6 @@ const PaymentNavigator = () => {
         options={({ route }: { route: any }) => ({ title: route.params.name })}
         name="internet_plan_detail"
         component={InternetDetail}
-      />
-
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="complete_transaction"
-        component={CompletedTransaction}
       />
       <Stack.Screen
         options={{ headerShown: false }}
