@@ -10,7 +10,7 @@ pr:
   drafts: false
 
 variables:
-  - group: expo-variable-group-20-Jan
+  - group: expo-variable-group 20-Jan
 
 stages:
   - stage: build_and_test
