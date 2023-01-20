@@ -23,7 +23,9 @@ import ListItem from "../sub-components/ListItem";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { CharityCard, CharityList } from "../sub-components/Filters";
-
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 export default function CharityIndexScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -47,12 +49,17 @@ export default function CharityIndexScreen({
   };
 
   const dataLength = allCharity.length;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
         style={styles2.mainInput}
         icon={null}
-        inputStyle={[styles2.input]}
+        inputStyle={[
+          styles2.input,
+          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
         labelStyle={styles.label}
         label=""
         placeholder="Search for charitable organizations"
@@ -84,7 +91,7 @@ const styles2 = StyleSheet.create({
   },
   input: {
     width: "100%",
-    borderBottomColor: "#EAEAEC",
+
     borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),

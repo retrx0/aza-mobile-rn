@@ -16,6 +16,9 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 import {
   ArrowDownIcon,
@@ -23,7 +26,6 @@ import {
   UndrawAccountIcon,
 } from "../../../../../assets/svg";
 import { AccessBank } from "../../../../../assets/images";
-import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { IBankAccount } from "../../../../redux/types";
 
@@ -36,6 +38,8 @@ const BankAccountsScreen = ({
   const [accountAvailable] = useState(true);
   const insets = useSafeAreaInsets();
   const { screenType } = route.params;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const user = useAppSelector(selectUser);
 
@@ -48,8 +52,7 @@ const BankAccountsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           {screenType}
         </Text>
       ),
@@ -74,8 +77,7 @@ const BankAccountsScreen = ({
                 marginBottom: hp(30),
                 fontWeight: "600",
                 paddingLeft: hp(7),
-              }}
-            >
+              }}>
               Select the bank you wish to withdraw to
             </Text>
             <Divider />
@@ -86,8 +88,7 @@ const BankAccountsScreen = ({
                     style={[
                       CommonStyles.row,
                       { alignSelf: "stretch", paddingVertical: 15 },
-                    ]}
-                  >
+                    ]}>
                     <Image
                       source={{ uri: _account.logoUrl }}
                       style={{
@@ -102,8 +103,7 @@ const BankAccountsScreen = ({
                         marginLeft: hp(20),
                         fontFamily: "Euclid-Circular-A-Semi-Bold",
                         fontSize: hp(14),
-                      }}
-                    >
+                      }}>
                       {`${
                         _account.bankName
                       } (${_account.accountNumber.substring(0, 3)}.....)`}
@@ -122,8 +122,7 @@ const BankAccountsScreen = ({
                         alignItems: "center",
                         justifyContent: "center",
                         borderWidth: hp(1),
-                      }}
-                    >
+                      }}>
                       {selectedAccount?.accountNumber ===
                         _account.accountNumber && (
                         <View style={CommonStyles.doneSelect} />
@@ -139,8 +138,7 @@ const BankAccountsScreen = ({
             style={[
               CommonStyles.passwordContainer,
               { bottom: insets.top || hp(45) },
-            ]}
-          >
+            ]}>
             <CancelButtonWithUnderline
               title="Add another bank Account"
               onPressButton={() =>
@@ -149,7 +147,13 @@ const BankAccountsScreen = ({
                 })
               }
               color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-              style={[{ marginBottom: 15 }]}
+              style={[
+                {
+                  marginBottom: 15,
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
             />
             <Button
               disabled={!selectedAccount}
@@ -196,8 +200,7 @@ const BankAccountsScreen = ({
                 paddingLeft: hp(7),
                 marginBottom: hp(30),
                 marginTop: hp(20),
-              }}
-            >
+              }}>
               Select a bank account to perform any activity
             </Text>
             <Divider />
@@ -207,14 +210,12 @@ const BankAccountsScreen = ({
                   <TouchableOpacity
                     onPress={() =>
                       navigation.navigate("EditBankAccountDetails")
-                    }
-                  >
+                    }>
                     <View
                       style={[
                         CommonStyles.row,
                         { alignSelf: "stretch", paddingVertical: 15 },
-                      ]}
-                    >
+                      ]}>
                       <Image
                         source={{ uri: logoUrl }}
                         style={{
@@ -228,8 +229,7 @@ const BankAccountsScreen = ({
                           marginLeft: hp(20),
                           fontFamily: "Euclid-Circular-A-Semi-Bold",
                           fontSize: hp(14),
-                        }}
-                      >
+                        }}>
                         {`${bankName} (${accountNumber.substring(0, 3)}.....)`}
                       </Text>
                       <View style={{ marginLeft: "auto" }}>
@@ -246,8 +246,7 @@ const BankAccountsScreen = ({
             style={[
               CommonStyles.passwordContainer,
               { bottom: insets.top || hp(45) },
-            ]}
-          >
+            ]}>
             <Button
               title="Add another bank Account"
               onPressButton={() =>
@@ -271,8 +270,7 @@ const BankAccountsScreen = ({
           style={[
             CommonStyles.col,
             { marginTop: "auto", marginBottom: "auto" },
-          ]}
-        >
+          ]}>
           <UndrawAccountIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
             size={30}
@@ -286,8 +284,7 @@ const BankAccountsScreen = ({
               marginTop: hp(30),
               maxWidth: 300,
               textAlign: "center",
-            }}
-          >
+            }}>
             There is no bank account registered to your Aza account
           </Text>
           <View style={[CommonStyles.row, { marginTop: hp(15) }]}>
@@ -299,8 +296,7 @@ const BankAccountsScreen = ({
                 maxWidth: 300,
                 marginRight: 5,
                 textAlign: "center",
-              }}
-            >
+              }}>
               Click ‘Add Bank Account’ to link your bank account to aza
             </Text>
             <ArrowDownIcon
@@ -314,8 +310,7 @@ const BankAccountsScreen = ({
           </View>
         </View>
         <View
-          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}
-        >
+          style={[CommonStyles.col, { width: "100%", marginBottom: hp(45) }]}>
           <Button
             title="Add Bank Account"
             onPressButton={() =>

@@ -24,6 +24,9 @@ import {
   UBALogoWithName,
   ZenithBankLogoWithName,
 } from "../../../../../assets/images";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const SelectBankScreen = ({
   navigation,
@@ -33,6 +36,8 @@ const SelectBankScreen = ({
   const [search, setSearch] = useState("");
 
   const { screenType } = route.params;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const banks = [
     { name: "Access", logo: AccessBankLogoWithName },
@@ -55,8 +60,7 @@ const SelectBankScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Select Bank
         </Text>
       ),
@@ -76,14 +80,12 @@ const SelectBankScreen = ({
           style={[
             CommonStyles.row,
             {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-
+              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               borderBottomWidth: 0.7,
               marginBottom: 20,
               marginLeft: hp(5),
             },
-          ]}
-        >
+          ]}>
           <SearchIcon color={Colors[colorScheme].secondaryText} size={16} />
           <TextInput
             style={{
@@ -117,16 +119,17 @@ const SelectBankScreen = ({
                       alignSelf: "stretch",
                       alignItems: "center",
                     },
-                  ]}
-                >
-                  <Image source={logo} />
+                  ]}>
+                  <Image
+                    source={{ uri: logo }}
+                    style={{ width: 100, height: 70, resizeMode: "contain" }}
+                  />
                 </TouchableOpacity>
                 <View
                   style={{
                     marginVertical: 25,
                     width: "100%",
-                  }}
-                >
+                  }}>
                   <Divider />
                 </View>
               </View>

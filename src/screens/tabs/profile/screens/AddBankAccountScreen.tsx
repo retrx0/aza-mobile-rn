@@ -14,6 +14,9 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const AddBankAccountScreen = ({
   navigation,
@@ -23,6 +26,8 @@ const AddBankAccountScreen = ({
   const insets = useSafeAreaInsets();
 
   const { bankName, screenType } = route.params;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -34,8 +39,7 @@ const AddBankAccountScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Add Bank Account
         </Text>
       ),
@@ -62,8 +66,7 @@ const AddBankAccountScreen = ({
               marginLeft: hp(5),
               fontWeight: "500",
               marginTop: hp(30),
-            }}
-          >
+            }}>
             Add your bank account to receive withdrawals from your Aza account
           </Text>
           <View>
@@ -75,8 +78,7 @@ const AddBankAccountScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}
-            >
+              }}>
               Account Number
             </Text>
             <TextInput
@@ -89,8 +91,7 @@ const AddBankAccountScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(5),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
 
                 marginLeft: hp(5),
               }}
@@ -104,8 +105,7 @@ const AddBankAccountScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Continue"
             onPressButton={() =>
@@ -116,14 +116,6 @@ const AddBankAccountScreen = ({
                 screenType,
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
           />
         </View>
       </View>
