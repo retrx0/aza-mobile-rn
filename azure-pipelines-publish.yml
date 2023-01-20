@@ -40,7 +40,7 @@ stages:
             displayName: Yarn install
           - bash: |
               set -x
-              yarn test:ci
+              yarn testFinal
             displayName: Run Unit Tests
           - bash: |
               eas build --platform android --profile buildForDetoxTesting --local
