@@ -12,7 +12,7 @@
     "owner": "retro1",
     "notification": {},
     "splash": {
-      "image": "./assets/images/app/aza-splash.jpg",
+      "image": "./assets/images/app/aza-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
