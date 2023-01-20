@@ -1,4 +1,4 @@
-import { View } from "../../components/Themed";
+import { View as View } from "../../theme/Themed";
 import CommonStyles from "../styles/CommonStyles";
 import NotchResponsive from "./NotchResponsiveness";
 

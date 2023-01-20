@@ -2,7 +2,8 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../../../constants/Colors";
@@ -24,7 +25,8 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Manage Card
         </Text>
       ),
@@ -50,20 +52,23 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
               height: hp(150),
               backgroundColor: "black",
             },
-          ]}>
+          ]}
+        >
           <View
             style={{
               marginLeft: 50,
               marginTop: "auto",
               backgroundColor: "transparent",
-            }}>
+            }}
+          >
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(16),
                 color: "white",
                 fontWeight: "500",
-              }}>
+              }}
+            >
               **** **** **** 1234
             </Text>
             <Text
@@ -71,7 +76,8 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
                 fontSize: 8,
                 marginTop: 8,
                 color: "white",
-              }}>
+              }}
+            >
               Visa - EXP Jul/2023
             </Text>
           </View>
@@ -80,15 +86,17 @@ const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
               marginTop: "auto",
               marginRight: "auto",
               backgroundColor: "transparent",
-            }}>
+            }}
+          >
             <DebitCreditCardCurvesDesign />
           </View>
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <CancelButtonWithUnderline
             title="Delete Card"
             styleText={[CommonStyles.cancelStyle]}

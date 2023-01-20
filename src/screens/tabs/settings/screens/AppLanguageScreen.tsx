@@ -4,23 +4,20 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-
 import { CheckIcon } from "../../../../../assets/svg";
-
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const AppLanguageScreen = ({
   navigation,
 }: CommonScreenProps<"AppLanguage">) => {
-  const colorScheme = useColorScheme();
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
 
   const languages = [
@@ -78,7 +75,6 @@ const AppLanguageScreen = ({
           fontFamily: "Euclid-Circular-A-Medium",
           fontSize: hp(16),
           fontWeight: "500",
-          marginLeft: hp(5),
         }}>
         You can change the app language
       </Text>
@@ -113,12 +109,7 @@ const AppLanguageScreen = ({
                 <CheckIcon size={20} color={"#2A9E17"} />
               )}
             </TouchableOpacity>
-            <View
-              style={{
-                borderBottomWidth: 0.6,
-                borderBottomColor: Colors[colorScheme].separator,
-              }}
-            />
+            <Divider />
           </View>
         ))}
       </View>
@@ -132,6 +123,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

@@ -11,6 +11,7 @@ import { STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN } from "@env";
 
 const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
   const [loginOtp, setLoginUpOtp] = useState("");
+  const [buttonLoading, setButtonLoading] = useState(false);
   const dispatch = useAppDispatch();
 
   const user = useAppSelector(selectUser);
@@ -25,6 +26,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
         otpCode={loginOtp}
         onOtpChanged={(code) => setLoginUpOtp(code)}
         onVerify={() => {
+          setButtonLoading(true);
           verifyOtpApi(
             {
               email: user.emailAddress,
@@ -32,17 +34,23 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
               otp: Number(loginOtp),
             },
             "phone"
-          ).then((token) => {
-            if (token) {
-              // SecureStore.setItemAsync(
-              //   String(STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN),
-              //   token
-              // );
-              navigation.navigate("SignInWelcomeBack");
-            } else {
-              Toast.show({ type: "error", text1: "Invalid OTP" });
-            }
-          });
+          )
+            .then((token) => {
+              if (token) {
+                // SecureStore.setItemAsync(
+                //   String(STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN),
+                //   token
+                // );
+                navigation.navigate("SignInWelcomeBack");
+              } else {
+                Toast.show({ type: "error", text1: "Invalid OTP" });
+              }
+              setButtonLoading(false);
+            })
+            .catch((e) => {
+              console.error("Error verifying otp" + e);
+              setButtonLoading(false);
+            });
         }}
         onResend={() => {
           if (user.phoneNumber) {
@@ -54,10 +62,11 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
           }
         }}
         phoneNumber={""}
-        otpTitle={`Please enter the 6-digit code sent to **${user.phoneNumber?.substring(
-          user.phoneNumber.length - 4,
+        otpTitle={`Please enter the 6-digit code sent to ***${user.phoneNumber?.substring(
+          user.phoneNumber.length - 2,
           user.phoneNumber.length
         )}`}
+        buttonLoading={buttonLoading}
       />
     </SpacerWrapper>
   );

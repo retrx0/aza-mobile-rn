@@ -1,12 +1,32 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
+import { IBeneficiary, IRequest } from "../../redux/types";
 
 /* Common screens */
 
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
-  VaultConfirmation: VaultConfirmationParamsType;
+  VaultWithdrawConfirm: VaultConfirmationParamsType;
+  SendMoneyFeature: undefined;
+  TransactionCertainty: undefined;
+  InviteUsers: undefined;
+  RequestMoneyFeature: undefined;
+  GameCredit: undefined;
+  WithdrawFeature: undefined;
+  DepositFeature: undefined;
+  GameFeature: undefined;
+  CharitySupport: undefined;
+  CharityFeature: undefined;
+  GiftCardEasy: undefined;
+  GiftCardFit: undefined;
+  GiftCardChoice: undefined;
+  QRFeature: undefined;
+  CloseAccountScreen: undefined;
+  AccountClosureSurveyScreen: undefined;
+  WithdrawKeyPad: undefined;
+  CloseAccount: undefined;
+  AlternativeSurvey: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
@@ -17,7 +37,6 @@ export type CommonStackParamList = {
   //Payments
   AirtimeData: undefined;
   Confirm: undefined;
-  ConfirmTransaction: undefined;
   CompleteTransaction: undefined;
   InternetPlans: undefined;
   InternetPlanDetail: { name: string };
@@ -27,6 +46,33 @@ export type CommonStackParamList = {
   Water: undefined;
   Charity: undefined;
   CharityDetail: { name: string };
+  ElectricityConfirmation: undefined;
+  PaymentConfirmation: {
+    beneficiaryLogo: string;
+    beneficiaryName: string;
+    phoneNumber?: string;
+    amount: string;
+    paymentMethod?: string;
+    purchaseName: string;
+    meterNumber?: string;
+    accountOrUserId?: string;
+    smartCardNumber?: string;
+    customerAccountNumber?: string;
+  };
+  GiftCardConfirmation: undefined;
+  CharityConfirmation: undefined;
+  GiftCard: undefined;
+  GiftCardDetails: undefined;
+  GameScreen: undefined;
+  PaymentRecurring: undefined;
+  AirtimeRecurring: undefined;
+  InternetRecurring: undefined;
+  CableRecurring: undefined;
+  ElectricityRecurring: undefined;
+  WaterRecurring: undefined;
+  CharityRecurring: undefined;
+  RecurringPlan: undefined;
+  GiftCardEmail: undefined;
 
   // Vault
   NewVault: undefined;
@@ -59,6 +105,8 @@ export type CommonStackParamList = {
   RecurringMoneyConfirmationScreen: undefined;
   Vault: undefined;
   VaultToBankAmount: undefined;
+  VaultFeature: undefined;
+  VaultLiberty: undefined;
 
   // Settings
   ChangePassword: undefined;
@@ -100,8 +148,8 @@ export type CommonStackParamList = {
   SplitEditContact: SplitEditContactParamsType;
   SplitConfirmation: SplitConfirmationParamsType;
   IncomingSplitRequests: undefined;
-  IncomingSplitRequestAcceptance: undefined;
-  CompletedSplitRequestDetails: undefined;
+  IncomingSplitRequestAcceptance: { requestItem: IRequest };
+  CompletedSplitRequestDetails: { requestItem: IRequest };
   OutgoingSplitRequests: undefined;
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
@@ -116,11 +164,21 @@ export type CommonStackParamList = {
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
   SendMoneyConfirmation: undefined;
-
-  SetupRecurringTransfer: undefined;
+  SetupRecurringTransfer: IBeneficiary;
   RecurringTransfer: undefined;
   SelectNewRecurringTransfer: undefined;
-  RecurringTransferConfirmation: undefined;
+  RecurringTransferConfirmation: {
+    amount: string;
+    beneficiary: IBeneficiary;
+    period: string;
+    day: string;
+  };
+
+  // CEOMessage screen
+  CEOMessage: undefined;
+
+  // Common!!!
+  Common: undefined;
 };
 
 export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
@@ -128,27 +186,16 @@ export type CommonScreenProps<Screen extends keyof CommonStackParamList> =
 
 // Page with virtual keyboard
 
-export interface Beneficiary {
-  fullName: string;
-  firstName?: string;
-  lastName?: string;
-  pictureUrl?: string;
-  azaAccountNumber: string;
-  currency?: string;
-  phone?: string;
-  email?: string;
-}
-
 export interface RecurringTransaction {
   type: "recurring";
-  beneficiary: Beneficiary;
+  beneficiary: IBeneficiary;
   period: string;
   day: string;
 }
 export interface NormalTransaction {
   type: "normal";
-  transaction: "withdraw" | "deposit" | "send" | "request";
-  beneficiary: Beneficiary;
+  transaction: "withdraw" | "deposit" | "send" | "request" | "debit";
+  beneficiary: IBeneficiary;
   openDescriptionModal?: boolean;
 }
 
@@ -175,10 +222,11 @@ export type StatusScreenParamsType = {
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
   receiptButton?: boolean;
-  setupRecurringTransfer?: boolean;
+  recurringTransferBeneficiary?: IBeneficiary;
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;
+  screenType?: "transaction" | "status" | "other";
 };
 
 /* Payments Tab */

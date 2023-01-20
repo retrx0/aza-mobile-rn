@@ -16,7 +16,8 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import useColorScheme from "../../hooks/useColorScheme";
-import { Text } from "../Themed";
+import { View, Text } from "../../theme/Themed";
+
 import { hp } from "../../common/util/LayoutUtil";
 
 type SelectProps = {
@@ -48,7 +49,8 @@ export default function SelectInput({
           scaleValue.value = withSpring(value);
           console.log(value);
         }}
-        style={styles.selector}>
+        style={styles.selector}
+      >
         <>
           <RegularText
             style={styles.selectorText}
@@ -62,7 +64,8 @@ export default function SelectInput({
           styles.selectList,
           listItemStyle,
           { backgroundColor: scheme == "light" ? "#ffffff" : "#3A3D42" },
-        ]}>
+        ]}
+      >
         {items.length > 0 &&
           items.map((item, index) => (
             <TouchableOpacity
@@ -71,7 +74,8 @@ export default function SelectInput({
                 scaleValue.value = withSpring(0);
               }}
               key={index.toString()}
-              style={styles.listItem}>
+              style={styles.listItem}
+            >
               <Text style={styles.listItemText}>{item}</Text>
             </TouchableOpacity>
           ))}
@@ -97,12 +101,13 @@ const styles = StyleSheet.create({
   // },
   selector: {
     width: "100%",
-    borderBottomColor: "#EAEAEC",
+    borderBottomColor: "#262626",
     borderBottomWidth: 1,
     height: 25,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: hp(12),
   },
   selectorText: {
     color: "#A6A6A6",
@@ -122,14 +127,16 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     padding: 10,
+    borderRadius: hp(10),
   },
   listItem: {
-    height: 30,
+    height: hp(45),
     borderBottomWidth: 1,
-    borderBottomColor: "#EAEAEC",
+    borderBottomColor: "#484B51",
     justifyContent: "center",
   },
   listItemText: {
     fontWeight: "400",
+    fontSize: hp(14),
   },
 });

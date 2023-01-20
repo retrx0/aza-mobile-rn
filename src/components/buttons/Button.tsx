@@ -10,6 +10,9 @@ import {
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import useColorScheme from "../../hooks/useColorScheme";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 type ButtonPropsType = {
   title: string;
@@ -18,7 +21,7 @@ type ButtonPropsType = {
   style?: StyleProp<ViewStyle>;
   styleText?: StyleProp<TextStyle>;
   disabled?: boolean;
-  willCallAsync?: boolean;
+  buttonLoading?: boolean;
 };
 
 export const Button: FC<ButtonPropsType> = ({
@@ -28,13 +31,15 @@ export const Button: FC<ButtonPropsType> = ({
   style,
   styleText,
   disabled,
-  willCallAsync,
+  buttonLoading,
 }) => {
   const colorScheme = useColorScheme();
 
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <TouchableOpacity
-      disabled={disabled}
+      disabled={disabled || buttonLoading}
       activeOpacity={0.7}
       onPress={onPressButton}
       style={[
@@ -42,17 +47,25 @@ export const Button: FC<ButtonPropsType> = ({
         isNext && styles.nextButton,
         style,
         disabled && {
-          backgroundColor: Colors[colorScheme].secondaryText,
+          backgroundColor: Colors[appTheme].secondaryText,
         },
         {
           opacity: disabled ? 0.5 : 1,
+          backgroundColor: Colors[appTheme].button,
         },
         style,
       ]}
     >
-      <Text style={[styles.doneText, isNext && styles.nextText, styleText]}>
-        {willCallAsync ? (
-          <ActivityIndicator animating={willCallAsync} />
+      <Text
+        style={[
+          styles.doneText,
+          isNext && styles.nextText,
+          { color: Colors[appTheme].buttonText },
+          styleText,
+        ]}
+      >
+        {buttonLoading ? (
+          <ActivityIndicator animating={buttonLoading} />
         ) : (
           title
         )}
@@ -65,10 +78,9 @@ const styles = {
   doneText: {
     color: Colors.general.secondary,
     fontWeight: "500",
-    letterSpacing: hp(0.5),
     fontSize: hp(14),
     lineHeight: hp(18),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   nextText: {
     color: Colors.general.secondary,
@@ -80,7 +92,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: wp(335),
+    width: "90%",
     // marginTop: 100,
   },
   nextButton: {

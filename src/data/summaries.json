@@ -1,0 +1,238 @@
+[
+  {
+    "date": "Jun 2022",
+    "summaries": [
+      {
+        "transactionName": "Incoming",
+        "transactionType": "credit",
+        "transactionIconName": "depositIcon",
+        "totalAmount": "100000",
+        "info": "Total money received in account this month",
+        "transactionDetails": [
+          {
+            "detailAmount": "30000",
+            "detailInfo": "Amount deposited via Debit/Credit card",
+            "detailIconName": "debitCardSmallIcon"
+          },
+          {
+            "detailAmount": "40000",
+            "detailInfo": "Incoming money transfer",
+            "detailIconName": "incomingTransferIcon"
+          },
+          {
+            "detailAmount": "30000",
+            "detailInfo": "Payments received through QR code",
+            "detailIconName": "qrCodeIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Outgoing",
+        "transactionType": "debit",
+        "transactionIconName": "withdrawIcon",
+        "totalAmount": "480000",
+        "info": "Total amount debited from your account",
+        "transactionDetails": [
+          {
+            "detailAmount": "25000",
+            "detailInfo": "Outgoing money transfer",
+            "detailIconName": "outgoingTransferIcon"
+          },
+          {
+            "detailAmount": "200000",
+            "detailInfo": "Total money withdrawn to your bank",
+            "detailIconName": "bankIcon"
+          },
+          {
+            "detailAmount": "200000",
+            "detailInfo": "Total money withdrawn to your vault",
+            "detailIconName": "outlinedVaultSmallIcon"
+          },
+          {
+            "detailAmount": "55000",
+            "detailInfo": "Bills, donations and other payments",
+            "detailIconName": "outlinedPaymentsIcon"
+          }
+        ]
+      },
+
+      {
+        "transactionName": "Money Transfer",
+        "transactionType": "debit",
+        "transactionIconName": "debitCardIcon",
+        "transactionDetails": [
+          {
+            "detailAmount": "5000",
+            "detailInfo": "Sent with a total of 9 transactions",
+            "detailIconName": "smallDepositIcon"
+          },
+          {
+            "detailAmount": "30000",
+            "detailInfo": "Payments made through QR code",
+            "detailIconName": "qrCodeIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Withdrawal to bank",
+        "transactionType": "debit",
+        "transactionIconName": "largeBankIcon",
+        "transactionDetails": [
+          {
+            "detailAmount": "150000",
+            "detailInfo": "Withdrawn with a total of 3 transactions",
+            "detailIconName": "smallDepositIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Vault",
+        "transactionType": "debit",
+        "transactionIconName": "outlinedVaultIcon",
+        "transactionDetails": [
+          {
+            "detailAmount": "50000",
+            "detailInfo": "Total money withdrawn from Vault to Bank",
+            "detailIconName": "bankIcon"
+          },
+          {
+            "detailAmount": "100000",
+            "detailInfo": "Total money withdrawn from Vault to Aza",
+            "detailIconName": "smallWithdarawIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Bills & Payment",
+        "transactionType": "debit",
+        "transactionIconName": "debitCardIcon",
+        "totalAmount": "75000"
+      }
+    ],
+    "chartData": [
+      { "value": 4, "color": "#1198F6", "text": "Water" },
+      { "value": 45, "color": "#ED8A0A", "text": "Electricity" },
+      { "value": 10, "color": "#FFD200", "text": "Cable Tv" }
+    ],
+    "totalWorthOfDonations": "500000"
+  },
+  {
+    "date": "Jan 2023",
+    "summaries": [
+      {
+        "transactionName": "Incoming",
+        "transactionType": "credit",
+        "transactionIconName": "depositIcon",
+        "totalAmount": "220000",
+        "info": "Total money received in account this month",
+        "transactionDetails": [
+          {
+            "detailAmount": "30000",
+            "detailInfo": "Amount deposited via Debit/Credit card",
+            "detailIconName": "debitCardSmallIcon"
+          },
+          {
+            "detailAmount": "40000",
+            "detailInfo": "Incoming money transfer",
+            "detailIconName": "incomingTransferIcon"
+          },
+          {
+            "detailAmount": "30000",
+            "detailInfo": "Payments received through QR code",
+            "detailIconName": "qrCodeIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Outgoing",
+        "transactionType": "debit",
+        "transactionIconName": "withdrawIcon",
+        "totalAmount": "480000",
+        "info": "Total amount debited from your account",
+        "transactionDetails": [
+          {
+            "detailAmount": "25000",
+            "detailInfo": "Outgoing money transfer",
+            "detailIconName": "outgoingTransferIcon"
+          },
+          {
+            "detailAmount": "200000",
+            "detailInfo": "Total money withdrawn to your bank",
+            "detailIconName": "bankIcon"
+          },
+          {
+            "detailAmount": "200000",
+            "detailInfo": "Total money withdrawn to your vault",
+            "detailIconName": "outlinedVaultSmallIcon"
+          },
+          {
+            "detailAmount": "55000",
+            "detailInfo": "Bills, donations and other payments",
+            "detailIconName": "outlinedPaymentsIcon"
+          }
+        ]
+      },
+
+      {
+        "transactionName": "Money Transfer",
+        "transactionType": "debit",
+        "transactionIconName": "debitCardIcon",
+        "transactionDetails": [
+          {
+            "detailAmount": "5000",
+            "detailInfo": "Sent with a total of 9 transactions",
+            "detailIconName": "smallDepositIcon"
+          },
+          {
+            "detailAmount": "30000",
+            "detailInfo": "Payments made through QR code",
+            "detailIconName": "qrCodeIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Withdrawal to bank",
+        "transactionType": "debit",
+        "transactionIconName": "largeBankIcon",
+        "transactionDetails": [
+          {
+            "detailAmount": "150000",
+            "detailInfo": "Withdrawn with a total of 3 transactions",
+            "detailIconName": "smallDepositIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Vault",
+        "transactionType": "debit",
+        "transactionIconName": "outlinedVaultIcon",
+        "transactionDetails": [
+          {
+            "detailAmount": "50000",
+            "detailInfo": "Total money withdrawn from Vault to Bank",
+            "detailIconName": "bankIcon"
+          },
+          {
+            "detailAmount": "100000",
+            "detailInfo": "Total money withdrawn from Vault to Aza",
+            "detailIconName": "smallWithdarawIcon"
+          }
+        ]
+      },
+      {
+        "transactionName": "Bills & Payment",
+        "transactionType": "debit",
+        "transactionIconName": "debitCardIcon",
+        "totalAmount": "75000"
+      }
+    ],
+    "chartData": [
+      { "value": 0, "color": "#1198F6", "text": "Water" },
+      { "value": 45, "color": "#ED8A0A", "text": "Electricity" },
+      { "value": 42, "color": "#753FF6", "text": "Internet" },
+      { "value": 46, "color": "#2A9E17", "text": "Airtime" },
+      { "value": 10, "color": "#FFD200", "text": "Cable Tv" }
+    ],
+    "totalWorthOfDonations": "100000"
+  }
+]

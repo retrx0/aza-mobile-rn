@@ -4,12 +4,14 @@ import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View, Text } from "../../theme/Themed";
+
 import Divider from "../../components/divider/Divider";
 import SplitListItem from "./components/SplitListItem";
 
-import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
+import { useAppSelector } from "../../redux";
+import { selectUser } from "../../redux/slice/userSlice";
 
 const ChooseSplitScreen = ({
   navigation,
@@ -18,13 +20,12 @@ const ChooseSplitScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.text}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Choose Transaction
         </Text>
       ),
@@ -37,58 +38,39 @@ const ChooseSplitScreen = ({
     });
   }, []);
 
-  const splitsListItems = [
-    {
-      name: "Coldstone",
-      amount: "20000",
-      date: "4 July 2022 04:26",
-      splitImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThTumpKjOB5PtCkHk3DUZ_6px9A073NcfLPA&usqp=CAU",
-    },
-    {
-      name: "Burger King",
-      amount: "20000",
-      date: "4 July 2022 04:26",
-      splitImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT07WdeXexZ8Igvtni6pY013Wc0K1i9uuWfPA&usqp=CAU",
-    },
-    {
-      name: "KFC",
-      amount: "20000",
-      date: "4 July 2022 04:26",
-      splitImage:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiwr_jykU8Gdf9mpFXyUFwKAbCEaLFPFJbfA&usqp=CAU",
-    },
-  ];
+  const user = useAppSelector(selectUser);
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <Divider />
-        {splitsListItems.map(({ amount, date, splitImage, name }, i) => (
-          <View key={i}>
-            <TouchableOpacity
-              style={{}}
-              onPress={() =>
-                navigation.navigate("SplitSelectContacts", {
-                  amount,
-                  date,
-                  splitImage,
-                  name,
-                })
-              }>
-              <SplitListItem
-                key={i}
-                amount={amount}
-                date={date}
-                splitImage={splitImage}
-                name={name}
-                showChevron
-              />
-            </TouchableOpacity>
-            <Divider />
-          </View>
-        ))}
+        {user.payments.recentPayments.map(
+          ({ amount, date, vendorLogo, vendorName }, i) => (
+            <View key={i}>
+              <TouchableOpacity
+                style={{}}
+                onPress={() =>
+                  navigation.navigate("SplitSelectContacts", {
+                    amount,
+                    date,
+                    splitImage: vendorLogo,
+                    name: vendorName,
+                  })
+                }
+              >
+                <SplitListItem
+                  key={i}
+                  amount={amount}
+                  date={date}
+                  splitImage={vendorLogo}
+                  name={vendorName}
+                  showChevron
+                />
+              </TouchableOpacity>
+              <Divider />
+            </View>
+          )
+        )}
       </ScrollView>
     </View>
   );

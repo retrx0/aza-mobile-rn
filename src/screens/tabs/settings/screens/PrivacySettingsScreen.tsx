@@ -2,11 +2,11 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import SettingsListItem from "../components/SettingsListItem";
+import Divider from "../../../../components/divider/Divider";
 
 const PrivacySettingsScreen = ({
   navigation,
@@ -29,7 +29,6 @@ const PrivacySettingsScreen = ({
       handleNavigation: () => navigation.navigate("BlockUsers"),
     },
   ];
-  const colorScheme = useColorScheme();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -61,20 +60,13 @@ const PrivacySettingsScreen = ({
         darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A",
-          marginLeft: hp(5),
+          fontFamily: "Euclid-Circular-A-Medium",
           fontWeight: "500",
         }}>
         You can change your privacy settings
       </Text>
       <View style={{ marginTop: hp(80) }}>
-        <View
-          style={{
-            backgroundColor: "transparent",
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
-          }}
-        />
+        <Divider />
         {privacySettings.map(({ name, handleNavigation }, i) => (
           <SettingsListItem
             name={name}
@@ -93,6 +85,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

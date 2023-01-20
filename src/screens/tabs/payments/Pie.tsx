@@ -1,71 +1,146 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
-import { SafeAreaView, Text, View } from "../../../components/Themed";
+import React, { useEffect, useMemo, useState } from "react";
+import { View, Text } from "../../../theme/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { PieChart } from "react-native-gifted-charts";
 import RegularText from "../../../components/text/RegularText";
-import { AIrtimeStyles } from "./airtime-screens/styles";
-import {
-  ArrowFowardIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  BackIcon,
-  LoveIcon,
-} from "../../../../assets/svg";
-import useColorScheme from "../../../hooks/useColorScheme";
+import { ArrowLeftIcon, ArrowRightIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import { selectUser } from "../../../redux/slice/userSlice";
+import Colors from "../../../constants/Colors";
+import { IPayment, PaymentCategory } from "../../../redux/types";
 
-const data = [
-  { value: 54, color: "#753FF6", text: "Cable Tv" },
-  { value: 40, color: "#2A9E17", text: "Internet" },
-  { value: 20, color: "#ED8A0A", text: "Charity" },
-];
 export default function Pie() {
-  const scheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const { payments } = useAppSelector(selectUser);
+  // const [date, setDate] = useState("10-06-2022");
+  const [total, setTotal] = useState(0);
+
+  const calculatePaymentSum = (
+    payments: IPayment[],
+    category: PaymentCategory
+  ): number => {
+    return payments
+      .filter((p) => p.category === category)
+      .map((p) => Number(p.amount))
+      .reduce((p, i) => p + i, 0);
+  };
+
+  const data = [
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Airtime & Data"),
+      color: "#2A9E17",
+      text: "Airtime & Data",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Cable Tv"),
+      color: "#ED8A0A",
+      text: "Cable Tv",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Charity"),
+      color: "#753FF6",
+      text: "Charity",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Electricity"),
+      color: "#a1ea19",
+      text: "Electricity",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Game Credits"),
+      color: "#56179e",
+      text: "Game Credits",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Gift Cards"),
+      color: "#c71c1c",
+      text: "Gift Cards",
+    },
+
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Internet"),
+      color: "#176f9e",
+      text: "Internet",
+    },
+    {
+      value: calculatePaymentSum(payments.recentPayments, "Water"),
+      color: "#9c179e",
+      text: "Water",
+    },
+  ];
+
+  useEffect(() => {
+    var _t = 0;
+    payments.recentPayments.forEach((p) => (_t += Number(p.amount)));
+    setTotal(_t);
+  }, [payments.recentPayments]);
+
   return (
-    <SafeAreaView style={[CommonStyles.parentContainer]}>
-      <View style={styles.container}>
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View style={styles.month}>
           <TouchableOpacity>
             <ArrowLeftIcon
-              color={scheme == "light" ? "#292D32" : "white"}
+              color={appTheme == "light" ? "#292D32" : "white"}
               size={0}
             />
           </TouchableOpacity>
-
           <Text style={styles.monthText}>Jun 2022</Text>
+
           <TouchableOpacity>
             <ArrowRightIcon
-              color={scheme == "light" ? "#292D32" : "white"}
+              color={appTheme == "light" ? "#292D32" : "white"}
               size={16}
             />
           </TouchableOpacity>
         </View>
-        <PieChart
-          textBackgroundRadius={26}
-          textColor="#ffffff"
-          donut={true}
-          data={data}
-          focusOnPress
-          showValuesAsLabels
-          centerLabelComponent={() => (
-            <View style={styles.centerLabel}>
-              <Text style={{ color: "black" }}>Total</Text>
-              <RegularText text="N38,000" />
-            </View>
-          )}
-        />
-        <View style={styles.labels}>
+        <View style={{ alignSelf: "center" }}>
+          <PieChart
+            textBackgroundRadius={26}
+            textColor="#ffffff"
+            donut={true}
+            data={data}
+            focusOnPress
+            showValuesAsLabels
+            centerLabelComponent={() => (
+              <View style={[styles.centerLabel]}>
+                <Text
+                  darkColor={Colors.general.black}
+                  lightColor={Colors.general.black}
+                >
+                  Total
+                </Text>
+                <RegularText
+                  text={NAIRA_UNICODE + total}
+                  style={[
+                    {
+                      color: Colors.general.black,
+                    },
+                  ]}
+                />
+              </View>
+            )}
+          />
+        </View>
+
+        <View style={(styles.labels, { maxWidth: "100%" })}>
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
-                style={[styles.colors, { backgroundColor: item.color }]}></View>
-              <Text style={{ fontSize: hp(15) }}>{item.text}</Text>
+                style={[styles.colors, { backgroundColor: item.color }]}
+              ></View>
+              <Text style={{ fontSize: hp(15), padding: 5 }}>{item.text}</Text>
             </View>
           ))}
         </View>
       </View>
-    </SafeAreaView>
+    </SpacerWrapper>
   );
 }
 
@@ -85,6 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     width: "80%",
     marginTop: 60,
+    alignSelf: "center",
   },
   individualLabel: {
     flexDirection: "row",
@@ -94,19 +170,36 @@ const styles = StyleSheet.create({
   colors: {
     height: 15,
     width: 15,
-    borderRadius: 5,
+    borderRadius: 3,
     marginRight: 3,
   },
   month: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
-    width: "50%",
     marginBottom: 30,
+    alignSelf: "center",
   },
   monthText: {
     fontWeight: "600",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     fontSize: hp(16),
+    marginRight: hp(10),
+    marginLeft: hp(10),
+  },
+  datecontainer: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 20,
+  },
+  datePickerStyle: {
+    width: 200,
+    marginTop: 20,
   },
 });

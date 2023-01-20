@@ -5,7 +5,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { VaultStyles } from "./styles";
-import { Text, View } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
 import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
@@ -34,8 +34,9 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
-          <View style={{ marginLeft: 15 }}>
+          }}
+        >
+          <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -43,24 +44,29 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(70),
-            }}>
+              marginLeft: hp(65),
+            }}
+          >
             Add Cover Image
           </Text>
         </View>
-        <Text style={CommonStyles.selectStyle}>
-          When you add a photo and set a vault goal in the next step, your
-          account would look like the one below.
-        </Text>
-        <Image
-          style={{ width: 150, height: 150, alignSelf: "center" }}
-          source={require("../../../../assets/images/icons/CoverImageII.png")}
-        />
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.selectStyle}>
+            When you add a photo and set a vault goal in the next step, your
+            account would look like the one below.
+          </Text>
+          <Image
+            style={{ width: 150, height: 150, alignSelf: "center" }}
+            source={require("../../../../assets/images/icons/CoverImageII.png")}
+          />
+        </View>
+
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <Button
             title="Select From Gallery"
             // onPressButton={() =>
@@ -68,8 +74,9 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
             //     .getParent()
             //     ?.navigate("Common", { screen: "VaultToAza" })
             // }
-            style={[CommonStyles.toBankbutton]}
+
             styleText={CommonStyles.toBankbuttonText}
+            style={[CommonStyles.toBankbutton, { marginBottom: hp(20) }]}
             onPressButton={() => selectImageFromGallery()}
           />
           <Button

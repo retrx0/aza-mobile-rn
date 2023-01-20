@@ -22,24 +22,43 @@ import {
 
 import { RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
+import { getAppTheme } from "../../../../theme";
+
+import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { uploadProfilePicThunk } from "../../../../redux/slice/userSlice";
 
 export const useBottomSheetType = (
   itemToReturn: string,
   { navigation }: RootTabScreenProps<"Home">
 ) => {
-  const [image, setImage] = useState("");
+  const dispatch = useAppDispatch();
 
   const selectImageFromGallaery = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      aspect: [4, 3],
-      quality: 1,
+      quality: 0.5,
     });
 
     if (!result.cancelled) {
       const { uri } = result;
-      setImage(uri);
+      const formData = new FormData();
+      formData.append("ProfilePicture", {
+        uri,
+        name: `image.${uri.split(".").pop()}`,
+        type: `image/${uri.split(".").pop()}`,
+      } as any);
+
+      dispatch(uploadProfilePicThunk(formData))
+        .unwrap()
+        .then(() => {
+          toastSuccess("Your picture has been successfully uploaded");
+        })
+        .catch(() => {
+          toastError("Error uploading profile picture");
+        });
     }
   };
 
@@ -48,36 +67,49 @@ export const useBottomSheetType = (
     if (permissionStatus.status === "granted") {
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        aspect: [4, 3],
-        quality: 1,
+        quality: 0.5,
       });
 
       if (!result.cancelled) {
         const { uri } = result;
-        setImage(uri);
+        const formData = new FormData();
+        formData.append("ProfilePicture", {
+          uri,
+          name: `image.${uri.split(".").pop()}`,
+          type: `image/${uri.split(".").pop()}`,
+        } as any);
+
+        dispatch(uploadProfilePicThunk(formData))
+          .unwrap()
+          .then(() => {
+            toastSuccess("Your picture has been successfully uploaded");
+          })
+          .catch(() => {
+            toastError("Error uploading profile picture");
+          });
       }
     }
   };
 
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [isChoosePhoto, setChoosePhoto] = useState(false);
   const [items, _] = useState({
     menuBottomSheetListItems: [
       {
         itemName: "Split",
-        itemIcon: <SplitIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <SplitIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => navigation.navigate("Common", { screen: "Split" }),
       },
       {
         itemName: "Monthly Summary",
-        itemIcon: <GraphIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <GraphIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "MonthlySummary" }),
       },
       {
         itemName: "Fees & Limits",
         itemIcon: (
-          <FeesAndLimitsIcon size={16} color={Colors[colorScheme].mainText} />
+          <FeesAndLimitsIcon size={16} color={Colors[appTheme].mainText} />
         ),
         onPress: () =>
           navigation.navigate("Common", { screen: "FeesAndLimits" }),
@@ -91,35 +123,31 @@ export const useBottomSheetType = (
       // },
       {
         itemName: "Contact Us",
-        itemIcon: (
-          <HeadphoneIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <HeadphoneIcon size={16} color={Colors[appTheme].mainText} />,
         onPress: () => navigation.navigate("Common", { screen: "ContactUs" }),
       },
     ],
     profileBottomSheetListItems: [
       {
         itemName: "Choose Profile Photo",
-        itemIcon: (
-          <GalleryIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => setChoosePhoto(true),
       },
       {
         itemName: "Account Details",
-        itemIcon: <UserIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <UserIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "AccountDetails" }),
       },
       {
         itemName: "Transaction History",
-        itemIcon: <ClockIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <ClockIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "TransactionHistory" }),
       },
       {
         itemName: "Bank Accounts",
-        itemIcon: <BankIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <BankIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", {
             screen: "BankAccounts",
@@ -130,16 +158,14 @@ export const useBottomSheetType = (
       },
       {
         itemName: "Debit/Credit Cards",
-        itemIcon: (
-          <CreditCardIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <CreditCardIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => {
           navigation.navigate("Common", { screen: "DebitCreditCards" });
         },
       },
       {
         itemName: "Sign out",
-        itemIcon: <LogoutIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <LogoutIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => {
           navigation.navigate("Welcome");
         },
@@ -148,26 +174,19 @@ export const useBottomSheetType = (
     transferBottomSheetListItems: [
       {
         itemName: "Send Money",
-        itemIcon: (
-          <SendMoneyIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <SendMoneyIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
       },
       {
         itemName: "Request Money",
-        itemIcon: (
-          <RequestMoneyIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <RequestMoneyIcon size={16} color={Colors[appTheme].text} />,
         onPress: () =>
           navigation.navigate("Common", { screen: "RequestMoney" }),
       },
       {
         itemName: "Recurring Transfer",
         itemIcon: (
-          <RecurringTransferIcon
-            size={16}
-            color={Colors[colorScheme].mainText}
-          />
+          <RecurringTransferIcon size={16} color={Colors[appTheme].text} />
         ),
         onPress: () =>
           navigation.navigate("Common", { screen: "RecurringTransfer" }),
@@ -176,19 +195,17 @@ export const useBottomSheetType = (
     choosePhotoBottomSheetListItems: [
       {
         itemName: "Take Photo",
-        itemIcon: <CameraIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <CameraIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => takePhoto(),
       },
       {
         itemName: "Select from Gallery",
-        itemIcon: (
-          <GalleryIcon size={16} color={Colors[colorScheme].mainText} />
-        ),
+        itemIcon: <GalleryIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => selectImageFromGallaery(),
       },
       {
         itemName: "Delete Profile Picture",
-        itemIcon: <TrashIcon size={16} color={Colors[colorScheme].mainText} />,
+        itemIcon: <TrashIcon size={16} color={Colors[appTheme].text} />,
         onPress: () => console.log("called"),
       },
     ],

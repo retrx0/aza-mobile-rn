@@ -4,7 +4,8 @@ import { Image, StyleSheet } from "react-native";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
 import Button from "../../../../components/buttons/Button";
 import Colors from "../../../../constants/Colors";
@@ -16,13 +17,13 @@ import { numberWithCommas } from "../../../../common/util/NumberUtils";
 
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { getInitialsAvatar } from "../../../../common/util/AppUtil";
+import { getDefaultPictureUrl } from "../../../../common/util/AppUtil";
 import { setTransaction } from "../../../../redux/slice/transactionSlice";
 
-const VaultConfirmation = ({
+const VaultWithdrawConfirm = ({
   navigation,
   route,
-}: CommonScreenProps<"VaultConfirmation">) => {
+}: CommonScreenProps<"VaultWithdrawConfirm">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [descModal, setDescModalOpen] = useState(false);
@@ -48,7 +49,8 @@ const VaultConfirmation = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}>
+          }}
+        >
           {headerTitle}
         </Text>
       ),
@@ -71,7 +73,7 @@ const VaultConfirmation = ({
               uri:
                 beneficiary.pictureUrl && beneficiary.pictureUrl !== ""
                   ? beneficiary.pictureUrl
-                  : getInitialsAvatar({
+                  : getDefaultPictureUrl({
                       firstName: beneficiary.fullName,
                       lastName: beneficiary.lastName,
                       scheme: colorScheme,
@@ -110,11 +112,13 @@ const VaultConfirmation = ({
                 justifyContent: "center",
                 borderRadius: 50,
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12, marginHorizontal: 5 }}>
+              style={{ fontSize: 12, marginHorizontal: 5 }}
+            >
               Nigerian
             </Text>
             <Image
@@ -128,7 +132,8 @@ const VaultConfirmation = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12, marginHorizontal: 5 }}>
+              style={{ fontSize: 12, marginHorizontal: 5 }}
+            >
               NGN
             </Text>
           </View>
@@ -152,7 +157,8 @@ const VaultConfirmation = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
                 marginVertical: 10,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -162,7 +168,8 @@ const VaultConfirmation = ({
               darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: 12,
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -172,7 +179,8 @@ const VaultConfirmation = ({
                 marginLeft: 3,
                 fontSize: 12,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-              }}>
+              }}
+            >
               {"\u20A6"}
               {user.azaBalance}
             </Text>
@@ -239,7 +247,7 @@ const VaultConfirmation = ({
               //TODO update message to accept JSX
               statusMessage:
                 "   You have successfully withdrawn \u20A680000 to your Bank Account",
-              navigateTo: "Home",
+              navigateTo: "UserVault",
             })
           }
           styleText={{
@@ -269,7 +277,7 @@ const VaultConfirmation = ({
   );
 };
 
-export default VaultConfirmation;
+export default VaultWithdrawConfirm;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,25 +1,31 @@
 import { FlatList, TouchableOpacity } from "react-native";
 
-import { Text, View } from "../../../../components/Themed";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
 import Colors from "../../../../constants/Colors";
 import { RootTabScreenProps } from "../../../../../types";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { SendIcon } from "../../../../../assets/svg";
-import { UserData } from "../../../../constants/userData";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import {
+  View as View,
+  Text as Text,
+  ScrollView,
+} from "../../../../theme/Themed";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import SegmentedTransactionView from "../../profile/screens/SegmentedTransactionView";
 
 export default function RecentTransactions({
   navigation,
 }: RootTabScreenProps<"Home">) {
-  const colorScheme = useColorScheme();
-
-  const user = useAppSelector(selectUser);
+  const { recentTransactions } = useAppSelector(selectUser);
+  const theme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(theme);
 
   return (
-    <View style={{ display: "flex", marginTop: hp(30) }}>
+    <View style={{ display: "flex", marginTop: hp(28) }}>
       <View
         style={{
           display: "flex",
@@ -45,12 +51,12 @@ export default function RecentTransactions({
             Recent Transactions
           </Text>
         </TouchableOpacity>
-        <SendIcon color={Colors[colorScheme].secondaryText} />
+        <SendIcon color={Colors[appTheme].secondaryText} />
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id.toString()}
-        data={user.recentTransactions.data}
+        keyExtractor={(item, i) => i.toString()}
+        data={recentTransactions.data.filter((_, i) => i === 0)}
         contentContainerStyle={{ paddingBottom: 250 }}
         ItemSeparatorComponent={() => {
           return (
@@ -61,25 +67,10 @@ export default function RecentTransactions({
             />
           );
         }}
-        renderItem={({
-          item: {
-            amount,
-            date,
-            image,
-            name,
-            transactionMessage,
-            transactionTitle,
-            transactionType,
-          },
-        }) => (
-          <TransactionListItem
-            amount={amount}
-            date={date}
-            image={image}
-            name={name}
-            transactionMessage={transactionMessage}
-            transactionTitle={transactionTitle}
-            transactionType={transactionType}
+        renderItem={({ item: { dateOfTransactions, transactions }, index }) => (
+          <SegmentedTransactionView
+            dateOfTransactions={dateOfTransactions}
+            transactions={transactions}
           />
         )}
       />

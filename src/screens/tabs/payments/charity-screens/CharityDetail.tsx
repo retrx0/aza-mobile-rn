@@ -1,24 +1,26 @@
-import { TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { Text, View } from "../../../../components/Themed";
-import { CharityStyles as styles } from "../styles";
-import { InfoIcon } from "../../../../../assets/svg";
-import { Input } from "../../../../components/input/input";
-import MySwitch from "../sub-components/MySwitch";
+import { TouchableOpacity } from "react-native";
+import { useRoute } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { View as View, Text as Text } from "../../../../theme/Themed";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import Divider from "../sub-components/Divider";
 import MyButton from "../sub-components/MyButton";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../types";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+
+import { CharityStyles as styles } from "../styles";
+import { InfoIcon } from "../../../../../assets/svg";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 export default function CharityDetail({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"CharityDetail">) {
+  const [amount, setAmount] = useState("");
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const route = useRoute();
@@ -36,32 +38,34 @@ export default function CharityDetail({
       </View>
       {route.name == "For Someone Else" && (
         <>
-          <Input
+          <UnderlinedInput
             style={styles.mainInput}
             icon={null}
-            inputStyle={styles.input}
+            inputStyle={[styles.input]}
             labelStyle={styles.label}
             label=""
             placeholder="Name and Surname"
           />
 
-          <Input
+          <UnderlinedInput
             style={styles.mainInput}
             icon={null}
-            inputStyle={styles.input}
+            inputStyle={[styles.input]}
             labelStyle={styles.label}
             label=""
             placeholder="Email Address"
           />
         </>
       )}
-      <Input
+      <UnderlinedInput
         style={styles.mainInput}
         icon={null}
-        inputStyle={styles.input}
+        inputStyle={[styles.input]}
         labelStyle={styles.label}
         label=""
         placeholder="Donation Amount"
+        keyboardType="number-pad"
+        returnKeyType="done"
       />
 
       <View style={styles.suggestions}>
@@ -85,7 +89,7 @@ export default function CharityDetail({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
+          { bottom: insets.top || hp(45) },
         ]}>
         <View style={styles.check}>
           <CustomSwitch
@@ -97,8 +101,8 @@ export default function CharityDetail({
 
         <Divider
           style={{
-            marginTop: 10,
-            marginBottom: 10,
+            marginTop: hp(5),
+            marginBottom: hp(5),
             width: "85%",
           }}
         />
@@ -107,7 +111,13 @@ export default function CharityDetail({
           disabled={false}
           title="Continue"
           onPress={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              paymentMethod: "Aza Account",
+              purchaseName: "Charity",
+              beneficiaryLogo: "",
+              beneficiaryName: "",
+            });
           }}
         />
         <CancelButtonWithUnderline

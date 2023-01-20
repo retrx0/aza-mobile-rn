@@ -3,7 +3,7 @@ import React from "react";
 import Divider from "./Divider";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 type Props = {
@@ -25,37 +25,37 @@ export default function ListItem({
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
-    <TouchableAnimated
-      entering={FadeInDown.delay(200 * (index + 1))}
-      onPress={onPress}
-      style={styles.listContainer}>
-      <View style={styles.mainItem}>
-        <View style={styles.item}>
-          <Icon />
-          <Text style={styles.text}>{title}</Text>
+    <View style={styles.listContainer}>
+      <TouchableAnimated
+        entering={FadeInDown.delay(200 * (index + 1))}
+        onPress={onPress}>
+        <View style={styles.mainItem}>
+          <View style={styles.item}>
+            <Icon />
+            <Text style={styles.text}>{title}</Text>
+          </View>
+          {IconComponent == null ? <ArrowFowardIcon /> : <IconComponent />}
         </View>
-        {IconComponent == null ? <ArrowFowardIcon /> : <IconComponent />}
-      </View>
-      <Divider />
-    </TouchableAnimated>
+
+        <Divider />
+      </TouchableAnimated>
+    </View>
   );
 }
 const styles = StyleSheet.create({
   listContainer: {
     minHeight: 20,
     marginTop: 20,
-    width: "100%",
     backgroundColor: "transparent",
-    justifyContent: "center",
   },
   mainItem: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
 
   item: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
   },
   text: {

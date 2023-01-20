@@ -1,10 +1,16 @@
 import React from "react";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { View } from "../Themed";
+import { View, Text } from "../../theme/Themed";
 
-const WelcomeScrollIndicator = (props: { count: number; active: boolean; activeIndex?: number }) => {
-  const backgroundColor = props.active ? Colors.general.black : Colors.general.grey;
+const WelcomeScrollIndicator = (props: {
+  count: number;
+  active: boolean;
+  activeIndex?: number;
+}) => {
+  const backgroundColor = props.active
+    ? Colors.general.black
+    : Colors.general.grey;
 
   return (
     <View

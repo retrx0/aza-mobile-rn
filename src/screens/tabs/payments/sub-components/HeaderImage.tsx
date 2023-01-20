@@ -1,8 +1,10 @@
 import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import { TickIcon } from "../../../../../assets/svg";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 type HeaderImageProps = {
   image: any;
@@ -53,7 +55,7 @@ export default function HeaderImage({
           ]}
           source={image}
         />
-        {amount || selected == true ? (
+        {selected ? (
           <View style={styles.icon}>
             <TickIcon />
           </View>
@@ -102,7 +104,8 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontWeight: "400",
-    fontSize: 12,
+    fontSize: hp(14),
+    marginTop: hp(5),
   },
   text3: {
     fontWeight: "400",

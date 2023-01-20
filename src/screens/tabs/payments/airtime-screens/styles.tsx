@@ -1,6 +1,4 @@
 import { StyleSheet, StatusBar, Platform, Appearance } from "react-native";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 export const AIrtimeStyles = StyleSheet.create({
@@ -8,20 +6,18 @@ export const AIrtimeStyles = StyleSheet.create({
     flex: 1,
   },
   label: {
-    marginLeft: hp(20),
     fontFamily: "Euclid-Circular-A",
     fontWeight: "400",
     fontSize: hp(16),
-    marginTop: hp(30),
+    marginTop: hp(15),
   },
   input: {
-    marginLeft: 20,
-    width: "90%",
-    borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    width: "100%",
+    borderBottomWidth: 0.3,
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",
     fontSize: hp(16),
+    paddingVertical: hp(3),
   },
   button: {
     marginTop: "auto",

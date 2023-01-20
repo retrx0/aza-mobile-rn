@@ -2,7 +2,7 @@ import { useWindowDimensions } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text } from "../../../../components/Themed";
+import { Text as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -33,13 +33,12 @@ const BlockNewUserScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Block New User
         </Text>
       ),
@@ -62,48 +61,48 @@ const BlockNewUserScreen = ({
   };
 
   return (
-    <>
-      <SpacerWrapper>
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={{ width: layout.width }}
-          sceneContainerStyle={{ overflow: "visible" }}
-          renderTabBar={(props) => (
-            <TabBar
-              {...props}
-              style={{
-                elevation: 0,
-                backgroundColor: "transparent",
-                borderBottomColor: Colors[colorScheme].secondaryText,
-                borderBottomWidth: 2,
-              }}
-              indicatorStyle={{
-                backgroundColor: Colors[colorScheme].text,
-                marginBottom: -2,
-              }}
-              renderLabel={({ focused, route }) => {
-                return (
-                  <Text
-                    lightColor={
-                      focused ? Colors.light.text : Colors.light.secondaryText
-                    }
-                    darkColor={
-                      focused ? Colors.dark.mainText : Colors.dark.secondaryText
-                    }
-                    style={{
-                      fontFamily: "Euclid-Circular-A-Medium",
-                      fontSize: 16,
-                    }}>
-                    {route.title}
-                  </Text>
-                );
-              }}
-            />
-          )}
-        />
-      </SpacerWrapper>
+    <SpacerWrapper>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        sceneContainerStyle={{ overflow: "visible" }}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            style={{
+              elevation: 0,
+              backgroundColor: "transparent",
+              borderBottomColor: Colors[colorScheme].secondaryText,
+              borderBottomWidth: 2,
+            }}
+            indicatorStyle={{
+              backgroundColor: Colors[colorScheme].text,
+              marginBottom: -2,
+            }}
+            renderLabel={({ focused, route }) => {
+              return (
+                <Text
+                  lightColor={
+                    focused ? Colors.light.text : Colors.light.secondaryText
+                  }
+                  darkColor={
+                    focused ? Colors.dark.mainText : Colors.dark.secondaryText
+                  }
+                  style={{
+                    fontFamily: "Euclid-Circular-A-Medium",
+                    fontSize: 16,
+                  }}
+                >
+                  {route.title}
+                </Text>
+              );
+            }}
+          />
+        )}
+      />
+
       <BlockUserModal
         navigation={navigation}
         route={route}
@@ -111,7 +110,7 @@ const BlockNewUserScreen = ({
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}
       />
-    </>
+    </SpacerWrapper>
   );
 };
 

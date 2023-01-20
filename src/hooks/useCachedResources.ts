@@ -3,6 +3,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { ISettings, useAppAsyncStorage } from "./useAsyncStorage";
 
 const EuclidRegular = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A.ttf");
 const EuclidLight = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Light.ttf");
@@ -15,10 +16,11 @@ const SpaceMono = require("../../assets/fonts/SpaceMono-Regular.ttf");
 
 const useCachedResources = () => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  // change default to true only in dev
   const [isUserSignedIn, setUserSignedIn] = useState(false);
+  const [userPreferences, setUserPreferences] = useState<ISettings>();
 
-  // const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
-  // const dispatch = useAppDispatch();
+  const { loadSettingsFromStorage } = useAppAsyncStorage();
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
@@ -32,16 +34,18 @@ const useCachedResources = () => {
           .then((token) => {
             if (token) setUserSignedIn(true);
           })
-          .catch((e) => console.info(e));
+          .catch((e) => console.debug(e));
+
+        // Load users preferences if present
+        loadSettingsFromStorage()
+          .then((uPrefs) => {
+            if (uPrefs) setUserPreferences(uPrefs);
+          })
+          .catch((e) => {
+            throw new Error(e);
+          });
 
         // do any api call here
-
-        if (isUserSignedIn) {
-          //  then user is loggend in, get passcode and refresh tokens
-          // dispatch(login())
-        } else {
-          // goto sign in screen
-        }
 
         // Load fonts
         await Font.loadAsync({
@@ -65,7 +69,7 @@ const useCachedResources = () => {
     loadResourcesAndDataAsync();
   }, []);
 
-  return { isLoadingComplete, isUserSignedIn };
+  return { isLoadingComplete, isUserSignedIn, userPreferences };
 };
 
 export default useCachedResources;

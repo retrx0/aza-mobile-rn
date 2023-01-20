@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import Button from "../../../../components/buttons/Button";
 
 import Colors from "../../../../constants/Colors";
@@ -32,7 +34,8 @@ const AddBankAccountScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Add Bank Account
         </Text>
       ),
@@ -47,19 +50,20 @@ const AddBankAccountScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(15) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               marginVertical: hp(30),
               marginLeft: hp(5),
               fontWeight: "500",
               marginTop: hp(30),
-            }}>
+            }}
+          >
             Add your bank account to receive withdrawals from your Aza account
           </Text>
           <View>
@@ -71,7 +75,8 @@ const AddBankAccountScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Number
             </Text>
             <TextInput
@@ -84,7 +89,9 @@ const AddBankAccountScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(5),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                 marginLeft: hp(5),
               }}
               placeholder="Enter your account number"
@@ -96,8 +103,9 @@ const AddBankAccountScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

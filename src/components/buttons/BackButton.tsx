@@ -8,7 +8,11 @@ import {
 import { BackIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import { Text, useThemeColor } from "../Themed";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { useAppThemeColor } from "../../theme/Themed";
+//
+import { View as View, Text as Text } from "../../theme/Themed";
 
 type BackButtonType = {
   style?: StyleProp<ViewStyle>;
@@ -16,9 +20,11 @@ type BackButtonType = {
 };
 
 const BackButton: FC<BackButtonType> = ({ style, onPress }) => {
-  const color = useThemeColor(
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const color = useAppThemeColor(
     { light: Colors.light.text, dark: Colors.dark.text },
-    "text"
+    "text",
+    selectedTheme
   );
   return (
     <TouchableOpacity style={[styles.backContainer, style]} onPress={onPress}>

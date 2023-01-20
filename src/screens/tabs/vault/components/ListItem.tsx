@@ -1,8 +1,10 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Animated from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import { hp, wp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 type Props = {
   Icon: any;
@@ -16,6 +18,7 @@ type Props = {
 
 const ListItem = ({ Icon, title, onPress, subtitle }: Props) => {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
+  const colorScheme = useColorScheme();
 
   return (
     <TouchableAnimated onPress={onPress}>
@@ -29,14 +32,17 @@ const ListItem = ({ Icon, title, onPress, subtitle }: Props) => {
         </View>
       </View>
       <View
-        style={{
-          borderWidth: 0.5,
-          borderColor: "#EAEAEC",
-          width: wp(380),
-          alignSelf: "center",
-          marginTop: hp(17),
-          marginBottom: hp(17),
-        }}
+        style={[
+          {
+            borderWidth: 0.5,
+
+            width: wp(380),
+            alignSelf: "center",
+            marginTop: hp(17),
+            marginBottom: hp(17),
+          },
+          { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
       />
     </TouchableAnimated>
   );

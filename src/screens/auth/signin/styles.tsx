@@ -9,7 +9,7 @@ export const SigninStyles = StyleSheet.create({
     paddingHorizontal: hp(10),
     lineHeight: hp(17.75),
     marginBottom: hp(35),
-    marginLeft: hp(20),
+    marginLeft: hp(10),
   },
   welcome: {
     marginTop: hp(50),
@@ -19,7 +19,7 @@ export const SigninStyles = StyleSheet.create({
     paddingHorizontal: hp(10),
     lineHeight: hp(30.43),
     marginBottom: hp(10),
-    marginLeft: hp(20),
+    marginLeft: hp(10),
   },
 
   passwordText: {
@@ -100,15 +100,17 @@ export const SigninStyles = StyleSheet.create({
   Container: {
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: hp(20),
+    marginLeft: hp(17),
+    marginTop: hp(20),
   },
 
   verification: {
-    width: wp(321),
     marginTop: hp(30),
     fontSize: hp(16),
     fontWeight: "400",
     marginLeft: hp(20),
+    fontFamily: "Euclid-Circular-A-Medium",
+    marginBottom: hp(62),
   },
   phoneStyle: {
     alignSelf: "center",

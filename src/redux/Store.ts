@@ -6,6 +6,8 @@ import transactionSlice from "./slice/transactionSlice";
 import userSlice from "./slice/userSlice";
 import vaultSlice from "./slice/vaultslice";
 import activityModalSlice from "./slice/activityModalSlice";
+import themeSlice from "./slice/themeSlice";
+import paymentSlice from "./slice/paymentSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ export const Store = configureStore({
     transfer: transferSlice,
     transaction: transactionSlice,
     activityModal: activityModalSlice,
+    theme: themeSlice,
+    payment: paymentSlice,
   },
 });
 

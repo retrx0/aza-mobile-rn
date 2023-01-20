@@ -2,14 +2,15 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { DangerIcon } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
-import { Text, View } from "../../../../components/Themed";
+import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 interface IProps {
   isBvnLinked: boolean;
 }
 
-const LinkBVN = ({
+export const LinkBVN = ({
   navigation,
   isBvnLinked,
 }: RootTabScreenProps<"Home"> & IProps) => {
@@ -25,7 +26,8 @@ const LinkBVN = ({
         justifyContent: "center",
         alignItems: "flex-start",
         flexDirection: "row",
-      }}>
+      }}
+    >
       <DangerIcon />
       <View
         style={{
@@ -33,21 +35,24 @@ const LinkBVN = ({
           display: "flex",
           justifyContent: "space-between",
           backgroundColor: "transparent",
-        }}>
+        }}
+      >
         <Text
+          darkColor={Colors["general"].black}
           style={{
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 12,
-            color: Colors.general.darkGrey,
-          }}>
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+          }}
+        >
           Link your BVN to start using AZA
         </Text>
         <Text
+          darkColor={Colors["general"].black}
           style={{
-            fontSize: 10,
-            color: "black",
+            fontSize: hp(12),
             marginTop: 5,
-          }}>
+          }}
+        >
           Link your BVN to upgrade your account as there are certain limits on
           it.
         </Text>
@@ -59,7 +64,8 @@ const LinkBVN = ({
                 onVerifyNavigateBackTo: "Home",
               },
             })
-          }>
+          }
+        >
           <View
             style={{
               backgroundColor: "transparent",
@@ -67,13 +73,15 @@ const LinkBVN = ({
               paddingBottom: 1,
               marginTop: 10,
               alignSelf: "flex-start",
-            }}>
+            }}
+          >
             <Text
+              darkColor={Colors["dark"].Text}
               style={{
-                fontSize: 14,
+                fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Medium",
-                color: Colors.general.primary,
-              }}>
+              }}
+            >
               Link your BVN
             </Text>
           </View>

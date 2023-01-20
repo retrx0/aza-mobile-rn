@@ -8,7 +8,7 @@ import VaultDetails from "./withdraw-to-aza/VaultDetails";
 import VaultActivity from "./withdraw-to-aza/VaultActivity";
 import { Platform } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { SafeAreaView } from "../../../components/Themed";
+import { SafeAreaView } from "../../../theme/Themed";
 import useColorScheme from "../../../hooks/useColorScheme";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import VaulToBank from "./withdraw-to-bank/VaultWithdrawToBank";
@@ -23,6 +23,8 @@ import AddCoverImage from "./AddCoverImage";
 import NewUserVault from "./NewUserVault";
 import AddCoverImageSuccessful from "./SetVaultGoal";
 import ConfirmGoal from "./GoalConfirmation";
+import VaultFeature from "./VaultFeature/VaultFeature";
+import VaultLiberty from "./VaultFeature/VaultLiberty";
 
 const VaultStack = createNativeStackNavigator<VaultStackProps>();
 const Tab = createMaterialTopTabNavigator();
@@ -54,6 +56,8 @@ export type VaultStackProps = {
   VaultRecurringAmount: undefined;
   RecurringMoneyConfirmationScreen: undefined;
   VaultToBankAmount: undefined;
+  VaultFeature: undefined;
+  VaultLiberty: undefined;
 };
 
 export const VaultTabs = () => {
@@ -74,7 +78,8 @@ export const VaultTabs = () => {
             textTransform: "capitalize",
           },
         }}
-        initialRouteName="VaultDetails">
+        initialRouteName="VaultDetails"
+      >
         <Tab.Screen name="VaultDetails" component={VaultDetails} />
         <Tab.Screen name="VaultActivity" component={VaultActivity} />
       </Tab.Navigator>
@@ -181,6 +186,16 @@ const VaultNavigator = () => {
         options={{ headerShown: false }}
         name="ConfirmGoal"
         component={ConfirmGoal}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="VaultFeature"
+        component={VaultFeature}
+      />
+      <VaultStack.Screen
+        options={{ headerShown: false }}
+        name="VaultLiberty"
+        component={VaultLiberty}
       />
     </VaultStack.Navigator>
   );

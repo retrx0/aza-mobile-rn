@@ -1,17 +1,15 @@
 import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { View, Text } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -34,20 +32,15 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Delete"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "AddVault" })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
 
           <CancelButtonWithUnderline

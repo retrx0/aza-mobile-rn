@@ -11,18 +11,50 @@ import Navigation from "./src/navigation";
 import { Provider } from "react-redux";
 import { Store } from "./src/redux/Store";
 import { toastConfig } from "./src/components/notification/toast";
+import * as Device from "expo-device";
+import { useEffect, useState } from "react";
+import NetInfo from "@react-native-community/netinfo";
+import { toastError } from "./src/common/util/ToastUtil";
 
 const App = () => {
-  const { isLoadingComplete } = useCachedResources();
+  const { isLoadingComplete, userPreferences } = useCachedResources();
   const colorScheme = useColorScheme();
-  if (!isLoadingComplete) {
+
+  const [isDeviceRooted, setisDeviceRooted] = useState(false);
+
+  useEffect(() => {
+    Device.isRootedExperimentalAsync().then((rooted) =>
+      setisDeviceRooted(rooted)
+    );
+
+    // TODO fix below code
+    NetInfo.addEventListener((netChange) => {
+      if (
+        netChange.isConnected === false &&
+        netChange.isInternetReachable === false
+      ) {
+        toastError("Couldn't connect to internet");
+      }
+    });
+  }, []);
+
+  if (!isLoadingComplete || isDeviceRooted) {
     return null;
   } else {
     return (
       <SafeAreaProvider>
-        <StatusBar />
+        <StatusBar
+          style={
+            userPreferences?.appearance && userPreferences.appearance === "dark"
+              ? "light"
+              : "dark"
+          }
+        />
         <Provider store={Store}>
-          <Navigation colorScheme={colorScheme} />
+          <Navigation
+            colorScheme={colorScheme}
+            loadedPreference={userPreferences}
+          />
         </Provider>
         <Toast config={toastConfig} />
       </SafeAreaProvider>
@@ -31,7 +63,6 @@ const App = () => {
 };
 
 // Sentry report config
-
 Sentry.init({
   dsn: "https://e0cda68987dd4b5197008ef21096f2ca@o4503908022550528.ingest.sentry.io/4503908024188928",
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.

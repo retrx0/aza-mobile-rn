@@ -2,9 +2,10 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View, Text } from "../../theme/Themed";
+
 import Button from "../../components/buttons/Button";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -13,13 +14,18 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+import { getAppTheme } from "../../theme";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { useAppSelector } from "../../redux";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const { onVerifyNavigateBackTo } = route.params;
 
@@ -27,8 +33,6 @@ const BvnVerificationScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -48,47 +52,38 @@ const BvnVerificationScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-              marginLeft: 5,
             }}>
             Verify your BVN
           </Text>
           <View>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
 
                 fontWeight: "400",
-                marginLeft: 5,
               }}>
               BVN
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor: Colors[appTheme].borderColor,
                 fontSize: hp(16),
                 fontWeight: "500",
-                marginLeft: 5,
               }}
               placeholder="Enter your bank verification number"
               keyboardType="number-pad"
@@ -99,7 +94,7 @@ const BvnVerificationScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Verify"
@@ -113,13 +108,10 @@ const BvnVerificationScreen = ({
               })
             }
             styleText={{
-              color: Colors[colorScheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
             }}
-            style={{
-              backgroundColor: Colors[colorScheme].button,
-            }}
+            style={{}}
           />
           <CancelButtonWithUnderline
             title="Cancel"

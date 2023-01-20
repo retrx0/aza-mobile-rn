@@ -1,78 +1,155 @@
-import { View, Text, ScrollView, Switch, StyleSheet } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import { SafeAreaView } from "../../../../components/Themed";
+import React, { useState } from "react";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { Header } from "../../../../components/text/header";
+import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
+import MyButton from "../sub-components/MyButton";
+import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
+import { Card } from "../sub-components/Card";
+import { SafeAreaView } from "../../../../theme/Themed";
+
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import { Input } from "../../../../components/input/input";
-import ButtonLg from "../../../../components/buttons/ButtonLg";
-import MyButton from "../sub-components/MyButton";
-import MySwitch from "../sub-components/MySwitch";
-import { useRoute } from "@react-navigation/native";
-import SelectInput from "../../../../components/input/SelectInput";
-import { Ie } from "../../../../../assets/images";
-import { RootTabScreenProps } from "../../../../../types";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+
 import { hp } from "../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useColorScheme from "../../../../hooks/useColorScheme";
+import * as Images from "../../../../../assets/images/index";
+import Button from "../../../../components/buttons/Button";
+
+const Cable = [
+  {
+    title: "DSTV",
+    icon: Images.Dstv,
+  },
+  {
+    title: "GOTV",
+    icon: Images.Gotv,
+  },
+  {
+    title: "Startimes",
+    icon: Images.Startimes,
+  },
+];
 
 export default function CableTvIndex({
   navigation,
-}: RootTabScreenProps<"Payments">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [currentIndex, setCurrent] = useState(0);
-  const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+}: CommonScreenProps<"CableTV">) {
+  const [selectedCable, setSelectedCable] = useState<{
+    title: string;
+    icon: string;
+  }>({ title: "", icon: "" });
+  const [amount, setAmount] = useState("");
+  const [smartCardNumber, setSmartCardNumber] = useState("");
+
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
+
+  const period = [
+    { label: "DSTV Padi", value: "10000" },
+    { label: "DSTV Yanga", value: "1000" },
+    { label: "DSTV Confam", value: "3500" },
+    { label: "DSTV Compact", value: "4000" },
+    { label: "DSTV Compact Plus", value: "5000" },
+    { label: "DSTV Premium", value: "6000" },
+  ];
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
       <Header
-        style={styles.header}
         description=""
         descriptionStyle={null}
         headerStyle={{
-          fontSize: hp(14),
+          fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-
           marginTop: hp(30),
         }}
         heading="Select Cable TV"
       />
 
-      <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage selected index={0} image={Ie} title="IE" />
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={CommonStyles.imageHeaderContainer}
+      >
+        {Cable.map((item, index) => {
+          return (
+            <Card
+              key={index}
+              title={item.title}
+              icon={item.icon}
+              onPress={() => setSelectedCable(item)}
+              isActive={item.title === selectedCable.title}
+            />
+          );
+        })}
       </ScrollView>
 
-      <SelectInput
-        items={bundles}
-        title="Smart Card Number"
-        placeHolder="Enter your smart card number"
-        style={styles.select}
-      />
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <UnderlinedInput
+          icon={null}
+          keyboardType="number-pad"
+          inputStyle={[styles.input]}
+          labelStyle={styles.label}
+          label="Smart Card Number"
+          placeholder="Enter your smart card number"
+          returnKeyType="done"
+          value={smartCardNumber}
+          onChangeText={(text) => {
+            setSmartCardNumber(text);
+          }}
+        />
+      </View>
 
-      <Input
-        icon={null}
-        keyboardType="phone-pad"
-        inputStyle={[styles.input]}
-        labelStyle={styles.label}
-        label="Subscription Package"
-        placeholder="Choose a subscription package"
-      />
+      <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginBottom: hp(20),
+          marginTop: hp(20),
+        }}
+      >
+        <Text
+          style={{
+            fontSize: hp(16),
+            fontWeight: "400",
+            fontFamily: "Euclid-Circular-A",
+
+            color: colorScheme === "dark" ? "#ffffff" : "#000000",
+          }}
+        >
+          Subscription Package
+        </Text>
+        <CustomDropdown
+          data={period}
+          placeholder="Select your subscription"
+          setValue={setAmount}
+          value={amount}
+          label={""}
+        />
+      </View>
+
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
-        ]}>
-        <MyButton
-          disabled={false}
+          { bottom: insets.top || hp(45) },
+        ]}
+      >
+        <Button
+          disabled={!amount || !smartCardNumber || !selectedCable.title}
           title="Continue"
-          onPress={() => {
-            navigation.navigate("Common", { screen: "Confirm" });
+          onPressButton={() => {
+            navigation.navigate("PaymentConfirmation", {
+              amount,
+              beneficiaryLogo: selectedCable.icon,
+              beneficiaryName: selectedCable.title,
+              purchaseName: "TV subscription",
+              smartCardNumber,
+              paymentMethod: "Aza Account",
+            });
           }}
-          // style={{ marginTop: 330 }}
         />
       </View>
     </SafeAreaView>

@@ -1,5 +1,6 @@
 import React from "react";
-import { OTPInput, Text, View } from "../../components/Themed";
+import { OTPInput } from "../../theme/Themed";
+import { View as View, Text as Text } from "../../theme/Themed";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
 
@@ -35,9 +36,8 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         autoFocusOnLoad={autoFocusOnLoad}
         codeInputFieldStyle={styles.underlineStyleBase}
         // codeInputHighlightStyle={styles.underlineStyleHighLighted}
-        onCodeFilled={(code) => {
-          console.log(`Code is ${code}, you are good to go!`);
-        }}
+        onCodeFilled={() => null}
+        style={{ marginBottom: hp(20), marginTop: hp(10) }}
       />
     </View>
   );
@@ -49,11 +49,10 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   otpText: {
-    marginBottom: 10,
+    marginBottom: hp(10),
     fontWeight: "500",
     fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Medium",
-    lineHeight: hp(20),
   },
   otp: {
     marginLeft: hp(90),

@@ -13,69 +13,65 @@ import {
   AppLanguageIcon,
 } from "../../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../../types";
+import { useAppSelector } from "../../../../redux";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 
 export default function ApplicationSettings({
   navigation,
 }: RootTabScreenProps<"Settings">) {
-  const colorScheme = useColorScheme();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
   const applicationSettings = [
-    // {
-    //   icon: <MoonIcon size={36} color={Colors[colorScheme].mainText} />,
-    //   name: "Appearance",
-    //   detail: "Change appearance as light/dark/system",
-    //   disabled: false,
-    //   disabledIcon: <MoonIcon size={36} color={Colors[colorScheme].disabled} />,
-    //   handleNavigation: () =>
-    //     navigation.navigate("Common", { screen: "Appearance" }),
-    // },
+    {
+      icon: <MoonIcon size={36} color={Colors[appTheme].mainText} />,
+      name: "Appearance",
+      detail: "Change appearance as light/dark/system",
+      disabled: false,
+      disabledIcon: <MoonIcon size={36} color={Colors[appTheme].disabled} />,
+      handleNavigation: () =>
+        navigation.navigate("Common", { screen: "Appearance" }),
+    },
     {
       icon: (
-        <NotificationSettingsIcon
-          size={36}
-          color={Colors[colorScheme].mainText}
-        />
+        <NotificationSettingsIcon size={36} color={Colors[appTheme].mainText} />
       ),
       name: "Notification Settings",
       detail: "Change your notification preferences",
       disabled: false,
       disabledIcon: (
-        <NotificationSettingsIcon
-          size={36}
-          color={Colors[colorScheme].disabled}
-        />
+        <NotificationSettingsIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "NotificationSettings" }),
     },
     {
-      icon: <AppLanguageIcon size={36} color={Colors[colorScheme].mainText} />,
+      icon: <AppLanguageIcon size={36} color={Colors[appTheme].mainText} />,
       name: "App Language",
       detail: "Change the app language",
       disabled: false,
       disabledIcon: (
-        <AppLanguageIcon size={36} color={Colors[colorScheme].disabled} />
+        <AppLanguageIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "AppLanguage" }),
     },
     {
-      icon: <FaceIdIcon size={36} color={Colors[colorScheme].mainText} />,
+      icon: <FaceIdIcon size={36} color={Colors[appTheme].mainText} />,
       name: "Face ID",
       detail: "Login and confrim transactions with Face ID",
       disabled: false,
-      disabledIcon: (
-        <FaceIdIcon size={36} color={Colors[colorScheme].disabled} />
-      ),
+      disabledIcon: <FaceIdIcon size={36} color={Colors[appTheme].disabled} />,
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "FaceId" }),
     },
     {
-      icon: <HeartSlashIcon size={36} color={Colors[colorScheme].mainText} />,
+      icon: <HeartSlashIcon size={36} color={Colors[appTheme].mainText} />,
       name: "Close Aza account",
       detail: "You can close your Aza account",
       disabled: false,
       disabledIcon: (
-        <HeartSlashIcon size={36} color={Colors[colorScheme].disabled} />
+        <HeartSlashIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
         navigation.navigate("Common", {
@@ -86,7 +82,7 @@ export default function ApplicationSettings({
             statusMessage:
               "Are you sure you want to go back to a life without Aza?",
             cancelButton: true,
-            navigateTo: "Settings",
+            navigateTo: "CloseAccountScreen",
           },
         }),
     },
@@ -97,21 +93,20 @@ export default function ApplicationSettings({
       <View>
         <Text
           style={{
-            color: Colors[colorScheme].mainText,
+            color: appTheme === "dark" ? "#E7E9EA" : "#000000",
             fontFamily: "Euclid-Circular-A",
-            fontSize: hp(16),
+            fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
-          }}
-        >
+          }}>
           Application Settings
         </Text>
         <View
           style={{
             backgroundColor: "transparent",
             marginTop: hp(10),
-            borderBottomWidth: 0.6,
-            borderBottomColor: Colors[colorScheme].separator,
+            borderBottomWidth: 1,
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
           }}
         />
       </View>

@@ -4,7 +4,7 @@ import {
   FlatList,
   I18nManager,
 } from "react-native";
-import { View, Text } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import {
@@ -22,6 +22,7 @@ import { VaultListProps } from "../../../../types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import BackButton from "../../../components/buttons/BackButton";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const ArchieveList = [
   {
@@ -53,6 +54,8 @@ const ListItem = ({
   onPress,
 }: VaultListProps) => {
   const navigation = useNavigation();
+  const colorScheme = useColorScheme();
+
   return (
     <Swipeable
       renderRightActions={() => (
@@ -61,7 +64,8 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}>
+          }}
+        >
           <TouchableOpacity
             style={{
               width: 77,
@@ -72,7 +76,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "AddVault" })
-            }>
+            }
+          >
             <UnarchiveIcon />
             <Text
               style={{
@@ -82,7 +87,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Unarchive
             </Text>
           </TouchableOpacity>
@@ -96,7 +102,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }>
+            }
+          >
             <TrashIcon color="white" size={24} />
             <Text
               style={{
@@ -106,7 +113,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Delete
             </Text>
           </TouchableOpacity>
@@ -114,7 +122,8 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}>
+      rightThreshold={40}
+    >
       <View>
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
@@ -132,7 +141,8 @@ const ListItem = ({
                         ? Colors.general.green
                         : Colors.general.black,
                   },
-                ]}>
+                ]}
+              >
                 {"\u20A6"}
                 {amount}
               </Text>
@@ -143,13 +153,15 @@ const ListItem = ({
             <TouchableOpacity onPress={onPress}>{closeIcon}</TouchableOpacity>
           </View>
         </View>
-        <View style={styles.separator} />
+        <View style={[styles.separator]} />
       </View>
     </Swipeable>
   );
 };
 
 const ArchievedVault = ({ navigation }: { navigation: any }) => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -160,7 +172,8 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
             justifyContent: "space-between",
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -169,20 +182,31 @@ const ArchievedVault = ({ navigation }: { navigation: any }) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginRight: hp(30),
-            }}>
+              marginRight: hp(40),
+            }}
+          >
             Archived Vaults
           </Text>
           <TouchableOpacity>
-            <InfoIcon color={""} size={0} />
+            <InfoIcon
+              color={colorScheme === "dark" ? "#999999" : "#000000"}
+              size={0}
+            />
           </TouchableOpacity>
         </View>
-        <View style={CommonStyles.lineDivider} />
-        <FlatList
-          data={ArchieveList}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem altamount={""} {...item} />}
-        />
+        <View>
+          <View
+            style={[
+              CommonStyles.lineDivider,
+              { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+            ]}
+          />
+          <FlatList
+            data={ArchieveList}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <ListItem altamount={""} {...item} />}
+          />
+        </View>
       </View>
     </SpacerWrapper>
   );
@@ -205,9 +229,9 @@ const styles = StyleSheet.create({
     color: Colors.general.green,
     marginRight: hp(12),
   },
-  container: {
-    flex: 1,
-  },
+  // container: {
+  //   flex: 1,
+  // },
   itemSeparator: {
     flex: 1,
     height: 1,
@@ -239,11 +263,10 @@ const styles = StyleSheet.create({
     fontSize: hp(14),
     fontWeight: "500",
     lineHeight: hp(17.75),
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   separator: {
     borderWidth: 0.5,
-    borderColor: "#EAEAEC",
     width: wp(390),
     alignSelf: "center",
   },

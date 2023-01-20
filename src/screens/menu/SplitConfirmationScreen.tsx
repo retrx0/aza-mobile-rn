@@ -2,11 +2,11 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image, ScrollView } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { View, Text, TextInput } from "../../theme/Themed";
+
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
@@ -14,21 +14,28 @@ import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { NAIRA_UNICODE } from "../../constants/AppConstants";
+import { useAppSelector } from "../../redux";
+import { selectUser } from "../../redux/slice/userSlice";
+import { getDefaultPictureUrl } from "../../common/util/AppUtil";
+import SplitDetailItem from "./components/split/SplitDetailItem";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getAppTheme } from "../../theme";
 
 const SplitConfirmationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"SplitConfirmation">) => {
   const { amount, splitImage, name, contacts } = route.params;
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+
+  const user = useAppSelector(selectUser);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -50,11 +57,9 @@ const SplitConfirmationScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={CommonStyles.vaultcontainer}>
+        <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -66,8 +71,6 @@ const SplitConfirmationScreen = ({
           </Text>
           <View style={{ position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
@@ -77,17 +80,14 @@ const SplitConfirmationScreen = ({
               To
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              // placeholderTextColor={Colors[colorScheme].secondaryText}
               style={[
                 styles.input,
                 {
-                  borderBottomColor: Colors[colorScheme].separator,
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
                   fontWeight: "500",
                   marginLeft: hp(5),
+                  borderBottomColor: Colors[appTheme].borderColor,
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -113,8 +113,6 @@ const SplitConfirmationScreen = ({
             ]}>
             <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <Text
-                // lightColor={Colors.light.secondaryText}
-                // darkColor={Colors.dark.secondaryText}
                 style={{
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
@@ -123,49 +121,19 @@ const SplitConfirmationScreen = ({
                 }}>
                 Created By
               </Text>
-              <View
-                style={[
-                  CommonStyles.row,
-                  { alignSelf: "stretch", marginTop: 10 },
-                ]}>
-                <Image
-                  style={{ borderRadius: 50, width: 30, height: 30 }}
-                  source={{
-                    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                  }}
-                />
-                <Text
-                  // lightColor={Colors.light.mainText}
-                  // darkColor={Colors.dark.mainText}
-                  style={{
-                    fontFamily: "Euclid-Circular-A",
-                    fontSize: hp(16),
-                    fontWeight: "500",
-                    marginLeft: hp(10),
-                  }}>
-                  Chiazo
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: "Euclid-Circular-A-Semi-Bold",
-                    fontSize: hp(14),
-                    fontWeight: "500",
-                    marginLeft: "auto",
-                    color: "#FF361A",
-                  }}>
-                  {"\u20A6"}
-                  {numberWithCommas(splitAmountForEachPerson.toFixed())}
-                </Text>
-              </View>
+              <SplitDetailItem
+                amount={splitAmountForEachPerson}
+                firstName={user.firstName}
+                fontSize={16}
+                pictureUrl={user.pictureUrl!}
+              />
             </View>
             <View
               style={[
                 CommonStyles.col,
-                { alignSelf: "stretch", marginTop: 25 },
+                { alignSelf: "stretch", marginTop: 30 },
               ]}>
               <Text
-                // lightColor={Colors.light.secondaryText}
-                // darkColor={Colors.dark.secondaryText}
                 style={{
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
@@ -174,49 +142,22 @@ const SplitConfirmationScreen = ({
                 }}>
                 Shared With
               </Text>
-              {contacts.map(({ id, firstName }) => (
-                <View
+              {contacts.map(({ id, firstName, name }) => (
+                <SplitDetailItem
                   key={id}
-                  style={[
-                    CommonStyles.row,
-                    { alignSelf: "stretch", marginTop: 10 },
-                  ]}>
-                  <Image
-                    style={{ borderRadius: 50, width: 30, height: 30 }}
-                    source={{
-                      uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s",
-                    }}
-                  />
-                  <Text
-                    // lightColor={Colors.light.mainText}
-                    // darkColor={Colors.dark.mainText}
-                    style={{
-                      fontFamily: "Euclid-Circular-A",
-                      fontSize: hp(14),
-                      fontWeight: "500",
-                      marginLeft: hp(10),
-                    }}>
-                    {firstName}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: "Euclid-Circular-A-Semi-Bold",
-                      fontSize: hp(14),
-                      fontWeight: "500",
-                      marginLeft: "auto",
-                      color: "#FF361A",
-                    }}>
-                    {"\u20A6"}
-                    {numberWithCommas(splitAmountForEachPerson.toFixed())}
-                  </Text>
-                </View>
+                  amount={splitAmountForEachPerson}
+                  firstName={firstName ? firstName : name}
+                  fontSize={14}
+                  pictureUrl={getDefaultPictureUrl({
+                    firstName: name,
+                    scheme: appTheme,
+                  })}
+                />
               ))}
             </View>
           </ScrollView>
           <View style={{ marginTop: 10 }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -226,21 +167,18 @@ const SplitConfirmationScreen = ({
               Total Amount
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
               style={[
                 styles.input,
                 {
-                  borderBottomColor: Colors[colorScheme].separator,
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(14),
                   fontWeight: "500",
                   marginLeft: hp(5),
+                  borderBottomColor: Colors[appTheme].borderColor,
                 },
               ]}
               showSoftInputOnFocus={false}
-              value={"\u20A6 " + numberWithCommas(amount)}
+              value={NAIRA_UNICODE + " " + numberWithCommas(amount)}
             />
           </View>
         </View>
@@ -252,14 +190,8 @@ const SplitConfirmationScreen = ({
           <Button
             title="Confirm"
             onPressButton={() => navigation.navigate("ChooseSplit")}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"

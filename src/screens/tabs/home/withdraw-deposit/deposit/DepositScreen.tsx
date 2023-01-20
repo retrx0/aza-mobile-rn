@@ -2,7 +2,8 @@ import React, { useLayoutEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../../components/Themed";
+import { View, Text } from "../../../../../theme/Themed";
+
 import Button from "../../../../../components/buttons/Button";
 import ButtonWithUnderline, {
   CancelButtonWithUnderline,
@@ -47,6 +48,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
       headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerRight: () => false,
     });
   }, []);
 
@@ -61,14 +63,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   if (cardsAvailable) {
     return (
       <SpacerWrapper>
-        <View
-          style={[
-            styles.container,
-            {
-              justifyContent: "space-between",
-            },
-          ]}>
-          <View>
+        <View style={[CommonStyles.vaultcontainer]}>
+          <View style={{ paddingHorizontal: hp(15) }}>
             <Text
               // lightColor={Colors.light.mainText}
               // darkColor={Colors.dark.mainText}
@@ -99,8 +95,6 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                       }}
                     />
                     <Text
-                      // lightColor={Colors.light.mainText}
-                      // darkColor={Colors.dark.mainText}
                       style={{
                         marginLeft: 20,
                         fontFamily: "Euclid-Circular-A-Semi-Bold",
@@ -158,21 +152,14 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                     transaction: "deposit",
                     type: "normal",
                     beneficiary: {
-                      beneficiaryAccount: "",
-                      beneficiaryImage: "",
-                      beneficiaryName: "",
+                      azaAccountNumber: "",
+                      fullName: "",
                     },
                   },
                 })
               }
-              styleText={{
-                color: Colors[colorScheme].buttonText,
-              }}
-              style={[
-                {
-                  backgroundColor: Colors[colorScheme].button,
-                },
-              ]}
+              styleText={{}}
+              style={[{}]}
             />
             <CancelButtonWithUnderline
               title="Cancel"
@@ -188,7 +175,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
 
   return (
     <SpacerWrapper>
-      <View style={[styles.container, { justifyContent: "space-between" }]}>
+      <View style={[CommonStyles.vaultcontainer]}>
         <View
           style={[
             CommonStyles.col,
@@ -233,7 +220,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <Button
             title="Add New Card"
@@ -242,14 +229,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 navigateBackTo: "Deposit",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
           <ButtonWithUnderline
             title="Cancel"

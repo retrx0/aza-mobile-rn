@@ -7,7 +7,11 @@ import {
   I18nManager,
   Image,
 } from "react-native";
-import { SafeAreaView, Text, View } from "../../../../components/Themed";
+import {
+  SafeAreaView,
+  View as View,
+  Text as Text,
+} from "../../../../theme/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import {
@@ -21,6 +25,8 @@ import { VaultListProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const ArchieveList = [
   {
@@ -81,7 +87,8 @@ const ListItem = ({
             justifyContent: "center",
             flexDirection: I18nManager.isRTL ? "row-reverse" : "row",
             alignItems: "flex-end",
-          }}>
+          }}
+        >
           <TouchableOpacity
             style={{
               width: 77,
@@ -92,7 +99,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ArchievedVault" })
-            }>
+            }
+          >
             <ArchieveIcon />
             <Text
               style={{
@@ -102,7 +110,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Archive
             </Text>
           </TouchableOpacity>
@@ -116,7 +125,8 @@ const ListItem = ({
             }}
             onPress={() =>
               navigation.navigate("Common", { screen: "ConfirmDeleteVault" })
-            }>
+            }
+          >
             <TrashIcon color="white" size={24} />
             <Text
               style={{
@@ -126,7 +136,8 @@ const ListItem = ({
                 lineHeight: hp(15),
                 fontFamily: "Euclid-Circular-A",
                 marginTop: hp(12),
-              }}>
+              }}
+            >
               Delete
             </Text>
           </TouchableOpacity>
@@ -134,9 +145,11 @@ const ListItem = ({
       )}
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={2}
-      rightThreshold={40}>
+      rightThreshold={40}
+    >
       <TouchableOpacity
-        onPress={() => navigation.navigate("Common", { screen: "TopBar" })}>
+        onPress={() => navigation.navigate("Common", { screen: "TopBar" })}
+      >
         <View style={styles.vaultContainer}>
           <View style={styles.vaultItem}>
             <View
@@ -148,7 +161,8 @@ const ListItem = ({
                       ? "#EBFCE9"
                       : Colors[colorScheme].disabled,
                 },
-              ]}>
+              ]}
+            >
               <TouchableOpacity onPress={onPress} style={{}}>
                 {lockIcon}
               </TouchableOpacity>
@@ -164,7 +178,8 @@ const ListItem = ({
                       {
                         color: "#2A9E17",
                       },
-                    ]}>
+                    ]}
+                  >
                     {"\u20A6"}
                     {amount}
                   </Text>
@@ -181,7 +196,12 @@ const ListItem = ({
           </View>
         </View>
       </TouchableOpacity>
-      <View style={styles.separator} />
+      <View
+        style={[
+          styles.separator,
+          { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
+      />
     </Swipeable>
   );
 };
@@ -189,13 +209,15 @@ const ListItem = ({
 const ArchievedComponents = () => {
   return (
     <>
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          data={ArchieveList}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ListItem {...item} />}
-        />
-      </SafeAreaView>
+      <SpacerWrapper>
+        <View style={CommonStyles.vaultcontainer}>
+          <FlatList
+            data={ArchieveList}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <ListItem {...item} />}
+          />
+        </View>
+      </SpacerWrapper>
     </>
   );
 };
@@ -215,9 +237,7 @@ const styles = StyleSheet.create({
     color: Colors.general.green,
     marginRight: hp(12),
   },
-  container: {
-    flex: 1,
-  },
+  // container: {},
   itemSeparator: {
     flex: 1,
     height: 1,
@@ -253,7 +273,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     borderWidth: 0.5,
-    borderColor: "#EAEAEC",
     width: wp(390),
     alignSelf: "center",
   },

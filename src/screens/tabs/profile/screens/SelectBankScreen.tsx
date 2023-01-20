@@ -2,7 +2,9 @@ import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import Divider from "../../../../components/divider/Divider";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -33,14 +35,14 @@ const SelectBankScreen = ({
   const { screenType } = route.params;
 
   const banks = [
-    { name: "access", logo: AccessBankLogoWithName },
-    { name: "eco", logo: EcoBankLogoWithName },
-    { name: "fcmb", logo: FCMBLogoWithName },
-    { name: "gt", logo: GTBankLogoWithName },
-    { name: "uba", logo: UBALogoWithName },
-    { name: "zenith", logo: ZenithBankLogoWithName },
-    { name: "fidelity", logo: FidelityBankLogoWithName },
-    { name: "first", logo: FirstBankLogoWithName },
+    { name: "Access", logo: AccessBankLogoWithName },
+    { name: "Eco", logo: EcoBankLogoWithName },
+    { name: "Fcmb", logo: FCMBLogoWithName },
+    { name: "Gtb", logo: GTBankLogoWithName },
+    { name: "Uba", logo: UBALogoWithName },
+    { name: "Zenith", logo: ZenithBankLogoWithName },
+    { name: "Fidelity", logo: FidelityBankLogoWithName },
+    { name: "First", logo: FirstBankLogoWithName },
   ];
 
   useLayoutEffect(() => {
@@ -53,7 +55,8 @@ const SelectBankScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Select Bank
         </Text>
       ),
@@ -73,12 +76,14 @@ const SelectBankScreen = ({
           style={[
             CommonStyles.row,
             {
-              borderBottomColor: Colors[colorScheme].separator,
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
               borderBottomWidth: 0.7,
               marginBottom: 20,
               marginLeft: hp(5),
             },
-          ]}>
+          ]}
+        >
           <SearchIcon color={Colors[colorScheme].secondaryText} size={16} />
           <TextInput
             style={{
@@ -102,6 +107,7 @@ const SelectBankScreen = ({
                   onPress={() =>
                     navigation.navigate("AddBankAccount", {
                       bankName: name,
+                      bankLogo: logo,
                       screenType,
                     })
                   }
@@ -111,14 +117,16 @@ const SelectBankScreen = ({
                       alignSelf: "stretch",
                       alignItems: "center",
                     },
-                  ]}>
+                  ]}
+                >
                   <Image source={logo} />
                 </TouchableOpacity>
                 <View
                   style={{
                     marginVertical: 25,
                     width: "100%",
-                  }}>
+                  }}
+                >
                   <Divider />
                 </View>
               </View>

@@ -7,7 +7,8 @@ import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -29,13 +30,13 @@ const VaultRecurringTransfer = ({
   ];
 
   const day = [
-    { label: "Saturday", value: "1" },
     { label: "Sunday", value: "1" },
     { label: "Monday", value: "1" },
     { label: "Tuesday", value: "1" },
     { label: "Wednesday", value: "1" },
     { label: "Thursday", value: "1" },
     { label: "Friday", value: "1" },
+    { label: "Saturday", value: "1" },
   ];
 
   return (
@@ -45,7 +46,8 @@ const VaultRecurringTransfer = ({
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
+          }}
+        >
           <View style={{ marginLeft: 15 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -54,20 +56,21 @@ const VaultRecurringTransfer = ({
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(80),
-            }}>
+              marginLeft: hp(70),
+            }}
+          >
             Recurring Transfer
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
+        <Text style={[CommonStyles.confirmDetails, { marginLeft: 20 }]}>
           Setup a recurring money transfer
         </Text>
         <View
           style={{
-            marginTop: hp(20),
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}>
+          }}
+        >
           <Text
             // lightColor={Colors.light.secondaryText}
             // darkColor={Colors.dark.secondaryText}
@@ -76,7 +79,8 @@ const VaultRecurringTransfer = ({
               fontWeight: "400",
               marginBottom: hp(11),
               fontFamily: "Euclid-Circular-A",
-            }}>
+            }}
+          >
             Period
           </Text>
           <CustomDropdown
@@ -84,6 +88,7 @@ const VaultRecurringTransfer = ({
             placeholder="Choose a period"
             setValue={setPeriodValue}
             value={periodValue}
+            label={""}
           />
         </View>
         <View style={{ marginTop: hp(20), paddingHorizontal: 20 }}>
@@ -96,7 +101,8 @@ const VaultRecurringTransfer = ({
               lineHeight: hp(17.75),
               marginBottom: hp(11),
               fontFamily: "Euclid-Circular-A",
-            }}>
+            }}
+          >
             Day
           </Text>
 
@@ -105,14 +111,16 @@ const VaultRecurringTransfer = ({
             placeholder="Choose a day"
             setValue={setDayValue}
             value={dayValue}
+            label={""}
           />
         </View>
 
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>
@@ -128,6 +136,7 @@ const VaultRecurringTransfer = ({
                 backgroundColor: Colors[colorScheme].button,
               },
             ]}
+            disabled={!periodValue}
           />
 
           <CancelButtonWithUnderline

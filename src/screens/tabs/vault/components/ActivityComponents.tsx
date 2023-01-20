@@ -8,8 +8,10 @@ import {
 } from "../../../../../assets/svg";
 import { VaultActivitytProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import Colors from "../../../../constants/Colors";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 export const ActivityList = [
   {
@@ -61,6 +63,19 @@ export const ActivityList = [
     amount: "\u20A6200",
     due: "4 July 2022 04:26",
   },
+  {
+    send: (
+      <Image
+        style={{
+          width: 36,
+          height: 36,
+        }}
+        source={require("../../../../../assets/images/icons/CoverImage.png")}
+      />
+    ),
+    status: "Flight Ticket vault created",
+    due: "4 July 2022 04:26",
+  },
 ];
 
 export const ActivityCard = ({
@@ -70,6 +85,8 @@ export const ActivityCard = ({
   due,
   onPress,
 }: VaultActivitytProps) => {
+  const colorScheme = useColorScheme();
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.activityContainer}>
@@ -85,12 +102,13 @@ export const ActivityCard = ({
                     ? Colors.general.lightGreen
                     : Colors.light.backgroundSecondary,
               },
-            ]}>
+            ]}
+          >
             {send}
           </View>
           <Text style={styles.status}>{status}</Text>
         </View>
-        <View>
+        <View style={{ alignSelf: "center" }}>
           <View>
             <Text
               style={[
@@ -101,14 +119,20 @@ export const ActivityCard = ({
                       ? Colors.general.red
                       : Colors.general.green,
                 },
-              ]}>
+              ]}
+            >
               {amount}
             </Text>
           </View>
-          <Text style={styles.date}> {due}</Text>
+          <Text style={styles.date}>{due}</Text>
         </View>
       </View>
-      <View style={styles.separator} />
+      <View
+        style={[
+          styles.separator,
+          { borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
+      />
     </TouchableOpacity>
   );
 };
@@ -155,7 +179,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     borderWidth: hp(0.3),
-    borderColor: "#EAEAEC",
     marginBottom: hp(10),
     width: wp(370),
     alignSelf: "center",

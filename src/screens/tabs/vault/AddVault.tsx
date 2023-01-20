@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -10,14 +10,16 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
 import { hp } from "../../../common/util/LayoutUtil";
-import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import Divider from "../payments/sub-components/Divider";
 
 const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <SpacerWrapper>
@@ -38,52 +40,45 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginRight: hp(30),
+              marginRight: hp(50),
             }}>
             Vault
           </Text>
           <TouchableOpacity>
-            <InfoIcon color={""} size={0} />
+            <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
           </TouchableOpacity>
         </View>
         <Text
           style={{
             fontSize: hp(16),
             fontWeight: "500",
-            fontFamily: "Euclid-Circular-A",
+            fontFamily: "Euclid-Circular-A-Medium",
             marginBottom: hp(40),
             marginLeft: hp(19),
           }}>
           Choose a vault to view/edit details
         </Text>
-        <View style={CommonStyles.lineDivider} />
+        <Divider />
         <ArchievedComponents />
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
+            { bottom: insets.top || hp(45) },
           ]}>
           <CancelButtonWithUnderline
             title="Archived Vaults"
             onPressButton={() =>
               navigation.getParent()?.navigate("ArchievedVault")
             }
-            color={Colors[colorScheme].text}
             style={{ marginBottom: 10 }}
           />
           <Button
             title="New Vault"
             onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
+              navigation.navigate("Common", { screen: "NewVault" })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[{}]}
           />
         </View>
       </View>

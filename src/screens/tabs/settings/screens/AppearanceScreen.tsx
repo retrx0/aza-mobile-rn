@@ -1,8 +1,7 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Appearance, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -14,34 +13,58 @@ import {
   SystemModeIcon,
 } from "../../../../../assets/svg";
 import Divider from "../../../../components/divider/Divider";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppDispatch } from "../../../../redux";
+import { setAppTheme } from "../../../../redux/slice/themeSlice";
+import { AppThemeType, getAppTheme } from "../../../../theme";
+import * as StatusBar from "expo-status-bar";
 
 const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   const colorScheme = useColorScheme();
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
-  const [selectedAppearance, setSelectedAppearance] =
-    useState<string>("System Mode");
 
-  const options = [
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
+  const [selectedAppearance, setSelectedAppearance] =
+    useState<AppThemeType>("system");
+
+  const dispatch = useAppDispatch();
+
+  const appTheme = getAppTheme(selectedAppearance);
+
+  const options: {
+    icon: JSX.Element;
+    name: string;
+    value: AppThemeType;
+  }[] = [
     {
-      icon: <DarkModeIcon color={Colors[colorScheme].mainText} size={16} />,
+      icon: <DarkModeIcon color={Colors[appTheme].mainText} size={16} />,
       name: "Dark Mode",
+      value: "dark",
     },
     {
-      icon: <LightModeIcon color={Colors[colorScheme].mainText} size={16} />,
+      icon: <LightModeIcon color={Colors[appTheme].mainText} size={16} />,
       name: "Light Mode",
+      value: "light",
     },
     {
-      icon: <SystemModeIcon color={Colors[colorScheme].mainText} size={0} />,
+      icon: <SystemModeIcon color={Colors[appTheme].mainText} size={0} />,
       name: "System Mode",
+      value: "system",
     },
   ];
 
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
       setting?.appearance !== undefined &&
-        setSelectedAppearance(setting?.appearance);
+        setSelectedAppearance(
+          setting?.appearance === "light"
+            ? "light"
+            : setting?.appearance === "dark"
+            ? "dark"
+            : "system"
+        );
     });
   }, []);
 
@@ -53,13 +76,12 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Appearance
         </Text>
       ),
@@ -76,10 +98,22 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
     <View style={styles.container}>
       <View style={{ marginTop: hp(10) }}>
         <Divider />
-        {options.map(({ icon, name }, i) => (
+        {options.map(({ icon, name, value }, i) => (
           <View key={i}>
             <TouchableOpacity
-              onPress={() => setSelectedAppearance(name)}
+              onPress={() => {
+                setSelectedAppearance(value);
+                if (value === "light") {
+                  dispatch(setAppTheme({ theme: "light" }));
+                  StatusBar.setStatusBarStyle("dark");
+                } else if (value === "dark") {
+                  dispatch(setAppTheme({ theme: "dark" }));
+                  StatusBar.setStatusBarStyle("light");
+                } else {
+                  dispatch(setAppTheme({ theme: "system" }));
+                  StatusBar.setStatusBarStyle("auto");
+                }
+              }}
               style={[
                 CommonStyles.row,
                 {
@@ -87,29 +121,24 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
                   alignSelf: "stretch",
                   paddingVertical: 20,
                 },
-              ]}>
+              ]}
+            >
               <View>{icon}</View>
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.mainText}
                 style={{
                   marginRight: "auto",
                   marginLeft: 15,
                   fontSize: 14,
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}>
+                }}
+              >
                 {name}
               </Text>
-              {selectedAppearance === name && (
+              {selectedAppearance === value && (
                 <CheckIcon size={20} color={"#2A9E17"} />
               )}
             </TouchableOpacity>
-            <View
-              style={{
-                borderBottomWidth: 0.6,
-                borderBottomColor: Colors[colorScheme].separator,
-              }}
-            />
+            <Divider />
           </View>
         ))}
       </View>
@@ -123,6 +152,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

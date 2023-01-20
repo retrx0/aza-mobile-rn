@@ -1,23 +1,18 @@
-import { StyleSheet } from "react-native";
+import { Modal, StyleSheet } from "react-native";
 
-import { View } from "../../../components/Themed";
 import { RootTabScreenProps } from "../../../../types";
 
 import AccountDetails from "./components/AccountDetails";
 import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
-import { selectAuthIsLoggedIn } from "../../../redux/slice/authSlice";
 import { useAppSelector } from "../../../redux";
-import { selectNewUser } from "../../../redux/slice/newUserSlice";
 import { useNotifications } from "../../../hooks/useNotifications";
+import { useState } from "react";
+import { selectUser } from "../../../redux/slice/userSlice";
+import { View as View } from "../../../theme/Themed";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
-  const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
-  console.log("Logged in state: " + isLoggedIn);
-  const newUserData = useAppSelector(selectNewUser);
-  console.log(newUserData);
-
   const {
     schedulePushNotification,
     registerForPushNotificationsAsync,
@@ -25,7 +20,7 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   } = useNotifications();
 
   // Testing notification
-  // schedulePushNotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
+  // schedulePushNåotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
 
   // registerForPushNotificationsAsync().then((token) => {
   //   if (token) {
@@ -38,11 +33,17 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   //   }
   // });
 
+  const user = useAppSelector(selectUser);
+
   return (
     <View style={styles.container}>
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
-      <LinkBVN navigation={navigation} route={route} isBvnLinked={true} />
+      <LinkBVN
+        navigation={navigation}
+        route={route}
+        isBvnLinked={user.bvnVerified}
+      />
       <RecentTransactions navigation={navigation} route={route} />
     </View>
   );

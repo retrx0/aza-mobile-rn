@@ -1,6 +1,7 @@
 import { Image } from "react-native";
 import Button from "../../../../components/buttons/Button";
-import { View, Text } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -8,7 +9,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { TopBar } from "../../../../common/navigation/CommonStackNavigator";
+import { TopBar } from "../../../../navigation/CommonStackNavigator";
 
 const VaultToBankSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
   const insets = useSafeAreaInsets();
@@ -33,7 +34,8 @@ const VaultToBankSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() => navigation.getParent()?.navigate("Vault")}

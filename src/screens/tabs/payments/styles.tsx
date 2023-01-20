@@ -32,25 +32,23 @@ export const PaymentStyles = StyleSheet.create({
     marginTop: 40,
     fontWeight: "400",
     fontSize: 14,
-    lineHeight: 18,
+
     backgroundColor: "transparent",
+    marginBottom: hp(20),
   },
   imageIcon: {
     width: 58,
     height: 58,
   },
   imageHeaderContainer: {
-    marginLeft: 20,
-    minHeight: 70,
-    maxHeight: 100,
     backgroundColor: "transparent",
+    marginBottom: hp(25),
   },
   itemListContainer: {
     paddingHorizontal: 20,
     width: "100%",
     marginTop: 10,
     backgroundColor: "transparent",
-    flex: 1,
   },
 });
 
@@ -71,18 +69,16 @@ export const CharityStyles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   text: {
-    textAlign: "justify",
     marginLeft: 10,
     marginRight: 10,
     fontSize: hp(16),
     fontWeight: "400",
-    fontFamily: "Euclid-Circular-A",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   input: {
     marginLeft: 20,
     width: "90%",
-    borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),
     fontWeight: "500",
@@ -97,10 +93,10 @@ export const CharityStyles = StyleSheet.create({
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
-    marginTop: 10,
+
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 10,
+    marginBottom: 20,
   },
   mainSuggestion: {
     width: 70,

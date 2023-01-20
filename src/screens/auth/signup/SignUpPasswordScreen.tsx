@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Platform, Switch } from "react-native";
-import { Text, View } from "../../../components/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import Button from "../../../components/buttons/Button";
 import BackButton from "../../../components/buttons/BackButton";
@@ -17,13 +17,20 @@ import {
   setNewUser,
   setPassword,
 } from "../../../redux/slice/newUserSlice";
-import { registerUserAPI } from "../../../api/user";
+import { createPinAPI, registerUserAPI } from "../../../api/user";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { toastError } from "../../../common/util/ToastUtil";
-import { storeItemSecure } from "../../../common/util/StorageUtil";
+import {
+  storeItemSecure,
+  storeUserCredentialsSecure,
+  getItem,
+  storeItem,
+} from "../../../common/util/StorageUtil";
+import { CEO_MESSAGE_STORAGE_KEY } from "../../../constants/AppConstants";
+import { Separator } from "../../../components/divider/Separator";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -38,12 +45,9 @@ const SignUpPasswordScreen = ({
   const [passcode, setPasscode] = useState("");
   const [pushToken, setPushToken] = useState("");
   const [loading, setLoading] = useState(false);
+  const [ceoMessageShown, setCeoMessageShown] = useState(undefined);
 
-  const colorScheme = useColorScheme();
   const notification = useNotifications();
-
-  const switchColor = Colors[colorScheme].backgroundSecondary;
-  const switchOnColor = Colors[colorScheme].success;
 
   const dispatch = useAppDispatch();
   const newUser = useAppSelector(selectNewUser);
@@ -54,18 +58,28 @@ const SignUpPasswordScreen = ({
       setIsEnabled(newUser.isUsePasscodeAsPin);
     }
 
-    // const digest = Crypto.digestStringAsync(
-    //   Crypto.CryptoDigestAlgorithm.SHA256,
-    //   'GitHub stars are neat 🌟'
-    // );
-
     notification
       .registerForPushNotificationsAsync()
       .then((tok) => {
         if (tok) setPushToken(tok);
       })
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        throw new Error(e);
+      });
+
+    getItem(CEO_MESSAGE_STORAGE_KEY).then((shown) => {
+      if (shown) setCeoMessageShown(shown);
+    });
   }, []);
+
+  // useEffect(() => {
+  //   Crypto.digestStringAsync(
+  //     Crypto.CryptoDigestAlgorithm.SHA256,
+  //     passcode
+  //   ).then((hashed) => {
+  //     setHashedPasscode(hashed);
+  //   });
+  // }, [passcode]);
 
   return (
     <SpacerWrapper>
@@ -106,9 +120,12 @@ const SignUpPasswordScreen = ({
           </Text>
 
           <Switch
-            trackColor={{ false: switchColor, true: switchOnColor }}
+            trackColor={{
+              false: Colors.general.secondary,
+              true: Colors.general.green,
+            }}
             thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
-            ios_backgroundColor={switchColor}
+            ios_backgroundColor={Colors.general.secondary}
             onValueChange={toggleSwitch}
             value={isUsePasscodeAsPin}
             style={{
@@ -144,6 +161,11 @@ const SignUpPasswordScreen = ({
             } else {
               if (passcode === newUser.createdPasscode) {
                 // dispatch(setPassword({password:passcode}))
+                if (isUsePasscodeAsPin) {
+                  createPinAPI(passcode)
+                    .then((res) => console.log(res))
+                    .catch((err: Error) => console.log(err.message));
+                }
                 registerUserAPI({
                   email: newUser.emailAddress!,
                   firstName: newUser.firstName!,
@@ -153,14 +175,30 @@ const SignUpPasswordScreen = ({
                   pushNotificationToken: newUser.pushToken,
                 }).then((_res) => {
                   if (_res) {
+                    // Store user credentials for face id
+                    // storeUserCredentialsSecure(newUser.emailAddress, passcode);
+
                     loginUserAPI({
                       email: newUser.emailAddress,
                       phoneNumber: newUser.phoneNumber,
                       password: passcode,
                     }).then((_jwt) => {
                       if (_jwt) {
-                        navigation.getParent()?.navigate("Root");
                         storeItemSecure(STORAGE_KEY_JWT_TOKEN, _jwt);
+                        storeUserCredentialsSecure(
+                          JSON.stringify({
+                            email: newUser.emailAddress,
+                            token: _jwt,
+                            password: passcode,
+                            phoneNumber: newUser.phoneNumber,
+                          })
+                        );
+                        navigation.getParent()?.navigate("Root");
+                        if (!ceoMessageShown || ceoMessageShown === "null") {
+                          //show CEO Message
+                          navigation.getParent()?.navigate("CEOMessage");
+                          storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
+                        }
                       }
                       setLoading(false);
                     });
@@ -169,35 +207,23 @@ const SignUpPasswordScreen = ({
                 });
               } else {
                 toastError("Password does not match ⚠️");
+                setLoading(false);
               }
             }
           }}
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-          }}
+          styleText={{}}
           style={[
             {
-              backgroundColor: Colors[colorScheme].button,
               marginTop: 5,
-              width: 365,
+              width: "100%",
             },
             CommonStyles.button,
           ]}
-          willCallAsync={loading}
+          buttonLoading={isConfirmScreen && loading}
           disabled={passcode.length < 6 ? true : false}
         />
       </View>
     </SpacerWrapper>
-  );
-};
-
-const Separator = () => {
-  return (
-    <View
-      lightColor={Colors.light.separator}
-      darkColor={Colors.dark.separator}
-      style={[CommonStyles.separator]}
-    />
   );
 };
 

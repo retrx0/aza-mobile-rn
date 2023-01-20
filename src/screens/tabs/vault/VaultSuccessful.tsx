@@ -1,17 +1,13 @@
 import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { View, Text } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../types";
-import useColorScheme from "../../../hooks/useColorScheme";
-import Colors from "../../../constants/Colors";
 
 const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
-
   const insets = useSafeAreaInsets();
 
   return (
@@ -33,22 +29,15 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>
               navigation.navigate("Common", { screen: "UserVault" })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              { bottom: hp(20) },
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[{}, { bottom: hp(20) }, CommonStyles.button]}
           />
         </View>
       </View>

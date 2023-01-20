@@ -2,7 +2,9 @@ import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { TextInput } from "../../theme/Themed";
+import { View, Text } from "../../theme/Themed";
+
 import Button from "../../components/buttons/Button";
 
 import Colors from "../../constants/Colors";
@@ -28,13 +30,12 @@ const SplitEditContactScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Edit
         </Text>
       ),
@@ -49,40 +50,36 @@ const SplitEditContactScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
               marginBottom: hp(50),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             You can edit the split amount
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontSize: hp(14),
                 marginLeft: hp(5),
                 fontWeight: "500",
-                fontFamily: "Euclid-Circular-A-Medium",
-              }}>
+                fontFamily: "Euclid-Circular-A",
+              }}
+            >
               With whom?
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
               style={[
                 styles.input1,
                 {
-                  borderBottomColor: Colors[colorScheme].separator,
+                  borderBottomColor:
+                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -98,14 +95,13 @@ const SplitEditContactScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Amount
             </Text>
             <View
@@ -117,21 +113,17 @@ const SplitEditContactScreen = ({
                   position: "relative",
                   marginLeft: 5,
                 },
-              ]}>
-              <Text
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
-                style={{ position: "absolute", paddingBottom: 5 }}>
+              ]}
+            >
+              <Text style={{ position: "absolute", paddingBottom: 5 }}>
                 {"\u20A6"}
               </Text>
               <TextInput
-                // lightColor={Colors.light.mainText}
-                // darkColor={Colors.dark.mainText}
-                placeholderTextColor={Colors[colorScheme].secondaryText}
                 style={[
                   styles.input2,
                   {
-                    borderBottomColor: Colors[colorScheme].separator,
+                    borderBottomColor:
+                      colorScheme === "dark" ? "#262626" : "#EAEAEC",
                   },
                 ]}
                 keyboardType="number-pad"
@@ -146,18 +138,13 @@ const SplitEditContactScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => navigation.goBack()}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel"

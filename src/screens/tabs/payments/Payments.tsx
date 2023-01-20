@@ -1,7 +1,7 @@
 import { ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { PaymentStyles as styles } from "./styles";
-import { SafeAreaView, Text, View } from "../../../components/Themed";
+import { SafeAreaView, View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import HeadrImage from "./sub-components/HeadrImage";
 import Divider from "./sub-components/Divider";
@@ -11,20 +11,24 @@ import {
   DataIcon,
   DropIcon,
   ElectricIcon,
+  GameIcon,
   GiftIcon,
   LoveIcon,
   PieIcon,
   WifiIcon,
 } from "../../../../assets/svg";
 import { RootTabScreenProps } from "../../../../types";
-import { Mtn } from "../../../../assets/images";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
+import { Card } from "./sub-components/Card";
+import { PaymentsCard } from "./sub-components/PaymentsCard";
+import { useAppSelector } from "../../../redux";
+import { selectUser } from "../../../redux/slice/userSlice";
 
 export default function Payments({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  const scheme = useColorScheme();
+  const user = useAppSelector(selectUser);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -33,14 +37,15 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Pie" });
           }}
-          style={styles.icon}>
+          style={styles.icon}
+        >
           <PieIcon style={styles.imageIcon} />
         </TouchableOpacity>
       </View>
       <Header
         description=""
         headerStyle={{
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Medium",
           fontSize: hp(16),
           fontWeight: "400",
         }}
@@ -48,19 +53,31 @@ export default function Payments({
         style={styles.subHead}
         heading="Recent Payments"
       />
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        style={styles.imageHeaderContainer}>
-        <HeadrImage
-          selected
-          index={0}
-          header="Paid"
-          title="MTN"
-          amount="2,050"
-          image={Mtn}
-        />
-      </ScrollView>
+      {user.payments.recentPayments.length > 0 && (
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          style={{
+            marginLeft: hp(20),
+            marginBottom: hp(10),
+            maxHeight: 120,
+          }}
+        >
+          {user.payments.recentPayments.map((payment, i) => {
+            return (
+              <HeadrImage
+                key={i}
+                selected
+                index={i}
+                header={payment.status}
+                title={payment.vendorName}
+                amount={"" + payment.amount}
+                image={{ uri: payment.vendorLogo, cache: "default" }}
+              />
+            );
+          })}
+        </ScrollView>
+      )}
 
       <ScrollView style={styles.itemListContainer}>
         <ListItem
@@ -68,12 +85,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "AirtimeData" });
           }}
-          Icon={() => (
-            <DataIcon
-              color={scheme == "dark" ? "white" : "#753FF6"}
-              size={20}
-            />
-          )}
+          Icon={() => <DataIcon size={30} />}
           title="Airtime & Data"
           route=""
         />
@@ -83,12 +95,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "InternetPlans" });
           }}
-          Icon={() => (
-            <WifiIcon
-              color={scheme == "dark" ? "white" : "#2A9E17"}
-              size={20}
-            />
-          )}
+          Icon={() => <WifiIcon size={30} />}
           title="Internet"
           route=""
         />
@@ -98,12 +105,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "CableTV" });
           }}
-          Icon={() => (
-            <CableTvIcon
-              color={scheme == "dark" ? "white" : "#FFD200"}
-              size={20}
-            />
-          )}
+          Icon={() => <CableTvIcon size={30} />}
           title="Cable TV"
           route=""
         />
@@ -113,12 +115,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Electricity" });
           }}
-          Icon={() => (
-            <ElectricIcon
-              color={scheme == "dark" ? "white" : "#ED8A0A"}
-              size={20}
-            />
-          )}
+          Icon={() => <ElectricIcon size={30} />}
           title="Electricity"
           route=""
         />
@@ -128,25 +125,17 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Water" });
           }}
-          Icon={() => (
-            <DropIcon
-              color={scheme == "dark" ? "white" : "#1198F6"}
-              size={20}
-            />
-          )}
+          Icon={() => <DropIcon size={30} />}
           title="Water"
           route=""
         />
 
         <ListItem
           index={5}
-          onPress={() => {}}
-          Icon={() => (
-            <GiftIcon
-              color={scheme == "dark" ? "white" : "#BED600"}
-              size={20}
-            />
-          )}
+          onPress={() => {
+            navigation.navigate("Common", { screen: "GiftCard" });
+          }}
+          Icon={() => <GiftIcon size={30} />}
           title="Gift Cards"
           route=""
         />
@@ -156,13 +145,17 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Charity" });
           }}
-          Icon={() => (
-            <LoveIcon
-              color={scheme == "dark" ? "white" : "#FF361A"}
-              size={20}
-            />
-          )}
+          Icon={() => <LoveIcon size={30} />}
           title="Charity"
+          route=""
+        />
+        <ListItem
+          index={6}
+          onPress={() => {
+            navigation.navigate("Common", { screen: "GameScreen" });
+          }}
+          Icon={() => <GameIcon size={30} />}
+          title="Game Credits"
           route=""
         />
       </ScrollView>

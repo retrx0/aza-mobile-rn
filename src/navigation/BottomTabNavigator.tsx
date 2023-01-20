@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useEffect } from "react";
-import { AppState, Pressable } from "react-native";
+import { AppState, Image, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import Home from "../screens/tabs/home/Home";
 import Payments from "../screens/tabs/payments/Payments";
@@ -13,7 +13,6 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../../types";
-import useColorScheme from "../hooks/useColorScheme";
 import {
   HomeIcon,
   QRCodeIcon,
@@ -27,6 +26,17 @@ import {
 } from "../../assets/svg";
 import CustomBottomSheet from "../components/bottomsheet/CustomBottomSheet";
 import { useBottomSheetType } from "../screens/tabs/home/hooks/useBottomSheetType";
+import { getAppTheme } from "../theme";
+
+import { useAppSelector } from "../redux";
+import { selectAppTheme } from "../redux/slice/themeSlice";
+import { selectUser } from "../redux/slice/userSlice";
+import { View } from "../theme/Themed";
+
+/**
+ * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
+ * https://reactnavigation.org/docs/bottom-tab-navigator
+ */
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -35,7 +45,10 @@ const BottomTabNavigator = (
 ) => {
   const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
-  const colorScheme = useColorScheme();
+
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const user = useAppSelector(selectUser);
+  const appTheme = getAppTheme(selectedTheme);
 
   const toggleProfileModal = () => {
     setProfileModalVisible(!isProfileModalVisible);
@@ -51,7 +64,6 @@ const BottomTabNavigator = (
 
   useEffect(() => {
     /* APP STATE CHANGES */
-
     const { name } = _navigation.route;
     const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") {
@@ -68,9 +80,9 @@ const BottomTabNavigator = (
   return (
     <>
       <BottomTab.Navigator
-        initialRouteName="Home"
+        initialRouteName={"Home"}
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme].tint,
+          tabBarActiveTintColor: Colors[appTheme].tint,
         }}
       >
         <BottomTab.Screen
@@ -83,9 +95,7 @@ const BottomTabNavigator = (
               <AZALightningLogo
                 size={25}
                 color={
-                  colorScheme === "dark"
-                    ? Colors.dark.mainText
-                    : Colors.light.text
+                  appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
                 }
               />
             ),
@@ -98,7 +108,7 @@ const BottomTabNavigator = (
                   opacity: pressed ? 0.5 : 1,
                 })}
               >
-                {colorScheme === "dark" ? (
+                {appTheme === "dark" ? (
                   <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
                 ) : (
                   <QRCodeIcon
@@ -117,7 +127,7 @@ const BottomTabNavigator = (
                   marginLeft: 15,
                 })}
               >
-                <MenuIcon size={25} color={Colors[colorScheme].text} />
+                <MenuIcon size={25} color={Colors[appTheme].text} />
               </Pressable>
             ),
             headerShadowVisible: false,
@@ -164,7 +174,19 @@ const BottomTabNavigator = (
           component={Profile}
           options={{
             title: "Profile",
-            tabBarIcon: ({ color }) => <ProfileIcon color={color} size={24} />,
+            tabBarIcon: () => (
+              <View style={{ width: 24, height: 24 }}>
+                <Image
+                  source={{ uri: user.pictureUrl }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 50,
+                    resizeMode: "cover",
+                  }}
+                />
+              </View>
+            ),
           }}
         />
       </BottomTab.Navigator>

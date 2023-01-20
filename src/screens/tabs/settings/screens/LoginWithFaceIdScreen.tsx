@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
@@ -10,10 +10,11 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [isLoginWithFaceId, setLoginWithFaceId] = useState<boolean>(false);
   const [isConfirmTransactionWithFaceId, setConfirmTransactionWithFaceId] =
     useState<boolean>(false);
@@ -42,13 +43,12 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Login with Face ID
         </Text>
       ),
@@ -65,14 +65,12 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
     <View style={styles.container}>
       <View>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-            marginLeft: hp(5),
-          }}>
+          }}
+        >
           You can access your account without entering a password by signing in
           with Face ID
         </Text>
@@ -102,6 +100,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

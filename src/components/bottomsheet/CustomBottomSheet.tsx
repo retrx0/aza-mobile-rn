@@ -3,7 +3,7 @@ import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
 import Button from "../buttons/Button";
-import { View } from "../Themed";
+import { View as View } from "../../theme/Themed";
 import BottomSheetListItem from "./BottomSheetListItem";
 export default function CustomBottomSheet({
   toggleModal,
@@ -36,20 +36,23 @@ export default function CustomBottomSheet({
     <Modal
       isVisible={isModalVisible}
       onBackdropPress={toggleModal}
-      style={{ justifyContent: "flex-end", margin: 0 }}>
+      style={{ justifyContent: "flex-end", margin: 0 }}
+    >
       <View
+        lightColor={Colors["light"].backgroundSecondary}
+        darkColor={Colors["dark"].backgroundSecondary}
         style={{
-          backgroundColor: Colors[colorScheme].backgroundSecondary,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           paddingHorizontal: 15,
           display: "flex",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         <View
-          style={{
-            backgroundColor: Colors[colorScheme].backgroundSecondary,
-          }}>
+          lightColor={Colors["light"].backgroundSecondary}
+          darkColor={Colors["dark"].backgroundSecondary}
+        >
           {renderBottomSheetListItems()}
         </View>
         <Button

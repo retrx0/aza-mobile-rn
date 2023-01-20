@@ -4,12 +4,11 @@ import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../common/navigation/types";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, View } from "../../components/Themed";
+import { View, Text } from "../../theme/Themed";
 import Divider from "../../components/divider/Divider";
 
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
 
 import {
@@ -18,21 +17,23 @@ import {
   SendIcon,
   SplitIcon,
 } from "../../../assets/svg";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Split
         </Text>
       ),
@@ -71,7 +72,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           <View key={i}>
             <TouchableOpacity
               onPress={handleNavigation}
-              style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+              style={[CommonStyles.col, { alignSelf: "stretch" }]}
+            >
               <View
                 style={[
                   CommonStyles.row,
@@ -81,21 +83,22 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     marginVertical: hp(20),
                     marginLeft: hp(3),
                   },
-                ]}>
+                ]}
+              >
                 <View>{icon}</View>
                 <View
                   style={[
                     CommonStyles.col,
                     { marginRight: "auto", marginLeft: 20 },
-                  ]}>
+                  ]}
+                >
                   <Text
-                    // lightColor={Colors.light.text}
-                    // darkColor={Colors.dark.mainText}
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),
                       fontWeight: "600",
-                    }}>
+                    }}
+                  >
                     {name}
                   </Text>
                 </View>

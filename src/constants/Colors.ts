@@ -2,12 +2,30 @@ const tintColorLight = "#121212";
 const tintColorDark = "#fff";
 const tabIconColorDefault = "#A6A6A6";
 
+interface IThemeColor {
+  text: string;
+  mainText: string;
+  secondaryText: string;
+  background: string;
+  backgroundSecondary: string;
+  tint: string;
+  tabIconDefault: string;
+  tabIconSelected: string;
+  error: string;
+  success: string;
+  separator: string;
+  buttonText: string;
+  disabledButtonBackground: string;
+  disabledButtonTextColor: string;
+  borderColor: string;
+}
+
 export default {
   light: {
     text: "#121212",
     mainText: "#4D4D4D",
     secondaryText: "#A6A6A6",
-    background: "#fff",
+    background: "#ffffff",
     backgroundSecondary: "#F2F2F2",
     tint: tintColorLight,
     tabIconDefault: tabIconColorDefault,
@@ -24,9 +42,12 @@ export default {
     Text: "#000000",
     disabledButton: "#A6A6A6",
     disabledButtonText: "#CCCCCC",
+    BACKGROUND: " #E5E5E5",
+    borderColor: "#EAEAEC",
   },
   dark: {
-    text: "#fff",
+    borderColor: "#262626",
+    text: "#FFFFFF",
     mainText: "#E7E9EA",
     secondaryText: "#999999",
     background: "#121212",
@@ -36,16 +57,17 @@ export default {
     tabIconSelected: tintColorDark,
     error: "#FF361A",
     success: "#2AD168",
-    separator: "#A4A4A4",
+    separator: "#484B51",
     border: "#E7E9EA",
     button: "#E7E9EA",
     buttonText: "#000000",
     disabled: "#A6A6A6",
     unlock: "#E7E9EA",
-    mature: "#3A3D42",
+    mature: "#061603",
     Text: "#999999",
     disabledButton: "#262626",
     disabledButtonText: "#999999",
+    BACKGROUND: " #3A3D42",
   },
   general: {
     text: "#FFFFFF",
@@ -64,5 +86,6 @@ export default {
     lightGreen: "#EBFCE9",
     lightRed: "#FFE9E5",
     background: " #E5E5E5",
+    general: "#EAEAEC",
   },
 };

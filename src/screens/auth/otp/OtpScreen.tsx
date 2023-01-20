@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { SigninStyles as styles } from "../signin/styles";
 
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
@@ -26,18 +26,18 @@ type OtpProp = {
   phoneNumber: string;
   onBackButtonPressed: () => void;
   otpTitle: string;
+  buttonLoading?: boolean;
 };
 
 const OtpScreen = (props: OtpProp) => {
   const { otpCode, onOtpChanged, onVerify, onResend } = props;
-  const colorScheme = useColorScheme();
   const {
     minutesToDisplay,
     secondsToDisplay,
     resetTimer,
     toTwoDigits,
     timerStatus,
-  } = useCountdownTimer(120);
+  } = useCountdownTimer(60);
 
   const resendCode = () => {
     onResend();
@@ -55,14 +55,14 @@ const OtpScreen = (props: OtpProp) => {
         style={{
           marginTop: hp(20),
           paddingHorizontal: hp(20),
-          marginBottom: hp(100),
+          marginBottom: hp(111),
         }}
       >
         <SegmentedInput
           value={otpCode}
           onValueChanged={(code) => onOtpChanged(code)}
           headerText="OTP"
-          secureInput={false}
+          secureInput={true}
         />
       </View>
       <View style={[styles.noOtp, CommonStyles.row]}>
@@ -77,7 +77,6 @@ const OtpScreen = (props: OtpProp) => {
               title="Resend code"
               onPressButton={resendCode}
               styleText={CommonStyles.resend}
-              color={Colors[colorScheme].text}
             />
           </TouchableOpacity>
         )}
@@ -85,17 +84,9 @@ const OtpScreen = (props: OtpProp) => {
       <Button
         title="Continue"
         onPressButton={onVerify}
-        styleText={{
-          color: Colors[colorScheme].buttonText,
-        }}
-        style={[
-          {
-            backgroundColor: Colors[colorScheme].button,
-            marginBottom: hp(10),
-          },
-          CommonStyles.otpbutton,
-        ]}
+        style={[{ marginBottom: hp(10) }, CommonStyles.otpbutton]}
         disabled={otpCode.length < 6 ? true : false}
+        buttonLoading={props.buttonLoading ? props.buttonLoading : false}
       />
     </SpacerWrapper>
   );

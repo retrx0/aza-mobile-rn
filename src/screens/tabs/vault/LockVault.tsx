@@ -1,6 +1,6 @@
 import { Image } from "react-native";
 import Button from "../../../components/buttons/Button";
-import { View, Text } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -27,14 +27,15 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             This action cannot be undone
           </Text>
           <Text style={CommonStyles.lockupStyle}>
-            You are about to lock up {"\u20A680000"} for 2 Weeks
+            You are about to lock up {"\u20A62000"} for 2 Weeks
           </Text>
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

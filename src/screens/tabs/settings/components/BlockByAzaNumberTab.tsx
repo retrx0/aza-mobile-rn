@@ -1,7 +1,9 @@
 import React from "react";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { StyleSheet } from "react-native";
 
@@ -21,9 +23,9 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
-            marginLeft: hp(5),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Blocked users won't be able to send you money, request money from you
           or split payments with you.
         </Text>
@@ -33,10 +35,10 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
             fontWeight: "400",
             marginTop: hp(30),
-          }}>
+          }}
+        >
           You can unblock these users anytime
         </Text>
         <View style={{ marginTop: hp(50) }}>
@@ -50,10 +52,12 @@ const BlockByAzaNumberTab = ({ toggleModal }: IProps) => {
               paddingBottom: 10,
               marginTop: hp(15),
               borderBottomWidth: 1,
-              borderBottomColor: Colors[colorScheme].separator,
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
               fontSize: hp(16),
             }}
             placeholder="Aza Number"
+            keyboardType="number-pad"
+            returnKeyType="done"
           />
         </View>
       </View>
@@ -67,6 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { hp } from "../../common/util/LayoutUtil";
-import { Text } from "../Themed";
+import { Text } from "../../theme/Themed";
 
 export default function RegularText({
   text,
@@ -14,11 +14,12 @@ export default function RegularText({
       style={[
         style,
         {
-          fontFamily: "Euclid-Circular-A",
+          fontFamily: "Euclid-Circular-A-Semi-Bold",
           fontWeight: "500",
           fontSize: hp(16),
         },
-      ]}>
+      ]}
+    >
       {text}
     </Text>
   );

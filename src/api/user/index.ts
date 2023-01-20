@@ -1,37 +1,13 @@
-import api from "..";
 import * as SecureStore from "expo-secure-store";
+import { AxiosError } from "axios";
+
+import api from "..";
+
 import {
   STORAGE_KEY_JWT_TOKEN,
   STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
 } from "@env";
-import { toastError } from "../../common/util/ToastUtil";
-
-export const changePassword = async (
-  oldPassword: string,
-  newPassword: string
-) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.patch(
-      "/api/v1/user/change-password",
-      {
-        oldPassword,
-        newPassword,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result;
-  } catch (e) {
-    console.log("Error changing password: ", e as Error);
-    toastError(
-      "There was a problem changing your password ⚠️, please try again!"
-    );
-  }
-};
+import { toastError, toastSuccess } from "../../common/util/ToastUtil";
 
 type RegisterUserModel = {
   firstName: string;
@@ -42,24 +18,13 @@ type RegisterUserModel = {
   pushNotificationToken: string;
 };
 
-export const registerUserAPI = async (data: RegisterUserModel) => {
+export const checkUserEndpointHealthAPI = async () => {
   try {
-    const jwt = await SecureStore.getItemAsync(
-      STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN
-    );
-    const result = await api.put("/api/v1/user/register", data, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
+    const result = await api.get("/api/v1/user/health");
     if (result.status === 200) return result.data;
-    // temporary!!!! must remove the below if endpoint gets fixed
-    else if (result.status === 400) return { data: "bad request" };
-    else if (result.status === 409) return "";
     return undefined;
   } catch (e) {
-    console.log("Error registering user: ", e as Error);
-    toastError("We encountered a problem while creating your account ⚠️");
+    console.log(e);
   }
 };
 
@@ -79,3 +44,163 @@ export const getFullUserInfoAPI = async () => {
     toastError("We encountered a problem ⚠️, please try again!");
   }
 };
+
+export const registerUserAPI = async (data: RegisterUserModel) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(
+      STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN
+    );
+    const result = await api.put("/api/v1/user/register", data, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    if (result.status === 200) return result.data;
+    return undefined;
+  } catch (e) {
+    console.log("Error registering user: ", e as Error);
+    toastError("We encountered a problem while creating your account ⚠️");
+  }
+};
+
+export const changePasswordAPI = async (
+  oldPassword: string,
+  newPassword: string
+) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.patch(
+      "/api/v1/user/change-password",
+      {
+        oldPassword,
+        newPassword,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    if (result.status === 204) {
+      return result;
+    }
+  } catch (e) {
+    console.debug("Error changing password: ", e as AxiosError);
+    throw Error();
+  }
+};
+
+export const verifyEmailAPI = async (email: string) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.patch("/api/v1/user/verify-email", email, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    return result;
+  } catch (e) {
+    console.log(e as Error);
+  }
+};
+
+export const createPinAPI = async (newTransactionPin: string) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.patch(
+      "/api/v1/user/create-pin",
+      {
+        newTransactionPin,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return result.data;
+  } catch (e) {
+    throw Error("Error creating pin");
+  }
+};
+
+export const updatePinAPI = async (oldPin: string, newPin: string) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.patch(
+      "/api/v1/user/update-pin",
+      {
+        oldPin,
+        newPin,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return result.data;
+  } catch (e) {
+    console.log(e as Error);
+  }
+};
+
+export const resetPinAPI = async (newTransactionPin: string) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.post(
+      "/api/v1/user/reset-pin",
+      {
+        newTransactionPin,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return result.data;
+  } catch (e) {
+    console.log(e as Error);
+  }
+};
+
+export const inviteUserAPI = async (phoneNumber: string, email: string) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.post(
+      "/api/v1/user/invite",
+      {
+        phoneNumber,
+        email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return result.data;
+  } catch (e) {
+    console.log(e as Error);
+  }
+};
+
+export const getUserLoginInfoAPI = async (email: string) => {
+  try {
+    const response = await api.get(`/api/v1/user/${email}`);
+    if (response.status === 200) return response.data.data;
+    return undefined;
+  } catch (e) {
+    if ((e as AxiosError).response) {
+      if ((e as AxiosError).response?.status === 404)
+        toastError("Email address not valid!");
+      else toastError("We encountered an error, please try again!");
+    }
+    console.debug("Error get user login details: ", e as Error);
+  }
+};
+
+const deleteUser = async () => {};
+
+const getUserAccountStatus = async (email: string) => {};

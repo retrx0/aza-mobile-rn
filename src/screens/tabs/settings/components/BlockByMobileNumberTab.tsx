@@ -3,7 +3,9 @@ import React from "react";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import ContactListItem from "../../../../components/ListItem/ContactListItem";
 import { AZALargeLightningLogo } from "../../../../../assets/svg";
 
@@ -23,7 +25,6 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
-            marginLeft: hp(5),
             fontWeight: "500",
           }}>
           Blocked users won't be able to send you money, request money from you
@@ -35,7 +36,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A",
-            marginLeft: hp(5),
+
             fontWeight: "400",
             marginTop: hp(30),
           }}>
@@ -45,17 +46,21 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           <TextInput
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
-            placeholderTextColor={Colors[colorScheme].secondaryText}
+            // placeholderTextColor={Colors[colorScheme].secondaryText}
             style={{
               backgroundColor: "transparent",
               fontFamily: "Euclid-Circular-A",
               paddingBottom: 10,
               marginTop: hp(15),
               borderBottomWidth: 1,
-              borderBottomColor: Colors[colorScheme].separator,
+
+              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
               marginLeft: hp(5),
             }}
             placeholder="Mobile Number"
+            keyboardType="number-pad"
+            returnKeyType="done"
           />
         </View>
         <Text
@@ -86,7 +91,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
                       color={Colors[colorScheme].text}
                     />
                   }
-                  isContactOnAza={false}
+                  isContactOnAza={true}
                 />
               </TouchableOpacity>
             ))}
@@ -101,6 +106,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

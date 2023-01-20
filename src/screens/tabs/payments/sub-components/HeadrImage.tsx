@@ -7,7 +7,7 @@ import {
 import React from "react";
 import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 type HeaderImageProps = {
   image: ImageSourcePropType;
@@ -52,20 +52,19 @@ export default function HeadrImage({
           style={[
             styles.image,
             {
-              width: amount ? 36 : 44,
-              height: amount ? 36 : 44,
+              width: amount ? 40 : 45,
+              height: amount ? 40 : 45,
             },
           ]}
           source={image}
         />
-        {amount || selected == true ? (
+        {selected ? (
           <View style={styles.icon}>
             <TickIcon />
           </View>
         ) : null}
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
-
       <Text style={styles.text2}>{title}</Text>
       {amount && <Text style={styles.text3}>₦{amount}</Text>}
     </TouchableAnimated>
@@ -74,15 +73,12 @@ export default function HeadrImage({
 
 const styles = StyleSheet.create({
   mainConatiner: {
-    width: 44,
-    backgroundColor: "transparent",
     alignItems: "center",
     marginRight: 33.5,
   },
   imageContainer: {
-    width: 44,
-    height: 44,
-    backgroundColor: "transparent",
+    width: 45,
+    height: 45,
     borderRadius: 22,
     justifyContent: "center",
     alignItems: "center",

@@ -1,9 +1,8 @@
 import { KeyboardAvoidingView, Platform, TouchableOpacity } from "react-native";
 import { CloseCircleLargeIcon } from "../../../../assets/svg";
 import Button from "../../../components/buttons/Button";
-import { Text, TextInput, View } from "../../../components/Themed";
+import { TextInput, View, Text } from "../../../theme/Themed";
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import Modal from "react-native-modal";
 import { TransactionKeypadParamsType } from "../../../common/navigation/types";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -12,6 +11,8 @@ import {
   selectTransaction,
   setTransaction,
 } from "../../../redux/slice/transactionSlice";
+import { getAppTheme } from "../../../theme";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 type DescriptionModalProps = {
   visible: boolean;
@@ -37,7 +38,7 @@ const DescriptionModal = ({
   recurringTransaction,
   transactionType,
 }: DescriptionModalProps) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <Modal
@@ -57,13 +58,11 @@ const DescriptionModal = ({
             marginRight: 15,
           }}
         >
-          <CloseCircleLargeIcon
-            color={Colors[colorScheme].backgroundSecondary}
-          />
+          <CloseCircleLargeIcon color={Colors[appTheme].backgroundSecondary} />
         </TouchableOpacity>
         <View
           style={{
-            backgroundColor: Colors[colorScheme].backgroundSecondary,
+            backgroundColor: Colors[appTheme].backgroundSecondary,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             paddingHorizontal: 15,
@@ -97,14 +96,14 @@ const DescriptionModal = ({
             lightColor={Colors.light.mainText}
             darkColor={Colors.dark.mainText}
             placeholder="Description (optional)"
-            placeholderTextColor={Colors[colorScheme].secondaryText}
+            placeholderTextColor={Colors[appTheme].secondaryText}
             style={{
               backgroundColor: "transparent",
               fontFamily: "Euclid-Circular-A",
               paddingBottom: 5,
               marginVertical: hp(35),
               borderBottomWidth: 1,
-              borderBottomColor: Colors[colorScheme].separator,
+              borderBottomColor: Colors[appTheme].separator,
             }}
             onChangeText={(e) => setDescription(e)}
             value={description}
@@ -129,14 +128,14 @@ const DescriptionModal = ({
               }
             }}
             styleText={{
-              color: Colors[colorScheme].buttonText,
+              color: Colors[appTheme].buttonText,
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: 14,
             }}
             style={{
               marginVertical: 10,
               width: "100%",
-              backgroundColor: Colors[colorScheme].button,
+              backgroundColor: Colors[appTheme].button,
             }}
           />
         </View>

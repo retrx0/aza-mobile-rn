@@ -1,21 +1,21 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
 import BackButton from "../../../../components/buttons/BackButton";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const SplitAndMoneyRequestsScreen = ({
   navigation,
 }: CommonScreenProps<"SplitAndMoneyRequests">) => {
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,13 +33,12 @@ const SplitAndMoneyRequestsScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Split and Money Requests
         </Text>
       ),
@@ -55,14 +54,13 @@ const SplitAndMoneyRequestsScreen = ({
   return (
     <View style={styles.container}>
       <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A",
-          marginLeft: hp(5),
+
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can disable this setting to reject all split and money requests from
         other users.
       </Text>
@@ -86,6 +84,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

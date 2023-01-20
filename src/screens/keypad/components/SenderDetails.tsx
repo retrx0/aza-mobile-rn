@@ -3,10 +3,12 @@ import { Image } from "react-native";
 import { NairaLargeIcon } from "../../../../assets/svg";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
-import { Text, View } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
+
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { UserState } from "../../../redux/slice/userSlice";
+import { UserState } from "../../../redux/types";
+// import { UserState } from "../../../redux/slice/userSlice";
 
 const SenderDetails = ({
   userData,

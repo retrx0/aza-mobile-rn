@@ -5,11 +5,10 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import BackButton from "../../../../components/buttons/BackButton";
 import Divider from "../../../../components/divider/Divider";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useAppSelector } from "../../../../redux";
@@ -17,7 +16,7 @@ import { selectUser } from "../../../../redux/slice/userSlice";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import {
   getCurrencyUnicode,
-  getInitialsAvatar,
+  getDefaultPictureUrl,
 } from "../../../../common/util/AppUtil";
 
 interface Detail {
@@ -27,7 +26,6 @@ interface Detail {
 }
 
 const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
-  const colorScheme = useColorScheme();
   return (
     <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
       <View
@@ -42,8 +40,6 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
       >
         <View style={[CommonStyles.col]}>
           <Text
-            // lightColor={Colors[colorScheme].text}
-            // darkColor={Colors[colorScheme].mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -54,8 +50,6 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
             {title}
           </Text>
           <Text
-            // lightColor={Colors.light.text}
-            // darkColor={Colors.dark.secondaryText}
             style={{
               marginTop: 2,
               fontFamily: "Euclid-Circular-A",
@@ -68,8 +62,6 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
           </Text>
         </View>
         <Text
-          // lightColor={Colors[colorScheme].text}
-          // darkColor={Colors[colorScheme].mainText}
           style={{
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(14),
@@ -87,7 +79,6 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
 const AccountDetailsScreen = ({
   navigation,
 }: CommonScreenProps<"AccountDetails">) => {
-  const colorScheme = useColorScheme();
   const user = useAppSelector(selectUser);
 
   const currencySymbol = getCurrencyUnicode(user.accountCurency);
@@ -172,17 +163,15 @@ const AccountDetailsScreen = ({
             source={{
               uri: user.pictureUrl
                 ? user.pictureUrl
-                : getInitialsAvatar({
+                : getDefaultPictureUrl({
                     firstName: user.firstName,
                     lastName: user.lastName,
-                    scheme: colorScheme,
+                    scheme: "light",
                   }),
             }}
           />
           <View style={[CommonStyles.col, { marginLeft: 20 }]}>
             <Text
-              lightColor={Colors[colorScheme].text}
-              darkColor={Colors[colorScheme].mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(16),
@@ -192,8 +181,6 @@ const AccountDetailsScreen = ({
               {user.fullName}
             </Text>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.secondaryText}
               style={{
                 marginVertical: 5,
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -204,8 +191,6 @@ const AccountDetailsScreen = ({
               {user.phoneNumber}
             </Text>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(10),
@@ -237,8 +222,6 @@ const AccountDetailsScreen = ({
           style={{ alignSelf: "center", marginVertical: hp(35) }}
         >
           <Text
-            // lightColor={Colors[colorScheme].text}
-            // darkColor={Colors[colorScheme].mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
@@ -260,6 +243,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "stretch",
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

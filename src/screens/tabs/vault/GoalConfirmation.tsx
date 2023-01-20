@@ -6,8 +6,8 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import { Input } from "../../../components/input/input";
-import { Text, View } from "../../../components/Themed";
+import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
+import { View, Text } from "../../../theme/Themed";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
@@ -24,8 +24,9 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-          }}>
-          <View style={{ marginLeft: 10 }}>
+          }}
+        >
+          <View style={{ marginLeft: 20 }}>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
           <Text
@@ -33,72 +34,87 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
-              marginLeft: hp(90),
-            }}>
+              marginLeft: hp(85),
+            }}
+          >
             Confirmation
           </Text>
         </View>
-        <Text style={CommonStyles.confirmDetails}>
-          Kindly confirm the details of this transaction
-        </Text>
-        <View
-          style={{
-            borderBottomWidth: hp(0.25),
-            marginBottom: hp(35),
-            borderColor: "#EAEAEC",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={CommonStyles.confirmDetails}>
+            Kindly confirm the details of this transaction
+          </Text>
+          <View
+            style={[
+              {
+                borderBottomWidth: hp(0.25),
+                marginBottom: hp(35),
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
 
-            width: "95%",
-            marginLeft: hp(10),
+                // alignSelf: "center",
+                // flexDirection: "row",
+                // alignItems: "center",
+              },
+              {
+                borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+          >
+            <UnderlinedInput
+              icon={null}
+              keyboardType="default"
+              labelStyle={styles.label}
+              label="Vault Name"
+              // placeholder="Give your vault a name"
+              inputStyle={{
+                fontSize: hp(16),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Medium",
+                // fontSize: hp(16),
+                // fontWeight: "500",
+                // fontFamily: "Euclid-Circular-A",
+              }}
+              value="Flight Ticket"
+            />
+            <Image
+              style={{
+                width: 45,
+                height: 45,
+              }}
+              source={require("../../../../assets/images/icons/CoverImage.png")}
+            />
+          </View>
+          <View style={CommonStyles.vaultInputcontainer}>
+            <UnderlinedInput
+              icon={null}
+              keyboardType="phone-pad"
+              inputStyle={[
+                [CommonStyles.inputStyle],
+                {
+                  borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
+              labelStyle={styles.label}
+              label="Vault Goal"
+              // placeholder={"\u20A6 80,000"}
+              // placeholder="Amount"
+              containerStyle={undefined}
+              // placeholderTextColor={Colors[colorScheme].text}
+              value={"\u20A680,000"}
+              returnKeyType="done"
+            />
+          </View>
+        </View>
 
-            // alignSelf: "center",
-            // flexDirection: "row",
-            // alignItems: "center",
-          }}>
-          <Input
-            icon={null}
-            keyboardType="default"
-            labelStyle={styles.label}
-            label="Vault Name"
-            placeholder="Flight Ticket"
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-            inputStyle={{
-              fontSize: hp(16),
-              fontWeight: "500",
-              fontFamily: "Euclid-Circular-A",
-              // fontSize: hp(16),
-              // fontWeight: "500",
-              // fontFamily: "Euclid-Circular-A",
-            }}
-          />
-          <Image
-            style={{
-              width: 45,
-              height: 45,
-            }}
-            source={require("../../../../assets/images/icons/CoverImage.png")}
-          />
-        </View>
-        <View style={CommonStyles.vaultInputcontainer}>
-          <Input
-            icon={null}
-            keyboardType="phone-pad"
-            inputStyle={CommonStyles.inputStyle}
-            labelStyle={styles.label}
-            label="Vault Goal"
-            placeholder={"\u20A6 80,000"}
-            containerStyle={undefined}
-            placeholderTextColor={Colors[colorScheme].text}
-          />
-        </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() =>
@@ -115,7 +131,6 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
               },
             ]}
           />
-
           <CancelButtonWithUnderline
             title="Cancel Transaction"
             onPressButton={() =>

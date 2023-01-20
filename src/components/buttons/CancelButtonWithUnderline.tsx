@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
 
-import { Text } from "../../components/Themed";
+import { Text } from "../../theme/Themed";
 
 type ButtonPropsType = {
   title: string;
@@ -29,7 +29,6 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
       onPress={onPressButton}
       style={[
         {
-          backgroundColor: "transparent",
           borderBottomColor: color,
           paddingBottom: 2,
           borderBottomWidth: 1,
@@ -37,7 +36,8 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
           marginTop: 3,
         },
         style,
-      ]}>
+      ]}
+    >
       <Text
         style={[
           {
@@ -46,7 +46,8 @@ export const CancelButtonWithUnderline: FC<ButtonPropsType> = ({
             fontFamily: "Euclid-Circular-A",
           },
           styleText,
-        ]}>
+        ]}
+      >
         {title}
       </Text>
     </TouchableOpacity>

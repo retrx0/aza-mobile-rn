@@ -1,11 +1,15 @@
 import { TouchableOpacity, Image } from "react-native";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { ActivityCard, ActivityList } from "../components/ActivityComponents";
 import { hp } from "../../../../common/util/LayoutUtil";
+import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultActivity = () => {
+  const colorScheme = useColorScheme();
+
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -21,31 +25,7 @@ const VaultActivity = () => {
               />
             );
           })}
-          <TouchableOpacity style={CommonStyles.flightcontainer}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Image
-                style={{
-                  width: 36,
-                  height: 36,
-                }}
-                source={require("../../../../../assets/images/icons/CoverImage.png")}
-              />
-              <Text style={CommonStyles.flightText}>
-                Flight Ticket vault created
-              </Text>
-            </View>
-            <Text
-              style={{
-                fontSize: hp(10),
-                fontWeight: "600",
-                fontFamily: "Euclid-Circular-A",
-                marginLeft: hp(103),
-              }}>
-              4 July 2022 04:26
-            </Text>
-          </TouchableOpacity>
         </View>
-        <View style={CommonStyles.line} />
       </View>
     </SpacerWrapper>
   );

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { PhoneInput, Text, View } from "../../../components/Themed";
+import { PhoneInput } from "../../../theme/Themed";
+import { View as View, Text as Text } from "../../../theme/Themed";
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import useColorScheme from "../../../hooks/useColorScheme";
-import { useAppDispatch } from "../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   requestOtp,
   setEmail as setReduxStoreEmail,
@@ -22,6 +22,8 @@ import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import { toastError } from "../../../common/util/ToastUtil";
 import ActivityModal from "../../../components/modal/ActivityModal";
+import styles from "../../onboarding/OnboardingStyles";
+import { hp } from "../../../common/util/LayoutUtil";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -30,7 +32,6 @@ const validationSchema = yup.object({
 });
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
-  const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
 
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -61,7 +62,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: 17, marginTop: 20 }}>
             <BackButton
               onPress={() => {
                 navigation.getParent()?.navigate("Welcome");
@@ -70,10 +71,29 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
           </View>
           <View style={[CommonStyles.phoneContainer]}>
             <Text style={[CommonStyles.headerText]}>Sign Up for Aza</Text>
-            <Text style={[CommonStyles.bodyText]}>
+            <Text
+              style={{
+                padding: hp(3),
+                margin: hp(3),
+                fontFamily: "Euclid-Circular-A-Medium",
+                marginLeft: hp(15),
+                fontSize: hp(16),
+                fontWeight: "500",
+                marginBottom: hp(30),
+              }}
+            >
               Enter your email address to continue
             </Text>
-            <Text style={[CommonStyles.phoneText]}>
+            <Text
+              style={{
+                padding: hp(5),
+                margin: hp(4),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                marginLeft: hp(15),
+                fontSize: hp(18),
+                fontWeight: "500",
+              }}
+            >
               Email Address <Text style={[CommonStyles.phoneNumber]}>*</Text>
             </Text>
           </View>
@@ -111,12 +131,7 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
                   <Button
                     title="Continue"
                     onPressButton={handleSubmit}
-                    styleText={{ color: Colors[colorScheme].buttonText }}
-                    style={[
-                      { backgroundColor: Colors[colorScheme].button },
-                      CommonStyles.otpbutton,
-                    ]}
-                    willCallAsync={buttonLoading}
+                    buttonLoading={buttonLoading}
                     disabled={!isValid}
                   />
                 </View>
@@ -130,14 +145,19 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
             <CancelButtonWithUnderline
               title="Login"
               onPressButton={() => navigation.getParent()?.navigate("SignIn")}
-              color={Colors[colorScheme].text}
+              styleText={{
+                fontSize: hp(14),
+                fontWeight: "500",
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+              }}
             />
           </View>
-          <Text style={[CommonStyles.orText]}>OR</Text>
-          <ThirdPartyAuthButtons
+          {/* <Text style={[CommonStyles.orText]}>OR</Text> */}
+          {/* // TODO TO BE IMPLEMENTED LATER */}
+          {/* <ThirdPartyAuthButtons
             authType="signup"
             onValidated={(email) => handleSubmission(email, true)}
-          />
+          /> */}
         </View>
       </HideKeyboardOnTouch>
     </SpacerWrapper>

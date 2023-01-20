@@ -1,21 +1,35 @@
-import { Beneficiary } from "../common/navigation/types";
+export interface ITransactions {
+  transactions: ITransaction[];
+  dateOfTransactions: string;
+}
 
-export interface Transaction {
+export interface ITransaction {
   id: number;
-  image: string;
+  imageUrl: string;
   name: string;
-  transactionType: string;
+  transactionType: "incoming" | "outgoing";
   transactionTitle: string;
   transactionMessage: string;
   amount: string;
   date: string;
 }
 
+export interface IBeneficiary {
+  fullName: string;
+  firstName?: string;
+  lastName?: string;
+  pictureUrl?: string;
+  azaAccountNumber: string;
+  currency?: string;
+  phone?: string;
+  email?: string;
+}
+
 export interface UserState {
   loading?: boolean;
   azaId?: string;
   gender?: string;
-  paymentMethods?: PaymentMethod[];
+  paymentMethods?: IPaymentMethod[];
   accountCurency: string;
   phoneNumber: string;
   fullName: string;
@@ -26,6 +40,7 @@ export interface UserState {
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;
+  bvnVerified: boolean;
   accountStatus: string;
   pushToken?: string;
   transfers: {
@@ -40,13 +55,45 @@ export interface UserState {
     totalMonthlyOutgoingTransferAmount: number;
   };
   vault: { loading: boolean; recentTransaction: [] };
-  payments: { loading: boolean; recentPayments: [] };
-  recentTransactions: { loading: boolean; data: Transaction[] };
-  azaContacts: { loading: boolean; data: Beneficiary[] };
+  payments: { loading: boolean; recentPayments: IPayment[] };
+  paymentRequests: { loading: boolean; data: IRequest[] };
+  recentTransactions: { loading: boolean; data: ITransactions[] };
+  azaContacts: { loading: boolean; data: IBeneficiary[] };
+  bankAccounts: { loading: boolean; data: IBankAccount[] };
 }
 
-interface Vault {}
-interface Payment {}
+export interface IBankAccount {
+  bankName: string;
+  logoUrl?: string;
+  accountNumber: string;
+  accountName: string;
+}
+
+export type PaymentCategory =
+  | "Internet"
+  | "Cable Tv"
+  | "Airtime & Data"
+  | "Electricity"
+  | "Water"
+  | "Gift Cards"
+  | "Charity"
+  | "Game Credits";
+
+export interface IPayment {
+  status: "Paid" | "Pending";
+  amount: string;
+  vendorName: string;
+  vendorLogo: string;
+  date: string;
+  category: PaymentCategory;
+}
+
+export interface IRequest extends IPayment {
+  type: "incoming" | "outgoing";
+  requestor: IBeneficiary;
+  requestees: IBeneficiary[];
+}
+interface IVault {}
 export type Gender = "Male" | "Female" | "Unknown";
 
 type PaymentMethodCardType = "Master Card" | "Visa";
@@ -59,7 +106,7 @@ export type PaymentMethodType = "card" | "cash";
 
 export type UserAccountStatus = "active" | "suspended";
 
-export interface PaymentMethod {
+export interface IPaymentMethod {
   dateAdded: Date;
   dateModified: Date;
   processedBy: string;

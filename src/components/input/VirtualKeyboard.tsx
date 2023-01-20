@@ -2,16 +2,19 @@ import { TouchableOpacity } from "react-native";
 import { ArrowRightIcon } from "../../../assets/svg";
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
-import { Text, View } from "../Themed";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { getAppTheme } from "../../theme";
+import { View, Text } from "../../theme/Themed";
 
 interface IProps {
   value: string;
   setValue: (value: string) => void;
+  maxLength: number;
 }
 
-const VirtualKeyboard = ({ value, setValue }: IProps) => {
-  const colorScheme = useColorScheme();
+const VirtualKeyboard = ({ value, setValue, maxLength }: IProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const onKeyPress = (key: string) => {
     if ((value === "" && key === "0") || (value === "" && key === ",")) {
@@ -20,8 +23,10 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
     }
     let currentText = value;
     if (key !== "backIcon") {
-      currentText += key;
-      setValue(currentText);
+      if (currentText.length <= maxLength) {
+        currentText += key;
+        setValue(currentText);
+      }
     } else {
       currentText = currentText.slice(0, -1);
       setValue(currentText);
@@ -36,7 +41,8 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
         style={{
           flex: 1,
           justifyContent: "center",
-        }}>
+        }}
+      >
         {key === "backIcon" ? (
           <View
             style={{
@@ -44,26 +50,24 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
               justifyContent: "center",
               alignItems: "center",
               transform: [{ rotate: "180deg" }],
-            }}>
+            }}
+          >
             <ArrowRightIcon
               color={
-                colorScheme === "dark"
-                  ? Colors.dark.mainText
-                  : Colors.light.text
+                appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
               }
               size={24}
             />
           </View>
         ) : (
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.mainText}
             style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(18),
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(24),
               padding: 10,
               textAlign: "center",
-            }}>
+            }}
+          >
             {key}
           </Text>
         )}
@@ -76,10 +80,11 @@ const VirtualKeyboard = ({ value, setValue }: IProps) => {
       <View
         style={{
           flexDirection: "row",
-          marginTop: 30,
+          marginTop: 15,
           alignItems: "center",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         {cells}
       </View>
     );

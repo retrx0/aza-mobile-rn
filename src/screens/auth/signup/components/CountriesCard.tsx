@@ -1,7 +1,10 @@
 import React from "react";
-import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { SvgUri } from "react-native-svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
+import { View, Text } from "../../../../theme/Themed";
+import Colors from "../../../../constants/Colors";
 
 export const CountriesCard = ({
   code,
@@ -11,47 +14,49 @@ export const CountriesCard = ({
   onPress,
 }: CountryProps) => {
   return (
-    <>
-      <TouchableOpacity style={styles.countryCard} onPress={onPress}>
-        {imageLink && (
-          <Image
-            source={{
-              uri: imageLink,
-              headers: {
-                Accept: "*/*",
-              },
-            }}
-            style={styles.flag}
-            resizeMode="contain"
-          />
-        )}
-        <Text style={styles.countryName}>{code}</Text>
-        <Text style={styles.countryName}>{short_name}</Text>
+    <View>
+      <TouchableOpacity
+        style={[
+          styles.countryCard,
+          {
+            borderColor: Colors.general.grey,
+          },
+        ]}
+        onPress={onPress}
+        activeOpacity={0.7}
+      >
+        <SvgUri
+          style={styles.flag}
+          width={"25"}
+          height={"15"}
+          uri={imageLink ? imageLink : ""}
+        />
 
-        <Text style={styles.countryName}>{name}</Text>
+        <Text style={[styles.countryName]}>{`(${code})`}</Text>
+        {/* <Text style={[styles.countryName]}>{short_name}</Text> */}
+        <Text style={[styles.countryName]}>{name}</Text>
       </TouchableOpacity>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   countryName: {
     color: "black",
-    fontSize: hp(16),
-    marginRight: hp(5),
+    fontSize: 16,
+    marginRight: wp(5),
   },
   countryCard: {
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 0.5,
-    borderColor: "green",
     height: hp(40),
     paddingVertical: hp(5),
     marginBottom: hp(10),
   },
   flag: {
-    width: wp(29),
-    height: hp(29),
-    marginRight: wp(12),
+    width: wp(15),
+    height: hp(15),
+    marginRight: wp(10),
   },
 });

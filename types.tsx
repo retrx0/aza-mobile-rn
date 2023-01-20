@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/no-namespace */
 /**
  * Learn more about using TypeScript with React Navigation:
  * https://reactnavigation.org/docs/typescript/
@@ -23,6 +25,8 @@ declare global {
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   QRTransactions: undefined;
+  CEOMessage: undefined;
+  QRFeature: undefined;
   QRCode: undefined;
   NotFound: undefined;
   Welcome: undefined;
@@ -60,6 +64,26 @@ export type PaymentsStackParamList = {
   water: undefined;
   Charity: undefined;
   charity_detail: undefined;
+  ElectricityConfirmation: undefined;
+  AirtimeConfirmation: undefined;
+  InternetConfirmation: undefined;
+  CableConfirmation: undefined;
+  WaterConfirmation: undefined;
+  GiftCardConfirmation: undefined;
+  CharityConfirmation: undefined;
+  GiftCard: undefined;
+  GiftCardDetails: undefined;
+  GameScreen: undefined;
+  PaymentRecurring: undefined;
+  InternetRecurring: undefined;
+  CableRecurring: undefined;
+  ElectricityRecurring: undefined;
+  WaterRecurring: undefined;
+  CharityRecurring: undefined;
+  AirtimeRecurring: undefined;
+  RecurringPlan: undefined;
+  GiftCardEmail: undefined;
+  GameCredit: undefined;
 };
 
 export type TopTabParamList = {
@@ -155,21 +179,27 @@ export type SocialSignInProps = {
 
 export type CountryProps = {
   code: string;
+  short_name: string;
   name?: string;
   id?: string;
   imageLink?: string;
   onPress?: () => void;
-  short_name: string;
+  onChangePhoneNumber?: any;
 };
 
 export type CountriesType = Omit<CountryProps, "onPress">;
 
-export type UserData = {
-  userAzaAccountNumber: number;
-  userAzaBalance: number;
-  userFistName: string;
-  userLastName: string;
-  userFullName: string;
-  userPhoneNumber: number;
-  userEmail: string;
-};
+export const CountryDetails: CountriesType[] = [
+  {
+    code: "+234",
+    imageLink:
+      "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+    name: "Nigeria",
+    short_name: "NG",
+  },
+  {
+    code: "+233",
+    short_name: "GH",
+    name: "Ghana",
+  },
+];

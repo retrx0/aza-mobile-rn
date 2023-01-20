@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../components/Themed";
+import { View, Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
 import useColorScheme from "../../hooks/useColorScheme";
@@ -12,6 +12,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { WhatsappLogo } from "../../../assets/images";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Divider from "../../components/divider/Divider";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const colorScheme = useColorScheme();
@@ -27,7 +28,8 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Contact Us
         </Text>
       ),
@@ -42,76 +44,74 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
               marginTop: hp(20),
               marginBottom: hp(40),
-              marginLeft: hp(5),
+
               fontWeight: "400",
-            }}>
+            }}
+          >
             Contact us with any questions. We are ready to help
           </Text>
           <View style={{ marginBottom: hp(40) }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
                 fontWeight: "400",
-                marginLeft: hp(5),
-              }}>
+              }}
+            >
               Email
             </Text>
-            <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              // placeholderTextColor={Colors[colorScheme].secondaryText}
+            <Text
               style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginTop: hp(15),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
-                marginLeft: hp(5),
-                fontSize: hp(14),
+                marginBottom: 5,
+                marginTop: 10,
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(16),
               }}
-              placeholder="Enter your Email"
-            />
+            >
+              customersupport@aza.com
+            </Text>
+            <Divider />
           </View>
         </View>
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <TouchableOpacity
             activeOpacity={0.7}
             style={{
               borderWidth: 1,
-              borderColor: Colors[colorScheme].text,
-              width: 335,
+              borderColor: Colors["general"].grey,
+              width: "90%",
               height: hp(50),
               borderRadius: hp(10),
               alignItems: "center",
               flexDirection: "row",
               justifyContent: "center",
-            }}>
-            <Image source={WhatsappLogo} style={{ marginRight: 10 }} />
+              alignSelf: "center",
+            }}
+          >
+            <Image
+              source={WhatsappLogo}
+              style={{ marginRight: 10, width: hp(22), height: hp(23) }}
+            />
             <Text
               style={{
-                color: Colors[colorScheme].text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(14),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Whatsapp Customer Support
             </Text>
           </TouchableOpacity>

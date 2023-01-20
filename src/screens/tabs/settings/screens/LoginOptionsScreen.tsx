@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import ButtonLg from "../../../../components/buttons/ButtonLg";
@@ -40,7 +40,12 @@ const LoginOptionsScreen = ({
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View>
+        <View
+          style={{
+            paddingHorizontal: hp(23),
+            marginTop: hp(30),
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -48,14 +53,20 @@ const LoginOptionsScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
-              marginLeft: hp(5),
             }}
           >
             Login quickly by connecting your Aza account to your social media
             account.
           </Text>
         </View>
-        <ThirdPartyAuthButtons />
+        <View style={{ marginTop: 330 }}>
+          <ThirdPartyAuthButtons
+            onValidated={function (email: string): void {
+              throw new Error("Function not implemented.");
+            }}
+            authType={"signup"}
+          />
+        </View>
       </View>
     </SpacerWrapper>
   );
@@ -66,8 +77,5 @@ export default LoginOptionsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    paddingVertical: hp(20),
-    paddingHorizontal: 15,
   },
 });

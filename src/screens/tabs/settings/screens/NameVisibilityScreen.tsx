@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Image, StyleSheet } from "react-native";
 
-import { Text, View } from "../../../../components/Themed";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 import BackButton from "../../../../components/buttons/BackButton";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
@@ -11,12 +11,13 @@ import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
-import { useAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 const NameVisibilityScreen = ({
   navigation,
 }: CommonScreenProps<"NameVisibility">) => {
-  const { saveSettingsToStorage, loadSettingsFromStorage } = useAsyncStorage();
+  const { saveSettingsToStorage, loadSettingsFromStorage } =
+    useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,7 +41,8 @@ const NameVisibilityScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Name Visibility
         </Text>
       ),
@@ -56,14 +58,12 @@ const NameVisibilityScreen = ({
   return (
     <View style={styles.container}>
       <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
         style={{
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A",
-          marginLeft: hp(5),
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can disable this setting if you want your name to appear masked when
         others send or receive money from you
       </Text>
@@ -85,7 +85,8 @@ const NameVisibilityScreen = ({
               paddingVertical: 30,
               alignItems: "center",
             },
-          ]}>
+          ]}
+        >
           <View style={[CommonStyles.col]}>
             <Text
               lightColor={Colors.light.text}
@@ -95,17 +96,17 @@ const NameVisibilityScreen = ({
                 marginBottom: 10,
                 fontWeight: "400",
                 fontFamily: "Euclid-Circular-A",
-              }}>
+              }}
+            >
               With whom?
             </Text>
             <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
               style={{
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Chiazondu Joseph
             </Text>
           </View>
@@ -128,6 +129,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: hp(20),
-    paddingHorizontal: 15,
+    paddingHorizontal: hp(20),
   },
 });

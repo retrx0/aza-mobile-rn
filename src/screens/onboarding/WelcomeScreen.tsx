@@ -5,14 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AZALogo } from "../../../assets/svg";
 import { RootStackScreenProps } from "../../../types";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { hp } from "../../common/util/LayoutUtil";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import ButtonMd from "../../components/buttons/ButtonMd";
 import WelcomeScrollIndicator from "../../components/indicators/WelcomeScrollIndicator";
 import Colors from "../../constants/Colors";
 import CarouselWrapper from "./CarouselWrapper";
 import styles from "./OnboardingStyles";
 import { carousel_data } from "./OnboardingUtil";
-
+import Layout from "../../constants/Layout";
 
 const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
   const [carouselIndicatorState, setCarouselIndicatorState] = useState([
@@ -30,10 +30,16 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           <WelcomeScrollIndicator key={id} count={5} active={active} />
         ))}
       </View>
-      <View style={{ height: "4%", marginTop: 50, alignItems: "center" }}>
+      <View
+        style={{
+          height: "4%",
+          marginTop: hp(30),
+          marginBottom: hp(30),
+          alignItems: "center",
+        }}
+      >
         <AZALogo color={"black"} size={16} />
       </View>
-
       <AppIntroSlider
         style={[{ height: "70%" }]}
         data={carousel_data}
@@ -47,18 +53,16 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           return <CarouselWrapper carousel={carousel.item} />;
         }}
       />
-      <View style={[CommonStyles.row]}>
-        <View
-          style={[
-            {
-              marginLeft: 10,
-              marginRight: 7.5,
-              marginTop: 0,
-              marginBottom: hp(100),
-            },
-            CommonStyles.col,
-          ]}
-        >
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          marginBottom: hp(100),
+          paddingHorizontal: 20,
+          width: Layout.window.width,
+        }}
+      >
+        <View>
           <ButtonMd
             title="Login"
             color={Colors.general.white}
@@ -66,25 +70,28 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
             onPress={() => {
               navigation.navigate("SignIn");
             }}
+            style={{
+              fontFamily: "Euclid-Circular-A",
+              fontSize: hp(14),
+              fontWeight: "500",
+              lineHeight: hp(18),
+            }}
           />
         </View>
-        <View
-          style={[
-            {
-              marginLeft: 7.5,
-              marginRight: 10,
-              marginTop: 0,
-              marginBottom: hp(100),
-            },
-            CommonStyles.col,
-          ]}
-        >
+        <View>
           <ButtonMd
             title="Sign Up"
             color={Colors.general.black}
             alt={false}
             onPress={() => {
               navigation.navigate("SignUp");
+            }}
+            style={{
+              fontFamily: "Euclid-Circular-A",
+              fontSize: hp(14),
+              fontWeight: "500",
+              lineHeight: hp(18),
+              fontStyle: "normal",
             }}
           />
         </View>

@@ -2,7 +2,9 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { Text, TextInput, View } from "../../../../components/Themed";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
+
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 
@@ -30,7 +32,8 @@ const EditBankAccountDetailsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Bank Account
         </Text>
       ),
@@ -45,18 +48,19 @@ const EditBankAccountDetailsScreen = ({
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
-        <View>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(15) }}>
           <Text
             // lightColor={Colors.light.mainText}
             // darkColor={Colors.dark.mainText}
             style={{
               marginVertical: hp(30),
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Details of your bank account
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -65,10 +69,11 @@ const EditBankAccountDetailsScreen = ({
               // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: hp(15),
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Bank
             </Text>
             <TextInput
@@ -77,12 +82,15 @@ const EditBankAccountDetailsScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+
                 marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               value={"Access"}
             />
@@ -108,10 +116,11 @@ const EditBankAccountDetailsScreen = ({
               // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: hp(15),
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Number
             </Text>
             <TextInput
@@ -120,12 +129,14 @@ const EditBankAccountDetailsScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               value={"123456789"}
             />
@@ -136,10 +147,11 @@ const EditBankAccountDetailsScreen = ({
               // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
-                fontSize: hp(15),
+                fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Name
             </Text>
             <TextInput
@@ -148,12 +160,14 @@ const EditBankAccountDetailsScreen = ({
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[colorScheme].separator,
+                borderBottomColor:
+                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
+                fontSize: hp(16),
               }}
               value={"james bond"}
             />
@@ -162,8 +176,9 @@ const EditBankAccountDetailsScreen = ({
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}>
+            { bottom: insets.top || hp(45) },
+          ]}
+        >
           <Button
             title="Edit Account Details"
             onPressButton={() => navigation.goBack()}

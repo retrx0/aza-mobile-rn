@@ -1,35 +1,45 @@
 /* eslint-disable no-console */
-import React from "react";
+import React, { useState } from "react";
+import { Formik } from "formik";
+import * as yup from "yup";
+
 import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { PhoneInput, Text, View } from "../../../components/Themed";
+// import { View, Text } from "../../../theme/Themed";
+//
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
+import InputFormEmail from "../../../components/input/InputFormFieldNormal";
+
+import { requestOtpApi } from "../../../api/auth";
+import { getUserLoginInfoAPI } from "../../../api/user";
+
+import { useAppDispatch } from "../../../redux";
+import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
+
 import { SignInScreenProps } from "../../../../types";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { useAppDispatch } from "../../../redux";
 import { hp } from "../../../common/util/LayoutUtil";
-import InputFormEmail from "../../../components/input/InputFormFieldNormal";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { getUserLoginInfoAPI, requestOtpApi } from "../../../api/auth";
-import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
+import { Text as Text, View as View } from "../../../theme/Themed";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
-  const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
+
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const validationSchema = yup.object({
     email: yup.string().required("Email is required!").email(),
   });
 
   const handleSubmission = (email: string) => {
+    setButtonLoading(true);
     getUserLoginInfoAPI(email)
       .then((data) => {
+        setButtonLoading(false);
         if (data) {
           dispatch(
             setUserPhoneAndFullName({
@@ -37,21 +47,24 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
               fullName: data.fullName,
             })
           );
-          requestOtpApi({
-            email: "",
-            phoneNumber: data.phoneNumber,
-          });
+          // requestOtpApi({
+          //   email: "",
+          //   phoneNumber: data.phoneNumber,
+          // }).then(() => setButtonLoading(false));
           navigation.navigate("SignInOTP");
         }
       })
-      .catch(() => toastError("Invalid email!"));
+      .catch(() => {
+        toastError("Invalid email!");
+        setButtonLoading(false);
+      });
   };
 
   return (
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: 17, marginTop: 20 }}>
             <BackButton
               onPress={() => {
                 navigation.getParent()?.navigate("Welcome");
@@ -68,7 +81,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 padding: hp(5),
                 margin: hp(4),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                marginTop: hp(35),
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
@@ -111,10 +123,12 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                   <Button
                     title="Continue"
                     onPressButton={handleSubmit}
-                    styleText={{
-                      color: Colors[colorScheme].buttonText,
-                    }}
-                    style={[{ backgroundColor: Colors[colorScheme].button }]}
+                    style={[
+                      {
+                        marginTop: 20,
+                      },
+                    ]}
+                    buttonLoading={buttonLoading}
                     disabled={!isValid}
                   />
                 </View>
@@ -122,11 +136,12 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             }}
           </Formik>
 
-          <Text style={[CommonStyles.orText]}>OR</Text>
-          <ThirdPartyAuthButtons
+          {/* <Text style={[CommonStyles.orText]}>OR</Text> */}
+          {/* // TODO TO BE IMPLEMENTED LATER */}
+          {/* <ThirdPartyAuthButtons
             onValidated={(email) => handleSubmission(email)}
             authType="signin"
-          />
+          /> */}
         </View>
       </HideKeyboardOnTouch>
     </SpacerWrapper>

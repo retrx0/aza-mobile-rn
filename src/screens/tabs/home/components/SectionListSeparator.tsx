@@ -1,7 +1,7 @@
 import React from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { Text, View } from "../../../../components/Themed";
+import { View, Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 
 const SectionListSeparator = ({

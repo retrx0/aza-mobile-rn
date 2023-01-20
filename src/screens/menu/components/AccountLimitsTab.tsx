@@ -8,48 +8,54 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 
 import Button from "../../../components/buttons/Button";
-import { Text, View } from "../../../components/Themed";
+import { View, Text } from "../../../theme/Themed";
+
 import { CommonScreenProps } from "../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { selectUser } from "../../../redux/slice/userSlice";
 
 const AccountLimitsTab = ({
   navigation,
 }: CommonScreenProps<"FeesAndLimits">) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const insets = useSafeAreaInsets();
 
-  const [isVerified] = useState(false);
+  const user = useAppSelector(selectUser);
+  const { bvnVerified } = user;
 
   return (
-    <View style={[styles.container, { paddingHorizontal: 15 }]}>
-      <View>
-        <View style={[CommonStyles.col, { alignSelf: "flex-start" }]}>
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <View style={{ paddingHorizontal: hp(20) }}>
           <Text
-            // lightColor={Colors.light.text}
-            // darkColor={Colors.dark.secondaryText}
             style={{
               fontSize: hp(14),
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}>
+            }}
+          >
             My Level:{" "}
             <Text
-              // lightColor={Colors.light.text}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
-              }}>
-              Tier {isVerified ? "1" : "0"}
+              }}
+            >
+              Tier {bvnVerified ? "1" : "0"}
             </Text>
           </Text>
           <View
             style={{
               marginTop: 6,
               borderWidth: 1,
-              borderColor: isVerified
+              borderColor: bvnVerified
                 ? "#2A9E17"
-                : Colors[colorScheme].secondaryText,
+                : Colors[appTheme].secondaryText,
               borderRadius: 50,
               width: 120,
             }}
@@ -62,11 +68,13 @@ const AccountLimitsTab = ({
               alignSelf: "stretch",
               alignItems: "flex-start",
               marginTop: hp(35),
+              paddingHorizontal: hp(20),
             },
-          ]}>
+          ]}
+        >
           <VerifyIcon
             color={
-              isVerified ? "#2A9E17" : Colors[colorScheme].backgroundSecondary
+              bvnVerified ? "#2A9E17" : Colors[appTheme].backgroundSecondary
             }
             size={34}
           />
@@ -74,45 +82,41 @@ const AccountLimitsTab = ({
             style={[
               CommonStyles.col,
               { width: "100%", marginRight: "auto", marginLeft: 25 },
-            ]}>
+            ]}
+          >
             <Text
               style={{
                 fontSize: hp(15),
                 marginBottom: hp(5),
                 fontWeight: "500",
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
-                color: isVerified
-                  ? "#2A9E17"
-                  : Colors[colorScheme].secondaryText,
-              }}>
-              {isVerified ? "Verified" : "Not verified"}
+                color: bvnVerified ? "#2A9E17" : Colors[appTheme].secondaryText,
+              }}
+            >
+              {bvnVerified ? "Verified" : "Not verified"}
             </Text>
             <Text
-              // lightColor={Colors.light.text}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "600",
-
-                // color: Colors[colorScheme].secondaryText,
-              }}>
+              }}
+            >
               Tier 1
             </Text>
             <View
               style={{
                 marginTop: 10,
-              }}>
+              }}
+            >
               <Text
-                // lightColor={Colors.light.text}
-                // darkColor={Colors.dark.secondaryText}
                 style={{
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-
-                  // color: Colors[colorScheme].secondaryText,
-                }}>
+                  color: appTheme === "dark" ? "#999999" : "#000000",
+                }}
+              >
                 Daily Transaction Limit:
               </Text>
               <Text
@@ -123,22 +127,25 @@ const AccountLimitsTab = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "600",
                   marginTop: hp(5),
-                }}>
-                {"\u20A650,000"}
+                }}
+              >
+                {NAIRA_UNICODE}
+                {"50,000"}
               </Text>
             </View>
             <View
               style={{
                 marginTop: 10,
-              }}>
+              }}
+            >
               <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.secondaryText}
                 style={{
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}>
+                  color: appTheme === "dark" ? "#999999" : "#000000",
+                }}
+              >
                 Maximum Balance:
               </Text>
               <Text
@@ -149,8 +156,10 @@ const AccountLimitsTab = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "600",
                   marginTop: hp(5),
-                }}>
-                {"\u20A6200,000"}
+                }}
+              >
+                {NAIRA_UNICODE}
+                {"200,000"}
               </Text>
             </View>
             <View
@@ -160,7 +169,8 @@ const AccountLimitsTab = ({
                   alignSelf: "flex-start",
                   marginTop: 20,
                 },
-              ]}>
+              ]}
+            >
               <Text
                 lightColor={Colors.light.text}
                 darkColor={Colors.dark.mainText}
@@ -169,15 +179,16 @@ const AccountLimitsTab = ({
                   marginBottom: hp(5),
                   fontWeight: "600",
                   fontFamily: "Euclid-Circular-A-Medium",
-                }}>
+                }}
+              >
                 Verify BVN
               </Text>
-              {isVerified && <SmallVerifyIcon color={"#2A9E17"} />}
+              {bvnVerified && <SmallVerifyIcon color={"#2A9E17"} />}
             </View>
           </View>
           <AwardIcon
             color={
-              isVerified ? "#ECCA13" : Colors[colorScheme].backgroundSecondary
+              bvnVerified ? "#ECCA13" : Colors[appTheme].backgroundSecondary
             }
           />
         </View>
@@ -185,39 +196,33 @@ const AccountLimitsTab = ({
       <View
         style={[
           CommonStyles.passwordContainer,
-          { bottom: insets.bottom || hp(45) },
-        ]}>
+          { bottom: insets.top || hp(45) },
+        ]}
+      >
         <Button
           title="Upgrade Account"
-          disabled={isVerified}
+          disabled={bvnVerified}
           onPressButton={() =>
             navigation.navigate("BvnVerification", {
               onVerifyNavigateBackTo: "FeesAndLimits",
             })
           }
           styleText={{
-            color: isVerified
-              ? Colors[colorScheme].disabledButtonText
-              : Colors[colorScheme].buttonText,
+            color: bvnVerified
+              ? Colors[appTheme].disabledButtonText
+              : Colors[appTheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
-            backgroundColor: isVerified
-              ? Colors[colorScheme].disabledButton
-              : Colors[colorScheme].button,
+            backgroundColor: bvnVerified
+              ? Colors[appTheme].disabledButton
+              : Colors[appTheme].button,
           }}
         />
       </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 
 export default AccountLimitsTab;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(35),
-  },
-});

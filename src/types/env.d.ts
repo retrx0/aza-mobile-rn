@@ -16,6 +16,7 @@ declare module "@env" {
   export const FACEBOOK_ANDROID_CLINET_ID: string;
   export const FACEBOOK_EXPO_CLINET_ID: string;
   export const STORAGE_KEY_JWT_TOKEN: string;
+  export const STORAGE_KEY_USER_CREDS: string;
   export const STORAGE_KEY_JWT_REFRESH_TOKEN: string;
   export const STORAGE_KEY_GOOGLE_TOKEN: string;
   export const STORAGE_KEY_GOOGLE_REFRESH_TOKEN: string;
