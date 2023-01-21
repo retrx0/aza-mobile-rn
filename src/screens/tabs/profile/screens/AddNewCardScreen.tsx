@@ -16,6 +16,9 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { number } from "yup/lib/locale";
 import { string } from "yup";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const AddNewCardScreen = ({
   navigation,
@@ -23,6 +26,8 @@ const AddNewCardScreen = ({
 }: CommonScreenProps<"AddNewCard">) => {
   const { navigateBackTo } = route.params;
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   interface CardDetails {
     cardNo: string;
@@ -44,8 +49,7 @@ const AddNewCardScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Add New Card
         </Text>
       ),
@@ -71,8 +75,7 @@ const AddNewCardScreen = ({
               marginTop: hp(30),
               marginBottom: hp(40),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Add your card details to deposit money to your Aza wallet
           </Text>
           <View style={{ marginBottom: hp(40) }}>
@@ -83,8 +86,7 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Card Number
             </Text>
             <TextInput
@@ -95,7 +97,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.3,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your card number"
               keyboardType="number-pad"
@@ -113,8 +116,7 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Expiry Date
             </Text>
             <TextInput
@@ -125,7 +127,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.3,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="MM/YY"
               keyboardType="number-pad"
@@ -143,8 +146,7 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               CVV
             </Text>
             <TextInput
@@ -156,7 +158,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.3,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your security code behind card"
               keyboardType="number-pad"
@@ -173,8 +176,7 @@ const AddNewCardScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <CancelButtonWithUnderline
             title="Scan Card instead"
             color={Colors.general.grey}

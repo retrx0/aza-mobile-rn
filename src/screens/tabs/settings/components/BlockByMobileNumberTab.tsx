@@ -2,19 +2,22 @@ import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
 import ContactListItem from "../../../../components/ListItem/ContactListItem";
 import { AZALargeLightningLogo } from "../../../../../assets/svg";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 interface IProps {
   toggleModal: () => void;
 }
 
 const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
-  const colorScheme = useColorScheme();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   return (
     <View style={[styles.container, { justifyContent: "space-between" }]}>
@@ -53,9 +56,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
               paddingBottom: 10,
               marginTop: hp(15),
               borderBottomWidth: 1,
-
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-
+              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               marginLeft: hp(5),
             }}
             placeholder="Mobile Number"
@@ -88,7 +89,7 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
                   suffixIcon={
                     <AZALargeLightningLogo
                       size={25}
-                      color={Colors[colorScheme].text}
+                      color={Colors.light.text}
                     />
                   }
                   isContactOnAza={true}

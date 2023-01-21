@@ -2,9 +2,11 @@ import React from "react";
 import * as Images from "../../../../../assets/images";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import Divider from "../../../../components/divider/Divider";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import Colors from "../../../../constants/Colors";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 export type FilterItem = {
   ImageSource: string;
@@ -203,6 +205,102 @@ export const CharityCard = ({
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image source={{ uri: ImageSource }} style={styles.img} />
+          <Text style={styles.text}>{title}</Text>
+        </View>
+        <View>{icon}</View>
+      </TouchableAnimated>
+      <Divider />
+    </View>
+  );
+};
+
+export const GiftCardList: FilterItem[] = [
+  {
+    index: 0,
+    ImageSource: Images.ITUNES,
+    title: "ITUNES",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 1,
+    ImageSource: Images.GOOGLEPLAY,
+    title: "Google Play",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
+    index: 2,
+    ImageSource: Images.AMAZON,
+    title: "Amazon",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 3,
+    ImageSource: Images.PSN,
+    title: "PSN",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
+    index: 4,
+    ImageSource: Images.XBOX,
+    title: "Xbox",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 5,
+    ImageSource: Images.RAZER,
+    title: "Razer",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
+    index: 6,
+    ImageSource: Images.NETFLIX,
+    title: "Netflix",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 7,
+    ImageSource: Images.STEAM,
+    title: "Steam",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 8,
+    ImageSource: Images.SEPHORA,
+    title: "Sephora",
+    icon: <ArrowFowardIcon />,
+  },
+  {
+    index: 9,
+    ImageSource: Images.Nintendo,
+    title: "Nintendo",
+    icon: <ArrowFowardIcon />,
+  },
+];
+
+export const GiftCardCard = ({
+  title,
+  ImageSource,
+  icon,
+  index,
+  onPress,
+}: FilterItem) => {
+  const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
+
+  return (
+    <View style={styles.listContainer}>
+      <TouchableAnimated
+        entering={FadeInDown.delay(200 * (index + 1))}
+        onPress={onPress}
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Image source={ImageSource} style={styles.img} />
           <Text style={styles.text}>{title}</Text>
         </View>
         <View>{icon}</View>

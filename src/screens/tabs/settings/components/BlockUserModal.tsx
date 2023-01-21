@@ -7,6 +7,9 @@ import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { getAppTheme } from "../../../../theme";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 
 interface IProps {
   toggleModal: () => void;
@@ -21,6 +24,8 @@ export default function BlockUserModal({
   user,
 }: CommonScreenProps<"BlockNewUser"> & IProps) {
   const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <View
       style={{
@@ -36,7 +41,6 @@ export default function BlockUserModal({
       }}>
       <View
         style={{
-          backgroundColor: Colors[colorScheme].backgroundSecondary,
           borderRadius: 20,
           paddingBottom: 20,
           paddingTop: 30,
@@ -87,14 +91,13 @@ export default function BlockUserModal({
             });
           }}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
             marginTop: hp(40),
             marginBottom: hp(20),
-            backgroundColor: Colors[colorScheme].button,
+
             width: "90%",
           }}
         />

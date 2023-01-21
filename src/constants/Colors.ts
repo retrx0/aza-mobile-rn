@@ -44,8 +44,10 @@ export default {
     disabledButtonText: "#CCCCCC",
     BACKGROUND: " #E5E5E5",
     borderColor: "#EAEAEC",
+    blockmodal: "#FFFFFF",
   },
   dark: {
+    blockmodal: "#3A3D42",
     borderColor: "#262626",
     text: "#FFFFFF",
     mainText: "#E7E9EA",

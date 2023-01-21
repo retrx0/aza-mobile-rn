@@ -15,25 +15,27 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const EditBankAccountDetailsScreen = ({
   navigation,
 }: CommonScreenProps<"EditBankAccountDetails">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Bank Account
         </Text>
       ),
@@ -51,34 +53,26 @@ const EditBankAccountDetailsScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               marginVertical: hp(30),
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}
-          >
+            }}>
             Details of your bank account
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}
-            >
+              }}>
               Bank
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -86,8 +80,7 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
 
                 marginLeft: hp(5),
                 fontSize: hp(16),
@@ -112,20 +105,15 @@ const EditBankAccountDetailsScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}
-            >
+              }}>
               Account Number
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -133,8 +121,8 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
@@ -143,20 +131,15 @@ const EditBankAccountDetailsScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}
-            >
+              }}>
               Account Name
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -164,8 +147,7 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
@@ -177,19 +159,10 @@ const EditBankAccountDetailsScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Edit Account Details"
             onPressButton={() => navigation.goBack()}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
           />
           <CancelButtonWithUnderline
             title="Delete Account"

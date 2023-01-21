@@ -17,7 +17,9 @@ import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { InternetCard, InternetList } from "../sub-components/Filters";
-
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 export default function InternetPlans({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -41,11 +43,17 @@ export default function InternetPlans({
   };
 
   const dataLength = allInternet.length;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
         icon={null}
-        inputStyle={[styles2.input]}
+        inputStyle={[
+          styles2.input,
+          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
         labelStyle={[styles.label]}
         label=""
         placeholder="Search for internet provider"
@@ -82,8 +90,8 @@ const styles2 = StyleSheet.create({
   },
   input: {
     width: "100%",
-    borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
+
+    borderBottomWidth: 0.3,
     height: 40,
     fontSize: hp(16),
     fontWeight: "500",

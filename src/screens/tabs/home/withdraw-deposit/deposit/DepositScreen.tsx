@@ -17,6 +17,9 @@ import useColorScheme from "../../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppSelector } from "../../../../../redux";
+import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../../theme";
 
 import {
   ArrowDownIcon,
@@ -28,6 +31,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   const [selectedCard, setSelectedCard] = useState("");
   const [cardsAvailable] = useState(true);
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -140,7 +145,10 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 })
               }
               color={Colors[colorScheme].text}
-              style={{ marginBottom: hp(10) }}
+              style={{
+                marginBottom: hp(10),
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              }}
             />
             <Button
               disabled={!selectedCard}
