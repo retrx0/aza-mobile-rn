@@ -31,7 +31,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
             {
               email: user.emailAddress,
               phoneNumber: user.phoneNumber,
-              otp: Number(loginOtp),
+              otp: loginOtp,
             },
             "phone"
           )
