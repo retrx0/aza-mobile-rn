@@ -57,7 +57,7 @@
         {
           "icon": "./assets/images/app/aza-app-icon-light.png",
           "color": "#ffffff",
-          "sounds": ["./assets/sounds/notifications/coin-drop.wav"]
+          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }
       ],
       "@config-plugins/detox"
