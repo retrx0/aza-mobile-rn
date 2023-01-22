@@ -201,6 +201,26 @@ export const getUserLoginInfoAPI = async (email: string) => {
   }
 };
 
+export const addUserBvnAPI = async (bvn: string) => {
+  try {
+    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+    const result = await api.post(
+      "/api/v1/user/add/bvn",
+      {
+        bvn,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return result.data;
+  } catch (e: any) {
+    throw Error(e.response.data.message);
+  }
+};
+
 const deleteUser = async () => {};
 
 const getUserAccountStatus = async (email: string) => {};

@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
-import {
-  CloseCircleLargeIcon,
-  NairaIcon,
-  OpenIcon,
-} from "../../../../../assets/svg";
+import Modal from "react-native-modal";
+import { useNavigation } from "@react-navigation/core";
+
+import Divider from "../../../../components/divider/Divider";
+import { View as View, Text as Text } from "../../../../theme/Themed";
+
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
-import { useAppSelector } from "../../../../redux";
-import { selectUser } from "../../../../redux/slice/userSlice";
-import Modal from "react-native-modal";
-import Divider from "../../../../components/divider/Divider";
-import { useNavigation } from "@react-navigation/core";
-import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
-
-import { View as View, Text as Text } from "../../../../theme/Themed";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";
 
+import { CloseCircleLargeIcon } from "../../../../../assets/svg";
+import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
+
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+
 export default function AccountDetails({ isModalVisible, listItems }: any) {
+  const { loadSettingsFromStorage } = useAppAsyncStorage();
   const [secure, setSecure] = useState(true);
   const [ModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
-  // const toggleModal = () => {
-  //   setMenuModalVisible(!isMenuModalVisible);
-  // };
   const user = useAppSelector(selectUser);
+
+  useEffect(() => {
+    loadSettingsFromStorage().then((setting) => {
+      setting?.accountBalanceVisibilitySwitch !== undefined &&
+        setSecure(setting?.accountBalanceVisibilitySwitch);
+    });
+  }, []);
 
   return (
     <>
@@ -65,7 +71,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
           onPress={() => setSecure(!secure)}
         >
           <>
-            {secure ? (
+            {!secure ? (
               <>
                 <Text
                   lightColor={Colors.light.text}
