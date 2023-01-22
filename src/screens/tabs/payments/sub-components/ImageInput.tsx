@@ -30,8 +30,8 @@ export const ImageInput = ({
     <View style={styles.container}>
       <UnderlinedInput
         icon={null}
-        keyboardType="default"
-        placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+        // keyboardType="default"
+        // placeholderTextColor={colorScheme === "dark" ? "#E7E9EA" : ""}
         inputStyle={[
           styles.input,
           {
@@ -43,7 +43,7 @@ export const ImageInput = ({
           fontFamily: "Euclid-Circular-A",
           fontWeight: "400",
           fontSize: hp(16),
-          color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+          // color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
         }}
         label={label}
         placeholder={placeholder}

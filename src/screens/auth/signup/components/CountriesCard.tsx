@@ -5,6 +5,9 @@ import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { View, Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { useAppSelector } from "../../../../redux";
 
 export const CountriesCard = ({
   code,
@@ -13,8 +16,10 @@ export const CountriesCard = ({
   imageLink,
   onPress,
 }: CountryProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
-    <View>
+    <View style={{ backgroundColor: Colors[appTheme].backgroundSecondary }}>
       <TouchableOpacity
         style={[
           styles.countryCard,
@@ -23,8 +28,7 @@ export const CountriesCard = ({
           },
         ]}
         onPress={onPress}
-        activeOpacity={0.7}
-      >
+        activeOpacity={0.7}>
         <SvgUri
           style={styles.flag}
           width={"25"}
@@ -42,7 +46,6 @@ export const CountriesCard = ({
 
 const styles = StyleSheet.create({
   countryName: {
-    color: "black",
     fontSize: 16,
     marginRight: wp(5),
   },

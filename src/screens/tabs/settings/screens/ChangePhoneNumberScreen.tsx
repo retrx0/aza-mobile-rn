@@ -1,4 +1,4 @@
-import { FlatList, Modal } from "react-native";
+import { FlatList } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
@@ -11,6 +11,8 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Phone from "../../../auth/common/PhoneStage";
+import Modal from "react-native-modal";
+
 import {
   CountriesType,
   CountryDetails,
@@ -20,6 +22,8 @@ import { useCountries } from "../../../../hooks/useCountries";
 import { CountriesCard } from "../../../auth/signup/components/CountriesCard";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 
 const ChangePhoneNumberScreen = ({
   navigation,
@@ -38,6 +42,7 @@ const ChangePhoneNumberScreen = ({
   };
 
   const { phoneNumber } = useAppSelector(selectUser);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -47,8 +52,7 @@ const ChangePhoneNumberScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           New Phone Number
         </Text>
       ),
@@ -73,16 +77,14 @@ const ChangePhoneNumberScreen = ({
               // marginTop: hp(30),
               // marginBottom: hp(30),
               marginLeft: hp(20),
-            }}
-          >
+            }}>
             Change your mobile phone number
           </Text>
           <View
             style={{
               marginBottom: 10,
               marginTop: 50,
-            }}
-          >
+            }}>
             <Text
               lightColor={Colors.light.text}
               darkColor={Colors.dark.mainText}
@@ -91,8 +93,7 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}
-            >
+              }}>
               Current Phone Number
             </Text>
             <Phone
@@ -117,8 +118,7 @@ const ChangePhoneNumberScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 marginBottom: hp(10),
                 marginLeft: hp(20),
-              }}
-            >
+              }}>
               New Phone Number
             </Text>
             <Phone
@@ -148,14 +148,22 @@ const ChangePhoneNumberScreen = ({
           />
         </View>
       </SpacerWrapper>
-      <Modal visible={modalVisible}>
-        <View style={[{ borderRadius: hp(10) }]}>
+      <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.9}>
+        <View
+          style={[
+            {
+              borderRadius: hp(10),
+              marginTop: hp(0),
+              marginBottom: hp(50),
+              backgroundColor: Colors[appTheme].backgroundSecondary,
+            },
+          ]}>
           <FlatList
             style={[
               {
                 borderRadius: hp(10),
-                paddingHorizontal: wp(20),
                 paddingTop: hp(20),
+                paddingHorizontal: hp(20),
               },
             ]}
             data={countries}

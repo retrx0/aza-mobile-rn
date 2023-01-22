@@ -45,7 +45,7 @@ export const requestOtpApi = async (data: {
     if (result.status === 204) return result.status;
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: ", e as Error);
+    console.error("Error Requesting OTP: ", (e as AxiosError).toJSON());
   }
 };
 

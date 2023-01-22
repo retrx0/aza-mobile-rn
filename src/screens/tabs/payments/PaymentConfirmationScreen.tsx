@@ -60,8 +60,7 @@ export default function PaymentConfirmationScreen({
         style={[
           CommonStyles.vaultcontainer,
           { marginTop: Platform.OS == "android" ? 50 : 0 },
-        ]}
-      >
+        ]}>
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -94,13 +93,13 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              // color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Customer Account Number"}
             value={customerAccountNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
 
           <UnderlinedInput
@@ -112,13 +111,13 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              // color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Smart Card Number"}
             value={smartCardNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
 
           <UnderlinedInput
@@ -130,13 +129,13 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              // color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Meter Number"}
             value={meterNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
 
           <UnderlinedInput
@@ -148,13 +147,13 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              // color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Account/User ID"}
             value={accountOrUserId}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
 
           <UnderlinedInput
@@ -166,13 +165,13 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
+              // color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Phone number"}
             value={phoneNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+            // placeholderTextColor={
+            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
+            // }
           />
 
           <UnderlinedInput
@@ -184,7 +183,7 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+              // color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
             label="Amount"
             value={`${NAIRA_UNICODE + amount} ${
@@ -202,7 +201,7 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+              // color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
               marginTop: hp(20),
             }}
             label="Payment Method"
@@ -213,8 +212,7 @@ export default function PaymentConfirmationScreen({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={onConfirm}
