@@ -2,12 +2,9 @@ import { FlatList, Modal } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
-import { PhoneInput } from "../../../../theme/Themed";
-import { View as View, Text as Text } from "../../../../theme/Themed";
-import Colors from "../../../../constants/Colors";
+import { View, Text } from "../../../../theme/Themed";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Phone from "../../../auth/common/PhoneStage";
@@ -24,7 +21,6 @@ import { selectUser } from "../../../../redux/slice/userSlice";
 const ChangePhoneNumberScreen = ({
   navigation,
 }: CommonScreenProps<"ChangePhoneNumber">) => {
-  const colorScheme = useColorScheme();
   const [newPhoneNumber, setNewPhoneNumber] = useState<string>("");
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
@@ -62,92 +58,86 @@ const ChangePhoneNumberScreen = ({
   }, []);
 
   return (
-    <>
-      <SpacerWrapper>
-        <View style={[CommonStyles.vaultcontainer]}>
+    <SpacerWrapper>
+      <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          style={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontWeight: "500",
+            // marginTop: hp(30),
+            // marginBottom: hp(30),
+            marginLeft: hp(20),
+          }}
+        >
+          Change your mobile phone number
+        </Text>
+        <View
+          style={{
+            marginBottom: 10,
+            marginTop: 50,
+          }}
+        >
           <Text
             style={{
-              fontSize: hp(16),
+              fontSize: 16,
               fontFamily: "Euclid-Circular-A-Medium",
-              fontWeight: "500",
-              // marginTop: hp(30),
-              // marginBottom: hp(30),
+              marginBottom: hp(10),
               marginLeft: hp(20),
             }}
           >
-            Change your mobile phone number
+            Current Phone Number
           </Text>
-          <View
+          <Phone
+            country={country}
+            phoneNumber={phoneNumber}
+            onCountryPress={() => {}}
+            onChangeText={() => {}}
+            onChangePhoneNumber={() => {}}
+            initialValue={phoneNumber}
+            autoFormat
+            textStyle={[CommonStyles.textStyle]}
+            textProps={{
+              placeholder: "Enter a phone number...",
+            }}
+            offset={20}
+          />
+
+          <Text
             style={{
-              marginBottom: 10,
-              marginTop: 50,
+              fontSize: 16,
+              fontFamily: "Euclid-Circular-A-Medium",
+              marginBottom: hp(10),
+              marginLeft: hp(20),
             }}
           >
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={Colors.dark.mainText}
-              style={{
-                fontSize: 16,
-                fontFamily: "Euclid-Circular-A-Medium",
-                marginBottom: hp(10),
-                marginLeft: hp(20),
-              }}
-            >
-              Current Phone Number
-            </Text>
-            <Phone
-              country={country}
-              phoneNumber={phoneNumber}
-              onCountryPress={() => {}}
-              onChangeText={() => {}}
-              onChangePhoneNumber={() => {}}
-              initialValue={phoneNumber}
-              autoFormat
-              textStyle={[CommonStyles.textStyle]}
-              textProps={{
-                placeholder: "Enter a phone number...",
-              }}
-              pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
-              offset={20}
-            />
-
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "Euclid-Circular-A-Medium",
-                marginBottom: hp(10),
-                marginLeft: hp(20),
-              }}
-            >
-              New Phone Number
-            </Text>
-            <Phone
-              country={country}
-              phoneNumber={newPhoneNumber}
-              onCountryPress={() => setModalVisible(true)}
-              onChangeText={(e) => setNewPhoneNumber(e)}
-              onChangePhoneNumber={() => {}}
-              initialValue={phoneNumber}
-              autoFormat
-              textStyle={[CommonStyles.textStyle]}
-              textProps={{
-                placeholder: "Enter a phone number...",
-              }}
-              pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
-              offset={20}
-            />
-          </View>
-          <Button
-            title="Continue"
-            onPressButton={() => navigation.navigate("ChangePhoneNumberOTP")}
-            styleText={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(14),
+            New Phone Number
+          </Text>
+          <Phone
+            country={country}
+            phoneNumber={newPhoneNumber}
+            onCountryPress={() => setModalVisible(true)}
+            onChangeText={(e) => setNewPhoneNumber(e)}
+            onChangePhoneNumber={() => {}}
+            initialValue={phoneNumber}
+            autoFormat
+            textStyle={[CommonStyles.textStyle]}
+            textProps={{
+              placeholder: "Enter a phone number...",
             }}
-            disabled={newPhoneNumber.length < 10}
+            offset={20}
           />
         </View>
-      </SpacerWrapper>
+        <Button
+          title="Continue"
+          onPressButton={() => navigation.navigate("ChangePhoneNumberOTP")}
+          styleText={{
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(14),
+          }}
+          disabled={newPhoneNumber.length < 10}
+        />
+      </View>
       <Modal visible={modalVisible}>
         <View style={[{ borderRadius: hp(10) }]}>
           <FlatList
@@ -163,7 +153,7 @@ const ChangePhoneNumberScreen = ({
           />
         </View>
       </Modal>
-    </>
+    </SpacerWrapper>
   );
 };
 

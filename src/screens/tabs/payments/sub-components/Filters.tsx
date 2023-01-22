@@ -204,7 +204,7 @@ export const CharityCard = ({
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image source={{ uri: ImageSource }} style={styles.img} />
+          <Image source={ImageSource} style={styles.img} />
           <Text style={styles.text}>{title}</Text>
         </View>
         <View>{icon}</View>
