@@ -3,8 +3,22 @@ import { AxiosError } from "axios";
 
 import api from "..";
 
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { API_BASE_URL, STORAGE_KEY_JWT_TOKEN } from "@env";
 import { toastError } from "../../common/util/ToastUtil";
+
+const courier = async (path: string) => {
+  try {
+    const result = await api.get(path);
+    if (result.status === 200) return result.data;
+    return undefined;
+  } catch (e) {
+    console.debug("Error logging fetching " + path, e as Error);
+    if ((e as AxiosError).response) {
+      if ((e as AxiosError).response?.status === 400) throw Error();
+      else toastError("We encountered an error, please try again!");
+    }
+  }
+};
 
 export const checkAuthEndpointHealthAPI = async () => {
   try {
@@ -53,7 +67,7 @@ export const verifyOtpApi = async (
   data: {
     email: string;
     phoneNumber: string;
-    otp: number;
+    otp: string;
   },
   type: "email" | "phone"
 ): Promise<string | undefined> => {

@@ -108,6 +108,8 @@ export const Chess = require("./common/Chess.png");
 
 /* AZA */
 
+export const AZA_APP_ICON_LIGHT = require("./app/aza-app-icon-light.png");
+
 export const ZEAL = require("./common/ZEAL.png");
 export const VaultFeature = require("./common/VaultFeature.png");
 export const WithdrawFeature = require("./common/WithdrawFeature.png");

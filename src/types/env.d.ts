@@ -9,6 +9,7 @@ declare module "@env" {
   export const SENTRY_DSN: string;
   export const SENTRY_PROJECT: string;
   export const SENTRY_AUTH_TOKEN: string;
+  export const SENTRY_LOG_LEVEL: string;
   export const ENV: string;
   export const GOOGLE_EXPO_CLINET_ID: string;
   export const GOOGLE_ANDROID_CLINET_ID: string;
