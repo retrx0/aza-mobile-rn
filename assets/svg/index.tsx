@@ -12,7 +12,9 @@ import Svg, {
   ClipPath,
   Styles,
 } from "react-native-svg";
-import useColorScheme from "../../src/hooks/useColorScheme";
+import { getAppTheme } from "../../src/theme";
+import { selectAppTheme } from "../../src/redux/slice/themeSlice";
+import { useAppSelector } from "../../src/redux";
 
 export type SvgIconProps = {
   color?: string;
@@ -556,7 +558,7 @@ export const ArrowDownIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const RequestIcon = ({ style, color }: SvgIconProps) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <Svg
@@ -565,33 +567,28 @@ export const RequestIcon = ({ style, color }: SvgIconProps) => {
       height="150"
       viewBox="0 0 150 150"
       fill="none">
-      <Circle
-        cx="75"
-        cy="75"
-        r="75"
-        fill={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-      />
+      <Circle cx="75" cy="75" r="75" fill={color} />
       <G clip-path="url(#clip0_5333_27313)">
         <Path
           d="M83.5532 74.9533H81.3009V72.7886H83.5532C83.8917 72.7886 84.166 72.5145 84.166 72.176C84.166 71.8375 83.8917 71.5633 83.5532 71.5633H81.3009V68.5596C81.3009 68.1212 81.2142 67.7994 81.0434 67.6033C80.8811 67.4169 80.6677 67.3301 80.3722 67.3301C80.0901 67.3301 79.8848 67.4163 79.7256 67.6016C79.5568 67.7978 79.4711 68.1202 79.4711 68.5598V71.5636H75.2343L73.4328 68.8376C73.2787 68.5944 73.1337 68.3665 72.9929 68.1477C72.8662 67.9507 72.7426 67.7903 72.6258 67.6706C72.5224 67.5645 72.4046 67.4825 72.2669 67.4194C72.1368 67.3601 71.9716 67.3303 71.776 67.3303C71.5266 67.3303 71.3002 67.3986 71.0835 67.539C70.8689 67.6778 70.7207 67.8495 70.6301 68.0638C70.5506 68.2675 70.5085 68.5796 70.5085 68.9825V71.5634H68.2786C67.9402 71.5635 67.666 71.8377 67.666 72.1762C67.666 72.5147 67.9402 72.7888 68.2786 72.7888H70.5086V74.9537H68.2786C67.9402 74.9537 67.666 75.2278 67.666 75.5664C67.666 75.9049 67.9402 76.1788 68.2786 76.1788H70.5086V79.6082C70.5086 80.0337 70.598 80.3522 70.7751 80.5546C70.9435 80.7476 71.157 80.8372 71.4469 80.8372C71.7267 80.8372 71.9386 80.7472 72.1142 80.5539C72.2941 80.3558 72.3852 80.0374 72.3852 79.6082V76.1788H76.219L78.2937 79.3601C78.4379 79.5704 78.5869 79.7827 78.7354 79.9908C78.8695 80.1777 79.0157 80.3424 79.17 80.48C79.3089 80.6044 79.4579 80.6955 79.6127 80.7512C79.7721 80.8085 79.9584 80.8376 80.1651 80.8376C80.7262 80.8376 81.3008 80.6659 81.3008 79.392V76.1788H83.5532C83.8916 76.1788 84.1659 75.9045 84.1659 75.566C84.166 75.2276 83.8917 74.9533 83.5532 74.9533ZM79.4711 72.7886V74.9532H77.4748L76.0444 72.7886H79.4711ZM72.3852 70.3013L73.2084 71.5633H72.3852V70.3013ZM72.3852 74.9533V72.7886H74.0078L75.4197 74.9533H72.3852ZM79.4711 77.9747L78.2846 76.1788H79.4711V77.9747Z"
-          fill={colorScheme === "dark" ? "#000000" : "#FFFFFF"}
+          fill={appTheme === "dark" ? "#000000" : "#FFFFFF"}
         />
       </G>
       <Path
         d="M93.3327 74.9993C93.3327 85.1193 85.1193 93.3327 74.9993 93.3327C64.8793 93.3327 56.666 85.1193 56.666 74.9993C56.666 64.8793 64.8793 56.666 74.9993 56.666"
-        stroke={colorScheme === "dark" ? "#000000" : "#FFFFFF"}
+        stroke={appTheme === "dark" ? "#000000" : "#FFFFFF"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M84.166 58.5V65.8333H91.4993"
-        stroke={colorScheme === "dark" ? "#000000" : "#FFFFFF"}
+        stroke={appTheme === "dark" ? "#000000" : "#FFFFFF"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M93.3327 56.666L84.166 65.8327"
-        stroke={colorScheme === "dark" ? "#000000" : "#FFFFFF"}
+        stroke={appTheme === "dark" ? "#000000" : "#FFFFFF"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -600,7 +597,7 @@ export const RequestIcon = ({ style, color }: SvgIconProps) => {
           <Rect
             width="16.5"
             height="16.5"
-            fill={colorScheme === "dark" ? "#000000" : "#FFFFFF"}
+            fill={appTheme === "dark" ? "#000000" : "#FFFFFF"}
             transform="translate(67.666 65.834)"
           />
         </ClipPath>

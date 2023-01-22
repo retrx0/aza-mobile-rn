@@ -8,6 +8,9 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Colors from "../../../../constants/Colors";
 import ExitButton from "../../../../components/buttons/ExitButton";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { useAppSelector } from "./../../../../redux";
 
 const SendMoneyFeature = ({
   navigation,
@@ -32,13 +35,15 @@ const SendMoneyFeature = ({
       headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   const slides = [
     {
       key: 1,
       featureTitle: "Lightning-fast transaction speed",
       featureText:
         "Send money to anyone on Aza or other banks at lightning speeds.",
-      icon: <AzaLOGO color={Colors.dark.Text} />,
+      icon: <AzaLOGO color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
     },
 
     {
@@ -46,7 +51,7 @@ const SendMoneyFeature = ({
       featureTitle: "Transaction Certainty",
       featureText:
         "Send money with Aza and instantly carry on with your life, knowing that the transaction will go through without fail.",
-      icon: <MoneyTick color={Colors.dark.Text} />,
+      icon: <MoneyTick color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
     },
 
     {
@@ -54,7 +59,7 @@ const SendMoneyFeature = ({
       featureTitle: "Invite new users to Aza",
       featureText:
         "Azarians can send money to users who don't even use Aza, after which an sms will be sent to those users with a guide on how to create an Aza account.",
-      icon: <AddUsers color={Colors.dark.Text} />,
+      icon: <AddUsers color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
     },
   ];
 

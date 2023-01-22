@@ -135,8 +135,7 @@ export default function AirtimeIndex({
         contentContainerStyle={{
           justifyContent: "space-between",
           width: "100%",
-        }}
-      >
+        }}>
         {airtimeOperators.map((operator, index) => {
           if (displayedOperators.has(operator.name.split(" ")[0])) {
             return null;
@@ -186,8 +185,7 @@ export default function AirtimeIndex({
             paddingHorizontal: hp(20),
             marginTop: hp(10),
             marginBottom: hp(10),
-          }}
-        >
+          }}>
           <CustomDropdown
             data={dataBundles}
             placeholder="Choose a bundle"
