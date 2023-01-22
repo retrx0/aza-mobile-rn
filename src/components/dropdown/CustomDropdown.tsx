@@ -43,8 +43,7 @@ const CustomDropdown = ({
           fontWeight: "400",
           fontSize: hp(16),
           marginBottom: 3,
-        }}
-      >
+        }}>
         {label}
       </Text>
 
@@ -96,13 +95,11 @@ const CustomDropdown = ({
                 justifyContent: "space-between",
                 backgroundColor: Colors[appTheme].BACKGROUND,
               },
-            ]}
-          >
+            ]}>
             <Text
               style={{
                 fontSize: 14,
-              }}
-            >
+              }}>
               {item.label}
             </Text>
           </View>

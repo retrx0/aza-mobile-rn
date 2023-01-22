@@ -7,6 +7,9 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import ExitButton from "../../../../components/buttons/ExitButton";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { useAppSelector } from "./../../../../redux";
 
 const RequestMoneyFeature = ({
   navigation,
@@ -31,13 +34,15 @@ const RequestMoneyFeature = ({
       headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   const slides = [
     {
       key: 1,
       featureTitle: "Easy and convinient",
       featureText:
         "Request money from your family and friends in a friendly manner, effortlessly.",
-      icon: <RequestIcon />,
+      icon: <RequestIcon color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
     },
   ];
 

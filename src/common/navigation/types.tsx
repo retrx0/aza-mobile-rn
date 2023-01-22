@@ -115,6 +115,7 @@ export type CommonStackParamList = {
   ChangePhoneNumberOTP: undefined;
   ChangeEmail: undefined;
   PrivacySettings: undefined;
+  AccountBalanceVisibility: undefined;
   NameVisibility: undefined;
   ContactVisibility: undefined;
   SplitAndMoneyRequests: undefined;

@@ -1,28 +1,33 @@
-import React, { useLayoutEffect } from "react";
-import { StyleSheet } from "react-native";
+import React, { useLayoutEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import BackButton from "../../components/buttons/BackButton";
-import { TextInput } from "../../theme/Themed";
-import { View, Text } from "../../theme/Themed";
-
 import Button from "../../components/buttons/Button";
+import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
+import { View, Text, TextInput } from "../../theme/Themed";
+import { getAppTheme } from "../../theme";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
-import { getAppTheme } from "../../theme";
+import { toastError } from "../../common/util/ToastUtil";
+
+import { setBvnVerified } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { useAppSelector } from "../../redux";
+import { useAppSelector, useAppDispatch } from "../../redux";
+
+import { addUserBvnAPI } from "../../api/user";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
+  const [bvn, setBvn] = useState("");
+  const [isButtonLoading, setButtonLoading] = useState(false);
+
+  const dispatch = useAppDispatch();
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
@@ -37,7 +42,8 @@ const BvnVerificationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Tier 1 Verification
         </Text>
       ),
@@ -50,6 +56,26 @@ const BvnVerificationScreen = ({
     });
   }, []);
 
+  const verifyBvn = () => {
+    setButtonLoading(true);
+    addUserBvnAPI(bvn)
+      .then((res) => {
+        setButtonLoading(false);
+        dispatch(setBvnVerified(true));
+        navigation.navigate("StatusScreen", {
+          statusIcon: "Success",
+          status: "Successful",
+          statusMessage:
+            "You have successfully added your BVN to your Aza account",
+          navigateTo: onVerifyNavigateBackTo,
+        });
+      })
+      .catch((err) => {
+        setButtonLoading(false);
+        toastError(err.message);
+      });
+  };
+
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -60,7 +86,8 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Verify your BVN
           </Text>
           <View>
@@ -70,7 +97,8 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-              }}>
+              }}
+            >
               BVN
             </Text>
             <TextInput
@@ -88,6 +116,9 @@ const BvnVerificationScreen = ({
               placeholder="Enter your bank verification number"
               keyboardType="number-pad"
               returnKeyType="done"
+              value={bvn}
+              onChangeText={(text) => setBvn(text)}
+              maxLength={11}
             />
           </View>
         </View>
@@ -95,23 +126,17 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Verify"
-            onPressButton={() =>
-              navigation.navigate("StatusScreen", {
-                statusIcon: "Success",
-                status: "Successful",
-                statusMessage:
-                  "You have successfully added your BVN to your Aza account",
-                navigateTo: onVerifyNavigateBackTo,
-              })
-            }
+            onPressButton={verifyBvn}
             styleText={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(14),
             }}
-            style={{}}
+            disabled={bvn.length < 11}
+            buttonLoading={isButtonLoading}
           />
           <CancelButtonWithUnderline
             title="Cancel"
@@ -126,12 +151,3 @@ const BvnVerificationScreen = ({
 };
 
 export default BvnVerificationScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
-  },
-});

@@ -1,4 +1,4 @@
-import { FlatList, Modal } from "react-native";
+import { FlatList } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import BackButton from "../../../../components/buttons/BackButton";
@@ -8,6 +8,8 @@ import Button from "../../../../components/buttons/Button";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Phone from "../../../auth/common/PhoneStage";
+import Modal from "react-native-modal";
+
 import {
   CountriesType,
   CountryDetails,
@@ -17,6 +19,9 @@ import { useCountries } from "../../../../hooks/useCountries";
 import { CountriesCard } from "../../../auth/signup/components/CountriesCard";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import Colors from "../../../../constants/Colors";
 
 const ChangePhoneNumberScreen = ({
   navigation,
@@ -34,6 +39,7 @@ const ChangePhoneNumberScreen = ({
   };
 
   const { phoneNumber } = useAppSelector(selectUser);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -100,6 +106,7 @@ const ChangePhoneNumberScreen = ({
             textProps={{
               placeholder: "Enter a phone number...",
             }}
+            pickerBackgroundColor={Colors[appTheme].backgroundSecondary}
             offset={20}
           />
 
@@ -125,6 +132,7 @@ const ChangePhoneNumberScreen = ({
             textProps={{
               placeholder: "Enter a phone number...",
             }}
+            pickerBackgroundColor={Colors[appTheme].backgroundSecondary}
             offset={20}
           />
         </View>
@@ -138,14 +146,23 @@ const ChangePhoneNumberScreen = ({
           disabled={newPhoneNumber.length < 10}
         />
       </View>
-      <Modal visible={modalVisible}>
-        <View style={[{ borderRadius: hp(10) }]}>
+      <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.9}>
+        <View
+          style={[
+            {
+              borderRadius: hp(10),
+              marginTop: hp(0),
+              marginBottom: hp(50),
+              backgroundColor: Colors[appTheme].backgroundSecondary,
+            },
+          ]}
+        >
           <FlatList
             style={[
               {
                 borderRadius: hp(10),
-                paddingHorizontal: wp(20),
                 paddingTop: hp(20),
+                paddingHorizontal: hp(20),
               },
             ]}
             data={countries}

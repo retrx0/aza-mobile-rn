@@ -13,6 +13,10 @@ const PrivacySettingsScreen = ({
 }: CommonScreenProps<"PrivacySettings">) => {
   const privacySettings = [
     {
+      name: "Account Balance Visibility",
+      handleNavigation: () => navigation.navigate("AccountBalanceVisibility"),
+    },
+    {
       name: "Name Visibility",
       handleNavigation: () => navigation.navigate("NameVisibility"),
     },
@@ -40,7 +44,8 @@ const PrivacySettingsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Privacy Settings
         </Text>
       ),
@@ -62,7 +67,8 @@ const PrivacySettingsScreen = ({
           fontSize: hp(16),
           fontFamily: "Euclid-Circular-A-Medium",
           fontWeight: "500",
-        }}>
+        }}
+      >
         You can change your privacy settings
       </Text>
       <View style={{ marginTop: hp(80) }}>

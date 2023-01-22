@@ -5,7 +5,6 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import Divider from "../../../../components/divider/Divider";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import Colors from "../../../../constants/Colors";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 
 export type FilterItem = {
@@ -81,8 +80,7 @@ export const InternetCard = ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-        }}
-      >
+        }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={{
@@ -189,7 +187,7 @@ export const CharityCard = ({
   icon,
   index,
   onPress,
-}: FilterItem) => {
+}: FilterCard) => {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
@@ -201,8 +199,7 @@ export const CharityCard = ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-        }}
-      >
+        }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image source={ImageSource} style={styles.img} />
           <Text style={styles.text}>{title}</Text>
@@ -214,7 +211,15 @@ export const CharityCard = ({
   );
 };
 
-export const GiftCardList: FilterItem[] = [
+export type FilterCard = {
+  ImageSource: any;
+  title: string;
+  icon: any;
+  onPress?: () => void;
+  index: number;
+};
+
+export const GiftCardList: FilterCard[] = [
   {
     index: 0,
     ImageSource: Images.ITUNES,
@@ -286,7 +291,7 @@ export const GiftCardCard = ({
   icon,
   index,
   onPress,
-}: FilterItem) => {
+}: FilterCard) => {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (
