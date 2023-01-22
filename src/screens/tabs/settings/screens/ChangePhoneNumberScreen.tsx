@@ -19,9 +19,6 @@ import { useCountries } from "../../../../hooks/useCountries";
 import { CountriesCard } from "../../../auth/signup/components/CountriesCard";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { getAppTheme } from "../../../../theme";
-import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import Colors from "../../../../constants/Colors";
 
 const ChangePhoneNumberScreen = ({
   navigation,
@@ -39,7 +36,6 @@ const ChangePhoneNumberScreen = ({
   };
 
   const { phoneNumber } = useAppSelector(selectUser);
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -71,8 +67,6 @@ const ChangePhoneNumberScreen = ({
             fontSize: hp(16),
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
-            // marginTop: hp(30),
-            // marginBottom: hp(30),
             marginLeft: hp(20),
           }}
         >
@@ -106,7 +100,6 @@ const ChangePhoneNumberScreen = ({
             textProps={{
               placeholder: "Enter a phone number...",
             }}
-            pickerBackgroundColor={Colors[appTheme].backgroundSecondary}
             offset={20}
           />
 
@@ -132,7 +125,6 @@ const ChangePhoneNumberScreen = ({
             textProps={{
               placeholder: "Enter a phone number...",
             }}
-            pickerBackgroundColor={Colors[appTheme].backgroundSecondary}
             offset={20}
           />
         </View>
@@ -153,7 +145,6 @@ const ChangePhoneNumberScreen = ({
               borderRadius: hp(10),
               marginTop: hp(0),
               marginBottom: hp(50),
-              backgroundColor: Colors[appTheme].backgroundSecondary,
             },
           ]}
         >

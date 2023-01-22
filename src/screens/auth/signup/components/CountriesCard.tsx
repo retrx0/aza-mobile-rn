@@ -19,7 +19,7 @@ export const CountriesCard = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
-    <View style={{ backgroundColor: Colors[appTheme].backgroundSecondary }}>
+    <View>
       <TouchableOpacity
         style={[
           styles.countryCard,
@@ -28,7 +28,8 @@ export const CountriesCard = ({
           },
         ]}
         onPress={onPress}
-        activeOpacity={0.7}>
+        activeOpacity={0.7}
+      >
         <SvgUri
           style={styles.flag}
           width={"25"}

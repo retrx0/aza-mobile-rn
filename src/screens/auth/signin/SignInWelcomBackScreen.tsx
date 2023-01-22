@@ -13,6 +13,7 @@ import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
+  getUserInfo,
   selectUser,
   setUserEmail,
   setUserPhoneAndFullName,
@@ -80,7 +81,7 @@ const SignInWelcomeBackScreen = ({
     phoneNumber: string;
   };
 
-  const verifyPassword = (code: string) => {
+  const verifyPassword = async (code: string) => {
     // TODO add push notification token to the server to always keep it updated incase it change
 
     // TODO refactor below code
@@ -97,31 +98,31 @@ const SignInWelcomeBackScreen = ({
       }
     } else {
       setScreenLoading(true);
-      loginUserAPI({
+      const jwt = await loginUserAPI({
         email: user.emailAddress,
         password: code,
         phoneNumber: user.phoneNumber,
-      })
-        .then((response) => {
-          if (response) {
-            storeItemSecure(STORAGE_KEY_JWT_TOKEN, response);
-            storeUserCredentialsSecure(
-              JSON.stringify({
-                email: user.emailAddress,
-                token: response,
-                password: code,
-                phoneNumber: user.phoneNumber,
-              })
-            );
-            setScreenLoading(false);
-            navigation.getParent()?.navigate("Root");
-          }
-        })
-        .catch(() => {
-          setScreenLoading(false);
-          setLoginAttemptCounter((s) => s + 1);
-          toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+      });
+      if (jwt) {
+        storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
+          requireAuthentication: false,
         });
+        storeUserCredentialsSecure(
+          JSON.stringify({
+            email: user.emailAddress,
+            token: jwt,
+            password: code,
+            phoneNumber: user.phoneNumber,
+          })
+        );
+        dispatch(getUserInfo());
+        setScreenLoading(false);
+        navigation.getParent()?.navigate("Root");
+      } else {
+        setScreenLoading(false);
+        setLoginAttemptCounter((s) => s + 1);
+        toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+      }
     }
   };
 

@@ -360,6 +360,7 @@ export const getUserInfo = createAsyncThunk(
       const info = await api.get("/api/v1/user/info", {
         headers: { Authorization: `Bearer ${jwt}` },
       });
+      console.log(info.data);
       return fulfillWithValue(info.data);
     } catch (e: any) {
       return rejectWithValue(e.response.data.message);

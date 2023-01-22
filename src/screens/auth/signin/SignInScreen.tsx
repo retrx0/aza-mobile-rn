@@ -35,29 +35,27 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
     email: yup.string().required("Email is required!").email(),
   });
 
-  const handleSubmission = (email: string) => {
+  const handleSubmission = async (email: string) => {
     setButtonLoading(true);
-    getUserLoginInfoAPI(email)
-      .then((data) => {
-        setButtonLoading(false);
-        if (data) {
-          dispatch(
-            setUserPhoneAndFullName({
-              phoneNumber: data.phoneNumber,
-              fullName: data.fullName,
-            })
-          );
-          // requestOtpApi({
-          //   email: "",
-          //   phoneNumber: data.phoneNumber,
-          // }).then(() => setButtonLoading(false));
-          navigation.navigate("SignInOTP");
-        }
-      })
-      .catch(() => {
-        toastError("Invalid email!");
-        setButtonLoading(false);
-      });
+    const userLoginInfo = await getUserLoginInfoAPI(email);
+
+    if (userLoginInfo) {
+      dispatch(
+        setUserPhoneAndFullName({
+          phoneNumber: userLoginInfo.phoneNumber,
+          fullName: userLoginInfo.fullName,
+        })
+      );
+      requestOtpApi({
+        email: "",
+        phoneNumber: userLoginInfo.phoneNumber,
+      }).then(() => setButtonLoading(false));
+
+      navigation.navigate("SignInOTP");
+    } else {
+      toastError("Invalid email!");
+      setButtonLoading(false);
+    }
   };
 
   return (
