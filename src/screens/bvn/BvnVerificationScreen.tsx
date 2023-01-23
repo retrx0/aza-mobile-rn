@@ -14,11 +14,9 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { toastError } from "../../common/util/ToastUtil";
 
-import { setBvnVerified } from "../../redux/slice/userSlice";
+import { addUserBvnThunk } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
-
-import { addUserBvnAPI } from "../../api/user";
 
 const BvnVerificationScreen = ({
   navigation,
@@ -58,10 +56,10 @@ const BvnVerificationScreen = ({
 
   const verifyBvn = () => {
     setButtonLoading(true);
-    addUserBvnAPI(bvn)
-      .then((res) => {
+    dispatch(addUserBvnThunk(bvn))
+      .unwrap()
+      .then(() => {
         setButtonLoading(false);
-        dispatch(setBvnVerified(true));
         navigation.navigate("StatusScreen", {
           statusIcon: "Success",
           status: "Successful",

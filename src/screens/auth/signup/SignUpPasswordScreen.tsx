@@ -136,7 +136,7 @@ const SignUpPasswordScreen = ({
               storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
             }
           }
-          dispatch(getUserInfo);
+          dispatch(getUserInfo());
         }
         setLoading(false);
       } else {
