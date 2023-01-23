@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TouchableOpacity, Platform, Image } from "react-native";
+import { TouchableOpacity, Platform } from "react-native";
 
 import {
   AirtimeRecurringTab,
@@ -29,7 +29,6 @@ import BackButton from "../components/buttons/BackButton";
 import SpacerWrapper from "../common/util/SpacerWrapper";
 import Colors from "../constants/Colors";
 import { BackIcon, InfoIcon } from "../../assets/svg";
-import { Info } from "../../assets/images";
 
 import StatusScreen from "../screens/status/StatusScreen";
 
@@ -537,7 +536,7 @@ const CommonStack = () => {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => props.navigation.navigate("GiftCardEasy")}>
-                <Image source={Info} style={{ width: 24, height: 24 }} />
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -607,7 +606,7 @@ const CommonStack = () => {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => props.navigation.navigate("GameCredit")}>
-                <Image source={Info} style={{ width: 24, height: 24 }} />
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -682,7 +681,7 @@ const CommonStack = () => {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => props.navigation.navigate("CharityFeature")}>
-                <Image source={Info} style={{ width: 24, height: 24 }} />
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -932,7 +931,7 @@ const CommonStack = () => {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => props.navigation.navigate("WithdrawFeature")}>
-                <Image source={Info} style={{ width: 24, height: 24 }} />
+                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
           })}>

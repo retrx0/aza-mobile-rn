@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
 import {
-  Image,
   StyleSheet,
   TouchableOpacity,
   useWindowDimensions,
@@ -21,7 +20,6 @@ import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { IBeneficiary } from "../../../redux/types";
-import { Info } from "../../../../assets/images";
 
 type TransactionScreenProps = {
   headerTitle: string;
@@ -67,7 +65,7 @@ const TransactionScreen = ({
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate(featureNavigationScreen)}>
-          <Image source={Info} style={{ width: 24, height: 24 }} />
+          <InfoIcon color={Colors[appTheme].Text} />
         </TouchableOpacity>
       ),
     });
