@@ -75,6 +75,7 @@ export default function InternetPlans({
                   title={item.title}
                   ImageSource={item.ImageSource}
                   index={0}
+                  onPress={() => navigation.navigate("InternetPlanDetail")}
                 />
               );
             })}

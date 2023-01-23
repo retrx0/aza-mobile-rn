@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { TouchableOpacity, Platform } from "react-native";
+import { TouchableOpacity, Platform, Image } from "react-native";
 
 import {
   AirtimeRecurringTab,
@@ -29,6 +29,7 @@ import BackButton from "../components/buttons/BackButton";
 import SpacerWrapper from "../common/util/SpacerWrapper";
 import Colors from "../constants/Colors";
 import { BackIcon, InfoIcon } from "../../assets/svg";
+import { Info } from "../../assets/images";
 
 import StatusScreen from "../screens/status/StatusScreen";
 
@@ -175,8 +176,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           flexDirection: "row",
           alignItems: "center",
           marginTop: hp(20),
-        }}
-      >
+        }}>
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -186,8 +186,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginLeft: hp(65),
-          }}
-        >
+          }}>
           Flight Ticket Vault
         </Text>
       </View>
@@ -209,8 +208,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             // marginTop: hp(30),
           },
         }}
-        initialRouteName="details"
-      >
+        initialRouteName="details">
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -449,8 +447,7 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}
-            >
+              }}>
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={12}
@@ -461,8 +458,7 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}
-              >
+                }}>
                 Back
               </Text>
             </TouchableOpacity>
@@ -483,8 +479,7 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}
-      >
+        })}>
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeData"
@@ -524,8 +519,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -535,17 +529,15 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GiftCardEasy")}
-              >
-                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+                onPress={() => props.navigation.navigate("GiftCardEasy")}>
+                <Image source={Info} style={{ width: 24, height: 24 }} />
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -560,8 +552,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             options={{ title: "Gift Cards" }}
             name="GiftCard"
@@ -598,8 +589,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -609,17 +599,15 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GameCredit")}
-              >
-                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+                onPress={() => props.navigation.navigate("GameCredit")}>
+                <Image source={Info} style={{ width: 24, height: 24 }} />
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -634,8 +622,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             options={{ title: "Game Credits" }}
             name="GameScreen"
@@ -677,8 +664,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -688,17 +674,15 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("CharityFeature")}
-              >
-                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+                onPress={() => props.navigation.navigate("CharityFeature")}>
+                <Image source={Info} style={{ width: 24, height: 24 }} />
               </TouchableOpacity>
             ),
             headerStyle: {
@@ -713,8 +697,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen name="Charity" component={CharityIndexScreen} />
         </Stack.Group>
 
@@ -727,8 +710,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -738,16 +720,14 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GameCredit")}
-              >
+                onPress={() => props.navigation.navigate("GameCredit")}>
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -763,8 +743,7 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}
-        >
+          })}>
           <Stack.Screen
             options={{ title: "GameCredit" }}
             name="GameCredit"
@@ -921,8 +900,7 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -932,8 +910,7 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}
-                >
+                  }}>
                   Back
                 </Text>
               </TouchableOpacity>
@@ -954,13 +931,11 @@ const CommonStack = () => {
 
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("WithdrawFeature")}
-              >
-                <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
+                onPress={() => props.navigation.navigate("WithdrawFeature")}>
+                <Image source={Info} style={{ width: 24, height: 24 }} />
               </TouchableOpacity>
             ),
-          })}
-        >
+          })}>
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}

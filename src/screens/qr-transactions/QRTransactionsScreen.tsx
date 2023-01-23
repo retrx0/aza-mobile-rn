@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { TouchableOpacity, useWindowDimensions, Image } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { RootStackScreenProps } from "../../../types";
@@ -11,10 +11,10 @@ import { Text as Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { InfoIcon } from "../../../assets/svg";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { Info } from "../../../assets/images";
 
 const QRTransactionsScreen = ({
   navigation,
@@ -39,8 +39,7 @@ const QRTransactionsScreen = ({
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           QR Transactions
         </Text>
       ),
@@ -52,10 +51,10 @@ const QRTransactionsScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
       headerRight: () => (
         <TouchableOpacity
-          onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}
-        >
-          {/* TODO Add these colors to Colors.ts and import them */}
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+          onPress={() =>
+            navigation.navigate("Common", { screen: "QRFeature" })
+          }>
+          <Image source={Info} style={{ width: 24, height: 24 }} />
         </TouchableOpacity>
       ),
     });
@@ -104,8 +103,7 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}
-                  >
+                    }}>
                     {route.title}
                   </Text>
                 );
