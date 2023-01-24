@@ -53,8 +53,7 @@ export function AirtimeTabs() {
             fontWeight: "500",
           },
         }}
-        initialRouteName="airtime"
-      >
+        initialRouteName="airtime">
         <Tab.Screen
           name="airtime"
           component={AirtimeIndex}
@@ -91,8 +90,7 @@ export function AirtimeRecurringTab() {
             fontWeight: "500",
           },
         }}
-        initialRouteName="airtime"
-      >
+        initialRouteName="airtime">
         <Tab.Screen name="airtime" component={AirtimeRecurring} />
         <Tab.Screen name="data bundle" component={AirtimeRecurring} />
       </Tab.Navigator>
@@ -113,7 +111,7 @@ export function CharityTabs() {
           },
           tabBarIndicatorStyle: {
             borderWidth: 1,
-            borderColor: scheme == "light" ? "#000000" : "#ffffff",
+            borderColor: scheme == "light" ? "#E7E9EA" : "#121212",
           },
           tabBarLabelStyle: {
             textTransform: "capitalize",
@@ -121,12 +119,11 @@ export function CharityTabs() {
             fontWeight: "500",
           },
           tabBarStyle: {
-            borderBottomColor: "#A6A6A6",
+            borderBottomColor: "#262626",
             borderBottomWidth: 1,
           },
         }}
-        initialRouteName="For Myself"
-      >
+        initialRouteName="For Myself">
         <Tab.Screen name="For Myself" component={CharityDetail} />
         <Tab.Screen name="For Someone Else" component={CharityDetail} />
       </Tab.Navigator>

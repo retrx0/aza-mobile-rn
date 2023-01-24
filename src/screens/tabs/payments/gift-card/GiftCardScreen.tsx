@@ -44,7 +44,13 @@ export default function GiftCardScreen({
     // display filtered data
     setCharity([...filterItem]);
   };
-
+  const handleAction = (title: string) => {
+    if (title === "ITUNES") {
+      return navigation.navigate("Common", {
+        screen: "GiftCardDetails",
+      });
+    }
+  };
   const dataLength = allCharity.length;
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
@@ -74,6 +80,7 @@ export default function GiftCardScreen({
                   title={item.title}
                   ImageSource={item.ImageSource}
                   index={0}
+                  onPress={() => handleAction(item.title)}
                 />
               );
             })}

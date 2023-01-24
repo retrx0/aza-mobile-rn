@@ -53,6 +53,14 @@ export default function CharityIndexScreen({
     // display filtered data
     setCharity([...filterItem]);
   };
+  const handleAction = (title: string) => {
+    if (title === "Chess in Slums") {
+      return navigation.navigate("Common", {
+        screen: "CharityDetail",
+        params: { name: "Chess in Slums" },
+      });
+    }
+  };
 
   dispatch(getCharities());
 
@@ -84,6 +92,7 @@ export default function CharityIndexScreen({
                   title={item.title}
                   ImageSource={item.ImageSource}
                   index={0}
+                  onPress={() => handleAction(item.title)}
                 />
               );
             })}
