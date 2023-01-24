@@ -20,6 +20,7 @@ import { InternetCard, InternetList } from "../sub-components/Filters";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import InternetDetail from "./InternetDetail";
 export default function InternetPlans({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -40,6 +41,15 @@ export default function InternetPlans({
     );
     // display filtered data
     setInternet([...filterItem]);
+  };
+
+  const handleAction = (title: string) => {
+    if (title === "Spectranet") {
+      return navigation.navigate("Common", {
+        screen: "InternetPlanDetail",
+        params: { name: "Spectranet" },
+      });
+    }
   };
 
   const dataLength = allInternet.length;
@@ -75,7 +85,7 @@ export default function InternetPlans({
                   title={item.title}
                   ImageSource={item.ImageSource}
                   index={0}
-                  onPress={() => navigation.navigate("InternetPlanDetail")}
+                  onPress={() => handleAction(item.title)}
                 />
               );
             })}

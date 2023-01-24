@@ -16,6 +16,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import Button from "../../../../components/buttons/Button";
 
 export default function CharityDetail({
   navigation,
@@ -106,11 +107,11 @@ export default function CharityDetail({
             width: "85%",
           }}
         />
-        <MyButton
+        <Button
           style={styles.btn}
           disabled={false}
           title="Continue"
-          onPress={() => {
+          onPressButton={() => {
             navigation.navigate("PaymentConfirmation", {
               amount,
               paymentMethod: "Aza Account",
