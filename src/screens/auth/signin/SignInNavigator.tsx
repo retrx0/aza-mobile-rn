@@ -4,21 +4,19 @@ import LoginOTPScreen from "./SignInOTPScreen";
 import SignInWelcomeBackScreen from "./SignInWelcomBackScreen";
 import SignInScreen from "./SignInScreen";
 import useCachedResources from "../../../hooks/useCachedResources";
+import { RootStackScreenProps } from "../../../../types";
 
 const LogInStack = createNativeStackNavigator();
 
-export type LogInStackProps = {
-  SignInRoot: undefined;
-  SignInWelcomeBack: undefined;
-  SignInOTP: undefined;
-};
-
-const LoginNavigator = () => {
-  const { isUserSignedIn } = useCachedResources();
-
+const LoginNavigator = ({
+  navigation,
+  route,
+}: RootStackScreenProps<"SignIn">) => {
   return (
     <LogInStack.Navigator
-      initialRouteName={isUserSignedIn ? "SignInWelcomeBack" : "SignInRoot"}
+      initialRouteName={
+        route.params.isUserSignedIn ? "SignInWelcomeBack" : "SignInRoot"
+      }
       screenOptions={{ gestureEnabled: false }}
     >
       <LogInStack.Screen

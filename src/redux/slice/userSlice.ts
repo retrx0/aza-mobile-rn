@@ -12,9 +12,9 @@ import { ITransactions, IUserState } from "../types";
 const initialState: IUserState = {
   loading: false,
   phoneNumber: "+2348135524649",
-  fullName: "Test User",
   firstName: "Test",
   lastName: "User",
+  fullName: "Test User",
   pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
   azaAccountNumber: 1234556644,
   azaBalance: 100000,
@@ -302,6 +302,9 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<any>) => {
       state = action.payload;
     },
+    setUserFullName: (state, action: PayloadAction<string>) => {
+      state.fullName = action.payload;
+    },
     setUserPhoneAndFullName: (
       state,
       action: PayloadAction<{ phoneNumber: string; fullName: string }>
@@ -490,6 +493,7 @@ export const {
   setUserPhoneNumber,
   setVault,
   setProfilePicture,
+  setUserFullName,
 } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

@@ -52,7 +52,7 @@ stages:
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
           - bash: |
               eas build --platform ios --profile buildForDetoxTesting --local
-            displayName: Build IOS .app for UI Testing on Azure MacOS Agent
+            displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
           - bash: |
               eas build --platform ios --non-interactive --no-wait

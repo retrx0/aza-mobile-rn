@@ -32,7 +32,7 @@ export type RootStackParamList = {
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;
   SignUp: undefined;
-  SignIn: undefined;
+  SignIn: { isUserSignedIn: boolean };
   TopBar: NavigatorScreenParams<CommonStackParamList>;
 };
 

@@ -8,8 +8,13 @@ import { AnnouncementDraw } from "../../../assets/images";
 import { View as View, Text as Text } from "../../theme/Themed";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
-
-export default function AnnouncementmODAL() {
+const AnnouncementModal = ({
+  title,
+  body,
+}: {
+  title: string;
+  body: string;
+}) => {
   const [ModalVisible, setModalVisible] = useState(false);
 
   return (
@@ -17,7 +22,8 @@ export default function AnnouncementmODAL() {
       <Modal
         onBackdropPress={() => setModalVisible(false)}
         isVisible={ModalVisible}
-        style={{ justifyContent: "flex-end", margin: 0 }}>
+        style={{ justifyContent: "flex-end", margin: 0 }}
+      >
         <TouchableOpacity
           style={{
             backgroundColor: "transparent",
@@ -25,7 +31,8 @@ export default function AnnouncementmODAL() {
             marginBottom: 10,
             marginRight: 10,
           }}
-          onPress={() => setModalVisible(false)}>
+          onPress={() => setModalVisible(false)}
+        >
           <CloseCircleLargeIcon color={Colors.light.disabled} />
         </TouchableOpacity>
         <View
@@ -33,11 +40,13 @@ export default function AnnouncementmODAL() {
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             paddingHorizontal: 15,
-          }}>
+          }}
+        >
           <View
             style={{
               height: hp(570),
-            }}>
+            }}
+          >
             <Image
               source={AnnouncementDraw}
               style={{
@@ -54,8 +63,9 @@ export default function AnnouncementmODAL() {
                 fontSize: hp(24),
                 textAlign: "center",
                 fontWeight: "600",
-              }}>
-              Update to privacy policy
+              }}
+            >
+              {title}
             </Text>
             <Text
               style={{
@@ -68,10 +78,9 @@ export default function AnnouncementmODAL() {
                 marginTop: hp(24),
                 maxWidth: 335,
                 marginBottom: hp(50),
-              }}>
-              Our privacy policy will have a few changes starting from 9th
-              January 2023. We are sorry for whatever inconveniences this might
-              cause.
+              }}
+            >
+              {body}
             </Text>
             <View>
               <Button title="OK, I understand" />
@@ -94,4 +103,6 @@ export default function AnnouncementmODAL() {
       </Modal>
     </View>
   );
-}
+};
+
+export default AnnouncementModal;
