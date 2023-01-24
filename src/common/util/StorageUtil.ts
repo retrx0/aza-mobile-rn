@@ -29,7 +29,7 @@ import { STORAGE_KEY_USER_CREDS } from "@env";
 // };
 
 export const storeUserCredentialsSecure = (value: string) => {
-  SecureStore.setItemAsync(STORAGE_KEY_USER_CREDS, value)
+  SecureStore.setItemAsync(STORAGE_KEY_USER_CREDS, value, {})
     .then(() => console.debug("creds stored to secure store!"))
     .catch((e) => console.error("Error storing item: " + e));
 };

@@ -23,13 +23,19 @@ import ListItem from "../sub-components/ListItem";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { CharityCard, CharityList } from "../sub-components/Filters";
-import { useAppSelector } from "../../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import {
+  getCharities,
+  selectPayment,
+} from "../../../../redux/slice/paymentSlice";
 export default function CharityIndexScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  // set all the items in the array to state
+  const dispatch = useAppDispatch();
+  const { charities } = useAppSelector(selectPayment);
+
   const [allCharity, setCharity] = useState([...CharityList]);
 
   // create filter function to be passed into thr onchangetext
@@ -47,6 +53,8 @@ export default function CharityIndexScreen({
     // display filtered data
     setCharity([...filterItem]);
   };
+
+  dispatch(getCharities());
 
   const dataLength = allCharity.length;
   const selectedTheme = useAppSelector(selectAppTheme);

@@ -98,31 +98,37 @@ const SignInWelcomeBackScreen = ({
       }
     } else {
       setScreenLoading(true);
-      const jwt = await loginUserAPI({
+      await loginUserAPI({
         email: user.emailAddress,
         password: code,
         phoneNumber: user.phoneNumber,
-      });
-      if (jwt) {
-        storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-          requireAuthentication: false,
+      })
+        .then((jwt) => {
+          if (jwt) {
+            storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
+              requireAuthentication: false,
+            });
+            storeUserCredentialsSecure(
+              JSON.stringify({
+                email: user.emailAddress,
+                token: jwt,
+                password: code,
+                phoneNumber: user.phoneNumber,
+              })
+            );
+            dispatch(getUserInfo());
+            setScreenLoading(false);
+            navigation.getParent()?.navigate("Root");
+          } else {
+            setScreenLoading(false);
+            toastError("There was a problem logging you in, please try again!");
+          }
+        })
+        .catch((err) => {
+          setScreenLoading(false);
+          setLoginAttemptCounter((s) => s + 1);
+          toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
         });
-        storeUserCredentialsSecure(
-          JSON.stringify({
-            email: user.emailAddress,
-            token: jwt,
-            password: code,
-            phoneNumber: user.phoneNumber,
-          })
-        );
-        dispatch(getUserInfo());
-        setScreenLoading(false);
-        navigation.getParent()?.navigate("Root");
-      } else {
-        setScreenLoading(false);
-        setLoginAttemptCounter((s) => s + 1);
-        toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
-      }
     }
   };
 
@@ -142,7 +148,6 @@ const SignInWelcomeBackScreen = ({
         LocalAuthentication.isEnrolledAsync().then((enrolled) => {
           if (enrolled) {
             getUserCredentialsSecure().then((creds) => {
-              console.log(user);
               console.log(creds);
               if (creds) {
                 const parsedCreds = JSON.parse(creds);

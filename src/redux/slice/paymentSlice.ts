@@ -1,7 +1,12 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { string } from "yup";
+import api from "../../api";
+import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
+import { ICharity } from "../types";
 
-export interface PaymentState {
+export interface IPaymentState {
   detailHeader: string;
   detailValue: string;
   amount: string;
@@ -9,9 +14,11 @@ export interface PaymentState {
   to: string;
   logo: string;
   paymentType: string;
+  charities: { loading: boolean; data: ICharity[] };
+  internetProviders: { loading: boolean; data: [] };
 }
 
-const initialState: PaymentState = {
+const initialState: IPaymentState = {
   detailHeader: "",
   amount: "",
   paymentMethod: "Aza Account",
@@ -19,6 +26,14 @@ const initialState: PaymentState = {
   logo: "",
   paymentType: "",
   detailValue: "",
+  charities: {
+    loading: false,
+    data: [],
+  },
+  internetProviders: {
+    loading: false,
+    data: [],
+  },
 };
 
 export const paymentSlice = createSlice({
@@ -36,7 +51,7 @@ export const paymentSlice = createSlice({
     },
     setPaymentMethod: (
       state,
-      action: PayloadAction<PaymentState["paymentMethod"]>
+      action: PayloadAction<IPaymentState["paymentMethod"]>
     ) => {
       state.paymentMethod = action.payload;
     },
@@ -50,6 +65,37 @@ export const paymentSlice = createSlice({
       state.detailValue = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(getCharities.pending, (state, action) => {
+      state.charities.loading = true;
+    }),
+      builder.addCase(getCharities.rejected, (state, action) => {
+        state.charities.data = [];
+        state.charities.loading = false;
+      }),
+      builder.addCase(getCharities.fulfilled, (state, action) => {
+        state.charities.data = action.payload;
+        state.charities.loading = false;
+      });
+  },
+});
+
+export const getCharities = createAsyncThunk("charities", async () => {
+  const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+  return api({
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+    url: "/api/v1/charity",
+  }).then(
+    (response) => {
+      return response.data;
+    },
+    (error) => {
+      console.debug(error);
+    }
+  );
 });
 
 export const {

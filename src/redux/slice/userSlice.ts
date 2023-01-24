@@ -6,10 +6,10 @@ import { Dstv, Fctwb, Ie, IET, Mtn } from "../../../assets/images";
 import api from "../../api";
 import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
-import { ITransactions, UserState } from "../types";
+import { ITransactions, IUserState } from "../types";
 
 // Define the initial state using that type
-const initialState: UserState = {
+const initialState: IUserState = {
   loading: false,
   phoneNumber: "+2348135524649",
   fullName: "Test User",
@@ -22,6 +22,8 @@ const initialState: UserState = {
   accountVerified: true,
   bvnVerified: false,
   accountStatus: "",
+  dateOfBirth: "",
+  lastLogin: "",
   recentTransactions: {
     loading: false,
     data: [
@@ -344,7 +346,13 @@ export const userSlice = createSlice({
         state.loading = false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
-        // state.firstName = action.payload.
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
+        state.phoneNumber = action.payload.phoneNumber;
+        state.emailAddress = action.payload.email;
+        state.gender = action.payload.gender;
+        state.bvnVerified = action.payload.isBVNComfirmed;
+        state.dateOfBirth = action.payload.dateOfBirth;
       })
       .addCase(uploadProfilePicThunk.fulfilled, (state, action) => {
         state.pictureUrl = action.payload as any;
@@ -355,21 +363,39 @@ export const userSlice = createSlice({
   },
 });
 
-export const getUserInfo = createAsyncThunk(
-  "user/getInfo",
-  async ({}, { rejectWithValue, fulfillWithValue }) => {
-    try {
-      const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-      const info = await api.get("/api/v1/user/info", {
-        headers: { Authorization: `Bearer ${jwt}` },
-      });
-      console.log(info.data);
-      return fulfillWithValue(info.data);
-    } catch (e: any) {
-      return rejectWithValue(e.response.data.message);
+// export const getUserInfo = createAsyncThunk(
+//   "user/getInfo",
+//   async ({}, { rejectWithValue, fulfillWithValue }) => {
+//     try {
+//       const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+//       const info = await api.get("/api/v1/user/info", {
+//         headers: { Authorization: `Bearer ${jwt}` },
+//       });
+//       console.log(info.data);
+//       return fulfillWithValue(info.data);
+//     } catch (e: any) {
+//       return rejectWithValue(e.response.data.message);
+//     }
+//   }
+// );
+
+export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
+  const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+  return api({
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+    url: "/api/v1/user/info",
+  }).then(
+    (response) => {
+      return response.data;
+    },
+    (error) => {
+      console.debug(error);
     }
-  }
-);
+  );
+});
 
 export const getUserTransactions = createAsyncThunk(
   "user/getTransactions",
