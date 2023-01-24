@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
-import { Gender, UserState } from "../types";
 import api from "../../api";
 import { API_BASE_URL } from "@env";
 interface NewUser {

@@ -25,13 +25,26 @@ export interface IBeneficiary {
   email?: string;
 }
 
-export interface UserState {
+export interface ICharity {
+  charityName: string;
+  primaryAccountNo: string;
+  primaryAccBankame: string;
+  secondaryAccountNo: string;
+  secondaryAccBankName: string;
+  description: string;
+  pictureUrl: string;
+  city: string;
+}
+
+export interface IUserState {
   loading?: boolean;
   azaId?: string;
   gender?: string;
   paymentMethods?: IPaymentMethod[];
   accountCurency: string;
   phoneNumber: string;
+  dateOfBirth: string;
+  lastLogin: string;
   fullName: string;
   firstName: string;
   lastName: string;
