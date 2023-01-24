@@ -29,8 +29,8 @@ const StatusScreen = ({
     status,
     statusMessage,
     statusMessage2,
-    receiptButton,
     recurringTransferBeneficiary,
+    receiptDetails,
     cancelButton,
     navigateTo,
     navigateToParams,
@@ -157,11 +157,16 @@ const StatusScreen = ({
               marginBottom: 15,
             }}
           />
-          {receiptButton && (
+          {receiptDetails !== undefined && (
             <ButtonWithUnderline
               title="Receipt"
               color={Colors[appTheme].text}
-              onPressButton={() => console.log("called receipt")}
+              onPressButton={() =>
+                navigation.navigate("Receipt", {
+                  amount: receiptDetails.amount,
+                  beneficiaryName: receiptDetails.beneficiaryName,
+                })
+              }
             />
           )}
           {cancelButton && (

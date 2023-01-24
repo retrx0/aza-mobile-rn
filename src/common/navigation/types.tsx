@@ -34,6 +34,11 @@ export type CommonStackParamList = {
   // Status
   StatusScreen: StatusScreenParamsType;
 
+  Receipt: {
+    amount: string;
+    beneficiaryName: string;
+  };
+
   //Payments
   AirtimeData: undefined;
   Confirm: undefined;
@@ -140,6 +145,7 @@ export type CommonStackParamList = {
   ManageCard: undefined;
   AddNewCard: { navigateBackTo: string };
   ScanCard: undefined;
+  TermsOfUse: undefined;
 
   // Home Menu
   Split: undefined;
@@ -222,8 +228,8 @@ export type StatusScreenParamsType = {
   status: string;
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
-  receiptButton?: boolean;
   recurringTransferBeneficiary?: IBeneficiary;
+  receiptDetails?: { amount: string; beneficiaryName: string };
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;
