@@ -52,7 +52,8 @@ const TransactionConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Confirmation
         </Text>
       ),
@@ -85,7 +86,10 @@ const TransactionConfirmationScreen = ({
         confirmationType === "send"
           ? "You can perform this transaction automatically by giving a Recurring Transfer order"
           : "",
-      receiptButton: confirmationType === "send",
+      receiptDetails:
+        confirmationType === "send"
+          ? { amount: String(amount), beneficiaryName: beneficiary.fullName }
+          : undefined,
       recurringTransferBeneficiary:
         confirmationType === "send" ? beneficiary : undefined,
       navigateTo: "Home",
@@ -105,7 +109,8 @@ const TransactionConfirmationScreen = ({
               marginTop: hp(15),
               fontWeight: "500",
               marginBottom: hp(50),
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -114,7 +119,8 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -153,7 +159,8 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Amount
             </Text>
             <View
@@ -164,7 +171,8 @@ const TransactionConfirmationScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}>
+              ]}
+            >
               {/* <Text
                 style={{
                   fontSize: hp(16),
@@ -196,7 +204,8 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Description
             </Text>
             <TextInput
@@ -220,13 +229,9 @@ const TransactionConfirmationScreen = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
-        <Button
-          title="Continue"
-          onPressButton={() => makeTransaction()}
-          styleText={{}}
-          style={[{}]}
-        />
+        ]}
+      >
+        <Button title="Continue" onPressButton={() => makeTransaction()} />
         <CancelButtonWithUnderline
           title="Cancel Transaction"
           color={Colors.general.red}

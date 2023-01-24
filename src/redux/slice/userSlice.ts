@@ -348,13 +348,16 @@ export const userSlice = createSlice({
       })
       .addCase(uploadProfilePicThunk.fulfilled, (state, action) => {
         state.pictureUrl = action.payload as any;
+      })
+      .addCase(addUserBvnThunk.fulfilled, (state, action) => {
+        state.bvnVerified = action.payload as any;
       });
   },
 });
 
 export const getUserInfo = createAsyncThunk(
   "user/getInfo",
-  async ({}, { rejectWithValue, fulfillWithValue }) => {
+  async (props, { rejectWithValue, fulfillWithValue }) => {
     try {
       const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
       const info = await api.get("/api/v1/user/info", {
@@ -421,6 +424,32 @@ export const uploadProfilePicThunk = createAsyncThunk(
         },
         (error: AxiosError) => {
           return rejectWithValue(error.message);
+        }
+      );
+  }
+);
+
+export const addUserBvnThunk = createAsyncThunk(
+  "user/addUserBvn",
+  async (bvn: string, { rejectWithValue, fulfillWithValue }) => {
+    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+
+    return api
+      .post(
+        "/api/v1/user/add/bvn",
+        { bvn },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
+      .then(
+        (response) => {
+          return fulfillWithValue(response.data.data);
+        },
+        (error: AxiosError) => {
+          return rejectWithValue(error.response?.data);
         }
       );
   }
