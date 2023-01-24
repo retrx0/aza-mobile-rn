@@ -161,6 +161,7 @@ import CloseAccountScreen from "../screens/tabs/settings/closeAccount/CloseAccou
 import AccountClosureSurveyScreen from "../screens/tabs/settings/closeAccount/AccountClosureSurvey";
 import CloseAccount from "../screens/tabs/settings/closeAccount/CloseAccount";
 import AlternativeSurvey from "../screens/tabs/settings/closeAccount/AlternativeSurvey";
+import TermsOfUse from "../screens/onboarding/TermsOfUse";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -986,6 +987,13 @@ const CommonStack = () => {
         />
         <Stack.Screen name="WithdrawFeature" component={WithdrawFeature} />
         {/* <Stack.Screen name="DepositFeature" component={DepositFeature} /> */}
+        <Stack.Screen
+          name="TermsOfUse"
+          component={TermsOfUse}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );

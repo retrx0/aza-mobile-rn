@@ -36,8 +36,7 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
             justifyContent: "space-between",
             paddingVertical: hp(15),
           },
-        ]}
-      >
+        ]}>
         <View style={[CommonStyles.col]}>
           <Text
             style={{
@@ -45,8 +44,7 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginLeft: hp(5),
-            }}
-          >
+            }}>
             {title}
           </Text>
           <Text
@@ -56,8 +54,7 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
               fontSize: hp(12),
               fontWeight: "400",
               marginLeft: hp(5),
-            }}
-          >
+            }}>
             {subText}
           </Text>
         </View>
@@ -66,8 +63,7 @@ const AccountDetailsListItem = ({ title, subText, data }: Detail) => {
             fontFamily: "Euclid-Circular-A",
             fontSize: hp(14),
             fontWeight: "400",
-          }}
-        >
+          }}>
           {data}
         </Text>
       </View>
@@ -93,8 +89,7 @@ const AccountDetailsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Account Details
         </Text>
       ),
@@ -176,8 +171,7 @@ const AccountDetailsScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               {user.fullName}
             </Text>
             <Text
@@ -186,8 +180,7 @@ const AccountDetailsScreen = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(12),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               {user.phoneNumber}
             </Text>
             <Text
@@ -195,8 +188,7 @@ const AccountDetailsScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(10),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               {user.emailAddress}
             </Text>
           </View>
@@ -206,8 +198,7 @@ const AccountDetailsScreen = ({
             style={[
               CommonStyles.col,
               { alignSelf: "stretch", marginTop: hp(20) },
-            ]}
-          >
+            ]}>
             {details.map(({ data, subText, title }, i) => (
               <AccountDetailsListItem
                 key={i}
@@ -220,14 +211,15 @@ const AccountDetailsScreen = ({
         </ScrollView>
         <TouchableOpacity
           style={{ alignSelf: "center", marginVertical: hp(35) }}
-        >
+          onPress={() => {
+            navigation.navigate("TermsOfUse");
+          }}>
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Term of Use
           </Text>
         </TouchableOpacity>

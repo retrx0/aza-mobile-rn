@@ -140,6 +140,7 @@ export type CommonStackParamList = {
   ManageCard: undefined;
   AddNewCard: { navigateBackTo: string };
   ScanCard: undefined;
+  TermsOfUse: undefined;
 
   // Home Menu
   Split: undefined;
