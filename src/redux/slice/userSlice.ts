@@ -357,7 +357,7 @@ export const userSlice = createSlice({
 
 export const getUserInfo = createAsyncThunk(
   "user/getInfo",
-  async ({}, { rejectWithValue, fulfillWithValue }) => {
+  async (props, { rejectWithValue, fulfillWithValue }) => {
     try {
       const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
       const info = await api.get("/api/v1/user/info", {
@@ -432,9 +432,7 @@ export const uploadProfilePicThunk = createAsyncThunk(
 export const addUserBvnThunk = createAsyncThunk(
   "user/addUserBvn",
   async (bvn: string, { rejectWithValue, fulfillWithValue }) => {
-    // const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-    const jwt =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImY4YWI4MGFiLWNkOTktNDdmNS1hYjcxLWJjMzM3NWY4N2M4YiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFiZHVsZ3VtaTc3QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiKzIzNDgxMzU1MjQ2NDkiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ3VtaSwgYWJkdWxsYWgiLCJleHAiOjE2NzQ0OTQzNjYsImlzcyI6Imh0dHBzOi8vYXphLm1vYmlsZS5jb20ubmciLCJhdWQiOiJodHRwczovL2F6YS5tb2JpbGUuY29tLm5nIn0.r1hjNMggsBCIGMWWPAg4rQcFafqFuKOQgvstqYeJ4JA";
+    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
 
     return api
       .post(
