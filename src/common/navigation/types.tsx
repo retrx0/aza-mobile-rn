@@ -1,9 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
-import { IBeneficiary, IRequest } from "../../redux/types";
+import { IBeneficiary, ICharity, IGiftCard, IRequest } from "../../redux/types";
 
 /* Common screens */
-
+interface IXCharity extends ICharity {
+  tabKey: string;
+}
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
@@ -50,7 +52,7 @@ export type CommonStackParamList = {
   Pie: undefined;
   Water: undefined;
   Charity: undefined;
-  CharityDetail: { name: string };
+  CharityDetail: IXCharity;
   ElectricityConfirmation: undefined;
   PaymentConfirmation: {
     beneficiaryLogo: string;
@@ -67,7 +69,7 @@ export type CommonStackParamList = {
   GiftCardConfirmation: undefined;
   CharityConfirmation: undefined;
   GiftCard: undefined;
-  GiftCardDetails: undefined;
+  GiftCardDetails: IGiftCard;
   GameScreen: undefined;
   PaymentRecurring: undefined;
   AirtimeRecurring: undefined;

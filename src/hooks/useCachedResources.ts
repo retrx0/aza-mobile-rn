@@ -24,26 +24,18 @@ const useCachedResources = () => {
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
-    async function loadResourcesAndDataAsync() {
+    const loadResourcesAndDataAsync = async () => {
       try {
         // Keep the splash screen visible while we fetch resources
         SplashScreen.preventAutoHideAsync();
 
         // Check if user is already logged in
-        SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN)
-          .then((token) => {
-            if (token) setUserSignedIn(true);
-          })
-          .catch((e) => console.debug(e));
+        const token = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+        if (token) setUserSignedIn(true);
 
         // Load users preferences if present
-        loadSettingsFromStorage()
-          .then((uPrefs) => {
-            if (uPrefs) setUserPreferences(uPrefs);
-          })
-          .catch((e) => {
-            throw new Error(e);
-          });
+        const uPrefs = await loadSettingsFromStorage();
+        if (uPrefs) setUserPreferences(uPrefs);
 
         // do any api call here
 
@@ -64,7 +56,7 @@ const useCachedResources = () => {
         setLoadingComplete(true);
         SplashScreen.hideAsync();
       }
-    }
+    };
 
     loadResourcesAndDataAsync();
   }, []);

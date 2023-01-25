@@ -21,9 +21,11 @@ import { ISettings } from "../hooks/useAsyncStorage";
 const Navigation = ({
   colorScheme,
   loadedPreference,
+  isUserSignedIn,
 }: {
   colorScheme: ColorSchemeName;
   loadedPreference: ISettings | undefined;
+  isUserSignedIn: boolean;
 }) => {
   const _selectedTheme = useAppSelector(selectAppTheme);
   const dispatch = useAppDispatch();
@@ -47,7 +49,7 @@ const Navigation = ({
       linking={LinkingConfiguration}
       theme={getDeviceTheme(_selectedTheme)}
     >
-      <RootNavigator />
+      <RootNavigator isUserSignedIn={isUserSignedIn} />
     </NavigationContainer>
   );
 };

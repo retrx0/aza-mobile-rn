@@ -19,6 +19,7 @@ import ListItem from "./List";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
 import Divider from "../sub-components/Divider";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const CountryList = [
   {
@@ -36,11 +37,14 @@ const CountryList = [
 ];
 export default function GiftCardDetails({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+  route,
+}: CommonScreenProps<"GiftCardDetails">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const insets = useSafeAreaInsets();
   const [active, setActive] = useState("false");
+
+  const { country } = route.params;
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -100,9 +104,7 @@ export default function GiftCardDetails({
 
       <ListItem
         onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardEmail",
-          });
+          navigation.navigate("GiftCardEmail");
         }}
         route=""
         index={0}
@@ -111,9 +113,7 @@ export default function GiftCardDetails({
       />
       <ListItem
         onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
-          });
+          navigation.navigate("GiftCardConfirmation");
         }}
         route=""
         index={0}
@@ -122,9 +122,7 @@ export default function GiftCardDetails({
       />
       <ListItem
         onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
-          });
+          navigation.navigate("GiftCardConfirmation");
         }}
         route=""
         index={0}
@@ -133,9 +131,7 @@ export default function GiftCardDetails({
       />
       <ListItem
         onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
-          });
+          navigation.navigate("GiftCardConfirmation");
         }}
         route=""
         index={0}

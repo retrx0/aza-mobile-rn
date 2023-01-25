@@ -60,7 +60,8 @@ export default function PaymentConfirmationScreen({
         style={[
           CommonStyles.vaultcontainer,
           { marginTop: Platform.OS == "android" ? 50 : 0 },
-        ]}>
+        ]}
+      >
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -72,7 +73,8 @@ export default function PaymentConfirmationScreen({
               placeholder={beneficiaryName}
               source={{ uri: beneficiaryLogo }}
               icon={undefined}
-              value={""}
+              value={beneficiaryName}
+              editable={false}
             />
           ) : (
             <ImageInput
@@ -80,7 +82,8 @@ export default function PaymentConfirmationScreen({
               placeholder={beneficiaryName}
               source={beneficiaryLogo}
               icon={undefined}
-              value={""}
+              value={beneficiaryName}
+              editable={false}
             />
           )}
 
@@ -165,13 +168,9 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Phone number"}
             value={phoneNumber}
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
           />
 
           <UnderlinedInput
@@ -183,8 +182,8 @@ export default function PaymentConfirmationScreen({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "500",
               fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
             }}
+            editable={false}
             label="Amount"
             value={`${NAIRA_UNICODE + amount} ${
               purchaseName && `(${purchaseName})`
@@ -212,7 +211,8 @@ export default function PaymentConfirmationScreen({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={onConfirm}

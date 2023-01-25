@@ -27,6 +27,7 @@ import RecurringPlan from "../screens/tabs/payments/paymentRecurring/InternetRec
 import WaterRecurring from "../screens/tabs/payments/paymentRecurring/WaterRecurring/WaterRecurring";
 import CableRecurring from "../screens/tabs/payments/paymentRecurring/CableRecurring/CableRecurring";
 import ElectricityRecurring from "../screens/tabs/payments/paymentRecurring/ElctricityRecurring/ElectricityRecurring";
+import CharityTabs from "../screens/tabs/payments/charity-screens/CharityTabs";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -53,7 +54,8 @@ export function AirtimeTabs() {
             fontWeight: "500",
           },
         }}
-        initialRouteName="airtime">
+        initialRouteName="airtime"
+      >
         <Tab.Screen
           name="airtime"
           component={AirtimeIndex}
@@ -90,7 +92,8 @@ export function AirtimeRecurringTab() {
             fontWeight: "500",
           },
         }}
-        initialRouteName="airtime">
+        initialRouteName="airtime"
+      >
         <Tab.Screen name="airtime" component={AirtimeRecurring} />
         <Tab.Screen name="data bundle" component={AirtimeRecurring} />
       </Tab.Navigator>
@@ -98,157 +101,124 @@ export function AirtimeRecurringTab() {
   );
 }
 
-// Charity TABS
-export function CharityTabs() {
-  const scheme = useColorScheme();
-  return (
-    <SafeAreaView style={CommonStyles.parentContainer}>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarItemStyle: {
-            borderRadius: 100,
-            marginTop: Platform.OS == "android" ? 50 : 0,
-          },
-          tabBarIndicatorStyle: {
-            borderWidth: 1,
-            borderColor: scheme == "light" ? "#E7E9EA" : "#121212",
-          },
-          tabBarLabelStyle: {
-            textTransform: "capitalize",
-            fontSize: hp(16),
-            fontWeight: "500",
-          },
-          tabBarStyle: {
-            borderBottomColor: "#262626",
-            borderBottomWidth: 1,
-          },
-        }}
-        initialRouteName="For Myself">
-        <Tab.Screen name="For Myself" component={CharityDetail} />
-        <Tab.Screen name="For Someone Else" component={CharityDetail} />
-      </Tab.Navigator>
-    </SafeAreaView>
-  );
-}
+// const PaymentNavigator = () => {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen
+//         options={{
+//           headerShown: false,
+//         }}
+//         name="PaymentIndex"
+//         component={PaymentIndexScreen}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Airtime & Data" }}
+//         name="airtimeData"
+//         component={AirtimeTabs}
+//       />
+//       <Stack.Screen
+//         options={{ presentation: "fullScreenModal", title: "" }}
+//         name="pie"
+//         component={Pie}
+//       />
+//       <Stack.Screen
+//         options={{ title: "GameScreen" }}
+//         name="GameScreen"
+//         component={GameScreen}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Confirmation" }}
+//         name="CharityConfirmation"
+//         component={CharityConfirmation}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Internet" }}
+//         name="internet_plans"
+//         component={InternetPlans}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Electricity" }}
+//         name="electricity"
+//         component={ElectricityIndex}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Cable TV" }}
+//         name="cabletv"
+//         component={CableTvIndex}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Water" }}
+//         name="water"
+//         component={WaterScreen}
+//       />
+//       <Stack.Screen name="Charity" component={CharityIndexScreen} />
+//       <Stack.Screen
+//         options={({ route }: { route: any }) => ({ title: route.params.name })}
+//         name="charity_detail"
+//         component={CharityTabs}
+//       />
+//       <Stack.Screen
+//         options={({ route }: { route: any }) => ({ title: route.params.name })}
+//         name="GiftCard"
+//         component={GiftCardScreen}
+//       />
+//       <Stack.Screen
+//         options={{ title: "iTunes" }}
+//         name="GiftCardDetails"
+//         component={GiftCardDetails}
+//       />
+//       <Stack.Screen
+//         options={({ route }: { route: any }) => ({ title: route.params.name })}
+//         name="internet_plan_detail"
+//         component={InternetDetail}
+//       />
+//       <Stack.Screen
+//         options={{ headerShown: false }}
+//         name="PaymentRecurring"
+//         component={PaymentRecurring}
+//       />
+//       <Stack.Screen
+//         options={{ title: "Airtime & Data" }}
+//         name="AirtimeRecurring"
+//         component={AirtimeRecurringTab}
+//       />
+//       <Stack.Screen
+//         options={{
+//           headerShown: false,
+//         }}
+//         name="RecurringPlan"
+//         component={RecurringPlan}
+//       />
+//       <Stack.Screen
+//         options={{
+//           headerShown: false,
+//         }}
+//         name="InternetRecurring"
+//         component={InternetRecurring}
+//       />
+//       <Stack.Screen
+//         options={{
+//           headerShown: false,
+//         }}
+//         name="WaterRecurring"
+//         component={WaterRecurring}
+//       />
+//       <Stack.Screen
+//         options={{
+//           headerShown: false,
+//         }}
+//         name="CableRecurring"
+//         component={CableRecurring}
+//       />
+//       <Stack.Screen
+//         options={{
+//           headerShown: false,
+//         }}
+//         name="ElectricityRecurring"
+//         component={ElectricityRecurring}
+//       />
+//     </Stack.Navigator>
+//   );
+// };
 
-const PaymentNavigator = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="PaymentIndex"
-        component={PaymentIndexScreen}
-      />
-      <Stack.Screen
-        options={{ title: "Airtime & Data" }}
-        name="airtimeData"
-        component={AirtimeTabs}
-      />
-      <Stack.Screen
-        options={{ presentation: "fullScreenModal", title: "" }}
-        name="pie"
-        component={Pie}
-      />
-      <Stack.Screen
-        options={{ title: "GameScreen" }}
-        name="GameScreen"
-        component={GameScreen}
-      />
-      <Stack.Screen
-        options={{ title: "Confirmation" }}
-        name="CharityConfirmation"
-        component={CharityConfirmation}
-      />
-      <Stack.Screen
-        options={{ title: "Internet" }}
-        name="internet_plans"
-        component={InternetPlans}
-      />
-      <Stack.Screen
-        options={{ title: "Electricity" }}
-        name="electricity"
-        component={ElectricityIndex}
-      />
-      <Stack.Screen
-        options={{ title: "Cable TV" }}
-        name="cabletv"
-        component={CableTvIndex}
-      />
-      <Stack.Screen
-        options={{ title: "Water" }}
-        name="water"
-        component={WaterScreen}
-      />
-      <Stack.Screen name="Charity" component={CharityIndexScreen} />
-      <Stack.Screen
-        options={({ route }: { route: any }) => ({ title: route.params.name })}
-        name="charity_detail"
-        component={CharityTabs}
-      />
-      <Stack.Screen
-        options={({ route }: { route: any }) => ({ title: route.params.name })}
-        name="GiftCard"
-        component={GiftCardScreen}
-      />
-      <Stack.Screen
-        options={{ title: "iTunes" }}
-        name="GiftCardDetails"
-        component={GiftCardDetails}
-      />
-      <Stack.Screen
-        options={({ route }: { route: any }) => ({ title: route.params.name })}
-        name="internet_plan_detail"
-        component={InternetDetail}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="PaymentRecurring"
-        component={PaymentRecurring}
-      />
-      <Stack.Screen
-        options={{ title: "Airtime & Data" }}
-        name="AirtimeRecurring"
-        component={AirtimeRecurringTab}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="RecurringPlan"
-        component={RecurringPlan}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="InternetRecurring"
-        component={InternetRecurring}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="WaterRecurring"
-        component={WaterRecurring}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="CableRecurring"
-        component={CableRecurring}
-      />
-      <Stack.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="ElectricityRecurring"
-        component={ElectricityRecurring}
-      />
-    </Stack.Navigator>
-  );
-};
-
-export default PaymentNavigator;
+// export default PaymentNavigator;

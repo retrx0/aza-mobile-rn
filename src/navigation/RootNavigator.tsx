@@ -34,8 +34,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const RootNavigator = () => {
-  const { isUserSignedIn } = useCachedResources();
+const RootNavigator = ({ isUserSignedIn }: { isUserSignedIn: boolean }) => {
   const { registerForPushNotificationsAsync, sendPushNotification } =
     useNotifications();
   const notificationListener = React.useRef<any>();
@@ -111,6 +110,7 @@ const RootNavigator = () => {
           name="SignIn"
           component={LoginNavigator}
           options={{ headerShown: false }}
+          initialParams={{ isUserSignedIn: isUserSignedIn }}
         />
         <Stack.Screen
           name="Root"

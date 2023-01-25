@@ -10,12 +10,13 @@ import api from "../../../api";
 import { Alert, AppState, TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   getUserInfo,
   selectUser,
   setUserEmail,
+  setUserFullName,
   setUserPhoneAndFullName,
   setUserPhoneNumber,
 } from "../../../redux/slice/userSlice";
@@ -31,21 +32,8 @@ import {
 import CommonStyles from "../../../common/styles/CommonStyles";
 import ActivityModal from "../../../components/modal/ActivityModal";
 import useCountdownTimer from "../../../hooks/useCountdownTimer";
-import { EMAILS } from "expo-contacts";
 import { useAppAsyncStorage } from "../../../hooks/useAsyncStorage";
 import useCachedResources from "../../../hooks/useCachedResources";
-
-const forgetUser = (navigation: any) => {
-  console.debug("forgetting user...");
-  SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
-    requireAuthentication: true,
-  })
-    .then(() => {
-      navigation.navigate("Welcome");
-    })
-    .catch((e) => console.debug(e as Error));
-  // clearUserCredentials();
-};
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -58,6 +46,15 @@ const SignInWelcomeBackScreen = ({
   const [screenLoading, setScreenLoading] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
+  const [_tmpCreds, setTmpCreds] = useState<{
+    email: string;
+    phoneNumber: string;
+    fullName: string;
+  }>({
+    email: user.emailAddress,
+    fullName: user.fullName,
+    phoneNumber: user.phoneNumber,
+  });
 
   const { userPreferences } = useCachedResources();
 
@@ -70,18 +67,32 @@ const SignInWelcomeBackScreen = ({
     startTimer,
   } = useCountdownTimer(60 * 5);
 
-  const resendCode = () => {
-    resetTimer();
-  };
-
-  type UserCreds = {
+  interface IUserCreds {
     email: string;
     token: string;
     password: string;
     phoneNumber: string;
+    fullName: string;
+  }
+
+  const forgetUser = () => {
+    console.debug("forgeting user!");
+    SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
+      requireAuthentication: true,
+    })
+      .then(() => {
+        navigation.getParent()?.navigate("Welcome");
+      })
+      .catch((e) => console.debug(e as Error));
+    // clearUserCredentials();
   };
 
-  const verifyPassword = async (code: string) => {
+  const verifyPassword = async (
+    email: string,
+    phoneNumber: string,
+    code: string,
+    fullName: string
+  ) => {
     // TODO add push notification token to the server to always keep it updated incase it change
 
     // TODO refactor below code
@@ -99,24 +110,34 @@ const SignInWelcomeBackScreen = ({
     } else {
       setScreenLoading(true);
       await loginUserAPI({
-        email: user.emailAddress,
+        email: email,
         password: code,
-        phoneNumber: user.phoneNumber,
+        phoneNumber: phoneNumber,
       })
         .then((jwt) => {
           if (jwt) {
             storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
               requireAuthentication: false,
             });
-            storeUserCredentialsSecure(
+            storeItemSecure(
+              STORAGE_KEY_USER_CREDS,
               JSON.stringify({
-                email: user.emailAddress,
+                email: email,
                 token: jwt,
                 password: code,
-                phoneNumber: user.phoneNumber,
+                phoneNumber: phoneNumber,
+                fullName: fullName,
               })
             );
-            dispatch(getUserInfo());
+            // storeUserCredentialsSecure(
+            //   JSON.stringify({
+            //     email: email,
+            //     token: jwt,
+            //     password: code,
+            //     phoneNumber: phoneNumber,
+            //     fullName: fullName,
+            //   })
+            // );
             setScreenLoading(false);
             navigation.getParent()?.navigate("Root");
           } else {
@@ -135,38 +156,55 @@ const SignInWelcomeBackScreen = ({
   useEffect(() => {
     setPasscode("");
 
-    if (!user.emailAddress && user.phoneNumber === "") {
-      toastError("We encountered a problem, please login again");
-      navigation.navigate("SignInRoot");
-    }
+    const handleSignBack = async () => {
+      const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
+      const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
 
-    if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
-    }
+      // if (_creds) {
+      //   const parsedCreds = JSON.parse(_creds);
+      //   dispatch(setUserEmail(parsedCreds.email));
+      //   dispatch(setUserPhoneNumber(parsedCreds.phoneNumber));
+      //   dispatch(setUserFullName(parsedCreds.fullName));
+      // }
 
-    LocalAuthentication.hasHardwareAsync().then((hasBiometricHardware) => {
-      if (hasBiometricHardware) {
-        LocalAuthentication.isEnrolledAsync().then((enrolled) => {
-          if (enrolled) {
-            getUserCredentialsSecure().then((creds) => {
-              console.log(creds);
-              if (creds) {
-                const parsedCreds = JSON.parse(creds);
-                dispatch(setUserEmail(parsedCreds.email));
-                dispatch(setUserPhoneNumber(parsedCreds.phoneNumber));
+      // TODO add check to see if account is closed or locked
 
-                // TODO add check to see if account is closed or locked
-                verifyPassword(parsedCreds.password);
-              } else {
-                toastError("Please type in your password to login");
-              }
-            });
-          } else {
-            console.debug("phone biometric not enrolled!");
+      // Check if biometric is enabled
+      if (hasBiometricHardware && biometricEnrolled) {
+        console.debug("biometric enroled");
+        // Check if user enabled biometrics
+        if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
+          const _creds = await getUserCredentialsSecure({
+            requireAuthentication: true,
+          });
+
+          if (_creds) {
+            const parsedCreds = JSON.parse(_creds);
+            // login
+            verifyPassword(
+              parsedCreds.email,
+              parsedCreds.phoneNumber,
+              parsedCreds.password,
+              parsedCreds.fullName
+            );
           }
-        });
+        }
+      } else {
+        console.debug("biometric not enroled!");
+        // Check if redux stored user email and phone number for login
+        if (!user.emailAddress && user.phoneNumber === "") {
+          // try to get and set email and phone number
+          // return user to main login again
+          toastError("We encountered a problem, please login again");
+          navigation.getParent()?.navigate("Welcome");
+        }
       }
-    });
+    };
 
+    handleSignBack();
+  }, []);
+
+  useEffect(() => {
     const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") setPasscode("");
     });
@@ -192,7 +230,13 @@ const SignInWelcomeBackScreen = ({
               value={passcode}
               onValueChanged={(code) => {
                 setPasscode(code);
-                if (code.length >= 6) verifyPassword(code);
+                if (code.length >= 6)
+                  verifyPassword(
+                    user.emailAddress,
+                    user.phoneNumber,
+                    code,
+                    user.fullName
+                  );
               }}
               headerText="Password"
               secureInput={true}
@@ -201,7 +245,7 @@ const SignInWelcomeBackScreen = ({
           <View
             style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
           >
-            <TouchableOpacity onPress={() => forgetUser(navigation)}>
+            <TouchableOpacity onPress={forgetUser}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>
           </View>

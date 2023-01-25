@@ -29,16 +29,21 @@ import { STORAGE_KEY_USER_CREDS } from "@env";
 // };
 
 export const storeUserCredentialsSecure = (value: string) => {
-  SecureStore.setItemAsync(STORAGE_KEY_USER_CREDS, value, {})
+  SecureStore.setItemAsync(STORAGE_KEY_USER_CREDS, value, {
+    requireAuthentication: false,
+  })
     .then(() => console.debug("creds stored to secure store!"))
     .catch((e) => console.error("Error storing item: " + e));
 };
 
-export const getUserCredentialsSecure = async () => {
+export const getUserCredentialsSecure = async (
+  options: SecureStore.SecureStoreOptions
+) => {
   try {
-    const item = await SecureStore.getItemAsync(STORAGE_KEY_USER_CREDS, {
-      requireAuthentication: true,
-    });
+    const item = await SecureStore.getItemAsync(
+      STORAGE_KEY_USER_CREDS,
+      options
+    );
     return item;
   } catch (e) {
     console.debug("Error getting item: ", e as Error);

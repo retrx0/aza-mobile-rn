@@ -1,59 +1,45 @@
-import { Image, ScrollView, StyleSheet } from "react-native";
-import React, { useState } from "react";
-import { View as View } from "../../../../theme/Themed";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View as View } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import ListItem from "../sub-components/ListItem";
-// import {
-//   AMAZON,
-//   GOOGLEPLAY,
-//   ITUNES,
-//   NETFLIX,
-//   Nintendo,
-//   PSN,
-//   RAZER,
-//   SEPHORA,
-//   STEAM,
-//   XBOX,
-// } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { CharityCard, GiftCardList } from "../sub-components/Filters";
-import { useAppSelector } from "../../../../redux";
+import { GiftCardList } from "../sub-components/Filters";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import CharityCard from "../charity-screens/CharityCard";
+import {
+  getGiftCards,
+  selectPayment,
+} from "../../../../redux/slice/paymentSlice";
+import { IGiftCard } from "../../../../redux/types";
+import Animated, { FadeInDown } from "react-native-reanimated";
+import { ArrowFowardIcon } from "../../../../../assets/svg";
+import Divider from "../sub-components/Divider";
+import Colors from "../../../../constants/Colors";
 export default function GiftCardScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  // set all the items in the array to state
-  const [allCharity, setCharity] = useState([...GiftCardList]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useAppDispatch();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  // create filter function to be passed into thr onchangetext
-  const filterSearch = (value: string) => {
-    // assign item to be filtered to all the available item
-    const ListtoFilter = allCharity;
-    // return the overall items if value is not input yet
-    if (!value) {
-      return setCharity([...GiftCardList]);
-    }
-    // filter the item here and check for all cases of input(its included in the data to filter, and not case sensitive )
-    const filterItem = ListtoFilter.filter((item: { title: string }) =>
-      item.title.toLowerCase().includes(value.toLowerCase())
-    );
-    // display filtered data
-    setCharity([...filterItem]);
+  const { giftCards } = useAppSelector(selectPayment);
+
+  const handleAction = (item: IGiftCard) => {
+    navigation.navigate("Common", {
+      screen: "GiftCardDetails",
+      params: item,
+    });
   };
-  const handleAction = (title: string) => {
-    if (title === "ITUNES") {
-      return navigation.navigate("Common", {
-        screen: "GiftCardDetails",
-      });
-    }
-  };
-  const dataLength = allCharity.length;
-  const selectedTheme = useAppSelector(selectAppTheme);
-  const appTheme = getAppTheme(selectedTheme);
+
+  useEffect(() => {
+    if (!giftCards.loaded) dispatch(getGiftCards());
+  }, []);
 
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
@@ -62,34 +48,85 @@ export default function GiftCardScreen({
         icon={null}
         inputStyle={[
           styles2.input,
-          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+          { borderBottomColor: Colors[appTheme].borderColor },
         ]}
         labelStyle={styles.label}
         label=""
         placeholder="Search for gift card"
-        onChangeText={(text: any) => filterSearch(text)}
+        onChangeText={(text: any) => setSearchTerm(text)}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        {dataLength < 1
+        {giftCards.loading
           ? null
-          : allCharity.map((item, index) => {
-              return (
-                <CharityCard
-                  key={index}
-                  icon={item.icon}
-                  title={item.title}
-                  ImageSource={item.ImageSource}
-                  index={0}
-                  onPress={() => handleAction(item.title)}
-                />
-              );
-            })}
+          : giftCards.data
+              .filter((gc) =>
+                gc.productName.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .map((item, index) => {
+                return (
+                  <GiftCard
+                    key={index}
+                    index={index}
+                    giftCard={item}
+                    onPress={() => handleAction(item)}
+                  />
+                );
+              })}
       </ScrollView>
     </View>
   );
 }
 
+const GiftCard = ({
+  index,
+  giftCard,
+  onPress,
+}: {
+  index: number;
+  giftCard: IGiftCard;
+  onPress: () => void;
+}) => {
+  const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
+
+  return (
+    <View style={styles2.listContainer}>
+      <TouchableAnimated
+        entering={FadeInDown.delay(50 * (index + 1))}
+        onPress={onPress}
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Image
+            source={{ uri: giftCard.logoUrls[0], cache: "default" }}
+            style={styles2.img}
+          />
+          <Text style={styles2.text}>{giftCard.productName}</Text>
+        </View>
+        <View>
+          <ArrowFowardIcon />
+        </View>
+      </TouchableAnimated>
+      <Divider />
+    </View>
+  );
+};
+
 const styles2 = StyleSheet.create({
+  text: {
+    fontWeight: "600",
+    fontSize: hp(17),
+    fontFamily: "Euclid-Circular-A-Semi-Bold",
+    marginLeft: 16.5,
+  },
+  listContainer: {
+    minHeight: 20,
+    marginTop: 20,
+    backgroundColor: "transparent",
+  },
   container: {
     paddingTop: 80,
     padding: 20,
@@ -108,81 +145,6 @@ const styles2 = StyleSheet.create({
   img: {
     width: 45,
     height: 45,
+    borderRadius: 50,
   },
 });
-
-//  <ListItem
-// onPress={() => {
-//   navigation.navigate("Common", {
-//     screen: "GiftCardDetails",
-//   });
-// }}
-// route=""
-// index={2}
-// title="iTunes"
-// Icon={() => <Image style={styles2.img} source={ITUNES} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Google Play"
-// Icon={() => <Image style={styles2.img} source={GOOGLEPLAY} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Amazon"
-// Icon={() => <Image style={styles2.img} source={AMAZON} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="PSN"
-// Icon={() => <Image style={styles2.img} source={PSN} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Xbox"
-// Icon={() => <Image style={styles2.img} source={XBOX} />}
-// />
-// <ListItem
-// route=""
-// index={0}
-// title="Razer"
-// Icon={() => <Image style={styles2.img} source={RAZER} />}
-// onPress={undefined}
-// />
-
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Netflix"
-// Icon={() => <Image style={styles2.img} source={NETFLIX} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Steam"
-// Icon={() => <Image style={styles2.img} source={STEAM} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Sephora"
-// Icon={() => <Image style={styles2.img} source={SEPHORA} />}
-// />
-// <ListItem
-// onPress={() => {}}
-// route=""
-// index={2}
-// title="Nintendo"
-// Icon={() => <Image style={styles2.img} source={Nintendo} />}
-// />
