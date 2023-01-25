@@ -150,16 +150,13 @@ const SignInWelcomeBackScreen = ({
     const handleSignBack = async () => {
       const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
       const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
-      const _creds = await getUserCredentialsSecure({
-        requireAuthentication: true,
-      });
 
-      if (_creds) {
-        const parsedCreds = JSON.parse(_creds);
-        dispatch(setUserEmail(parsedCreds.email));
-        dispatch(setUserPhoneNumber(parsedCreds.phoneNumber));
-        dispatch(setUserFullName(parsedCreds.fullName));
-      }
+      // if (_creds) {
+      //   const parsedCreds = JSON.parse(_creds);
+      //   dispatch(setUserEmail(parsedCreds.email));
+      //   dispatch(setUserPhoneNumber(parsedCreds.phoneNumber));
+      //   dispatch(setUserFullName(parsedCreds.fullName));
+      // }
 
       // TODO add check to see if account is closed or locked
 
@@ -168,9 +165,12 @@ const SignInWelcomeBackScreen = ({
         console.debug("biometric enroled");
         // Check if user enabled biometrics
         if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
+          const _creds = await getUserCredentialsSecure({
+            requireAuthentication: true,
+          });
+
           if (_creds) {
             const parsedCreds = JSON.parse(_creds);
-
             // login
             verifyPassword(
               parsedCreds.email,
@@ -185,20 +185,10 @@ const SignInWelcomeBackScreen = ({
         // Check if redux stored user email and phone number for login
         if (!user.emailAddress && user.phoneNumber === "") {
           // try to get and set email and phone number
-          if (_creds) {
-            const parsedCreds = JSON.parse(_creds);
-
-            setTmpCreds({
-              email: parsedCreds.email,
-              phoneNumber: parsedCreds.phoneNumber,
-              fullName: parsedCreds.fullName,
-            });
-          }
+          // return user to main login again
+          toastError("We encountered a problem, please login again");
+          navigation.navigate("SignInRoot");
         }
-        // else {
-        //   toastError("We encountered a problem, please login again");
-        //   navigation.navigate("SignInRoot");
-        // }
       }
     };
 
@@ -218,7 +208,7 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>Welcome back, {_tmpCreds.fullName}</Text>
+          <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
             style={{
@@ -233,10 +223,10 @@ const SignInWelcomeBackScreen = ({
                 setPasscode(code);
                 if (code.length >= 6)
                   verifyPassword(
-                    _tmpCreds.email,
-                    _tmpCreds.phoneNumber,
+                    user.emailAddress,
+                    user.phoneNumber,
                     code,
-                    _tmpCreds.fullName
+                    user.fullName
                   );
               }}
               headerText="Password"

@@ -5,6 +5,8 @@ import SignInWelcomeBackScreen from "./SignInWelcomBackScreen";
 import SignInScreen from "./SignInScreen";
 import useCachedResources from "../../../hooks/useCachedResources";
 import { RootStackScreenProps } from "../../../../types";
+import { useAppDispatch } from "../../../redux";
+import { getUserInfo } from "../../../redux/slice/userSlice";
 
 const LogInStack = createNativeStackNavigator();
 
@@ -12,6 +14,11 @@ const LoginNavigator = ({
   navigation,
   route,
 }: RootStackScreenProps<"SignIn">) => {
+  const isSignedIn = route.params.isUserSignedIn;
+  const dispatch = useAppDispatch();
+
+  if (isSignedIn) dispatch(getUserInfo);
+
   return (
     <LogInStack.Navigator
       initialRouteName={
