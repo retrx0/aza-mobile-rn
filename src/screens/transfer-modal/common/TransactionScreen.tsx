@@ -65,7 +65,12 @@ const TransactionScreen = ({
       headerRight: () => (
         <TouchableOpacity
           onPress={() => navigation.navigate(featureNavigationScreen)}>
-          <InfoIcon color={Colors[appTheme].Text} />
+          <InfoIcon
+            color={
+              appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
+            }
+            style={{ width: 20, height: 20 }}
+          />
         </TouchableOpacity>
       ),
     });
