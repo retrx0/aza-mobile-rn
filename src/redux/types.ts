@@ -2,6 +2,44 @@ export interface ITransactions {
   transactions: ITransaction[];
   dateOfTransactions: string;
 }
+export interface ICountry {
+  isoName: string;
+  name: string;
+  flagUrl: string;
+  currencyCode: string;
+  currencyName: string;
+}
+
+export interface IGiftCard {
+  productId: number;
+  productName: string;
+  global: boolean;
+  senderFee: string;
+  recipientCurrencyCode: string;
+  minRecipientDenomination: string;
+  maxRecipientDenomination: string;
+  fixedRecipientDenominations: string[];
+  fixedSenderDenominations: string[];
+  fixedRecipientToSenderDenominationsMap: {
+    "1.00": "740.00";
+  };
+  logoUrls: string[];
+  brand: {
+    brandId: number;
+    brandName: string;
+  };
+  country: {
+    isoName: string;
+    name: string;
+    flagUrl: string;
+    currencyCode: string;
+    currencyName: string;
+  };
+  redeemInstruction: {
+    concise: string;
+    verbose: string;
+  };
+}
 
 export interface ITransaction {
   id: number;
@@ -26,14 +64,30 @@ export interface IBeneficiary {
 }
 
 export interface ICharity {
+  id?: number;
   charityName: string;
   primaryAccountNo: string;
-  primaryAccBankame: string;
+  primaryAccBankName: string;
   secondaryAccountNo: string;
   secondaryAccBankName: string;
   description: string;
   pictureUrl: string;
   city: string;
+}
+
+/* REDUX STATES */
+
+export interface IPaymentState {
+  detailHeader: string;
+  detailValue: string;
+  amount: string;
+  paymentMethod: "Aza Account" | "Bank Account";
+  to: string;
+  logo: string;
+  paymentType: string;
+  charities: { loading: boolean; loaded: boolean; data: ICharity[] };
+  internetProviders: { loading: boolean; loaded: boolean; data: [] };
+  giftCards: { loading: boolean; loaded: boolean; data: IGiftCard[] };
 }
 
 export interface IUserState {

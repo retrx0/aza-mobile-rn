@@ -351,17 +351,26 @@ export const userSlice = createSlice({
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
+        state.fullName =
+          action.payload.firstName + ", " + action.payload.lastName;
         state.phoneNumber = action.payload.phoneNumber;
         state.emailAddress = action.payload.email;
         state.gender = action.payload.gender;
         state.bvnVerified = action.payload.isBVNComfirmed;
         state.dateOfBirth = action.payload.dateOfBirth;
+        state.pictureUrl = `https://ui-avatars.com/api/?name=${action.payload.firstName}+${action.payload.lastName}`;
       })
       .addCase(uploadProfilePicThunk.fulfilled, (state, action) => {
         state.pictureUrl = action.payload as any;
       })
       .addCase(addUserBvnThunk.fulfilled, (state, action) => {
         state.bvnVerified = action.payload as any;
+      })
+      .addCase(getUserAccount.pending, (state, action) => {})
+      .addCase(getUserAccount.rejected, (state, action) => {})
+      .addCase(getUserAccount.fulfilled, (state, action) => {
+        // state.azaAccountNumber = action.payload
+        // state.azaBalance = action.payload
       });
   },
 });
@@ -382,22 +391,30 @@ export const userSlice = createSlice({
 //   }
 // );
 
-export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
+const thunkCourier = async (type: "get" | "post" | "put", url: string) => {
   const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
   return api({
-    method: "get",
+    method: type,
     headers: {
       Authorization: `Bearer ${jwt}`,
     },
-    url: "/api/v1/user/info",
+    url: url,
   }).then(
     (response) => {
-      return response.data;
+      return response.data.data;
     },
     (error) => {
       console.debug(error);
     }
   );
+};
+
+export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
+  return await thunkCourier("get", "/api/v1/user/info");
+});
+
+export const getUserAccount = createAsyncThunk("user/getAccount", async () => {
+  return await thunkCourier("get", "/api/v1/account");
 });
 
 export const getUserTransactions = createAsyncThunk(

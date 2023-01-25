@@ -192,7 +192,7 @@ const CommonStyles = StyleSheet.create({
     lineHeight: hp(30),
   },
   parentContainer: {
-    flex: hp(1),
+    flex: 1,
     paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
   },
 

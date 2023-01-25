@@ -2,11 +2,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity, Platform } from "react-native";
 
-import {
-  AirtimeRecurringTab,
-  AirtimeTabs,
-  CharityTabs,
-} from "./PaymentsNavigation";
+import { AirtimeRecurringTab, AirtimeTabs } from "./PaymentsNavigation";
 
 // Vault
 import AddVault from "../screens/tabs/vault/AddVault";
@@ -163,6 +159,7 @@ import AccountClosureSurveyScreen from "../screens/tabs/settings/closeAccount/Ac
 import CloseAccount from "../screens/tabs/settings/closeAccount/CloseAccount";
 import AlternativeSurvey from "../screens/tabs/settings/closeAccount/AlternativeSurvey";
 import TermsOfUse from "../screens/onboarding/TermsOfUse";
+import CharityTabs from "../screens/tabs/payments/charity-screens/CharityTabs";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -579,11 +576,7 @@ const CommonStack = () => {
           />
         </Stack.Group>
 
-        <Stack.Screen
-          options={{ title: "iTunes" }}
-          name="GiftCardDetails"
-          component={GiftCardDetails}
-        />
+        <Stack.Screen name="GiftCardDetails" component={GiftCardDetails} />
         <Stack.Screen
           options={{ title: "GiftCardEasy" }}
           name="GiftCardEasy"

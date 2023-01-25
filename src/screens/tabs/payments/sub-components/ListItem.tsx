@@ -27,8 +27,9 @@ export default function ListItem({
   return (
     <View style={styles.listContainer}>
       <TouchableAnimated
-        entering={FadeInDown.delay(200 * (index + 1))}
-        onPress={onPress}>
+        entering={FadeInDown.delay(50 * (index + 1))}
+        onPress={onPress}
+      >
         <View style={styles.mainItem}>
           <View style={styles.item}>
             <Icon />

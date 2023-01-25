@@ -50,7 +50,8 @@ export const UnderlinedInput = ({
         style,
         containerStyle,
         { opacity: disabled ? 0.3 : 1 },
-      ]}>
+      ]}
+    >
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
@@ -76,7 +77,8 @@ export const UnderlinedInput = ({
               inputStyle,
               {},
               placeholderStyle,
-            ]}></TextInput>
+            ]}
+          />
           <TouchableOpacity>{icon}</TouchableOpacity>
         </View>
       )}

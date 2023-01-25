@@ -10,7 +10,7 @@ import api from "../../../api";
 import { Alert, AppState, TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   getUserInfo,
@@ -119,7 +119,8 @@ const SignInWelcomeBackScreen = ({
             storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
               requireAuthentication: false,
             });
-            storeUserCredentialsSecure(
+            storeItemSecure(
+              STORAGE_KEY_USER_CREDS,
               JSON.stringify({
                 email: email,
                 token: jwt,
@@ -128,7 +129,15 @@ const SignInWelcomeBackScreen = ({
                 fullName: fullName,
               })
             );
-            dispatch(getUserInfo());
+            // storeUserCredentialsSecure(
+            //   JSON.stringify({
+            //     email: email,
+            //     token: jwt,
+            //     password: code,
+            //     phoneNumber: phoneNumber,
+            //     fullName: fullName,
+            //   })
+            // );
             setScreenLoading(false);
             navigation.getParent()?.navigate("Root");
           } else {
@@ -187,7 +196,7 @@ const SignInWelcomeBackScreen = ({
           // try to get and set email and phone number
           // return user to main login again
           toastError("We encountered a problem, please login again");
-          navigation.navigate("SignInRoot");
+          navigation.getParent()?.navigate("Welcome");
         }
       }
     };
