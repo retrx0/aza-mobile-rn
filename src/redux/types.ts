@@ -125,6 +125,12 @@ export interface IElectricityBiller {
   logoUrl: string;
 }
 
+export interface IAirtimeOperator {
+  name: string;
+  logoUrls: string[];
+  operatorId: number;
+}
+
 /* REDUX STATES */
 
 export interface IPaymentState {
@@ -136,7 +142,7 @@ export interface IPaymentState {
   logo: string;
   paymentType: string;
   charities: ICommonTypedListResult<ICharity>;
-  airtimeOperators: ICommonTypedListResult<[]>;
+  airtimeOperators: ICommonTypedListResult<IAirtimeOperator>;
   giftCards: ICommonTypedListResult<IGiftCard>;
   electricityBillers: ICommonTypedListResult<IElectricityBiller>;
 }

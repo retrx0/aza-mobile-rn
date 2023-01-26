@@ -160,6 +160,19 @@ export const paymentSlice = createSlice({
         state.electricityBillers.loading = false;
         state.electricityBillers.loaded = true;
         state.electricityBillers.data = action.payload;
+      })
+      .addCase(getMobileAirtimeOperators.pending, (state, action) => {
+        state.airtimeOperators.loading = true;
+        state.airtimeOperators.loaded = false;
+      })
+      .addCase(getMobileAirtimeOperators.rejected, (state, action) => {
+        state.airtimeOperators.loading = false;
+        state.airtimeOperators.loaded = false;
+      })
+      .addCase(getMobileAirtimeOperators.fulfilled, (state, aciton) => {
+        state.airtimeOperators.loading = false;
+        state.airtimeOperators.loaded = true;
+        state.airtimeOperators.data = aciton.payload;
       });
   },
 });

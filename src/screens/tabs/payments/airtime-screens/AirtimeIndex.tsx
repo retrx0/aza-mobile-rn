@@ -27,7 +27,7 @@ import {
   fetchNetworkOperatorDataPlansAPI,
 } from "../../../../api/airtime";
 import {
-  getNetworkOperators,
+  getMobileAirtimeOperators,
   selectPayment,
 } from "../../../../redux/slice/paymentSlice";
 import ProviderSkeleton from "../sub-components/ProviderSkeleton";
@@ -54,10 +54,10 @@ export default function AirtimeIndex({
   const route = useRoute();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
-  const { networkOperators } = useAppSelector(selectPayment);
+  const { airtimeOperators } = useAppSelector(selectPayment);
 
   useEffect(() => {
-    if (!networkOperators.loaded) dispatch(getNetworkOperators());
+    if (!airtimeOperators.loaded) dispatch(getMobileAirtimeOperators());
   }, []);
 
   useEffect(() => {
@@ -133,8 +133,8 @@ export default function AirtimeIndex({
           width: "100%",
         }}
       >
-        {networkOperators.loaded ? (
-          networkOperators.data.map((operator, index) => {
+        {airtimeOperators.loaded ? (
+          airtimeOperators.data.map((operator, index) => {
             if (displayedOperators.has(operator.name.split(" ")[0])) {
               return null;
             }
