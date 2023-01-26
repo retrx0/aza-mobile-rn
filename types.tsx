@@ -13,6 +13,7 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { CommonStackParamList } from "./src/common/navigation/types";
+import { IUserCred } from "./src/redux/types";
 
 declare global {
   namespace ReactNavigation {
@@ -32,7 +33,7 @@ export type RootStackParamList = {
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;
   SignUp: undefined;
-  SignIn: { isUserSignedIn: boolean };
+  SignIn: { isUserSignedIn: boolean; cachedUser: IUserCred | undefined };
   TopBar: NavigatorScreenParams<CommonStackParamList>;
 };
 
@@ -101,7 +102,7 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 
 export type SignInStackParamList = {
   SignInRoot: undefined;
-  SignInWelcomeBack: undefined;
+  SignInWelcomeBack: { cachedUser: IUserCred | undefined };
   SignInOTP: undefined;
 };
 

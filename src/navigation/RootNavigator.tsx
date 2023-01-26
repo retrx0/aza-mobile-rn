@@ -19,6 +19,7 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
 import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import CEOMessage from "../screens/onboarding/CEOMessage";
+import { IUserCred } from "../redux/types";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -34,7 +35,13 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const RootNavigator = ({ isUserSignedIn }: { isUserSignedIn: boolean }) => {
+const RootNavigator = ({
+  isUserSignedIn,
+  cachedUser,
+}: {
+  isUserSignedIn: boolean;
+  cachedUser: IUserCred | undefined;
+}) => {
   const { registerForPushNotificationsAsync, sendPushNotification } =
     useNotifications();
   const notificationListener = React.useRef<any>();
@@ -110,7 +117,10 @@ const RootNavigator = ({ isUserSignedIn }: { isUserSignedIn: boolean }) => {
           name="SignIn"
           component={LoginNavigator}
           options={{ headerShown: false }}
-          initialParams={{ isUserSignedIn: isUserSignedIn }}
+          initialParams={{
+            isUserSignedIn: isUserSignedIn,
+            cachedUser: cachedUser,
+          }}
         />
         <Stack.Screen
           name="Root"

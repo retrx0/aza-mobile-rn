@@ -15,6 +15,7 @@ const LoginNavigator = ({
   route,
 }: RootStackScreenProps<"SignIn">) => {
   const isSignedIn = route.params.isUserSignedIn;
+  const cachedUser = route.params.cachedUser;
   // const dispatch = useAppDispatch();
 
   // if (isSignedIn) dispatch(getUserInfo());
@@ -40,6 +41,7 @@ const LoginNavigator = ({
         component={SignInWelcomeBackScreen}
         name="SignInWelcomeBack"
         options={{ headerShown: false }}
+        initialParams={{ cachedUser: cachedUser }}
       />
     </LogInStack.Navigator>
   );

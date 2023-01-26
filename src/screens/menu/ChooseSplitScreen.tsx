@@ -44,7 +44,7 @@ const ChooseSplitScreen = ({
     <View style={styles.container}>
       <ScrollView>
         <Divider />
-        {user.payments.recentPayments.map(
+        {user.payments.data.map(
           ({ amount, date, vendorLogo, vendorName }, i) => (
             <View key={i}>
               <TouchableOpacity
@@ -65,6 +65,8 @@ const ChooseSplitScreen = ({
                   splitImage={vendorLogo}
                   name={vendorName}
                   showChevron
+                  requestor={{ azaAccountNumber: "", fullName: "" }}
+                  requestees={[]}
                 />
               </TouchableOpacity>
               <Divider />

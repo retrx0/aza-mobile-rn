@@ -4,6 +4,14 @@ interface ICommonTypedListResult<T> {
   data: T[];
 }
 
+export interface IUserCred {
+  email: string;
+  token: string;
+  password: string;
+  phoneNumber: string;
+  fullName: string;
+}
+
 export interface ITransactions {
   transactions: ITransaction[];
   dateOfTransactions: string;
@@ -116,7 +124,7 @@ export interface ICharity {
 
 export interface IElectricityBiller {
   countryName: string;
-  id: 18;
+  id: number;
   maxLocalTransactionAmount: number;
   minLocalTransactionAmount: number;
   name: string;

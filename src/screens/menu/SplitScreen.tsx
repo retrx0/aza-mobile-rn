@@ -102,7 +102,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     {name}
                   </Text>
                 </View>
-                <ChevronRightIcon color={"#2A9E17"} size={20} />
+                <ChevronRightIcon color={Colors.general.green} size={20} />
               </View>
             </TouchableOpacity>
             <Divider />

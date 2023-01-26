@@ -1,3 +1,4 @@
+import Colors from "../../../constants/Colors";
 import { View, Text } from "../../../theme/Themed";
 
 interface IProps {
@@ -8,7 +9,7 @@ const SplitPaymentStatus = ({ paid }: IProps) => {
   return (
     <View
       style={{
-        backgroundColor: paid ? "#2A9E17" : "#A6A6A6",
+        backgroundColor: paid ? Colors.general.green : "#A6A6A6",
         borderRadius: 5,
         paddingHorizontal: 10,
         paddingVertical: 2,

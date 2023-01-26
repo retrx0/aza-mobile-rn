@@ -2,8 +2,9 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { ISettings, useAppAsyncStorage } from "./useAsyncStorage";
+import { IUserCred } from "../redux/types";
 
 const EuclidRegular = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A.ttf");
 const EuclidLight = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Light.ttf");
@@ -19,7 +20,7 @@ const useCachedResources = () => {
   // change default to true only in dev
   const [isUserSignedIn, setUserSignedIn] = useState(false);
   const [userPreferences, setUserPreferences] = useState<ISettings>();
-
+  const [cachedUser, setCachedUser] = useState<IUserCred>();
   const { loadSettingsFromStorage } = useAppAsyncStorage();
 
   // Load any resources or data that we need prior to rendering the app
@@ -32,6 +33,21 @@ const useCachedResources = () => {
         // Check if user is already logged in
         const token = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
         if (token) setUserSignedIn(true);
+
+        // load cached user
+        const _cachedUsr = await SecureStore.getItemAsync(
+          STORAGE_KEY_USER_CREDS
+        );
+        if (_cachedUsr) {
+          const _prsd = JSON.parse(_cachedUsr);
+          setCachedUser({
+            email: _prsd.email,
+            phoneNumber: _prsd.phoneNumber,
+            password: _prsd.password,
+            fullName: _prsd.fullName,
+            token: _prsd.token,
+          });
+        }
 
         // Load users preferences if present
         const uPrefs = await loadSettingsFromStorage();
@@ -61,7 +77,7 @@ const useCachedResources = () => {
     loadResourcesAndDataAsync();
   }, []);
 
-  return { isLoadingComplete, isUserSignedIn, userPreferences };
+  return { isLoadingComplete, isUserSignedIn, userPreferences, cachedUser };
 };
 
 export default useCachedResources;

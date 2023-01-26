@@ -35,27 +35,22 @@ import ActivityModal from "../../../components/modal/ActivityModal";
 import useCountdownTimer from "../../../hooks/useCountdownTimer";
 import { useAppAsyncStorage } from "../../../hooks/useAsyncStorage";
 import useCachedResources from "../../../hooks/useCachedResources";
+import { IUserCred } from "../../../redux/types";
 
 const SignInWelcomeBackScreen = ({
   navigation,
+  route,
 }: SignInScreenProps<"SignInWelcomeBack">) => {
   const insets = useSafeAreaInsets();
   const user = useAppSelector(selectUser);
+  const cachedUser = route.params.cachedUser;
 
   const dispatch = useAppDispatch();
 
   const [screenLoading, setScreenLoading] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
-  const [_tmpCreds, setTmpCreds] = useState<{
-    email: string;
-    phoneNumber: string;
-    fullName: string;
-  }>({
-    email: user.emailAddress,
-    fullName: user.fullName,
-    phoneNumber: user.phoneNumber,
-  });
+  const [_tmpCreds, setTmpCreds] = useState<IUserCred>(cachedUser!);
 
   const { userPreferences } = useCachedResources();
 
@@ -68,23 +63,12 @@ const SignInWelcomeBackScreen = ({
     startTimer,
   } = useCountdownTimer(60 * 5);
 
-  interface IUserCreds {
-    email: string;
-    token: string;
-    password: string;
-    phoneNumber: string;
-    fullName: string;
-  }
-
-  const forgetUser = () => {
+  const forgetUser = async () => {
     console.debug("forgeting user!");
-    SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
-      requireAuthentication: true,
-    })
-      .then(() => {
-        navigation.getParent()?.navigate("Welcome");
-      })
-      .catch((e) => console.debug(e as Error));
+    await SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN);
+    await SecureStore.deleteItemAsync(STORAGE_KEY_USER_CREDS);
+
+    navigation.getParent()?.navigate("Welcome");
     // clearUserCredentials();
   };
 
@@ -128,17 +112,9 @@ const SignInWelcomeBackScreen = ({
                 password: code,
                 phoneNumber: phoneNumber,
                 fullName: fullName,
-              })
+              }),
+              { authenticationPrompt: "storing" }
             );
-            // storeUserCredentialsSecure(
-            //   JSON.stringify({
-            //     email: email,
-            //     token: jwt,
-            //     password: code,
-            //     phoneNumber: phoneNumber,
-            //     fullName: fullName,
-            //   })
-            // );
             dispatch(getUserInfo());
             dispatch(getUserAccount());
             setScreenLoading(false);
@@ -163,63 +139,34 @@ const SignInWelcomeBackScreen = ({
       const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
       const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
 
-      // if (_creds) {
-      //   const parsedCreds = JSON.parse(_creds);
-      //   dispatch(setUserEmail(parsedCreds.email));
-      //   dispatch(setUserPhoneNumber(parsedCreds.phoneNumber));
-      //   dispatch(setUserFullName(parsedCreds.fullName));
-      // }
-
       // TODO add check to see if account is closed or locked
 
-      // Check if biometric is enabled
-      if (hasBiometricHardware && biometricEnrolled) {
-        console.debug("biometric enroled");
-        // Check if user enabled biometrics
-        if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
-          const _creds = await getUserCredentialsSecure({
-            requireAuthentication: true,
-          });
-
-          if (_creds) {
-            const parsedCreds = JSON.parse(_creds);
-            setTmpCreds({
-              email: parsedCreds.email,
-              fullName: parsedCreds.fullName,
-              phoneNumber: parsedCreds.phoneNumber,
-            });
-
-            verifyPassword(
-              parsedCreds.email,
-              parsedCreds.phoneNumber,
-              parsedCreds.password,
-              parsedCreds.fullName
-            );
-          }
-        }
+      // Check if redux stored user email and phone number for login
+      if (!cachedUser || (!user.emailAddress && user.phoneNumber === "")) {
+        // try to get and set email and phone number
+        // return user to main login again
+        toastError("We encountered a problem, please login again");
+        navigation.getParent()?.navigate("Welcome");
       } else {
-        console.debug("biometric not enroled!");
-
-        //
-        const _creds = await getUserCredentialsSecure({
-          requireAuthentication: false,
-        });
-
-        if (_creds) {
-          const parsedCreds = JSON.parse(_creds);
-          setTmpCreds({
-            email: parsedCreds.email,
-            fullName: parsedCreds.fullName,
-            phoneNumber: parsedCreds.phoneNumber,
-          });
-        }
-
-        // Check if redux stored user email and phone number for login
-        if (!user.emailAddress && user.phoneNumber === "") {
-          // try to get and set email and phone number
-          // return user to main login again
-          toastError("We encountered a problem, please login again");
-          navigation.getParent()?.navigate("Welcome");
+        // Check if biometric is enabled
+        if (hasBiometricHardware && biometricEnrolled) {
+          console.debug("biometric enroled");
+          // Check if user enabled biometrics
+          if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
+            const authenticated = await LocalAuthentication.authenticateAsync();
+            if (authenticated.success) {
+              // biometrics authenticated
+              verifyPassword(
+                cachedUser.email,
+                cachedUser.phoneNumber,
+                cachedUser.password,
+                cachedUser.fullName
+              );
+            }
+          }
+        } else {
+          console.debug("biometric not enroled!");
+          setTmpCreds(cachedUser);
         }
       }
     };

@@ -27,6 +27,7 @@ import {
 import { PaymentRoundSkeleton } from "../../../skeletons";
 import { IElectricityBiller } from "../../../../redux/types";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import ProviderSkeleton from "../sub-components/ProviderSkeleton";
 
 export default function ElectricityIndex({
   navigation,
@@ -39,9 +40,16 @@ export default function ElectricityIndex({
   const insets = useSafeAreaInsets();
   const dispatch = useAppDispatch();
   const { electricityBillers } = useAppSelector(selectPayment);
-  const [selectedProvider, setSelectedProvider] = useState<IElectricityBiller>(
-    electricityBillers.data[0]
-  );
+  const [selectedProvider, setSelectedProvider] = useState<IElectricityBiller>({
+    name: "",
+    id: 0,
+    countryName: "",
+    logoUrl: "",
+    type: "",
+    serviceType: "",
+    maxLocalTransactionAmount: 0,
+    minLocalTransactionAmount: 0,
+  });
 
   const meterType = [
     { label: "Prepaid", value: "PREPAID" },
@@ -128,7 +136,7 @@ export default function ElectricityIndex({
       />
 
       {!electricityBillers.loaded ? (
-        <PaymentRoundSkeleton />
+        <ProviderSkeleton numberOfItems={4} />
       ) : (
         <View>
           <ScrollView
