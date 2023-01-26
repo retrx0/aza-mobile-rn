@@ -51,7 +51,8 @@ export const Button: FC<ButtonPropsType> = ({
         },
         {
           opacity: disabled ? 0.5 : 1,
-          backgroundColor: Colors[appTheme].button,
+          backgroundColor: Colors[appTheme].tint,
+          borderColor: Colors[appTheme].borderColor,
         },
         style,
       ]}
@@ -76,14 +77,14 @@ export const Button: FC<ButtonPropsType> = ({
 
 const styles = {
   doneText: {
-    color: Colors.general.secondary,
+    color: Colors.general.white,
     fontWeight: "500",
     fontSize: hp(14),
     lineHeight: hp(18),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
   },
   nextText: {
-    color: Colors.general.secondary,
+    color: Colors.general.white,
   },
   doneButton: {
     backgroundColor: Colors.general.black,

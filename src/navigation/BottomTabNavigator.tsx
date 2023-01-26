@@ -64,17 +64,16 @@ const BottomTabNavigator = (
 
   useEffect(() => {
     /* APP STATE CHANGES */
-    const { name } = _navigation.route;
-    const appStateListener = AppState.addEventListener("change", (appState) => {
-      if (appState === "background") {
-        if (name === "Root" || name === "Common")
-          _navigation.navigation.navigate("SignIn");
-      }
-    });
-
-    return () => {
-      appStateListener.remove();
-    };
+    // const { name } = _navigation.route;
+    // const appStateListener = AppState.addEventListener("change", (appState) => {
+    //   if (appState === "background") {
+    //     if (name === "Root" || name === "Common")
+    //       _navigation.navigation.navigate("SignIn");
+    //   }
+    // });
+    // return () => {
+    //   appStateListener.remove();
+    // };
   }, []);
 
   return (

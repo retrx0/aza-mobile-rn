@@ -76,7 +76,7 @@ export const LinkBVN = ({
             }}
           >
             <Text
-              darkColor={Colors["dark"].Text}
+              darkColor={Colors["dark"].buttonText}
               style={{
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Medium",

@@ -13,7 +13,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "react-native";
 
 const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -43,22 +42,9 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             </Text>
           </View>
         </View>
-        <View
-          style={[
-            CommonStyles.matureContainer,
-            { backgroundColor: Colors[colorScheme].mature },
-            { borderColor: Colors[colorScheme].unlock },
-          ]}
-        >
-          <UnlockIcon color={Colors[colorScheme].unlock} size={0} />
-          <Text
-            style={[
-              CommonStyles.matured,
-              { color: Colors[colorScheme].unlock },
-            ]}
-          >
-            Matured
-          </Text>
+        <View style={[CommonStyles.matureContainer]}>
+          <UnlockIcon color={Colors.general.grey} size={0} />
+          <Text style={[CommonStyles.matured]}>Matured</Text>
         </View>
         <View style={{ paddingHorizontal: hp(40) }}>
           <Text style={CommonStyles.withdrawSuccessfull}>

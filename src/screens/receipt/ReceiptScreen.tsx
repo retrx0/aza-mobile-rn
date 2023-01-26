@@ -163,11 +163,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
       <Button
         title="Close Receipt"
         onPressButton={() => navigation.getParent()?.navigate("Home")}
-        styleText={{
-          color: Colors[appTheme].buttonText,
-        }}
         style={{
-          backgroundColor: Colors[appTheme].button,
           marginTop: 25,
           marginBottom: 15,
         }}

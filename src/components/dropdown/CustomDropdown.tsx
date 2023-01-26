@@ -43,7 +43,8 @@ const CustomDropdown = ({
           fontWeight: "400",
           fontSize: hp(16),
           marginBottom: 3,
-        }}>
+        }}
+      >
         {label}
       </Text>
 
@@ -62,7 +63,7 @@ const CustomDropdown = ({
         ]}
         selectedTextStyle={[
           {
-            color: appTheme === "dark" ? "#A6A6A6" : "#A6A6A6",
+            color: Colors[appTheme].text,
             fontSize: 14,
           },
         ]}
@@ -93,13 +94,15 @@ const CustomDropdown = ({
               {
                 flexDirection: "row",
                 justifyContent: "space-between",
-                backgroundColor: Colors[appTheme].BACKGROUND,
+                backgroundColor: Colors[appTheme].backgroundSecondary,
               },
-            ]}>
+            ]}
+          >
             <Text
               style={{
                 fontSize: 14,
-              }}>
+              }}
+            >
               {item.label}
             </Text>
           </View>
@@ -111,7 +114,7 @@ const CustomDropdown = ({
         }}
         renderRightIcon={() => (
           <View style={{ transform: [{ rotate: "90deg" }] }}>
-            <ChevronRightIcon color={"#2A9E17"} size={20} />
+            <ChevronRightIcon color={Colors.general.green} size={20} />
           </View>
         )}
       />

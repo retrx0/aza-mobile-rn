@@ -132,16 +132,11 @@ const StatusScreen = ({
               }
               style={[
                 {
-                  backgroundColor: appTheme === "dark" ? "#000000" : "#ffffff",
-                  borderColor: appTheme === "dark" ? "#E7E9EA" : "#121212",
                   borderWidth: 1,
                   marginTop: hp(20),
                 },
                 { marginBottom: 20 },
               ]}
-              styleText={{
-                color: appTheme === "dark" ? "#E7E9EA" : "#121212",
-              }}
             />
           )}
           <Button
@@ -149,11 +144,7 @@ const StatusScreen = ({
             onPressButton={() =>
               navigation.getParent()?.navigate(navigateTo, navigateToParams)
             }
-            styleText={{
-              color: Colors[appTheme].buttonText,
-            }}
             style={{
-              backgroundColor: Colors[appTheme].button,
               marginBottom: 15,
             }}
           />

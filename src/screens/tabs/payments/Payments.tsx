@@ -53,7 +53,7 @@ export default function Payments({
         style={styles.subHead}
         heading="Recent Payments"
       />
-      {user.payments.recentPayments.length > 0 && (
+      {user.payments.data.length > 0 && (
         <ScrollView
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -63,7 +63,7 @@ export default function Payments({
             maxHeight: 120,
           }}
         >
-          {user.payments.recentPayments.map((payment, i) => {
+          {user.payments.data.map((payment, i) => {
             return (
               <HeadrImage
                 key={i}

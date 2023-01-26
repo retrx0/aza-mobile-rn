@@ -19,17 +19,29 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { toastError } from "../../../../common/util/ToastUtil";
 
 import { fetchElectricityBillersAPI } from "../../../../api/utility-bill";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import {
+  getElectricityBillers,
+  selectPayment,
+} from "../../../../redux/slice/paymentSlice";
+import { PaymentRoundSkeleton } from "../../../skeletons";
+import { IElectricityBiller } from "../../../../redux/types";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 export default function ElectricityIndex({
   navigation,
 }: CommonScreenProps<"Electricity">) {
-  const [selectedProvider, setSelectedProvider] = useState<any>("");
   const [providers, setProviders] = useState([]);
   const [meterNumber, setMeterNumber] = useState("");
   const [selectedMeterType, setSelectedMeterType] = useState("");
   const [amount, setAmount] = useState("");
 
   const insets = useSafeAreaInsets();
+  const dispatch = useAppDispatch();
+  const { electricityBillers } = useAppSelector(selectPayment);
+  const [selectedProvider, setSelectedProvider] = useState<IElectricityBiller>(
+    electricityBillers.data[0]
+  );
 
   const meterType = [
     { label: "Prepaid", value: "PREPAID" },
@@ -37,6 +49,8 @@ export default function ElectricityIndex({
   ];
 
   useEffect(() => {
+    if (!electricityBillers.loaded) dispatch(getElectricityBillers());
+
     fetchElectricityBillersAPI()
       .then(({ data }) => {
         const billers = data;
@@ -112,75 +126,87 @@ export default function ElectricityIndex({
         }}
         heading="Select electricity provider"
       />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
-        {providers.map((item: any, index) => {
-          if (displayedProviders.has(item.title)) {
-            return null;
-          }
-          displayedProviders.add(item.title);
-          return (
-            <Card
-              key={index}
-              title={item.title}
-              icon={item.icon}
-              onPress={() => {
-                setSelectedProvider(item);
-              }}
-              isActive={item.name === selectedProvider.name}
-            />
-          );
-        })}
-      </ScrollView>
-      <View
-        style={{
-          paddingHorizontal: hp(20),
-          marginBottom: hp(10),
-        }}
-      >
-        <CustomDropdown
-          label="Meter Type"
-          data={meterType}
-          placeholder="Choose your meter type"
-          setValue={setSelectedMeterType}
-          value={selectedMeterType}
-          placeholderstyle={[
-            { fontFamily: "Euclid-Circular-A" },
-            { fontWeight: "400" },
-            { fontSize: hp(16) },
-          ]}
-        />
-      </View>
-      <View style={{ paddingHorizontal: hp(20) }}>
-        <UnderlinedInput
-          icon={null}
-          inputStyle={[styles.input]}
-          labelStyle={styles.label}
-          label="Meter Number"
-          placeholder="Enter your meter number"
-          keyboardType="number-pad"
-          returnKeyType="done"
-          onChangeText={(text) => {
-            setMeterNumber(text);
-          }}
-        />
 
-        <UnderlinedInput
-          icon={null}
-          inputStyle={[styles.input]}
-          labelStyle={styles.label}
-          label="Amount"
-          placeholder="Enter an amount to be paid"
-          keyboardType="number-pad"
-          returnKeyType="done"
-          onChangeText={(text) => {
-            setAmount(text);
-          }}
-        />
-      </View>
+      {!electricityBillers.loaded ? (
+        <PaymentRoundSkeleton />
+      ) : (
+        <View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={CommonStyles.imageHeaderContainer}
+          >
+            {electricityBillers.data.map((item: IElectricityBiller, index) => {
+              if (displayedProviders.has(item.name)) {
+                return null;
+              }
+              displayedProviders.add(item.name);
+              return (
+                <Card
+                  key={index}
+                  title={item.name.split(" ")[0]}
+                  icon={Images.KE}
+                  onPress={() => {
+                    setSelectedProvider(item);
+                  }}
+                  isActive={item.id === selectedProvider.id}
+                />
+              );
+            })}
+          </ScrollView>
+          <View
+            style={{
+              paddingHorizontal: hp(20),
+              marginBottom: hp(10),
+            }}
+          >
+            {!electricityBillers.loaded ? (
+              <PaymentRoundSkeleton />
+            ) : (
+              <CustomDropdown
+                label="Meter Type"
+                data={meterType}
+                placeholder="Choose your meter type"
+                setValue={setSelectedMeterType}
+                value={selectedProvider.serviceType}
+                placeholderstyle={[
+                  { fontFamily: "Euclid-Circular-A" },
+                  { fontWeight: "400" },
+                  { fontSize: hp(16) },
+                ]}
+              />
+            )}
+          </View>
+          <View style={{ paddingHorizontal: hp(20) }}>
+            <UnderlinedInput
+              icon={null}
+              inputStyle={[styles.input]}
+              labelStyle={styles.label}
+              label="Meter Number"
+              placeholder="Enter your meter number"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              onChangeText={(text) => {
+                setMeterNumber(text);
+              }}
+            />
+
+            <UnderlinedInput
+              icon={null}
+              inputStyle={[styles.input]}
+              labelStyle={styles.label}
+              label={`Amount (${NAIRA_UNICODE})`}
+              placeholder="Enter an amount to be paid"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              onChangeText={(text) => {
+                setAmount(text);
+              }}
+              value={amount}
+            />
+          </View>
+        </View>
+      )}
 
       <View
         style={[
@@ -193,7 +219,7 @@ export default function ElectricityIndex({
           onPressButton={() => {
             navigation.navigate("PaymentConfirmation", {
               amount,
-              beneficiaryLogo: selectedProvider.icon,
+              beneficiaryLogo: selectedProvider.logoUrl,
               beneficiaryName: selectedProvider.name,
               purchaseName: "Electricity",
               paymentMethod: "Aza Account",
