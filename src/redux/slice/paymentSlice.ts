@@ -83,6 +83,11 @@ const initialState: IPaymentState = {
     data: [],
     loaded: false,
   },
+  networkOperators: {
+    loading: false,
+    loaded: false,
+    data: [],
+  },
 };
 
 export const paymentSlice = createSlice({
@@ -142,6 +147,19 @@ export const paymentSlice = createSlice({
         state.giftCards.loading = false;
         state.giftCards.loaded = true;
         state.giftCards.data = aciton.payload;
+      })
+      .addCase(getNetworkOperators.pending, (state, action) => {
+        state.networkOperators.loading = true;
+        state.networkOperators.loaded = false;
+      })
+      .addCase(getNetworkOperators.rejected, (state, action) => {
+        state.networkOperators.loading = false;
+        state.networkOperators.loaded = false;
+      })
+      .addCase(getNetworkOperators.fulfilled, (state, aciton) => {
+        state.networkOperators.loading = false;
+        state.networkOperators.loaded = true;
+        state.networkOperators.data = aciton.payload;
       });
   },
 });
@@ -153,6 +171,13 @@ export const getCharities = createAsyncThunk("charities", async () => {
 export const getGiftCards = createAsyncThunk("giftcards", async () => {
   return await thunkCourier("get", "/api/v1/gift-cards/Nigeria");
 });
+
+export const getNetworkOperators = createAsyncThunk(
+  "networkOperators",
+  async () => {
+    return await thunkCourier("get", "/api/top-up/operators");
+  }
+);
 
 export const {
   setAmount,

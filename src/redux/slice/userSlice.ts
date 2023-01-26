@@ -352,7 +352,7 @@ export const userSlice = createSlice({
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
         state.fullName =
-          action.payload.firstName + ", " + action.payload.lastName;
+          action.payload.firstName + " " + action.payload.lastName;
         state.phoneNumber = action.payload.phoneNumber;
         state.emailAddress = action.payload.email;
         state.gender = action.payload.gender;

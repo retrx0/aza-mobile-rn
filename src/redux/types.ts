@@ -75,6 +75,12 @@ export interface ICharity {
   city: string;
 }
 
+export interface INetworkOperator {
+  name: string;
+  logoUrls: string[];
+  operatorId: number;
+}
+
 /* REDUX STATES */
 
 export interface IPaymentState {
@@ -88,6 +94,11 @@ export interface IPaymentState {
   charities: { loading: boolean; loaded: boolean; data: ICharity[] };
   internetProviders: { loading: boolean; loaded: boolean; data: [] };
   giftCards: { loading: boolean; loaded: boolean; data: IGiftCard[] };
+  networkOperators: {
+    loading: boolean;
+    loaded: boolean;
+    data: INetworkOperator[];
+  };
 }
 
 export interface IUserState {

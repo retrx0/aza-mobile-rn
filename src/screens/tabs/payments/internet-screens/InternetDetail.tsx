@@ -11,8 +11,6 @@ import { SafeAreaView, View } from "../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
-import useColorScheme from "../../../../hooks/useColorScheme";
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
@@ -24,7 +22,6 @@ export default function InternetDetail({
   const [accountOrUserId, setAccountOrUserId] = useState("");
   const [selectedBundle, setSelectedBundle] = useState("");
 
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   const { name } = route.params;
@@ -42,13 +39,7 @@ export default function InternetDetail({
       <Header
         description=""
         descriptionStyle={null}
-        headerStyle={{
-          fontSize: hp(16),
-          fontWeight: "500",
-          fontFamily: "Euclid-Circular-A-Medium",
-          marginTop: hp(30),
-          marginLeft: 3,
-        }}
+        headerStyle={styles2.header}
         heading="Subscribe to an internet plan"
       />
       <View style={{ paddingHorizontal: hp(20) }}>
@@ -121,8 +112,6 @@ export default function InternetDetail({
               accountOrUserId,
             })
           }
-          styleText={{}}
-          style={[]}
         />
       </View>
     </SafeAreaView>
@@ -136,5 +125,12 @@ const styles2 = StyleSheet.create({
   },
   select: {
     marginTop: 20,
+  },
+  header: {
+    fontSize: hp(16),
+    fontWeight: "500",
+    fontFamily: "Euclid-Circular-A-Medium",
+    marginTop: hp(30),
+    marginLeft: 3,
   },
 });

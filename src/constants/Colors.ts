@@ -89,5 +89,6 @@ export default {
     lightRed: "#FFE9E5",
     background: "#E5E5E5",
     general: "#EAEAEC",
+    skeleton: "#a4a4a4",
   },
 };

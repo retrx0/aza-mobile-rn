@@ -13,7 +13,6 @@ import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { CommonScreenProps } from "../../../common/navigation/types";
-import useColorScheme from "../../../hooks/useColorScheme";
 
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
@@ -21,7 +20,6 @@ export default function PaymentConfirmationScreen({
   navigation,
   route,
 }: CommonScreenProps<"PaymentConfirmation">) {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const [isButtonLoading, setButtonLoading] = useState(false);
 
@@ -92,17 +90,9 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            labelStyle={styles.label}
             label={"Customer Account Number"}
             value={customerAccountNumber}
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
           />
 
           <UnderlinedInput
@@ -110,17 +100,9 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            labelStyle={styles.label}
             label={"Smart Card Number"}
             value={smartCardNumber}
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
           />
 
           <UnderlinedInput
@@ -128,17 +110,9 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            labelStyle={styles.label}
             label={"Meter Number"}
             value={meterNumber}
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
           />
 
           <UnderlinedInput
@@ -146,17 +120,9 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            labelStyle={styles.label}
             label={"Account/User ID"}
             value={accountOrUserId}
-            // placeholderTextColor={
-            //   colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            // }
           />
 
           <UnderlinedInput
@@ -164,11 +130,7 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-            }}
+            labelStyle={styles.label}
             label={"Phone number"}
             value={phoneNumber}
           />
@@ -178,11 +140,7 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="phone-pad"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
-              fontSize: hp(16),
-            }}
+            labelStyle={styles.label}
             editable={false}
             label="Amount"
             value={`${NAIRA_UNICODE + amount} ${
@@ -196,13 +154,7 @@ export default function PaymentConfirmationScreen({
             icon={null}
             keyboardType="default"
             inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
-              fontSize: hp(16),
-              // color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-              marginTop: hp(20),
-            }}
+            labelStyle={styles.label}
             label="Payment Method"
             value={paymentMethod}
           />
@@ -263,5 +215,10 @@ const styles = StyleSheet.create({
   },
   cancelContainer: {
     marginTop: 5,
+  },
+  label: {
+    fontFamily: "Euclid-Circular-A",
+    fontWeight: "400",
+    fontSize: hp(16),
   },
 });

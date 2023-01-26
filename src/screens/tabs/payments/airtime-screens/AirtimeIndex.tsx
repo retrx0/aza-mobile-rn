@@ -18,16 +18,19 @@ import Button from "../../../../components/buttons/Button";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import { Card } from "../sub-components/Card";
 
-import { useAppSelector } from "../../../../redux";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
 
 import {
   detectNetworkOperatorAPI,
-  fetchAirtimeOperatorsAPI,
   fetchNetworkOperatorDataPlansAPI,
 } from "../../../../api/airtime";
+import {
+  getNetworkOperators,
+  selectPayment,
+} from "../../../../redux/slice/paymentSlice";
+import ProviderSkeleton from "../sub-components/ProviderSkeleton";
 
 export default function AirtimeIndex({
   navigation,
@@ -44,24 +47,17 @@ export default function AirtimeIndex({
   });
   const [mobileNumber, setMobileNumber] = useState("");
   const [amount, setAmount] = useState("");
-  const [airtimeOperators, setAirtimeOperators] = useState<
-    {
-      name: string;
-      logoUrls: string[];
-      operatorId: number;
-    }[]
-  >([]);
-
   const [dataBundles, setDataBundles] = useState<
     { label: string; value: string }[]
   >([]);
 
   const route = useRoute();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
+  const { networkOperators } = useAppSelector(selectPayment);
 
   useEffect(() => {
-    fetchAirtimeOperatorsAPI().then((r) => setAirtimeOperators(r.data.data));
+    if (!networkOperators.loaded) dispatch(getNetworkOperators());
   }, []);
 
   useEffect(() => {
@@ -135,28 +131,33 @@ export default function AirtimeIndex({
         contentContainerStyle={{
           justifyContent: "space-between",
           width: "100%",
-        }}>
-        {airtimeOperators.map((operator, index) => {
-          if (displayedOperators.has(operator.name.split(" ")[0])) {
-            return null;
-          }
-          displayedOperators.add(operator.name.split(" ")[0]);
+        }}
+      >
+        {networkOperators.loaded ? (
+          networkOperators.data.map((operator, index) => {
+            if (displayedOperators.has(operator.name.split(" ")[0])) {
+              return null;
+            }
+            displayedOperators.add(operator.name.split(" ")[0]);
 
-          return (
-            <Card
-              key={index}
-              title={operator.name.split(" ")[0]}
-              icon={operator.logoUrls[0]}
-              onPress={() => {
-                setSelectedProvider(operator);
-              }}
-              isActive={
-                operator.name.split(" ")[0] ===
-                selectedProvider.name.split(" ")[0]
-              }
-            />
-          );
-        })}
+            return (
+              <Card
+                key={index}
+                title={operator.name.split(" ")[0]}
+                icon={operator.logoUrls[0]}
+                onPress={() => {
+                  setSelectedProvider(operator);
+                }}
+                isActive={
+                  operator.name.split(" ")[0] ===
+                  selectedProvider.name.split(" ")[0]
+                }
+              />
+            );
+          })
+        ) : (
+          <ProviderSkeleton numberOfItems={4} />
+        )}
       </ScrollView>
 
       <View style={{ paddingHorizontal: hp(20) }}>
@@ -185,7 +186,8 @@ export default function AirtimeIndex({
             paddingHorizontal: hp(20),
             marginTop: hp(10),
             marginBottom: hp(10),
-          }}>
+          }}
+        >
           <CustomDropdown
             data={dataBundles}
             placeholder="Choose a bundle"
