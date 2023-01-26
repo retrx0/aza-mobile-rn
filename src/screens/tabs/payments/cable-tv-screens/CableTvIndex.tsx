@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Header } from "../../../../components/text/header";
@@ -7,7 +7,7 @@ import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import { Card } from "../sub-components/Card";
-import { SafeAreaView } from "../../../../theme/Themed";
+import { SafeAreaView, ScrollView, Text, View } from "../../../../theme/Themed";
 
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -45,7 +45,6 @@ export default function CableTvIndex({
   const [smartCardNumber, setSmartCardNumber] = useState("");
 
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
 
   const period = [
     { label: "DSTV Padi", value: "10000" },
@@ -73,8 +72,7 @@ export default function CableTvIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {Cable.map((item, index) => {
           return (
             <Card
@@ -109,17 +107,13 @@ export default function CableTvIndex({
           paddingHorizontal: hp(20),
           marginBottom: hp(20),
           marginTop: hp(20),
-        }}
-      >
+        }}>
         <Text
           style={{
             fontSize: hp(16),
             fontWeight: "400",
             fontFamily: "Euclid-Circular-A",
-
-            color: colorScheme === "dark" ? "#ffffff" : "#000000",
-          }}
-        >
+          }}>
           Subscription Package
         </Text>
         <CustomDropdown
@@ -135,8 +129,7 @@ export default function CableTvIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           disabled={!amount || !smartCardNumber || !selectedCable.title}
           title="Continue"

@@ -61,7 +61,7 @@ const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
             <Image
               source={item.icon}
               resizeMode="cover"
-              style={{ width: hp(258), height: hp(194) }}
+              style={{ width: hp(258), height: hp(194), borderRadius: hp(10) }}
             />
           </View>
           <View style={{ paddingHorizontal: hp(30) }}>

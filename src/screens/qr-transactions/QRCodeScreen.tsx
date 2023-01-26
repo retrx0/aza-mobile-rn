@@ -41,8 +41,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
-          }}
-        >
+          }}>
           QR Transactions
         </Text>
       ),
@@ -102,10 +101,9 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 14,
+              fontSize: hp(14),
               marginVertical: 15,
-            }}
-          >
+            }}>
             {user.fullName}
           </Text>
           <View style={[CommonStyles.row]}>
@@ -123,8 +121,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(24),
                 marginLeft: 5,
-              }}
-            >
+              }}>
               {transaction.amount}
             </Text>
           </View>
@@ -145,8 +142,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}
-        >
+          ]}>
           {/* <Button
             title="Copy Link"
             styleText={{

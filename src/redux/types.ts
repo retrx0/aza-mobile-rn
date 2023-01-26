@@ -61,6 +61,7 @@ export interface IBeneficiary {
   currency?: string;
   phone?: string;
   email?: string;
+  beneficiaryName?: string;
 }
 
 export interface ICharity {

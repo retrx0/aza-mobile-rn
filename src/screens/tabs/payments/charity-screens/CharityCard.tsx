@@ -27,8 +27,7 @@ export const CharityCard = ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-        }}
-      >
+        }}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={{ uri: charity.pictureUrl, cache: "default" }}
@@ -49,6 +48,7 @@ const styles = StyleSheet.create({
   img: {
     width: 45,
     height: 45,
+    borderRadius: 30,
   },
   text: {
     fontWeight: "600",
