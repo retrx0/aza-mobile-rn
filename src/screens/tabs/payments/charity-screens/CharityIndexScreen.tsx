@@ -16,6 +16,7 @@ import {
 import { ICharity } from "../../../../redux/types";
 import CharityCard from "./CharityCard";
 import Colors from "../../../../constants/Colors";
+import PaymentCardSkeleton from "../../../skeletons/PaymentCardSkeleton";
 export default function CharityIndexScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
@@ -51,24 +52,24 @@ export default function CharityIndexScreen({
         onChangeText={(text: any) => setSearchTerm(text)}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        {charities.data.length < 1
-          ? null
-          : charities.data
-              .filter((item) =>
-                item.charityName
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              )
-              .map((item, index) => {
-                return (
-                  <CharityCard
-                    key={index}
-                    index={index}
-                    charity={item}
-                    onPress={() => handleAction(item)}
-                  />
-                );
-              })}
+        {charities.loading ? (
+          <PaymentCardSkeleton />
+        ) : (
+          charities.data
+            .filter((item) =>
+              item.charityName.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .map((item, index) => {
+              return (
+                <CharityCard
+                  key={index}
+                  index={index}
+                  charity={item}
+                  onPress={() => handleAction(item)}
+                />
+              );
+            })
+        )}
       </ScrollView>
     </View>
   );

@@ -1,33 +1,29 @@
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Text, View as View } from "../../../../theme/Themed";
+import { View as View } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import ListItem from "../sub-components/ListItem";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { GiftCardList } from "../sub-components/Filters";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import CharityCard from "../charity-screens/CharityCard";
 import {
   getGiftCards,
   selectPayment,
 } from "../../../../redux/slice/paymentSlice";
 import { IGiftCard } from "../../../../redux/types";
-import Animated, { FadeInDown } from "react-native-reanimated";
-import { ArrowFowardIcon } from "../../../../../assets/svg";
-import Divider from "../sub-components/Divider";
 import Colors from "../../../../constants/Colors";
+import PaymentCardSkeleton from "../../../skeletons/PaymentCardSkeleton";
+import CommonPaymentCard from "../../common/CommonPaymentCard";
+
 export default function GiftCardScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useAppDispatch();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
-
   const { giftCards } = useAppSelector(selectPayment);
 
   const handleAction = (item: IGiftCard) => {
@@ -56,22 +52,24 @@ export default function GiftCardScreen({
         onChangeText={(text: any) => setSearchTerm(text)}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        {giftCards.loading
-          ? null
-          : giftCards.data
-              .filter((gc) =>
-                gc.productName.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((item, index) => {
-                return (
-                  <GiftCard
-                    key={index}
-                    index={index}
-                    giftCard={item}
-                    onPress={() => handleAction(item)}
-                  />
-                );
-              })}
+        {giftCards.loading ? (
+          <PaymentCardSkeleton />
+        ) : (
+          giftCards.data
+            .filter((gc) =>
+              gc.productName.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .map((item, index) => {
+              return (
+                <GiftCard
+                  key={index}
+                  index={index}
+                  giftCard={item}
+                  onPress={() => handleAction(item)}
+                />
+              );
+            })
+        )}
       </ScrollView>
     </View>
   );
@@ -86,47 +84,17 @@ const GiftCard = ({
   giftCard: IGiftCard;
   onPress: () => void;
 }) => {
-  const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
-
   return (
-    <View style={styles2.listContainer}>
-      <TouchableAnimated
-        entering={FadeInDown.delay(50 * (index + 1))}
-        onPress={onPress}
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            source={{ uri: giftCard.logoUrls[0], cache: "default" }}
-            style={styles2.img}
-          />
-          <Text style={styles2.text}>{giftCard.productName}</Text>
-        </View>
-        <View>
-          <ArrowFowardIcon />
-        </View>
-      </TouchableAnimated>
-      <Divider />
-    </View>
+    <CommonPaymentCard
+      index={index}
+      itemPictureUrl={giftCard.logoUrls[0]}
+      itemTitle={giftCard.productName}
+      onPress={onPress}
+    />
   );
 };
 
 const styles2 = StyleSheet.create({
-  text: {
-    fontWeight: "600",
-    fontSize: hp(17),
-    fontFamily: "Euclid-Circular-A-Semi-Bold",
-    marginLeft: 16.5,
-  },
-  listContainer: {
-    minHeight: 20,
-    marginTop: 20,
-    backgroundColor: "transparent",
-  },
   container: {
     paddingTop: 80,
     padding: 20,

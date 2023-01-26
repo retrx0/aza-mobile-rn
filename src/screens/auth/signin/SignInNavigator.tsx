@@ -15,9 +15,9 @@ const LoginNavigator = ({
   route,
 }: RootStackScreenProps<"SignIn">) => {
   const isSignedIn = route.params.isUserSignedIn;
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  if (isSignedIn) dispatch(getUserInfo());
+  // if (isSignedIn) dispatch(getUserInfo());
 
   return (
     <LogInStack.Navigator

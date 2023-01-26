@@ -1,3 +1,9 @@
+interface ICommonTypedListResult<T> {
+  loading: boolean;
+  loaded: boolean;
+  data: T[];
+}
+
 export interface ITransactions {
   transactions: ITransaction[];
   dateOfTransactions: string;
@@ -52,6 +58,38 @@ export interface ITransaction {
   date: string;
 }
 
+interface IVault {}
+
+export interface IPaymentMethod {
+  dateAdded: Date;
+  dateModified: Date;
+  processedBy: string;
+  type: PaymentMethodType;
+  cardType: PaymentMethodCardType;
+}
+
+export interface IBankAccount {
+  bankName: string;
+  logoUrl?: string;
+  accountNumber: string;
+  accountName: string;
+}
+
+export interface IPayment {
+  status: "Paid" | "Pending";
+  amount: string;
+  vendorName: string;
+  vendorLogo: string;
+  date: string;
+  category: PaymentCategory;
+}
+
+export interface IRequest extends IPayment {
+  type: "incoming" | "outgoing";
+  requestor: IBeneficiary;
+  requestees: IBeneficiary[];
+}
+
 export interface IBeneficiary {
   fullName: string;
   firstName?: string;
@@ -61,6 +99,7 @@ export interface IBeneficiary {
   currency?: string;
   phone?: string;
   email?: string;
+  beneficiaryName?: string;
 }
 
 export interface ICharity {
@@ -75,10 +114,15 @@ export interface ICharity {
   city: string;
 }
 
-export interface INetworkOperator {
+export interface IElectricityBiller {
+  countryName: string;
+  id: 18;
+  maxLocalTransactionAmount: number;
+  minLocalTransactionAmount: number;
   name: string;
-  logoUrls: string[];
-  operatorId: number;
+  serviceType: string;
+  type: string;
+  logoUrl: string;
 }
 
 /* REDUX STATES */
@@ -91,18 +135,15 @@ export interface IPaymentState {
   to: string;
   logo: string;
   paymentType: string;
-  charities: { loading: boolean; loaded: boolean; data: ICharity[] };
-  internetProviders: { loading: boolean; loaded: boolean; data: [] };
-  giftCards: { loading: boolean; loaded: boolean; data: IGiftCard[] };
-  networkOperators: {
-    loading: boolean;
-    loaded: boolean;
-    data: INetworkOperator[];
-  };
+  charities: ICommonTypedListResult<ICharity>;
+  airtimeOperators: ICommonTypedListResult<[]>;
+  giftCards: ICommonTypedListResult<IGiftCard>;
+  electricityBillers: ICommonTypedListResult<IElectricityBiller>;
 }
 
 export interface IUserState {
   loading?: boolean;
+  loaded?: boolean;
   azaId?: string;
   gender?: string;
   paymentMethods?: IPaymentMethod[];
@@ -133,18 +174,11 @@ export interface IUserState {
     totalMonthlyOutgoingTransferAmount: number;
   };
   vault: { loading: boolean; recentTransaction: [] };
-  payments: { loading: boolean; recentPayments: IPayment[] };
-  paymentRequests: { loading: boolean; data: IRequest[] };
-  recentTransactions: { loading: boolean; data: ITransactions[] };
-  azaContacts: { loading: boolean; data: IBeneficiary[] };
-  bankAccounts: { loading: boolean; data: IBankAccount[] };
-}
-
-export interface IBankAccount {
-  bankName: string;
-  logoUrl?: string;
-  accountNumber: string;
-  accountName: string;
+  payments: ICommonTypedListResult<IPayment>;
+  paymentRequests: ICommonTypedListResult<IRequest>;
+  recentTransactions: ICommonTypedListResult<ITransactions>;
+  azaContacts: ICommonTypedListResult<IBeneficiary>;
+  bankAccounts: ICommonTypedListResult<IBankAccount>;
 }
 
 export type PaymentCategory =
@@ -157,21 +191,6 @@ export type PaymentCategory =
   | "Charity"
   | "Game Credits";
 
-export interface IPayment {
-  status: "Paid" | "Pending";
-  amount: string;
-  vendorName: string;
-  vendorLogo: string;
-  date: string;
-  category: PaymentCategory;
-}
-
-export interface IRequest extends IPayment {
-  type: "incoming" | "outgoing";
-  requestor: IBeneficiary;
-  requestees: IBeneficiary[];
-}
-interface IVault {}
 export type Gender = "Male" | "Female" | "Unknown";
 
 type PaymentMethodCardType = "Master Card" | "Visa";
@@ -183,11 +202,3 @@ export type Country = "Nigeria";
 export type PaymentMethodType = "card" | "cash";
 
 export type UserAccountStatus = "active" | "suspended";
-
-export interface IPaymentMethod {
-  dateAdded: Date;
-  dateModified: Date;
-  processedBy: string;
-  type: PaymentMethodType;
-  cardType: PaymentMethodCardType;
-}

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
@@ -15,6 +15,9 @@ import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonW
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppSelector } from "../../../redux";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../theme";
 
 const RecurringTransferConfirmationScreen = ({
   navigation,
@@ -22,9 +25,26 @@ const RecurringTransferConfirmationScreen = ({
 }: CommonScreenProps<"RecurringTransferConfirmation">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const [isButtonLoading, setButtonLoading] = useState(false);
 
   const { beneficiary, day, period, amount } = route.params;
-
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+  const onConfirm = () => {
+    setButtonLoading(true);
+    // TODO: perform api call based on purchaseName and continue to status screen if it is a success
+    if (true) {
+      setButtonLoading(true);
+      navigation.push("StatusScreen", {
+        status: "Successful",
+        statusIcon: "Success",
+        statusMessage: "Your recurring transfer was setup successfully",
+        navigateTo: "Home",
+      });
+    } else {
+      setButtonLoading(false);
+    }
+  };
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -33,8 +53,7 @@ const RecurringTransferConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Confirmation
         </Text>
       ),
@@ -57,8 +76,7 @@ const RecurringTransferConfirmationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(20),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -67,9 +85,7 @@ const RecurringTransferConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-                color: colorScheme === "dark" ? "#999999" : "#000000",
-              }}
-            >
+              }}>
               To
             </Text>
             <TextInput
@@ -79,12 +95,12 @@ const RecurringTransferConfirmationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
-              value={beneficiary.firstName}
+              value={beneficiary.beneficiaryName}
+              placeholder={beneficiary.beneficiaryName}
             />
             <Image
               source={{
@@ -108,16 +124,10 @@ const RecurringTransferConfirmationScreen = ({
                 styles.input,
                 {
                   borderBottomColor:
-                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
-                  paddingBottom: 5,
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
-              labelStyle={{
-                fontFamily: "Euclid-Circular-A",
-                fontWeight: "500",
-                fontSize: hp(16),
-                color: colorScheme === "dark" ? "#999999" : "#000000",
-              }}
+              labelStyle={styles.label}
               label="Amount"
               value={numberWithCommas(amount)}
               showSoftInputOnFocus={false}
@@ -130,16 +140,11 @@ const RecurringTransferConfirmationScreen = ({
                 styles.input,
                 {
                   borderBottomColor:
-                    colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                   paddingBottom: 5,
                 },
               ]}
-              labelStyle={{
-                fontFamily: "Euclid-Circular-A",
-                fontWeight: "500",
-                fontSize: hp(16),
-                color: colorScheme === "dark" ? "#999999" : "#000000",
-              }}
+              labelStyle={styles.label}
               label="Period"
               value={period}
               showSoftInputOnFocus={false}
@@ -151,17 +156,11 @@ const RecurringTransferConfirmationScreen = ({
             inputStyle={[
               styles.input,
               {
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 paddingBottom: 5,
               },
             ]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            labelStyle={styles.label}
             label="Day"
             value={day}
             showSoftInputOnFocus={false}
@@ -171,27 +170,11 @@ const RecurringTransferConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.push("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                statusMessage: "Your recurring transfer was setup successfully",
-                navigateTo: "Home",
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            onPressButton={onConfirm}
+            buttonLoading={isButtonLoading}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"
@@ -209,6 +192,12 @@ const RecurringTransferConfirmationScreen = ({
 export default RecurringTransferConfirmationScreen;
 
 const styles = StyleSheet.create({
+  label: {
+    fontFamily: "Euclid-Circular-A",
+    fontWeight: "400",
+    fontSize: hp(16),
+    marginTop: hp(15),
+  },
   container: {
     flex: 1,
     display: "flex",

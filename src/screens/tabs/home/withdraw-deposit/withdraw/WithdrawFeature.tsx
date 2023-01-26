@@ -69,7 +69,7 @@ const WithdrawFeature = ({
             <Image
               source={item.icon}
               resizeMode="cover"
-              style={{ width: hp(200), height: hp(150) }}
+              style={{ width: hp(200), height: hp(150), borderRadius: hp(10) }}
             />
           </View>
           <View style={{ paddingHorizontal: hp(30) }}>

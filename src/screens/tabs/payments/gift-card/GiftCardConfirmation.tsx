@@ -39,13 +39,9 @@ export default function GiftCardConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label={"Package"}
             // placeholder={"iTunes USD100"}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
             value="iTunes USD100"
           />
 
@@ -57,13 +53,8 @@ export default function GiftCardConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Amount"
-            // placeholder={"\u20A660,000"}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
             value={"\u20A660,000"}
             returnKeyType="done"
           />
@@ -75,13 +66,10 @@ export default function GiftCardConfirmation({
               fontFamily: "Euclid-Circular-A",
               fontWeight: "400",
               fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
             }}
             label="Email Address"
             // placeholder={"\u20A660,000"}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
+
             value="abc@example.com"
             returnKeyType="done"
           />
@@ -90,7 +78,8 @@ export default function GiftCardConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => {
@@ -101,14 +90,8 @@ export default function GiftCardConfirmation({
                 navigateTo: "Payments",
               });
             }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"

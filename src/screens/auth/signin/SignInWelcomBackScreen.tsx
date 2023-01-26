@@ -13,6 +13,7 @@ import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
+  getUserAccount,
   getUserInfo,
   selectUser,
   setUserEmail,
@@ -138,6 +139,8 @@ const SignInWelcomeBackScreen = ({
             //     fullName: fullName,
             //   })
             // );
+            dispatch(getUserInfo());
+            dispatch(getUserAccount());
             setScreenLoading(false);
             navigation.getParent()?.navigate("Root");
           } else {
@@ -180,7 +183,12 @@ const SignInWelcomeBackScreen = ({
 
           if (_creds) {
             const parsedCreds = JSON.parse(_creds);
-            // login
+            setTmpCreds({
+              email: parsedCreds.email,
+              fullName: parsedCreds.fullName,
+              phoneNumber: parsedCreds.phoneNumber,
+            });
+
             verifyPassword(
               parsedCreds.email,
               parsedCreds.phoneNumber,
@@ -191,6 +199,21 @@ const SignInWelcomeBackScreen = ({
         }
       } else {
         console.debug("biometric not enroled!");
+
+        //
+        const _creds = await getUserCredentialsSecure({
+          requireAuthentication: false,
+        });
+
+        if (_creds) {
+          const parsedCreds = JSON.parse(_creds);
+          setTmpCreds({
+            email: parsedCreds.email,
+            fullName: parsedCreds.fullName,
+            phoneNumber: parsedCreds.phoneNumber,
+          });
+        }
+
         // Check if redux stored user email and phone number for login
         if (!user.emailAddress && user.phoneNumber === "") {
           // try to get and set email and phone number
@@ -217,7 +240,7 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
+          <Text style={styles.welcome}>Welcome back, {_tmpCreds.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
             style={{
@@ -232,10 +255,10 @@ const SignInWelcomeBackScreen = ({
                 setPasscode(code);
                 if (code.length >= 6)
                   verifyPassword(
-                    user.emailAddress,
-                    user.phoneNumber,
+                    _tmpCreds.email,
+                    _tmpCreds.phoneNumber,
                     code,
-                    user.fullName
+                    _tmpCreds.fullName
                   );
               }}
               headerText="Password"

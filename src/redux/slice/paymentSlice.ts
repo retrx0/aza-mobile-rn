@@ -73,7 +73,7 @@ const initialState: IPaymentState = {
       },
     ],
   },
-  internetProviders: {
+  airtimeOperators: {
     loading: false,
     loaded: false,
     data: [],
@@ -83,10 +83,10 @@ const initialState: IPaymentState = {
     data: [],
     loaded: false,
   },
-  networkOperators: {
+  electricityBillers: {
     loading: false,
-    loaded: false,
     data: [],
+    loaded: false,
   },
 };
 
@@ -148,18 +148,18 @@ export const paymentSlice = createSlice({
         state.giftCards.loaded = true;
         state.giftCards.data = aciton.payload;
       })
-      .addCase(getNetworkOperators.pending, (state, action) => {
-        state.networkOperators.loading = true;
-        state.networkOperators.loaded = false;
+      .addCase(getElectricityBillers.pending, (state, action) => {
+        state.electricityBillers.loading = true;
+        state.electricityBillers.loaded = false;
       })
-      .addCase(getNetworkOperators.rejected, (state, action) => {
-        state.networkOperators.loading = false;
-        state.networkOperators.loaded = false;
+      .addCase(getElectricityBillers.rejected, (state, action) => {
+        state.electricityBillers.loading = false;
+        state.electricityBillers.loaded = false;
       })
-      .addCase(getNetworkOperators.fulfilled, (state, aciton) => {
-        state.networkOperators.loading = false;
-        state.networkOperators.loaded = true;
-        state.networkOperators.data = aciton.payload;
+      .addCase(getElectricityBillers.fulfilled, (state, action) => {
+        state.electricityBillers.loading = false;
+        state.electricityBillers.loaded = true;
+        state.electricityBillers.data = action.payload;
       });
   },
 });
@@ -172,8 +172,15 @@ export const getGiftCards = createAsyncThunk("giftcards", async () => {
   return await thunkCourier("get", "/api/v1/gift-cards/Nigeria");
 });
 
-export const getNetworkOperators = createAsyncThunk(
-  "networkOperators",
+export const getElectricityBillers = createAsyncThunk(
+  "electricity",
+  async () => {
+    return await thunkCourier("get", "/api/v1/utilities/billers/electricity");
+  }
+);
+
+export const getMobileAirtimeOperators = createAsyncThunk(
+  "mobileAirtimeOperators",
   async () => {
     return await thunkCourier("get", "/api/top-up/operators");
   }

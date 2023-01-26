@@ -4,6 +4,7 @@ import { AxiosError } from "axios";
 import { boolean, number } from "yup";
 import { Dstv, Fctwb, Ie, IET, Mtn } from "../../../assets/images";
 import api from "../../api";
+import { thunkCourier } from "../../common/util/ReduxUtil";
 import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
 import { ITransactions, IUserState } from "../types";
@@ -11,6 +12,7 @@ import { ITransactions, IUserState } from "../types";
 // Define the initial state using that type
 const initialState: IUserState = {
   loading: false,
+  loaded: false,
   phoneNumber: "+2348135524649",
   firstName: "Test",
   lastName: "User",
@@ -26,6 +28,7 @@ const initialState: IUserState = {
   lastLogin: "",
   recentTransactions: {
     loading: false,
+    loaded: false,
     data: [
       {
         dateOfTransactions: "15 June 2022",
@@ -106,7 +109,8 @@ const initialState: IUserState = {
   vault: { loading: false, recentTransaction: [] },
   payments: {
     loading: false,
-    recentPayments: [
+    loaded: false,
+    data: [
       {
         amount: "2000",
         status: "Paid",
@@ -135,6 +139,7 @@ const initialState: IUserState = {
   },
   azaContacts: {
     loading: false,
+    loaded: false,
     data: [
       {
         azaAccountNumber: "12345678",
@@ -170,6 +175,7 @@ const initialState: IUserState = {
   },
   bankAccounts: {
     loading: false,
+    loaded: false,
     data: [
       {
         accountName: "Test Account",
@@ -185,6 +191,7 @@ const initialState: IUserState = {
   },
   paymentRequests: {
     loading: false,
+    loaded: false,
     data: [
       {
         type: "outgoing",
@@ -344,11 +351,15 @@ export const userSlice = createSlice({
       })
       .addCase(getUserInfo.pending, (state, action) => {
         state.loading = true;
+        state.loaded = false;
       })
       .addCase(getUserInfo.rejected, (state) => {
         state.loading = false;
+        state.loaded = false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.loaded = true;
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
         state.fullName =
@@ -374,40 +385,6 @@ export const userSlice = createSlice({
       });
   },
 });
-
-// export const getUserInfo = createAsyncThunk(
-//   "user/getInfo",
-//   async ({}, { rejectWithValue, fulfillWithValue }) => {
-//     try {
-//       const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-//       const info = await api.get("/api/v1/user/info", {
-//         headers: { Authorization: `Bearer ${jwt}` },
-//       });
-//       console.log(info.data);
-//       return fulfillWithValue(info.data);
-//     } catch (e: any) {
-//       return rejectWithValue(e.response.data.message);
-//     }
-//   }
-// );
-
-const thunkCourier = async (type: "get" | "post" | "put", url: string) => {
-  const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-  return api({
-    method: type,
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-    url: url,
-  }).then(
-    (response) => {
-      return response.data.data;
-    },
-    (error) => {
-      console.debug(error);
-    }
-  );
-};
 
 export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
   return await thunkCourier("get", "/api/v1/user/info");
