@@ -63,8 +63,7 @@ const ContactsScene = ({
                   marginLeft: hp(5),
                   marginTop: hp(30),
                   marginBottom: hp(24),
-                }}
-              >
+                }}>
                 Quick contacts
               </Text>
               <View>
@@ -151,8 +150,7 @@ const ContactsScene = ({
                             } else {
                               nonAzaContactOnPress(item);
                             }
-                          }}
-                        >
+                          }}>
                           <ContactListItem
                             image={getDefaultPictureUrl({
                               firstName: item?.fullName,
@@ -175,8 +173,7 @@ const ContactsScene = ({
                           } else {
                             nonAzaContactOnPress(item);
                           }
-                        }}
-                      >
+                        }}>
                         <ContactListItem
                           image={getDefaultPictureUrl({
                             firstName: item?.firstName,
@@ -211,8 +208,7 @@ const ContactsScene = ({
                 marginLeft: hp(5),
                 marginTop: hp(30),
                 marginBottom: hp(24),
-              }}
-            >
+              }}>
               Recents
             </Text>
             <View>
@@ -245,6 +241,7 @@ const ContactsScene = ({
                 borderBottomWidth: 1,
                 fontSize: hp(16),
                 marginLeft: hp(5),
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Aza Number"
             />

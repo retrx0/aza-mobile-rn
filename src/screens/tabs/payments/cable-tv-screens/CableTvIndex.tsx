@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Header } from "../../../../components/text/header";
@@ -7,6 +8,7 @@ import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import MyButton from "../sub-components/MyButton";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import { Card } from "../sub-components/Card";
+import { SafeAreaView, ScrollView, Text, View } from "../../../../theme/Themed";
 import { SafeAreaView, ScrollView, Text, View } from "../../../../theme/Themed";
 
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
@@ -45,7 +47,6 @@ export default function CableTvIndex({
   const [smartCardNumber, setSmartCardNumber] = useState("");
 
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
 
   const period = [
     { label: "DSTV Padi", value: "10000" },
