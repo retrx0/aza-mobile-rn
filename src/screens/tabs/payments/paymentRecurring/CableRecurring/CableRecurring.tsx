@@ -130,7 +130,10 @@ export default function CableRecurring({
         <UnderlinedInput
           icon={null}
           keyboardType="phone-pad"
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
           labelStyle={{
             fontFamily: "Euclid-Circular-A",
             fontWeight: "400",

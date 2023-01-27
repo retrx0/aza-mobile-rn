@@ -2,7 +2,6 @@ import React, { useLayoutEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { View, Text } from "../../../../../theme/Themed";
-import Divider from "../../../payments/sub-components/Divider";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";
 
@@ -12,6 +11,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { hp } from "../../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
+import Divider from "../../../../../components/divider/Divider";
 
 export default function WithdrawIndex({
   navigation,
@@ -26,8 +26,7 @@ export default function WithdrawIndex({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Withdraw
         </Text>
       ),
@@ -53,15 +52,14 @@ export default function WithdrawIndex({
               });
             }}
           />
-          <Divider style={styles.divider} />
+          <Divider />
         </View>
 
         <View
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Cancel"
             style={styles.button}

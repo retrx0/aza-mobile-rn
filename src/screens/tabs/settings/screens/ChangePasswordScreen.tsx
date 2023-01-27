@@ -36,8 +36,7 @@ const ChangePasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}
-        >
+          }}>
           Current Password
         </Text>
       ),
@@ -83,8 +82,7 @@ const ChangePasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}
-        >
+          }}>
           Please enter your current password
         </Text>
         <View
@@ -92,8 +90,7 @@ const ChangePasswordScreen = ({
             marginTop: hp(80),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}
-        >
+          }}>
           <SegmentedInput
             value={password}
             secureInput

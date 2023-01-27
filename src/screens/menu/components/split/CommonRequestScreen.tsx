@@ -5,13 +5,13 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import BackButton from "../../../../components/buttons/BackButton";
+import Divider from "../../../../components/divider/Divider";
 import Colors from "../../../../constants/Colors";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../../theme";
 import { ScrollView, Text, View } from "../../../../theme/Themed";
-import Divider from "../../../tabs/payments/sub-components/Divider";
 import SplitListItem from "../SplitListItem";
 
 const CommonRequestScreen = ({
@@ -38,8 +38,7 @@ const CommonRequestScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           {type === "incoming" ? "Incoming" : "Outgoing"} Requests
         </Text>
       ),
@@ -93,8 +92,7 @@ const CommonRequestScreen = ({
                             category: category,
                           },
                         })
-                      }
-                    >
+                      }>
                       <SplitListItem
                         amount={amount}
                         date={date}
@@ -153,8 +151,7 @@ const CommonRequestScreen = ({
                             category: category,
                           },
                         })
-                      }
-                    >
+                      }>
                       <SplitListItem
                         amount={amount}
                         date={date}
@@ -208,8 +205,7 @@ const CommonRequestScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}
-                  >
+                    }}>
                     {route.title}
                   </Text>
                 );

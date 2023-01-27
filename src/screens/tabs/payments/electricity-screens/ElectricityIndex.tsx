@@ -28,6 +28,8 @@ import { PaymentRoundSkeleton } from "../../../skeletons";
 import { IElectricityBiller } from "../../../../redux/types";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import ProviderSkeleton from "../sub-components/ProviderSkeleton";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 export default function ElectricityIndex({
   navigation,
@@ -36,6 +38,8 @@ export default function ElectricityIndex({
   const [meterNumber, setMeterNumber] = useState("");
   const [selectedMeterType, setSelectedMeterType] = useState("");
   const [amount, setAmount] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const insets = useSafeAreaInsets();
   const dispatch = useAppDispatch();
@@ -142,8 +146,12 @@ export default function ElectricityIndex({
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={CommonStyles.imageHeaderContainer}
-          >
+            style={{
+              minHeight: hp(70),
+              maxHeight: hp(100),
+              marginTop: hp(20),
+              marginBottom: hp(25),
+            }}>
             {electricityBillers.data.map((item: IElectricityBiller, index) => {
               if (displayedProviders.has(item.name)) {
                 return null;
@@ -166,8 +174,7 @@ export default function ElectricityIndex({
             style={{
               paddingHorizontal: hp(20),
               marginBottom: hp(10),
-            }}
-          >
+            }}>
             {!electricityBillers.loaded ? (
               <PaymentRoundSkeleton />
             ) : (
@@ -188,7 +195,13 @@ export default function ElectricityIndex({
           <View style={{ paddingHorizontal: hp(20) }}>
             <UnderlinedInput
               icon={null}
-              inputStyle={[styles.input]}
+              inputStyle={[
+                styles.input,
+                {
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
               labelStyle={styles.label}
               label="Meter Number"
               placeholder="Enter your meter number"
@@ -201,7 +214,13 @@ export default function ElectricityIndex({
 
             <UnderlinedInput
               icon={null}
-              inputStyle={[styles.input]}
+              inputStyle={[
+                styles.input,
+                {
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
               labelStyle={styles.label}
               label={`Amount (${NAIRA_UNICODE})`}
               placeholder="Enter an amount to be paid"
@@ -220,8 +239,7 @@ export default function ElectricityIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           title="Continue"
           onPressButton={() => {

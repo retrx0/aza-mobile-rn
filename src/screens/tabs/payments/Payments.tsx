@@ -4,7 +4,6 @@ import { PaymentStyles as styles } from "./styles";
 import { SafeAreaView, View, Text } from "../../../theme/Themed";
 import { Header } from "../../../components/text/header";
 import HeadrImage from "./sub-components/HeadrImage";
-import Divider from "./sub-components/Divider";
 import ListItem from "./sub-components/ListItem";
 import {
   CableTvIcon,
@@ -37,8 +36,7 @@ export default function Payments({
           onPress={() => {
             navigation.navigate("Common", { screen: "Pie" });
           }}
-          style={styles.icon}
-        >
+          style={styles.icon}>
           <PieIcon style={styles.imageIcon} />
         </TouchableOpacity>
       </View>
@@ -61,8 +59,7 @@ export default function Payments({
             marginLeft: hp(20),
             marginBottom: hp(10),
             maxHeight: 120,
-          }}
-        >
+          }}>
           {user.payments.data.map((payment, i) => {
             return (
               <HeadrImage

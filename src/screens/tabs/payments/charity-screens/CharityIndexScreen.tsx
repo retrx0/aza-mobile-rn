@@ -44,7 +44,10 @@ export default function CharityIndexScreen({
         icon={null}
         inputStyle={[
           styles2.input,
-          { borderBottomColor: Colors[appTheme].borderColor },
+          {
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+          ,
         ]}
         labelStyle={styles.label}
         label=""
