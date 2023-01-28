@@ -11,8 +11,7 @@ export async function thunkCourier<T>(
   const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
   return api({
     method: type,
-    data:
-      type === "post" || type === "put" || type === "patch" ? data : undefined,
+    data: type === "get" ? undefined : data,
     headers: {
       Authorization: `Bearer ${jwt}`,
     },

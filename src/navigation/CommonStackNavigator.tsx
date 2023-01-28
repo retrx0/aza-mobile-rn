@@ -135,7 +135,7 @@ import ElectricityRecurring from "../screens/tabs/payments/paymentRecurring/Elct
 import GiftCardEmail from "../screens/tabs/payments/gift-card/EmailScreen";
 import VaultWithdrawConfirm from "../screens/tabs/vault/withdraw-to-bank/VaultWithdrawToBankConfirmation";
 // import SendMoney from "../screens/transfer-modal/send-money/feature/SendMoney";
-import SendMoneyFeature from "../screens/transfer-modal/send-money/feature/SendMoney";
+import SendMoneyFeature from "../screens/transfer-modal/send-money/feature/SendMoneyFeature";
 // import TransactionCertainty from "../screens/transfer-modal/send-money/feature/TransactionCertainty";
 // import InviteUsers from "../screens/transfer-modal/send-money/feature/InviteUsers";
 import RequestMoneyFeature from "../screens/transfer-modal/request-money/feature/RequestMoneyFeature";

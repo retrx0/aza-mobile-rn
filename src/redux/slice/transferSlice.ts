@@ -24,7 +24,7 @@ export interface TransferObject {
   transferType: "normal" | "recurring";
 }
 
-interface RecurringTransferState {
+interface IRecurringTransferState {
   sourceAccount?: string;
   receivingAccount?: string;
   amount: number;
@@ -105,7 +105,7 @@ export const requestThunk = createAsyncThunk(
 
 export const recurringTransferThunk = createAsyncThunk(
   "transfer",
-  async (props: RecurringTransferState) => {
+  async (props: IRecurringTransferState) => {
     api
       .post("/api/v1/payment/recurring", {
         amount: props.amount,

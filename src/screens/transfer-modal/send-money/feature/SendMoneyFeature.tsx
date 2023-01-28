@@ -10,7 +10,7 @@ import Colors from "../../../../constants/Colors";
 import ExitButton from "../../../../components/buttons/ExitButton";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { useAppSelector } from "./../../../../redux";
+import { useAppSelector } from "../../../../redux";
 
 const SendMoneyFeature = ({
   navigation,
@@ -23,7 +23,8 @@ const SendMoneyFeature = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Send Money
         </Text>
       ),
@@ -43,7 +44,7 @@ const SendMoneyFeature = ({
       featureTitle: "Lightning-fast transaction speed",
       featureText:
         "Send money to anyone on Aza or other banks at lightning speeds.",
-      icon: <AzaLOGO color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
+      icon: <AzaLOGO color={Colors[appTheme].text} />,
     },
 
     {
@@ -51,7 +52,7 @@ const SendMoneyFeature = ({
       featureTitle: "Transaction Certainty",
       featureText:
         "Send money with Aza and instantly carry on with your life, knowing that the transaction will go through without fail.",
-      icon: <MoneyTick color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
+      icon: <MoneyTick color={Colors[appTheme].text} />,
     },
 
     {
@@ -59,7 +60,7 @@ const SendMoneyFeature = ({
       featureTitle: "Invite new users to Aza",
       featureText:
         "Azarians can send money to users who don't even use Aza, after which an sms will be sent to those users with a guide on how to create an Aza account.",
-      icon: <AddUsers color={appTheme === "dark" ? "#FFFFFF" : "#000000"} />,
+      icon: <AddUsers color={Colors[appTheme].text} />,
     },
   ];
 
@@ -72,7 +73,8 @@ const SendMoneyFeature = ({
               alignSelf: "center",
               marginTop: hp(96),
               marginBottom: hp(96),
-            }}>
+            }}
+          >
             {item.icon}
           </View>
           <View style={{ paddingHorizontal: hp(30) }}>
@@ -85,7 +87,8 @@ const SendMoneyFeature = ({
                 alignSelf: "center",
                 lineHeight: hp(30),
                 maxWidth: wp(335),
-              }}>
+              }}
+            >
               {item.featureTitle}
             </Text>
             <Text
@@ -98,7 +101,8 @@ const SendMoneyFeature = ({
                 alignSelf: "center",
                 marginTop: hp(20),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureText}
             </Text>
           </View>
