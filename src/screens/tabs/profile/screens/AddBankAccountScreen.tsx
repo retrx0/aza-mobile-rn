@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
@@ -22,10 +22,11 @@ const AddBankAccountScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccount">) => {
+  const [accountNumber, setAccountNumber] = useState("");
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
-  const { bankName, screenType } = route.params;
+  const { bankName, screenType, logoUrl } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
 
@@ -33,13 +34,12 @@ const AddBankAccountScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Add Bank Account
         </Text>
       ),
@@ -57,8 +57,6 @@ const AddBankAccountScreen = ({
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -66,19 +64,19 @@ const AddBankAccountScreen = ({
               marginLeft: hp(5),
               fontWeight: "500",
               marginTop: hp(30),
-            }}>
+            }}
+          >
             Add your bank account to receive withdrawals from your Aza account
           </Text>
           <View>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Number
             </Text>
             <TextInput
@@ -98,6 +96,9 @@ const AddBankAccountScreen = ({
               placeholder="Enter your account number"
               keyboardType="number-pad"
               returnKeyType="done"
+              value={accountNumber}
+              onChangeText={(text) => setAccountNumber(text)}
+              maxLength={10}
             />
           </View>
         </View>
@@ -105,15 +106,18 @@ const AddBankAccountScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
+            disabled={accountNumber.length < 10}
             onPressButton={() =>
               navigation.navigate("AddBankAccountConfirmation", {
                 accountName: "Abdullah Gumi",
-                accountNumber: "0000100010",
+                accountNumber,
                 bankName: bankName,
                 screenType,
+                logoUrl,
               })
             }
           />

@@ -77,6 +77,7 @@ export interface IPaymentMethod {
 }
 
 export interface IBankAccount {
+  bankAccountId: string;
   bankName: string;
   logoUrl?: string;
   accountNumber: string;

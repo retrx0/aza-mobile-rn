@@ -179,11 +179,13 @@ const initialState: IUserState = {
     loaded: false,
     data: [
       {
+        bankAccountId: "1",
         accountName: "Test Account",
         accountNumber: "000111221",
         bankName: "GT Bank",
       },
       {
+        bankAccountId: "2",
         accountName: "Test Account 2",
         accountNumber: "000111222",
         bankName: "VFD Bank",
@@ -391,6 +393,31 @@ export const userSlice = createSlice({
       .addCase(getUserAccount.fulfilled, (state, action) => {
         // state.azaAccountNumber = action.payload
         // state.azaBalance = action.payload
+      })
+      .addCase(getUserSavedBankAccs.pending, (state, action) => {
+        state.bankAccounts.loading = true;
+        state.bankAccounts.loaded = false;
+      })
+      .addCase(getUserSavedBankAccs.rejected, (state, action) => {
+        state.bankAccounts.loading = false;
+        state.bankAccounts.loaded = false;
+      })
+      .addCase(getUserSavedBankAccs.fulfilled, (state, action) => {
+        state.bankAccounts.loading = false;
+        state.bankAccounts.loaded = true;
+        state.bankAccounts.data = action.payload;
+      })
+      .addCase(removeUserSavedBankAcc.pending, (state, action) => {})
+      .addCase(removeUserSavedBankAcc.rejected, (state, action) => {})
+      .addCase(removeUserSavedBankAcc.fulfilled, (state, action) => {
+        state.bankAccounts.data = state.bankAccounts.data.filter(
+          (account) => account.bankAccountId !== action.payload
+        );
+      })
+      .addCase(saveUserBankAcc.pending, (state, action) => {})
+      .addCase(saveUserBankAcc.rejected, (state, action) => {})
+      .addCase(saveUserBankAcc.fulfilled, (state, action) => {
+        state.bankAccounts.data = action.payload;
       });
   },
 });
@@ -455,6 +482,42 @@ export const addUserBvnThunk = createAsyncThunk(
   async (bvn: string) => {
     return await thunkCourier<{ bvn: string }>("post", "/api/v1/user/add/bvn", {
       bvn: bvn,
+    });
+  }
+);
+
+export const getUserSavedBankAccs = createAsyncThunk(
+  "user/getUserSavedBankAccounts",
+  async () => {
+    return await thunkCourier("get", "/api/v1/bank/accounts");
+  }
+);
+
+export const removeUserSavedBankAcc = createAsyncThunk(
+  "user/removeUserSavedBankAccounts",
+  async (bankAccountId: string) => {
+    return await thunkCourier("get", `/api/v1/bank/accounts/${bankAccountId}`);
+  }
+);
+
+export const saveUserBankAcc = createAsyncThunk(
+  "user/saveUserBankAccount",
+  async ({
+    accountName,
+    accountNumber,
+    bankCode,
+    isBeneficiary,
+  }: {
+    accountName: string;
+    accountNumber: string;
+    bankCode: string;
+    isBeneficiary: boolean;
+  }) => {
+    return await thunkCourier("put", `/api/v1/bank/accounts`, {
+      accountName,
+      accountNumber,
+      bankCode,
+      isBeneficiary,
     });
   }
 );

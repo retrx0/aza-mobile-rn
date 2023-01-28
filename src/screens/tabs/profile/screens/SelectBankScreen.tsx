@@ -60,7 +60,8 @@ const SelectBankScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Select Bank
         </Text>
       ),
@@ -85,7 +86,8 @@ const SelectBankScreen = ({
               marginBottom: 20,
               marginLeft: hp(5),
             },
-          ]}>
+          ]}
+        >
           <SearchIcon color={Colors[colorScheme].secondaryText} size={16} />
           <TextInput
             style={{
@@ -109,7 +111,7 @@ const SelectBankScreen = ({
                   onPress={() =>
                     navigation.navigate("AddBankAccount", {
                       bankName: name,
-                      bankLogo: logo,
+                      logoUrl: logo,
                       screenType,
                     })
                   }
@@ -119,7 +121,8 @@ const SelectBankScreen = ({
                       alignSelf: "stretch",
                       alignItems: "center",
                     },
-                  ]}>
+                  ]}
+                >
                   <Image
                     source={{ uri: logo }}
                     style={{ width: 100, height: 70, resizeMode: "contain" }}
@@ -129,7 +132,8 @@ const SelectBankScreen = ({
                   style={{
                     marginVertical: 25,
                     width: "100%",
-                  }}>
+                  }}
+                >
                   <Divider />
                 </View>
               </View>
