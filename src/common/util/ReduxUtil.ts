@@ -5,7 +5,8 @@ import { getItemSecure } from "./StorageUtil";
 
 export const thunkCourier = async (
   type: "get" | "post" | "put",
-  url: string
+  url: string,
+  data?: any
 ) => {
   const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
   return api({
@@ -14,6 +15,7 @@ export const thunkCourier = async (
       Authorization: `Bearer ${jwt}`,
     },
     url: url,
+    data: data,
   }).then(
     (response) => {
       return response.data.data;

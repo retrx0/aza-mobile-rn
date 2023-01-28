@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
@@ -16,7 +16,7 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useAppSelector } from "../../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 
@@ -25,9 +25,12 @@ import {
   ChevronRightIcon,
   UndrawAccountIcon,
 } from "../../../../../assets/svg";
-import { AccessBank } from "../../../../../assets/images";
-import { selectUser } from "../../../../redux/slice/userSlice";
+import {
+  getUserSavedBankAccs,
+  selectUser,
+} from "../../../../redux/slice/userSlice";
 import { IBankAccount } from "../../../../redux/types";
+import ListItemSkeleton from "../../../../components/switch/ListItemSkeleton";
 
 const BankAccountsScreen = ({
   navigation,
@@ -39,6 +42,7 @@ const BankAccountsScreen = ({
   const { screenType } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
 
   const user = useAppSelector(selectUser);
 
@@ -65,7 +69,11 @@ const BankAccountsScreen = ({
     });
   }, []);
 
-  if (user.bankAccounts.data.length > 0 && screenType === "Withdraw") {
+  useEffect(() => {
+    if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
+  }, []);
+
+  if (user.bankAccounts.loaded && screenType === "Withdraw") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -190,7 +198,7 @@ const BankAccountsScreen = ({
     );
   }
 
-  if (user.bankAccounts.data.length > 0 && screenType === "Bank Account") {
+  if (user.bankAccounts.loaded && screenType === "Bank Account") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -209,11 +217,26 @@ const BankAccountsScreen = ({
             </Text>
             <Divider />
             {user.bankAccounts.data.map(
-              ({ logoUrl, bankName, accountNumber }, i) => (
+              (
+                {
+                  logoUrl,
+                  bankName,
+                  accountNumber,
+                  accountName,
+                  bankAccountId,
+                },
+                i
+              ) => (
                 <View key={i}>
                   <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate("EditBankAccountDetails")
+                      navigation.navigate("EditBankAccountDetails", {
+                        accountName,
+                        accountNumber,
+                        bankAccountId,
+                        bankName,
+                        logoUrl,
+                      })
                     }
                   >
                     <View
@@ -262,12 +285,22 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
-              styleText={{}}
-              style={[{}]}
             />
           </View>
         </View>
       </SpacerWrapper>
+    );
+  }
+
+  if (user.bankAccounts.loading) {
+    return (
+      <View style={{ paddingTop: 20, flex: 1 }}>
+        {Array(3)
+          .fill(0)
+          .map((_, i) => (
+            <ListItemSkeleton key={i} placeHoldersWidth={[50]} />
+          ))}
+      </View>
     );
   }
 
@@ -330,16 +363,6 @@ const BankAccountsScreen = ({
                 screenType,
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
-            style={{
-              marginBottom: hp(15),
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
           />
           <ButtonWithUnderline
             title="Cancel"

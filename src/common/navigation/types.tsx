@@ -1,6 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
-import { IBeneficiary, ICharity, IGiftCard, IRequest } from "../../redux/types";
+import {
+  IBankAccount,
+  IBeneficiary,
+  ICharity,
+  IGiftCard,
+  IRequest,
+} from "../../redux/types";
 
 /* Common screens */
 interface IXCharity extends ICharity {
@@ -142,7 +148,7 @@ export type CommonStackParamList = {
   AddBankAccount: AddBankAccountParamsType & BankAccountsParamsType;
   AddBankAccountConfirmation: AddBankAccountConfirmationParamsType &
     BankAccountsParamsType;
-  EditBankAccountDetails: undefined;
+  EditBankAccountDetails: IBankAccount;
   DebitCreditCards: undefined;
   ManageCard: undefined;
   AddNewCard: { navigateBackTo: string };
@@ -263,12 +269,14 @@ export type PaymentsTabScreenProps<
 
 export type AddBankAccountParamsType = {
   bankName: string;
+  logoUrl: string;
 };
 
 export type AddBankAccountConfirmationParamsType = {
   bankName: string;
   accountNumber: string;
   accountName: string;
+  logoUrl: string;
 };
 
 export type BankAccountsParamsType = {

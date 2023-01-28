@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
@@ -15,17 +15,24 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useAppSelector } from "../../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import { removeUserSavedBankAcc } from "../../../../redux/slice/userSlice";
 
 const EditBankAccountDetailsScreen = ({
   navigation,
+  route,
 }: CommonScreenProps<"EditBankAccountDetails">) => {
+  const [isEditing, setEditing] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
+
+  const { accountName, accountNumber, bankAccountId, bankName, logoUrl } =
+    route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -35,7 +42,8 @@ const EditBankAccountDetailsScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Bank Account
         </Text>
       ),
@@ -48,6 +56,10 @@ const EditBankAccountDetailsScreen = ({
     });
   }, []);
 
+  const editDetails = () => {
+    setEditing(!isEditing);
+  };
+
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -59,7 +71,8 @@ const EditBankAccountDetailsScreen = ({
               fontSize: hp(16),
               fontWeight: "500",
               marginLeft: hp(5),
-            }}>
+            }}
+          >
             Details of your bank account
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -69,10 +82,12 @@ const EditBankAccountDetailsScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Bank
             </Text>
             <TextInput
+              editable={isEditing}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -85,11 +100,11 @@ const EditBankAccountDetailsScreen = ({
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
-              value={"Access"}
+              value={bankName}
             />
             <Image
               source={{
-                uri: "https://pbs.twimg.com/profile_images/1112702246326845445/a-CBpIyN_400x400.png",
+                uri: logoUrl,
               }}
               style={{
                 position: "absolute",
@@ -110,10 +125,12 @@ const EditBankAccountDetailsScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Number
             </Text>
             <TextInput
+              editable={isEditing}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -126,7 +143,7 @@ const EditBankAccountDetailsScreen = ({
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
-              value={"123456789"}
+              value={accountNumber}
             />
           </View>
           <View style={{ marginBottom: hp(30) }}>
@@ -136,10 +153,12 @@ const EditBankAccountDetailsScreen = ({
                 fontSize: hp(16),
                 fontWeight: "500",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Account Name
             </Text>
             <TextInput
+              editable={isEditing}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -151,7 +170,7 @@ const EditBankAccountDetailsScreen = ({
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
-              value={"james bond"}
+              value={accountName}
             />
           </View>
         </View>
@@ -159,14 +178,17 @@ const EditBankAccountDetailsScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
-            title="Edit Account Details"
-            onPressButton={() => navigation.goBack()}
+            title={isEditing ? "Done" : "Edit Account Details"}
+            onPressButton={editDetails}
           />
           <CancelButtonWithUnderline
             title="Delete Account"
-            onPressButton={() => console.log("called")}
+            onPressButton={() =>
+              dispatch(removeUserSavedBankAcc(bankAccountId))
+            }
             styleText={CommonStyles.cancelStyle}
             style={[{ borderBottomColor: Colors.general.red }]}
           />

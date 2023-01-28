@@ -143,10 +143,10 @@ export const paymentSlice = createSlice({
         state.giftCards.loading = false;
         state.giftCards.loaded = false;
       })
-      .addCase(getGiftCards.fulfilled, (state, aciton) => {
+      .addCase(getGiftCards.fulfilled, (state, action) => {
         state.giftCards.loading = false;
         state.giftCards.loaded = true;
-        state.giftCards.data = aciton.payload;
+        state.giftCards.data = action.payload;
       })
       .addCase(getElectricityBillers.pending, (state, action) => {
         state.electricityBillers.loading = true;
@@ -169,10 +169,10 @@ export const paymentSlice = createSlice({
         state.airtimeOperators.loading = false;
         state.airtimeOperators.loaded = false;
       })
-      .addCase(getMobileAirtimeOperators.fulfilled, (state, aciton) => {
+      .addCase(getMobileAirtimeOperators.fulfilled, (state, action) => {
         state.airtimeOperators.loading = false;
         state.airtimeOperators.loaded = true;
-        state.airtimeOperators.data = aciton.payload;
+        state.airtimeOperators.data = action.payload;
       });
   },
 });
