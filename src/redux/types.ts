@@ -174,6 +174,7 @@ export interface IUserState {
   emailAddress: string;
   accountVerified: boolean;
   bvnVerified: boolean;
+  bvnNumber: string;
   accountStatus: string;
   pushToken?: string;
   transfers: {

@@ -23,6 +23,7 @@ const initialState: IUserState = {
   emailAddress: "testuser@azanaija.com",
   accountVerified: true,
   bvnVerified: false,
+  bvnNumber: "",
   accountStatus: "",
   dateOfBirth: "",
   lastLogin: "",

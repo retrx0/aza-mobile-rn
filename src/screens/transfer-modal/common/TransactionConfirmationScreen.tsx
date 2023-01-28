@@ -22,6 +22,9 @@ import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
 import { selectUser } from "../../../redux/slice/userSlice";
+import api from "../../../api";
+import { transferToAzaUserAPI } from "../../../api/vfd";
+import { requestMoneyAPI } from "../../../api/money-request";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -39,7 +42,8 @@ const TransactionConfirmationScreen = ({
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
 
-  const { bvnVerified } = useAppSelector(selectUser);
+  const { bvnVerified, azaAccountNumber, bvnNumber } =
+    useAppSelector(selectUser);
 
   const [transDescription, setTransDescription] = useState(description);
 
@@ -67,7 +71,7 @@ const TransactionConfirmationScreen = ({
     });
   }, []);
 
-  const makeTransaction = () => {
+  const makeTransaction = async () => {
     // do some validation
 
     if (!bvnVerified) {
@@ -82,9 +86,25 @@ const TransactionConfirmationScreen = ({
 
       //make transaction
 
-      //TODO replace true with api transfer success!
+      var transactionCompleted = true;
 
-      if (true) {
+      if (confirmationType === "send") {
+        // const transfer = await transferToAzaUserAPI({
+        //   amount: amount,
+        //   fromAccount: azaAccountNumber,
+        //   fromBvn: bvnNumber,
+        // });
+      } else {
+        // const transfer = await requestMoneyAPI({
+        //   amount: amount,
+        //   decription: transDescription,
+        //   initiatorAccountNumber: azaAccountNumber,
+        //   receipientAccountNumber: beneficiary.azaAccountNumber,
+        //   recepientPhoneNumber: beneficiary.phone,
+        // });
+      }
+
+      if (transactionCompleted) {
         navigation.navigate("StatusScreen", {
           status:
             confirmationType === "request"
@@ -253,7 +273,7 @@ const TransactionConfirmationScreen = ({
           { bottom: insets.top || hp(45) },
         ]}
       >
-        <Button title="Continue" onPressButton={() => makeTransaction()} />
+        <Button title="Continue" onPressButton={makeTransaction} />
         <CancelButtonWithUnderline
           title="Cancel Transaction"
           color={Colors.general.red}
