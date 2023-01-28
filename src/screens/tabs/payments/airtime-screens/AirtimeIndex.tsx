@@ -31,6 +31,8 @@ import {
   selectPayment,
 } from "../../../../redux/slice/paymentSlice";
 import ProviderSkeleton from "../sub-components/ProviderSkeleton";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 export default function AirtimeIndex({
   navigation,
@@ -55,6 +57,8 @@ export default function AirtimeIndex({
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const { airtimeOperators } = useAppSelector(selectPayment);
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   useEffect(() => {
     if (!airtimeOperators.loaded) dispatch(getMobileAirtimeOperators());
@@ -131,8 +135,7 @@ export default function AirtimeIndex({
         contentContainerStyle={{
           justifyContent: "space-between",
           width: "100%",
-        }}
-      >
+        }}>
         {airtimeOperators.loaded ? (
           airtimeOperators.data.map((operator, index) => {
             if (displayedOperators.has(operator.name.split(" ")[0])) {
@@ -166,7 +169,10 @@ export default function AirtimeIndex({
           maxLength={13}
           keyboardType="phone-pad"
           value={isEnabled ? user.phoneNumber : mobileNumber}
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
           labelStyle={styles.label}
           style={{ marginTop: hp(10) }}
           label="Phone Number"
@@ -186,8 +192,7 @@ export default function AirtimeIndex({
             paddingHorizontal: hp(20),
             marginTop: hp(10),
             marginBottom: hp(10),
-          }}
-        >
+          }}>
           <CustomDropdown
             data={dataBundles}
             placeholder="Choose a bundle"
@@ -212,8 +217,11 @@ export default function AirtimeIndex({
         style={{ paddingHorizontal: hp(20) }}
         disabled={route.name === "data-bundle"}
         icon={null}
-        inputStyle={[styles.input]}
-        labelStyle={[styles.label]}
+        inputStyle={[
+          styles.input,
+          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
+        labelStyle={styles.label}
         label="Amount"
         placeholder="Enter an amount"
         keyboardType="number-pad"

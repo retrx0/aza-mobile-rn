@@ -15,6 +15,9 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import { hp } from "../../../../common/util/LayoutUtil";
 import * as Images from "../../../../../assets/images/index";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const WaterList = [
   {
@@ -49,6 +52,8 @@ export default function WaterScreen({
   }>({ title: "", icon: "" });
   const [amount, setAmount] = useState("");
   const [customerAccountNumber, setCustomerAccountNumber] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
@@ -68,8 +73,7 @@ export default function WaterScreen({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {WaterList.map((item, index) => {
           return (
             <Card
@@ -88,7 +92,12 @@ export default function WaterScreen({
           icon={null}
           keyboardType="phone-pad"
           returnKeyType="done"
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={styles.label}
           label="Customer Account Number"
           placeholder="Enter your customer account number"
@@ -101,7 +110,12 @@ export default function WaterScreen({
         <UnderlinedInput
           style={styles2.input}
           icon={null}
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={styles.label}
           label="Amount"
           placeholder="Enter an amount to be paid"
@@ -118,8 +132,7 @@ export default function WaterScreen({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           disabled={
             !amount || !selectedProvider.title || !customerAccountNumber

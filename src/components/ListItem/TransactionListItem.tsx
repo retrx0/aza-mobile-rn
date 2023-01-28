@@ -5,8 +5,8 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import { View, Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
+import { NAIRA_UNICODE } from "../../constants/AppConstants";
 
 interface TransactionItem {
   image: string;
@@ -27,8 +27,6 @@ export default function TransactionListItem({
   amount,
   date,
 }: TransactionItem) {
-  const colorScheme = useColorScheme();
-
   return (
     <View
       style={[
@@ -43,6 +41,7 @@ export default function TransactionListItem({
         style={{ borderRadius: 45, width: 45, height: 45 }}
         source={{
           uri: image,
+          cache: "default",
         }}
       />
       <View style={{ display: "flex", marginRight: "auto", marginLeft: 15 }}>
@@ -66,7 +65,7 @@ export default function TransactionListItem({
           ]}
         >
           {transactionType === "incoming" ? (
-            <ReceivedIcon color="#2A9E17" />
+            <ReceivedIcon color={Colors.general.green} />
           ) : (
             <SendIcon color={Colors.light.error} />
           )}
@@ -85,7 +84,7 @@ export default function TransactionListItem({
         </View>
         {transactionMessage ? (
           <View style={[CommonStyles.row, { alignSelf: "flex-start" }]}>
-            <MessageIcon color={Colors[colorScheme].text} size={12} />
+            <MessageIcon color={Colors.general.grey} size={12} />
             <Text
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.secondaryText}
@@ -114,10 +113,12 @@ export default function TransactionListItem({
             fontSize: hp(16),
             fontWeight: "600",
             color:
-              transactionType === "incoming" ? "#2A9E17" : Colors.light.error,
+              transactionType === "incoming"
+                ? Colors.general.green
+                : Colors.light.error,
           }}
         >
-          {"\u20A6"}
+          {NAIRA_UNICODE}
           {amount}
         </Text>
         <Text

@@ -31,8 +31,8 @@ const useCachedResources = () => {
         SplashScreen.preventAutoHideAsync();
 
         // Check if user is already logged in
-        const token = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-        if (token) setUserSignedIn(true);
+        // const token = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+        // if (token) setUserSignedIn(true);
 
         // load cached user
         const _cachedUsr = await SecureStore.getItemAsync(
@@ -77,7 +77,7 @@ const useCachedResources = () => {
     loadResourcesAndDataAsync();
   }, []);
 
-  return { isLoadingComplete, isUserSignedIn, userPreferences, cachedUser };
+  return { isLoadingComplete, userPreferences, cachedUser };
 };
 
 export default useCachedResources;

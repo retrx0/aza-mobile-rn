@@ -18,6 +18,9 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import * as Images from "../../../../../assets/images/index";
 import Button from "../../../../components/buttons/Button";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const Cable = [
   {
@@ -45,6 +48,8 @@ export default function CableTvIndex({
   const [smartCardNumber, setSmartCardNumber] = useState("");
 
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const period = [
     { label: "DSTV Padi", value: "10000" },
@@ -72,8 +77,7 @@ export default function CableTvIndex({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {Cable.map((item, index) => {
           return (
             <Card
@@ -91,7 +95,12 @@ export default function CableTvIndex({
         <UnderlinedInput
           icon={null}
           keyboardType="number-pad"
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            {
+              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+            },
+          ]}
           labelStyle={styles.label}
           label="Smart Card Number"
           placeholder="Enter your smart card number"
@@ -108,15 +117,13 @@ export default function CableTvIndex({
           paddingHorizontal: hp(20),
           marginBottom: hp(20),
           marginTop: hp(20),
-        }}
-      >
+        }}>
         <Text
           style={{
             fontSize: hp(16),
             fontWeight: "400",
             fontFamily: "Euclid-Circular-A",
-          }}
-        >
+          }}>
           Subscription Package
         </Text>
         <CustomDropdown
@@ -132,8 +139,7 @@ export default function CableTvIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button
           disabled={!amount || !smartCardNumber || !selectedCable.title}
           title="Continue"

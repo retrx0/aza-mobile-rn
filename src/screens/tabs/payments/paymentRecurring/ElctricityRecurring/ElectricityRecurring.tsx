@@ -17,6 +17,9 @@ import * as Images from "../../../../../../assets/images/index";
 import { Card } from "../../sub-components/Card";
 import { CommonScreenProps } from "../../../../../common/navigation/types";
 import Button from "../../../../../components/buttons/Button";
+import { useAppSelector } from "../../../../../redux";
+import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../../theme";
 
 const ElectricityList = [
   {
@@ -53,6 +56,8 @@ export default function ElectricityRecurring({
     icon: string;
   }>({ title: "", icon: "" });
   const [periodValue, setPeriodValue] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   // const { icon } = route.params;
 
@@ -89,7 +94,7 @@ export default function ElectricityRecurring({
           fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginTop: hp(10),
+          marginTop: hp(20),
         }}
         heading="Select electricity provider"
       />
@@ -137,7 +142,10 @@ export default function ElectricityRecurring({
       <View style={{ paddingHorizontal: hp(20), marginBottom: hp(20) }}>
         <UnderlinedInput
           icon={null}
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
           labelStyle={styles.label}
           label="Meter Number"
           placeholder="Enter your meter number"

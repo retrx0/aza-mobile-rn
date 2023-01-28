@@ -8,6 +8,7 @@ import React from "react";
 import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
 import { View as View, Text as Text } from "../../../../theme/Themed";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 type HeaderImageProps = {
   image: ImageSourcePropType;
@@ -31,7 +32,7 @@ export default function HeadrImage({
   return (
     <TouchableAnimated
       onPress={onSelect}
-      entering={ZoomIn.delay(200 * (index + 1))}
+      entering={ZoomIn.delay(50 * (index + 1))}
       style={[
         styles.mainConatiner,
         {
@@ -66,7 +67,12 @@ export default function HeadrImage({
       </View>
       {header && <Text style={styles.text}>{header}</Text>}
       <Text style={styles.text2}>{title}</Text>
-      {amount && <Text style={styles.text3}>₦{amount}</Text>}
+      {amount && (
+        <Text style={styles.text3}>
+          {NAIRA_UNICODE}
+          {amount}
+        </Text>
+      )}
     </TouchableAnimated>
   );
 }

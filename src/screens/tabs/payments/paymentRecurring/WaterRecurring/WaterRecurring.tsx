@@ -49,6 +49,8 @@ export default function WaterRecurring({
   // const [selected, setSelected] = useState(false);
   // const [active, setActive] = useState("");
   const [periodValue, setPeriodValue] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const [dayValue, setDayValue] = useState("");
   const [selectedWater, setSelectedWater] = useState<{
@@ -116,7 +118,10 @@ export default function WaterRecurring({
           icon={null}
           keyboardType="phone-pad"
           returnKeyType="done"
-          inputStyle={[styles.input]}
+          inputStyle={[
+            styles.input,
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
           labelStyle={styles.label}
           label="Customer Account Number"
           placeholder="Enter your customer account number"

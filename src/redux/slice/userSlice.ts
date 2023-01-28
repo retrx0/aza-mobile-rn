@@ -373,8 +373,16 @@ export const userSlice = createSlice({
         state.dateOfBirth = action.payload.dateOfBirth;
         state.pictureUrl = `https://ui-avatars.com/api/?name=${action.payload.firstName}+${action.payload.lastName}`;
       })
+      .addCase(uploadProfilePicThunk.pending, (state, action) => {})
+      .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
       .addCase(uploadProfilePicThunk.fulfilled, (state, action) => {
         state.pictureUrl = action.payload as any;
+      })
+      .addCase(addUserBvnThunk.pending, (state, action) => {
+        state.bvnVerified = false;
+      })
+      .addCase(addUserBvnThunk.rejected, (state, action) => {
+        state.bvnVerified = false;
       })
       .addCase(addUserBvnThunk.fulfilled, (state, action) => {
         state.bvnVerified = action.payload as any;
@@ -459,49 +467,21 @@ export const addBankAccount = createAsyncThunk(
 
 export const uploadProfilePicThunk = createAsyncThunk(
   "user/upload",
-  async (formData: FormData, { rejectWithValue, fulfillWithValue }) => {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-
-    return api
-      .patch("/api/v1/user/photo-upload", formData, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
-      .then(
-        (response) => {
-          return fulfillWithValue(response.data.data);
-        },
-        (error: AxiosError) => {
-          return rejectWithValue(error.message);
-        }
-      );
+  async (formData: FormData) => {
+    return await thunkCourier<FormData>(
+      "patch",
+      "/api/v1/user/photo-upload",
+      formData
+    );
   }
 );
 
 export const addUserBvnThunk = createAsyncThunk(
   "user/addUserBvn",
-  async (bvn: string, { rejectWithValue, fulfillWithValue }) => {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-
-    return api
-      .post(
-        "/api/v1/user/add/bvn",
-        { bvn },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      )
-      .then(
-        (response) => {
-          return fulfillWithValue(response.data.data);
-        },
-        (error: AxiosError) => {
-          return rejectWithValue(error.response?.data);
-        }
-      );
+  async (bvn: string) => {
+    return await thunkCourier<{ bvn: string }>("post", "/api/v1/user/add/bvn", {
+      bvn: bvn,
+    });
   }
 );
 

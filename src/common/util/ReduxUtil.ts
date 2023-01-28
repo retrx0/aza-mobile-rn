@@ -3,25 +3,25 @@ import { AxiosError } from "axios";
 import api from "../../api";
 import { getItemSecure } from "./StorageUtil";
 
-export const thunkCourier = async (
-  type: "get" | "post" | "put",
+export async function thunkCourier<T>(
+  type: "get" | "post" | "put" | "patch",
   url: string,
-  data?: any
-) => {
+  data?: T
+) {
   const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
   return api({
     method: type,
+    data: type === "get" ? undefined : data,
     headers: {
       Authorization: `Bearer ${jwt}`,
     },
     url: url,
-    data: data,
   }).then(
     (response) => {
       return response.data.data;
     },
     (e) => {
-      console.debug((e as AxiosError).message);
+      console.debug("Thunk courier Error: " + (e as AxiosError).message);
     }
   );
-};
+}

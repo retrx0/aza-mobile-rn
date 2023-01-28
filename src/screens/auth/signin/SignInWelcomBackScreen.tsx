@@ -50,7 +50,7 @@ const SignInWelcomeBackScreen = ({
   const [screenLoading, setScreenLoading] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
-  const [_tmpCreds, setTmpCreds] = useState<IUserCred>(cachedUser!);
+  const [_tmpCreds, setTmpCreds] = useState<IUserCred>();
 
   const { userPreferences } = useCachedResources();
 
@@ -142,11 +142,13 @@ const SignInWelcomeBackScreen = ({
       // TODO add check to see if account is closed or locked
 
       // Check if redux stored user email and phone number for login
-      if (!cachedUser || (!user.emailAddress && user.phoneNumber === "")) {
+      if (!cachedUser) {
         // try to get and set email and phone number
         // return user to main login again
-        toastError("We encountered a problem, please login again");
-        navigation.getParent()?.navigate("Welcome");
+        if (!user.emailAddress && user.phoneNumber === "") {
+          toastError("We encountered a problem, please login again");
+          navigation.getParent()?.navigate("Welcome");
+        }
       } else {
         // Check if biometric is enabled
         if (hasBiometricHardware && biometricEnrolled) {
@@ -187,7 +189,7 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>Welcome back, {_tmpCreds.fullName}</Text>
+          <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
             style={{
@@ -202,10 +204,10 @@ const SignInWelcomeBackScreen = ({
                 setPasscode(code);
                 if (code.length >= 6)
                   verifyPassword(
-                    _tmpCreds.email,
-                    _tmpCreds.phoneNumber,
+                    user.emailAddress,
+                    user.phoneNumber,
                     code,
-                    _tmpCreds.fullName
+                    user.fullName
                   );
               }}
               headerText="Password"

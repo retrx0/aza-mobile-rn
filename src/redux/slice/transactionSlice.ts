@@ -7,15 +7,38 @@ import { IBeneficiary } from "../types";
 
 // Define a type for the slice state
 
-export interface TransactionState {
+export interface ITransactionState {
   beneficiary: IBeneficiary;
   amount: number;
   description?: string;
   transferType: "send" | "request" | "withdraw" | "debit";
 }
 
+interface ITransferState {
+  sourceAccount?: string;
+  destinationAccount?: string;
+  amount: number;
+  destinationPhoneNumber?: string;
+  sourceChannel: number;
+  destinationChannel: number;
+  description?: string;
+  currency: string;
+}
+
+interface IRecurringTransferState {
+  sourceAccount?: string;
+  receivingAccount?: string;
+  amount: number;
+  currency: string;
+  recevingChannel: number;
+  duration: number;
+  specificDay: number;
+  frequency: number;
+  startDate: Date;
+}
+
 // Define the initial state using that type
-const initialState: TransactionState = {
+const initialState: ITransactionState = {
   amount: 0,
   description: "",
   beneficiary: {
@@ -35,7 +58,7 @@ export const transactionSlice = createSlice({
   name: "transaction",
   initialState,
   reducers: {
-    setTransaction: (state, action: PayloadAction<TransactionState>) => {
+    setTransaction: (state, action: PayloadAction<ITransactionState>) => {
       state.amount = action.payload.amount;
       state.beneficiary = action.payload.beneficiary;
       state.transferType = action.payload.transferType;

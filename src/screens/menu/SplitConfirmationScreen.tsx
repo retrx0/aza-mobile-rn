@@ -87,7 +87,9 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "500",
                   marginLeft: hp(5),
-                  borderBottomColor: Colors[appTheme].borderColor,
+
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -174,7 +176,9 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(14),
                   fontWeight: "500",
                   marginLeft: hp(5),
-                  borderBottomColor: Colors[appTheme].borderColor,
+
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
               showSoftInputOnFocus={false}
