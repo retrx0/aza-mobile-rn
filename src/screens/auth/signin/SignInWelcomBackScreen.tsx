@@ -50,7 +50,7 @@ const SignInWelcomeBackScreen = ({
   const [screenLoading, setScreenLoading] = useState(false);
   const [passcode, setPasscode] = useState("");
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
-  const [_tmpCreds, setTmpCreds] = useState<IUserCred>(cachedUser!);
+  const [_tmpCreds, setTmpCreds] = useState<IUserCred>();
 
   const { userPreferences } = useCachedResources();
 
@@ -187,7 +187,7 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>Welcome back, {_tmpCreds.fullName}</Text>
+          <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
             style={{
@@ -202,10 +202,10 @@ const SignInWelcomeBackScreen = ({
                 setPasscode(code);
                 if (code.length >= 6)
                   verifyPassword(
-                    _tmpCreds.email,
-                    _tmpCreds.phoneNumber,
+                    user.emailAddress,
+                    user.phoneNumber,
                     code,
-                    _tmpCreds.fullName
+                    user.fullName
                   );
               }}
               headerText="Password"

@@ -54,24 +54,22 @@ const BvnVerificationScreen = ({
     });
   }, []);
 
-  const verifyBvn = () => {
+  const verifyBvn = async () => {
     setButtonLoading(true);
-    dispatch(addUserBvnThunk(bvn))
-      .unwrap()
-      .then(() => {
-        setButtonLoading(false);
-        navigation.navigate("StatusScreen", {
-          statusIcon: "Success",
-          status: "Successful",
-          statusMessage:
-            "You have successfully added your BVN to your Aza account",
-          navigateTo: onVerifyNavigateBackTo,
-        });
-      })
-      .catch((err) => {
-        setButtonLoading(false);
-        toastError(err.message);
+    const bv = await dispatch(addUserBvnThunk(bvn));
+    if (bv.meta.requestStatus === "fulfilled") {
+      setButtonLoading(false);
+      navigation.navigate("StatusScreen", {
+        statusIcon: "Success",
+        status: "Successful",
+        statusMessage:
+          "You have successfully added your BVN to your Aza account",
+        navigateTo: onVerifyNavigateBackTo,
       });
+    } else {
+      setButtonLoading(false);
+      toastError("Couldn't verify your BVN, please try again!");
+    }
   };
 
   return (

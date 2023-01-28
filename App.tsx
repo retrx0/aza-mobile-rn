@@ -18,7 +18,7 @@ import { toastError } from "./src/common/util/ToastUtil";
 import { ENV, SENTRY_DSN } from "@env";
 
 const App = () => {
-  const { isLoadingComplete, userPreferences, isUserSignedIn, cachedUser } =
+  const { isLoadingComplete, userPreferences, cachedUser } =
     useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -56,7 +56,7 @@ const App = () => {
           <Navigation
             colorScheme={colorScheme}
             loadedPreference={userPreferences}
-            isUserSignedIn={isUserSignedIn}
+            isUserSignedIn={cachedUser?.token ? true : false}
             cachedUser={cachedUser}
           />
         </Provider>

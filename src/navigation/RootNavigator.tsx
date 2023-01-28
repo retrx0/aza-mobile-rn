@@ -20,6 +20,10 @@ import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScree
 import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import CEOMessage from "../screens/onboarding/CEOMessage";
 import { IUserCred } from "../redux/types";
+import {
+  setUserEmail,
+  setUserPhoneAndFullName,
+} from "../redux/slice/userSlice";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -53,6 +57,17 @@ const RootNavigator = ({
   const isActivityModalOpen = useAppSelector(selectActivityModal);
 
   React.useEffect(() => {
+    // dispatch cached user to redux
+    if (cachedUser) {
+      dispatch(
+        setUserPhoneAndFullName({
+          fullName: cachedUser.fullName,
+          phoneNumber: cachedUser.phoneNumber,
+        })
+      );
+      dispatch(setUserEmail(cachedUser.email));
+    }
+
     registerForPushNotificationsAsync().then((token) => {
       if (token !== undefined) {
         dispatch(setPushToken(token));
