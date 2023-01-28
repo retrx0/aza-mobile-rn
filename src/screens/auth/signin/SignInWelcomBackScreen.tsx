@@ -142,11 +142,13 @@ const SignInWelcomeBackScreen = ({
       // TODO add check to see if account is closed or locked
 
       // Check if redux stored user email and phone number for login
-      if (!cachedUser || (!user.emailAddress && user.phoneNumber === "")) {
+      if (!cachedUser) {
         // try to get and set email and phone number
         // return user to main login again
-        toastError("We encountered a problem, please login again");
-        navigation.getParent()?.navigate("Welcome");
+        if (!user.emailAddress && user.phoneNumber === "") {
+          toastError("We encountered a problem, please login again");
+          navigation.getParent()?.navigate("Welcome");
+        }
       } else {
         // Check if biometric is enabled
         if (hasBiometricHardware && biometricEnrolled) {
