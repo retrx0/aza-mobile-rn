@@ -18,8 +18,8 @@ import { ClockIcon, CloseIcon } from "../../../../../assets/svg";
 import ListItem from "./List";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
-import Divider from "../sub-components/Divider";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import Divider from "../../../../components/divider/Divider";
 
 const CountryList = [
   {
@@ -74,8 +74,7 @@ export default function GiftCardDetails({
           flexWrap: "wrap",
           marginTop: hp(30),
           marginBottom: hp(35),
-        }}
-      >
+        }}>
         {CountryList.map((item, index) => {
           return (
             <Card
@@ -95,8 +94,7 @@ export default function GiftCardDetails({
             fontSize: hp(16),
             fontWeight: "500",
             fontFamily: "Euclid-Circular-A-Medium",
-          }}
-        >
+          }}>
           Select Package
         </Text>
         <Divider />

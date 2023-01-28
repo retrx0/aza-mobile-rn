@@ -5,7 +5,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import Divider from "../sub-components/Divider";
 import MyButton from "../sub-components/MyButton";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
@@ -18,6 +17,10 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Button from "../../../../components/buttons/Button";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import Divider from "../../../../components/divider/Divider";
 
 export default function CharityDetail({
   navigation,
@@ -32,6 +35,8 @@ export default function CharityDetail({
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const {
     charityName,
@@ -53,7 +58,12 @@ export default function CharityDetail({
           <UnderlinedInput
             style={styles.mainInput}
             icon={null}
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label=""
             placeholder="Name and Surname"
@@ -62,7 +72,12 @@ export default function CharityDetail({
           <UnderlinedInput
             style={styles.mainInput}
             icon={null}
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label=""
             placeholder="Email Address"
@@ -74,7 +89,12 @@ export default function CharityDetail({
         onChangeText={(amnt) => setAmount(amnt)}
         style={styles.mainInput}
         icon={null}
-        inputStyle={[styles.input]}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label=""
         placeholder="Donation Amount"
@@ -88,8 +108,7 @@ export default function CharityDetail({
             <TouchableOpacity
               key={item.id}
               style={styles.mainSuggestion}
-              onPress={() => setAmount("" + item.amount)}
-            >
+              onPress={() => setAmount("" + item.amount)}>
               <Text style={styles.amount}>
                 {NAIRA_UNICODE + " " + item.amount}
               </Text>
@@ -102,8 +121,7 @@ export default function CharityDetail({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <View style={styles.check}>
           <CustomSwitch
             title="Recurring monthly donation"
@@ -112,13 +130,7 @@ export default function CharityDetail({
           />
         </View>
 
-        <Divider
-          style={{
-            marginTop: hp(5),
-            marginBottom: hp(5),
-            width: "85%",
-          }}
-        />
+        <Divider />
         <Button
           style={styles.btn}
           disabled={false}

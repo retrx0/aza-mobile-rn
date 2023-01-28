@@ -56,8 +56,7 @@ export const ImageInput = ({
 };
 const styles = StyleSheet.create({
   input: {
-    borderColor: "#EAEAEC",
-    borderBottomWidth: 0.3,
+    borderBottomWidth: 1,
     minWidth: "100%",
     fontFamily: "Euclid-Circular-A",
     fontWeight: "500",

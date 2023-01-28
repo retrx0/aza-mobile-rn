@@ -43,14 +43,13 @@ const CustomDropdown = ({
           fontWeight: "400",
           fontSize: hp(16),
           marginBottom: 3,
-        }}
-      >
+        }}>
         {label}
       </Text>
 
       <Dropdown
         style={{
-          borderBottomWidth: 0.6,
+          borderBottomWidth: 1,
           borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
         }}
         placeholderStyle={[
@@ -94,15 +93,13 @@ const CustomDropdown = ({
               {
                 flexDirection: "row",
                 justifyContent: "space-between",
-                backgroundColor: Colors[appTheme].backgroundSecondary,
+                backgroundColor: appTheme === "dark" ? "#3A3D42" : "#FFFFFF",
               },
-            ]}
-          >
+            ]}>
             <Text
               style={{
                 fontSize: 14,
-              }}
-            >
+              }}>
               {item.label}
             </Text>
           </View>

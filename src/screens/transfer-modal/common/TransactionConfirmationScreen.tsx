@@ -52,8 +52,7 @@ const TransactionConfirmationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Confirmation
         </Text>
       ),
@@ -109,8 +108,7 @@ const TransactionConfirmationScreen = ({
               marginTop: hp(15),
               fontWeight: "500",
               marginBottom: hp(50),
-            }}
-          >
+            }}>
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -119,8 +117,7 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               To
             </Text>
             <TextInput
@@ -131,7 +128,7 @@ const TransactionConfirmationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[appTheme].borderColor,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
@@ -159,8 +156,7 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Amount
             </Text>
             <View
@@ -171,8 +167,7 @@ const TransactionConfirmationScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}
-            >
+              ]}>
               {/* <Text
                 style={{
                   fontSize: hp(16),
@@ -188,7 +183,9 @@ const TransactionConfirmationScreen = ({
                   backgroundColor: "transparent",
                   paddingBottom: 5,
                   borderBottomWidth: 1,
-                  borderBottomColor: Colors[appTheme].borderColor,
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}
@@ -204,8 +201,7 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Description
             </Text>
             <TextInput
@@ -216,7 +212,7 @@ const TransactionConfirmationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[appTheme].borderColor,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
               }}
               onChangeText={setTransDescription}
@@ -229,8 +225,7 @@ const TransactionConfirmationScreen = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
+        ]}>
         <Button title="Continue" onPressButton={() => makeTransaction()} />
         <CancelButtonWithUnderline
           title="Cancel Transaction"

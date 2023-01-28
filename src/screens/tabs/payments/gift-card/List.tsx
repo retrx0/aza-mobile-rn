@@ -5,7 +5,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { View, Text } from "../../../../theme/Themed";
 
 import { hp } from "../../../../common/util/LayoutUtil";
-import Divider from "../sub-components/Divider";
+import Divider from "../../../../components/divider/Divider";
 
 type Props = {
   title: string;
@@ -29,8 +29,7 @@ export default function ListItem({
     <TouchableAnimated
       entering={FadeInDown.delay(200 * (index + 1))}
       onPress={onPress}
-      style={styles.listContainer}
-    >
+      style={styles.listContainer}>
       <View style={styles.mainItem}>
         <Text style={styles.text}>{title}</Text>
         <View style={styles.item}>

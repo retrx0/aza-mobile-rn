@@ -11,9 +11,9 @@ import { NigeriaFlag, VaultLogo } from "../../../../../assets/images";
 import { CloseCircleLargeIcon } from "../../../../../assets/svg";
 import { wp } from "../../../../common/util/LayoutUtil";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
-import Divider from "../../payments/sub-components/Divider";
 // import navigation from "../../../navigation";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import Divider from "../../../../components/divider/Divider";
 
 type DescriptionModalProps = {
   visible: boolean;
@@ -34,8 +34,7 @@ const VaultModal = ({
       <Modal
         onBackdropPress={() => setModalVisible(false)}
         isVisible={visible}
-        style={{ justifyContent: "flex-end", margin: 0 }}
-      >
+        style={{ justifyContent: "flex-end", margin: 0 }}>
         <TouchableOpacity
           style={{
             backgroundColor: "transparent",
@@ -43,8 +42,7 @@ const VaultModal = ({
             marginBottom: 10,
             marginRight: 10,
           }}
-          onPress={() => setModalVisible(false)}
-        >
+          onPress={() => setModalVisible(false)}>
           <CloseCircleLargeIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#E7E9EA"}
           />
@@ -55,14 +53,12 @@ const VaultModal = ({
             borderTopRightRadius: 20,
             paddingHorizontal: 15,
             backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-          }}
-        >
+          }}>
           <View
             style={{
               height: hp(335),
               backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -71,8 +67,7 @@ const VaultModal = ({
                 fontWeight: "500",
                 marginTop: hp(20),
                 marginBottom: hp(20),
-              }}
-            >
+              }}>
               Accounts
             </Text>
             <Divider />
@@ -88,16 +83,14 @@ const VaultModal = ({
                 marginBottom: hp(30),
                 marginTop: hp(30),
                 backgroundColor: colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-              }}
-            >
+              }}>
               <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
                   backgroundColor:
                     colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-                }}
-              >
+                }}>
                 <Image
                   source={NigeriaFlag}
                   style={{ width: wp(40), height: hp(40) }}
@@ -109,8 +102,7 @@ const VaultModal = ({
                     textAlign: "center",
                     fontWeight: "500",
                     marginLeft: hp(10),
-                  }}
-                >
+                  }}>
                   NGN - Naira
                 </Text>
               </View>
@@ -121,8 +113,7 @@ const VaultModal = ({
                   fontSize: hp(16),
                   textAlign: "center",
                   fontWeight: "500",
-                }}
-              >
+                }}>
                 {`${NAIRA_UNICODE} 239,290`}
               </Text>
             </TouchableOpacity>
@@ -140,16 +131,14 @@ const VaultModal = ({
                 justifyContent: "space-between",
                 marginTop: hp(30),
                 marginBottom: hp(30),
-              }}
-            >
+              }}>
               <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
                   backgroundColor:
                     colorScheme === "dark" ? "#3A3D42" : "#FFFFFF",
-                }}
-              >
+                }}>
                 <Image
                   style={{ width: wp(40), height: hp(40) }}
                   source={VaultLogo}
@@ -161,8 +150,7 @@ const VaultModal = ({
                     textAlign: "center",
                     fontWeight: "500",
                     marginLeft: hp(10),
-                  }}
-                >
+                  }}>
                   Vault
                 </Text>
               </View>
@@ -172,8 +160,7 @@ const VaultModal = ({
                   fontSize: hp(16),
                   textAlign: "center",
                   fontWeight: "500",
-                }}
-              >
+                }}>
                 {`${NAIRA_UNICODE} 239,290`}
               </Text>
             </TouchableOpacity>

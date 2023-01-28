@@ -13,6 +13,9 @@ import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { CommonScreenProps } from "../../../common/navigation/types";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
 
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
@@ -22,6 +25,8 @@ export default function PaymentConfirmationScreen({
 }: CommonScreenProps<"PaymentConfirmation">) {
   const insets = useSafeAreaInsets();
   const [isButtonLoading, setButtonLoading] = useState(false);
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const {
     amount,
@@ -58,8 +63,7 @@ export default function PaymentConfirmationScreen({
         style={[
           CommonStyles.vaultcontainer,
           { marginTop: Platform.OS == "android" ? 50 : 0 },
-        ]}
-      >
+        ]}>
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -89,7 +93,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: customerAccountNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label={"Customer Account Number"}
             value={customerAccountNumber}
@@ -99,7 +108,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: smartCardNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label={"Smart Card Number"}
             value={smartCardNumber}
@@ -109,7 +123,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: meterNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label={"Meter Number"}
             value={meterNumber}
@@ -119,7 +138,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: accountOrUserId ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label={"Account/User ID"}
             value={accountOrUserId}
@@ -129,7 +153,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: phoneNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label={"Phone number"}
             value={phoneNumber}
@@ -139,7 +168,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: amount ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             editable={false}
             label="Amount"
@@ -153,7 +187,12 @@ export default function PaymentConfirmationScreen({
             style={{ display: paymentMethod ? "flex" : "none" }}
             icon={null}
             keyboardType="default"
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label="Payment Method"
             value={paymentMethod}
@@ -163,8 +202,7 @@ export default function PaymentConfirmationScreen({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={onConfirm}

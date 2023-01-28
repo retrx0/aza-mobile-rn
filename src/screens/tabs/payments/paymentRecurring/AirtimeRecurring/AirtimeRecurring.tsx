@@ -16,10 +16,12 @@ import Button from "../../../../../components/buttons/Button";
 import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
 import { Card } from "../../sub-components/Card";
 
-import { useAppSelector } from "../../../../../redux";
 import { useDispatch } from "react-redux";
 import { selectUser } from "../../../../../redux/slice/userSlice";
 import { toggleActivityModal } from "../../../../../redux/slice/activityModalSlice";
+import { useAppSelector } from "../../../../../redux";
+import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../../theme";
 
 import {
   detectNetworkOperatorAPI,
@@ -34,6 +36,8 @@ export default function AirtimeRecurring({
   const [isEnabled, setIsEnabled] = useState(false);
   const [periodValue, setPeriodValue] = useState("");
   const [dayValue, setDayValue] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const period = [
     { label: "Monthly", value: "monthly" },
@@ -179,7 +183,10 @@ export default function AirtimeRecurring({
           maxLength={13}
           keyboardType="phone-pad"
           value={isEnabled ? user.phoneNumber : mobileNumber}
-          inputStyle={[AIrtimeStyles.input]}
+          inputStyle={[
+            AIrtimeStyles.input,
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+          ]}
           labelStyle={AIrtimeStyles.label}
           style={{ marginTop: hp(10) }}
           label="Phone Number"
@@ -245,7 +252,10 @@ export default function AirtimeRecurring({
         style={{ paddingHorizontal: hp(20) }}
         disabled={route.name === "data-bundle"}
         icon={null}
-        inputStyle={[AIrtimeStyles.input]}
+        inputStyle={[
+          AIrtimeStyles.input,
+          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
+        ]}
         labelStyle={[AIrtimeStyles.label]}
         label="Amount"
         placeholder="Enter an amount"
