@@ -36,7 +36,6 @@ const BankAccountsScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BankAccounts">) => {
-  const colorScheme = useColorScheme();
   const [selectedAccount, setSelectedAccount] = useState<IBankAccount>();
   const insets = useSafeAreaInsets();
   const { screenType } = route.params;
@@ -73,7 +72,13 @@ const BankAccountsScreen = ({
     if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
   }, []);
 
-  if (user.bankAccounts.loaded && screenType === "Withdraw") {
+  console.log(user.bankAccounts);
+
+  if (
+    user.bankAccounts.data &&
+    user.bankAccounts.loaded &&
+    screenType === "Withdraw"
+  ) {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -159,7 +164,7 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
-              color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+              color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
               style={[
                 {
                   marginBottom: 15,
@@ -198,7 +203,11 @@ const BankAccountsScreen = ({
     );
   }
 
-  if (user.bankAccounts.loaded && screenType === "Bank Account") {
+  if (
+    user.bankAccounts.data &&
+    user.bankAccounts.loaded &&
+    screenType === "Bank Account"
+  ) {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -314,7 +323,7 @@ const BankAccountsScreen = ({
           ]}
         >
           <UndrawAccountIcon
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
             size={30}
           />
           <Text
@@ -345,7 +354,7 @@ const BankAccountsScreen = ({
             </Text>
             <ArrowDownIcon
               color={
-                colorScheme === "dark"
+                appTheme === "dark"
                   ? Colors.dark.secondaryText
                   : Colors.light.text
               }

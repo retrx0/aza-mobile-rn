@@ -8,7 +8,6 @@ import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -24,9 +23,10 @@ const AddBankAccountConfirmationScreen = ({
   route,
 }: CommonScreenProps<"AddBankAccountConfirmation">) => {
   const [isButtonLoading, setButtonLoading] = useState(false);
-  const colorScheme = useColorScheme();
   const { bankName, accountName, accountNumber, screenType, logoUrl } =
     route.params;
+
+  const [_accountName, setAccountName] = useState(accountName);
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
@@ -58,7 +58,7 @@ const AddBankAccountConfirmationScreen = ({
     setButtonLoading(true);
     dispatch(
       saveUserBankAcc({
-        accountName,
+        accountName: _accountName,
         accountNumber,
         bankCode: "12",
         isBeneficiary: true,
@@ -112,7 +112,7 @@ const AddBankAccountConfirmationScreen = ({
               Bank
             </Text>
             <TextInput
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -153,7 +153,7 @@ const AddBankAccountConfirmationScreen = ({
               Account Number
             </Text>
             <TextInput
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -179,7 +179,7 @@ const AddBankAccountConfirmationScreen = ({
               Account Name
             </Text>
             <TextInput
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -190,7 +190,8 @@ const AddBankAccountConfirmationScreen = ({
                 marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
-              value={accountName}
+              value={_accountName}
+              onChangeText={(text) => setAccountName(text)}
             />
           </View>
         </View>

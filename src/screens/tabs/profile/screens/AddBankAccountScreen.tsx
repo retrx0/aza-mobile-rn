@@ -8,7 +8,6 @@ import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -17,17 +16,19 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const AddBankAccountScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccount">) => {
   const [accountNumber, setAccountNumber] = useState("");
-  const colorScheme = useColorScheme();
+
   const insets = useSafeAreaInsets();
 
   const { bankName, screenType, logoUrl } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
+  const { fullName } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
 
   useLayoutEffect(() => {
@@ -82,7 +83,7 @@ const AddBankAccountScreen = ({
             <TextInput
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
@@ -113,7 +114,7 @@ const AddBankAccountScreen = ({
             disabled={accountNumber.length < 10}
             onPressButton={() =>
               navigation.navigate("AddBankAccountConfirmation", {
-                accountName: "Abdullah Gumi",
+                accountName: fullName,
                 accountNumber,
                 bankName: bankName,
                 screenType,
