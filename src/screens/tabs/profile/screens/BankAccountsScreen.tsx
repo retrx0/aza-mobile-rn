@@ -72,8 +72,6 @@ const BankAccountsScreen = ({
     if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
   }, []);
 
-  console.log(user.bankAccounts);
-
   if (
     user.bankAccounts.data &&
     user.bankAccounts.loaded &&

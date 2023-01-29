@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import { saveUserBankAcc } from "../../../../redux/slice/userSlice";
+import { toastError } from "../../../../common/util/ToastUtil";
 
 const AddBankAccountConfirmationScreen = ({
   navigation,
@@ -54,35 +55,36 @@ const AddBankAccountConfirmationScreen = ({
     });
   }, []);
 
-  const addBankAccount = () => {
+  const addBankAccount = async () => {
     setButtonLoading(true);
-    dispatch(
+    const addBank = await dispatch(
       saveUserBankAcc({
         accountName: _accountName,
         accountNumber,
         bankCode: "12",
         isBeneficiary: true,
       })
-    )
-      .unwrap()
-      .then(() => {
-        setButtonLoading(false);
+    );
 
-        navigation.navigate("StatusScreen", {
-          status: "Successful",
-          statusIcon: "Success",
-          statusMessage:
-            "Your bank account has been successfully linked to your Aza",
-          navigateTo: "BankAccounts",
-          navigateToParams: {
-            screenType,
-          },
-        });
-      })
-      .catch((err) => {
-        setButtonLoading(false);
-        console.debug(err);
+    if (addBank.meta.requestStatus === "fulfilled") {
+      setButtonLoading(false);
+
+      navigation.navigate("StatusScreen", {
+        status: "Successful",
+        statusIcon: "Success",
+        statusMessage:
+          "Your bank account has been successfully linked to your Aza",
+        navigateTo: "BankAccounts",
+        navigateToParams: {
+          screenType,
+        },
       });
+    } else {
+      setButtonLoading(false);
+      toastError(
+        "There was a problem adding your bank account, please try again!"
+      );
+    }
   };
 
   return (

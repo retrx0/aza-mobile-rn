@@ -36,7 +36,7 @@ export async function thunkCourier<T>(
         console.log("Error", error.message);
       }
 
-      Promise.reject(error);
+      return Promise.reject(error);
     }
   );
 }
