@@ -49,7 +49,7 @@ const SelectBankScreen = ({
     { name: "Zenith", logo: ZenithBankLogoWithName },
     { name: "Fidelity", logo: FidelityBankLogoWithName },
     { name: "First", logo: FirstBankLogoWithName },
-    { name: "Stanbic", logo: STANBIC },
+    // { name: "Stanbic", logo: STANBIC },
   ];
 
   useLayoutEffect(() => {
@@ -96,7 +96,6 @@ const SelectBankScreen = ({
               flex: 1,
               padding: 10,
               backgroundColor: "transparent",
-              color: Colors[colorScheme].secondaryText,
             }}
             placeholder="Search for bank"
             onChangeText={(e) => setSearch(e)}
