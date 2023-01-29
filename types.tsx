@@ -42,6 +42,19 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 /* Tabs */
 
+interface IStatusScreenParams {
+  statusIcon: "Success" | "Warning";
+  status: string;
+  statusMessage: string;
+  navigateTo: string;
+  statusMessage2?: string;
+  recurringTransferBeneficiary?: any;
+  receiptDetails: any;
+  cancelButton?: any;
+  navigateToParams?: any;
+  screenType?: any;
+}
+
 export type RootTabParamList = {
   Home: undefined;
   Vault: undefined;

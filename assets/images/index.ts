@@ -60,6 +60,7 @@ export const ZenithBankLogoWithName =
 export const FidelityBankLogoWithName =
   BANKS_LOGO + "/fidelityBankLogoWithName.png";
 export const FirstBankLogoWithName = BANKS_LOGO + "/firstBankLogoWithName.png";
+export const STANBIC = require("./logo/banks/StanbicIBTC.png");
 
 /*  */
 

@@ -1,6 +1,8 @@
 const tintColorLight = "#121212";
 const tintColorDark = "#F2F2F2";
 const tabIconColorDefault = "#A6A6A6";
+const white = "#FFFFFF";
+const black = "#000000";
 
 interface IThemeColor {
   text: string;
@@ -48,7 +50,7 @@ const Colors: IThemeGroup = {
     text: "#121212",
     mainText: "#4D4D4D",
     secondaryText: "#A6A6A6",
-    background: "#FFFFFF",
+    background: white,
     backgroundSecondary: "#F2F2F2",
     tint: tintColorLight,
     tabIconDefault: tabIconColorDefault,
@@ -56,7 +58,7 @@ const Colors: IThemeGroup = {
     error: "#FF361A",
     success: "#2AD168",
     separator: "#EAEAEC",
-    buttonText: "#fff",
+    buttonText: white,
     disabled: "#E7E9EA",
     disabledButtonBackground: "#A6A6A6",
     disabledButtonTextColor: "#CCCCCC",
@@ -65,7 +67,7 @@ const Colors: IThemeGroup = {
   },
   dark: {
     borderColor: "#A6A6A6",
-    text: "#FFFFFF",
+    text: white,
     mainText: "#E7E9EA",
     secondaryText: "#999999",
     background: "#121212",
@@ -76,7 +78,7 @@ const Colors: IThemeGroup = {
     error: "#FF361A",
     success: "#2AD168",
     separator: "#484B51",
-    buttonText: "#000000",
+    buttonText: black,
     disabled: "#A6A6A6",
     disabledButtonBackground: "#262626",
     disabledButtonTextColor: "#999999",
@@ -85,13 +87,13 @@ const Colors: IThemeGroup = {
   general: {
     facebook: "#1198F6",
     google: "#EB4235",
-    apple: "#000000",
+    apple: black,
     darkGrey: "#4D4D4D",
     primary: "#121212",
     grey: "#A6A6A6",
     tertiary: "#D7D7DB",
-    black: "#000000",
-    white: "#ffffff",
+    black: black,
+    white: white,
     red: "#FF361A",
     green: "#2A9E17",
     lightGreen: "#EBFCE9",

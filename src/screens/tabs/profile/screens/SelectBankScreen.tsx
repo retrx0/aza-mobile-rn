@@ -21,6 +21,7 @@ import {
   FidelityBankLogoWithName,
   FirstBankLogoWithName,
   GTBankLogoWithName,
+  STANBIC,
   UBALogoWithName,
   ZenithBankLogoWithName,
 } from "../../../../../assets/images";
@@ -48,6 +49,7 @@ const SelectBankScreen = ({
     { name: "Zenith", logo: ZenithBankLogoWithName },
     { name: "Fidelity", logo: FidelityBankLogoWithName },
     { name: "First", logo: FirstBankLogoWithName },
+    { name: "Stanbic", logo: STANBIC },
   ];
 
   useLayoutEffect(() => {

@@ -2,7 +2,7 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { boolean, number } from "yup";
-import { Dstv, Fctwb, Ie, IET, Mtn } from "../../../assets/images";
+import { Dstv, Ie, Mtn } from "../../../assets/images";
 import api from "../../api";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { getItemSecure } from "../../common/util/StorageUtil";

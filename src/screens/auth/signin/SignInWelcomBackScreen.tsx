@@ -212,6 +212,7 @@ const SignInWelcomeBackScreen = ({
               }}
               headerText="Password"
               secureInput={true}
+              autoFocusOnLoad
             />
           </View>
           <View

@@ -17,6 +17,15 @@ import { View as View, Text as Text } from "../../theme/Themed";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 
 const StatusScreen = ({
   navigation,
@@ -44,6 +53,14 @@ const StatusScreen = ({
     });
   }, []);
 
+  const rotation = useSharedValue(0);
+  const scale = useSharedValue(1);
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ rotateZ: `${rotation.value}deg` }, { scale: scale.value }],
+    };
+  });
+
   //TODO fix sound to only play on transcations
 
   useEffect(() => {
@@ -53,10 +70,22 @@ const StatusScreen = ({
           playSwooshSound();
         }
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        scale.value = withSequence(withSpring(1.5), withSpring(1));
+        rotation.value = withSequence(
+          withTiming(-10, { duration: 50 }),
+          withRepeat(withTiming(20, { duration: 200 }), 2, true),
+          withTiming(0, { duration: 100 })
+        );
+
         break;
 
       case "Warning":
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+        rotation.value = withSequence(
+          withTiming(-10, { duration: 50 }),
+          withRepeat(withTiming(20, { duration: 100 }), 9, true),
+          withTiming(0, { duration: 50 })
+        );
         break;
 
       default:
@@ -74,15 +103,19 @@ const StatusScreen = ({
             { alignItems: "center", marginTop: "auto", marginBottom: "auto" },
           ]}
         >
-          {statusIcon === "Success" ? (
-            <StatusSuccessIcon />
-          ) : (
-            <StatusWarningIcon />
-          )}
+          <Animated.View style={[animatedStyles]}>
+            {statusIcon === "Success" ? (
+              <StatusSuccessIcon />
+            ) : (
+              <StatusWarningIcon />
+            )}
+          </Animated.View>
           <Text
             style={{
               color:
-                statusIcon === "Success" ? "#2A9E17" : Colors[appTheme].text,
+                statusIcon === "Success"
+                  ? Colors.general.green
+                  : Colors[appTheme].text,
               fontSize: hp(24),
               marginVertical: hp(20),
               textAlign: "center",
@@ -121,7 +154,7 @@ const StatusScreen = ({
             { bottom: insets.top || hp(45) },
           ]}
         >
-          {recurringTransferBeneficiary !== undefined && (
+          {/* {recurringTransferBeneficiary !== undefined && (
             <Button
               title="Setup Recurring Transfer"
               onPressButton={() =>
@@ -138,7 +171,7 @@ const StatusScreen = ({
                 { marginBottom: 20 },
               ]}
             />
-          )}
+          )} */}
           <Button
             title="Continue"
             onPressButton={() =>
