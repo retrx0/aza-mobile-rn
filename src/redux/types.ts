@@ -178,6 +178,11 @@ export interface IUserState {
   bvnNumber: string;
   accountStatus: string;
   pushToken?: string;
+  accountTier: string;
+  bvn: string;
+  isEmailConfirmed: boolean;
+  isPhoneNumberConfirmed: boolean;
+  userName: string;
   transfers: {
     loading: boolean;
     incommingTransferLimit: number;

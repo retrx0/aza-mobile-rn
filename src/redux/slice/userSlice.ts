@@ -17,7 +17,7 @@ const initialState: IUserState = {
   firstName: "Test",
   lastName: "User",
   fullName: "Test User",
-  pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+  pictureUrl: "https://ui-avatars.com/api/?name=Aza",
   azaAccountNumber: 1234556644,
   azaBalance: 100000,
   emailAddress: "testuser@azanaija.com",
@@ -302,6 +302,11 @@ const initialState: IUserState = {
       },
     ],
   },
+  accountTier: "",
+  bvn: "",
+  isEmailConfirmed: false,
+  isPhoneNumberConfirmed: false,
+  userName: "",
 };
 
 export const userSlice = createSlice({
@@ -372,7 +377,10 @@ export const userSlice = createSlice({
         state.gender = action.payload.gender;
         state.bvnVerified = action.payload.isBVNComfirmed;
         state.dateOfBirth = action.payload.dateOfBirth;
-        state.pictureUrl = `https://ui-avatars.com/api/?name=${action.payload.firstName}+${action.payload.lastName}`;
+        state.pictureUrl = action.payload.pictureUrl;
+        state.lastLogin = action.payload.lastLogin;
+        state.accountTier = action.payload.accountTier;
+        state.dateOfBirth = action.payload.dateOfBirth;
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
       .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
@@ -479,10 +487,15 @@ export const uploadProfilePicThunk = createAsyncThunk(
 
 export const addUserBvnThunk = createAsyncThunk(
   "user/addUserBvn",
-  async (bvn: string) => {
-    return await thunkCourier<{ bvn: string }>("post", "/api/v1/user/add/bvn", {
-      bvn: bvn,
-    });
+  async ({ bvn, dateOfBirth }: { bvn: string; dateOfBirth: string }) => {
+    return await thunkCourier<{ bvn: string; dateOfBirth: string }>(
+      "post",
+      "/api/v1/user/add/bvn",
+      {
+        bvn: bvn,
+        dateOfBirth: dateOfBirth,
+      }
+    );
   }
 );
 
