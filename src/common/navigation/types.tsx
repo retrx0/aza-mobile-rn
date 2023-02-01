@@ -35,6 +35,7 @@ export type CommonStackParamList = {
   WithdrawKeyPad: undefined;
   CloseAccount: undefined;
   AlternativeSurvey: undefined;
+  AirtimeIndexScreen: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;

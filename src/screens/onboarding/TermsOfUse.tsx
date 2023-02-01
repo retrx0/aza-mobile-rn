@@ -10,6 +10,7 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getAppTheme } from "../../theme";
 
 import Colors from "../../constants/Colors";
+import ExitButton from "../../components/buttons/ExitButton";
 
 const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
@@ -22,9 +23,18 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
         <ScrollView showsVerticalScrollIndicator>
           <View
             style={{
+              alignSelf: "flex-end",
+              paddingHorizontal: hp(20),
+              marginTop: hp(20),
+              marginBottom: hp(20),
+            }}>
+            <ExitButton onPress={() => navigation.goBack()} />
+          </View>
+          <View
+            style={{
               marginBottom: hp(25),
               alignItems: "center",
-              marginTop: hp(40),
+              // marginTop: hp(40),
             }}>
             <AZALogo
               color={

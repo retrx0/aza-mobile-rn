@@ -9,21 +9,21 @@ import ExitButton from "../../../../../components/buttons/ExitButton";
 import * as Images from "../../../../../../assets/images";
 import { Image } from "react-native";
 
-type WithdrawScreenProps = {
+type DepostcreenProps = {
   headerTitle: string;
 };
 
-const WithdrawFeature = ({
+const DepositFeature = ({
   navigation,
-}: CommonScreenProps<"WithdrawFeature"> & WithdrawScreenProps) => {
+}: CommonScreenProps<"DepositFeature"> & DepostcreenProps) => {
   const slides = [
     {
       key: 1,
-      headerTitle: "Withdraw",
-      featureTitle: "Withdraw anytime",
+      headerTitle: "Deposit",
+      featureTitle: "Deposit funds to your Aza",
       featureText:
-        "Link your personal bank account to Aza and easily withdraw your Aza funds to your bank.",
-      icon: Images.WithdrawFeature,
+        "Fund your Aza account via your debit/credit card, securely.",
+      icon: Images.DepositFeature,
     },
   ];
   useLayoutEffect(() => {
@@ -35,7 +35,7 @@ const WithdrawFeature = ({
             fontSize: hp(16),
             fontWeight: "500",
           }}>
-          Withdraw
+          Deposit
         </Text>
       ),
       // hide default back button which only shows in android
@@ -111,4 +111,4 @@ const WithdrawFeature = ({
   );
 };
 
-export default WithdrawFeature;
+export default DepositFeature;

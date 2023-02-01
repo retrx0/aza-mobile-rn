@@ -23,6 +23,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { toastError, toastSuccess } from "../../common/util/ToastUtil";
+import { numberWithCommas } from "../../common/util/NumberUtils";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -84,7 +85,11 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
       <View style={CommonStyles.vaultcontainer}>
         <View style={{ alignItems: "center" }}>
           <Image
-            style={{ borderRadius: 50, width: 50, height: 50 }}
+            style={{
+              borderRadius: 50,
+              width: 50,
+              height: 50,
+            }}
             source={{
               uri:
                 user.pictureUrl && user.pictureUrl !== ""
@@ -123,6 +128,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 marginLeft: 5,
               }}>
               {transaction.amount}
+              {transaction.amount && numberWithCommas}
             </Text>
           </View>
         </View>
@@ -162,7 +168,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           /> */}
           <ButtonWithUnderline
             title="Save to Gallery"
-            color={Colors[appTheme].text}
+            color={appTheme === "dark" ? "#262626" : "#EAEAEC"}
             onPressButton={captureScreenAndSaveToGallery}
             style={{ marginTop: 5 }}
           />

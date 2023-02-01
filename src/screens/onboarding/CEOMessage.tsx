@@ -14,6 +14,7 @@ import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getAppTheme } from "../../theme";
 import Colors from "../../constants/Colors";
+import Button from "../../components/buttons/Button";
 
 const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
   const navigation = useNavigation();
@@ -97,10 +98,10 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
           </View>
         </View>
         <View style={{ marginTop: hp(50) }}>
-          <MyButton
+          <Button
             disabled={false}
             title="Continue"
-            onPress={() => {
+            onPressButton={() => {
               navigation.goBack();
             }}
           />

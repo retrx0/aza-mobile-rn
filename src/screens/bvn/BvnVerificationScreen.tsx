@@ -40,8 +40,7 @@ const BvnVerificationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}
-        >
+          }}>
           Tier 1 Verification
         </Text>
       ),
@@ -82,8 +81,7 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Verify your BVN
           </Text>
           <View>
@@ -93,8 +91,7 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-              }}
-            >
+              }}>
               BVN
             </Text>
             <TextInput
@@ -122,8 +119,7 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Verify"
             onPressButton={verifyBvn}

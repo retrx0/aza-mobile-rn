@@ -98,6 +98,7 @@ const AddNewCardScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 0.3,
+                opacity: 0.6,
                 borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your card number"
@@ -128,6 +129,7 @@ const AddNewCardScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 0.3,
+                opacity: 0.6,
                 borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="MM/YY"
@@ -160,6 +162,8 @@ const AddNewCardScreen = ({
                 marginTop: hp(15),
                 borderBottomWidth: 0.3,
                 borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: 16,
+                opacity: 0.6,
               }}
               placeholder="Enter your security code behind card"
               keyboardType="number-pad"

@@ -1228,17 +1228,18 @@ export const LogoutIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const SplitIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="m5.713 10.18 4.36-4.36M5.987 6.913a.82.82 0 1 0 0-1.64.82.82 0 0 0 0 1.64ZM10.347 10.727a.82.82 0 1 0 0-1.64.82.82 0 0 0 0 1.64Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M8 14.667A6.667 6.667 0 1 0 8 1.333a6.667 6.667 0 0 0 0 13.334Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1247,18 +1248,20 @@ export const SplitIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const GraphIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M1.333 1.333v11.334c0 1.106.894 2 2 2h11.334"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="m3.333 11.333 3.06-3.573a1.33 1.33 0 0 1 1.954-.073l.633.633a1.336 1.336 0 0 0 1.953-.073L14 4.667"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1268,22 +1271,24 @@ export const GraphIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const FeesAndLimitsIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M2.447 1.667v7.98c0 .653.306 1.273.833 1.666l3.473 2.6a2.09 2.09 0 0 0 2.5 0l3.474-2.6a2.08 2.08 0 0 0 .833-1.666v-7.98H2.447Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
       />
       <Path
         d="M1.333 1.667h13.334"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
       />
       <Path
         d="M5.333 5.333h5.334M5.333 8.667h5.334"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
