@@ -131,6 +131,7 @@ export const paymentSlice = createSlice({
         state.charities.loaded = false;
       })
       .addCase(getCharities.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.charities.data = action.payload;
         state.charities.loading = false;
         state.charities.loaded = true;

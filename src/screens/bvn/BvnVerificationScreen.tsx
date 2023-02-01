@@ -23,6 +23,7 @@ const BvnVerificationScreen = ({
   route,
 }: CommonScreenProps<"BvnVerification">) => {
   const [bvn, setBvn] = useState("");
+  const [dob, setDOB] = useState("");
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -56,7 +57,9 @@ const BvnVerificationScreen = ({
 
   const verifyBvn = async () => {
     setButtonLoading(true);
-    const bv = await dispatch(addUserBvnThunk(bvn));
+    const bv = await dispatch(
+      addUserBvnThunk({ bvn: "112123213", dateOfBirth: "1990-01-19" })
+    );
     if (bv.meta.requestStatus === "fulfilled") {
       setButtonLoading(false);
       navigation.navigate("StatusScreen", {
@@ -87,6 +90,51 @@ const BvnVerificationScreen = ({
             Verify your BVN
           </Text>
           <View>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
+
+                fontWeight: "400",
+              }}
+            >
+              Date of Birth
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors[appTheme].secondaryText}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A",
+                paddingBottom: 5,
+                marginTop: hp(15),
+                borderBottomWidth: 1,
+                borderBottomColor: Colors[appTheme].borderColor,
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="YYYY-MM-DD"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              value={dob}
+              onChangeText={(text) => {
+                setDOB(text);
+              }}
+              onEndEditing={(e) => {}}
+              onBlur={(text) => {
+                if (text.target.toString().length === 8) {
+                  setDOB(
+                    dob.split(dob.charAt(4))[0] +
+                      "-" +
+                      dob.split(dob.charAt(6))[0] +
+                      "-" +
+                      dob.split(dob.charAt(6))[1]
+                  );
+                }
+              }}
+              maxLength={8}
+            />
+          </View>
+          <View style={{ marginTop: 20 }}>
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A",
