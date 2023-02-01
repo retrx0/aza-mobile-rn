@@ -32,7 +32,7 @@ const EditBankAccountDetailsScreen = ({
   const appTheme = getAppTheme(selectedTheme);
   const dispatch = useAppDispatch();
 
-  const { accountName, accountNumber, id, bankName, logoUrl } = route.params;
+  const { accountName, accountNumber, id, bankName, bankLogo } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -114,7 +114,7 @@ const EditBankAccountDetailsScreen = ({
             />
             <Image
               source={{
-                uri: logoUrl,
+                uri: bankLogo,
               }}
               style={{
                 position: "absolute",

@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
@@ -102,7 +102,7 @@ const BankAccountsScreen = ({
                     ]}
                   >
                     <Image
-                      source={{ uri: _account.logoUrl }}
+                      source={{ uri: _account.bankLogo }}
                       style={{
                         width: 36,
                         height: 36,
@@ -222,52 +222,61 @@ const BankAccountsScreen = ({
               Select a bank account to perform any activity
             </Text>
             <Divider />
-            {user.bankAccounts.data.map(
-              ({ logoUrl, bankName, accountNumber, accountName, id }, i) => (
-                <View key={i}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("EditBankAccountDetails", {
-                        accountName,
-                        accountNumber,
-                        id,
-                        bankName,
-                        logoUrl,
-                      })
-                    }
-                  >
-                    <View
-                      style={[
-                        CommonStyles.row,
-                        { alignSelf: "stretch", paddingVertical: 15 },
-                      ]}
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ height: "100%" }}
+            >
+              {console.log(user.bankAccounts.data)}
+              {user.bankAccounts.data.map(
+                ({ bankLogo, bankName, accountNumber, accountName, id }, i) => (
+                  <View key={i}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("EditBankAccountDetails", {
+                          accountName,
+                          accountNumber,
+                          id,
+                          bankName,
+                          bankLogo,
+                        })
+                      }
                     >
-                      <Image
-                        source={{ uri: logoUrl }}
-                        style={{
-                          width: 36,
-                          height: 36,
-                          borderRadius: 50,
-                        }}
-                      />
-                      <Text
-                        style={{
-                          marginLeft: hp(20),
-                          fontFamily: "Euclid-Circular-A-Semi-Bold",
-                          fontSize: hp(14),
-                        }}
+                      <View
+                        style={[
+                          CommonStyles.row,
+                          { alignSelf: "stretch", paddingVertical: 15 },
+                        ]}
                       >
-                        {`${bankName} (${accountNumber.substring(0, 3)}.....)`}
-                      </Text>
-                      <View style={{ marginLeft: "auto" }}>
-                        <ChevronRightIcon color={"#2A9E17"} size={20} />
+                        <Image
+                          source={{ uri: bankLogo }}
+                          style={{
+                            width: 36,
+                            height: 36,
+                            borderRadius: 50,
+                          }}
+                        />
+                        <Text
+                          style={{
+                            marginLeft: hp(20),
+                            fontFamily: "Euclid-Circular-A-Semi-Bold",
+                            fontSize: hp(14),
+                          }}
+                        >
+                          {`${bankName} (${accountNumber.substring(
+                            0,
+                            3
+                          )}.....)`}
+                        </Text>
+                        <View style={{ marginLeft: "auto" }}>
+                          <ChevronRightIcon color={"#2A9E17"} size={20} />
+                        </View>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                  <Divider />
-                </View>
-              )
-            )}
+                    </TouchableOpacity>
+                    <Divider />
+                  </View>
+                )
+              )}
+            </ScrollView>
           </View>
           <View
             style={[

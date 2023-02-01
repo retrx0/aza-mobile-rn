@@ -1,35 +1,39 @@
 import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import BackButton from "../../../../components/buttons/BackButton";
+import Button from "../../../../components/buttons/Button";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
-
-import Button from "../../../../components/buttons/Button";
 
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useAppSelector } from "../../../../redux";
+import { toastError } from "../../../../common/util/ToastUtil";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import { selectUser } from "../../../../redux/slice/userSlice";
+import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
+
+import { verifyBankAccountAPI } from "../../../../api/account";
 
 const AddBankAccountScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccount">) => {
+  const [accountName, setAccountName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
+  const [isVerified, setVerified] = useState(false);
 
   const insets = useSafeAreaInsets();
 
   const { bankName, screenType, logoUrl, bankCode, id } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
-  const { fullName } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -52,6 +56,39 @@ const AddBankAccountScreen = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
   }, []);
+
+  const moveToNextScreen = () => {
+    navigation.navigate("AddBankAccountConfirmation", {
+      accountName: accountName,
+      accountNumber,
+      bankName: bankName,
+      id,
+      bankCode,
+      screenType,
+      logoUrl,
+    });
+  };
+
+  const verifyAccount = (accNo: string) => {
+    dispatch(toggleActivityModal(true));
+    verifyBankAccountAPI(bankCode, accNo)
+      .then((res) => {
+        dispatch(toggleActivityModal(false));
+        if (res !== undefined) {
+          setAccountName(res.data.name);
+          setVerified(true);
+          moveToNextScreen();
+        } else {
+          toastError("Invalid account number");
+          setVerified(false);
+        }
+      })
+      .catch(() => {
+        setVerified(false);
+        dispatch(toggleActivityModal(false));
+        toastError("Invalid account number");
+      });
+  };
 
   return (
     <SpacerWrapper>
@@ -98,7 +135,12 @@ const AddBankAccountScreen = ({
               keyboardType="number-pad"
               returnKeyType="done"
               value={accountNumber}
-              onChangeText={(text) => setAccountNumber(text)}
+              onChangeText={(text) => {
+                if (text.length === 10) {
+                  verifyAccount(text);
+                }
+                setAccountNumber(text);
+              }}
               maxLength={10}
             />
           </View>
@@ -111,18 +153,8 @@ const AddBankAccountScreen = ({
         >
           <Button
             title="Continue"
-            disabled={accountNumber.length < 10}
-            onPressButton={() =>
-              navigation.navigate("AddBankAccountConfirmation", {
-                accountName: fullName,
-                accountNumber,
-                bankName: bankName,
-                id,
-                bankCode,
-                screenType,
-                logoUrl,
-              })
-            }
+            disabled={!isVerified}
+            onPressButton={moveToNextScreen}
           />
         </View>
       </View>
@@ -131,12 +163,3 @@ const AddBankAccountScreen = ({
 };
 
 export default AddBankAccountScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
-  },
-});
