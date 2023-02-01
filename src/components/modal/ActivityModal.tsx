@@ -18,7 +18,11 @@ const ActivityModal = ({ loading }: IProps) => {
       <View style={styles.modalBackground}>
         <View style={[styles.activityIndicatorWrapper]}>
           <AZALargeLightningLogo color={Colors[appTheme].mainText} />
-          <ActivityIndicator animating={loading} />
+          {/* <ActivityIndicator
+            animating={loading}
+         
+            
+          /> */}
         </View>
       </View>
     </Modal>

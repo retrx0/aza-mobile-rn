@@ -98,6 +98,8 @@ export type PaymentsStackParamList = {
   RecurringPlan: undefined;
   GiftCardEmail: undefined;
   GameCredit: undefined;
+  Airtime: undefined;
+  DataBundle: undefined;
 };
 
 export type TopTabParamList = {

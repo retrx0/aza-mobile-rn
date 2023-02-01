@@ -11,6 +11,9 @@ import BlockByAzaNumberTab from "../components/BlockByAzaNumberTab";
 import BlockByMobileNumberTab from "../components/BlockByMobileNumberTab";
 import BlockUserModal from "../components/BlockUserModal";
 import { hp } from "../../../../common/util/LayoutUtil";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const BlockNewUserScreen = ({
   navigation,
@@ -22,9 +25,8 @@ const BlockNewUserScreen = ({
     { key: "first", title: "Mobile Number" },
     { key: "second", title: "Aza Number" },
   ]);
-  const colorScheme = useColorScheme();
   const layout = useWindowDimensions();
-
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -37,8 +39,7 @@ const BlockNewUserScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Block New User
         </Text>
       ),
@@ -74,11 +75,11 @@ const BlockNewUserScreen = ({
             style={{
               elevation: 0,
               backgroundColor: "transparent",
-              borderBottomColor: Colors[colorScheme].secondaryText,
+              borderBottomColor: Colors[appTheme].secondaryText,
               borderBottomWidth: 2,
             }}
             indicatorStyle={{
-              backgroundColor: Colors[colorScheme].text,
+              backgroundColor: Colors[appTheme].text,
               marginBottom: -2,
             }}
             renderLabel={({ focused, route }) => {
@@ -91,10 +92,8 @@ const BlockNewUserScreen = ({
                     focused ? Colors.dark.mainText : Colors.dark.secondaryText
                   }
                   style={{
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    fontSize: 16,
-                  }}
-                >
+                    fontSize: hp(16),
+                  }}>
                   {route.title}
                 </Text>
               );

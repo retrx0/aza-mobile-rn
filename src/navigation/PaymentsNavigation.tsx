@@ -8,6 +8,8 @@ import { Platform } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
 import { hp } from "../common/util/LayoutUtil";
 import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
+import Airtime from "../screens/tabs/payments/airtime-screens/Airtime";
+import DataBundle from "../screens/tabs/payments/airtime-screens/DataBundle";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -35,18 +37,9 @@ export function AirtimeTabs() {
             fontWeight: "500",
           },
         }}
-        initialRouteName="airtime"
-      >
-        <Tab.Screen
-          name="airtime"
-          component={AirtimeIndex}
-          initialParams={{ type: "airtime" }}
-        />
-        <Tab.Screen
-          name="data-bundle"
-          component={AirtimeIndex}
-          initialParams={{ type: "data-bundle" }}
-        />
+        initialRouteName="airtime">
+        <Tab.Screen name="Airtime" component={Airtime} />
+        <Tab.Screen name="Databundle" component={DataBundle} />
       </Tab.Navigator>
     </SafeAreaView>
   );
@@ -73,8 +66,7 @@ export function AirtimeRecurringTab() {
             fontWeight: "500",
           },
         }}
-        initialRouteName="airtime"
-      >
+        initialRouteName="airtime">
         <Tab.Screen name="airtime" component={AirtimeRecurring} />
         <Tab.Screen name="data bundle" component={AirtimeRecurring} />
       </Tab.Navigator>
