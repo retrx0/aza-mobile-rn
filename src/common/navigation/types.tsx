@@ -1,6 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
 import {
+  IBank,
   IBankAccount,
   IBeneficiary,
   ICharity,
@@ -145,9 +146,9 @@ export type CommonStackParamList = {
   TransactionHistory: undefined;
   BankAccounts: BankAccountsParamsType;
   SelectBank: BankAccountsParamsType;
-  AddBankAccount: AddBankAccountParamsType & BankAccountsParamsType;
-  AddBankAccountConfirmation: AddBankAccountConfirmationParamsType &
-    BankAccountsParamsType;
+  AddBankAccount: IBank & BankAccountsParamsType;
+  AddBankAccountConfirmation: IBank &
+    BankAccountsParamsType & { accountNumber: string; accountName: string };
   EditBankAccountDetails: IBankAccount;
   DebitCreditCards: undefined;
   ManageCard: undefined;
@@ -266,18 +267,6 @@ export type PaymentsTabScreenProps<
 > = NativeStackScreenProps<PaymentsStackParamList, Screen>;
 
 /* Profile */
-
-export type AddBankAccountParamsType = {
-  bankName: string;
-  logoUrl: string;
-};
-
-export type AddBankAccountConfirmationParamsType = {
-  bankName: string;
-  accountNumber: string;
-  accountName: string;
-  logoUrl: string;
-};
 
 export type BankAccountsParamsType = {
   screenType: "Withdraw" | "Bank Account";

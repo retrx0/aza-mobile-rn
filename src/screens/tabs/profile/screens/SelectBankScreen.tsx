@@ -1,5 +1,12 @@
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import {
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { Placeholder, PlaceholderLine, Fade } from "rn-placeholder";
 
 import BackButton from "../../../../components/buttons/BackButton";
 import { TextInput } from "../../../../theme/Themed";
@@ -14,18 +21,12 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { SearchIcon } from "../../../../../assets/svg";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import {
-  AccessBankLogoWithName,
-  EcoBankLogoWithName,
-  FCMBLogoWithName,
-  FidelityBankLogoWithName,
-  FirstBankLogoWithName,
-  GTBankLogoWithName,
-  STANBIC,
-  UBALogoWithName,
-  ZenithBankLogoWithName,
-} from "../../../../../assets/images";
-import { useAppSelector } from "../../../../redux";
+  getSupportedBanks,
+  selectBank,
+} from "../../../../redux/slice/bankSlice";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 
@@ -38,19 +39,10 @@ const SelectBankScreen = ({
 
   const { screenType } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
+  const { banks } = useAppSelector(selectBank);
   const appTheme = getAppTheme(selectedTheme);
 
-  const banks = [
-    { name: "Access", logo: AccessBankLogoWithName },
-    { name: "Eco", logo: EcoBankLogoWithName },
-    { name: "Fcmb", logo: FCMBLogoWithName },
-    { name: "Gtb", logo: GTBankLogoWithName },
-    { name: "Uba", logo: UBALogoWithName },
-    { name: "Zenith", logo: ZenithBankLogoWithName },
-    { name: "Fidelity", logo: FidelityBankLogoWithName },
-    { name: "First", logo: FirstBankLogoWithName },
-    // { name: "Stanbic", logo: STANBIC },
-  ];
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -74,6 +66,10 @@ const SelectBankScreen = ({
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
     });
+  }, []);
+
+  useEffect(() => {
+    if (!banks.loaded) dispatch(getSupportedBanks());
   }, []);
 
   return (
@@ -101,18 +97,32 @@ const SelectBankScreen = ({
             onChangeText={(e) => setSearch(e)}
           />
         </View>
-        <ScrollView style={{}} showsVerticalScrollIndicator={false}>
-          {banks
-            .filter(({ name }) =>
-              name.toLowerCase().includes(search.toLowerCase())
-            )
-            .map(({ logo, name }, i) => (
-              <View key={i}>
+
+        {banks.loading ? (
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Placeholder Animation={Fade}>
+              {Array(10)
+                .fill(0)
+                .map((_, i) => (
+                  <PlaceholderLine key={i} height={70} />
+                ))}
+            </Placeholder>
+          </ScrollView>
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={banks.data.filter(({ bankName }) =>
+              bankName.toLowerCase().includes(search.toLowerCase())
+            )}
+            renderItem={({ item: { bankCode, bankName, logoUrl, id } }) => (
+              <View>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("AddBankAccount", {
-                      bankName: name,
-                      logoUrl: logo,
+                      id: id,
+                      bankName,
+                      bankCode,
+                      logoUrl,
                       screenType,
                     })
                   }
@@ -125,7 +135,7 @@ const SelectBankScreen = ({
                   ]}
                 >
                   <Image
-                    source={{ uri: logo }}
+                    source={{ uri: logoUrl }}
                     style={{ width: 100, height: 70, resizeMode: "contain" }}
                   />
                 </TouchableOpacity>
@@ -138,8 +148,9 @@ const SelectBankScreen = ({
                   <Divider />
                 </View>
               </View>
-            ))}
-        </ScrollView>
+            )}
+          />
+        )}
       </View>
     </SpacerWrapper>
   );

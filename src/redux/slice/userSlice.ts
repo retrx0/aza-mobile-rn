@@ -177,20 +177,7 @@ const initialState: IUserState = {
   bankAccounts: {
     loading: false,
     loaded: false,
-    data: [
-      {
-        bankAccountId: "1",
-        accountName: "Test Account",
-        accountNumber: "000111221",
-        bankName: "GT Bank",
-      },
-      {
-        bankAccountId: "2",
-        accountName: "Test Account 2",
-        accountNumber: "000111222",
-        bankName: "VFD Bank",
-      },
-    ],
+    data: [],
   },
   paymentRequests: {
     loading: false,
@@ -411,14 +398,12 @@ export const userSlice = createSlice({
       .addCase(removeUserSavedBankAcc.rejected, (state, action) => {})
       .addCase(removeUserSavedBankAcc.fulfilled, (state, action) => {
         state.bankAccounts.data = state.bankAccounts.data.filter(
-          (account) => account.bankAccountId !== action.payload
+          (account) => account.id !== action.meta.arg
         );
       })
       .addCase(saveUserBankAcc.pending, (state, action) => {})
       .addCase(saveUserBankAcc.rejected, (state, action) => {})
-      .addCase(saveUserBankAcc.fulfilled, (state, action) => {
-        state.bankAccounts.data = action.payload;
-      });
+      .addCase(saveUserBankAcc.fulfilled, (state, action) => {});
   },
 });
 
@@ -496,7 +481,10 @@ export const getUserSavedBankAccs = createAsyncThunk(
 export const removeUserSavedBankAcc = createAsyncThunk(
   "user/removeUserSavedBankAccounts",
   async (bankAccountId: string) => {
-    return await thunkCourier("get", `/api/v1/bank/accounts/${bankAccountId}`);
+    return await thunkCourier(
+      "delete",
+      `/api/v1/bank/accounts/${bankAccountId}`
+    );
   }
 );
 

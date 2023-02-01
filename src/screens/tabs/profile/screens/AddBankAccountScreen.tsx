@@ -26,7 +26,7 @@ const AddBankAccountScreen = ({
 
   const insets = useSafeAreaInsets();
 
-  const { bankName, screenType, logoUrl } = route.params;
+  const { bankName, screenType, logoUrl, bankCode, id } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
   const { fullName } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
@@ -117,6 +117,8 @@ const AddBankAccountScreen = ({
                 accountName: fullName,
                 accountNumber,
                 bankName: bankName,
+                id,
+                bankCode,
                 screenType,
                 logoUrl,
               })
