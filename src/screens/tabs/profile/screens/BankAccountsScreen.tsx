@@ -12,7 +12,6 @@ import Divider from "../../../../components/divider/Divider";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -217,23 +216,14 @@ const BankAccountsScreen = ({
             </Text>
             <Divider />
             {user.bankAccounts.data.map(
-              (
-                {
-                  logoUrl,
-                  bankName,
-                  accountNumber,
-                  accountName,
-                  bankAccountId,
-                },
-                i
-              ) => (
+              ({ logoUrl, bankName, accountNumber, accountName, id }, i) => (
                 <View key={i}>
                   <TouchableOpacity
                     onPress={() =>
                       navigation.navigate("EditBankAccountDetails", {
                         accountName,
                         accountNumber,
-                        bankAccountId,
+                        id,
                         bankName,
                         logoUrl,
                       })

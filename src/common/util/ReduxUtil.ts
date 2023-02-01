@@ -4,7 +4,7 @@ import api from "../../api";
 import { getItemSecure } from "./StorageUtil";
 
 export async function thunkCourier<T>(
-  type: "get" | "post" | "put" | "patch",
+  type: "get" | "post" | "put" | "patch" | "delete",
   url: string,
   data?: T
 ) {

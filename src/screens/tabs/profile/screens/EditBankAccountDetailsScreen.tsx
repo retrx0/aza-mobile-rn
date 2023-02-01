@@ -1,12 +1,12 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { TextInput } from "../../../../theme/Themed";
-import { View, Text } from "../../../../theme/Themed";
-
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -14,11 +14,12 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+
 import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { removeUserSavedBankAcc } from "../../../../redux/slice/userSlice";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import { removeUserSavedBankAcc } from "../../../../redux/slice/userSlice";
 
 const EditBankAccountDetailsScreen = ({
   navigation,
@@ -31,8 +32,7 @@ const EditBankAccountDetailsScreen = ({
   const appTheme = getAppTheme(selectedTheme);
   const dispatch = useAppDispatch();
 
-  const { accountName, accountNumber, bankAccountId, bankName, logoUrl } =
-    route.params;
+  const { accountName, accountNumber, id, bankName, logoUrl } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -58,6 +58,16 @@ const EditBankAccountDetailsScreen = ({
 
   const editDetails = () => {
     setEditing(!isEditing);
+  };
+
+  const deleteAccount = () => {
+    dispatch(removeUserSavedBankAcc(id))
+      .unwrap()
+      .then(() => {
+        navigation.goBack();
+        toastSuccess("The account has been successfully deleted");
+      })
+      .catch(() => toastError("An error occurred while deleting the account"));
   };
 
   return (
@@ -186,9 +196,7 @@ const EditBankAccountDetailsScreen = ({
           />
           <CancelButtonWithUnderline
             title="Delete Account"
-            onPressButton={() =>
-              dispatch(removeUserSavedBankAcc(bankAccountId))
-            }
+            onPressButton={deleteAccount}
             styleText={CommonStyles.cancelStyle}
             style={[{ borderBottomColor: Colors.general.red }]}
           />

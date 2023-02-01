@@ -1,31 +1,40 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, Image } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { TextInput } from "../../../../theme/Themed";
-import { View, Text } from "../../../../theme/Themed";
-
 import Button from "../../../../components/buttons/Button";
+import { View, Text, TextInput } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { toastError } from "../../../../common/util/ToastUtil";
+
+import { getAppTheme } from "../../../../theme";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { getAppTheme } from "../../../../theme";
-import { saveUserBankAcc } from "../../../../redux/slice/userSlice";
-import { toastError } from "../../../../common/util/ToastUtil";
+import {
+  getUserSavedBankAccs,
+  saveUserBankAcc,
+} from "../../../../redux/slice/userSlice";
 
 const AddBankAccountConfirmationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccountConfirmation">) => {
   const [isButtonLoading, setButtonLoading] = useState(false);
-  const { bankName, accountName, accountNumber, screenType, logoUrl } =
-    route.params;
+  const {
+    bankName,
+    accountName,
+    accountNumber,
+    screenType,
+    logoUrl,
+    bankCode,
+    id,
+  } = route.params;
 
   const [_accountName, setAccountName] = useState(accountName);
   const insets = useSafeAreaInsets();
@@ -61,14 +70,14 @@ const AddBankAccountConfirmationScreen = ({
       saveUserBankAcc({
         accountName: _accountName,
         accountNumber,
-        bankCode: "12",
-        isBeneficiary: true,
+        bankCode,
+        isBeneficiary: false,
       })
     );
 
     if (addBank.meta.requestStatus === "fulfilled") {
       setButtonLoading(false);
-
+      dispatch(getUserSavedBankAccs());
       navigation.navigate("StatusScreen", {
         status: "Successful",
         statusIcon: "Success",

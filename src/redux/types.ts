@@ -77,7 +77,7 @@ export interface IPaymentMethod {
 }
 
 export interface IBankAccount {
-  bankAccountId: string;
+  id: string;
   bankName: string;
   logoUrl?: string;
   accountNumber: string;
@@ -140,6 +140,13 @@ export interface IAirtimeOperator {
   operatorId: number;
 }
 
+export interface IBank {
+  id?: number;
+  bankCode: string;
+  bankName: string;
+  logoUrl: string;
+}
+
 /* REDUX STATES */
 
 export interface IPaymentState {
@@ -178,6 +185,11 @@ export interface IUserState {
   bvnNumber: string;
   accountStatus: string;
   pushToken?: string;
+  accountTier: string;
+  bvn: string;
+  isEmailConfirmed: boolean;
+  isPhoneNumberConfirmed: boolean;
+  userName: string;
   transfers: {
     loading: boolean;
     incommingTransferLimit: number;
@@ -195,6 +207,10 @@ export interface IUserState {
   recentTransactions: ICommonTypedListResult<ITransactions>;
   azaContacts: ICommonTypedListResult<IBeneficiary>;
   bankAccounts: ICommonTypedListResult<IBankAccount>;
+}
+
+export interface IBankState {
+  banks: ICommonTypedListResult<IBank>;
 }
 
 export type PaymentCategory =
