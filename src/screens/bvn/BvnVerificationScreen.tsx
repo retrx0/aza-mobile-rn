@@ -94,11 +94,7 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-<<<<<<< HEAD
               }}>
-=======
-              }}
-            >
               Date of Birth
             </Text>
             <TextInput
@@ -142,9 +138,7 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-              }}
-            >
->>>>>>> 99aa074d6cbdd5dc0c3e3691cf4d2d2780c7ecdb
+              }}>
               BVN
             </Text>
             <TextInput
