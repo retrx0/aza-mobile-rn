@@ -177,7 +177,7 @@ export interface IUserState {
   firstName: string;
   lastName: string;
   pictureUrl: string | undefined;
-  azaAccountNumber: number;
+  azaAccountNumber: string;
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;

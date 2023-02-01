@@ -18,7 +18,7 @@ const initialState: IUserState = {
   lastName: "User",
   fullName: "Test User",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
-  azaAccountNumber: 1234556644,
+  azaAccountNumber: "1234556644",
   azaBalance: 100000,
   emailAddress: "testuser@azanaija.com",
   accountVerified: true,
@@ -425,19 +425,11 @@ export const getUserAccount = createAsyncThunk("user/getAccount", async () => {
 
 export const getUserTransactions = createAsyncThunk(
   "user/getTransactions",
-  async (
-    { accountNumber, token }: { accountNumber: number; token: string },
-    { rejectWithValue, fulfillWithValue }
-  ) => {
-    try {
-      const result = await api.get(
-        `/api/v1/account/${accountNumber}/transactions`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      return fulfillWithValue(result.data);
-    } catch (err: any) {
-      return rejectWithValue(err.response.data.message);
-    }
+  async ({ accountNumber }: { accountNumber: number }) => {
+    return await thunkCourier(
+      "get",
+      `/api/v1/account/${accountNumber}/transactions`
+    );
   }
 );
 

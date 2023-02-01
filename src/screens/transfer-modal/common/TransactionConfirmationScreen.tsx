@@ -85,23 +85,42 @@ const TransactionConfirmationScreen = ({
       dispatch(setTransactionDescription("" + transDescription));
 
       //make transaction
-
-      var transactionCompleted = true;
+      let transactionCompleted = false;
 
       if (confirmationType === "send") {
-        // const transfer = await transferToAzaUserAPI({
-        //   amount: amount,
-        //   fromAccount: azaAccountNumber,
-        //   fromBvn: bvnNumber,
-        // });
+        const transfer = await transferToAzaUserAPI({
+          amount: "" + amount,
+          fromAccount: azaAccountNumber,
+          fromBvn: bvnNumber,
+          fromClientId: "",
+          fromClient: "",
+          fromSavingsId: "",
+          toClient: "",
+          toBvn: "",
+          toAccount: beneficiary.azaAccountNumber,
+          toBank: "",
+          signature: "Aza",
+          remark: "",
+          transferType: "intra",
+          reference: transDescription ? transDescription : "Aza transaction",
+          toSession: "",
+          toKyc: "",
+        });
+        if (transfer) {
+          transactionCompleted = true;
+        }
       } else {
-        // const transfer = await requestMoneyAPI({
-        //   amount: amount,
-        //   decription: transDescription,
-        //   initiatorAccountNumber: azaAccountNumber,
-        //   receipientAccountNumber: beneficiary.azaAccountNumber,
-        //   recepientPhoneNumber: beneficiary.phone,
-        // });
+        const request = await requestMoneyAPI({
+          amount: amount,
+          decription: transDescription ? transDescription : "",
+          initiatorAccountNumber: "" + azaAccountNumber,
+          receipientAccountNumber: beneficiary.azaAccountNumber,
+          recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
+        });
+
+        if (request) {
+          transactionCompleted = true;
+        }
       }
 
       if (transactionCompleted) {

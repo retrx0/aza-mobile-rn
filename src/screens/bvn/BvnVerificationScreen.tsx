@@ -17,13 +17,14 @@ import { toastError } from "../../common/util/ToastUtil";
 import { addUserBvnThunk } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
+import DatePicker from "@react-native-community/datetimepicker";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
   const [bvn, setBvn] = useState("");
-  const [dob, setDOB] = useState("");
+  const [dob, setDOB] = useState<Date>(new Date());
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -41,7 +42,8 @@ const BvnVerificationScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}>
+          }}
+        >
           Tier 1 Verification
         </Text>
       ),
@@ -56,8 +58,12 @@ const BvnVerificationScreen = ({
 
   const verifyBvn = async () => {
     setButtonLoading(true);
+    console.log(dob.toISOString().split("T")[0]);
     const bv = await dispatch(
-      addUserBvnThunk({ bvn: "112123213", dateOfBirth: "1990-01-19" })
+      addUserBvnThunk({
+        bvn: bvn,
+        dateOfBirth: dob.toISOString().split("T")[0],
+      })
     );
     if (bv.meta.requestStatus === "fulfilled") {
       setButtonLoading(false);
@@ -84,7 +90,8 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Verify your BVN
           </Text>
           <View>
@@ -94,41 +101,24 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-              }}>
+              }}
+            >
               Date of Birth
             </Text>
-            <TextInput
-              placeholderTextColor={Colors[appTheme].secondaryText}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginTop: hp(15),
-                borderBottomWidth: 1,
-                borderBottomColor: Colors[appTheme].borderColor,
-                fontSize: hp(16),
-                fontWeight: "500",
-              }}
-              placeholder="YYYY-MM-DD"
-              keyboardType="number-pad"
-              returnKeyType="done"
+
+            <DatePicker
               value={dob}
-              onChangeText={(text) => {
-                setDOB(text);
+              maximumDate={new Date()}
+              placeholderText="Date of Birth"
+              onChange={(date) => {
+                console.log(
+                  new Date(date.nativeEvent.timestamp!)
+                    .toISOString()
+                    .split("T")[0]
+                );
+                if (date.nativeEvent.timestamp)
+                  setDOB(new Date(date.nativeEvent.timestamp));
               }}
-              onEndEditing={(e) => {}}
-              onBlur={(text) => {
-                if (text.target.toString().length === 8) {
-                  setDOB(
-                    dob.split(dob.charAt(4))[0] +
-                      "-" +
-                      dob.split(dob.charAt(6))[0] +
-                      "-" +
-                      dob.split(dob.charAt(6))[1]
-                  );
-                }
-              }}
-              maxLength={8}
             />
           </View>
           <View style={{ marginTop: 20 }}>
@@ -138,7 +128,8 @@ const BvnVerificationScreen = ({
                 fontSize: hp(16),
 
                 fontWeight: "400",
-              }}>
+              }}
+            >
               BVN
             </Text>
             <TextInput
@@ -166,7 +157,8 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Verify"
             onPressButton={verifyBvn}
