@@ -123,3 +123,7 @@ export const QRFEATURE = require("./common/QRFEATURE.png");
 export const Undraw = require("./common/Undraw.png");
 export const AnnouncementDraw = require("./common/AnnouncementDraw.png");
 export const Info = require("./common/Info.png");
+export const Cable = require("./common/Cable.png");
+export const Internet = require("./common/Internet.png");
+export const Water = require("./common/Water.png");
+export const DebitCard = require("./common/DebitCard.png");

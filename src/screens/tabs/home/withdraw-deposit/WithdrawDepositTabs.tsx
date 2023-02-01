@@ -23,9 +23,18 @@ const WithdrawDepositTabs = ({
     { key: "first", title: "Withdraw" },
     { key: "second", title: "Deposit" },
   ]);
+
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
+  // const titlecheck = "Withdraw";
 
+  const handlePress = () => {
+    if (routes.some((route) => route.title === "Withdraw")) {
+      navigation.getParent()?.navigate("WithdrawFeature");
+    } else {
+      navigation.getParent()?.navigate("DepositFeature");
+    }
+  };
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -48,18 +57,7 @@ const WithdrawDepositTabs = ({
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
 
       headerRight: () => (
-        <TouchableOpacity
-          onPress={() => {
-            if (routes === "Withdraw") {
-              navigation.navigate("Common", {
-                screen: "WithdrawFeature",
-              });
-            } else {
-              navigation.navigate("Common", {
-                screen: "DepositFeature",
-              });
-            }
-          }}>
+        <TouchableOpacity onPress={handlePress}>
           <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
@@ -120,6 +118,9 @@ const WithdrawDepositTabs = ({
 };
 
 export default WithdrawDepositTabs;
+
+// .getParent()
+// ?
 
 // import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 // import { Platform } from "react-native";

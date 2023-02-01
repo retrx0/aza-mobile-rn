@@ -127,8 +127,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 fontSize: hp(24),
                 marginLeft: 5,
               }}>
-              {transaction.amount}
-              {transaction.amount && numberWithCommas}
+              {numberWithCommas(transaction.amount)}
             </Text>
           </View>
         </View>

@@ -1,3 +1,110 @@
+import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { Text } from "../../../../theme/Themed";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import { TabBar, TabView } from "react-native-tab-view";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useLayoutEffect, useState } from "react";
+import Colors from "../../../../constants/Colors";
+import { RootTabScreenProps } from "../../../../../types";
+import BackButton from "../../../../components/buttons/BackButton";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { InfoIcon } from "../../../../../assets/svg";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Airtime from "./Airtime";
+import DataBundle from "./DataBundle";
+
+const AirtimeDataScreen = ({
+  navigation,
+  route,
+}: CommonScreenProps<"AirtimeData">) => {
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: "first", title: "Airtime" },
+    { key: "second", title: "Data-Bundle" },
+  ]);
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const layout = useWindowDimensions();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
+            fontFamily: "Euclid-Circular-A-Semi-Bold",
+            fontSize: hp(16),
+            fontWeight: "500",
+          }}>
+          Airtime & Data
+        </Text>
+      ),
+      // hide default back button which only shows in android
+      headerBackVisible: false,
+      //center it in android
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+    });
+  }, []);
+
+  const renderScene = (props: any) => {
+    switch (props.route.key) {
+      case "first":
+        return <Airtime navigation={navigation} route={route} />;
+      case "second":
+        return <DataBundle navigation={navigation} route={route} />;
+    }
+  };
+
+  return (
+    <SpacerWrapper>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        sceneContainerStyle={{ overflow: "visible" }}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            style={{
+              elevation: 0,
+              backgroundColor: "transparent",
+              borderBottomColor: Colors[appTheme].secondaryText,
+              borderBottomWidth: 2,
+            }}
+            indicatorStyle={{
+              backgroundColor: Colors[appTheme].text,
+              marginBottom: -2,
+            }}
+            renderLabel={({ focused, route }) => {
+              return (
+                <Text
+                  lightColor={
+                    focused ? Colors.light.text : Colors.light.secondaryText
+                  }
+                  darkColor={
+                    focused ? Colors.dark.mainText : Colors.dark.secondaryText
+                  }
+                  style={{
+                    fontSize: hp(16),
+                  }}>
+                  {route.title}
+                </Text>
+              );
+            }}
+          />
+        )}
+      />
+    </SpacerWrapper>
+  );
+};
+
+export default AirtimeDataScreen;
+
 // import React, { useEffect, useState } from "react";
 // import { ScrollView } from "react-native";
 // import { useRoute } from "@react-navigation/native";
@@ -259,110 +366,3 @@
 //     </SpacerWrapper>
 //   );
 // }
-
-import { TouchableOpacity, useWindowDimensions } from "react-native";
-import { Text } from "../../../../theme/Themed";
-import { useAppSelector } from "../../../../redux";
-import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { getAppTheme } from "../../../../theme";
-import { TabBar, TabView } from "react-native-tab-view";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useLayoutEffect, useState } from "react";
-import Colors from "../../../../constants/Colors";
-import { RootTabScreenProps } from "../../../../../types";
-import BackButton from "../../../../components/buttons/BackButton";
-import { hp } from "../../../../common/util/LayoutUtil";
-import { InfoIcon } from "../../../../../assets/svg";
-import { CommonScreenProps } from "../../../../common/navigation/types";
-import Airtime from "./Airtime";
-import DataBundle from "./DataBundle";
-
-const AirtimeDataScreen = ({
-  navigation,
-  route,
-}: CommonScreenProps<"AirtimeData">) => {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: "first", title: "Airtime" },
-    { key: "second", title: "Data-Bundle" },
-  ]);
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
-  const layout = useWindowDimensions();
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Airtime & Data
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
-
-  const renderScene = (props: any) => {
-    switch (props.route.key) {
-      case "first":
-        return <Airtime navigation={navigation} route={route} />;
-      case "second":
-        return <DataBundle navigation={navigation} route={route} />;
-    }
-  };
-
-  return (
-    <SpacerWrapper>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        sceneContainerStyle={{ overflow: "visible" }}
-        renderTabBar={(props) => (
-          <TabBar
-            {...props}
-            style={{
-              elevation: 0,
-              backgroundColor: "transparent",
-              borderBottomColor: Colors[appTheme].secondaryText,
-              borderBottomWidth: 2,
-            }}
-            indicatorStyle={{
-              backgroundColor: Colors[appTheme].text,
-              marginBottom: -2,
-            }}
-            renderLabel={({ focused, route }) => {
-              return (
-                <Text
-                  lightColor={
-                    focused ? Colors.light.text : Colors.light.secondaryText
-                  }
-                  darkColor={
-                    focused ? Colors.dark.mainText : Colors.dark.secondaryText
-                  }
-                  style={{
-                    fontSize: hp(16),
-                  }}>
-                  {route.title}
-                </Text>
-              );
-            }}
-          />
-        )}
-      />
-    </SpacerWrapper>
-  );
-};
-
-export default AirtimeDataScreen;

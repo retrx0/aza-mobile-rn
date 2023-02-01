@@ -1029,29 +1029,31 @@ export const BvnVerificationSuccessIcon = () => {
 };
 
 export const SendMoneyIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <G clip-path="url(#clip0_5264_17475)">
         <Path
           d="M11.1105 7.98282H10.2915V7.19566H11.1105C11.2336 7.19566 11.3333 7.096 11.3333 6.97291C11.3333 6.8498 11.2336 6.75008 11.1105 6.75008H10.2915V5.65786C10.2915 5.49843 10.26 5.3814 10.1978 5.31012C10.1388 5.2423 10.0612 5.21075 9.95374 5.21075C9.85119 5.21075 9.77651 5.24209 9.71862 5.30948C9.65724 5.38083 9.62608 5.49807 9.62608 5.65793V6.75022H8.08543L7.43036 5.75895C7.37429 5.67048 7.32158 5.58762 7.27039 5.50807C7.2243 5.43644 7.17935 5.37811 7.13689 5.33456C7.0993 5.29601 7.05646 5.26617 7.00636 5.24323C6.95909 5.22165 6.89898 5.21082 6.82788 5.21082C6.73719 5.21082 6.65487 5.23567 6.57604 5.28671C6.49803 5.3372 6.44411 5.39962 6.41117 5.47756C6.38227 5.55162 6.36697 5.66512 6.36697 5.81161V6.75014H5.55607C5.43303 6.75016 5.33333 6.84988 5.33333 6.97297C5.33333 7.09606 5.43303 7.19572 5.55608 7.19572H6.36698V7.98296H5.55608C5.43303 7.98296 5.33333 8.08266 5.33333 8.20579C5.33333 8.32885 5.43303 8.42847 5.55608 8.42847H6.36698V9.67551C6.36698 9.83023 6.39949 9.94607 6.46389 10.0197C6.52513 10.0899 6.60277 10.1224 6.70821 10.1224C6.80994 10.1224 6.88698 10.0897 6.95086 10.0194C7.01629 9.94736 7.04938 9.8316 7.04938 9.67552V8.42847H8.4435L9.19792 9.58532C9.25038 9.66179 9.30455 9.73897 9.35857 9.81466C9.4073 9.88262 9.46048 9.9425 9.51658 9.99252C9.5671 10.0378 9.62127 10.0709 9.67757 10.0911C9.73553 10.112 9.80328 10.1226 9.87846 10.1226C10.0825 10.1226 10.2914 10.0601 10.2914 9.59691V8.42847H11.1105C11.2335 8.42847 11.3333 8.3287 11.3333 8.20564C11.3333 8.08259 11.2336 7.98282 11.1105 7.98282ZM9.62607 7.19565V7.98281H8.90015L8.38001 7.19565H9.62607ZM7.04939 6.29118L7.34875 6.75008H7.04939V6.29118ZM7.04939 7.98282V7.19566H7.63942L8.15285 7.98282H7.04939ZM9.62607 9.08151L9.19465 8.42847H9.62607V9.08151Z"
-          fill={color}
+          fill={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         />
       </G>
       <Path
         d="M14.6667 8C14.6667 11.68 11.68 14.6667 8 14.6667C4.32 14.6667 1.33333 11.68 1.33333 8C1.33333 4.32 4.32 1.33334 8 1.33334"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M14.6667 4V1.33334H12"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M11.3333 4.66667L14.6667 1.33334"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -1060,7 +1062,7 @@ export const SendMoneyIcon = ({ color, size, style }: SvgIconProps) => {
           <Rect
             width="6"
             height="6"
-            fill={color}
+            fill={appTheme === "dark" ? "#E7E9EA" : "#000000"}
             transform="translate(5.33333 4.66666)"
           />
         </ClipPath>
@@ -1070,29 +1072,31 @@ export const SendMoneyIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const RequestMoneyIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <G clip-path="url(#clip0_1809_31022)">
         <Path
           d="M11.1105 7.98281H10.2915V7.19565H11.1105C11.2336 7.19565 11.3333 7.09599 11.3333 6.9729C11.3333 6.8498 11.2336 6.75008 11.1105 6.75008H10.2915V5.65785C10.2915 5.49842 10.26 5.38139 10.1978 5.31011C10.1388 5.2423 10.0612 5.21074 9.95374 5.21074C9.85119 5.21074 9.77651 5.24208 9.71862 5.30947C9.65724 5.38083 9.62608 5.49807 9.62608 5.65793V6.75021H8.08543L7.43036 5.75894C7.37429 5.67048 7.32158 5.58761 7.27039 5.50807C7.2243 5.43643 7.17935 5.37811 7.13689 5.33456C7.0993 5.296 7.05646 5.26616 7.00636 5.24323C6.95909 5.22164 6.89898 5.21081 6.82788 5.21081C6.73719 5.21081 6.65487 5.23566 6.57604 5.2867C6.49803 5.33719 6.44411 5.39962 6.41117 5.47755C6.38227 5.55162 6.36697 5.66511 6.36697 5.81161V6.75014H5.55607C5.43303 6.75015 5.33333 6.84987 5.33333 6.97296C5.33333 7.09605 5.43303 7.19572 5.55608 7.19572H6.36698V7.98296H5.55608C5.43303 7.98296 5.33333 8.08265 5.33333 8.20578C5.33333 8.32884 5.43303 8.42846 5.55608 8.42846H6.36698V9.6755C6.36698 9.83022 6.39949 9.94606 6.46389 10.0197C6.52513 10.0899 6.60277 10.1224 6.70821 10.1224C6.80994 10.1224 6.88698 10.0897 6.95086 10.0194C7.01629 9.94735 7.04938 9.83159 7.04938 9.67551V8.42846H8.4435L9.19792 9.58531C9.25038 9.66178 9.30455 9.73896 9.35857 9.81465C9.4073 9.88261 9.46048 9.94249 9.51658 9.99251C9.5671 10.0378 9.62127 10.0709 9.67757 10.0911C9.73553 10.112 9.80328 10.1226 9.87846 10.1226C10.0825 10.1226 10.2914 10.0601 10.2914 9.5969V8.42846H11.1105C11.2335 8.42846 11.3333 8.32869 11.3333 8.20564C11.3333 8.08258 11.2336 7.98281 11.1105 7.98281ZM9.62607 7.19564V7.9828H8.90015L8.38001 7.19564H9.62607ZM7.04939 6.29117L7.34875 6.75008H7.04939V6.29117ZM7.04939 7.98281V7.19565H7.63942L8.15285 7.98281H7.04939ZM9.62607 9.0815L9.19465 8.42846H9.62607V9.0815Z"
-          fill={color}
+          fill={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         />
       </G>
       <Path
         d="M14.6667 7.99999C14.6667 11.68 11.68 14.6667 7.99999 14.6667C4.31999 14.6667 1.33333 11.68 1.33333 7.99999C1.33333 4.31999 4.31999 1.33333 7.99999 1.33333"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M11.3333 2V4.66667H14"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M14.6667 1.33333L11.3333 4.66666"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -1101,7 +1105,7 @@ export const RequestMoneyIcon = ({ color, size, style }: SvgIconProps) => {
           <Rect
             width="6"
             height="6"
-            fill={color}
+            fill={appTheme === "dark" ? "#E7E9EA" : "#000000"}
             transform="translate(5.33333 4.66666)"
           />
         </ClipPath>
@@ -1110,29 +1114,33 @@ export const RequestMoneyIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const RecurringTransferIcon = ({ color, size, style }: SvgIconProps) => {
+export const RecurringTransferIcon = ({ size }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M11.613 2.94h-8.02l1.254-1.253a.503.503 0 0 0 0-.707.503.503 0 0 0-.707 0L2.033 3.087a.517.517 0 0 0-.146.353.517.517 0 0 0 .147.353L4.14 5.9a.494.494 0 0 0 .707 0 .503.503 0 0 0 0-.707L3.593 3.94h8.02c.827 0 1.5.673 1.5 1.5v2.213c0 .274.227.5.5.5.274 0 .5-.226.5-.5V5.44a2.5 2.5 0 0 0-2.5-2.5ZM14.113 12.56a.517.517 0 0 0-.147-.353L11.86 10.1a.503.503 0 0 0-.707 0 .503.503 0 0 0 0 .707l1.254 1.253h-8.02c-.827 0-1.5-.673-1.5-1.5V8.347c0-.274-.227-.5-.5-.5-.274 0-.5.226-.5.5v2.213a2.5 2.5 0 0 0 2.5 2.5h8.02l-1.254 1.253a.503.503 0 0 0 0 .707c.1.1.227.147.354.147a.495.495 0 0 0 .353-.147l2.107-2.107a.517.517 0 0 0 .146-.353Z"
-        fill={color}
+        fill={appTheme === "dark" ? "#E7E9EA" : "#000000"}
       />
     </Svg>
   );
 };
 
-export const GalleryIcon = ({ color, size, style }: SvgIconProps) => {
+export const GalleryIcon = ({ size }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M6 14.667h4c3.333 0 4.667-1.334 4.667-4.667V6c0-3.333-1.334-4.667-4.667-4.667H6C2.667 1.333 1.333 2.667 1.333 6v4c0 3.333 1.334 4.667 4.667 4.667Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M6 6.667A1.333 1.333 0 1 0 6 4a1.333 1.333 0 0 0 0 2.667ZM1.78 12.633l3.287-2.206c.526-.354 1.286-.314 1.76.093l.22.193c.52.447 1.36.447 1.88 0l2.773-2.38c.52-.446 1.36-.446 1.88 0l1.087.934"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1140,12 +1148,14 @@ export const GalleryIcon = ({ color, size, style }: SvgIconProps) => {
   );
 };
 
-export const UserIcon = ({ color, size, style }: SvgIconProps) => {
+export const UserIcon = ({ color, size }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M8 8a3.333 3.333 0 1 0 0-6.667A3.333 3.333 0 0 0 8 8ZM13.727 14.667C13.727 12.087 11.16 10 8 10s-5.727 2.087-5.727 4.667"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1154,17 +1164,19 @@ export const UserIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const ClockIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M14.667 8A6.67 6.67 0 0 1 8 14.667 6.669 6.669 0 0 1 1.333 8 6.67 6.67 0 0 1 8 1.333 6.67 6.67 0 0 1 14.667 8Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M10.473 10.12 8.407 8.887c-.36-.214-.654-.727-.654-1.147V5.007"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1173,18 +1185,20 @@ export const ClockIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const BankIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="m8.247 1.433 6 2.4c.233.094.42.374.42.62v2.214c0 .366-.3.666-.667.666H2a.669.669 0 0 1-.667-.666V4.453c0-.246.187-.526.42-.62l6-2.4a.78.78 0 0 1 .494 0ZM14.667 14.667H1.333v-2c0-.367.3-.667.667-.667h12c.367 0 .667.3.667.667v2ZM2.667 12V7.333M5.333 12V7.333M8 12V7.333M10.667 12V7.333M13.333 12V7.333M.667 14.667h14.666"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M8 5.667a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1194,18 +1208,20 @@ export const BankIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const CreditCardIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M1.333 5.67h13.334M4 11.003h1.333M7 11.003h2.667"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M4.293 2.337H11.7c2.373 0 2.967.586 2.967 2.926v5.474c0 2.34-.594 2.926-2.96 2.926H4.293c-2.366.007-2.96-.58-2.96-2.92v-5.48c0-2.34.594-2.926 2.96-2.926Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1214,11 +1230,13 @@ export const CreditCardIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const LogoutIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="m11.627 9.747 1.706-1.707-1.706-1.707M6.507 8.04h6.78M7.84 13.333c-2.947 0-5.333-2-5.333-5.333S4.893 2.667 7.84 2.667"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1318,11 +1336,13 @@ export const MessageQuestionIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M3.64 12.327V10.38c0-.647.507-1.227 1.227-1.227.646 0 1.226.507 1.226 1.227v1.873c0 1.3-1.08 2.38-2.38 2.38-1.3 0-2.38-1.086-2.38-2.38V8.147a6.608 6.608 0 0 1 6.634-6.78c3.746 0 6.7 3.033 6.7 6.706v4.107c0 1.3-1.08 2.38-2.38 2.38-1.3 0-2.38-1.08-2.38-2.38v-1.873c0-.647.506-1.227 1.226-1.227.647 0 1.227.507 1.227 1.227v2.02"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -1331,39 +1351,41 @@ export const HeadphoneIcon = ({ color, size, style }: SvgIconProps) => {
 };
 
 export const TrashIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
         d="M21 5.98047C17.67 5.65047 14.32 5.48047 10.98 5.48047C9 5.48047 7.02 5.58047 5.04 5.78047L3 5.98047"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M18.8499 9.14062L18.1999 19.2106C18.0899 20.7806 17.9999 22.0006 15.2099 22.0006H8.7899C5.9999 22.0006 5.9099 20.7806 5.7999 19.2106L5.1499 9.14062"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M10.3301 16.5H13.6601"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <Path
         d="M9.5 12.5H14.5"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -1613,6 +1635,36 @@ export const PrivacySettingsIcon = ({ color, size, style }: SvgIconProps) => {
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+    </Svg>
+  );
+};
+
+export const TransactionKey = ({ color, size }: SvgIconProps) => {
+  return (
+    <Svg width={size} height={size} viewBox="0 0 36 37" fill="none">
+      <Path
+        d="M29.685 22.8955C26.595 25.9705 22.17 26.9155 18.285 25.7005L11.22 32.7505C10.71 33.2755 9.70501 33.5905 8.98501 33.4855L5.71501 33.0355C4.63501 32.8855 3.63001 31.8655 3.46501 30.7855L3.01501 27.5155C2.91001 26.7955 3.25501 25.7905 3.75001 25.2805L10.8 18.2305C9.60001 14.3305 10.53 9.90547 13.62 6.83047C18.045 2.40547 25.23 2.40547 29.67 6.83047C34.11 11.2555 34.11 18.4705 29.685 22.8955Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M10.335 26.7344L13.785 30.1844"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M21.75 17C22.9926 17 24 15.9926 24 14.75C24 13.5074 22.9926 12.5 21.75 12.5C20.5074 12.5 19.5 13.5074 19.5 14.75C19.5 15.9926 20.5074 17 21.75 17Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </Svg>
   );
@@ -1904,17 +1956,19 @@ export const SuccessIcon = ({ style }: SvgIconProps) => {
 };
 
 export const CameraIcon = ({ color, size, style }: SvgIconProps) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+
   return (
     <Svg width={size} height={size} fill="none">
       <Path
         d="M4.507 14.667h6.986c1.84 0 2.574-1.126 2.66-2.5l.347-5.506A2.502 2.502 0 0 0 12 4c-.407 0-.78-.234-.967-.594l-.48-.966c-.306-.607-1.106-1.107-1.786-1.107H7.24c-.687 0-1.487.5-1.793 1.107l-.48.966c-.187.36-.56.594-.967.594a2.502 2.502 0 0 0-2.5 2.66l.347 5.506c.08 1.374.82 2.5 2.66 2.5ZM7 5.334h2"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <Path
         d="M8 12a2.17 2.17 0 0 0 2.167-2.167A2.17 2.17 0 0 0 8 7.666a2.17 2.17 0 0 0-2.167 2.167A2.17 2.17 0 0 0 8 11.999Z"
-        stroke={color}
+        stroke={appTheme === "dark" ? "#E7E9EA" : "#000000"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -2507,9 +2561,9 @@ export const CloseCircleLargeIcon = ({ color }: SvgIconProps) => {
   );
 };
 
-export const UndrawCreditCardIcon = ({ color }: SvgIconProps) => {
+export const UndrawCreditCardIcon = ({ color, style }: SvgIconProps) => {
   return (
-    <Svg width={299} height={272} fill="none">
+    <Svg style={style} width={299} height={272} fill="none">
       <G clipPath="url(#a)">
         <Path
           d="M257.679 25.011 7.144 97.815l6.636 22.717 250.535-72.805-6.636-22.716Z"

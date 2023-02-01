@@ -30,8 +30,7 @@ const ChangeEmailScreen = ({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
             fontWeight: "600",
-          }}
-        >
+          }}>
           New Email
         </Text>
       ),
@@ -54,8 +53,7 @@ const ChangeEmailScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
               // marginTop: hp(30),
-            }}
-          >
+            }}>
             Change your email
           </Text>
           <View style={{ marginBottom: 10, marginTop: 30 }}>
@@ -110,7 +108,7 @@ const ChangeEmailScreen = ({
           style={{
             marginTop: hp(47),
           }}
-          disabled={!user.emailAddress && !newEmail}
+          disabled={!newEmail}
         />
       </View>
     </SpacerWrapper>

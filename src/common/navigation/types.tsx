@@ -140,6 +140,7 @@ export type CommonStackParamList = {
   LoginOptions: undefined;
   Appearance: undefined;
   AppLanguage: undefined;
+  TransactionPin: undefined;
 
   // Profile
   AccountDetails: undefined;

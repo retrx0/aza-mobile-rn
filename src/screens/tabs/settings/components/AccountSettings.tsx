@@ -9,6 +9,7 @@ import {
   ChangePhoneNumberIcon,
   LoginOptionsIcon,
   PrivacySettingsIcon,
+  TransactionKey,
 } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../../types";
@@ -72,6 +73,19 @@ export default function AccountSettings({
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "PrivacySettings" }),
     },
+
+    {
+      icon: <TransactionKey size={36} color={Colors[appTheme].mainText} />,
+      name: "Transaction Pin",
+      detail: "Change your transaction pin",
+      disabled: false,
+      disabledIcon: (
+        <TransactionKey size={36} color={Colors[appTheme].disabled} />
+      ),
+      handleNavigation: () =>
+        navigation.navigate("Common", { screen: "TransactionPin" }),
+    },
+
     // TODO TO BE IMPLEMENTED LATER
     // {
     //   icon: <LoginOptionsIcon size={36} color={Colors[colorScheme].mainText} />,

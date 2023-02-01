@@ -162,6 +162,7 @@ import WithdrawFeature from "../screens/tabs/home/withdraw-deposit/withdraw/With
 import DepositFeature from "../screens/tabs/home/withdraw-deposit/withdraw/DepositFeature";
 import DataBundle from "../screens/tabs/payments/airtime-screens/DataBundle";
 import AirtimeIndexScreen from "../screens/tabs/payments/airtime-screens/AirtimeIndex";
+import TransactionPin from "../screens/tabs/settings/screens/TransactionPin";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -274,6 +275,7 @@ const CommonStack = () => {
           name="PrivacySettings"
           component={PrivacySettingsScreen}
         />
+        <Stack.Screen name="TransactionPin" component={TransactionPin} />
 
         <Stack.Screen
           name="AccountBalanceVisibility"
