@@ -57,10 +57,10 @@ const AddBankAccountScreen = ({
     });
   }, []);
 
-  const moveToNextScreen = () => {
+  const moveToNextScreen = (accName: string, accNo: string) => {
     navigation.navigate("AddBankAccountConfirmation", {
-      accountName: accountName,
-      accountNumber,
+      accountName: accName,
+      accountNumber: accNo,
       bankName: bankName,
       id,
       bankCode,
@@ -77,7 +77,7 @@ const AddBankAccountScreen = ({
         if (res !== undefined) {
           setAccountName(res.data.name);
           setVerified(true);
-          moveToNextScreen();
+          moveToNextScreen(res.data.name, accNo);
         } else {
           toastError("Invalid account number");
           setVerified(false);
@@ -154,7 +154,7 @@ const AddBankAccountScreen = ({
           <Button
             title="Continue"
             disabled={!isVerified}
-            onPressButton={moveToNextScreen}
+            onPressButton={() => moveToNextScreen(accountName, accountNumber)}
           />
         </View>
       </View>

@@ -71,11 +71,7 @@ const BankAccountsScreen = ({
     if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
   }, []);
 
-  if (
-    user.bankAccounts.data &&
-    user.bankAccounts.loaded &&
-    screenType === "Withdraw"
-  ) {
+  if (user.bankAccounts.data.length > 0 && screenType === "Withdraw") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -200,11 +196,7 @@ const BankAccountsScreen = ({
     );
   }
 
-  if (
-    user.bankAccounts.data &&
-    user.bankAccounts.loaded &&
-    screenType === "Bank Account"
-  ) {
+  if (user.bankAccounts.data.length > 0 && screenType === "Bank Account") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
