@@ -53,7 +53,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/app/aza-app-icon-light.png",
+          "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
           "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }
