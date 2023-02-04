@@ -22,12 +22,11 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Close Account
         </Text>
       ),
@@ -50,7 +49,8 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
               alignSelf: "center",
               fontSize: hp(70),
               marginBottom: hp(20),
-            }}>
+            }}
+          >
             😔
           </Text>
           <Text
@@ -60,7 +60,8 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
               fontWeight: "500",
               maxWidth: wp(350),
               alignSelf: "center",
-            }}>
+            }}
+          >
             We're sad to see you go
           </Text>
         </View>
@@ -69,7 +70,8 @@ const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={() =>

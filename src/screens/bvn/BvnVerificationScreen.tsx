@@ -23,8 +23,8 @@ const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
-  const [bvn, setBvn] = useState("");
-  const [dob, setDOB] = useState<Date>(new Date());
+  const [bvn, setBvn] = useState("22222222223");
+  const [dob, setDOB] = useState<Date>(new Date("1995-03-08"));
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const dispatch = useAppDispatch();

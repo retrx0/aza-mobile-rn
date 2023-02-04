@@ -32,7 +32,7 @@ api.interceptors.response.use(
     if (res.response?.status == 401) {
     }
     console.debug(res.toJSON());
-    console.error("Looks like there was a problem. Status Code: " + res.status);
+    console.error("Looks like there was a problem. Status Code: " + res.code);
     return Promise.reject(error);
   }
 );

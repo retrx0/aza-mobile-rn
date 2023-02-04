@@ -63,7 +63,7 @@ const Colors: IThemeGroup = {
     disabledButtonBackground: "#A6A6A6",
     disabledButtonTextColor: "#CCCCCC",
     borderColor: "#121212",
-    highlightColor: "#F2F8FC",
+    highlightColor: "#D7D7DB",
   },
   dark: {
     borderColor: "#A6A6A6",

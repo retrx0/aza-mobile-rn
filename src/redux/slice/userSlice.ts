@@ -18,7 +18,7 @@ const initialState: IUserState = {
   lastName: "User",
   fullName: "Test User",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
-  azaAccountNumber: "1234556644",
+  azaAccountNumber: "1001561113",
   azaBalance: 100000,
   emailAddress: "testuser@azanaija.com",
   accountVerified: true,
@@ -381,11 +381,13 @@ export const userSlice = createSlice({
         state.bvnVerified = false;
       })
       .addCase(addUserBvnThunk.fulfilled, (state, action) => {
+        console.log("BVN" + action.payload);
         state.bvnVerified = action.payload as any;
       })
       .addCase(getUserAccount.pending, (state, action) => {})
       .addCase(getUserAccount.rejected, (state, action) => {})
       .addCase(getUserAccount.fulfilled, (state, action) => {
+        // console.log(action.payload);
         // state.azaAccountNumber = action.payload
         // state.azaBalance = action.payload
       })
@@ -415,13 +417,20 @@ export const userSlice = createSlice({
   },
 });
 
+export const getSupportedBanks = createAsyncThunk("banks", async () => {
+  return await thunkCourier("get", "/api/v1/bank/banks");
+});
+
 export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
   return await thunkCourier("get", "/api/v1/user/info");
 });
 
-export const getUserAccount = createAsyncThunk("user/getAccount", async () => {
-  return await thunkCourier("get", "/api/v1/account");
-});
+export const getUserAccount = createAsyncThunk(
+  "user/getAccount",
+  async ({ accountNumber }: { accountNumber: string }) => {
+    return await thunkCourier("get", `/api/v1/account/${accountNumber}`);
+  }
+);
 
 export const getUserTransactions = createAsyncThunk(
   "user/getTransactions",
@@ -465,6 +474,7 @@ export const uploadProfilePicThunk = createAsyncThunk(
 export const addUserBvnThunk = createAsyncThunk(
   "user/addUserBvn",
   async ({ bvn, dateOfBirth }: { bvn: string; dateOfBirth: string }) => {
+    console.log(dateOfBirth);
     return await thunkCourier<{ bvn: string; dateOfBirth: string }>(
       "post",
       "/api/v1/user/add/bvn",

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { StyleSheet, Modal, ActivityIndicator } from "react-native";
 import Animated, {
+  Easing,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -24,6 +25,7 @@ const ActivityModal = ({ loading }: IProps) => {
 
   const rotation = useSharedValue(0);
   const scale = useSharedValue(1);
+
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [{ rotateZ: `${rotation.value}deg` }, { scale: scale.value }],
@@ -31,12 +33,33 @@ const ActivityModal = ({ loading }: IProps) => {
   });
 
   useEffect(() => {
-    scale.value = withSequence(withSpring(1.5), withSpring(1));
-    rotation.value = withSequence(
-      withTiming(-10, { duration: 50 }),
-      withRepeat(withTiming(20, { duration: 20 }), 2, true),
-      withTiming(0, { duration: 100 })
+    scale.value = withRepeat(
+      withSequence(withSpring(1.3), withSpring(1, { damping: 200 })),
+      200
     );
+    // withSequence(withSpring(1.5), withSpring(1))
+    rotation.value = withRepeat(
+      withSequence(
+        withTiming(-5, {
+          duration: 1000,
+          easing: Easing.linear,
+        }),
+        withTiming(0, {
+          duration: 1000,
+          easing: Easing.linear,
+        }),
+        withTiming(5, {
+          duration: 1000,
+          easing: Easing.linear,
+        })
+      ),
+      200
+    );
+    // rotation.value = withSequence(
+    //   withTiming(-10, { duration: 50 }),
+    //   withRepeat(withTiming(20, { duration: 20 }), 2, true),
+    //   withTiming(0, { duration: 100 })
+    // );
   }, []);
 
   return (
