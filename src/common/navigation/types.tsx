@@ -49,6 +49,8 @@ export type CommonStackParamList = {
     beneficiaryName: string;
   };
 
+  Notifications: undefined;
+
   //Payments
   AirtimeData: undefined;
   Confirm: undefined;
