@@ -2,7 +2,7 @@
   "expo": {
     "name": "Aza",
     "slug": "Aza",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "orientation": "portrait",
     "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-white.png",

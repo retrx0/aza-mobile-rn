@@ -1,11 +1,8 @@
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { boolean, number } from "yup";
 import { Dstv, Ie, Mtn } from "../../../assets/images";
 import api from "../../api";
 import { thunkCourier } from "../../common/util/ReduxUtil";
-import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
 import { ITransactions, IUserState } from "../types";
 
@@ -13,9 +10,9 @@ import { ITransactions, IUserState } from "../types";
 const initialState: IUserState = {
   loading: false,
   loaded: false,
-  phoneNumber: "+2348135524649",
-  firstName: "Test",
-  lastName: "User",
+  phoneNumber: "080222222221",
+  firstName: "FEMI",
+  lastName: "ZACK",
   fullName: "Test User",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
   azaAccountNumber: "1001561113",
@@ -355,11 +352,11 @@ export const userSlice = createSlice({
       .addCase(getUserInfo.fulfilled, (state, action) => {
         state.loading = false;
         state.loaded = true;
-        state.firstName = action.payload.firstName;
-        state.lastName = action.payload.lastName;
+        // state.firstName = action.payload.firstName;
+        // state.lastName = action.payload.lastName;
         state.fullName =
           action.payload.firstName + " " + action.payload.lastName;
-        state.phoneNumber = action.payload.phoneNumber;
+        // state.phoneNumber = action.payload.phoneNumber;
         state.emailAddress = action.payload.email;
         state.gender = action.payload.gender;
         state.bvnVerified = action.payload.isBVNComfirmed;
