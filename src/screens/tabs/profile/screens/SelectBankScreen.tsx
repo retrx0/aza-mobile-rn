@@ -29,6 +29,7 @@ import {
 } from "../../../../redux/slice/bankSlice";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
 
 const SelectBankScreen = ({
   navigation,
@@ -48,8 +49,6 @@ const SelectBankScreen = ({
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -134,10 +133,22 @@ const SelectBankScreen = ({
                     },
                   ]}
                 >
-                  <Image
-                    source={{ uri: logoUrl }}
-                    style={{ width: 100, height: 70, resizeMode: "contain" }}
-                  />
+                  <View
+                    style={[
+                      CommonStyles.row,
+                      { flex: 1, justifyContent: "space-between" },
+                    ]}
+                  >
+                    {logoUrl !== "" && (
+                      <Image
+                        source={{ uri: logoUrl }}
+                        style={{ width: 30, height: 30, resizeMode: "contain" }}
+                      />
+                    )}
+                    <Text style={{ marginHorizontal: 10, fontSize: 18 }}>
+                      {bankName}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
                 <View
                   style={{

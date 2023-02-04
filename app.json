@@ -1,13 +1,11 @@
 {
   "expo": {
     "name": "Aza",
-    "slug": "aza",
-    "currentFullName": "@retro1/aza",
-    "originalFullName": "@retro1/aza",
-    "version": "0.1.2",
+    "slug": "Aza",
+    "version": "0.2.1",
     "orientation": "portrait",
     "primaryColor": "#000000",
-    "icon": "./assets/images/app/aza-app-icon-light.png",
+    "icon": "./assets/images/app/aza-app-icon-white.png",
     "scheme": "com.aza.azaapp",
     "owner": "retro1",
     "notification": {},
@@ -33,14 +31,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app/aza-app-icon-light.png",
+        "foregroundImage": "./assets/images/app/aza-app-icon-white.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
       "googleServicesFile": "google-services.json"
     },
     "web": {
-      "favicon": "./assets/images/app/aza-app-icon-light.png"
+      "favicon": "./assets/images/app/aza-app-icon-white.png"
     },
     "extra": {
       "eas": {
@@ -55,7 +53,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/app/aza-app-icon-light.png",
+          "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
           "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }

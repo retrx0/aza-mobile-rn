@@ -39,6 +39,9 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 
 import summariesData from "../../data/summaries.json";
+import { getAppTheme } from "../../theme";
+import { useAppSelector } from "../../redux";
+import { selectAppTheme } from "../../redux/slice/themeSlice";
 
 const filterBy = ["Summary", "Money Transfer", "Bills/Payment"];
 
@@ -65,17 +68,24 @@ const transactionDetailsIcons: Record<string, JSX.Element> = {
 const MonthlySummaryScreen = ({
   navigation,
 }: CommonScreenProps<"MonthlySummary">) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [filter, setFilter] = useState("Summary");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [ModalVisible, setModalVisible] = useState(false);
+
+  const [currentSummariesToShow, setCurrentSummariesToShow] = useState<
+    typeof summariesData[0]
+  >({
+    date: new Date().getMonth() + " " + new Date().getFullYear(),
+    chartData: [],
+    summaries: [],
+    totalWorthOfDonations: "0",
+  });
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
@@ -96,10 +106,10 @@ const MonthlySummaryScreen = ({
           style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
           onPress={() => setModalVisible(true)}
         >
-          <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
+          <DownLoadIcon color={Colors[appTheme].secondaryText} size={16} />
           <Text
             style={{
-              color: Colors[colorScheme].secondaryText,
+              color: Colors[appTheme].secondaryText,
               fontSize: hp(12),
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               textAlign: "center",
@@ -120,6 +130,9 @@ const MonthlySummaryScreen = ({
     const month = currentDate.toLocaleString("default", { month: "short" });
     const formattedDate = `${month} ${year}`;
     showThisMonthsSummaries(formattedDate);
+
+    // Get the current summaries based on the current index
+    setCurrentSummariesToShow(summariesData[currentIndex]);
   }, []);
 
   const showSummaries = (direction: "previous" | "next") => {
@@ -142,9 +155,6 @@ const MonthlySummaryScreen = ({
     setCurrentIndex(index);
   };
 
-  // Get the current summaries based on the current index
-  const currentSummariesToShow = summariesData[currentIndex];
-
   return (
     <>
       <SpacerWrapper>
@@ -159,14 +169,11 @@ const MonthlySummaryScreen = ({
           >
             <View style={[CommonStyles.row]}>
               <TouchableOpacity onPress={() => showSummaries("previous")}>
-                <ArrowLeftIcon color={Colors[colorScheme].mainText} />
+                <ArrowLeftIcon color={Colors[appTheme].mainText} />
               </TouchableOpacity>
               <Text style={styles.date}>{currentSummariesToShow.date}</Text>
               <TouchableOpacity onPress={() => showSummaries("next")}>
-                <ArrowRightIcon
-                  color={Colors[colorScheme].mainText}
-                  size={16}
-                />
+                <ArrowRightIcon color={Colors[appTheme].mainText} size={16} />
               </TouchableOpacity>
             </View>
             <ScrollView
@@ -274,7 +281,7 @@ const MonthlySummaryScreen = ({
                           style={[
                             styles.info,
                             {
-                              color: Colors[colorScheme].secondaryText,
+                              color: Colors[appTheme].secondaryText,
                             },
                           ]}
                         >
@@ -284,7 +291,7 @@ const MonthlySummaryScreen = ({
                       {transactionDetails?.length !== undefined && (
                         <View style={{ marginVertical: 10 }}>
                           <ArrowDownIcon
-                            color={Colors[colorScheme].mainText}
+                            color={Colors[appTheme].mainText}
                             size={16}
                           />
                         </View>
@@ -302,7 +309,7 @@ const MonthlySummaryScreen = ({
                               styles.transactionDetailsIcons,
                               {
                                 backgroundColor:
-                                  colorScheme === "dark" ? "#3A3D42" : "black",
+                                  appTheme === "dark" ? "#3A3D42" : "black",
                               },
                             ]}
                           >
@@ -330,7 +337,7 @@ const MonthlySummaryScreen = ({
                             style={[
                               styles.detailInfo,
                               {
-                                color: Colors[colorScheme].secondaryText,
+                                color: Colors[appTheme].secondaryText,
                               },
                             ]}
                           >
@@ -339,7 +346,7 @@ const MonthlySummaryScreen = ({
                           {length - 1 !== i && (
                             <View style={{ marginVertical: 15 }}>
                               <PlusIcon
-                                color={Colors[colorScheme].mainText}
+                                color={Colors[appTheme].mainText}
                                 size={34}
                               />
                             </View>
@@ -353,7 +360,7 @@ const MonthlySummaryScreen = ({
                 style={[
                   styles.info,
                   {
-                    color: Colors[colorScheme].secondaryText,
+                    color: Colors[appTheme].secondaryText,
                     alignSelf: "center",
                   },
                 ]}
@@ -435,7 +442,7 @@ const MonthlySummaryScreen = ({
                     styles.donationIconContainer,
                     {
                       backgroundColor:
-                        colorScheme === "dark" ? "#3A3D42" : "black",
+                        appTheme === "dark" ? "#3A3D42" : "black",
                     },
                   ]}
                 >
@@ -451,7 +458,7 @@ const MonthlySummaryScreen = ({
                   style={[
                     styles.donationText,
                     {
-                      color: Colors[colorScheme].secondaryText,
+                      color: Colors[appTheme].secondaryText,
                     },
                   ]}
                 >

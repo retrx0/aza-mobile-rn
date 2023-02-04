@@ -116,7 +116,7 @@ const SignInWelcomeBackScreen = ({
               { authenticationPrompt: "storing" }
             );
             dispatch(getUserInfo());
-            dispatch(getUserAccount());
+            dispatch(getUserAccount({ accountNumber: "1001561113" }));
             setScreenLoading(false);
             navigation.getParent()?.navigate("Root");
           } else {
