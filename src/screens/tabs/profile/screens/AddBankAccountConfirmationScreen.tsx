@@ -19,6 +19,7 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import {
   getUserSavedBankAccs,
   saveUserBankAcc,
+  selectUser,
 } from "../../../../redux/slice/userSlice";
 
 const AddBankAccountConfirmationScreen = ({
@@ -41,6 +42,7 @@ const AddBankAccountConfirmationScreen = ({
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -66,6 +68,18 @@ const AddBankAccountConfirmationScreen = ({
 
   const addBankAccount = async () => {
     setButtonLoading(true);
+
+    const accountAlreadyAdded = user.bankAccounts.data.find(
+      (account) =>
+        account.accountName === _accountName &&
+        account.accountNumber === accountNumber
+    );
+    if (accountAlreadyAdded) {
+      toastError("Account already exists");
+      setButtonLoading(false);
+      return;
+    }
+
     const addBank = await dispatch(
       saveUserBankAcc({
         accountName: _accountName,

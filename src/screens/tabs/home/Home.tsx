@@ -1,4 +1,4 @@
-import { Modal, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { RootTabScreenProps } from "../../../../types";
 
@@ -8,9 +8,9 @@ import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
 import { useAppSelector } from "../../../redux";
 import { useNotifications } from "../../../hooks/useNotifications";
-import { useState } from "react";
 import { selectUser } from "../../../redux/slice/userSlice";
 import { View as View } from "../../../theme/Themed";
+import NotificationsContainer from "./components/NotificationsContainer";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   const {
@@ -39,11 +39,12 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
     <View style={styles.container}>
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
-      <LinkBVN
+      {/* <LinkBVN
         navigation={navigation}
         route={route}
         isBvnLinked={user.bvnVerified}
-      />
+      /> */}
+      <NotificationsContainer navigation={navigation} route={route} />
       <RecentTransactions navigation={navigation} route={route} />
     </View>
   );
