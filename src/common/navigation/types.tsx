@@ -13,6 +13,10 @@ import {
 interface IXCharity extends ICharity {
   tabKey: string;
 }
+
+interface IXGiftCard extends IGiftCard {
+  selectedPrice: string;
+}
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
@@ -74,7 +78,7 @@ export type CommonStackParamList = {
     smartCardNumber?: string;
     customerAccountNumber?: string;
   };
-  GiftCardConfirmation: undefined;
+  GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
   GiftCardDetails: IGiftCard;

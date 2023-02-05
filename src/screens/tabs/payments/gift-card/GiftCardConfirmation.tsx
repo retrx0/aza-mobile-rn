@@ -14,13 +14,26 @@ import { ImageInput } from "../sub-components/ImageInput";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import Button from "../../../../components/buttons/Button";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import {
+  CommonScreenProps,
+  CommonStackParamList,
+} from "../../../../common/navigation/types";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 export default function GiftCardConfirmation({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+  route,
+}: CommonScreenProps<"GiftCardConfirmation">) {
   const [confirmed, setConfirm] = useState(false);
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+
+  const { emailAddress } = useAppSelector(selectUser);
+
+  const {
+    giftCard: { brand, fixedSenderDenominations, productName, selectedPrice },
+  } = route.params;
 
   return (
     <SpacerWrapper>
@@ -41,8 +54,7 @@ export default function GiftCardConfirmation({
               fontSize: hp(16),
             }}
             label={"Package"}
-            // placeholder={"iTunes USD100"}
-            value="iTunes USD100"
+            value={productName}
           />
 
           <UnderlinedInput
@@ -55,7 +67,7 @@ export default function GiftCardConfirmation({
               fontSize: hp(16),
             }}
             label="Amount"
-            value={"\u20A660,000"}
+            value={NAIRA_UNICODE + selectedPrice}
             returnKeyType="done"
           />
           <UnderlinedInput
@@ -68,9 +80,7 @@ export default function GiftCardConfirmation({
               fontSize: hp(16),
             }}
             label="Email Address"
-            // placeholder={"\u20A660,000"}
-
-            value="abc@example.com"
+            value={emailAddress}
             returnKeyType="done"
           />
         </View>

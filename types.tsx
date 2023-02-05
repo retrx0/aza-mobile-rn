@@ -13,7 +13,7 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { CommonStackParamList } from "./src/common/navigation/types";
-import { IUserCred } from "./src/redux/types";
+import { IGiftCard, IUserCred } from "./src/redux/types";
 
 declare global {
   namespace ReactNavigation {
@@ -83,7 +83,7 @@ export type PaymentsStackParamList = {
   InternetConfirmation: undefined;
   CableConfirmation: undefined;
   WaterConfirmation: undefined;
-  GiftCardConfirmation: undefined;
+  GiftCardConfirmation: { giftCard: IGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
   GiftCardDetails: undefined;

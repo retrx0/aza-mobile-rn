@@ -15,12 +15,19 @@ import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import { useState } from "react";
 import { AIrtimeStyles as styles } from "../../payments/airtime-screens/styles";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { setEmail } from "../../../../redux/slice/newUserSlice";
 
 const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
-  const colorScheme = useColorScheme();
+  const [email, setEmail] = useState("");
+
+  const { emailAddress } = useAppSelector(selectUser);
+
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
+    setEmail(emailAddress);
     if (!isEnabled) {
       Keyboard.dismiss();
     }
@@ -73,6 +80,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
             style={{ marginTop: hp(10) }}
             label="Enter Email Address"
             placeholder="Type your email address"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <CustomSwitch
             title="My email"
@@ -93,16 +102,8 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
                 screen: "GiftCardConfirmation",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-
-              CommonStyles.button,
-            ]}
+            styleText={{}}
+            style={[CommonStyles.button]}
             disabled={false}
           />
           <CancelButtonWithUnderline
