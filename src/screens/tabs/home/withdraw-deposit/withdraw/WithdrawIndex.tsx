@@ -4,7 +4,7 @@ import { View } from "../../../../../theme/Themed";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";
 
-import { RootTabScreenProps } from "../../../../../../types";
+import { CommonScreenProps } from "../../../../../common/navigation/types";
 import Colors from "../../../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
@@ -14,7 +14,7 @@ import Divider from "../../../../../components/divider/Divider";
 
 export default function WithdrawIndex({
   navigation,
-}: RootTabScreenProps<"Home">) {
+}: CommonScreenProps<"WithdrawDepositTabs">) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -25,10 +25,7 @@ export default function WithdrawIndex({
             heading="Withdraw money to your own bank account"
             subHeading="Bank Account"
             onPress={() => {
-              navigation.navigate("Common", {
-                screen: "BankAccounts",
-                params: { screenType: "Withdraw" },
-              });
+              navigation.navigate("BankAccounts", { screenType: "Withdraw" });
             }}
           />
           <Divider />

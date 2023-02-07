@@ -1,19 +1,21 @@
 import { StyleSheet } from "react-native";
 import React from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { View as View } from "../../../../../theme/Themed";
 import MenuList from "../../../../../components/ListItem/MenuList";
-import { RootTabScreenProps } from "../../../../../../types";
 import Button from "../../../../../components/buttons/Button";
+import Divider from "../../../../../components/divider/Divider";
+
+import { CommonScreenProps } from "../../../../../common/navigation/types";
 import Colors from "../../../../../constants/Colors";
 import { hp } from "../../../../../common/util/LayoutUtil";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
-import Divider from "../../../../../components/divider/Divider";
 
 export default function DepositIndex({
   navigation,
-}: RootTabScreenProps<"Home">) {
+}: CommonScreenProps<"WithdrawDepositTabs">) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -24,7 +26,7 @@ export default function DepositIndex({
             heading="Card deposit"
             subHeading="Deposit via Debit/Credit card"
             onPress={() => {
-              navigation.navigate("Common", { screen: "Deposit" });
+              navigation.navigate("Deposit");
             }}
           />
           <Divider />
@@ -34,7 +36,8 @@ export default function DepositIndex({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Cancel"
             style={styles.button}

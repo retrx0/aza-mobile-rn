@@ -1,24 +1,29 @@
+import { useEffect, useState } from "react";
 import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { TabBar, TabView } from "react-native-tab-view";
+
 import { Text } from "../../../../theme/Themed";
 import DepositIndex from "./deposit/DepositIndex";
 import WithdrawIndex from "./withdraw/WithdrawIndex";
+
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import { TabBar, TabView } from "react-native-tab-view";
+
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useState } from "react";
 import Colors from "../../../../constants/Colors";
-import { RootTabScreenProps } from "../../../../../types";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { InfoIcon } from "../../../../../assets/svg";
+
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const WithdrawDepositTabs = ({
   navigation,
   route,
-}: RootTabScreenProps<"Home">) => {
-  const [index, setIndex] = useState(0);
+}: CommonScreenProps<"WithdrawDepositTabs">) => {
+  const { tabToView } = route.params;
+  const [index, setIndex] = useState(tabToView === "withdraw" ? 0 : 1);
   const [routes] = useState([
     { key: "first", title: "Withdraw" },
     { key: "second", title: "Deposit" },
@@ -26,10 +31,9 @@ const WithdrawDepositTabs = ({
 
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
-  // const titlecheck = "Withdraw";
 
   const handlePress = () => {
-    if (routes.some((route) => route.title === "Withdraw")) {
+    if (tabToView === "withdraw") {
       navigation.getParent()?.navigate("WithdrawFeature");
     } else {
       navigation.getParent()?.navigate("DepositFeature");

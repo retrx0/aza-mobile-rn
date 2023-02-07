@@ -974,9 +974,6 @@ const CommonStack = () => {
           <Stack.Screen
             name="WithdrawDepositTabs"
             component={WithdrawDepositTabs}
-            options={{
-              title: "Withdraw/Deposit",
-            }}
           />
           <Stack.Screen component={DepositScreen} name="Deposit" />
         </Stack.Group>

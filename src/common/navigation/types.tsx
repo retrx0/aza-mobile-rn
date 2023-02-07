@@ -180,7 +180,7 @@ export type CommonStackParamList = {
   ContactUs: undefined;
 
   //withdraw and deposit
-  WithdrawDepositTabs: { screen: string };
+  WithdrawDepositTabs: { tabToView: "withdraw" | "deposit" };
   Deposit: undefined;
 
   // Transfer modal screens
