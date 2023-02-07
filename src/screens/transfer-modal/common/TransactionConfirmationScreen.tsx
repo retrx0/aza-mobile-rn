@@ -21,10 +21,10 @@ import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
 import { selectUser } from "../../../redux/slice/userSlice";
-import api from "../../../api";
 import { transferToAzaUserAPI } from "../../../api/vfd";
 import { requestMoneyAPI } from "../../../api/money-request";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
+import { payAzaUserAPI } from "../../../api/payment";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -68,24 +68,36 @@ const TransactionConfirmationScreen = ({
       let transactionCompleted = false;
 
       if (confirmationType === "send") {
-        const transfer = await transferToAzaUserAPI({
-          amount: "" + amount,
-          fromAccount: azaAccountNumber,
-          fromBvn: bvnNumber,
-          fromClientId: "",
-          fromClient: "",
-          fromSavingsId: "",
-          toClient: "",
-          toBvn: "",
-          toAccount: beneficiary.azaAccountNumber,
-          toBank: "",
-          signature: "Aza",
-          remark: "",
-          transferType: "intra",
-          reference: transDescription ? transDescription : "Aza transaction",
-          toSession: "",
-          toKyc: "",
+        // const transfer = await transferToAzaUserAPI({
+        //   amount: "" + amount,
+        //   fromAccount: azaAccountNumber,
+        //   fromBvn: bvnNumber,
+        //   fromClientId: "",
+        //   fromClient: "",
+        //   fromSavingsId: "",
+        //   toClient: "",
+        //   toBvn: "",
+        //   toAccount: beneficiary.azaAccountNumber,
+        //   toBank: "",
+        //   signature: "Aza",
+        //   remark: "",
+        //   transferType: "intra",
+        //   reference: transDescription ? transDescription : "Aza transaction",
+        //   toSession: "",
+        //   toKyc: "",
+        // });
+        const transfer = await payAzaUserAPI({
+          sourceAccount: "",
+          destinationAccount: "",
+          amount,
+          transactionPin: "",
+          description: transDescription ? transDescription : "Aza transaction",
+          currency: "NGN",
+          destinationAccountName: "",
+          destinationBankCode: "",
+          destinationChannel: "",
         });
+
         if (transfer) {
           transactionCompleted = true;
         }

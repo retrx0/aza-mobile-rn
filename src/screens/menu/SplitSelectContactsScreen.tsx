@@ -193,8 +193,8 @@ const SplitSelectContactsScreen = ({
                       scheme: appTheme,
                     })}
                     name={item.name}
-                    // phoneNumber={item.phoneNumbers[0].number}
-                    phoneNumber={"08167753429"}
+                    phoneNumber={item.phoneNumbers?.[0]?.digits}
+                    hideDefaultIcons
                     suffixIcon={
                       checkIfContactIsSelected(item) ? (
                         <CheckIcon size={25} color={Colors["general"].green} />
