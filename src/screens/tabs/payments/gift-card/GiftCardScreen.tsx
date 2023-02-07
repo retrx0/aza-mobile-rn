@@ -60,7 +60,9 @@ export default function GiftCardScreen({
         ) : (
           giftCards.data
             .filter((gc) =>
-              gc.productName.toLowerCase().includes(searchTerm.toLowerCase())
+              gc.brand.brandName
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
             )
             .map((item, index) => {
               return (
@@ -91,7 +93,7 @@ const GiftCard = ({
     <CommonPaymentCard
       index={index}
       itemPictureUrl={giftCard.logoUrls[0]}
-      itemTitle={giftCard.productName}
+      itemTitle={giftCard.brand.brandName}
       onPress={onPress}
     />
   );
