@@ -1,14 +1,15 @@
 import { FlatList } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
-import { CommonScreenProps } from "../../../../common/navigation/types";
-import BackButton from "../../../../components/buttons/BackButton";
+import React, {  useState } from "react";
+import Modal from "react-native-modal";
+
 import { View, Text } from "../../../../theme/Themed";
-import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import { hp,  } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Phone from "../../../auth/common/PhoneStage";
-import Modal from "react-native-modal";
 
 import {
   CountriesType,
@@ -19,6 +20,7 @@ import { useCountries } from "../../../../hooks/useCountries";
 import { CountriesCard } from "../../../auth/signup/components/CountriesCard";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ChangePhoneNumberScreen = ({
   navigation,
@@ -36,28 +38,8 @@ const ChangePhoneNumberScreen = ({
   };
 
   const { phoneNumber } = useAppSelector(selectUser);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          New Phone Number
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "New Phone Number");
+ 
 
   return (
     <SpacerWrapper>

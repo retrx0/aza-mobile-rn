@@ -1,9 +1,8 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
-
-import BackButton from "../../../../components/buttons/BackButton";
+ 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 
@@ -12,6 +11,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { CheckIcon } from "../../../../../assets/svg";
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AppLanguageScreen = ({
   navigation,
@@ -42,29 +42,8 @@ const AppLanguageScreen = ({
   useEffect(() => {
     saveSettingsToStorage({ appLanguage: selectedLanguage });
   }, [selectedLanguage]);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          App Language
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+ 
+  useNavigationHeader(navigation, "App Language");
 
   return (
     <View style={styles.container}>

@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import BackButton from "../../components/buttons/BackButton";
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { View, Text, TextInput } from "../../theme/Themed";
@@ -18,6 +17,7 @@ import { addUserBvnThunk } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
 import DatePicker from "@react-native-community/datetimepicker";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const BvnVerificationScreen = ({
   navigation,
@@ -34,27 +34,7 @@ const BvnVerificationScreen = ({
 
   const { onVerifyNavigateBackTo } = route.params;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}
-        >
-          Tier 1 Verification
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Tier 1 Verification");
 
   const verifyBvn = async () => {
     setButtonLoading(true);

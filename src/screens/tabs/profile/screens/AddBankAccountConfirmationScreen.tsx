@@ -1,8 +1,7 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import { View, Text, TextInput } from "../../../../theme/Themed";
 
@@ -21,6 +20,7 @@ import {
   saveUserBankAcc,
   selectUser,
 } from "../../../../redux/slice/userSlice";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AddBankAccountConfirmationScreen = ({
   navigation,
@@ -44,27 +44,7 @@ const AddBankAccountConfirmationScreen = ({
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Confirmation
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Confirmation");
 
   const addBankAccount = async () => {
     setButtonLoading(true);

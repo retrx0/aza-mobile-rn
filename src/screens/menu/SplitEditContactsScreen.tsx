@@ -1,11 +1,10 @@
-import React, { useLayoutEffect, useState, useEffect } from "react";
-import { StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { LayoutAnimation, ScrollView } from "react-native";
 import { Contact } from "expo-contacts";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
-import BackButton from "../../components/buttons/BackButton";
-import { View, Text } from "../../theme/Themed";
+import { View } from "../../theme/Themed";
 
 import Divider from "../../components/divider/Divider";
 import SplitListItem from "./components/SplitListItem";
@@ -14,19 +13,16 @@ import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWith
 
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
-import { EditIcon, TrashIcon } from "../../../assets/svg";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { numberWithCommas } from "../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
-import { NAIRA_UNICODE } from "../../constants/AppConstants";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import EditContactItem from "./components/split/EditContactItem";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const SplitEditContactsScreen = ({
   navigation,
@@ -38,27 +34,7 @@ const SplitEditContactsScreen = ({
   const user = useAppSelector(selectUser);
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Split
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Split");
 
   const { amount, date, splitImage, name, contacts } = route.params;
 
@@ -67,6 +43,7 @@ const SplitEditContactsScreen = ({
   }, []);
 
   const removePerson = (id: Contact["id"]) => {
+    LayoutAnimation.easeInEaseOut();
     setContactsToEdit(contactsToEdit.filter((contact) => contact.id !== id));
     if (contactsToEdit.length === 1) {
       navigation.goBack();
@@ -136,8 +113,6 @@ const SplitEditContactsScreen = ({
                 contacts: contactsToEdit,
               })
             }
-            styleText={{}}
-            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel"
@@ -152,11 +127,3 @@ const SplitEditContactsScreen = ({
 };
 
 export default SplitEditContactsScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: 15,
-  },
-});

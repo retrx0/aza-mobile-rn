@@ -1,8 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import { View, Text } from "../../../../theme/Themed";
-import BackButton from "../../../../components/buttons/BackButton";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
@@ -10,6 +9,7 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const SplitAndMoneyRequestsScreen = ({
   navigation,
@@ -29,27 +29,7 @@ const SplitAndMoneyRequestsScreen = ({
     saveSettingsToStorage({ splitAndMoneyRequestsSwitch: isEnabled });
   }, [isEnabled]);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Split and Money Requests
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Split and Money Requests");
 
   return (
     <View style={styles.container}>

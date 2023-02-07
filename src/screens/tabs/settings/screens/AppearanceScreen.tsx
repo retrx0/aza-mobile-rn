@@ -1,28 +1,30 @@
-import { Appearance, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import {  StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect,  useState } from "react";
+import * as StatusBar from "expo-status-bar";
+
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import BackButton from "../../../../components/buttons/BackButton";
 import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
+import { hp } from "../../../../common/util/LayoutUtil"; 
 import CommonStyles from "../../../../common/styles/CommonStyles";
+
 import {
   CheckIcon,
   DarkModeIcon,
   LightModeIcon,
   SystemModeIcon,
 } from "../../../../../assets/svg";
+
 import Divider from "../../../../components/divider/Divider";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 
-import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import { useAppDispatch } from "../../../../redux";
 import { setAppTheme } from "../../../../redux/slice/themeSlice";
 import { AppThemeType, getAppTheme } from "../../../../theme";
-import * as StatusBar from "expo-status-bar";
 
-const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
-  const colorScheme = useColorScheme();
+import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+
+const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => { 
 
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
@@ -71,28 +73,9 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   useEffect(() => {
     saveSettingsToStorage({ appearance: selectedAppearance });
   }, [selectedAppearance]);
+ 
+  useNavigationHeader(navigation, "Appearance");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Appearance
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
 
   return (
     <View style={styles.container}>

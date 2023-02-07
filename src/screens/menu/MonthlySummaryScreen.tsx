@@ -1,16 +1,14 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { StyleSheet, ScrollView, TouchableOpacity, Modal } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 
-import BackButton from "../../components/buttons/BackButton";
 import { View, Text } from "../../theme/Themed";
 
 import SummaryModal from "./components/Summary";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 import Colors from "../../constants/Colors";
-import { hp, wp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
+import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import {
   ArrowDownIcon,
@@ -18,7 +16,6 @@ import {
   ArrowRightIcon,
   BankIcon,
   BankLargeIcon,
-  CloseCircleLargeIcon,
   DebitCardIcon,
   DebitCardSmallIcon,
   DepositIcon,
@@ -42,6 +39,7 @@ import summariesData from "../../data/summaries.json";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const filterBy = ["Summary", "Money Transfer", "Bills/Payment"];
 
@@ -82,46 +80,27 @@ const MonthlySummaryScreen = ({
     totalWorthOfDonations: "0",
   });
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}
-        >
-          Monthly Summary
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => (
-        <TouchableOpacity
-          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-          onPress={() => setModalVisible(true)}
-        >
-          <DownLoadIcon color={Colors[appTheme].secondaryText} size={16} />
-          <Text
-            style={{
-              color: Colors[appTheme].secondaryText,
-              fontSize: hp(12),
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-              textAlign: "center",
-              fontWeight: "600",
-            }}
-          >
-            Download
-          </Text>
-        </TouchableOpacity>
-      ),
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "Monthly Summary",
+    <TouchableOpacity
+      style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
+      onPress={() => setModalVisible(true)}
+    >
+      <DownLoadIcon color={Colors[appTheme].secondaryText} size={16} />
+      <Text
+        style={{
+          color: Colors[appTheme].secondaryText,
+          fontSize: hp(12),
+          fontFamily: "Euclid-Circular-A-Semi-Bold",
+          textAlign: "center",
+          fontWeight: "600",
+        }}
+      >
+        Download
+      </Text>
+    </TouchableOpacity>
+  );
 
   useEffect(() => {
     // start by showing this months summaries

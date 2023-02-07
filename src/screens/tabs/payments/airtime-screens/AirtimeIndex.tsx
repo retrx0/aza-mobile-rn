@@ -1,19 +1,20 @@
-import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { useState } from "react";
+import { useWindowDimensions } from "react-native";
+import { TabBar, TabView } from "react-native-tab-view";
+
 import { Text } from "../../../../theme/Themed";
+import Airtime from "./Airtime";
+import DataBundle from "./DataBundle";
+
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import { TabBar, TabView } from "react-native-tab-view";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useLayoutEffect, useState } from "react";
-import Colors from "../../../../constants/Colors";
-import { RootTabScreenProps } from "../../../../../types";
-import BackButton from "../../../../components/buttons/BackButton";
-import { hp } from "../../../../common/util/LayoutUtil";
-import { InfoIcon } from "../../../../../assets/svg";
-import { CommonScreenProps } from "../../../../common/navigation/types";
-import Airtime from "./Airtime";
-import DataBundle from "./DataBundle";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AirtimeDataScreen = ({
   navigation,
@@ -27,28 +28,7 @@ const AirtimeDataScreen = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Airtime & Data
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Airtime & Data");
 
   const renderScene = (props: any) => {
     switch (props.route.key) {
@@ -91,7 +71,8 @@ const AirtimeDataScreen = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

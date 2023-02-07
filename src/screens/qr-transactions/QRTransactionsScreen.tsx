@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
@@ -6,7 +6,6 @@ import { RootStackScreenProps } from "../../../types";
 
 import QRMakePaymentTab from "./components/QRMakePaymentTab";
 import QRReceivePaymentTab from "./components/QRReceivePaymentTab";
-import BackButton from "../../components/buttons/BackButton";
 import { Text as Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
@@ -15,6 +14,7 @@ import { InfoIcon } from "../../../assets/svg";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const QRTransactionsScreen = ({
   navigation,
@@ -30,36 +30,16 @@ const QRTransactionsScreen = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}>
-          QR Transactions
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Common", { screen: "QRFeature" })
-          }>
-          {/* TODO Add these colors to Colors.ts and import them */}
-          <InfoIcon color={Colors[appTheme].Text} />
-        </TouchableOpacity>
-      ),
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "QR Transactions",
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}
+    >
+      {/* TODO Add these colors to Colors.ts and import them */}
+      <InfoIcon color={Colors[appTheme].Text} />
+    </TouchableOpacity>
+  );
 
   const renderScene = (props: any) => {
     switch (props.route.key) {
@@ -104,7 +84,8 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}>
+                    }}
+                  >
                     {route.title}
                   </Text>
                 );

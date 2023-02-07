@@ -1,4 +1,3 @@
-import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../common/navigation/types";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { Text, View } from "../../../theme/Themed";
@@ -8,28 +7,15 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import ExitButton from "../../../components/buttons/ExitButton";
 import * as Images from "../../../../assets/images";
 import { Image } from "react-native";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
 
 const QRFeature = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          QR Transaction
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "QR Transaction",
+    <ExitButton onPress={() => navigation.goBack()} />,
+    true
+  );
   const slides = [
     {
       key: 1,
@@ -49,7 +35,8 @@ const QRFeature = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
               alignSelf: "center",
               marginTop: hp(56),
               marginBottom: hp(56),
-            }}>
+            }}
+          >
             <Image
               source={item.icon}
               resizeMode="cover"
@@ -66,7 +53,8 @@ const QRFeature = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
                 alignSelf: "center",
                 lineHeight: hp(30),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureTitle}
             </Text>
             <Text
@@ -79,7 +67,8 @@ const QRFeature = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
                 alignSelf: "center",
                 marginTop: hp(20),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureText}
             </Text>
           </View>

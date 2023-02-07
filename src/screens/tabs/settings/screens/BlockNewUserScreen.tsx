@@ -1,19 +1,23 @@
 import { useWindowDimensions } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
-import { CommonScreenProps } from "../../../../common/navigation/types";
-import BackButton from "../../../../components/buttons/BackButton";
-import { Text as Text } from "../../../../theme/Themed";
-import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import React, {  useState } from "react";
 import { TabView, TabBar } from "react-native-tab-view";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+
 import BlockByAzaNumberTab from "../components/BlockByAzaNumberTab";
 import BlockByMobileNumberTab from "../components/BlockByMobileNumberTab";
 import BlockUserModal from "../components/BlockUserModal";
+import { Text as Text } from "../../../../theme/Themed";
+
+import Colors from "../../../../constants/Colors";
+ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { hp } from "../../../../common/util/LayoutUtil";
+
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const BlockNewUserScreen = ({
   navigation,
@@ -31,26 +35,7 @@ const BlockNewUserScreen = ({
     setModalVisible(!isModalVisible);
   };
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Block New User
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Block New User");
 
   const renderScene = ({ route }: any) => {
     switch (route.key) {

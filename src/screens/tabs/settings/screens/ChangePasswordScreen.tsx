@@ -1,8 +1,7 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, {  useState } from "react";
 
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
 import { View as View, Text as Text } from "../../../../theme/Themed";
@@ -19,6 +18,7 @@ import { loginUserAPI } from "../../../../api/auth";
 
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ChangePasswordScreen = ({
   navigation,
@@ -27,27 +27,8 @@ const ChangePasswordScreen = ({
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const { phoneNumber, emailAddress } = useAppSelector(selectUser);
+  useNavigationHeader(navigation, "Current Password");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}>
-          Current Password
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
 
   const verifyPassword = async () => {
     setButtonLoading(true);

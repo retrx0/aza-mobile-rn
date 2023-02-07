@@ -7,12 +7,12 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import { TabBar, TabView } from "react-native-tab-view";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import Colors from "../../../../constants/Colors";
 import { RootTabScreenProps } from "../../../../../types";
-import BackButton from "../../../../components/buttons/BackButton";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { InfoIcon } from "../../../../../assets/svg";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const WithdrawDepositTabs = ({
   navigation,
@@ -35,34 +35,14 @@ const WithdrawDepositTabs = ({
       navigation.getParent()?.navigate("DepositFeature");
     }
   };
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Withdraw
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
 
-      headerRight: () => (
-        <TouchableOpacity onPress={handlePress}>
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
-        </TouchableOpacity>
-      ),
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "Withdraw/Deposit",
+    <TouchableOpacity onPress={handlePress}>
+      <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+    </TouchableOpacity>
+  );
 
   const renderScene = (props: any) => {
     switch (props.route.key) {
@@ -105,7 +85,8 @@ const WithdrawDepositTabs = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

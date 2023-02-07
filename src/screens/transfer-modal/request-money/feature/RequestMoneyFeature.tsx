@@ -1,4 +1,3 @@
-import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { RequestIcon } from "../../../../../assets/svg";
 import AppIntroSlider from "react-native-app-intro-slider";
@@ -10,30 +9,18 @@ import ExitButton from "../../../../components/buttons/ExitButton";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { useAppSelector } from "./../../../../redux";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const RequestMoneyFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Request Money
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "Request Money",
+    <ExitButton onPress={() => navigation.goBack()} />,
+    true
+  );
+
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const slides = [
@@ -55,7 +42,8 @@ const RequestMoneyFeature = ({
               alignSelf: "center",
               marginTop: hp(83),
               marginBottom: hp(81),
-            }}>
+            }}
+          >
             {item.icon}
           </View>
           <View style={{ paddingHorizontal: hp(30) }}>
@@ -68,7 +56,8 @@ const RequestMoneyFeature = ({
                 alignSelf: "center",
                 lineHeight: hp(30),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureTitle}
             </Text>
             <Text
@@ -81,7 +70,8 @@ const RequestMoneyFeature = ({
                 alignSelf: "center",
                 marginTop: hp(20),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureText}
             </Text>
           </View>

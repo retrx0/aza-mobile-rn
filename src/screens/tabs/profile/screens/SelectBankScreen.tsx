@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { Placeholder, PlaceholderLine, Fade } from "rn-placeholder";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
@@ -29,7 +28,7 @@ import {
 } from "../../../../redux/slice/bankSlice";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const SelectBankScreen = ({
   navigation,
@@ -45,27 +44,7 @@ const SelectBankScreen = ({
 
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Select Bank
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Select Bank");
 
   useEffect(() => {
     if (!banks.loaded) dispatch(getSupportedBanks());

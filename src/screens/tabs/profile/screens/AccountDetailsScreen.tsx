@@ -1,13 +1,10 @@
-import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import Divider from "../../../../components/divider/Divider";
 import { View, Text } from "../../../../theme/Themed";
 
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
@@ -18,6 +15,7 @@ import {
   getCurrencyUnicode,
   getDefaultPictureUrl,
 } from "../../../../common/util/AppUtil";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 interface Detail {
   title: string;
@@ -83,29 +81,7 @@ const AccountDetailsScreen = ({
 
   const currencySymbol = getCurrencyUnicode(user.accountCurency);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Account Details
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Account Details");
 
   const details = [
     {

@@ -1,5 +1,4 @@
-import React, { useLayoutEffect } from "react";
-import { Image, StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { Image } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
@@ -7,7 +6,6 @@ import { View, Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -17,6 +15,7 @@ import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { SvgIconProps } from "../../../assets/svg";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 type FeatureScreenProps = {
   headerTitle: string;
@@ -43,26 +42,12 @@ const FeatureScreen = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const insets = useSafeAreaInsets();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          {headerTitle}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    headerTitle,
+    <ExitButton onPress={() => navigation.goBack()} />,
+    true
+  );
 
   return (
     <SpacerWrapper>
@@ -72,7 +57,8 @@ const FeatureScreen = ({
             alignSelf: "center",
             marginTop: hp(96),
             marginBottom: hp(96),
-          }}>
+          }}
+        >
           {isImage ? (
             <Image style={CommonStyles.gameImage} source={imageSource} />
           ) : (
@@ -90,7 +76,8 @@ const FeatureScreen = ({
               alignSelf: "center",
               lineHeight: hp(30),
               maxWidth: 335,
-            }}>
+            }}
+          >
             {featureTitle}
           </Text>
           <Text
@@ -103,7 +90,8 @@ const FeatureScreen = ({
               alignSelf: "center",
               marginTop: hp(20),
               maxWidth: 335,
-            }}>
+            }}
+          >
             {featureText}
           </Text>
         </View>
@@ -112,7 +100,8 @@ const FeatureScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title={buttontitle}
             onPressButton={() => navigation.navigate(nextScreenToNavigateTo)}

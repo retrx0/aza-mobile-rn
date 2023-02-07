@@ -1,46 +1,22 @@
-import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import BackButton from "../../components/buttons/BackButton";
 import { View, Text } from "../../theme/Themed";
+import Divider from "../../components/divider/Divider";
 
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
+
 import { WhatsappLogo } from "../../../assets/images";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Divider from "../../components/divider/Divider";
+
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Contact Us
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Contact Us");
 
   return (
     <SpacerWrapper>

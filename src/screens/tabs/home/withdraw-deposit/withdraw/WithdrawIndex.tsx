@@ -1,7 +1,6 @@
-import React, { useLayoutEffect } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 
-import { View, Text } from "../../../../../theme/Themed";
+import { View } from "../../../../../theme/Themed";
 import MenuList from "../../../../../components/ListItem/MenuList";
 import Button from "../../../../../components/buttons/Button";
 
@@ -17,26 +16,6 @@ export default function WithdrawIndex({
   navigation,
 }: RootTabScreenProps<"Home">) {
   const insets = useSafeAreaInsets();
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Withdraw
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-    });
-  }, []);
 
   return (
     <SpacerWrapper>
@@ -59,7 +38,8 @@ export default function WithdrawIndex({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Cancel"
             style={styles.button}

@@ -1,10 +1,15 @@
-import React, { useLayoutEffect, useState, useEffect } from "react";
-import { StyleSheet, TouchableOpacity, Image, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  LayoutAnimation,
+} from "react-native";
 import * as Contacts from "expo-contacts";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
-import BackButton from "../../components/buttons/BackButton";
 import { View, Text, ScrollView, TextInput } from "../../theme/Themed";
 
 import Divider from "../../components/divider/Divider";
@@ -20,12 +25,12 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 import { ArrowRightIcon, CheckIcon } from "../../../assets/svg";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import { selectUser } from "../../redux/slice/userSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const SplitSelectContactsScreen = ({
   navigation,
@@ -39,29 +44,8 @@ const SplitSelectContactsScreen = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const user = useAppSelector(selectUser);
   const { amount, date, splitImage, name } = route.params;
-  const insets = useSafeAreaInsets();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}
-        >
-          Split
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Split");
 
   useEffect(() => {
     (async () => {
@@ -83,6 +67,7 @@ const SplitSelectContactsScreen = ({
   );
 
   const addContact = (contact: Contacts.Contact) => {
+    LayoutAnimation.easeInEaseOut();
     if (!checkIfContactIsSelected(contact)) {
       setSelectedContacts((prevState) => [...prevState, contact]);
     } else {
@@ -93,6 +78,7 @@ const SplitSelectContactsScreen = ({
   };
 
   const deSelectContact = (id: Contacts.Contact["id"]) => {
+    LayoutAnimation.easeInEaseOut();
     setSelectedContacts(
       selectedContacts.filter((contact) => contact.id !== id)
     );
@@ -240,7 +226,6 @@ const SplitSelectContactsScreen = ({
                 contacts: selectedContacts,
               })
             }
-            styleText={{}}
             style={[CommonStyles.button]}
           />
           <CancelButtonWithUnderline

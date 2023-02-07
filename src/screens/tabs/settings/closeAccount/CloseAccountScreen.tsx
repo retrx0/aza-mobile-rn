@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 
 import Button from "../../../../components/buttons/Button";
@@ -11,11 +10,9 @@ import Divider from "../../../../components/divider/Divider";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as Images from "../../../../../assets/images";
 
 // import { AccessBank } from "../../../../../assets/images";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
@@ -25,6 +22,7 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { loginUserAPI } from "../../../../api/auth";
 import { toastError } from "../../../../common/util/ToastUtil";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -36,28 +34,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
   const { bankAccounts, emailAddress, phoneNumber, azaBalance } =
     useAppSelector(selectUser);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-          }}
-        >
-          Close Account
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Close Account");
 
   if (azaBalance > 0) {
     return (

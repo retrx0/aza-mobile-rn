@@ -5,7 +5,12 @@ import { Text } from "../theme/Themed";
 
 import { hp } from "../common/util/LayoutUtil";
 
-const useNavigationHeader = (navigation: any, title: string) => {
+const useNavigationHeader = (
+  navigation: any,
+  title: string,
+  headerRight?: JSX.Element,
+  removeBackButton?: boolean
+) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -23,7 +28,11 @@ const useNavigationHeader = (navigation: any, title: string) => {
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+      headerLeft: () =>
+        !removeBackButton ? (
+          <BackButton onPress={() => navigation.goBack()} />
+        ) : undefined,
+      headerRight: () => (headerRight ? headerRight : undefined),
     });
   }, []);
 };
