@@ -176,6 +176,7 @@ export type CommonStackParamList = {
   //withdraw and deposit
   WithdrawDepositTabs: { screen: string };
   Deposit: undefined;
+  Withdraw: undefined;
 
   // Transfer modal screens
   SendMoney: undefined;

@@ -9,13 +9,13 @@ import ExitButton from "../../../../../components/buttons/ExitButton";
 import * as Images from "../../../../../../assets/images";
 import { Image } from "react-native";
 
-type DepostcreenProps = {
+type DepositcreenProps = {
   headerTitle: string;
 };
 
 const DepositFeature = ({
   navigation,
-}: CommonScreenProps<"DepositFeature"> & DepostcreenProps) => {
+}: CommonScreenProps<"DepositFeature"> & DepositcreenProps) => {
   const slides = [
     {
       key: 1,

@@ -196,8 +196,7 @@ const SignInWelcomeBackScreen = ({
               marginTop: hp(20),
               paddingHorizontal: hp(20),
               marginBottom: hp(100),
-            }}
-          >
+            }}>
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -216,8 +215,7 @@ const SignInWelcomeBackScreen = ({
             />
           </View>
           <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
-          >
+            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
             <TouchableOpacity onPress={forgetUser}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>

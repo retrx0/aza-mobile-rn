@@ -156,13 +156,14 @@ import CloseAccount from "../screens/tabs/settings/closeAccount/CloseAccount";
 import AlternativeSurvey from "../screens/tabs/settings/closeAccount/AlternativeSurvey";
 import TermsOfUse from "../screens/onboarding/TermsOfUse";
 import CharityTabs from "../screens/tabs/payments/charity-screens/CharityTabs";
-import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
+// import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import WithdrawFeature from "../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
 import DepositFeature from "../screens/tabs/home/withdraw-deposit/withdraw/DepositFeature";
 import DataBundle from "../screens/tabs/payments/airtime-screens/DataBundle";
 import AirtimeIndexScreen from "../screens/tabs/payments/airtime-screens/AirtimeIndex";
 import TransactionPin from "../screens/tabs/settings/screens/TransactionPin";
+import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();

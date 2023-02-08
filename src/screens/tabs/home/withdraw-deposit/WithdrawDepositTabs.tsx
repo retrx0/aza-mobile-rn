@@ -13,6 +13,7 @@ import { RootTabScreenProps } from "../../../../../types";
 import BackButton from "../../../../components/buttons/BackButton";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { InfoIcon } from "../../../../../assets/svg";
+import Navigation from "../../../../navigation";
 
 const WithdrawDepositTabs = ({
   navigation,
@@ -26,15 +27,7 @@ const WithdrawDepositTabs = ({
 
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
-  // const titlecheck = "Withdraw";
 
-  const handlePress = () => {
-    if (routes.some((route) => route.title === "Withdraw")) {
-      navigation.getParent()?.navigate("WithdrawFeature");
-    } else {
-      navigation.getParent()?.navigate("DepositFeature");
-    }
-  };
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -55,9 +48,15 @@ const WithdrawDepositTabs = ({
       headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-
       headerRight: () => (
-        <TouchableOpacity onPress={handlePress}>
+        <TouchableOpacity
+          onPress={() => {
+            if (routes.some((route) => route.title === "Withdraw")) {
+              navigation.navigate("Common", { screen: "WithdrawFeature" });
+            } else {
+              navigation.navigate("Common", { screen: "DepositFeature" });
+            }
+          }}>
           <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
         </TouchableOpacity>
       ),
@@ -116,7 +115,6 @@ const WithdrawDepositTabs = ({
     </SpacerWrapper>
   );
 };
-
 export default WithdrawDepositTabs;
 
 // .getParent()
@@ -172,4 +170,4 @@ export default WithdrawDepositTabs;
 //       </Tab.Navigator>
 //     </SafeAreaView>
 //   );
-// }
+//
