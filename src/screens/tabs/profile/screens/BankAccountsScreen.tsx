@@ -1,13 +1,13 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline, {
   CancelButtonWithUnderline,
 } from "../../../../components/buttons/CancelButtonWithUnderline";
 import Divider from "../../../../components/divider/Divider";
+import ListItemSkeleton from "../../../../components/skeleton/ListItemSkeleton";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
@@ -29,7 +29,7 @@ import {
   selectUser,
 } from "../../../../redux/slice/userSlice";
 import { IBankAccount } from "../../../../redux/types";
-import ListItemSkeleton from "../../../../components/switch/ListItemSkeleton";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const BankAccountsScreen = ({
   navigation,
@@ -44,38 +44,13 @@ const BankAccountsScreen = ({
 
   const user = useAppSelector(selectUser);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
-          {screenType}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, screenType);
 
   useEffect(() => {
     if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
   }, []);
 
-  if (
-    user.bankAccounts.data &&
-    user.bankAccounts.loaded &&
-    screenType === "Withdraw"
-  ) {
+  if (user.bankAccounts.data.length > 0 && screenType === "Withdraw") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -200,11 +175,7 @@ const BankAccountsScreen = ({
     );
   }
 
-  if (
-    user.bankAccounts.data &&
-    user.bankAccounts.loaded &&
-    screenType === "Bank Account"
-  ) {
+  if (user.bankAccounts.data.length > 0 && screenType === "Bank Account") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>

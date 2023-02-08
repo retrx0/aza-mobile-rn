@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -15,6 +15,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { removeUserSavedBankAcc } from "../../../../redux/slice/userSlice";
@@ -34,27 +35,7 @@ const EditBankAccountDetailsScreen = ({
 
   const { accountName, accountNumber, id, bankName, bankLogo } = route.params;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Bank Account
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Bank Account");
 
   const editDetails = () => {
     setEditing(!isEditing);

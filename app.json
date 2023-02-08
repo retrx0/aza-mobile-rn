@@ -1,13 +1,11 @@
 {
   "expo": {
     "name": "Aza",
-    "slug": "aza",
-    "currentFullName": "@retro1/aza",
-    "originalFullName": "@retro1/aza",
-    "version": "0.1.2",
+    "slug": "Aza",
+    "version": "0.2.1",
     "orientation": "portrait",
     "primaryColor": "#000000",
-    "icon": "./assets/images/app/aza-app-icon-light.png",
+    "icon": "./assets/images/app/aza-app-icon-white.png",
     "scheme": "com.aza.azaapp",
     "owner": "retro1",
     "notification": {},
@@ -20,7 +18,9 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "usesAppleSignIn": true,
@@ -28,19 +28,23 @@
       "bundleIdentifier": "com.aza.azaapp",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
-      }
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      },
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/app/aza-app-icon-light.png",
+        "foregroundImage": "./assets/images/app/aza-app-icon-white.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "googleServicesFile": "google-services.json"
+      "googleServicesFile": "google-services.json",
+      "versionCode": 2
     },
     "web": {
-      "favicon": "./assets/images/app/aza-app-icon-light.png"
+      "favicon": "./assets/images/app/aza-app-icon-white.png"
     },
     "extra": {
       "eas": {
@@ -55,9 +59,11 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/app/aza-app-icon-light.png",
+          "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
-          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
+          "sounds": [
+            "./assets/sounds/notifications/coindrop.wav"
+          ]
         }
       ],
       "@config-plugins/detox"

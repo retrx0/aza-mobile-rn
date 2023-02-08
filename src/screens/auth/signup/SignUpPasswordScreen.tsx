@@ -180,23 +180,23 @@ const SignUpPasswordScreen = ({
         ]}
       >
         <View style={[CommonStyles.row]}>
-          <Text style={[CommonStyles.transaction]}>
+          {/* <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?
-          </Text>
+          </Text> */}
 
-          <Switch
+          {/* <Switch
             trackColor={{
-              false: Colors.general.secondary,
+              false: Colors.general.tertiary,
               true: Colors.general.green,
             }}
             thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
-            ios_backgroundColor={Colors.general.secondary}
+            ios_backgroundColor={Colors.general.tertiary}
             onValueChange={toggleSwitch}
             value={isUsePasscodeAsPin}
             style={{
               marginLeft: hp(13),
             }}
-          />
+          /> */}
         </View>
         <Separator />
         <Button

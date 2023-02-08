@@ -13,15 +13,17 @@ import { View, Text } from "../../theme/Themed";
 interface IContact {
   image: string;
   name: string;
-  phoneNumber: string;
+  phoneNumber?: string;
   isContactOnAza: boolean;
   suffixIcon?: JSX.Element;
+  hideDefaultIcons?: boolean;
 }
 
 const ContactListItem = ({
   name,
   phoneNumber,
   suffixIcon,
+  hideDefaultIcons,
   image,
   isContactOnAza,
 }: IContact) => {
@@ -58,7 +60,9 @@ const ContactListItem = ({
           {phoneNumber}
         </Text>
       </View>
-      {isContactOnAza ? (
+      {suffixIcon ? (
+        suffixIcon
+      ) : hideDefaultIcons ? undefined : isContactOnAza ? (
         <AZALargeLightningLogo size={25} color={Colors[scheme].text} />
       ) : (
         <InviteIcon />

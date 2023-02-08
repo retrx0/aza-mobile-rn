@@ -3,6 +3,7 @@ import { AxiosError } from "axios";
 import api from "..";
 import { getItemSecure } from "../../common/util/StorageUtil";
 
+//legacy
 const _apiCourier = (query: any, payload?: any) => {
   let path = api.defaults.baseURL;
   path += `/${query.model}`;
@@ -18,7 +19,8 @@ const _apiCourier = (query: any, payload?: any) => {
 export async function apiCourier<T>(
   type: "get" | "post" | "patch" | "put",
   url: string,
-  data: T
+  data: T,
+  jwtAuthType: "jwt" | "emailOTP" | "phoneOTP"
 ) {
   try {
     const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);

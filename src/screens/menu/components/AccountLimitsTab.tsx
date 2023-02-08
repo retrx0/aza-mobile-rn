@@ -37,13 +37,15 @@ const AccountLimitsTab = ({
               fontSize: hp(14),
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}>
+            }}
+          >
             My Level:{" "}
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(14),
-              }}>
+              }}
+            >
               Tier {bvnVerified ? "1" : "0"}
             </Text>
           </Text>
@@ -68,7 +70,8 @@ const AccountLimitsTab = ({
               marginTop: hp(35),
               paddingHorizontal: hp(20),
             },
-          ]}>
+          ]}
+        >
           <VerifyIcon
             color={
               bvnVerified ? "#2A9E17" : Colors[appTheme].backgroundSecondary
@@ -79,7 +82,8 @@ const AccountLimitsTab = ({
             style={[
               CommonStyles.col,
               { width: "100%", marginRight: "auto", marginLeft: 25 },
-            ]}>
+            ]}
+          >
             <Text
               style={{
                 fontSize: hp(15),
@@ -87,7 +91,8 @@ const AccountLimitsTab = ({
                 fontWeight: "500",
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 color: bvnVerified ? "#2A9E17" : Colors[appTheme].secondaryText,
-              }}>
+              }}
+            >
               {bvnVerified ? "Verified" : "Not verified"}
             </Text>
             <Text
@@ -95,20 +100,23 @@ const AccountLimitsTab = ({
                 fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontWeight: "600",
-              }}>
+              }}
+            >
               Tier 1
             </Text>
             <View
               style={{
                 marginTop: 10,
-              }}>
+              }}
+            >
               <Text
                 style={{
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
                   color: appTheme === "dark" ? "#999999" : "#000000",
-                }}>
+                }}
+              >
                 Daily Transaction Limit:
               </Text>
               <Text
@@ -119,7 +127,8 @@ const AccountLimitsTab = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "600",
                   marginTop: hp(5),
-                }}>
+                }}
+              >
                 {NAIRA_UNICODE}
                 {"50,000"}
               </Text>
@@ -127,14 +136,16 @@ const AccountLimitsTab = ({
             <View
               style={{
                 marginTop: 10,
-              }}>
+              }}
+            >
               <Text
                 style={{
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
                   color: appTheme === "dark" ? "#999999" : "#000000",
-                }}>
+                }}
+              >
                 Maximum Balance:
               </Text>
               <Text
@@ -145,7 +156,8 @@ const AccountLimitsTab = ({
                   fontFamily: "Euclid-Circular-A-Medium",
                   fontWeight: "600",
                   marginTop: hp(5),
-                }}>
+                }}
+              >
                 {NAIRA_UNICODE}
                 {"200,000"}
               </Text>
@@ -157,8 +169,15 @@ const AccountLimitsTab = ({
                   alignSelf: "flex-start",
                   marginTop: 20,
                 },
-              ]}>
-              <TouchableOpacity>
+              ]}
+            >
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("BvnVerification", {
+                    onVerifyNavigateBackTo: "FeesAndLimits",
+                  })
+                }
+              >
                 <Text
                   lightColor={Colors.light.text}
                   darkColor={Colors.dark.mainText}
@@ -167,7 +186,8 @@ const AccountLimitsTab = ({
                     marginBottom: hp(5),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A-Medium",
-                  }}>
+                  }}
+                >
                   Verify BVN
                 </Text>
               </TouchableOpacity>
@@ -186,7 +206,8 @@ const AccountLimitsTab = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Upgrade Account"
           disabled={bvnVerified}

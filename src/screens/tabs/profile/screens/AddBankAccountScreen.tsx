@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
@@ -19,6 +18,7 @@ import { getAppTheme } from "../../../../theme";
 import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
 
 import { verifyBankAccountAPI } from "../../../../api/account";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AddBankAccountScreen = ({
   navigation,
@@ -35,32 +35,12 @@ const AddBankAccountScreen = ({
   const appTheme = getAppTheme(selectedTheme);
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Add Bank Account
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Add Bank Account");
 
-  const moveToNextScreen = () => {
+  const moveToNextScreen = (accName: string, accNo: string) => {
     navigation.navigate("AddBankAccountConfirmation", {
-      accountName: accountName,
-      accountNumber,
+      accountName: accName,
+      accountNumber: accNo,
       bankName: bankName,
       id,
       bankCode,
@@ -77,7 +57,7 @@ const AddBankAccountScreen = ({
         if (res !== undefined) {
           setAccountName(res.data.name);
           setVerified(true);
-          moveToNextScreen();
+          moveToNextScreen(res.data.name, accNo);
         } else {
           toastError("Invalid account number");
           setVerified(false);
@@ -154,7 +134,7 @@ const AddBankAccountScreen = ({
           <Button
             title="Continue"
             disabled={!isVerified}
-            onPressButton={moveToNextScreen}
+            onPressButton={() => moveToNextScreen(accountName, accountNumber)}
           />
         </View>
       </View>

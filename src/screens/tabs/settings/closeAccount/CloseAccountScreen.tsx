@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 
 import Button from "../../../../components/buttons/Button";
@@ -11,60 +10,38 @@ import Divider from "../../../../components/divider/Divider";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as Images from "../../../../../assets/images";
 
 // import { AccessBank } from "../../../../../assets/images";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
+import { getAppTheme } from "../../../../theme";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { loginUserAPI } from "../../../../api/auth";
+import { toastError } from "../../../../common/util/ToastUtil";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
-  const colorScheme = useColorScheme();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [selectedCard, setSelectedCard] = useState("");
-  const [fundsAvailable] = useState(false);
   const insets = useSafeAreaInsets();
   const [password, setPassword] = useState("");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-          }}
-        >
-          Close Account
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const { bankAccounts, emailAddress, phoneNumber, azaBalance } =
+    useAppSelector(selectUser);
 
-  const accounts = [
-    {
-      image: Images.AccessBank,
-      name: "Access Bank (123........)",
-    },
-  ];
+  useNavigationHeader(navigation, "Close Account");
 
-  if (fundsAvailable) {
+  if (azaBalance > 0) {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
           <View style={{ paddingHorizontal: hp(15) }}>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -78,9 +55,9 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
               to withdraw your funds to
             </Text>
             <Divider />
-            {accounts.map(({ image, name }, i) => (
+            {bankAccounts.data.map(({ bankLogo, bankName }, i) => (
               <View key={i}>
-                <TouchableOpacity onPress={() => setSelectedCard(name)}>
+                <TouchableOpacity onPress={() => setSelectedCard(bankName)}>
                   <View
                     style={[
                       CommonStyles.row,
@@ -88,7 +65,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                     ]}
                   >
                     <Image
-                      source={image}
+                      source={{ uri: bankLogo }}
                       style={{
                         width: 36,
                         height: 36,
@@ -102,7 +79,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                         fontSize: hp(16),
                       }}
                     >
-                      {name}
+                      {bankName}
                     </Text>
                     <View
                       style={{
@@ -111,7 +88,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                         height: hp(20),
                         borderRadius: hp(10),
                         borderColor:
-                          selectedCard === name
+                          selectedCard === bankName
                             ? Colors.general.green
                             : "#3A3D42",
                         alignItems: "center",
@@ -119,7 +96,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
                         borderWidth: hp(1),
                       }}
                     >
-                      {selectedCard === name && (
+                      {selectedCard === bankName && (
                         <View style={CommonStyles.doneSelect} />
                       )}
                     </View>
@@ -136,17 +113,6 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
               { bottom: insets.bottom || hp(45) },
             ]}
           >
-            <CancelButtonWithUnderline
-              title="Add another bank Account"
-              onPressButton={() => {
-                navigation.navigate("Common", {
-                  screen: "AddBankAccount",
-                  params: { screenType: "withdraw" },
-                });
-              }}
-              color={Colors[colorScheme].text}
-              style={{ marginBottom: hp(10) }}
-            />
             <Button
               disabled={!selectedCard}
               title="Continue"
@@ -178,9 +144,25 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
     );
   }
 
-  // const verifyPassword = async () => {
-  //   setButtonLoading(true);
-  // };
+  const verifyPassword = async () => {
+    setButtonLoading(true);
+    await loginUserAPI({
+      email: emailAddress,
+      phoneNumber: phoneNumber,
+      password: password,
+    })
+      .then((jwt) => {
+        if (jwt) navigation.navigate("AccountClosureSurveyScreen");
+        else {
+          toastError("Password invalid");
+        }
+        setButtonLoading(false);
+      })
+      .catch(() => {
+        setButtonLoading(false);
+        toastError("Password invalid");
+      });
+  };
 
   return (
     <SpacerWrapper>
@@ -218,11 +200,8 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
         </View>
         <Button
           title="Continue"
-          // disabled={password.length < 6 ? true : false}
-          // onPressButton={() => verifyPassword()}
-          onPressButton={() => {
-            navigation.navigate("AccountClosureSurveyScreen");
-          }}
+          disabled={password.length < 6 ? true : false}
+          onPressButton={verifyPassword}
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
@@ -230,7 +209,7 @@ const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
           style={{
             marginTop: hp(100),
           }}
-          // buttonLoading={isButtonLoading}
+          buttonLoading={buttonLoading}
         />
       </View>
     </SpacerWrapper>

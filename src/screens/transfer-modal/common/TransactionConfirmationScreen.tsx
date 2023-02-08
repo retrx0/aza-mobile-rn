@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import React, { useState } from "react";
+import { Image } from "react-native";
 
-import BackButton from "../../../components/buttons/BackButton";
 import { TextInput, View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
@@ -22,9 +21,10 @@ import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
 import { selectUser } from "../../../redux/slice/userSlice";
-import api from "../../../api";
 import { transferToAzaUserAPI } from "../../../api/vfd";
 import { requestMoneyAPI } from "../../../api/money-request";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
+import { payAzaUserAPI } from "../../../api/payment";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -49,27 +49,7 @@ const TransactionConfirmationScreen = ({
 
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Confirmation
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Confirmation");
 
   const makeTransaction = async () => {
     // do some validation
@@ -88,24 +68,36 @@ const TransactionConfirmationScreen = ({
       let transactionCompleted = false;
 
       if (confirmationType === "send") {
-        const transfer = await transferToAzaUserAPI({
-          amount: "" + amount,
-          fromAccount: azaAccountNumber,
-          fromBvn: bvnNumber,
-          fromClientId: "",
-          fromClient: "",
-          fromSavingsId: "",
-          toClient: "",
-          toBvn: "",
-          toAccount: beneficiary.azaAccountNumber,
-          toBank: "",
-          signature: "Aza",
-          remark: "",
-          transferType: "intra",
-          reference: transDescription ? transDescription : "Aza transaction",
-          toSession: "",
-          toKyc: "",
+        // const transfer = await transferToAzaUserAPI({
+        //   amount: "" + amount,
+        //   fromAccount: azaAccountNumber,
+        //   fromBvn: bvnNumber,
+        //   fromClientId: "",
+        //   fromClient: "",
+        //   fromSavingsId: "",
+        //   toClient: "",
+        //   toBvn: "",
+        //   toAccount: beneficiary.azaAccountNumber,
+        //   toBank: "",
+        //   signature: "Aza",
+        //   remark: "",
+        //   transferType: "intra",
+        //   reference: transDescription ? transDescription : "Aza transaction",
+        //   toSession: "",
+        //   toKyc: "",
+        // });
+        const transfer = await payAzaUserAPI({
+          sourceAccount: "",
+          destinationAccount: "",
+          amount,
+          transactionPin: "",
+          description: transDescription ? transDescription : "Aza transaction",
+          currency: "NGN",
+          destinationAccountName: "",
+          destinationBankCode: "",
+          destinationChannel: "",
         });
+
         if (transfer) {
           transactionCompleted = true;
         }

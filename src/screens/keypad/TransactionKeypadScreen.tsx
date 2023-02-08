@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
@@ -27,6 +27,7 @@ import { NAIRA_UNICODE } from "../../constants/AppConstants";
 import { NigeriaFlag } from "../../../assets/images";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -47,26 +48,7 @@ const TransactionKeypadScreen = ({
 
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
-          {headerTitle}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, headerTitle);
 
   const validateTransaction = () => {
     // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening

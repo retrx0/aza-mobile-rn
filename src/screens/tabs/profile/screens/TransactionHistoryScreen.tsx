@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -15,6 +14,7 @@ import TransactionModal from "./TransactionHistroyModal";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import SegmentedTransactionView from "./SegmentedTransactionView";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const TransactionHistoryScreen = ({
   navigation,
@@ -24,45 +24,26 @@ const TransactionHistoryScreen = ({
 
   const { recentTransactions } = useAppSelector(selectUser);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Transaction History
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => (
-        <TouchableOpacity
-          style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-          onPress={() => setModalVisible(true)}
-        >
-          <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
-          <Text
-            style={{
-              color: Colors[colorScheme].secondaryText,
-              fontSize: 12,
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-              textAlign: "center",
-            }}
-          >
-            Download
-          </Text>
-        </TouchableOpacity>
-      ),
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "Transaction History",
+    <TouchableOpacity
+      style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
+      onPress={() => setModalVisible(true)}
+    >
+      <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
+      <Text
+        style={{
+          color: Colors[colorScheme].secondaryText,
+          fontSize: 12,
+          fontFamily: "Euclid-Circular-A-Semi-Bold",
+          textAlign: "center",
+        }}
+      >
+        Download
+      </Text>
+    </TouchableOpacity>
+  );
 
   return (
     <>

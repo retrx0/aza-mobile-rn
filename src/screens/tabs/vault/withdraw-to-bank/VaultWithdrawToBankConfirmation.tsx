@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { getDefaultPictureUrl } from "../../../../common/util/AppUtil";
 import { setTransaction } from "../../../../redux/slice/transactionSlice";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const VaultWithdrawConfirm = ({
   navigation,
@@ -40,28 +41,7 @@ const VaultWithdrawConfirm = ({
 
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
-          {headerTitle}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, headerTitle);
 
   return (
     <>

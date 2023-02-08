@@ -1,16 +1,16 @@
-import React, { useLayoutEffect, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet } from "react-native";
 import { Camera, CameraType, PermissionResponse } from "expo-camera";
 import Svg, { Path } from "react-native-svg";
 
 import { View, Text } from "../../../../theme/Themed";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import Button from "../../../../components/buttons/Button";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
   const [cameraPermission, setCameraPermission] =
@@ -36,29 +36,7 @@ const ScanCardScreen = ({ navigation }: CommonScreenProps<"ScanCard">) => {
     extrapolate: "clamp",
   });
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            color: "#E7E9EA",
-            fontWeight: "500",
-          }}
-        >
-          Scan Card
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      headerTransparent: true,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Scan Card");
 
   useEffect(() => {
     startAnimation(isScannerOnTop ? 1 : 0);

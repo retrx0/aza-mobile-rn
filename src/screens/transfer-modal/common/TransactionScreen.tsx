@@ -1,12 +1,7 @@
-import React, { useLayoutEffect, useState } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
-import BackButton from "../../../components/buttons/BackButton";
 import { Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
@@ -20,6 +15,7 @@ import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { IBeneficiary } from "../../../redux/types";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
 
 type TransactionScreenProps = {
   headerTitle: string;
@@ -44,37 +40,18 @@ const TransactionScreen = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          {headerTitle}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => navigation.navigate(featureNavigationScreen)}>
-          <InfoIcon
-            color={
-              appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
-            }
-            style={{ width: 20, height: 20 }}
-          />
-        </TouchableOpacity>
-      ),
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    headerTitle,
+    <TouchableOpacity
+      onPress={() => navigation.navigate(featureNavigationScreen)}
+    >
+      <InfoIcon
+        color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
+        style={{ width: 20, height: 20 }}
+      />
+    </TouchableOpacity>
+  );
 
   const azaContactOnClick = (beneficiary: IBeneficiary) => {
     //TODO replace with redux slice
@@ -128,7 +105,8 @@ const TransactionScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

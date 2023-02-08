@@ -1,12 +1,10 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
-import BackButton from "../../../components/buttons/BackButton";
 import { TextInput, View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -18,12 +16,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
 
 const RecurringTransferConfirmationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"RecurringTransferConfirmation">) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const [isButtonLoading, setButtonLoading] = useState(false);
 
@@ -45,26 +43,8 @@ const RecurringTransferConfirmationScreen = ({
       setButtonLoading(false);
     }
   };
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Confirmation
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+
+  useNavigationHeader(navigation, "Confirmation");
 
   return (
     <SpacerWrapper>
@@ -76,7 +56,8 @@ const RecurringTransferConfirmationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(20),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -85,7 +66,8 @@ const RecurringTransferConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -170,7 +152,8 @@ const RecurringTransferConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             onPressButton={onConfirm}

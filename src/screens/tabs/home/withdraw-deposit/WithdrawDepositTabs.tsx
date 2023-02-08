@@ -1,25 +1,30 @@
+import { useEffect, useState } from "react";
 import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { TabBar, TabView } from "react-native-tab-view";
+
 import { Text } from "../../../../theme/Themed";
 import DepositIndex from "./deposit/DepositIndex";
 import WithdrawIndex from "./withdraw/WithdrawIndex";
+
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
-import { TabBar, TabView } from "react-native-tab-view";
+
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { useLayoutEffect, useState } from "react";
 import Colors from "../../../../constants/Colors";
-import { RootTabScreenProps } from "../../../../../types";
-import BackButton from "../../../../components/buttons/BackButton";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { InfoIcon } from "../../../../../assets/svg";
 import Navigation from "../../../../navigation";
 
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+
 const WithdrawDepositTabs = ({
   navigation,
   route,
-}: RootTabScreenProps<"Home">) => {
-  const [index, setIndex] = useState(0);
+}: CommonScreenProps<"WithdrawDepositTabs">) => {
+  const { tabToView } = route.params;
+  const [index, setIndex] = useState(tabToView === "withdraw" ? 0 : 1);
   const [routes] = useState([
     { key: "first", title: "Withdraw" },
     { key: "second", title: "Deposit" },
@@ -28,6 +33,7 @@ const WithdrawDepositTabs = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
+<<<<<<< HEAD
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -62,6 +68,23 @@ const WithdrawDepositTabs = ({
       ),
     });
   }, []);
+=======
+  const handlePress = () => {
+    if (tabToView === "withdraw") {
+      navigation.getParent()?.navigate("WithdrawFeature");
+    } else {
+      navigation.getParent()?.navigate("DepositFeature");
+    }
+  };
+
+  useNavigationHeader(
+    navigation,
+    "Withdraw/Deposit",
+    <TouchableOpacity onPress={handlePress}>
+      <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+    </TouchableOpacity>
+  );
+>>>>>>> abf9b068ade8613ee8e91d929af5beb40bf19f68
 
   const renderScene = (props: any) => {
     switch (props.route.key) {
@@ -104,7 +127,8 @@ const WithdrawDepositTabs = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

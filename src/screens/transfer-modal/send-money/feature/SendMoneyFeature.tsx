@@ -1,4 +1,3 @@
-import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { AddUsers, AzaLOGO, MoneyTick } from "../../../../../assets/svg";
 import AppIntroSlider from "react-native-app-intro-slider";
@@ -11,31 +10,17 @@ import ExitButton from "../../../../components/buttons/ExitButton";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { useAppSelector } from "../../../../redux";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const SendMoneyFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Send Money
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    "Send Money",
+    <ExitButton onPress={() => navigation.goBack()} />
+  );
+
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const slides = [

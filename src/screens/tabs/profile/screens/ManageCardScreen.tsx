@@ -1,7 +1,5 @@
-import React, { useLayoutEffect } from "react";
 import { StyleSheet } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
@@ -13,31 +11,11 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { DebitCreditCardCurvesDesign } from "../../../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ManageCardScreen = ({ navigation }: CommonScreenProps<"ManageCard">) => {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Manage Card
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Manage Card");
+
   const insets = useSafeAreaInsets();
 
   return (

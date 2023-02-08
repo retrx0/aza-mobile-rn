@@ -50,7 +50,7 @@ const TransactionOptions = ({
             navigation.navigate("Common", {
               screen: "WithdrawDepositTabs",
               params: {
-                screen: "WithdrawIndex",
+                tabToView: "withdraw",
               },
             })
           }
@@ -82,7 +82,7 @@ const TransactionOptions = ({
             navigation.navigate("Common", {
               screen: "WithdrawDepositTabs",
               params: {
-                screen: "DepositIndex",
+                tabToView: "deposit",
               },
             })
           }

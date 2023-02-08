@@ -1,6 +1,5 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -9,6 +8,7 @@ import { hp, wp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AccountClosureSurveyScreen = ({
   navigation,
@@ -16,28 +16,7 @@ const AccountClosureSurveyScreen = ({
   const [selectToppings, setSelectToppings] = useState("");
   const insets = useSafeAreaInsets();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-          }}
-        >
-          Account Closure Survey
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Account Closure Survey");
 
   const accounts = [
     {

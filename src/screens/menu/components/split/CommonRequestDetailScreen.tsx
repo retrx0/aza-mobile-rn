@@ -1,18 +1,18 @@
-import React, { useLayoutEffect } from "react";
 import { Image, StyleSheet } from "react-native";
-import { CommonScreenProps } from "../../../../common/navigation/types";
+
+import SplitListItem from "../SplitListItem";
+import SplitPaymentStatus from "../SplitPaymentStatus";
+import Divider from "../../../../components/divider/Divider";
+import { ScrollView, Text, View } from "../../../../theme/Themed";
+
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import Colors from "../../../../constants/Colors";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import BackButton from "../../../../components/buttons/BackButton";
-import Divider from "../../../../components/divider/Divider";
-import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
-import Colors from "../../../../constants/Colors";
+
 import { IBeneficiary, IRequest } from "../../../../redux/types";
-import { ScrollView, Text, View } from "../../../../theme/Themed";
-import SplitListItem from "../SplitListItem";
-import SplitPaymentStatus from "../SplitPaymentStatus";
 
 const CommonRequestDetailScreen = ({
   requestDetails: {

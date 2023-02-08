@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
@@ -19,6 +18,7 @@ import { string } from "yup";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AddNewCardScreen = ({
   navigation,
@@ -41,26 +41,7 @@ const AddNewCardScreen = ({
     expiryDate: "",
   });
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Add New Card
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Add New Card");
 
   return (
     <SpacerWrapper>
@@ -75,7 +56,8 @@ const AddNewCardScreen = ({
               marginTop: hp(30),
               marginBottom: hp(40),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Add your card details to deposit money to your Aza wallet
           </Text>
           <View style={{ marginBottom: hp(40) }}>
@@ -86,7 +68,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Card Number
             </Text>
             <TextInput
@@ -117,7 +100,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Expiry Date
             </Text>
             <TextInput
@@ -148,7 +132,8 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(14),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               CVV
             </Text>
             <TextInput
@@ -180,7 +165,8 @@ const AddNewCardScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <CancelButtonWithUnderline
             title="Scan Card instead"
             color={Colors.general.grey}

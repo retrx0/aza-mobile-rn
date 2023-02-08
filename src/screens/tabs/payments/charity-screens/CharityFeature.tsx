@@ -1,4 +1,3 @@
-import React, { useLayoutEffect } from "react";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { Text, View } from "../../../../theme/Themed";
@@ -11,31 +10,20 @@ import { getAppTheme } from "../../../../theme";
 import ExitButton from "../../../../components/buttons/ExitButton";
 import * as Images from "../../../../../assets/images";
 import { Image } from "react-native";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const CharityFeature = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Charity
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerRight: () => <ExitButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+
+  useNavigationHeader(
+    navigation,
+    "Charity",
+    <ExitButton onPress={() => navigation.goBack()} />,
+    true
+  );
+
   const slides = [
     {
       key: 1,
@@ -63,7 +51,8 @@ const CharityFeature = ({
               alignSelf: "center",
               marginTop: hp(56),
               marginBottom: hp(56),
-            }}>
+            }}
+          >
             <Image
               source={item.icon}
               resizeMode="cover"
@@ -80,7 +69,8 @@ const CharityFeature = ({
                 alignSelf: "center",
                 lineHeight: hp(30),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureTitle}
             </Text>
             <Text
@@ -93,7 +83,8 @@ const CharityFeature = ({
                 alignSelf: "center",
                 marginTop: hp(20),
                 maxWidth: 335,
-              }}>
+              }}
+            >
               {item.featureText}
             </Text>
           </View>

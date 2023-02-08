@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
 
-import BackButton from "../../components/buttons/BackButton";
 import { TextInput } from "../../theme/Themed";
 import { View, Text } from "../../theme/Themed";
 
@@ -16,6 +15,7 @@ import { CommonScreenProps } from "../../common/navigation/types";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const SplitEditContactScreen = ({
   navigation,
@@ -26,27 +26,7 @@ const SplitEditContactScreen = ({
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Edit
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Edit");
 
   return (
     <SpacerWrapper>

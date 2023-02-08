@@ -13,6 +13,10 @@ import {
 interface IXCharity extends ICharity {
   tabKey: string;
 }
+
+interface IXGiftCard extends IGiftCard {
+  selectedPrice: string;
+}
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
@@ -49,6 +53,8 @@ export type CommonStackParamList = {
     beneficiaryName: string;
   };
 
+  Notifications: undefined;
+
   //Payments
   AirtimeData: undefined;
   Confirm: undefined;
@@ -74,7 +80,7 @@ export type CommonStackParamList = {
     smartCardNumber?: string;
     customerAccountNumber?: string;
   };
-  GiftCardConfirmation: undefined;
+  GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
   GiftCardDetails: IGiftCard;
@@ -174,7 +180,7 @@ export type CommonStackParamList = {
   ContactUs: undefined;
 
   //withdraw and deposit
-  WithdrawDepositTabs: { screen: string };
+  WithdrawDepositTabs: { tabToView: "withdraw" | "deposit" };
   Deposit: undefined;
   Withdraw: undefined;
 

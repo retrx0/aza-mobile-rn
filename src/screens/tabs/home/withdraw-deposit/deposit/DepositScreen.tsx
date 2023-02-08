@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../../../components/buttons/BackButton";
@@ -26,6 +26,7 @@ import {
   UndrawCreditCardIcon,
 } from "../../../../../../assets/svg";
 import { DebitCard } from "../../../../../../assets/images";
+import useNavigationHeader from "../../../../../hooks/useNavigationHeader";
 
 const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   const colorScheme = useColorScheme();
@@ -35,28 +36,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-          }}>
-          Deposit
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => false,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Deposit");
 
   const accounts = [
     {
@@ -79,7 +59,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               fontWeight: "600",
               marginBottom: hp(30),
               color: "#2A9E17",
-            }}>
+            }}
+          >
             Coming Soon
           </Text>
           <Text
@@ -91,7 +72,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               fontWeight: "500",
               maxWidth: wp(333),
               textAlign: "center",
-            }}>
+            }}
+          >
             Easily pay for your water services through Aza
           </Text>
           <Image
@@ -116,7 +98,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
           style={[
             CommonStyles.col,
             { marginTop: "auto", marginBottom: "auto" },
-          ]}>
+          ]}
+        >
           <UndrawCreditCardIcon
             color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
           />
@@ -128,7 +111,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               marginTop: hp(30),
               textAlign: "center",
-            }}>
+            }}
+          >
             You do not have any credit/debit cards
           </Text>
           <View style={[CommonStyles.row, { marginTop: hp(10) }]}>
@@ -140,7 +124,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
                 maxWidth: 300,
                 marginRight: 5,
                 textAlign: "center",
-              }}>
+              }}
+            >
               Click ‘Add New Card’ to add a new card
             </Text>
             <ArrowDownIcon
@@ -157,7 +142,8 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Add New Card"
             onPressButton={() =>

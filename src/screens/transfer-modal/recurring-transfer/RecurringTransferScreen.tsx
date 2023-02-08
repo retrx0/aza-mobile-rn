@@ -1,9 +1,5 @@
-import React, { useLayoutEffect } from "react";
-import { StyleSheet } from "react-native";
-
 import { CommonScreenProps } from "../../../common/navigation/types";
 
-import BackButton from "../../../components/buttons/BackButton";
 import { View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 
@@ -13,33 +9,14 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { UndrawCalendarIcon } from "../../../../assets/svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
 
 const RecurringTransferScreen = ({
   navigation,
 }: CommonScreenProps<"RecurringTransfer">) => {
   const insets = useSafeAreaInsets();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Recurring Money Transfer
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Recurring Money Transfer");
 
   return (
     <SpacerWrapper>

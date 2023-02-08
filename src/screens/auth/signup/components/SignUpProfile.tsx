@@ -5,7 +5,7 @@ import Colors from "../../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../../types";
 import Button from "../../../../components/buttons/Button";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import RNPickerSelect from "react-native-picker-select";
+import { Picker } from "@react-native-picker/picker";
 import { FEMALE, Gender, MALE } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
 import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
@@ -41,7 +41,7 @@ const SignUpProfile = ({
     lastname: yup.string().required("Lastname is required"),
     gender: yup
       .string()
-      .required("Please select a gender")
+      // .required("Please select a gender")
       .oneOf([MALE, FEMALE]),
   });
 
@@ -52,7 +52,7 @@ const SignUpProfile = ({
         initialValues={{
           firstname: "",
           lastname: "",
-          gender: "",
+          gender: "male",
         }}
         onSubmit={(values) => {
           dispatch(
@@ -108,8 +108,8 @@ const SignUpProfile = ({
               }}
               autoFocus={false}
             />
-            <TextHeader label="Gender" style={[CommonStyles.genderstyle]} />
-            <View
+            {/* <TextHeader label="Gender" style={[CommonStyles.genderstyle]} /> */}
+            {/* <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -123,32 +123,23 @@ const SignUpProfile = ({
                 justifyContent: "space-between",
               }}
             >
-              <RNPickerSelect
-                placeholder={placeholder}
+              <Picker
+                placeholder={"Gender"}
+                prompt="Gender"
                 onValueChange={(value) => {
-                  handleChange("gender")(value);
+                  handleChange("gender")(value.toString());
                   console.log(values.gender);
                 }}
-                value={values.gender}
-                items={Gender}
-                pickerProps={{
-                  style: {},
-                  itemStyle: {},
-                }}
-                style={{
-                  placeholder: {
-                    fontSize: hp(15),
-                    lineHeight: hp(20),
-                    fontFamily: "Euclid-Circular-A",
-                    color: Colors.general.black,
-                    fontWeight: "400",
-                  },
-                }}
-              />
+                selectedValue={"male"}
+                style={{ height: 20 }}
+              >
+                <Picker.Item enabled label="Male" value={"male"} />
+                <Picker.Item enabled label="Female" value={"female"} />
+              </Picker>
               {errors.gender && touched.gender && (
                 <Text style={CommonStyles.errorText}>{errors}</Text>
               )}
-            </View>
+            </View> */}
             <Button
               title="Continue"
               onPressButton={handleSubmit}

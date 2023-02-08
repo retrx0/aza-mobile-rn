@@ -68,10 +68,15 @@ export const verifyBankAccountAPI = async (
   bankCode: string,
   accountNumber: string
 ) => {
-  return await apiCourier("post", "/api/v1/account/verify", {
-    bankCode,
-    accountNumber,
-  });
+  return await apiCourier(
+    "post",
+    "/api/v1/account/verify",
+    {
+      bankCode,
+      accountNumber,
+    },
+    "jwt"
+  );
 };
 
 const fetchVFDAccountData = async () => {};
