@@ -1,8 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import { Image, StyleSheet } from "react-native";
 
-import { View as View, Text as Text } from "../../../../theme/Themed";
-import BackButton from "../../../../components/buttons/BackButton";
+import { View as View, Text as Text } from "../../../../theme/Themed"; 
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
@@ -12,6 +11,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const NameVisibilityScreen = ({
   navigation,
@@ -30,30 +30,9 @@ const NameVisibilityScreen = ({
   useEffect(() => {
     saveSettingsToStorage({ nameVisibilitySwitch: isEnabled });
   }, [isEnabled]);
+ 
+  useNavigationHeader(navigation, "Name Visibility");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}
-        >
-          Name Visibility
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
 
   return (
     <View style={styles.container}>

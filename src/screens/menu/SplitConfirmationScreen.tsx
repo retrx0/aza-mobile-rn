@@ -1,7 +1,5 @@
-import React, { useLayoutEffect } from "react";
 import { StyleSheet, Image, ScrollView } from "react-native";
 
-import BackButton from "../../components/buttons/BackButton";
 import { View, Text, TextInput } from "../../theme/Themed";
 
 import Button from "../../components/buttons/Button";
@@ -21,6 +19,7 @@ import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import SplitDetailItem from "./components/split/SplitDetailItem";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getAppTheme } from "../../theme";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const SplitConfirmationScreen = ({
   navigation,
@@ -32,26 +31,7 @@ const SplitConfirmationScreen = ({
   const user = useAppSelector(selectUser);
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Confirmation
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Confirmation");
 
   const splitAmountForEachPerson = Number(amount) / (contacts.length + 1);
 
@@ -66,7 +46,8 @@ const SplitConfirmationScreen = ({
               marginBottom: hp(20),
               marginLeft: hp(5),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ position: "relative" }}>
@@ -76,7 +57,8 @@ const SplitConfirmationScreen = ({
                 fontSize: hp(14),
                 fontWeight: "400",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
@@ -87,7 +69,9 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "500",
                   marginLeft: hp(5),
-                  borderBottomColor: Colors[appTheme].borderColor,
+
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -110,7 +94,8 @@ const SplitConfirmationScreen = ({
                 paddingVertical: hp(30),
                 maxHeight: hp(300),
               },
-            ]}>
+            ]}
+          >
             <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <Text
                 style={{
@@ -118,7 +103,8 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(16),
                   fontWeight: "400",
                   marginLeft: hp(5),
-                }}>
+                }}
+              >
                 Created By
               </Text>
               <SplitDetailItem
@@ -132,14 +118,16 @@ const SplitConfirmationScreen = ({
               style={[
                 CommonStyles.col,
                 { alignSelf: "stretch", marginTop: 30 },
-              ]}>
+              ]}
+            >
               <Text
                 style={{
                   fontFamily: "Euclid-Circular-A",
                   fontSize: hp(16),
                   fontWeight: "400",
                   marginLeft: hp(5),
-                }}>
+                }}
+              >
                 Shared With
               </Text>
               {contacts.map(({ id, firstName, name }) => (
@@ -163,7 +151,8 @@ const SplitConfirmationScreen = ({
                 fontSize: hp(16),
                 fontWeight: "400",
                 marginLeft: hp(5),
-              }}>
+              }}
+            >
               Total Amount
             </Text>
             <TextInput
@@ -174,7 +163,9 @@ const SplitConfirmationScreen = ({
                   fontSize: hp(14),
                   fontWeight: "500",
                   marginLeft: hp(5),
-                  borderBottomColor: Colors[appTheme].borderColor,
+
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
                 },
               ]}
               showSoftInputOnFocus={false}
@@ -186,7 +177,8 @@ const SplitConfirmationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.bottom || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => navigation.navigate("ChooseSplit")}

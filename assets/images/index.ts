@@ -60,6 +60,7 @@ export const ZenithBankLogoWithName =
 export const FidelityBankLogoWithName =
   BANKS_LOGO + "/fidelityBankLogoWithName.png";
 export const FirstBankLogoWithName = BANKS_LOGO + "/firstBankLogoWithName.png";
+export const STANBIC = require("./logo/banks/StanbicIBTC.png");
 
 /*  */
 
@@ -108,6 +109,8 @@ export const Chess = require("./common/Chess.png");
 
 /* AZA */
 
+export const AZA_APP_ICON_LIGHT = require("./app/aza-app-icon-white.png");
+
 export const ZEAL = require("./common/ZEAL.png");
 export const VaultFeature = require("./common/VaultFeature.png");
 export const WithdrawFeature = require("./common/WithdrawFeature.png");
@@ -119,3 +122,8 @@ export const CoverImage = require("./icons/CoverImage.png");
 export const QRFEATURE = require("./common/QRFEATURE.png");
 export const Undraw = require("./common/Undraw.png");
 export const AnnouncementDraw = require("./common/AnnouncementDraw.png");
+export const Info = require("./common/Info.png");
+export const Cable = require("./common/Cable.png");
+export const Internet = require("./common/Internet.png");
+export const Water = require("./common/Water.png");
+export const DebitCard = require("./common/DebitCard.png");

@@ -5,16 +5,17 @@ import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
 import { UnderlinedInput } from "../../../../../components/input/UnderlinedInput";
-import MyButton from "../../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../../types";
 import { hp } from "../../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
-import useColorScheme from "../../../../../hooks/useColorScheme";
 import * as Images from "../../../../../../assets/images/index";
 import { Card } from "../../sub-components/Card";
 import { CommonScreenProps } from "../../../../../common/navigation/types";
+import { useAppSelector } from "../../../../../redux";
+import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../../theme";
+import Button from "../../../../../components/buttons/Button";
 
 const Cable = [
   {
@@ -34,18 +35,22 @@ const Cable = [
 export default function CableRecurring({
   navigation,
 }: CommonScreenProps<"SetupRecurringTransfer">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [currentIndex, setCurrent] = useState(0);
+  // const [isEnabled, setIsEnabled] = useState(false);
+  // const [currentIndex, setCurrent] = useState(0);
   const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+  // const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const insets = useSafeAreaInsets();
   const [periodValue, setPeriodValue] = useState("");
-  const colorScheme = useColorScheme();
-  const [active, setActive] = useState("");
-
+  const [selectedCable, setSelectedCable] = useState<{
+    title: string;
+    icon: string;
+  }>({ title: "", icon: "" });
+  const [amount, setAmount] = useState("");
+  const [smartCardNumber, setSmartCardNumber] = useState("");
   // const { icon } = route.params;
   const [dayValue, setDayValue] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const subscription = [
     { label: "Monthly", value: "monthly" },
@@ -107,16 +112,15 @@ export default function CableRecurring({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}
-      >
+        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}>
         {Cable.map((item, index) => {
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
-              isActive={item.icon === active}
+              onPress={() => setSelectedCable(item)}
+              isActive={item.title === selectedCable.title}
             />
           );
         })}
@@ -128,9 +132,7 @@ export default function CableRecurring({
           keyboardType="phone-pad"
           inputStyle={[
             styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
           ]}
           labelStyle={{
             fontFamily: "Euclid-Circular-A",
@@ -139,6 +141,11 @@ export default function CableRecurring({
           }}
           label="Smart Card Number"
           placeholder="Enter your smart card number"
+          value={smartCardNumber}
+          onChangeText={(text) => {
+            setSmartCardNumber(text);
+          }}
+          returnKeyType="done"
         />
       </View>
 
@@ -147,8 +154,7 @@ export default function CableRecurring({
           paddingHorizontal: hp(20),
           marginTop: hp(15),
           marginBottom: hp(25),
-        }}
-      >
+        }}>
         <CustomDropdown
           data={subscription}
           placeholder="Choose a subscription package"
@@ -188,20 +194,19 @@ export default function CableRecurring({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
-        <MyButton
-          disabled={false}
+        ]}>
+        <Button
+          disabled={!periodValue || !dayValue || !selectedCable.title}
           title="Continue"
-          onPress={() =>
+          onPressButton={() =>
             navigation.push("TransactionKeypad", {
               headerTitle: "Recurring Transfer",
               transactionType: {
                 type: "recurring",
                 beneficiary: {
                   beneficiaryAccount: "",
-                  beneficiaryImage: "",
-                  beneficiaryName: "",
+                  beneficiaryImage: selectedCable.icon,
+                  beneficiaryName: selectedCable.title,
                 },
                 period: periodValue,
                 day: dayValue,

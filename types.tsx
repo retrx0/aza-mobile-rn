@@ -13,6 +13,7 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { CommonStackParamList } from "./src/common/navigation/types";
+import { IGiftCard, IUserCred } from "./src/redux/types";
 
 declare global {
   namespace ReactNavigation {
@@ -32,7 +33,7 @@ export type RootStackParamList = {
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;
   SignUp: undefined;
-  SignIn: undefined;
+  SignIn: { isUserSignedIn: boolean; cachedUser: IUserCred | undefined };
   TopBar: NavigatorScreenParams<CommonStackParamList>;
 };
 
@@ -40,6 +41,19 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 /* Tabs */
+
+interface IStatusScreenParams {
+  statusIcon: "Success" | "Warning";
+  status: string;
+  statusMessage: string;
+  navigateTo: string;
+  statusMessage2?: string;
+  recurringTransferBeneficiary?: any;
+  receiptDetails: any;
+  cancelButton?: any;
+  navigateToParams?: any;
+  screenType?: any;
+}
 
 export type RootTabParamList = {
   Home: undefined;
@@ -69,7 +83,7 @@ export type PaymentsStackParamList = {
   InternetConfirmation: undefined;
   CableConfirmation: undefined;
   WaterConfirmation: undefined;
-  GiftCardConfirmation: undefined;
+  GiftCardConfirmation: { giftCard: IGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
   GiftCardDetails: undefined;
@@ -84,6 +98,8 @@ export type PaymentsStackParamList = {
   RecurringPlan: undefined;
   GiftCardEmail: undefined;
   GameCredit: undefined;
+  Airtime: undefined;
+  DataBundle: undefined;
 };
 
 export type TopTabParamList = {
@@ -101,7 +117,7 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 
 export type SignInStackParamList = {
   SignInRoot: undefined;
-  SignInWelcomeBack: undefined;
+  SignInWelcomeBack: { cachedUser: IUserCred | undefined };
   SignInOTP: undefined;
 };
 

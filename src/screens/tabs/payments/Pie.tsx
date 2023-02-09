@@ -33,43 +33,43 @@ export default function Pie() {
 
   const data = [
     {
-      value: calculatePaymentSum(payments.recentPayments, "Airtime & Data"),
+      value: calculatePaymentSum(payments.data, "Airtime & Data"),
       color: "#2A9E17",
       text: "Airtime & Data",
     },
     {
-      value: calculatePaymentSum(payments.recentPayments, "Cable Tv"),
+      value: calculatePaymentSum(payments.data, "Cable Tv"),
       color: "#ED8A0A",
       text: "Cable Tv",
     },
     {
-      value: calculatePaymentSum(payments.recentPayments, "Charity"),
+      value: calculatePaymentSum(payments.data, "Charity"),
       color: "#753FF6",
       text: "Charity",
     },
     {
-      value: calculatePaymentSum(payments.recentPayments, "Electricity"),
+      value: calculatePaymentSum(payments.data, "Electricity"),
       color: "#a1ea19",
       text: "Electricity",
     },
     {
-      value: calculatePaymentSum(payments.recentPayments, "Game Credits"),
+      value: calculatePaymentSum(payments.data, "Game Credits"),
       color: "#56179e",
       text: "Game Credits",
     },
     {
-      value: calculatePaymentSum(payments.recentPayments, "Gift Cards"),
+      value: calculatePaymentSum(payments.data, "Gift Cards"),
       color: "#c71c1c",
       text: "Gift Cards",
     },
 
     {
-      value: calculatePaymentSum(payments.recentPayments, "Internet"),
+      value: calculatePaymentSum(payments.data, "Internet"),
       color: "#176f9e",
       text: "Internet",
     },
     {
-      value: calculatePaymentSum(payments.recentPayments, "Water"),
+      value: calculatePaymentSum(payments.data, "Water"),
       color: "#9c179e",
       text: "Water",
     },
@@ -77,9 +77,9 @@ export default function Pie() {
 
   useEffect(() => {
     var _t = 0;
-    payments.recentPayments.forEach((p) => (_t += Number(p.amount)));
+    payments.data.forEach((p) => (_t += Number(p.amount)));
     setTotal(_t);
-  }, [payments.recentPayments]);
+  }, [payments.data]);
 
   return (
     <SpacerWrapper>
@@ -91,7 +91,7 @@ export default function Pie() {
               size={0}
             />
           </TouchableOpacity>
-          <Text style={styles.monthText}>Jun 2022</Text>
+          <Text style={styles.monthText}>{payments.data[0].date}</Text>
 
           <TouchableOpacity>
             <ArrowRightIcon
@@ -103,7 +103,7 @@ export default function Pie() {
         <View style={{ alignSelf: "center" }}>
           <PieChart
             textBackgroundRadius={26}
-            textColor="#ffffff"
+            textColor={Colors.general.white}
             donut={true}
             data={data}
             focusOnPress

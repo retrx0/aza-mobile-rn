@@ -1,60 +1,80 @@
-import React, { useLayoutEffect } from "react";
-import { StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import BackButton from "../../../../components/buttons/BackButton";
+import Button from "../../../../components/buttons/Button";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
-import Button from "../../../../components/buttons/Button";
-
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { toastError } from "../../../../common/util/ToastUtil";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice";
+
+import { verifyBankAccountAPI } from "../../../../api/account";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AddBankAccountScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccount">) => {
-  const colorScheme = useColorScheme();
+  const [accountName, setAccountName] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [isVerified, setVerified] = useState(false);
+
   const insets = useSafeAreaInsets();
 
-  const { bankName, screenType } = route.params;
+  const { bankName, screenType, logoUrl, bankCode, id } = route.params;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Add Bank Account
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+  useNavigationHeader(navigation, "Add Bank Account");
+
+  const moveToNextScreen = (accName: string, accNo: string) => {
+    navigation.navigate("AddBankAccountConfirmation", {
+      accountName: accName,
+      accountNumber: accNo,
+      bankName: bankName,
+      id,
+      bankCode,
+      screenType,
+      logoUrl,
     });
-  }, []);
+  };
+
+  const verifyAccount = (accNo: string) => {
+    dispatch(toggleActivityModal(true));
+    verifyBankAccountAPI(bankCode, accNo)
+      .then((res) => {
+        dispatch(toggleActivityModal(false));
+        if (res !== undefined) {
+          setAccountName(res.data.name);
+          setVerified(true);
+          moveToNextScreen(res.data.name, accNo);
+        } else {
+          toastError("Invalid account number");
+          setVerified(false);
+        }
+      })
+      .catch(() => {
+        setVerified(false);
+        dispatch(toggleActivityModal(false));
+        toastError("Invalid account number");
+      });
+  };
 
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -68,8 +88,6 @@ const AddBankAccountScreen = ({
           </Text>
           <View>
             <Text
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -82,21 +100,28 @@ const AddBankAccountScreen = ({
             <TextInput
               lightColor={Colors.light.mainText}
               darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(5),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
 
                 marginLeft: hp(5),
               }}
               placeholder="Enter your account number"
               keyboardType="number-pad"
               returnKeyType="done"
+              value={accountNumber}
+              onChangeText={(text) => {
+                if (text.length === 10) {
+                  verifyAccount(text);
+                }
+                setAccountNumber(text);
+              }}
+              maxLength={10}
             />
           </View>
         </View>
@@ -108,22 +133,8 @@ const AddBankAccountScreen = ({
         >
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("AddBankAccountConfirmation", {
-                accountName: "Abdullah Gumi",
-                accountNumber: "0000100010",
-                bankName: bankName,
-                screenType,
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            disabled={!isVerified}
+            onPressButton={() => moveToNextScreen(accountName, accountNumber)}
           />
         </View>
       </View>
@@ -132,12 +143,3 @@ const AddBankAccountScreen = ({
 };
 
 export default AddBankAccountScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
-  },
-});

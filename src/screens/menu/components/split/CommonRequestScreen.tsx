@@ -1,18 +1,21 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { useWindowDimensions, TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
+
+import Divider from "../../../../components/divider/Divider";
+import { ScrollView, Text, View } from "../../../../theme/Themed";
+import SplitListItem from "../SplitListItem";
+
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import BackButton from "../../../../components/buttons/BackButton";
 import Colors from "../../../../constants/Colors";
+
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../../theme";
-import { ScrollView, Text, View } from "../../../../theme/Themed";
-import Divider from "../../../tabs/payments/sub-components/Divider";
-import SplitListItem from "../SplitListItem";
+
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const CommonRequestScreen = ({
   navigation,
@@ -29,27 +32,10 @@ const CommonRequestScreen = ({
   const layout = useWindowDimensions();
 
   const { paymentRequests } = useAppSelector(selectUser);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          {type === "incoming" ? "Incoming" : "Outgoing"} Requests
-        </Text>
-      ),
-      headerBackVisible: false,
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
-
+  useNavigationHeader(
+    navigation,
+    `${type === "incoming" ? "Incoming" : "Outgoing"} Requests`
+  );
   const renderScene = ({ route }: any) => {
     switch (route.key) {
       case "first":

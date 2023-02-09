@@ -1,63 +1,35 @@
-import api from "..";
+import apiCourier from "../courier";
 
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
-import { getItemSecure } from "../../common/util/StorageUtil";
-
-export const checkPaymentEndpointHealthAPI = async () => {
-  try {
-    const result = await api.get("/api/v1/payment/health");
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const transferMoneyAPI = async (data: {
+type PaymentType = {
   sourceAccount: string;
   destinationAccount: string;
   amount: number;
-  sourceChannel: number;
-  destinationChannel: number;
+  destinationChannel: string;
+  destinationBankCode: string;
   description: string;
   currency: string;
   transactionPin: string;
-}) => {
-  try {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.post("/api/v1/payment/transfer", data, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e: any) {
-    throw Error(e.response.data.message);
-  }
+  destinationAccountName: string;
 };
 
-export const recurringTransferAPI = async (data: {
-  sourceAccount: string;
-  receivingAccount: string;
-  amount: number;
-  currency: string;
-  recevingChannel: number;
-  duration: number;
-  specificDay: number;
-  frequency: number;
-  startDate: Date;
-}) => {
-  try {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.put("/api/v1/payment/recurring", data, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    if (result.status === 204) return result.data;
-    return undefined;
-  } catch (e: any) {
-    throw Error(e.response.data.message);
-  }
+export const checkPaymentEndpointHealthAPI = async () => {
+  return await apiCourier("get", "/api/v1/payment/health", {}, "jwt");
+};
+
+export const payAzaUserAPI = async (data: PaymentType) => {
+  return await apiCourier<PaymentType>(
+    "post",
+    "/api/v1/payment/transfer/aza",
+    data,
+    "jwt"
+  );
+};
+
+export const payOtherBankAPI = async (data: PaymentType) => {
+  return await apiCourier<PaymentType>(
+    "post",
+    "/api/v1/payment/transfer/other",
+    data,
+    "jwt"
+  );
 };

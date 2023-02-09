@@ -1,11 +1,8 @@
-import React, { useLayoutEffect } from "react";
 import { Image, Alert } from "react-native";
 import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import { QRCode } from "react-native-custom-qr-codes-expo";
-import BackButton from "../../components/buttons/BackButton";
 import { View, Text } from "../../theme/Themed";
-import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../constants/Colors";
@@ -23,6 +20,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { toastError, toastSuccess } from "../../common/util/ToastUtil";
+import { numberWithCommas } from "../../common/util/NumberUtils";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -32,28 +31,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const transaction = useAppSelector(selectTransaction);
   const insets = useSafeAreaInsets();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
-          QR Transactions
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "QR Transactions");
 
   const captureScreenAndSaveToGallery = async () => {
     const permission = await requestPermission();
@@ -85,7 +63,11 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
       <View style={CommonStyles.vaultcontainer}>
         <View style={{ alignItems: "center" }}>
           <Image
-            style={{ borderRadius: 50, width: 50, height: 50 }}
+            style={{
+              borderRadius: 50,
+              width: 50,
+              height: 50,
+            }}
             source={{
               uri:
                 user.pictureUrl && user.pictureUrl !== ""
@@ -102,7 +84,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: 14,
+              fontSize: hp(14),
               marginVertical: 15,
             }}
           >
@@ -125,7 +107,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
                 marginLeft: 5,
               }}
             >
-              {transaction.amount}
+              {numberWithCommas(transaction.amount)}
             </Text>
           </View>
         </View>
@@ -166,7 +148,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           /> */}
           <ButtonWithUnderline
             title="Save to Gallery"
-            color={Colors[appTheme].text}
+            color={appTheme === "dark" ? "#262626" : "#EAEAEC"}
             onPressButton={captureScreenAndSaveToGallery}
             style={{ marginTop: 5 }}
           />

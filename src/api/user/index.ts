@@ -58,8 +58,13 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
     if (result.status === 200) return result.data;
     return undefined;
   } catch (e) {
-    console.log("Error registering user: ", e as Error);
-    toastError("We encountered a problem while creating your account ⚠️");
+    const err = e as AxiosError;
+    console.debug("Error registering user: ", err.message);
+    if (err.status && err.status === "409") {
+      toastError("User already registered!");
+    } else {
+      toastError("We encountered a problem while creating your account ⚠️");
+    }
   }
 };
 

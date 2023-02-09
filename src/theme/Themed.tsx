@@ -145,7 +145,7 @@ export const TextInput = (props: TextInputProps) => {
 
   const borderColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "border",
+    "borderColor",
     selectedTheme
   );
 
@@ -202,7 +202,7 @@ export const OTPInput = (props: OTPInputViewProps) => {
   );
   const border = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "border",
+    "borderColor",
     selectedTheme
   );
 
@@ -236,7 +236,7 @@ export const PhoneInput = (props: PhoneInputProps) => {
   );
   const borderColor = useAppThemeColor(
     { light: lightColor, dark: darkColor },
-    "border",
+    "borderColor",
     selectedTheme
   );
 

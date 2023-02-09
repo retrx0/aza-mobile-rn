@@ -86,21 +86,15 @@ export default function CharityConfirmation({
             title="Confirm"
             onPressButton={() => {
               navigation.navigate("StatusScreen", {
-                statusIcon: "Success",
+                statusIcon: "Warning",
                 status: "Successful",
                 statusMessage:
                   "You have successfully donated to Chess in Slums",
                 navigateTo: "Payments",
               });
             }}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"

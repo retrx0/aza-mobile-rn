@@ -1,9 +1,9 @@
 import api from "..";
-import { Beneficiary } from "../../common/navigation/types";
+import { IBeneficiary } from "../../redux/types";
 
 export const verifyAzaNumber = async (azaNumber: string) => {
   const result = await api.post("/verify/aza/", { azaNumber: azaNumber });
-  const ret: Beneficiary = {
+  const ret: IBeneficiary = {
     fullName: result.data.fullName,
     azaAccountNumber: result.data.azaAccountNumber,
   };

@@ -2,9 +2,10 @@ import React from "react";
 import * as Images from "../../../../../assets/images";
 import { ArrowFowardIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import Divider from "../../../../components/divider/Divider";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { View as View, Text as Text } from "../../../../theme/Themed";
 
 export type FilterItem = {
   ImageSource: string;
@@ -97,97 +98,87 @@ export const InternetCard = ({
   );
 };
 
-export const CharityList: FilterItem[] = [
+export type FilterCard = {
+  ImageSource: any;
+  title: string;
+  icon: any;
+  onPress?: () => void;
+  index: number;
+};
+
+export const GiftCardList: FilterCard[] = [
   {
     index: 0,
-    ImageSource: Images.ICICE,
-    title: "ICICE",
+    ImageSource: Images.ITUNES,
+    title: "ITUNES",
     icon: <ArrowFowardIcon />,
   },
-
   {
     index: 1,
-    ImageSource: Images.IET,
-    title: "IET",
+    ImageSource: Images.GOOGLEPLAY,
+    title: "Google Play",
     icon: <ArrowFowardIcon />,
   },
+
   {
     index: 2,
-    ImageSource: Images.FOUNTAIN,
-    title: "Living Fountain Orphanage",
+    ImageSource: Images.AMAZON,
+    title: "Amazon",
     icon: <ArrowFowardIcon />,
   },
-
   {
     index: 3,
-    ImageSource: Images.SAINTS,
-    title: "Little Saints Orphanage",
-    icon: <ArrowFowardIcon />,
-  },
-  {
-    index: 4,
-    ImageSource: Images.HOPE,
-    title: "Hope Motherless Babies Home",
+    ImageSource: Images.PSN,
+    title: "PSN",
     icon: <ArrowFowardIcon />,
   },
 
   {
-    index: 5,
-    ImageSource: Images.Chess,
-    title: "Chess in Slums",
+    index: 4,
+    ImageSource: Images.XBOX,
+    title: "Xbox",
     icon: <ArrowFowardIcon />,
   },
   {
+    index: 5,
+    ImageSource: Images.RAZER,
+    title: "Razer",
+    icon: <ArrowFowardIcon />,
+  },
+
+  {
     index: 6,
-    ImageSource: Images.DORCAS,
-    title: "Aunty Dorcas Orphanage",
+    ImageSource: Images.NETFLIX,
+    title: "Netflix",
     icon: <ArrowFowardIcon />,
   },
   {
     index: 7,
-    ImageSource: Images.TIMEOUT,
-    title: "Timeout 4 Africa",
+    ImageSource: Images.STEAM,
+    title: "Steam",
     icon: <ArrowFowardIcon />,
   },
   {
     index: 8,
-    ImageSource: Images.SAVE,
-    title: "Save the Children",
+    ImageSource: Images.SEPHORA,
+    title: "Sephora",
     icon: <ArrowFowardIcon />,
   },
   {
     index: 9,
-    ImageSource: Images.IREDE,
-    title: "The Irede Foundation",
-    icon: <ArrowFowardIcon />,
-  },
-  {
-    index: 10,
-    ImageSource: Images.YARA,
-    title: "The CeCe Yara Foundation",
-    icon: <ArrowFowardIcon />,
-  },
-  {
-    index: 11,
-    ImageSource: Images.REAL,
-    title: "Keeping it real Foundation",
-    icon: <ArrowFowardIcon />,
-  },
-  {
-    index: 12,
-    ImageSource: Images.OVIE,
-    title: "Ovie  Brume Foundation",
+    ImageSource: Images.Nintendo,
+    title: "Nintendo",
     icon: <ArrowFowardIcon />,
   },
 ];
 
-export const CharityCard = ({
+export const GiftCardCard = ({
   title,
   ImageSource,
   icon,
   index,
   onPress,
-}: FilterItem) => {
+}: FilterCard) => {
   const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
   return (

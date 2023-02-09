@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { AwardIcon, SmallVerifyIcon, VerifyIcon } from "../../../../assets/svg";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -171,18 +171,27 @@ const AccountLimitsTab = ({
                 },
               ]}
             >
-              <Text
-                lightColor={Colors.light.text}
-                darkColor={Colors.dark.mainText}
-                style={{
-                  fontSize: hp(16),
-                  marginBottom: hp(5),
-                  fontWeight: "600",
-                  fontFamily: "Euclid-Circular-A-Medium",
-                }}
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("BvnVerification", {
+                    onVerifyNavigateBackTo: "FeesAndLimits",
+                  })
+                }
               >
-                Verify BVN
-              </Text>
+                <Text
+                  lightColor={Colors.light.text}
+                  darkColor={Colors.dark.mainText}
+                  style={{
+                    fontSize: hp(16),
+                    marginBottom: hp(5),
+                    fontWeight: "600",
+                    fontFamily: "Euclid-Circular-A-Medium",
+                  }}
+                >
+                  Verify BVN
+                </Text>
+              </TouchableOpacity>
+
               {bvnVerified && <SmallVerifyIcon color={"#2A9E17"} />}
             </View>
           </View>
@@ -209,15 +218,10 @@ const AccountLimitsTab = ({
           }
           styleText={{
             color: bvnVerified
-              ? Colors[appTheme].disabledButtonText
+              ? Colors[appTheme].buttonText
               : Colors[appTheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
-          }}
-          style={{
-            backgroundColor: bvnVerified
-              ? Colors[appTheme].disabledButton
-              : Colors[appTheme].button,
           }}
         />
       </View>

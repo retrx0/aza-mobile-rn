@@ -1,10 +1,8 @@
-import React, { useLayoutEffect } from "react";
-import { StyleSheet, Image, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
-import BackButton from "../../components/buttons/BackButton";
-import { View, Text } from "../../theme/Themed";
+import { View } from "../../theme/Themed";
 
 import Button from "../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
@@ -15,6 +13,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommonRequestDetailScreen from "./components/split/CommonRequestDetailScreen";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const IncomingSplitRequestAcceptanceScreen = ({
   navigation,
@@ -23,27 +22,10 @@ const IncomingSplitRequestAcceptanceScreen = ({
   const insets = useSafeAreaInsets();
   const { requestItem } = route.params;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          {requestItem.type === "incoming" ? "Incoming" : "Outgoing"} Request
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(
+    navigation,
+    `${requestItem.type === "incoming" ? "Incoming" : "Outgoing"} Request`
+  );
 
   return (
     <SpacerWrapper>

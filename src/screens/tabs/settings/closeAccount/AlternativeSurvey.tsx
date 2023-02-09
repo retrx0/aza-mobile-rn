@@ -1,5 +1,3 @@
-import React, { useLayoutEffect, useState } from "react";
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text, TextInput } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -11,6 +9,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { useAppSelector } from "./../../../../redux";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AlternativeSurvey = ({
   navigation,
@@ -18,26 +17,7 @@ const AlternativeSurvey = ({
   const insets = useSafeAreaInsets();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-          }}
-        >
-          Account Closure Survey
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Account Closure Survey");
 
   return (
     <SpacerWrapper>

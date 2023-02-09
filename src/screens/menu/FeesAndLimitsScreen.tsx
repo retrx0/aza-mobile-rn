@@ -1,13 +1,10 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { CommonScreenProps } from "../../common/navigation/types";
 
-import BackButton from "../../components/buttons/BackButton";
-
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import AccountLimitsTab from "./components/AccountLimitsTab";
 import TransactionFeesTab from "./components/TransactionFeesTab";
@@ -16,6 +13,7 @@ import { Text } from "../../theme/Themed";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const FeesAndLimitsScreen = ({
   navigation,
@@ -29,29 +27,7 @@ const FeesAndLimitsScreen = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Fees & Limits
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Fees & Limits");
 
   const renderScene = (props: any) => {
     switch (props.route.key) {

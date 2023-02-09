@@ -2,7 +2,7 @@ import { Contact } from "expo-contacts";
 import React, { useEffect, useState } from "react";
 import { SectionList, StyleSheet, TouchableOpacity } from "react-native";
 import { verifyAzaNumber } from "../../api/aza";
-import { Beneficiary, CommonScreenProps } from "../../common/navigation/types";
+import { CommonScreenProps } from "../../common/navigation/types";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import { hp } from "../../common/util/LayoutUtil";
@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { QuickContactView } from "./QuickContactView";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import { IBeneficiary } from "../../redux/types";
 
 const ContactsScene = ({
   route,
@@ -27,13 +28,15 @@ const ContactsScene = ({
   nonAzaContactOnPress,
 }: {
   route: any;
-  azaContactOnPress: (beneficiary: Beneficiary) => void;
-  nonAzaContactOnPress: (beneficiary: Beneficiary) => void;
+  azaContactOnPress: (beneficiary: IBeneficiary) => void;
+  nonAzaContactOnPress: (beneficiary: IBeneficiary) => void;
 }) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [contacts, setContacts] = useState<any[]>([]);
-  const [userQuickContacts, setUserQuickContacts] = useState<Beneficiary[]>([]);
-  const [userAzaContacts, setUserAzaContacts] = useState<Beneficiary[]>([]);
+  const [userQuickContacts, setUserQuickContacts] = useState<IBeneficiary[]>(
+    []
+  );
+  const [userAzaContacts, setUserAzaContacts] = useState<IBeneficiary[]>([]);
   const [searchContact, setSearchContact] = useState("");
   const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
   const insets = useSafeAreaInsets();
@@ -245,6 +248,7 @@ const ContactsScene = ({
                 borderBottomWidth: 1,
                 fontSize: hp(16),
                 marginLeft: hp(5),
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Aza Number"
             />
@@ -255,7 +259,7 @@ const ContactsScene = ({
               onPressButton={() => {
                 sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
               }}
-              disabled={receipientAzaNumber.length < 5}
+              disabled={receipientAzaNumber.length < 10}
               styleText={{}}
               style={[]}
             />
@@ -270,7 +274,7 @@ const ContactsScene = ({
 
 const sentToAzaNumber = (
   azaNumber: string,
-  azaContactOnPress: (beneficiary: Beneficiary) => void
+  azaContactOnPress: (beneficiary: IBeneficiary) => void
 ) => {
   //do some check with aza number
   verifyAzaNumber(azaNumber).then((verifiedUser) => {

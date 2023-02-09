@@ -1,21 +1,21 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "../../../../../theme/Themed";
-import { View, Text } from "../../../../../theme/Themed";
+import { View } from "../../../../../theme/Themed";
 import { AIrtimeStyles as styles } from "../../airtime-screens/styles";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
 import { Header } from "../../../../../components/text/header";
 import { UnderlinedInput } from "../../../../../components/input/UnderlinedInput";
-import MyButton from "../../sub-components/MyButton";
-import { useRoute } from "@react-navigation/native";
-import { RootTabScreenProps } from "../../../../../../types";
 import { hp } from "../../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../../../hooks/useColorScheme";
 import * as Images from "../../../../../../assets/images/index";
 import { Card } from "../../sub-components/Card";
 import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
 import { CommonScreenProps } from "../../../../../common/navigation/types";
+import { useAppSelector } from "../../../../../redux";
+import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../../theme";
+import Button from "../../../../../components/buttons/Button";
 
 const WaterList = [
   {
@@ -43,20 +43,21 @@ const WaterList = [
 export default function WaterRecurring({
   navigation,
 }: CommonScreenProps<"SetupRecurringTransfer">) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [currentIndex, setCurrent] = useState(0);
-  const route = useRoute();
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const bundles = ["100mb", "200mb", "500mb"];
+  // const [isEnabled, setIsEnabled] = useState(false);
+  // const [currentIndex, setCurrent] = useState(0);
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
-  const [selected, setSelected] = useState(false);
-  const [active, setActive] = useState("");
+  // const [selected, setSelected] = useState(false);
+  // const [active, setActive] = useState("");
   const [periodValue, setPeriodValue] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
-  // const { icon } = route.params;
   const [dayValue, setDayValue] = useState("");
-
+  const [selectedWater, setSelectedWater] = useState<{
+    title: string;
+    icon: string;
+  }>({ title: "", icon: "" });
+  const [customerAccountNumber, setCustomerAccountNumber] = useState("");
   const period = [
     { label: "Monthly", value: "monthly" },
     { label: "Weekly", value: "weekly" },
@@ -95,34 +96,18 @@ export default function WaterRecurring({
         heading="Select water provider"
       />
 
-      {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
-        <HeadrImage
-          index={0}
-          image={Fctwb}
-          title="FCTWB"
-          selected={selected === false}
-          onSelect={() => {
-            setSelected(false);
-          }}
-        />
-        <HeadrImage selected index={0} image={Lswc} title="LSWC" />
-        <HeadrImage selected index={0} image={Crswb} title="CRSWB" />
-        <HeadrImage selected index={0} image={Vws} title="VWS" />
-        <HeadrImage selected index={0} image={Enswc} title="ENSWC" />
-      </ScrollView> */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={CommonStyles.imageHeaderContainer}
-      >
+        style={CommonStyles.imageHeaderContainer}>
         {WaterList.map((item, index) => {
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
-              isActive={item.icon === active}
+              onPress={() => setSelectedWater(item)}
+              isActive={item.title === selectedWater.title}
             />
           );
         })}
@@ -132,15 +117,18 @@ export default function WaterRecurring({
           style={styles2.input}
           icon={null}
           keyboardType="phone-pad"
+          returnKeyType="done"
           inputStyle={[
             styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
           ]}
           labelStyle={styles.label}
           label="Customer Account Number"
           placeholder="Enter your customer account number"
+          value={customerAccountNumber}
+          onChangeText={(text) => {
+            setCustomerAccountNumber(text);
+          }}
         />
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
@@ -169,20 +157,19 @@ export default function WaterRecurring({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.bottom || hp(45) },
-        ]}
-      >
-        <MyButton
-          disabled={false}
+        ]}>
+        <Button
+          disabled={!periodValue || !dayValue}
           title="Continue"
-          onPress={() =>
+          onPressButton={() =>
             navigation.push("TransactionKeypad", {
               headerTitle: "Recurring Transfer",
               transactionType: {
                 type: "recurring",
                 beneficiary: {
                   beneficiaryAccount: "",
-                  beneficiaryImage: "",
-                  beneficiaryName: "",
+                  beneficiaryImage: selectedWater.icon,
+                  beneficiaryName: selectedWater.title,
                 },
                 period: periodValue,
                 day: dayValue,

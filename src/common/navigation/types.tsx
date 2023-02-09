@@ -1,9 +1,22 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Contact } from "expo-contacts";
-import { IBeneficiary, IRequest } from "../../redux/types";
+import {
+  IBank,
+  IBankAccount,
+  IBeneficiary,
+  ICharity,
+  IGiftCard,
+  IRequest,
+} from "../../redux/types";
 
 /* Common screens */
+interface IXCharity extends ICharity {
+  tabKey: string;
+}
 
+interface IXGiftCard extends IGiftCard {
+  selectedPrice: string;
+}
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
@@ -27,12 +40,20 @@ export type CommonStackParamList = {
   WithdrawKeyPad: undefined;
   CloseAccount: undefined;
   AlternativeSurvey: undefined;
+  AirtimeIndexScreen: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
 
   // Status
   StatusScreen: StatusScreenParamsType;
+
+  Receipt: {
+    amount: string;
+    beneficiaryName: string;
+  };
+
+  Notifications: undefined;
 
   //Payments
   AirtimeData: undefined;
@@ -45,7 +66,7 @@ export type CommonStackParamList = {
   Pie: undefined;
   Water: undefined;
   Charity: undefined;
-  CharityDetail: { name: string };
+  CharityDetail: IXCharity;
   ElectricityConfirmation: undefined;
   PaymentConfirmation: {
     beneficiaryLogo: string;
@@ -59,10 +80,10 @@ export type CommonStackParamList = {
     smartCardNumber?: string;
     customerAccountNumber?: string;
   };
-  GiftCardConfirmation: undefined;
+  GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
-  GiftCardDetails: undefined;
+  GiftCardDetails: IGiftCard;
   GameScreen: undefined;
   PaymentRecurring: undefined;
   AirtimeRecurring: undefined;
@@ -115,6 +136,7 @@ export type CommonStackParamList = {
   ChangePhoneNumberOTP: undefined;
   ChangeEmail: undefined;
   PrivacySettings: undefined;
+  AccountBalanceVisibility: undefined;
   NameVisibility: undefined;
   ContactVisibility: undefined;
   SplitAndMoneyRequests: undefined;
@@ -125,20 +147,22 @@ export type CommonStackParamList = {
   LoginOptions: undefined;
   Appearance: undefined;
   AppLanguage: undefined;
+  TransactionPin: undefined;
 
   // Profile
   AccountDetails: undefined;
   TransactionHistory: undefined;
   BankAccounts: BankAccountsParamsType;
   SelectBank: BankAccountsParamsType;
-  AddBankAccount: AddBankAccountParamsType & BankAccountsParamsType;
-  AddBankAccountConfirmation: AddBankAccountConfirmationParamsType &
-    BankAccountsParamsType;
-  EditBankAccountDetails: undefined;
+  AddBankAccount: IBank & BankAccountsParamsType;
+  AddBankAccountConfirmation: IBank &
+    BankAccountsParamsType & { accountNumber: string; accountName: string };
+  EditBankAccountDetails: IBankAccount;
   DebitCreditCards: undefined;
   ManageCard: undefined;
   AddNewCard: { navigateBackTo: string };
   ScanCard: undefined;
+  TermsOfUse: undefined;
 
   // Home Menu
   Split: undefined;
@@ -156,8 +180,9 @@ export type CommonStackParamList = {
   ContactUs: undefined;
 
   //withdraw and deposit
-  WithdrawDepositTabs: { screen: string };
+  WithdrawDepositTabs: { tabToView: "withdraw" | "deposit" };
   Deposit: undefined;
+  Withdraw: undefined;
 
   // Transfer modal screens
   SendMoney: undefined;
@@ -221,8 +246,8 @@ export type StatusScreenParamsType = {
   status: string;
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
-  receiptButton?: boolean;
   recurringTransferBeneficiary?: IBeneficiary;
+  receiptDetails?: { amount: string; beneficiaryName: string };
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;
@@ -251,16 +276,6 @@ export type PaymentsTabScreenProps<
 > = NativeStackScreenProps<PaymentsStackParamList, Screen>;
 
 /* Profile */
-
-export type AddBankAccountParamsType = {
-  bankName: string;
-};
-
-export type AddBankAccountConfirmationParamsType = {
-  bankName: string;
-  accountNumber: string;
-  accountName: string;
-};
 
 export type BankAccountsParamsType = {
   screenType: "Withdraw" | "Bank Account";

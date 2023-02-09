@@ -6,9 +6,12 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "channel": "develop",
       "ios": {
-        "simulator": true
-      }
+        "simulator": true,
+        "autoIncrement": true
+      },
+      "android": { "autoIncrement": true }
     },
     "preview": {
       "distribution": "internal",
@@ -27,9 +30,14 @@
     "preview3": {
       "developmentClient": true
     },
-    "production": {}
+    "production": {
+      "distribution": "store",
+      "channel": "release",
+      "ios": { "autoIncrement": true },
+      "android": { "autoIncrement": true }
+    }
   },
   "submit": {
-    "production": {}
+    "production": { "android": {}, "ios": {} }
   }
 }

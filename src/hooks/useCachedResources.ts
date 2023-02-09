@@ -2,50 +2,33 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { ISettings, useAppAsyncStorage } from "./useAsyncStorage";
-
-const EuclidRegular = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A.ttf");
-const EuclidLight = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Light.ttf");
-const EuclidSemiBold = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Semi-Bold.ttf");
-const EuclidBold = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Bold.ttf");
-const EuclidMedium = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Medium.ttf");
-const EuclidSemiBoldItalic = require("../../assets/fonts/Euclid-Circular/Euclid-Circular-A-Semi-Bold-Italic.ttf");
-
-const SpaceMono = require("../../assets/fonts/SpaceMono-Regular.ttf");
+import { IUserCred } from "../redux/types";
+import {
+  EuclidBold,
+  EuclidLight,
+  EuclidMedium,
+  EuclidRegular,
+  EuclidSemiBold,
+  EuclidSemiBoldItalic,
+  SpaceMonoRegular,
+} from "../../assets/fonts";
 
 const useCachedResources = () => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   // change default to true only in dev
   const [isUserSignedIn, setUserSignedIn] = useState(false);
   const [userPreferences, setUserPreferences] = useState<ISettings>();
-
+  const [cachedUser, setCachedUser] = useState<IUserCred>();
   const { loadSettingsFromStorage } = useAppAsyncStorage();
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
-    async function loadResourcesAndDataAsync() {
+    const loadResourcesAndDataAsync = async () => {
       try {
         // Keep the splash screen visible while we fetch resources
         SplashScreen.preventAutoHideAsync();
-
-        // Check if user is already logged in
-        SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN)
-          .then((token) => {
-            if (token) setUserSignedIn(true);
-          })
-          .catch((e) => console.debug(e));
-
-        // Load users preferences if present
-        loadSettingsFromStorage()
-          .then((uPrefs) => {
-            if (uPrefs) setUserPreferences(uPrefs);
-          })
-          .catch((e) => {
-            throw new Error(e);
-          });
-
-        // do any api call here
 
         // Load fonts
         await Font.loadAsync({
@@ -55,8 +38,33 @@ const useCachedResources = () => {
           "Euclid-Circular-A-Medium": EuclidMedium,
           "Euclid-Circular-A-Semi-Bold-Italic": EuclidSemiBoldItalic,
           "Euclid-Circular-A-Light": EuclidLight,
-          "SpaceMono-Regular": SpaceMono,
+          "SpaceMono-Regular": SpaceMonoRegular,
         });
+
+        // Check if user is already logged in
+        // const token = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
+        // if (token) setUserSignedIn(true);
+
+        // load cached user
+        const _cachedUsr = await SecureStore.getItemAsync(
+          STORAGE_KEY_USER_CREDS
+        );
+        if (_cachedUsr) {
+          const _prsd = JSON.parse(_cachedUsr);
+          setCachedUser({
+            email: _prsd.email,
+            phoneNumber: _prsd.phoneNumber,
+            password: _prsd.password,
+            fullName: _prsd.fullName,
+            token: _prsd.token,
+          });
+        }
+
+        // Load users preferences if present
+        const uPrefs = await loadSettingsFromStorage();
+        if (uPrefs) setUserPreferences(uPrefs);
+
+        // do any api call here
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e);
@@ -64,12 +72,12 @@ const useCachedResources = () => {
         setLoadingComplete(true);
         SplashScreen.hideAsync();
       }
-    }
+    };
 
     loadResourcesAndDataAsync();
   }, []);
 
-  return { isLoadingComplete, isUserSignedIn, userPreferences };
+  return { isLoadingComplete, userPreferences, cachedUser };
 };
 
 export default useCachedResources;

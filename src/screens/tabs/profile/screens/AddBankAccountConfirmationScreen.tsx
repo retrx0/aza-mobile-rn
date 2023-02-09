@@ -1,59 +1,100 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
-
-import BackButton from "../../../../components/buttons/BackButton";
-import { TextInput } from "../../../../theme/Themed";
-import { View, Text } from "../../../../theme/Themed";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Button from "../../../../components/buttons/Button";
+import { View, Text, TextInput } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { toastError } from "../../../../common/util/ToastUtil";
+
+import { getAppTheme } from "../../../../theme";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import {
+  getUserSavedBankAccs,
+  saveUserBankAcc,
+  selectUser,
+} from "../../../../redux/slice/userSlice";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AddBankAccountConfirmationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"AddBankAccountConfirmation">) => {
-  const colorScheme = useColorScheme();
-  const { bankName, accountName, accountNumber, screenType } = route.params;
-  const insets = useSafeAreaInsets();
+  const [isButtonLoading, setButtonLoading] = useState(false);
+  const {
+    bankName,
+    accountName,
+    accountNumber,
+    screenType,
+    logoUrl,
+    bankCode,
+    id,
+  } = route.params;
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Confirmation
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  const [_accountName, setAccountName] = useState(accountName);
+  const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+
+  useNavigationHeader(navigation, "Confirmation");
+
+  const addBankAccount = async () => {
+    setButtonLoading(true);
+
+    const accountAlreadyAdded = user.bankAccounts.data.find(
+      (account) =>
+        account.accountName === _accountName &&
+        account.accountNumber === accountNumber
+    );
+    if (accountAlreadyAdded) {
+      toastError("Account already exists");
+      setButtonLoading(false);
+      return;
+    }
+
+    const addBank = await dispatch(
+      saveUserBankAcc({
+        accountName: _accountName,
+        accountNumber,
+        bankCode,
+        isBeneficiary: false,
+      })
+    );
+
+    if (addBank.meta.requestStatus === "fulfilled") {
+      setButtonLoading(false);
+      dispatch(getUserSavedBankAccs());
+      navigation.navigate("StatusScreen", {
+        status: "Successful",
+        statusIcon: "Success",
+        statusMessage:
+          "Your bank account has been successfully linked to your Aza",
+        navigateTo: "BankAccounts",
+        navigateToParams: {
+          screenType,
+        },
+      });
+    } else {
+      setButtonLoading(false);
+      toastError(
+        "There was a problem adding your bank account, please try again!"
+      );
+    }
+  };
 
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -66,8 +107,6 @@ const AddBankAccountConfirmationScreen = ({
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(15),
@@ -78,17 +117,14 @@ const AddBankAccountConfirmationScreen = ({
               Bank
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
@@ -96,7 +132,7 @@ const AddBankAccountConfirmationScreen = ({
             />
             <Image
               source={{
-                uri: "https://pbs.twimg.com/profile_images/1112702246326845445/a-CBpIyN_400x400.png",
+                uri: logoUrl,
               }}
               style={{
                 position: "absolute",
@@ -112,8 +148,6 @@ const AddBankAccountConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(15),
@@ -124,17 +158,14 @@ const AddBankAccountConfirmationScreen = ({
               Account Number
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
@@ -143,8 +174,6 @@ const AddBankAccountConfirmationScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(15),
@@ -155,21 +184,19 @@ const AddBankAccountConfirmationScreen = ({
               Account Name
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
               }}
               showSoftInputOnFocus={false}
-              value={accountName}
+              value={_accountName}
+              onChangeText={(text) => setAccountName(text)}
             />
           </View>
         </View>
@@ -181,26 +208,8 @@ const AddBankAccountConfirmationScreen = ({
         >
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                statusMessage:
-                  "Your bank account has been successfully linked to your Aza",
-                navigateTo: "BankAccounts",
-                navigateToParams: {
-                  screenType,
-                },
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            onPressButton={addBankAccount}
+            buttonLoading={isButtonLoading}
           />
         </View>
       </View>

@@ -1,7 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
@@ -16,6 +15,10 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { number } from "yup/lib/locale";
 import { string } from "yup";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AddNewCardScreen = ({
   navigation,
@@ -23,6 +26,8 @@ const AddNewCardScreen = ({
 }: CommonScreenProps<"AddNewCard">) => {
   const { navigateBackTo } = route.params;
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   interface CardDetails {
     cardNo: string;
@@ -36,27 +41,7 @@ const AddNewCardScreen = ({
     expiryDate: "",
   });
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Add New Card
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Add New Card");
 
   return (
     <SpacerWrapper>
@@ -95,7 +80,9 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.3,
+                opacity: 0.6,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="Enter your card number"
               keyboardType="number-pad"
@@ -125,7 +112,9 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.3,
+                opacity: 0.6,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               }}
               placeholder="MM/YY"
               keyboardType="number-pad"
@@ -156,7 +145,10 @@ const AddNewCardScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 paddingBottom: 5,
                 marginTop: hp(15),
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.3,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: 16,
+                opacity: 0.6,
               }}
               placeholder="Enter your security code behind card"
               keyboardType="number-pad"

@@ -52,7 +52,7 @@ const SignUpOTPScreen = ({
             {
               email: otpScrenType === "email" ? emailAddress! : "",
               phoneNumber: otpScrenType === "phone" ? phoneNumber! : "",
-              otp: Number(signUpOtp),
+              otp: signUpOtp,
             },
             "email"
           ).then((token) => {

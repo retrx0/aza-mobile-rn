@@ -1,11 +1,8 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, {  useState } from "react";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
-import BackButton from "../../../../components/buttons/BackButton";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
-import Divider from "../../../../components/divider/Divider";
-import CustomSwitch from "../../../../components/switch/CustomSwitch";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
@@ -15,6 +12,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { toastError } from "../../../../common/util/ToastUtil";
 
 import { changePasswordAPI } from "../../../../api/user";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const NewPasswordScreen = ({
   navigation,
@@ -26,30 +24,8 @@ const NewPasswordScreen = ({
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const { oldPassword } = route.params;
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          New Password
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "New Password");
+ 
 
   const checkIfPasswordsMatch = () => {
     if (
@@ -95,16 +71,14 @@ const NewPasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             marginLeft: hp(20),
             fontWeight: "500",
-          }}
-        >
+          }}>
           Please enter your new password
         </Text>
         <View
           style={{
             marginTop: hp(50),
             paddingHorizontal: hp(20),
-          }}
-        >
+          }}>
           <SegmentedInput
             value={newPassword}
             secureInput
@@ -122,8 +96,7 @@ const NewPasswordScreen = ({
             marginTop: hp(70),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}
-        >
+          }}>
           <SegmentedInput
             value={newPasswordConfirmation}
             secureInput
@@ -138,19 +111,18 @@ const NewPasswordScreen = ({
             {
               marginBottom: hp(15),
             },
-          ]}
-        >
-          <Text style={{ fontSize: 12, marginRight: 10 }}>
+          ]}>
+          {/* <Text style={{ fontSize: 12, marginRight: 10 }}>
             Use as transaction pin
-          </Text>
-          <CustomSwitch
+          </Text> */}
+          {/* <CustomSwitch
             isEnabled={isTransactionPin}
             onSwitchToggle={() => {
               setTransactionPin(!isTransactionPin);
             }}
-          />
+          /> */}
         </View>
-        <Divider />
+        {/* <Divider /> */}
         <Button
           title="Continue"
           disabled={checkIfPasswordsMatch()}

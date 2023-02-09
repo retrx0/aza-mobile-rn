@@ -1,12 +1,12 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import BackButton from "../../../../components/buttons/BackButton";
-import { TextInput } from "../../../../theme/Themed";
-import { View, Text } from "../../../../theme/Themed";
-
 import Button from "../../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
+import { TextInput } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
@@ -14,45 +14,48 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { removeUserSavedBankAcc } from "../../../../redux/slice/userSlice";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 const EditBankAccountDetailsScreen = ({
   navigation,
+  route,
 }: CommonScreenProps<"EditBankAccountDetails">) => {
+  const [isEditing, setEditing] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          // lightColor={Colors.light.mainText}
-          // darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Bank Account
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  const { accountName, accountNumber, id, bankName, bankLogo } = route.params;
+
+  useNavigationHeader(navigation, "Bank Account");
+
+  const editDetails = () => {
+    setEditing(!isEditing);
+  };
+
+  const deleteAccount = () => {
+    dispatch(removeUserSavedBankAcc(id))
+      .unwrap()
+      .then(() => {
+        navigation.goBack();
+        toastSuccess("The account has been successfully deleted");
+      })
+      .catch(() => toastError("An error occurred while deleting the account"));
+  };
 
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(15) }}>
           <Text
-            // lightColor={Colors.light.mainText}
-            // darkColor={Colors.dark.mainText}
             style={{
               marginVertical: hp(30),
               fontFamily: "Euclid-Circular-A-Medium",
@@ -65,8 +68,6 @@ const EditBankAccountDetailsScreen = ({
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -77,8 +78,7 @@ const EditBankAccountDetailsScreen = ({
               Bank
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
+              editable={isEditing}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -86,17 +86,16 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
 
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
-              value={"Access"}
+              value={bankName}
             />
             <Image
               source={{
-                uri: "https://pbs.twimg.com/profile_images/1112702246326845445/a-CBpIyN_400x400.png",
+                uri: bankLogo,
               }}
               style={{
                 position: "absolute",
@@ -112,8 +111,6 @@ const EditBankAccountDetailsScreen = ({
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -124,8 +121,7 @@ const EditBankAccountDetailsScreen = ({
               Account Number
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
+              editable={isEditing}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -133,18 +129,16 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
-              value={"123456789"}
+              value={accountNumber}
             />
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
-              // lightColor={Colors.light.secondaryText}
-              // darkColor={Colors.dark.secondaryText}
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
@@ -155,8 +149,7 @@ const EditBankAccountDetailsScreen = ({
               Account Name
             </Text>
             <TextInput
-              // lightColor={Colors.light.mainText}
-              // darkColor={Colors.dark.mainText}
+              editable={isEditing}
               placeholderTextColor={Colors[colorScheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
@@ -164,12 +157,11 @@ const EditBankAccountDetailsScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor:
-                  colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 marginLeft: hp(5),
                 fontSize: hp(16),
               }}
-              value={"james bond"}
+              value={accountName}
             />
           </View>
         </View>
@@ -180,20 +172,12 @@ const EditBankAccountDetailsScreen = ({
           ]}
         >
           <Button
-            title="Edit Account Details"
-            onPressButton={() => navigation.goBack()}
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            title={isEditing ? "Done" : "Edit Account Details"}
+            onPressButton={editDetails}
           />
           <CancelButtonWithUnderline
             title="Delete Account"
-            onPressButton={() => console.log("called")}
+            onPressButton={deleteAccount}
             styleText={CommonStyles.cancelStyle}
             style={[{ borderBottomColor: Colors.general.red }]}
           />

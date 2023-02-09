@@ -1,29 +1,32 @@
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { boolean, number } from "yup";
-import { Dstv, Fctwb, Ie, IET, Mtn } from "../../../assets/images";
+import { Dstv, Ie, Mtn } from "../../../assets/images";
 import api from "../../api";
-import { getItemSecure } from "../../common/util/StorageUtil";
+import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
-import { ITransactions, UserState } from "../types";
+import { ITransactions, IUserState } from "../types";
 
 // Define the initial state using that type
-const initialState: UserState = {
+const initialState: IUserState = {
   loading: false,
-  phoneNumber: "+2348135524649",
+  loaded: false,
+  phoneNumber: "080222222221",
+  firstName: "FEMI",
+  lastName: "ZACK",
   fullName: "Test User",
-  firstName: "Test",
-  lastName: "User",
-  pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-  azaAccountNumber: 1234556644,
+  pictureUrl: "https://ui-avatars.com/api/?name=Aza",
+  azaAccountNumber: "1001561113",
   azaBalance: 100000,
   emailAddress: "testuser@azanaija.com",
   accountVerified: true,
   bvnVerified: false,
+  bvnNumber: "",
   accountStatus: "",
+  dateOfBirth: "",
+  lastLogin: "",
   recentTransactions: {
     loading: false,
+    loaded: false,
     data: [
       {
         dateOfTransactions: "15 June 2022",
@@ -104,7 +107,8 @@ const initialState: UserState = {
   vault: { loading: false, recentTransaction: [] },
   payments: {
     loading: false,
-    recentPayments: [
+    loaded: false,
+    data: [
       {
         amount: "2000",
         status: "Paid",
@@ -133,6 +137,7 @@ const initialState: UserState = {
   },
   azaContacts: {
     loading: false,
+    loaded: false,
     data: [
       {
         azaAccountNumber: "12345678",
@@ -168,21 +173,12 @@ const initialState: UserState = {
   },
   bankAccounts: {
     loading: false,
-    data: [
-      {
-        accountName: "Test Account",
-        accountNumber: "000111221",
-        bankName: "GT Bank",
-      },
-      {
-        accountName: "Test Account 2",
-        accountNumber: "000111222",
-        bankName: "VFD Bank",
-      },
-    ],
+    loaded: false,
+    data: [],
   },
   paymentRequests: {
     loading: false,
+    loaded: false,
     data: [
       {
         type: "outgoing",
@@ -290,6 +286,11 @@ const initialState: UserState = {
       },
     ],
   },
+  accountTier: "",
+  bvn: "",
+  isEmailConfirmed: false,
+  isPhoneNumberConfirmed: false,
+  userName: "",
 };
 
 export const userSlice = createSlice({
@@ -299,6 +300,9 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<any>) => {
       state = action.payload;
+    },
+    setUserFullName: (state, action: PayloadAction<string>) => {
+      state.fullName = action.payload;
     },
     setUserPhoneAndFullName: (
       state,
@@ -339,49 +343,99 @@ export const userSlice = createSlice({
       })
       .addCase(getUserInfo.pending, (state, action) => {
         state.loading = true;
+        state.loaded = false;
       })
       .addCase(getUserInfo.rejected, (state) => {
         state.loading = false;
+        state.loaded = false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
-        // state.firstName = action.payload.
+        state.loading = false;
+        state.loaded = true;
+        // state.firstName = action.payload.firstName;
+        // state.lastName = action.payload.lastName;
+        state.fullName =
+          action.payload.firstName + " " + action.payload.lastName;
+        // state.phoneNumber = action.payload.phoneNumber;
+        state.emailAddress = action.payload.email;
+        state.gender = action.payload.gender;
+        state.bvnVerified = action.payload.isBVNComfirmed;
+        state.dateOfBirth = action.payload.dateOfBirth;
+        state.pictureUrl = action.payload.pictureUrl;
+        state.lastLogin = action.payload.lastLogin;
+        state.accountTier = action.payload.accountTier;
+        state.dateOfBirth = action.payload.dateOfBirth;
       })
+      .addCase(uploadProfilePicThunk.pending, (state, action) => {})
+      .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
       .addCase(uploadProfilePicThunk.fulfilled, (state, action) => {
         state.pictureUrl = action.payload as any;
-      });
+      })
+      .addCase(addUserBvnThunk.pending, (state, action) => {
+        state.bvnVerified = false;
+      })
+      .addCase(addUserBvnThunk.rejected, (state, action) => {
+        state.bvnVerified = false;
+      })
+      .addCase(addUserBvnThunk.fulfilled, (state, action) => {
+        console.log("BVN" + action.payload);
+        state.bvnVerified = action.payload as any;
+      })
+      .addCase(getUserAccount.pending, (state, action) => {})
+      .addCase(getUserAccount.rejected, (state, action) => {})
+      .addCase(getUserAccount.fulfilled, (state, action) => {
+        // console.log(action.payload);
+        // state.azaAccountNumber = action.payload
+        // state.azaBalance = action.payload
+      })
+      .addCase(getUserSavedBankAccs.pending, (state, action) => {
+        state.bankAccounts.loading = true;
+        state.bankAccounts.loaded = false;
+      })
+      .addCase(getUserSavedBankAccs.rejected, (state, action) => {
+        state.bankAccounts.loading = false;
+        state.bankAccounts.loaded = false;
+      })
+      .addCase(getUserSavedBankAccs.fulfilled, (state, action) => {
+        state.bankAccounts.loading = false;
+        state.bankAccounts.loaded = true;
+        state.bankAccounts.data = action.payload;
+      })
+      .addCase(removeUserSavedBankAcc.pending, (state, action) => {})
+      .addCase(removeUserSavedBankAcc.rejected, (state, action) => {})
+      .addCase(removeUserSavedBankAcc.fulfilled, (state, action) => {
+        state.bankAccounts.data = state.bankAccounts.data.filter(
+          (account) => account.id !== action.meta.arg
+        );
+      })
+      .addCase(saveUserBankAcc.pending, (state, action) => {})
+      .addCase(saveUserBankAcc.rejected, (state, action) => {})
+      .addCase(saveUserBankAcc.fulfilled, (state, action) => {});
   },
 });
 
-export const getUserInfo = createAsyncThunk(
-  "user/getInfo",
-  async ({}, { rejectWithValue, fulfillWithValue }) => {
-    try {
-      const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-      const info = await api.get("/api/v1/user/info", {
-        headers: { Authorization: `Bearer ${jwt}` },
-      });
-      return fulfillWithValue(info.data);
-    } catch (e: any) {
-      return rejectWithValue(e.response.data.message);
-    }
+export const getSupportedBanks = createAsyncThunk("banks", async () => {
+  return await thunkCourier("get", "/api/v1/bank/banks");
+});
+
+export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
+  return await thunkCourier("get", "/api/v1/user/info");
+});
+
+export const getUserAccount = createAsyncThunk(
+  "user/getAccount",
+  async ({ accountNumber }: { accountNumber: string }) => {
+    return await thunkCourier("get", `/api/v1/account/${accountNumber}`);
   }
 );
 
 export const getUserTransactions = createAsyncThunk(
   "user/getTransactions",
-  async (
-    { accountNumber, token }: { accountNumber: number; token: string },
-    { rejectWithValue, fulfillWithValue }
-  ) => {
-    try {
-      const result = await api.get(
-        `/api/v1/account/${accountNumber}/transactions`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      return fulfillWithValue(result.data);
-    } catch (err: any) {
-      return rejectWithValue(err.response.data.message);
-    }
+  async ({ accountNumber }: { accountNumber: number }) => {
+    return await thunkCourier(
+      "get",
+      `/api/v1/account/${accountNumber}/transactions`
+    );
   }
 );
 
@@ -405,23 +459,66 @@ export const addBankAccount = createAsyncThunk(
 
 export const uploadProfilePicThunk = createAsyncThunk(
   "user/upload",
-  async (formData: FormData, { rejectWithValue, fulfillWithValue }) => {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
+  async (formData: FormData) => {
+    return await thunkCourier<FormData>(
+      "patch",
+      "/api/v1/user/photo-upload",
+      formData
+    );
+  }
+);
 
-    return api
-      .patch("/api/v1/user/photo-upload", formData, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
-      .then(
-        (response) => {
-          return fulfillWithValue(response.data.data);
-        },
-        (error: AxiosError) => {
-          return rejectWithValue(error.message);
-        }
-      );
+export const addUserBvnThunk = createAsyncThunk(
+  "user/addUserBvn",
+  async ({ bvn, dateOfBirth }: { bvn: string; dateOfBirth: string }) => {
+    console.log(dateOfBirth);
+    return await thunkCourier<{ bvn: string; dateOfBirth: string }>(
+      "post",
+      "/api/v1/user/add/bvn",
+      {
+        bvn: bvn,
+        dateOfBirth: dateOfBirth,
+      }
+    );
+  }
+);
+
+export const getUserSavedBankAccs = createAsyncThunk(
+  "user/getUserSavedBankAccounts",
+  async () => {
+    return await thunkCourier("get", "/api/v1/bank/accounts");
+  }
+);
+
+export const removeUserSavedBankAcc = createAsyncThunk(
+  "user/removeUserSavedBankAccounts",
+  async (bankAccountId: string) => {
+    return await thunkCourier(
+      "delete",
+      `/api/v1/bank/accounts/${bankAccountId}`
+    );
+  }
+);
+
+export const saveUserBankAcc = createAsyncThunk(
+  "user/saveUserBankAccount",
+  async ({
+    accountName,
+    accountNumber,
+    bankCode,
+    isBeneficiary,
+  }: {
+    accountName: string;
+    accountNumber: string;
+    bankCode: string;
+    isBeneficiary: boolean;
+  }) => {
+    return await thunkCourier("put", `/api/v1/bank/accounts`, {
+      accountName,
+      accountNumber,
+      bankCode,
+      isBeneficiary,
+    });
   }
 );
 
@@ -434,6 +531,7 @@ export const {
   setUserPhoneNumber,
   setVault,
   setProfilePicture,
+  setUserFullName,
 } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

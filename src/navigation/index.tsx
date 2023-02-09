@@ -17,13 +17,18 @@ import { useAppDispatch, useAppSelector } from "../redux";
 import { getDeviceTheme } from "../theme";
 import useCachedResources from "../hooks/useCachedResources";
 import { ISettings } from "../hooks/useAsyncStorage";
+import { IUserCred } from "../redux/types";
 
 const Navigation = ({
   colorScheme,
   loadedPreference,
+  isUserSignedIn,
+  cachedUser,
 }: {
   colorScheme: ColorSchemeName;
   loadedPreference: ISettings | undefined;
+  isUserSignedIn: boolean;
+  cachedUser: IUserCred | undefined;
 }) => {
   const _selectedTheme = useAppSelector(selectAppTheme);
   const dispatch = useAppDispatch();
@@ -47,7 +52,7 @@ const Navigation = ({
       linking={LinkingConfiguration}
       theme={getDeviceTheme(_selectedTheme)}
     >
-      <RootNavigator />
+      <RootNavigator isUserSignedIn={isUserSignedIn} cachedUser={cachedUser} />
     </NavigationContainer>
   );
 };

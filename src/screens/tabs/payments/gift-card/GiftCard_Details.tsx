@@ -13,12 +13,13 @@ import { CANADA, UK, USA } from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { ClockIcon, CloseIcon } from "../../../../../assets/svg";
 import ListItem from "./List";
 import * as Images from "../../../../../assets/images/index";
 import { Card } from "../sub-components/Card";
-import Divider from "../sub-components/Divider";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Divider from "../../../../components/divider/Divider";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 const CountryList = [
   {
@@ -36,27 +37,40 @@ const CountryList = [
 ];
 export default function GiftCardDetails({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+  route,
+}: CommonScreenProps<"GiftCardDetails">) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [currentIndex, setCurrent] = useState(0);
   const insets = useSafeAreaInsets();
   const [active, setActive] = useState("false");
 
+  const {
+    country,
+    productName,
+    fixedRecipientDenominations,
+    fixedSenderDenominations,
+    fixedRecipientToSenderDenominationsMap,
+    senderFee,
+    global,
+  } = route.params;
+
   return (
     <SafeAreaView style={[CommonStyles.parentContainer, styles2.container]}>
-      <Header
-        style={styles.header}
-        description=""
-        descriptionStyle={null}
-        headerStyle={{
-          fontSize: hp(16),
-          fontWeight: "500",
-          fontFamily: "Euclid-Circular-A-Medium",
+      {global && (
+        <Header
+          style={styles.header}
+          description=""
+          descriptionStyle={null}
+          headerStyle={{
+            fontSize: hp(16),
+            fontWeight: "500",
+            fontFamily: "Euclid-Circular-A-Medium",
 
-          marginTop: hp(30),
-        }}
-        heading="Select Region"
-      />
+            marginTop: hp(30),
+          }}
+          heading="Select Region"
+        />
+      )}
 
       {/* <ScrollView horizontal style={CommonStyles.imageHeaderContainer}>
         <HeadrImage selected index={0} image={USA} title="USA" />
@@ -72,17 +86,12 @@ export default function GiftCardDetails({
           marginBottom: hp(35),
         }}
       >
-        {CountryList.map((item, index) => {
-          return (
-            <Card
-              key={index}
-              title={item.title}
-              icon={item.icon}
-              onPress={() => setActive(item.icon)}
-              isActive={item.icon === active}
-            />
-          );
-        })}
+        <Card
+          title={country.name}
+          icon={country.flagUrl}
+          // onPress={() => setActive(item.icon)}
+          // isActive={item.icon === active}
+        />
       </View>
 
       <View style={{ paddingHorizontal: hp(20) }}>
@@ -97,51 +106,21 @@ export default function GiftCardDetails({
         </Text>
         <Divider />
       </View>
-
-      <ListItem
-        onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardEmail",
-          });
-        }}
-        route=""
-        index={0}
-        title="iTunes USD10"
-        amount={"\u20A66,000"}
-      />
-      <ListItem
-        onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
-          });
-        }}
-        route=""
-        index={0}
-        title="iTunes USD25"
-        amount={"\u20A615,000"}
-      />
-      <ListItem
-        onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
-          });
-        }}
-        route=""
-        index={0}
-        title="iTunes USD50"
-        amount={"\u20A630,000"}
-      />
-      <ListItem
-        onPress={() => {
-          navigation.navigate("Common", {
-            screen: "GiftCardConfirmation",
-          });
-        }}
-        route=""
-        index={0}
-        title="iTunes USD100"
-        amount={"\u20A660,000"}
-      />
+      {fixedSenderDenominations.map((price) => {
+        return (
+          <ListItem
+            onPress={() => {
+              navigation.navigate("GiftCardConfirmation", {
+                giftCard: { ...route.params, selectedPrice: price },
+              });
+            }}
+            route=""
+            index={0}
+            title={productName}
+            amount={NAIRA_UNICODE + price}
+          />
+        );
+      })}
 
       {/* <View
         style={[

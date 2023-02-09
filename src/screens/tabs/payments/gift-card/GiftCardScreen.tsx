@@ -1,121 +1,103 @@
-import { Image, ScrollView, StyleSheet } from "react-native";
-import React from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
 import { View as View } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import ListItem from "../sub-components/ListItem";
-import {
-  AMAZON,
-  GOOGLEPLAY,
-  ITUNES,
-  NETFLIX,
-  Nintendo,
-  PSN,
-  RAZER,
-  SEPHORA,
-  STEAM,
-  XBOX,
-} from "../../../../../assets/images";
 import { RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import {
+  getGiftCards,
+  selectPayment,
+} from "../../../../redux/slice/paymentSlice";
+import { IGiftCard } from "../../../../redux/types";
+import Colors from "../../../../constants/Colors";
+import PaymentCardSkeleton from "../../../skeletons/PaymentCardSkeleton";
+import CommonPaymentCard from "../../common/CommonPaymentCard";
 
 export default function GiftCardScreen({
   navigation,
 }: RootTabScreenProps<"Payments">) {
-  const colorScheme = useColorScheme();
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useAppDispatch();
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const { giftCards } = useAppSelector(selectPayment);
+
+  const handleAction = (item: IGiftCard) => {
+    navigation.navigate("Common", {
+      screen: "GiftCardDetails",
+      params: item,
+    });
+  };
+
+  useEffect(() => {
+    if (!giftCards.loaded) dispatch(getGiftCards());
+  }, []);
 
   return (
     <View style={[CommonStyles.parentContainer, styles2.container]}>
       <UnderlinedInput
         style={styles2.mainInput}
         icon={null}
-        inputStyle={[styles2.input]}
+        inputStyle={[
+          styles2.input,
+          {
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+          ,
+        ]}
         labelStyle={styles.label}
         label=""
         placeholder="Search for gift card"
+        onChangeText={(text: any) => setSearchTerm(text)}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <ListItem
-          onPress={() => {
-            navigation.navigate("Common", {
-              screen: "GiftCardDetails",
-            });
-          }}
-          route=""
-          index={2}
-          title="iTunes"
-          Icon={() => <Image style={styles2.img} source={ITUNES} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Google Play"
-          Icon={() => <Image style={styles2.img} source={GOOGLEPLAY} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Amazon"
-          Icon={() => <Image style={styles2.img} source={AMAZON} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="PSN"
-          Icon={() => <Image style={styles2.img} source={PSN} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Xbox"
-          Icon={() => <Image style={styles2.img} source={XBOX} />}
-        />
-        <ListItem
-          route=""
-          index={0}
-          title="Razer"
-          Icon={() => <Image style={styles2.img} source={RAZER} />}
-          onPress={undefined}
-        />
-
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Netflix"
-          Icon={() => <Image style={styles2.img} source={NETFLIX} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Steam"
-          Icon={() => <Image style={styles2.img} source={STEAM} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Sephora"
-          Icon={() => <Image style={styles2.img} source={SEPHORA} />}
-        />
-        <ListItem
-          onPress={() => {}}
-          route=""
-          index={2}
-          title="Nintendo"
-          Icon={() => <Image style={styles2.img} source={Nintendo} />}
-        />
+        {giftCards.loading ? (
+          <PaymentCardSkeleton />
+        ) : (
+          giftCards.data
+            .filter((gc) =>
+              gc.brand.brandName
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            )
+            .map((item, index) => {
+              return (
+                <GiftCard
+                  key={index}
+                  index={index}
+                  giftCard={item}
+                  onPress={() => handleAction(item)}
+                />
+              );
+            })
+        )}
       </ScrollView>
     </View>
   );
 }
+
+const GiftCard = ({
+  index,
+  giftCard,
+  onPress,
+}: {
+  index: number;
+  giftCard: IGiftCard;
+  onPress: () => void;
+}) => {
+  return (
+    <CommonPaymentCard
+      index={index}
+      itemPictureUrl={giftCard.logoUrls[0]}
+      itemTitle={giftCard.brand.brandName}
+      onPress={onPress}
+    />
+  );
+};
 
 const styles2 = StyleSheet.create({
   container: {
@@ -136,5 +118,6 @@ const styles2 = StyleSheet.create({
   img: {
     width: 45,
     height: 45,
+    borderRadius: 50,
   },
 });

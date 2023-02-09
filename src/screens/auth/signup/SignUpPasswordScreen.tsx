@@ -31,6 +31,7 @@ import {
 } from "../../../common/util/StorageUtil";
 import { CEO_MESSAGE_STORAGE_KEY } from "../../../constants/AppConstants";
 import { Separator } from "../../../components/divider/Separator";
+import { getUserInfo } from "../../../redux/slice/userSlice";
 
 const SignUpPasswordScreen = ({
   navigation,
@@ -72,14 +73,78 @@ const SignUpPasswordScreen = ({
     });
   }, []);
 
-  // useEffect(() => {
-  //   Crypto.digestStringAsync(
-  //     Crypto.CryptoDigestAlgorithm.SHA256,
-  //     passcode
-  //   ).then((hashed) => {
-  //     setHashedPasscode(hashed);
-  //   });
-  // }, [passcode]);
+  const handleSubmit = async () => {
+    // dispatch changes
+    // TODO replace with expo-secure-store or react-native-encrypted-storage
+    setLoading(true);
+    dispatch(
+      setNewUser({
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        emailAddress: newUser.emailAddress,
+        phoneNumber: newUser.phoneNumber,
+        gender: newUser.gender,
+        isUsePasscodeAsPin: isUsePasscodeAsPin,
+        createdPasscode: passcode,
+        thirdPartyEmailSignUp: false,
+        pushToken: newUser.pushToken,
+      })
+    );
+
+    if (!isConfirmScreen) {
+      navigation.navigate("SignUpConfirmPassword", {
+        passwordScreenType: "Confirm",
+      });
+    } else {
+      if (passcode === newUser.createdPasscode) {
+        if (isUsePasscodeAsPin) {
+          createPinAPI(passcode)
+            .then((res) => console.log(res))
+            .catch((err: Error) => console.log(err.message));
+        }
+        const regitration = await registerUserAPI({
+          email: newUser.emailAddress!,
+          firstName: newUser.firstName!,
+          lastName: newUser.lastName!,
+          gender: newUser.gender === "male" ? `1` : `2`,
+          newPassword: passcode,
+          pushNotificationToken: newUser.pushToken,
+        });
+        if (regitration) {
+          // Store user credentials for face id
+          // storeUserCredentialsSecure(newUser.emailAddress, passcode);
+
+          const loginJWT = await loginUserAPI({
+            email: newUser.emailAddress,
+            phoneNumber: newUser.phoneNumber,
+            password: passcode,
+          });
+          if (loginJWT) {
+            storeItemSecure(STORAGE_KEY_JWT_TOKEN, loginJWT);
+            storeUserCredentialsSecure(
+              JSON.stringify({
+                email: newUser.emailAddress,
+                token: loginJWT,
+                password: passcode,
+                phoneNumber: newUser.phoneNumber,
+              })
+            );
+            navigation.getParent()?.navigate("Root");
+            if (!ceoMessageShown || ceoMessageShown === "null") {
+              //show CEO Message
+              navigation.getParent()?.navigate("CEOMessage");
+              storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
+            }
+          }
+          dispatch(getUserInfo());
+        }
+        setLoading(false);
+      } else {
+        toastError("Password does not match ⚠️");
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <SpacerWrapper>
@@ -115,102 +180,28 @@ const SignUpPasswordScreen = ({
         ]}
       >
         <View style={[CommonStyles.row]}>
-          <Text style={[CommonStyles.transaction]}>
+          {/* <Text style={[CommonStyles.transaction]}>
             Use as transaction pin?
-          </Text>
+          </Text> */}
 
-          <Switch
+          {/* <Switch
             trackColor={{
-              false: Colors.general.secondary,
+              false: Colors.general.tertiary,
               true: Colors.general.green,
             }}
             thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
-            ios_backgroundColor={Colors.general.secondary}
+            ios_backgroundColor={Colors.general.tertiary}
             onValueChange={toggleSwitch}
             value={isUsePasscodeAsPin}
             style={{
               marginLeft: hp(13),
             }}
-          />
+          /> */}
         </View>
         <Separator />
         <Button
           title="Continue"
-          onPressButton={() => {
-            // dispatch changes
-            // TODO replace with expo-secure-store or react-native-encrypted-storage
-            setLoading(true);
-            dispatch(
-              setNewUser({
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                emailAddress: newUser.emailAddress,
-                phoneNumber: newUser.phoneNumber,
-                gender: newUser.gender,
-                isUsePasscodeAsPin: isUsePasscodeAsPin,
-                createdPasscode: passcode,
-                thirdPartyEmailSignUp: false,
-                pushToken: newUser.pushToken,
-              })
-            );
-
-            if (!isConfirmScreen) {
-              navigation.navigate("SignUpConfirmPassword", {
-                passwordScreenType: "Confirm",
-              });
-            } else {
-              if (passcode === newUser.createdPasscode) {
-                // dispatch(setPassword({password:passcode}))
-                if (isUsePasscodeAsPin) {
-                  createPinAPI(passcode)
-                    .then((res) => console.log(res))
-                    .catch((err: Error) => console.log(err.message));
-                }
-                registerUserAPI({
-                  email: newUser.emailAddress!,
-                  firstName: newUser.firstName!,
-                  lastName: newUser.lastName!,
-                  gender: newUser.gender === "male" ? `1` : `2`,
-                  newPassword: passcode,
-                  pushNotificationToken: newUser.pushToken,
-                }).then((_res) => {
-                  if (_res) {
-                    // Store user credentials for face id
-                    // storeUserCredentialsSecure(newUser.emailAddress, passcode);
-
-                    loginUserAPI({
-                      email: newUser.emailAddress,
-                      phoneNumber: newUser.phoneNumber,
-                      password: passcode,
-                    }).then((_jwt) => {
-                      if (_jwt) {
-                        storeItemSecure(STORAGE_KEY_JWT_TOKEN, _jwt);
-                        storeUserCredentialsSecure(
-                          JSON.stringify({
-                            email: newUser.emailAddress,
-                            token: _jwt,
-                            password: passcode,
-                            phoneNumber: newUser.phoneNumber,
-                          })
-                        );
-                        navigation.getParent()?.navigate("Root");
-                        if (!ceoMessageShown || ceoMessageShown === "null") {
-                          //show CEO Message
-                          navigation.getParent()?.navigate("CEOMessage");
-                          storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
-                        }
-                      }
-                      setLoading(false);
-                    });
-                  }
-                  setLoading(false);
-                });
-              } else {
-                toastError("Password does not match ⚠️");
-                setLoading(false);
-              }
-            }
-          }}
+          onPressButton={handleSubmit}
           styleText={{}}
           style={[
             {

@@ -1,13 +1,11 @@
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import React, { useState } from "react";
+import { Image } from "react-native";
 
-import BackButton from "../../../components/buttons/BackButton";
 import { TextInput, View, Text } from "../../../theme/Themed";
 import Button from "../../../components/buttons/Button";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -16,12 +14,17 @@ import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
   selectTransaction,
   setTransactionDescription,
-  TransactionState,
+  ITransactionState,
 } from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
+import { selectUser } from "../../../redux/slice/userSlice";
+import { transferToAzaUserAPI } from "../../../api/vfd";
+import { requestMoneyAPI } from "../../../api/money-request";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
+import { payAzaUserAPI } from "../../../api/payment";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -32,7 +35,6 @@ const TransactionConfirmationScreen = ({
   route,
   confirmationType,
 }: CommonScreenProps<"Common"> & TransactionScreenProps) => {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
@@ -40,58 +42,111 @@ const TransactionConfirmationScreen = ({
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
 
+  const { bvnVerified, azaAccountNumber, bvnNumber } =
+    useAppSelector(selectUser);
+
   const [transDescription, setTransDescription] = useState(description);
 
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Confirmation
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "Confirmation");
 
-  const makeTransaction = () => {
+  const makeTransaction = async () => {
     // do some validation
 
-    dispatch(setTransactionDescription("" + transDescription));
+    if (!bvnVerified) {
+      navigation.navigate("BvnVerification", {
+        onVerifyNavigateBackTo:
+          confirmationType === "send"
+            ? "SendMoneyConfirmation"
+            : "RequestMoneyConfirmation",
+      });
+    } else {
+      dispatch(setTransactionDescription("" + transDescription));
 
-    navigation.navigate("StatusScreen", {
-      status:
-        confirmationType === "request"
-          ? "Successful"
-          : "Your transaction was \n successful",
-      statusIcon: "Success",
-      statusMessage: `You have successfully ${
-        confirmationType === "request" ? "requested" : "sent"
-      } ${NAIRA_UNICODE} ${amount} ${
-        confirmationType === "request" ? "from" : "to"
-      } ${beneficiary.fullName}`,
-      statusMessage2:
-        confirmationType === "send"
-          ? "You can perform this transaction automatically by giving a Recurring Transfer order"
-          : "",
-      receiptButton: confirmationType === "send",
-      recurringTransferBeneficiary:
-        confirmationType === "send" ? beneficiary : undefined,
-      navigateTo: "Home",
-      // to disallow swoosh sound in request screen
-      screenType: confirmationType === "send" ? "transaction" : undefined,
-    });
+      //make transaction
+      let transactionCompleted = false;
+
+      if (confirmationType === "send") {
+        // const transfer = await transferToAzaUserAPI({
+        //   amount: "" + amount,
+        //   fromAccount: azaAccountNumber,
+        //   fromBvn: bvnNumber,
+        //   fromClientId: "",
+        //   fromClient: "",
+        //   fromSavingsId: "",
+        //   toClient: "",
+        //   toBvn: "",
+        //   toAccount: beneficiary.azaAccountNumber,
+        //   toBank: "",
+        //   signature: "Aza",
+        //   remark: "",
+        //   transferType: "intra",
+        //   reference: transDescription ? transDescription : "Aza transaction",
+        //   toSession: "",
+        //   toKyc: "",
+        // });
+        const transfer = await payAzaUserAPI({
+          sourceAccount: "",
+          destinationAccount: "",
+          amount,
+          transactionPin: "",
+          description: transDescription ? transDescription : "Aza transaction",
+          currency: "NGN",
+          destinationAccountName: "",
+          destinationBankCode: "",
+          destinationChannel: "",
+        });
+
+        if (transfer) {
+          transactionCompleted = true;
+        }
+      } else {
+        const request = await requestMoneyAPI({
+          amount: amount,
+          decription: transDescription ? transDescription : "",
+          initiatorAccountNumber: "" + azaAccountNumber,
+          receipientAccountNumber: beneficiary.azaAccountNumber,
+          recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
+        });
+
+        if (request) {
+          transactionCompleted = true;
+        }
+      }
+
+      if (transactionCompleted) {
+        navigation.navigate("StatusScreen", {
+          status:
+            confirmationType === "request"
+              ? "Successful"
+              : "Your transaction was \n successful",
+          statusIcon: "Success",
+          statusMessage: `You have successfully ${
+            confirmationType === "request" ? "requested" : "sent"
+          } ${NAIRA_UNICODE} ${amount} ${
+            confirmationType === "request" ? "from" : "to"
+          } ${beneficiary.fullName}`,
+          statusMessage2:
+            confirmationType === "send"
+              ? "You can perform this transaction automatically by giving a Recurring Transfer order"
+              : "",
+          receiptDetails:
+            confirmationType === "send"
+              ? {
+                  amount: String(amount),
+                  beneficiaryName: beneficiary.fullName,
+                }
+              : undefined,
+          recurringTransferBeneficiary:
+            confirmationType === "send" ? beneficiary : undefined,
+          navigateTo: "Home",
+          // to disallow swoosh sound in request screen
+          screenType: confirmationType === "send" ? "transaction" : undefined,
+        });
+      } else {
+      }
+    }
   };
 
   return (
@@ -105,7 +160,8 @@ const TransactionConfirmationScreen = ({
               marginTop: hp(15),
               fontWeight: "500",
               marginBottom: hp(50),
-            }}>
+            }}
+          >
             Kindly confirm the details of this transaction
           </Text>
           <View style={{ marginBottom: hp(30), position: "relative" }}>
@@ -114,18 +170,19 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               To
             </Text>
             <TextInput
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[appTheme].borderColor,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
               }}
               showSoftInputOnFocus={false}
@@ -153,7 +210,8 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Amount
             </Text>
             <View
@@ -164,7 +222,8 @@ const TransactionConfirmationScreen = ({
                   alignSelf: "stretch",
                   position: "relative",
                 },
-              ]}>
+              ]}
+            >
               {/* <Text
                 style={{
                   fontSize: hp(16),
@@ -180,7 +239,9 @@ const TransactionConfirmationScreen = ({
                   backgroundColor: "transparent",
                   paddingBottom: 5,
                   borderBottomWidth: 1,
-                  borderBottomColor: Colors[appTheme].borderColor,
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+
                   fontSize: hp(16),
                   fontFamily: "Euclid-Circular-A-Medium",
                 }}
@@ -196,18 +257,19 @@ const TransactionConfirmationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Description
             </Text>
             <TextInput
-              placeholderTextColor={Colors[colorScheme].secondaryText}
+              placeholderTextColor={Colors[appTheme].secondaryText}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[appTheme].borderColor,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
               }}
               onChangeText={setTransDescription}
@@ -220,13 +282,9 @@ const TransactionConfirmationScreen = ({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
-        <Button
-          title="Continue"
-          onPressButton={() => makeTransaction()}
-          styleText={{}}
-          style={[{}]}
-        />
+        ]}
+      >
+        <Button title="Continue" onPressButton={makeTransaction} />
         <CancelButtonWithUnderline
           title="Cancel Transaction"
           color={Colors.general.red}

@@ -19,6 +19,11 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
 import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import CEOMessage from "../screens/onboarding/CEOMessage";
+import { IUserCred } from "../redux/types";
+import {
+  setUserEmail,
+  setUserPhoneAndFullName,
+} from "../redux/slice/userSlice";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -34,8 +39,13 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const RootNavigator = () => {
-  const { isUserSignedIn } = useCachedResources();
+const RootNavigator = ({
+  isUserSignedIn,
+  cachedUser,
+}: {
+  isUserSignedIn: boolean;
+  cachedUser: IUserCred | undefined;
+}) => {
   const { registerForPushNotificationsAsync, sendPushNotification } =
     useNotifications();
   const notificationListener = React.useRef<any>();
@@ -47,6 +57,17 @@ const RootNavigator = () => {
   const isActivityModalOpen = useAppSelector(selectActivityModal);
 
   React.useEffect(() => {
+    // dispatch cached user to redux
+    if (cachedUser) {
+      dispatch(
+        setUserPhoneAndFullName({
+          fullName: cachedUser.fullName,
+          phoneNumber: cachedUser.phoneNumber,
+        })
+      );
+      dispatch(setUserEmail(cachedUser.email));
+    }
+
     registerForPushNotificationsAsync().then((token) => {
       if (token !== undefined) {
         dispatch(setPushToken(token));
@@ -97,7 +118,7 @@ const RootNavigator = () => {
         initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
         screenOptions={{ gestureEnabled: false }}
       >
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
           options={{ headerShown: false }}
@@ -111,7 +132,11 @@ const RootNavigator = () => {
           name="SignIn"
           component={LoginNavigator}
           options={{ headerShown: false }}
-        /> */}
+          initialParams={{
+            isUserSignedIn: isUserSignedIn,
+            cachedUser: cachedUser,
+          }}
+        />
         <Stack.Screen
           name="Root"
           component={BottomTabNavigator}

@@ -13,7 +13,9 @@ import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { CommonScreenProps } from "../../../common/navigation/types";
-import useColorScheme from "../../../hooks/useColorScheme";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../theme";
+import { useAppSelector } from "../../../redux";
 
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
@@ -21,9 +23,10 @@ export default function PaymentConfirmationScreen({
   navigation,
   route,
 }: CommonScreenProps<"PaymentConfirmation">) {
-  const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
   const [isButtonLoading, setButtonLoading] = useState(false);
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   const {
     amount,
@@ -60,8 +63,7 @@ export default function PaymentConfirmationScreen({
         style={[
           CommonStyles.vaultcontainer,
           { marginTop: Platform.OS == "android" ? 50 : 0 },
-        ]}
-      >
+        ]}>
         <View style={{ paddingHorizontal: hp(23) }}>
           <Text style={styles.txt}>
             Kindly confirm the details of this transaction
@@ -73,7 +75,8 @@ export default function PaymentConfirmationScreen({
               placeholder={beneficiaryName}
               source={{ uri: beneficiaryLogo }}
               icon={undefined}
-              value={""}
+              value={beneficiaryName}
+              editable={false}
             />
           ) : (
             <ImageInput
@@ -81,7 +84,8 @@ export default function PaymentConfirmationScreen({
               placeholder={beneficiaryName}
               source={beneficiaryLogo}
               icon={undefined}
-              value={""}
+              value={beneficiaryName}
+              editable={false}
             />
           )}
 
@@ -89,103 +93,89 @@ export default function PaymentConfirmationScreen({
             style={{ display: customerAccountNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
             label={"Customer Account Number"}
             value={customerAccountNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
           />
 
           <UnderlinedInput
             style={{ display: smartCardNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
             label={"Smart Card Number"}
             value={smartCardNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
           />
 
           <UnderlinedInput
             style={{ display: meterNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
             label={"Meter Number"}
             value={meterNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
           />
 
           <UnderlinedInput
             style={{ display: accountOrUserId ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
             label={"Account/User ID"}
             value={accountOrUserId}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
           />
 
           <UnderlinedInput
             style={{ display: phoneNumber ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "400",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#999999" : "#000000",
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
             label={"Phone number"}
             value={phoneNumber}
-            placeholderTextColor={
-              colorScheme === "dark" ? "#E7E9EA" : "#000000"
-            }
           />
 
           <UnderlinedInput
             style={{ display: amount ? "flex" : "none" }}
             icon={null}
             keyboardType="phone-pad"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
+            editable={false}
             label="Amount"
             value={`${NAIRA_UNICODE + amount} ${
               purchaseName && `(${purchaseName})`
@@ -197,14 +187,13 @@ export default function PaymentConfirmationScreen({
             style={{ display: paymentMethod ? "flex" : "none" }}
             icon={null}
             keyboardType="default"
-            inputStyle={[styles.input]}
-            labelStyle={{
-              fontFamily: "Euclid-Circular-A",
-              fontWeight: "500",
-              fontSize: hp(16),
-              color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-              marginTop: hp(20),
-            }}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
             label="Payment Method"
             value={paymentMethod}
           />
@@ -213,8 +202,7 @@ export default function PaymentConfirmationScreen({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Confirm"
             onPressButton={onConfirm}
@@ -265,5 +253,10 @@ const styles = StyleSheet.create({
   },
   cancelContainer: {
     marginTop: 5,
+  },
+  label: {
+    fontFamily: "Euclid-Circular-A",
+    fontWeight: "400",
+    fontSize: hp(16),
   },
 });

@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PREFERENCE_STORAGE_KEY } from "../constants/AppConstants";
 
 export interface ISettings {
+  accountBalanceVisibilitySwitch?: boolean;
   nameVisibilitySwitch?: boolean;
   contactVisibilitySwitch?: boolean;
   splitAndMoneyRequestsSwitch?: boolean;

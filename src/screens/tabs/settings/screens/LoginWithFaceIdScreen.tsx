@@ -1,16 +1,15 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import { StyleSheet } from "react-native";
-
-import BackButton from "../../../../components/buttons/BackButton";
+ 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
   const { saveSettingsToStorage, loadSettingsFromStorage } =
@@ -38,28 +37,9 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
       confirmTransactionsWithFaceIDSwitch: isConfirmTransactionWithFaceId,
     });
   }, [isLoginWithFaceId, isConfirmTransactionWithFaceId]);
+ 
+  useNavigationHeader(navigation, "Login with Face ID");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Login with Face ID
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
 
   return (
     <View style={styles.container}>

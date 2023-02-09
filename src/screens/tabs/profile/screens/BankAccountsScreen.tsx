@@ -1,68 +1,56 @@
-import React, { useLayoutEffect, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline, {
   CancelButtonWithUnderline,
 } from "../../../../components/buttons/CancelButtonWithUnderline";
 import Divider from "../../../../components/divider/Divider";
+import ListItemSkeleton from "../../../../components/skeleton/ListItemSkeleton";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
 
 import {
   ArrowDownIcon,
   ChevronRightIcon,
   UndrawAccountIcon,
 } from "../../../../../assets/svg";
-import { AccessBank } from "../../../../../assets/images";
-import { useAppSelector } from "../../../../redux";
-import { selectUser } from "../../../../redux/slice/userSlice";
+import {
+  getUserSavedBankAccs,
+  selectUser,
+} from "../../../../redux/slice/userSlice";
 import { IBankAccount } from "../../../../redux/types";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const BankAccountsScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BankAccounts">) => {
-  const colorScheme = useColorScheme();
   const [selectedAccount, setSelectedAccount] = useState<IBankAccount>();
-  const [accountAvailable] = useState(true);
   const insets = useSafeAreaInsets();
   const { screenType } = route.params;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
 
   const user = useAppSelector(selectUser);
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}
-        >
-          {screenType}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
+  useNavigationHeader(navigation, screenType);
+
+  useEffect(() => {
+    if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
   }, []);
 
-  if (accountAvailable && screenType === "Withdraw") {
+  if (user.bankAccounts.data.length > 0 && screenType === "Withdraw") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -89,7 +77,7 @@ const BankAccountsScreen = ({
                     ]}
                   >
                     <Image
-                      source={{ uri: _account.logoUrl }}
+                      source={{ uri: _account.bankLogo }}
                       style={{
                         width: 36,
                         height: 36,
@@ -148,8 +136,14 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
-              color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
-              style={[{ marginBottom: 15 }]}
+              color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
+              style={[
+                {
+                  marginBottom: 15,
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+                },
+              ]}
             />
             <Button
               disabled={!selectedAccount}
@@ -168,8 +162,6 @@ const BankAccountsScreen = ({
                   },
                 })
               }
-              styleText={{}}
-              style={[{}]}
             />
             <CancelButtonWithUnderline
               title="Cancel"
@@ -183,7 +175,7 @@ const BankAccountsScreen = ({
     );
   }
 
-  if (accountAvailable && screenType === "Bank Account") {
+  if (user.bankAccounts.data.length > 0 && screenType === "Bank Account") {
     return (
       <SpacerWrapper>
         <View style={[CommonStyles.vaultcontainer]}>
@@ -201,46 +193,61 @@ const BankAccountsScreen = ({
               Select a bank account to perform any activity
             </Text>
             <Divider />
-            {user.bankAccounts.data.map(
-              ({ logoUrl, bankName, accountNumber }, i) => (
-                <View key={i}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("EditBankAccountDetails")
-                    }
-                  >
-                    <View
-                      style={[
-                        CommonStyles.row,
-                        { alignSelf: "stretch", paddingVertical: 15 },
-                      ]}
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ height: "100%" }}
+            >
+              {console.log(user.bankAccounts.data)}
+              {user.bankAccounts.data.map(
+                ({ bankLogo, bankName, accountNumber, accountName, id }, i) => (
+                  <View key={i}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("EditBankAccountDetails", {
+                          accountName,
+                          accountNumber,
+                          id,
+                          bankName,
+                          bankLogo,
+                        })
+                      }
                     >
-                      <Image
-                        source={{ uri: logoUrl }}
-                        style={{
-                          width: 36,
-                          height: 36,
-                          borderRadius: 50,
-                        }}
-                      />
-                      <Text
-                        style={{
-                          marginLeft: hp(20),
-                          fontFamily: "Euclid-Circular-A-Semi-Bold",
-                          fontSize: hp(14),
-                        }}
+                      <View
+                        style={[
+                          CommonStyles.row,
+                          { alignSelf: "stretch", paddingVertical: 15 },
+                        ]}
                       >
-                        {`${bankName} (${accountNumber.substring(0, 3)}.....)`}
-                      </Text>
-                      <View style={{ marginLeft: "auto" }}>
-                        <ChevronRightIcon color={"#2A9E17"} size={20} />
+                        <Image
+                          source={{ uri: bankLogo }}
+                          style={{
+                            width: 36,
+                            height: 36,
+                            borderRadius: 50,
+                          }}
+                        />
+                        <Text
+                          style={{
+                            marginLeft: hp(20),
+                            fontFamily: "Euclid-Circular-A-Semi-Bold",
+                            fontSize: hp(14),
+                          }}
+                        >
+                          {`${bankName} (${accountNumber.substring(
+                            0,
+                            3
+                          )}.....)`}
+                        </Text>
+                        <View style={{ marginLeft: "auto" }}>
+                          <ChevronRightIcon color={"#2A9E17"} size={20} />
+                        </View>
                       </View>
-                    </View>
-                  </TouchableOpacity>
-                  <Divider />
-                </View>
-              )
-            )}
+                    </TouchableOpacity>
+                    <Divider />
+                  </View>
+                )
+              )}
+            </ScrollView>
           </View>
           <View
             style={[
@@ -255,12 +262,22 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
-              styleText={{}}
-              style={[{}]}
             />
           </View>
         </View>
       </SpacerWrapper>
+    );
+  }
+
+  if (user.bankAccounts.loading) {
+    return (
+      <View style={{ paddingTop: 20, flex: 1 }}>
+        {Array(3)
+          .fill(0)
+          .map((_, i) => (
+            <ListItemSkeleton key={i} placeHoldersWidth={[50]} />
+          ))}
+      </View>
     );
   }
 
@@ -274,7 +291,7 @@ const BankAccountsScreen = ({
           ]}
         >
           <UndrawAccountIcon
-            color={colorScheme === "dark" ? "#E7E9EA" : "#000000"}
+            color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
             size={30}
           />
           <Text
@@ -305,7 +322,7 @@ const BankAccountsScreen = ({
             </Text>
             <ArrowDownIcon
               color={
-                colorScheme === "dark"
+                appTheme === "dark"
                   ? Colors.dark.secondaryText
                   : Colors.light.text
               }
@@ -323,16 +340,6 @@ const BankAccountsScreen = ({
                 screenType,
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
-            style={{
-              marginBottom: hp(15),
-              width: "100%",
-              backgroundColor: Colors[colorScheme].button,
-            }}
           />
           <ButtonWithUnderline
             title="Cancel"

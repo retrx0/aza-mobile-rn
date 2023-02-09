@@ -16,6 +16,10 @@ import CustomDropdown from "../../../../../components/dropdown/CustomDropdown";
 import * as Images from "../../../../../../assets/images/index";
 import { Card } from "../../sub-components/Card";
 import { CommonScreenProps } from "../../../../../common/navigation/types";
+import Button from "../../../../../components/buttons/Button";
+import { useAppSelector } from "../../../../../redux";
+import { selectAppTheme } from "../../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../../theme";
 
 const ElectricityList = [
   {
@@ -47,23 +51,23 @@ export default function ElectricityRecurring({
   const bundles = ["Prepaid", "Postpaid"];
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
-  const [active, setActive] = useState("");
-
+  const [selectedElectricity, setselectedElectricity] = useState<{
+    title: string;
+    icon: string;
+  }>({ title: "", icon: "" });
   const [periodValue, setPeriodValue] = useState("");
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
 
   // const { icon } = route.params;
+
   const [dayValue, setDayValue] = useState("");
+  const [daymeter, setdayMeter] = useState("");
 
   const period = [
     { label: "Monthly", value: "monthly" },
     { label: "Weekly", value: "weekly" },
     { label: "Daily", value: "daily" },
-  ];
-
-  const dayMonthly = [
-    { label: "First Day of the Month", value: "1" },
-    { label: "2nd", value: "2" },
-    { label: "3rd", value: "3" },
   ];
 
   const dayWeekly = [
@@ -90,7 +94,7 @@ export default function ElectricityRecurring({
           fontSize: hp(16),
           fontWeight: "500",
           fontFamily: "Euclid-Circular-A-Medium",
-          marginTop: hp(10),
+          marginTop: hp(20),
         }}
         heading="Select electricity provider"
       />
@@ -105,16 +109,15 @@ export default function ElectricityRecurring({
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}
-      >
+        style={[CommonStyles.imageHeaderContainer, { marginTop: hp(10) }]}>
         {ElectricityList.map((item, index) => {
           return (
             <Card
               key={index}
               title={item.title}
               icon={item.icon}
-              onPress={() => setActive(item.icon)}
-              isActive={item.icon === active}
+              onPress={() => setselectedElectricity(item)}
+              isActive={item.title === selectedElectricity.title}
             />
           );
         })}
@@ -122,13 +125,12 @@ export default function ElectricityRecurring({
       <View
         style={{
           paddingHorizontal: hp(20),
-        }}
-      >
+        }}>
         <CustomDropdown
           label="Meter Type"
           data={meter}
           placeholder="Choose your meter type"
-          setValue={setPeriodValue}
+          setValue={setdayMeter}
           value={periodValue}
           placeholderstyle={[
             { fontFamily: "Euclid-Circular-A" },
@@ -142,13 +144,13 @@ export default function ElectricityRecurring({
           icon={null}
           inputStyle={[
             styles.input,
-            {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-            },
+            { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
           ]}
           labelStyle={styles.label}
           label="Meter Number"
           placeholder="Enter your meter number"
+          keyboardType="phone-pad"
+          returnKeyType="done"
         />
       </View>
       <View style={{ paddingHorizontal: hp(20) }}>
@@ -161,36 +163,34 @@ export default function ElectricityRecurring({
             label={"Period"}
           />
         </View>
-        {periodValue !== "daily" && (
-          <View style={{ marginBottom: hp(40) }}>
-            <CustomDropdown
-              data={periodValue === "weekly" ? dayWeekly : dayMonthly}
-              placeholder="Choose a day"
-              setValue={setDayValue}
-              value={dayValue}
-              label={"Day"}
-            />
-          </View>
-        )}
+
+        <View style={{ marginBottom: hp(40) }}>
+          <CustomDropdown
+            data={dayWeekly}
+            placeholder="Choose a day"
+            setValue={setDayValue}
+            value={dayValue}
+            label={"Day"}
+          />
+        </View>
       </View>
       <View
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}
-      >
-        <MyButton
+        ]}>
+        <Button
           disabled={!bundles}
           title="Continue"
-          onPress={() =>
+          onPressButton={() =>
             navigation.push("TransactionKeypad", {
               headerTitle: "Recurring Transfer",
               transactionType: {
                 type: "recurring",
                 beneficiary: {
                   beneficiaryAccount: "",
-                  beneficiaryImage: "",
-                  beneficiaryName: "",
+                  beneficiaryImage: selectedElectricity.icon,
+                  beneficiaryName: selectedElectricity.title,
                 },
                 period: periodValue,
                 day: dayValue,

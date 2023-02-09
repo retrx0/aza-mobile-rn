@@ -4,6 +4,7 @@ import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { getItemSecure } from "../../common/util/StorageUtil";
 import { AxiosError } from "axios";
 import { toastError } from "../../common/util/ToastUtil";
+import apiCourier from "../courier";
 
 export const checkAccountEndpointHealthAPI = async () => {
   try {
@@ -61,6 +62,21 @@ export const getUserTransactionsAPI = async (accountNumber: string) => {
   } catch (e: any) {
     throw new Error(e.response.data.message);
   }
+};
+
+export const verifyBankAccountAPI = async (
+  bankCode: string,
+  accountNumber: string
+) => {
+  return await apiCourier(
+    "post",
+    "/api/v1/account/verify",
+    {
+      bankCode,
+      accountNumber,
+    },
+    "jwt"
+  );
 };
 
 const fetchVFDAccountData = async () => {};

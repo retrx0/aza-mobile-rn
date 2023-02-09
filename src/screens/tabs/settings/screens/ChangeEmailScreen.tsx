@@ -1,48 +1,28 @@
-import React, { useLayoutEffect, useState } from "react";
-import { CommonScreenProps } from "../../../../common/navigation/types";
-import BackButton from "../../../../components/buttons/BackButton";
+import React, {  useState } from "react";
+
+
 import { View as View, Text as Text } from "../../../../theme/Themed";
-import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
 import Button from "../../../../components/buttons/Button";
 import BoxTextInput from "../../../../components/input/BoxTextInput";
-import { useAppSelector } from "../../../../redux";
-import { selectUser } from "../../../../redux/slice/userSlice";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ChangeEmailScreen = ({
   navigation,
 }: CommonScreenProps<"ChangeEmail">) => {
   const user = useAppSelector(selectUser);
 
-  const [newEmail, setNewEmail] = useState("");
-  const insets = useSafeAreaInsets();
+  const [newEmail, setNewEmail] = useState(""); 
+ 
+  useNavigationHeader(navigation, "New Email");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}
-        >
-          New Email
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
 
   return (
     <SpacerWrapper>
@@ -54,8 +34,7 @@ const ChangeEmailScreen = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
               // marginTop: hp(30),
-            }}
-          >
+            }}>
             Change your email
           </Text>
           <View style={{ marginBottom: 10, marginTop: 30 }}>
@@ -110,7 +89,7 @@ const ChangeEmailScreen = ({
           style={{
             marginTop: hp(47),
           }}
-          disabled={!user.emailAddress && !newEmail}
+          disabled={!newEmail}
         />
       </View>
     </SpacerWrapper>

@@ -5,7 +5,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import Divider from "../sub-components/Divider";
 import MyButton from "../sub-components/MyButton";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
@@ -16,32 +15,55 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { CommonScreenProps } from "../../../../common/navigation/types";
+import Button from "../../../../components/buttons/Button";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import { useAppSelector } from "../../../../redux";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import Divider from "../../../../components/divider/Divider";
 
 export default function CharityDetail({
   navigation,
+  route,
 }: CommonScreenProps<"CharityDetail">) {
   const [amount, setAmount] = useState("");
+  const [charityTransaction, setCharityTransaction] = useState({
+    amount: "",
+    name: "",
+    email: "",
+  });
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const route = useRoute();
   const insets = useSafeAreaInsets();
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
+
+  const {
+    charityName,
+    description,
+    pictureUrl,
+    primaryAccountNo,
+    primaryAccBankName,
+    tabKey,
+  } = route.params;
 
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
         <InfoIcon />
-        <Text style={styles.text}>
-          The Chess in Slums, Africa is reimagining education using chess as a
-          tool/framework to aid cognition and empower the minds of children in
-          impoverished areas of Nigeria.
-        </Text>
+        <Text style={styles.text}>{description}</Text>
       </View>
-      {route.name == "For Someone Else" && (
+      {tabKey == "someone" && (
         <>
           <UnderlinedInput
             style={styles.mainInput}
             icon={null}
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label=""
             placeholder="Name and Surname"
@@ -50,7 +72,12 @@ export default function CharityDetail({
           <UnderlinedInput
             style={styles.mainInput}
             icon={null}
-            inputStyle={[styles.input]}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
             labelStyle={styles.label}
             label=""
             placeholder="Email Address"
@@ -58,9 +85,16 @@ export default function CharityDetail({
         </>
       )}
       <UnderlinedInput
+        value={amount}
+        onChangeText={(amnt) => setAmount(amnt)}
         style={styles.mainInput}
         icon={null}
-        inputStyle={[styles.input]}
+        inputStyle={[
+          styles.input,
+          {
+            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+          },
+        ]}
         labelStyle={styles.label}
         label=""
         placeholder="Donation Amount"
@@ -69,21 +103,18 @@ export default function CharityDetail({
       />
 
       <View style={styles.suggestions}>
-        <TouchableOpacity style={styles.mainSuggestion}>
-          <Text style={styles.amount}>₦100</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.mainSuggestion}>
-          <Text style={styles.amount}>₦200</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.mainSuggestion}>
-          <Text style={styles.amount}>₦500</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.mainSuggestion}>
-          <Text style={styles.amount}>₦1000</Text>
-        </TouchableOpacity>
+        {amountPresets.map((item) => {
+          return (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.mainSuggestion}
+              onPress={() => setAmount("" + item.amount)}>
+              <Text style={styles.amount}>
+                {NAIRA_UNICODE + " " + item.amount}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
 
       <View
@@ -99,31 +130,23 @@ export default function CharityDetail({
           />
         </View>
 
-        <Divider
-          style={{
-            marginTop: hp(5),
-            marginBottom: hp(5),
-            width: "85%",
-          }}
-        />
-        <MyButton
+        <Divider />
+        <Button
           style={styles.btn}
           disabled={false}
           title="Continue"
-          onPress={() => {
+          onPressButton={() => {
             navigation.navigate("PaymentConfirmation", {
               amount,
               paymentMethod: "Aza Account",
               purchaseName: "Charity",
-              beneficiaryLogo: "",
-              beneficiaryName: "",
+              beneficiaryLogo: pictureUrl,
+              beneficiaryName: charityName,
             });
           }}
         />
         <CancelButtonWithUnderline
-          onPressButton={() => {
-            navigation.goBack();
-          }}
+          onPressButton={() => navigation.goBack()}
           style={{ borderBottomColor: Colors.general.red }}
           title="Cancel"
           styleText={{
@@ -139,3 +162,10 @@ export default function CharityDetail({
     </View>
   );
 }
+
+const amountPresets = [
+  { id: 1, amount: 100 },
+  { id: 2, amount: 500 },
+  { id: 3, amount: 1000 },
+  { id: 4, amount: 5000 },
+];

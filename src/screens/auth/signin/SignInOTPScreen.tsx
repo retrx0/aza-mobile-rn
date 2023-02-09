@@ -8,6 +8,7 @@ import { selectUser } from "../../../redux/slice/userSlice";
 import OtpScreen from "../otp/OtpScreen";
 import Toast from "react-native-toast-message";
 import { STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN } from "@env";
+import { toastInfo } from "../../../common/util/ToastUtil";
 
 const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
   const [loginOtp, setLoginUpOtp] = useState("");
@@ -31,7 +32,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
             {
               email: user.emailAddress,
               phoneNumber: user.phoneNumber,
-              otp: Number(loginOtp),
+              otp: loginOtp,
             },
             "phone"
           )
@@ -58,7 +59,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
               email: "",
               phoneNumber: user.phoneNumber,
             });
-            Toast.show({ type: "info", text1: "OTP resent!" });
+            toastInfo("OTP resent!");
           }
         }}
         phoneNumber={""}

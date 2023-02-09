@@ -1,43 +1,24 @@
 import { StyleSheet } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
-import { CommonScreenProps } from "../../../../common/navigation/types";
-import BackButton from "../../../../components/buttons/BackButton";
+import React, {  useState } from "react";
+
 import { View as View, Text as Text } from "../../../../theme/Themed";
-import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
+
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../../../constants/Colors";
+import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
+
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ChangePhoneNumberOTPScreen = ({
   navigation,
 }: CommonScreenProps<"ChangePhoneNumberOTP">) => {
   const [otp, setOTP] = useState("");
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          OTP
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, "OTP");
 
   return (
     <SpacerWrapper>

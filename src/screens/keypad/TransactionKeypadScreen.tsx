@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image } from "react-native";
 
 import { CommonScreenProps } from "../../common/navigation/types";
@@ -27,6 +27,7 @@ import { NAIRA_UNICODE } from "../../constants/AppConstants";
 import { NigeriaFlag } from "../../../assets/images";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -47,25 +48,7 @@ const TransactionKeypadScreen = ({
 
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: 16,
-          }}>
-          {headerTitle}
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
-  }, []);
+  useNavigationHeader(navigation, headerTitle);
 
   const validateTransaction = () => {
     // TODO check if normal transaction is withdraw or deposit which only needs to navigate to status screen with no modal opening
@@ -167,7 +150,8 @@ const TransactionKeypadScreen = ({
               fontSize: hp(16),
               marginTop: hp(15),
               marginBottom: hp(15),
-            }}>
+            }}
+          >
             {beneficiary.fullName}
           </Text>
           <View
@@ -182,11 +166,13 @@ const TransactionKeypadScreen = ({
                 borderRadius: 50,
                 marginBottom: hp(20),
               },
-            ]}>
+            ]}
+          >
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               Nigerian Naira
             </Text>
             <Image
@@ -201,7 +187,8 @@ const TransactionKeypadScreen = ({
             <Text
               lightColor={Colors.general.darkGrey}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: 12 }}>
+              style={{ fontSize: 12 }}
+            >
               NGN
             </Text>
           </View>
@@ -225,7 +212,8 @@ const TransactionKeypadScreen = ({
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(36),
                 marginVertical: hp(10),
-              }}>
+              }}
+            >
               {!amount && "0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -235,7 +223,8 @@ const TransactionKeypadScreen = ({
                 fontSize: hp(14),
                 fontWeight: "400",
                 marginVertical: hp(10),
-              }}>
+              }}
+            >
               Aza Balance:
             </Text>
             <Text
@@ -244,7 +233,8 @@ const TransactionKeypadScreen = ({
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontWeight: "600",
-              }}>
+              }}
+            >
               {NAIRA_UNICODE}
               {numberWithCommas(user.azaBalance)}
             </Text>
@@ -255,11 +245,13 @@ const TransactionKeypadScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Continue"
             disabled={
               !amount ||
+              Number(amount) < 100 ||
               (normalTransaction
                 ? transactionType.transaction !== "deposit"
                   ? Number(amount) > user.azaBalance

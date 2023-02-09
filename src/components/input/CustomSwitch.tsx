@@ -1,8 +1,8 @@
-import { View, Text, Switch, StyleSheet, StyleProp } from "react-native";
+import { Switch, StyleSheet, StyleProp } from "react-native";
 import React from "react";
 import { hp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
 import { TextStyle } from "react-native-phone-input";
+import { Text, View } from "../../theme/Themed";
 
 export type SwitchProps = {
   Style?: StyleProp<TextStyle>;
@@ -16,16 +16,14 @@ export default function CustomSwitch({
   title,
   Style,
 }: SwitchProps & TextStyle) {
-  const colorScheme = useColorScheme();
-
   return (
     <View style={styles.container}>
       <Text
         style={[
           styles.text,
-          {
-            color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
-          },
+          // {
+          //   color: colorScheme === "dark" ? "#E7E9EA" : "#000000",
+          // },
         ]}>
         {title}
       </Text>
@@ -47,7 +45,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "#A6A6A6",
     marginRight: hp(10),
     fontSize: hp(14),
     fontWeight: "600",

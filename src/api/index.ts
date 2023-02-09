@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios, AxiosError } from "axios";
 import { API_BASE_URL } from "@env";
 
 const api = axios.create({
@@ -28,10 +28,11 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    let res = error.response;
-    if (res.status == 401) {
+    let res = error as AxiosError;
+    if (res.response?.status == 401) {
     }
-    // console.error("Looks like there was a problem. Status Code: " + res.status);
+    console.debug(res.toJSON());
+    console.error("Looks like there was a problem. Status Code: " + res.code);
     return Promise.reject(error);
   }
 );

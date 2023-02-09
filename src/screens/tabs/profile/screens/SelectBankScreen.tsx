@@ -1,7 +1,13 @@
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { Placeholder, PlaceholderLine, Fade } from "rn-placeholder";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { TextInput } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
@@ -14,16 +20,15 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { SearchIcon } from "../../../../../assets/svg";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import {
-  AccessBankLogoWithName,
-  EcoBankLogoWithName,
-  FCMBLogoWithName,
-  FidelityBankLogoWithName,
-  FirstBankLogoWithName,
-  GTBankLogoWithName,
-  UBALogoWithName,
-  ZenithBankLogoWithName,
-} from "../../../../../assets/images";
+  getSupportedBanks,
+  selectBank,
+} from "../../../../redux/slice/bankSlice";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../../theme";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const SelectBankScreen = ({
   navigation,
@@ -33,40 +38,16 @@ const SelectBankScreen = ({
   const [search, setSearch] = useState("");
 
   const { screenType } = route.params;
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const { banks } = useAppSelector(selectBank);
+  const appTheme = getAppTheme(selectedTheme);
 
-  const banks = [
-    { name: "Access", logo: AccessBankLogoWithName },
-    { name: "Eco", logo: EcoBankLogoWithName },
-    { name: "Fcmb", logo: FCMBLogoWithName },
-    { name: "Gtb", logo: GTBankLogoWithName },
-    { name: "Uba", logo: UBALogoWithName },
-    { name: "Zenith", logo: ZenithBankLogoWithName },
-    { name: "Fidelity", logo: FidelityBankLogoWithName },
-    { name: "First", logo: FirstBankLogoWithName },
-  ];
+  const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          Select Bank
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-    });
+  useNavigationHeader(navigation, "Select Bank");
+
+  useEffect(() => {
+    if (!banks.loaded) dispatch(getSupportedBanks());
   }, []);
 
   return (
@@ -76,8 +57,7 @@ const SelectBankScreen = ({
           style={[
             CommonStyles.row,
             {
-              borderBottomColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
-
+              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               borderBottomWidth: 0.7,
               marginBottom: 20,
               marginLeft: hp(5),
@@ -90,24 +70,37 @@ const SelectBankScreen = ({
               flex: 1,
               padding: 10,
               backgroundColor: "transparent",
-              color: Colors[colorScheme].secondaryText,
             }}
             placeholder="Search for bank"
             onChangeText={(e) => setSearch(e)}
           />
         </View>
-        <ScrollView style={{}} showsVerticalScrollIndicator={false}>
-          {banks
-            .filter(({ name }) =>
-              name.toLowerCase().includes(search.toLowerCase())
-            )
-            .map(({ logo, name }, i) => (
-              <View key={i}>
+
+        {banks.loading ? (
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Placeholder Animation={Fade}>
+              {Array(10)
+                .fill(0)
+                .map((_, i) => (
+                  <PlaceholderLine key={i} height={70} />
+                ))}
+            </Placeholder>
+          </ScrollView>
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={banks.data.filter(({ bankName }) =>
+              bankName.toLowerCase().includes(search.toLowerCase())
+            )}
+            renderItem={({ item: { bankCode, bankName, logoUrl, id } }) => (
+              <View>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("AddBankAccount", {
-                      bankName: name,
-                      bankLogo: logo,
+                      id: id,
+                      bankName,
+                      bankCode,
+                      logoUrl,
                       screenType,
                     })
                   }
@@ -119,7 +112,22 @@ const SelectBankScreen = ({
                     },
                   ]}
                 >
-                  <Image source={logo} />
+                  <View
+                    style={[
+                      CommonStyles.row,
+                      { flex: 1, justifyContent: "space-between" },
+                    ]}
+                  >
+                    {logoUrl !== "" && (
+                      <Image
+                        source={{ uri: logoUrl }}
+                        style={{ width: 30, height: 30, resizeMode: "contain" }}
+                      />
+                    )}
+                    <Text style={{ marginHorizontal: 10, fontSize: 18 }}>
+                      {bankName}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
                 <View
                   style={{
@@ -130,8 +138,9 @@ const SelectBankScreen = ({
                   <Divider />
                 </View>
               </View>
-            ))}
-        </ScrollView>
+            )}
+          />
+        )}
       </View>
     </SpacerWrapper>
   );
