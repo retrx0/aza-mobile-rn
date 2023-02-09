@@ -21,7 +21,7 @@ import { createPinAPI, registerUserAPI } from "../../../api/user";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { toastError } from "../../../common/util/ToastUtil";
 import {
   storeItemSecure,
@@ -121,14 +121,24 @@ const SignUpPasswordScreen = ({
           });
           if (loginJWT) {
             storeItemSecure(STORAGE_KEY_JWT_TOKEN, loginJWT);
-            storeUserCredentialsSecure(
+            storeItemSecure(
+              STORAGE_KEY_USER_CREDS,
               JSON.stringify({
                 email: newUser.emailAddress,
                 token: loginJWT,
                 password: passcode,
                 phoneNumber: newUser.phoneNumber,
+                fullName: newUser.firstName + " " + newUser.lastName,
               })
             );
+            // storeUserCredentialsSecure(
+            //   JSON.stringify({
+            //     email: newUser.emailAddress,
+            //     token: loginJWT,
+            //     password: passcode,
+            //     phoneNumber: newUser.phoneNumber,
+            //   })
+            // );
             navigation.getParent()?.navigate("Root");
             if (!ceoMessageShown || ceoMessageShown === "null") {
               //show CEO Message

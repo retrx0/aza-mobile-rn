@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
@@ -28,7 +28,6 @@ const ChangePasswordScreen = ({
 
   const { phoneNumber, emailAddress } = useAppSelector(selectUser);
   useNavigationHeader(navigation, "Current Password");
-
 
   const verifyPassword = async () => {
     setButtonLoading(true);
@@ -63,7 +62,8 @@ const ChangePasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}>
+          }}
+        >
           Please enter your current password
         </Text>
         <View
@@ -71,11 +71,13 @@ const ChangePasswordScreen = ({
             marginTop: hp(80),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <SegmentedInput
             value={password}
             secureInput
             headerText="Password"
+            autoFocusOnLoad={false}
             onValueChanged={(pass) => setPassword(pass)}
             headerstyle={{
               fontFamily: "Euclid-Circular-A-Medium",

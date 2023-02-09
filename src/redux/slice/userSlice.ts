@@ -379,7 +379,7 @@ export const userSlice = createSlice({
       })
       .addCase(addUserBvnThunk.fulfilled, (state, action) => {
         console.log("BVN" + action.payload);
-        state.bvnVerified = action.payload as any;
+        state.bvnVerified = action.payload as boolean;
       })
       .addCase(getUserAccount.pending, (state, action) => {})
       .addCase(getUserAccount.rejected, (state, action) => {})

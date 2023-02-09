@@ -18,21 +18,20 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "usesIcloudStorage": false,
       "bundleIdentifier": "com.aza.azaapp",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
+      "config": {
+        "usesNonExemptEncryption": false
       },
-      "buildNumber": "2"
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"]
+      },
+      "buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {
@@ -41,7 +40,7 @@
       },
       "package": "com.aza.azaapp",
       "googleServicesFile": "google-services.json",
-      "versionCode": 2
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
@@ -61,9 +60,7 @@
         {
           "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
-          "sounds": [
-            "./assets/sounds/notifications/coindrop.wav"
-          ]
+          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }
       ],
       "@config-plugins/detox"
