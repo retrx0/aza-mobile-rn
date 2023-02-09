@@ -33,42 +33,6 @@ const WithdrawDepositTabs = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
-<<<<<<< HEAD
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Withdraw
-        </Text>
-      ),
-      // hide default back button which only shows in android
-      headerBackVisible: false,
-      //center it in android
-      headerTitleAlign: "center",
-      headerShadowVisible: false,
-      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => {
-            if (routes.some((route) => route.title === "Withdraw")) {
-              navigation.navigate("Common", { screen: "WithdrawFeature" });
-            } else {
-              navigation.navigate("Common", { screen: "DepositFeature" });
-            }
-          }}>
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
-        </TouchableOpacity>
-      ),
-    });
-  }, []);
-=======
   const handlePress = () => {
     if (tabToView === "withdraw") {
       navigation.getParent()?.navigate("WithdrawFeature");
@@ -84,7 +48,6 @@ const WithdrawDepositTabs = ({
       <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
     </TouchableOpacity>
   );
->>>>>>> abf9b068ade8613ee8e91d929af5beb40bf19f68
 
   const renderScene = (props: any) => {
     switch (props.route.key) {

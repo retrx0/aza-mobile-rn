@@ -151,7 +151,8 @@ export default function ElectricityIndex({
               maxHeight: hp(100),
               marginTop: hp(20),
               marginBottom: hp(25),
-            }}>
+            }}
+          >
             {electricityBillers.data.map((item: IElectricityBiller, index) => {
               if (displayedProviders.has(item.name)) {
                 return null;
@@ -161,7 +162,7 @@ export default function ElectricityIndex({
                 <Card
                   key={index}
                   title={item.name.split(" ")[0]}
-                  icon={Images.KE}
+                  icon={"https://cdn-icons-png.flaticon.com/512/607/607303.png"}
                   onPress={() => {
                     setSelectedProvider(item);
                   }}
@@ -174,7 +175,8 @@ export default function ElectricityIndex({
             style={{
               paddingHorizontal: hp(20),
               marginBottom: hp(10),
-            }}>
+            }}
+          >
             {!electricityBillers.loaded ? (
               <PaymentRoundSkeleton />
             ) : (
@@ -239,7 +241,8 @@ export default function ElectricityIndex({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <Button
           title="Continue"
           onPressButton={() => {
