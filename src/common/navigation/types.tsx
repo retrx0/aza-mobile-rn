@@ -66,7 +66,7 @@ export type CommonStackParamList = {
   Pie: undefined;
   Water: undefined;
   Charity: undefined;
-  CharityDetail: IXCharity;
+  CharityDetailsScreen: IXCharity;
   ElectricityConfirmation: undefined;
   PaymentConfirmation: {
     beneficiaryLogo: string;

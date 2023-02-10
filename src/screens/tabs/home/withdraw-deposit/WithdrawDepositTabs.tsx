@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabBar, TabView } from "react-native-tab-view";
 
@@ -18,6 +18,7 @@ import { InfoIcon } from "../../../../../assets/svg";
 import Navigation from "../../../../navigation";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import BackButton from "../../../../components/buttons/BackButton";
 
 const WithdrawDepositTabs = ({
   navigation,
@@ -33,7 +34,6 @@ const WithdrawDepositTabs = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
-<<<<<<< HEAD
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
@@ -58,9 +58,9 @@ const WithdrawDepositTabs = ({
         <TouchableOpacity
           onPress={() => {
             if (routes.some((route) => route.title === "Withdraw")) {
-              navigation.navigate("Common", { screen: "WithdrawFeature" });
+              navigation.navigate("WithdrawFeature");
             } else {
-              navigation.navigate("Common", { screen: "DepositFeature" });
+              navigation.navigate("DepositFeature");
             }
           }}>
           <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
@@ -68,7 +68,7 @@ const WithdrawDepositTabs = ({
       ),
     });
   }, []);
-=======
+
   const handlePress = () => {
     if (tabToView === "withdraw") {
       navigation.getParent()?.navigate("WithdrawFeature");
@@ -84,8 +84,6 @@ const WithdrawDepositTabs = ({
       <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
     </TouchableOpacity>
   );
->>>>>>> abf9b068ade8613ee8e91d929af5beb40bf19f68
-
   const renderScene = (props: any) => {
     switch (props.route.key) {
       case "first":
@@ -127,8 +125,7 @@ const WithdrawDepositTabs = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );

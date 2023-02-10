@@ -28,7 +28,7 @@ export default function CharityIndexScreen({
 
   const handleAction = (item: ICharity) => {
     navigation.navigate("Common", {
-      screen: "CharityDetail",
+      screen: "CharityDetailsScreen",
       params: { ...item, tabKey: "" },
     });
   };
