@@ -101,24 +101,31 @@ const SignInWelcomeBackScreen = ({
       })
         .then((jwt) => {
           if (jwt) {
-            storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-              requireAuthentication: false,
-            });
-            storeItemSecure(
-              STORAGE_KEY_USER_CREDS,
-              JSON.stringify({
-                email: email,
-                token: jwt,
-                password: code,
-                phoneNumber: phoneNumber,
-                fullName: fullName,
-              }),
-              { authenticationPrompt: "storing" }
-            );
-            dispatch(getUserInfo());
-            dispatch(getUserAccount({ accountNumber: "1001561113" }));
-            setScreenLoading(false);
-            navigation.getParent()?.navigate("Root");
+            try {
+              storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
+                requireAuthentication: false,
+              });
+              storeItemSecure(
+                STORAGE_KEY_USER_CREDS,
+                JSON.stringify({
+                  email: email,
+                  token: jwt,
+                  password: code,
+                  phoneNumber: phoneNumber,
+                  fullName: fullName,
+                })
+              );
+              dispatch(getUserInfo());
+              dispatch(
+                getUserAccount({ accountNumber: user.azaAccountNumber })
+              );
+              setScreenLoading(false);
+              navigation.getParent()?.navigate("Root");
+            } catch (error) {
+              toastError(
+                "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
+              );
+            }
           } else {
             setScreenLoading(false);
             toastError("There was a problem logging you in, please try again!");
@@ -196,7 +203,8 @@ const SignInWelcomeBackScreen = ({
               marginTop: hp(20),
               paddingHorizontal: hp(20),
               marginBottom: hp(100),
-            }}>
+            }}
+          >
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -215,7 +223,8 @@ const SignInWelcomeBackScreen = ({
             />
           </View>
           <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
+            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
+          >
             <TouchableOpacity onPress={forgetUser}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>

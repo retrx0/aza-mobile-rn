@@ -109,7 +109,8 @@ export default function AccountSettings({
             fontSize: hp(14),
             fontWeight: "400",
             marginLeft: hp(5),
-          }}>
+          }}
+        >
           Account Settings
         </Text>
         <View

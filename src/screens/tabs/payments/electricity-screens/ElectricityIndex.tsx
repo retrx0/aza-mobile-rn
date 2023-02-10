@@ -149,8 +149,9 @@ export default function ElectricityIndex({
               horizontal
               showsHorizontalScrollIndicator={false}
               style={{
-                maxHeight: hp(80),
-                marginTop: hp(15),
+                minHeight: hp(70),
+                maxHeight: hp(100),
+                marginTop: hp(20),
                 marginBottom: hp(25),
               }}>
               {electricityBillers.data.map(

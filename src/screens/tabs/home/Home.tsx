@@ -39,12 +39,15 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
     <View style={styles.container}>
       <AccountDetails />
       <TransactionOptions navigation={navigation} route={route} />
-      {/* <LinkBVN
-        navigation={navigation}
-        route={route}
-        isBvnLinked={user.bvnVerified}
-      /> */}
-      <NotificationsContainer navigation={navigation} route={route} />
+      {!user.bvnVerified ? (
+        <LinkBVN
+          navigation={navigation}
+          route={route}
+          isBvnLinked={user.bvnVerified}
+        />
+      ) : (
+        <NotificationsContainer navigation={navigation} route={route} />
+      )}
       <RecentTransactions navigation={navigation} route={route} />
     </View>
   );

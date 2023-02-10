@@ -84,6 +84,7 @@ const WithdrawDepositTabs = ({
       <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
     </TouchableOpacity>
   );
+
   const renderScene = (props: any) => {
     switch (props.route.key) {
       case "first":
