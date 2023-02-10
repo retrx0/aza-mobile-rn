@@ -55,14 +55,20 @@ export const clearUserCredentials = async () => {
   return cleared;
 };
 
-export const storeItemSecure = (
+export const storeItemSecure = async (
   key: string,
   value: string,
   options?: SecureStore.SecureStoreOptions
 ) => {
-  SecureStore.setItemAsync(key, value, options)
-    .then(() => console.debug("Item stored to secure store!"))
-    .catch((e) => console.error("Error storing item: " + e));
+  return await SecureStore.setItemAsync(key, value, options)
+    .then(() => {
+      console.debug("Item stored to secure store!");
+      return true;
+    })
+    .catch((e) => {
+      console.error("Error storing item: " + e);
+      return false;
+    });
 };
 
 export const storeItem = (key: string, value: string) => {

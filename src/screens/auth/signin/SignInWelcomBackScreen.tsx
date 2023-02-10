@@ -101,23 +101,31 @@ const SignInWelcomeBackScreen = ({
       })
         .then((jwt) => {
           if (jwt) {
-            storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-              requireAuthentication: false,
-            });
-            storeItemSecure(
-              STORAGE_KEY_USER_CREDS,
-              JSON.stringify({
-                email: email,
-                token: jwt,
-                password: code,
-                phoneNumber: phoneNumber,
-                fullName: fullName,
-              })
-            );
-            dispatch(getUserInfo());
-            dispatch(getUserAccount({ accountNumber: user.azaAccountNumber }));
-            setScreenLoading(false);
-            navigation.getParent()?.navigate("Root");
+            try {
+              storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
+                requireAuthentication: false,
+              });
+              storeItemSecure(
+                STORAGE_KEY_USER_CREDS,
+                JSON.stringify({
+                  email: email,
+                  token: jwt,
+                  password: code,
+                  phoneNumber: phoneNumber,
+                  fullName: fullName,
+                })
+              );
+              dispatch(getUserInfo());
+              dispatch(
+                getUserAccount({ accountNumber: user.azaAccountNumber })
+              );
+              setScreenLoading(false);
+              navigation.getParent()?.navigate("Root");
+            } catch (error) {
+              toastError(
+                "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
+              );
+            }
           } else {
             setScreenLoading(false);
             toastError("There was a problem logging you in, please try again!");
