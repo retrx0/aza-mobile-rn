@@ -16,15 +16,19 @@
     "preview": {
       "distribution": "internal",
       "ios": {
-        "simulator": true
+        "simulator": true,
+        "autoIncrement": true
       },
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "autoIncrement": true
       }
     },
     "preview2": {
+      "ios": { "autoIncrement": true },
       "android": {
-        "gradleCommand": ":app:assembleRelease"
+        "gradleCommand": ":app:assembleRelease",
+        "autoIncrement": true
       }
     },
     "preview3": {
