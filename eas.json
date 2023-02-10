@@ -22,7 +22,8 @@
       "android": {
         "buildType": "apk",
         "autoIncrement": true
-      }
+      },
+      "channel": "staging"
     },
     "preview2": {
       "ios": { "autoIncrement": true },
