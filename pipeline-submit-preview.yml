@@ -1,9 +1,7 @@
 trigger:
   branches:
     include:
-      - main
-      - releases/*
-      - hotfix/*
+      - staging
 
 pr:
   autoCancel: true
@@ -42,26 +40,26 @@ stages:
               set -x
               yarn testFinal
             displayName: Run Unit Tests
+          # - bash: |
+          #     eas build --profile buildForDetoxTesting --platform android --local
+          #   displayName: Build Android .aap for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - bash: |
-              eas build --platform android --profile buildForDetoxTesting --local
-            displayName: Build Android .aap for UI Testing on Azure MacOS Agent
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
-          - bash: |
-              eas build --platform android --non-interactive --no-wait
+              eas build --profile staging --platform android --non-interactive --no-wait
             displayName: Run Build Android on EAS to have .aap available on website too
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
+          # - bash: |
+          #     eas build --profile buildForDetoxTesting --platform ios --local
+          #   displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - bash: |
-              eas build --platform ios --profile buildForDetoxTesting --local
-            displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
-          - bash: |
-              eas build --platform ios --non-interactive --no-wait
+              eas build --profile staging --platform ios --non-interactive --no-wait
             displayName: Run Build IOS on EAS to have .app available on website too
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - bash: |
-              expo publish --non-interactive
+              eas update --branch staging --non-interactive
             displayName: Publish app to expo default channel
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - task: PublishTestResults@2
             condition: succeededOrFailed()
             inputs:
