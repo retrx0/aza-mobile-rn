@@ -19,33 +19,31 @@ export default function DepositIndex({
   const insets = useSafeAreaInsets();
 
   return (
-    <SpacerWrapper>
-      <View style={[CommonStyles.vaultcontainer]}>
-        <View style={{ paddingHorizontal: hp(20) }}>
-          <MenuList
-            heading="Card deposit"
-            subHeading="Deposit via Debit/Credit card"
-            onPress={() => {
-              navigation.navigate("Deposit");
-            }}
-          />
-          <Divider />
-        </View>
-
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
-          ]}
-        >
-          <Button
-            title="Cancel"
-            style={styles.button}
-            onPressButton={() => navigation.goBack()}
-          />
-        </View>
+    <View style={[CommonStyles.vaultcontainer]}>
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <MenuList
+          heading="Card deposit"
+          subHeading="Deposit via Debit/Credit card"
+          onPress={() => {
+            navigation.navigate("Deposit");
+          }}
+        />
+        <Divider />
       </View>
-    </SpacerWrapper>
+
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.top || hp(45) },
+        ]}
+      >
+        <Button
+          title="Cancel"
+          style={styles.button}
+          onPressButton={() => navigation.goBack()}
+        />
+      </View>
+    </View>
   );
 }
 

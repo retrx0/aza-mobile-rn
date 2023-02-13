@@ -271,13 +271,15 @@ const BankAccountsScreen = ({
 
   if (user.bankAccounts.loading) {
     return (
-      <View style={{ paddingTop: 20, flex: 1 }}>
-        {Array(3)
-          .fill(0)
-          .map((_, i) => (
-            <ListItemSkeleton key={i} placeHoldersWidth={[50]} />
-          ))}
-      </View>
+      <SpacerWrapper>
+        <View style={{ paddingTop: 20, flex: 1 }}>
+          {Array(3)
+            .fill(0)
+            .map((_, i) => (
+              <ListItemSkeleton key={i} placeHoldersWidth={[50]} />
+            ))}
+        </View>
+      </SpacerWrapper>
     );
   }
 

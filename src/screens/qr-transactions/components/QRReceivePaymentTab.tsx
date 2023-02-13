@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import Button from "../../../components/buttons/Button";
 import { View as View, Text as Text } from "../../../theme/Themed";
-import DescriptionModal from "../../keypad/modal/DescriptionModal";
 
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
@@ -14,9 +13,7 @@ import { RootStackScreenProps } from "../../../../types";
 import { NairaLargeIcon } from "../../../../assets/svg";
 import { useAppDispatch, useAppSelector } from "../../../redux";
 import { setTransaction } from "../../../redux/slice/transactionSlice";
-import userSlice, { selectUser } from "../../../redux/slice/userSlice";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import { selectUser } from "../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../theme";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
@@ -25,22 +22,21 @@ const QRReceivePaymentTab = ({
 }: RootStackScreenProps<"QRTransactions">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
-  const [isDescModalVisible, setDescModalVisible] = useState(false);
 
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  const insets = useSafeAreaInsets();
 
   return (
-    <SpacerWrapper>
+    <>
       <View style={[CommonStyles.vaultcontainer]}>
         <View
           style={{
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -49,7 +45,8 @@ const QRReceivePaymentTab = ({
               fontSize: hp(14),
               marginTop: hp(60),
               marginBottom: hp(20),
-            }}>
+            }}
+          >
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -71,7 +68,8 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -81,7 +79,8 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: hp(60),
             marginBottom: hp(60),
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <Button
@@ -105,7 +104,6 @@ const QRReceivePaymentTab = ({
               })
             );
             navigation.navigate("QRCode");
-            // setDescModalVisible(true);
           }}
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",
@@ -116,16 +114,7 @@ const QRReceivePaymentTab = ({
           }}
         />
       </View>
-      {/* <DescriptionModal
-        description={description}
-        navigation={navigation}
-        setDescription={setDescription}
-        setModalVisible={setDescModalVisible}
-        // TODO pass proper type for qr transactions
-        transactionType={null}
-        visible={isDescModalVisible}
-      /> */}
-    </SpacerWrapper>
+    </>
   );
 };
 

@@ -147,6 +147,7 @@ const SignUpPasswordScreen = ({
                   );
                 }
               }
+              setLoading(false);
             })
             .catch((error) => {
               setLoading(false);
@@ -155,7 +156,6 @@ const SignUpPasswordScreen = ({
               );
             });
         }
-        setLoading(false);
       } else {
         toastError("Password does not match ⚠️");
         setLoading(false);

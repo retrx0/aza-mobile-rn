@@ -18,33 +18,31 @@ export default function WithdrawIndex({
   const insets = useSafeAreaInsets();
 
   return (
-    <SpacerWrapper>
-      <View style={[CommonStyles.vaultcontainer]}>
-        <View style={{ paddingHorizontal: hp(20) }}>
-          <MenuList
-            heading="Withdraw money to your own bank account"
-            subHeading="Bank Account"
-            onPress={() => {
-              navigation.navigate("BankAccounts", { screenType: "Withdraw" });
-            }}
-          />
-          <Divider />
-        </View>
-
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
-          ]}
-        >
-          <Button
-            title="Cancel"
-            style={styles.button}
-            onPressButton={() => navigation.goBack()}
-          />
-        </View>
+    <View style={[CommonStyles.vaultcontainer]}>
+      <View style={{ paddingHorizontal: hp(20) }}>
+        <MenuList
+          heading="Withdraw money to your own bank account"
+          subHeading="Bank Account"
+          onPress={() => {
+            navigation.navigate("BankAccounts", { screenType: "Withdraw" });
+          }}
+        />
+        <Divider />
       </View>
-    </SpacerWrapper>
+
+      <View
+        style={[
+          CommonStyles.passwordContainer,
+          { bottom: insets.top || hp(45) },
+        ]}
+      >
+        <Button
+          title="Cancel"
+          style={styles.button}
+          onPressButton={() => navigation.goBack()}
+        />
+      </View>
+    </View>
   );
 }
 

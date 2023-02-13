@@ -2,6 +2,7 @@ import { CommonScreenProps } from "../../common/navigation/types";
 
 import CommonRequestDetailScreen from "./components/split/CommonRequestDetailScreen";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 const CompletedSplitRequestDetailsScreen = ({
   navigation,
@@ -11,7 +12,11 @@ const CompletedSplitRequestDetailsScreen = ({
 
   const { requestItem } = route.params;
 
-  return <CommonRequestDetailScreen requestDetails={requestItem} />;
+  return (
+    <SpacerWrapper>
+      <CommonRequestDetailScreen requestDetails={requestItem} />
+    </SpacerWrapper>
+  );
 };
 
 export default CompletedSplitRequestDetailsScreen;

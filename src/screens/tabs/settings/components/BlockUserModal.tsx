@@ -38,7 +38,8 @@ export default function BlockUserModal({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-      }}>
+      }}
+    >
       <View
         style={{
           borderRadius: 20,
@@ -49,7 +50,8 @@ export default function BlockUserModal({
           alignItems: "center",
           width: "90%",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -57,7 +59,8 @@ export default function BlockUserModal({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
             fontWeight: "600",
-          }}>
+          }}
+        >
           Block User
         </Text>
         <Text
@@ -68,13 +71,15 @@ export default function BlockUserModal({
             marginVertical: 15,
             maxWidth: 300,
             textAlign: "center",
-          }}>
+          }}
+        >
           The user{" "}
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(15),
-            }}>
+            }}
+          >
             {user}
           </Text>{" "}
           will be blocked. Do you confirm?
@@ -131,7 +136,8 @@ export function UnblockModal({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-      }}>
+      }}
+    >
       <View
         style={{
           backgroundColor: Colors[colorScheme].backgroundSecondary,
@@ -143,7 +149,8 @@ export function UnblockModal({
           alignItems: "center",
           width: "90%",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -151,7 +158,8 @@ export function UnblockModal({
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
             fontWeight: "600",
-          }}>
+          }}
+        >
           Unblock Users
         </Text>
         <Text
@@ -162,13 +170,15 @@ export function UnblockModal({
             marginVertical: 15,
             maxWidth: 300,
             textAlign: "center",
-          }}>
+          }}
+        >
           The user{" "}
           <Text
             style={{
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(15),
-            }}>
+            }}
+          >
             {user}
           </Text>{" "}
           will be unblocked. Do you confirm?

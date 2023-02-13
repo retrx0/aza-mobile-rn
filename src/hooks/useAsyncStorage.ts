@@ -11,7 +11,7 @@ export interface ISettings {
   confirmTransactionsWithFaceIDSwitch?: boolean;
   appearance?: string;
   appLanguage?: string;
-  hideAccountBalance?: string;
+  hideAccountBalance?: boolean;
 }
 
 export const useAppAsyncStorage = () => {

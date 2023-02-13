@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 
-
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import SettingsListItem from "../components/SettingsListItem";
 import Divider from "../../../../components/divider/Divider";
@@ -8,6 +7,8 @@ import Divider from "../../../../components/divider/Divider";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const PrivacySettingsScreen = ({
@@ -35,34 +36,34 @@ const PrivacySettingsScreen = ({
       handleNavigation: () => navigation.navigate("BlockUsers"),
     },
   ];
-  useNavigationHeader(navigation, "Privacy Settings"); 
-
- 
+  useNavigationHeader(navigation, "Privacy Settings");
 
   return (
-    <View style={styles.container}>
-      <Text
-        lightColor={Colors.light.text}
-        darkColor={Colors.dark.mainText}
-        style={{
-          fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontWeight: "500",
-        }}
-      >
-        You can change your privacy settings
-      </Text>
-      <View style={{ marginTop: hp(80) }}>
-        <Divider />
-        {privacySettings.map(({ name, handleNavigation }, i) => (
-          <SettingsListItem
-            name={name}
-            handleNavigation={handleNavigation}
-            key={i}
-          />
-        ))}
+    <SpacerWrapper>
+      <View style={styles.container}>
+        <Text
+          lightColor={Colors.light.text}
+          darkColor={Colors.dark.mainText}
+          style={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontWeight: "500",
+          }}
+        >
+          You can change your privacy settings
+        </Text>
+        <View style={{ marginTop: hp(80) }}>
+          <Divider />
+          {privacySettings.map(({ name, handleNavigation }, i) => (
+            <SettingsListItem
+              name={name}
+              handleNavigation={handleNavigation}
+              key={i}
+            />
+          ))}
+        </View>
       </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 
