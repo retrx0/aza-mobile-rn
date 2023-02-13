@@ -19,19 +19,17 @@ import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
+import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
 
 export default function AccountDetails({ isModalVisible, listItems }: any) {
-  const { loadSettingsFromStorage } = useAppAsyncStorage();
-  const [secure, setSecure] = useState(true);
+  const [secure, setSecure] = useState(false);
   const [ModalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const user = useAppSelector(selectUser);
+  const preference = useAppSelector(selectAppPreference);
 
   useEffect(() => {
-    loadSettingsFromStorage().then((setting) => {
-      setting?.accountBalanceVisibilitySwitch !== undefined &&
-        setSecure(setting?.accountBalanceVisibilitySwitch);
-    });
+    if (preference.hideAccountBalance) setSecure(preference.hideAccountBalance);
   }, []);
 
   return (

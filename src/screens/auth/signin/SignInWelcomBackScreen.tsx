@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SigninStyles as styles } from "./styles";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -6,7 +6,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
 import { View as View, Text as Text } from "../../../theme/Themed";
-import api from "../../../api";
 import { Alert, AppState, TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
@@ -16,26 +15,17 @@ import {
   getUserAccount,
   getUserInfo,
   selectUser,
-  setUserEmail,
-  setUserFullName,
-  setUserPhoneAndFullName,
-  setUserPhoneNumber,
 } from "../../../redux/slice/userSlice";
 import { loginUserAPI } from "../../../api/auth";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
-import {
-  clearUserCredentials,
-  getUserCredentialsSecure,
-  storeItemSecure,
-  storeUserCredentialsSecure,
-} from "../../../common/util/StorageUtil";
-import CommonStyles from "../../../common/styles/CommonStyles";
+import { storeItemSecure } from "../../../common/util/StorageUtil";
 import ActivityModal from "../../../components/modal/ActivityModal";
 import useCountdownTimer from "../../../hooks/useCountdownTimer";
-import { useAppAsyncStorage } from "../../../hooks/useAsyncStorage";
 import useCachedResources from "../../../hooks/useCachedResources";
 import { IUserCred } from "../../../redux/types";
+import { AxiosError } from "axios";
+import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -52,7 +42,7 @@ const SignInWelcomeBackScreen = ({
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
   const [_tmpCreds, setTmpCreds] = useState<IUserCred>();
 
-  const { userPreferences } = useCachedResources();
+  const userPreferences = useAppSelector(selectAppPreference);
 
   const {
     minutesToDisplay,
@@ -131,17 +121,22 @@ const SignInWelcomeBackScreen = ({
             toastError("There was a problem logging you in, please try again!");
           }
         })
-        .catch((err) => {
+        .catch((err: AxiosError) => {
           setScreenLoading(false);
-          setLoginAttemptCounter((s) => s + 1);
-          toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+          if (err.response?.status === 400) {
+            setLoginAttemptCounter((s) => s + 1);
+            toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+          } else {
+            toastError(
+              "There was a problem logging you in, please try again if problem persist contact customer support"
+            );
+          }
         });
     }
   };
 
   useEffect(() => {
     setPasscode("");
-
     const handleSignBack = async () => {
       const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
       const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
@@ -220,6 +215,7 @@ const SignInWelcomeBackScreen = ({
               headerText="Password"
               secureInput={true}
               autoFocusOnLoad
+              withKeypad
             />
           </View>
           <View

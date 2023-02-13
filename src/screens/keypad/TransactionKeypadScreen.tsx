@@ -253,7 +253,8 @@ const TransactionKeypadScreen = ({
               !amount ||
               Number(amount) < 100 ||
               (normalTransaction
-                ? transactionType.transaction !== "deposit"
+                ? transactionType.transaction !== "deposit" &&
+                  transactionType.transaction !== "request"
                   ? Number(amount) > user.azaBalance
                   : false
                 : false)

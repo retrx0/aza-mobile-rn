@@ -18,6 +18,7 @@ import { getDeviceTheme } from "../theme";
 import useCachedResources from "../hooks/useCachedResources";
 import { ISettings } from "../hooks/useAsyncStorage";
 import { IUserCred } from "../redux/types";
+import { setAppPreference } from "../redux/slice/preferenceSlice";
 
 const Navigation = ({
   colorScheme,
@@ -34,7 +35,7 @@ const Navigation = ({
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    if (loadedPreference?.appearance)
+    if (loadedPreference?.appearance) {
       dispatch(
         setAppTheme({
           theme:
@@ -45,6 +46,8 @@ const Navigation = ({
               : "system",
         })
       );
+      dispatch(setAppPreference(loadedPreference));
+    }
   }, []);
 
   return (
