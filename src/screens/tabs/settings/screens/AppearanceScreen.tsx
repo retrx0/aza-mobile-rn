@@ -1,11 +1,12 @@
-import {  StyleSheet, TouchableOpacity } from "react-native";
-import React, { useEffect,  useState } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import * as StatusBar from "expo-status-bar";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil"; 
+import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import {
   CheckIcon,
@@ -24,8 +25,7 @@ import { AppThemeType, getAppTheme } from "../../../../theme";
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
-const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => { 
-
+const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [selectedAppearance, setSelectedAppearance] =
@@ -73,59 +73,60 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
   useEffect(() => {
     saveSettingsToStorage({ appearance: selectedAppearance });
   }, [selectedAppearance]);
- 
+
   useNavigationHeader(navigation, "Appearance");
 
-
   return (
-    <View style={styles.container}>
-      <View style={{ marginTop: hp(10) }}>
-        <Divider />
-        {options.map(({ icon, name, value }, i) => (
-          <View key={i}>
-            <TouchableOpacity
-              onPress={() => {
-                setSelectedAppearance(value);
-                if (value === "light") {
-                  dispatch(setAppTheme({ theme: "light" }));
-                  StatusBar.setStatusBarStyle("dark");
-                } else if (value === "dark") {
-                  dispatch(setAppTheme({ theme: "dark" }));
-                  StatusBar.setStatusBarStyle("light");
-                } else {
-                  dispatch(setAppTheme({ theme: "system" }));
-                  StatusBar.setStatusBarStyle("auto");
-                }
-              }}
-              style={[
-                CommonStyles.row,
-                {
-                  justifyContent: "space-between",
-                  alignSelf: "stretch",
-                  paddingVertical: 20,
-                },
-              ]}
-            >
-              <View>{icon}</View>
-              <Text
-                style={{
-                  marginRight: "auto",
-                  marginLeft: 15,
-                  fontSize: 14,
-                  fontFamily: "Euclid-Circular-A-Medium",
+    <SpacerWrapper>
+      <View style={styles.container}>
+        <View style={{ marginTop: hp(10) }}>
+          <Divider />
+          {options.map(({ icon, name, value }, i) => (
+            <View key={i}>
+              <TouchableOpacity
+                onPress={() => {
+                  setSelectedAppearance(value);
+                  if (value === "light") {
+                    dispatch(setAppTheme({ theme: "light" }));
+                    StatusBar.setStatusBarStyle("dark");
+                  } else if (value === "dark") {
+                    dispatch(setAppTheme({ theme: "dark" }));
+                    StatusBar.setStatusBarStyle("light");
+                  } else {
+                    dispatch(setAppTheme({ theme: "system" }));
+                    StatusBar.setStatusBarStyle("auto");
+                  }
                 }}
+                style={[
+                  CommonStyles.row,
+                  {
+                    justifyContent: "space-between",
+                    alignSelf: "stretch",
+                    paddingVertical: 20,
+                  },
+                ]}
               >
-                {name}
-              </Text>
-              {selectedAppearance === value && (
-                <CheckIcon size={20} color={"#2A9E17"} />
-              )}
-            </TouchableOpacity>
-            <Divider />
-          </View>
-        ))}
+                <View>{icon}</View>
+                <Text
+                  style={{
+                    marginRight: "auto",
+                    marginLeft: 15,
+                    fontSize: 14,
+                    fontFamily: "Euclid-Circular-A-Medium",
+                  }}
+                >
+                  {name}
+                </Text>
+                {selectedAppearance === value && (
+                  <CheckIcon size={20} color={"#2A9E17"} />
+                )}
+              </TouchableOpacity>
+              <Divider />
+            </View>
+          ))}
+        </View>
       </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 

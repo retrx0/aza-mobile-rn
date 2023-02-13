@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { AwardIcon, SmallVerifyIcon, VerifyIcon } from "../../../../assets/svg";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 import Colors from "../../../constants/Colors";
-import useColorScheme from "../../../hooks/useColorScheme";
+import { CommonScreenProps } from "../../../common/navigation/types";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
 import Button from "../../../components/buttons/Button";
 import { View, Text } from "../../../theme/Themed";
 
-import { CommonScreenProps } from "../../../common/navigation/types";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
@@ -29,7 +26,7 @@ const AccountLimitsTab = ({
   const { bvnVerified } = user;
 
   return (
-    <SpacerWrapper>
+    <>
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
           <Text
@@ -172,6 +169,7 @@ const AccountLimitsTab = ({
               ]}
             >
               <TouchableOpacity
+                disabled={bvnVerified}
                 onPress={() =>
                   navigation.navigate("BvnVerification", {
                     onVerifyNavigateBackTo: "FeesAndLimits",
@@ -179,11 +177,9 @@ const AccountLimitsTab = ({
                 }
               >
                 <Text
-                  lightColor={Colors.light.text}
-                  darkColor={Colors.dark.mainText}
                   style={{
                     fontSize: hp(16),
-                    marginBottom: hp(5),
+                    marginRight: 8,
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A-Medium",
                   }}
@@ -225,7 +221,7 @@ const AccountLimitsTab = ({
           }}
         />
       </View>
-    </SpacerWrapper>
+    </>
   );
 };
 

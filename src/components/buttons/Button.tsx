@@ -8,8 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import Colors from "../../constants/Colors";
-import { hp, wp } from "../../common/util/LayoutUtil";
-import useColorScheme from "../../hooks/useColorScheme";
+import { hp } from "../../common/util/LayoutUtil";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
@@ -33,8 +32,6 @@ export const Button: FC<ButtonPropsType> = ({
   disabled,
   buttonLoading,
 }) => {
-  const colorScheme = useColorScheme();
-
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
