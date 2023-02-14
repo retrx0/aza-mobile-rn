@@ -178,6 +178,7 @@ export interface IUserState {
   lastName: string;
   pictureUrl: string | undefined;
   azaAccountNumber: string;
+  azaVFDAccountNumbers: string[];
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;
