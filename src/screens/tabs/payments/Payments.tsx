@@ -24,58 +24,68 @@ import { hp } from "../../../common/util/LayoutUtil";
 
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
+import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { getAppTheme } from "../../../theme";
 
 export default function Payments({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const user = useAppSelector(selectUser);
-
+  const selectedTheme = useAppSelector(selectAppTheme);
+  const appTheme = getAppTheme(selectedTheme);
   const listItems = [
     {
       title: "Airtime & Data",
-      icon: <DataIcon size={30} />,
+      icon: <DataIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "AirtimeData" }),
     },
     {
       title: "Internet",
-      icon: <WifiIcon size={30} />,
+      icon: <WifiIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "InternetPlans" }),
     },
     {
       title: "Cable TV",
-      icon: <CableTvIcon size={30} />,
+      icon: <CableTvIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "CableTV" }),
     },
     {
       title: "Electricity",
-      icon: <ElectricIcon size={30} />,
+      icon: <ElectricIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "Electricity" }),
     },
     {
       title: "Water",
-      icon: <DropIcon size={30} />,
+      icon: <DropIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "Water" }),
     },
     {
       title: "Gift Cards",
-      icon: <GiftIcon size={30} />,
+      icon: <GiftIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "GiftCard" }),
     },
     {
       title: "Charity",
-      icon: <LoveIcon size={30} />,
+      icon: <LoveIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "Charity" }),
     },
     {
       title: "Game Credits",
-      icon: <GameIcon size={30} />,
+      icon: <GameIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "GameScreen" }),
     },
   ];
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative",
+          marginTop: hp(10),
+        }}>
         <Text style={styles.headerText}>Payments</Text>
         <TouchableOpacity
           onPress={() => {
@@ -89,8 +99,9 @@ export default function Payments({
         description=""
         headerStyle={{
           fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: hp(16),
+          fontSize: hp(20),
           fontWeight: "400",
+          color: appTheme === "dark" ? "#999999" : "#A6A6A6",
         }}
         descriptionStyle={null}
         style={styles.subHead}

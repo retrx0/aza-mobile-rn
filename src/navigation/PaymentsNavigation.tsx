@@ -10,6 +10,7 @@ import { hp } from "../common/util/LayoutUtil";
 import AirtimeRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurring";
 import Airtime from "../screens/tabs/payments/airtime-screens/Airtime";
 import DataBundle from "../screens/tabs/payments/airtime-screens/DataBundle";
+import DataBundleRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/DataBundleRecurring";
 
 const Stack = createNativeStackNavigator<PaymentsStackParamList>();
 const Tab = createMaterialTopTabNavigator();
@@ -68,7 +69,7 @@ export function AirtimeRecurringTab() {
         }}
         initialRouteName="airtime">
         <Tab.Screen name="airtime" component={AirtimeRecurring} />
-        <Tab.Screen name="data bundle" component={AirtimeRecurring} />
+        <Tab.Screen name="data bundle" component={DataBundleRecurring} />
       </Tab.Navigator>
     </SafeAreaView>
   );

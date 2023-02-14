@@ -42,8 +42,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
             height: 80,
             zIndex: 100,
             backgroundColor: "transparent",
-          }}
-        ></View>
+          }}></View>
       )}
       <OTPInput
         keyboardType="number-pad"

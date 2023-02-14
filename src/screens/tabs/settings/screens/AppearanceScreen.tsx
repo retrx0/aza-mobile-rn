@@ -104,17 +104,15 @@ const AppearanceScreen = ({ navigation }: CommonScreenProps<"Appearance">) => {
                     alignSelf: "stretch",
                     paddingVertical: 20,
                   },
-                ]}
-              >
+                ]}>
                 <View>{icon}</View>
                 <Text
                   style={{
                     marginRight: "auto",
                     marginLeft: 15,
-                    fontSize: 14,
+                    fontSize: 17,
                     fontFamily: "Euclid-Circular-A-Medium",
-                  }}
-                >
+                  }}>
                   {name}
                 </Text>
                 {selectedAppearance === value && (

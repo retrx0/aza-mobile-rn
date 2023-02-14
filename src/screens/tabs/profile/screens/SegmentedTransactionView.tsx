@@ -19,13 +19,12 @@ const SegmentedTransactionView = ({
         lightColor={Colors.light.text}
         darkColor={Colors.dark.secondaryText}
         style={{
-          fontSize: hp(14),
+          fontSize: hp(16),
           marginBottom: hp(10),
           fontFamily: "Euclid-Circular-A",
           fontWeight: "500",
           marginLeft: hp(5),
-        }}
-      >
+        }}>
         {dateOfTransactions}
       </Text>
       {transactions.map(

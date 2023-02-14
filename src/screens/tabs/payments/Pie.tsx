@@ -100,8 +100,9 @@ export default function Pie() {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ alignSelf: "center" }}>
+        <View style={{ alignSelf: "center", height: 280, marginTop: 20 }}>
           <PieChart
+            strokeWidth={0.2}
             textBackgroundRadius={26}
             textColor={Colors.general.white}
             donut={true}
@@ -112,8 +113,7 @@ export default function Pie() {
               <View style={[styles.centerLabel]}>
                 <Text
                   darkColor={Colors.general.black}
-                  lightColor={Colors.general.black}
-                >
+                  lightColor={Colors.general.black}>
                   Total
                 </Text>
                 <RegularText
@@ -133,8 +133,7 @@ export default function Pie() {
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
-                style={[styles.colors, { backgroundColor: item.color }]}
-              ></View>
+                style={[styles.colors, { backgroundColor: item.color }]}></View>
               <Text style={{ fontSize: hp(15), padding: 5 }}>{item.text}</Text>
             </View>
           ))}
@@ -182,7 +181,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontWeight: "600",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontSize: hp(20),
     marginRight: hp(10),
     marginLeft: hp(10),
   },

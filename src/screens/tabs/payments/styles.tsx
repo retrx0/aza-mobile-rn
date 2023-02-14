@@ -25,8 +25,8 @@ export const PaymentStyles = StyleSheet.create({
   },
   headerText: {
     fontWeight: "600",
-    fontSize: hp(17),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
+    fontSize: hp(20),
   },
   subHead: {
     marginTop: 40,

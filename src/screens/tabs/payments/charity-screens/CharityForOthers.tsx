@@ -131,7 +131,7 @@ export default function CharityForSomeone({
         <Divider />
         <Button
           style={styles.btn}
-          disabled={false}
+          disabled={!amount}
           title="Continue"
           onPressButton={() => {
             navigation.navigate("PaymentConfirmation", {

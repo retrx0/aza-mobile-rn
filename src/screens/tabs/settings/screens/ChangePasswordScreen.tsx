@@ -58,12 +58,11 @@ const ChangePasswordScreen = ({
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: hp(16),
+            fontSize: hp(18),
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}
-        >
+          }}>
           Please enter your current password
         </Text>
         <View
@@ -71,8 +70,7 @@ const ChangePasswordScreen = ({
             marginTop: hp(80),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}
-        >
+          }}>
           <SegmentedInput
             value={password}
             secureInput

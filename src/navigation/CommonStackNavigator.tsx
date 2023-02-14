@@ -156,7 +156,7 @@ import AccountClosureSurveyScreen from "../screens/tabs/settings/closeAccount/Ac
 import CloseAccount from "../screens/tabs/settings/closeAccount/CloseAccount";
 import AlternativeSurvey from "../screens/tabs/settings/closeAccount/AlternativeSurvey";
 import TermsOfUse from "../screens/onboarding/TermsOfUse";
-import CharityTabs from "../screens/tabs/payments/charity-screens/CharityTabs";
+// import CharityTabs from "../screens/tabs/payments/charity-screens/CharityTabs";
 // import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import WithdrawFeature from "../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
@@ -166,6 +166,7 @@ import AirtimeIndexScreen from "../screens/tabs/payments/airtime-screens/Airtime
 import TransactionPin from "../screens/tabs/settings/screens/TransactionPin";
 import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import CharityDetailsScreen from "../screens/tabs/payments/charity-screens/CharityDetail";
+import AirtimeDataRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurringIndex";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -506,7 +507,7 @@ const CommonStack = () => {
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeRecurring"
-          component={AirtimeRecurringTab}
+          component={AirtimeDataRecurring}
         />
         <Stack.Screen
           options={{ presentation: "fullScreenModal", title: "" }}

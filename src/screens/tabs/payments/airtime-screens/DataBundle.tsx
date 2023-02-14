@@ -136,8 +136,7 @@ export default function DataBundle({
         contentContainerStyle={{
           justifyContent: "space-between",
           width: "100%",
-        }}
-      >
+        }}>
         {airtimeOperators.loaded ? (
           airtimeOperators.data.map((operator, index) => {
             if (displayedOperators.has(operator.name.split(" ")[0])) {
@@ -196,8 +195,7 @@ export default function DataBundle({
           paddingHorizontal: hp(20),
           marginTop: hp(10),
           marginBottom: hp(10),
-        }}
-      >
+        }}>
         <CustomDropdown
           data={dataBundles}
           placeholder="Choose a bundle"

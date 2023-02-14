@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "600",
-    fontSize: hp(17),
+    fontSize: hp(20),
     fontFamily: "Euclid-Circular-A-Semi-Bold",
     marginLeft: 16.5,
   },

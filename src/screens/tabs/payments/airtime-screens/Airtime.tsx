@@ -24,7 +24,7 @@ import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice"
 
 import {
   detectNetworkOperatorAPI,
-  fetchNetworkOperatorDataPlansAPI,
+  // fetchNetworkOperatorDataPlansAPI,
 } from "../../../../api/airtime";
 import {
   getMobileAirtimeOperators,
@@ -50,9 +50,9 @@ export default function Airtime({
   });
   const [mobileNumber, setMobileNumber] = useState("");
   const [amount, setAmount] = useState("");
-  const [dataBundles, setDataBundles] = useState<
-    { label: string; value: string }[]
-  >([]);
+  // const [dataBundles, setDataBundles] = useState<
+  //   { label: string; value: string }[]
+  // >([]);
 
   const route = useRoute();
   const dispatch = useAppDispatch();
@@ -71,20 +71,20 @@ export default function Airtime({
     }
   }, [isEnabled]);
 
-  useEffect(() => {
-    if (route.name === "data-bundle" && selectedProvider.name) {
-      fetchNetworkOperatorDataPlansAPI(
-        selectedProvider.name.split(" ")[0].toUpperCase()
-      )
-        .then(({ data }) => {
-          const entires = Object.entries(data.fixedAmountsDescriptions).map(
-            ([value, label]) => ({ value, label: label as string })
-          );
-          setDataBundles(entires);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [route.name, selectedProvider.name]);
+  // useEffect(() => {
+  //   {
+  //     fetchNetworkOperatorDataPlansAPI(
+  //       selectedProvider.name.split(" ")[0].toUpperCase()
+  //     )
+  //       .then(({ data }) => {
+  //         const entires = Object.entries(data.fixedAmountsDescriptions).map(
+  //           ([value, label]) => ({ value, label: label as string })
+  //         );
+  //         setDataBundles(entires);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [route.name, selectedProvider.name]);
 
   const detectNetworkProvider = (number: string) => {
     dispatch(toggleActivityModal(true));
@@ -136,8 +136,7 @@ export default function Airtime({
         contentContainerStyle={{
           justifyContent: "space-between",
           width: "100%",
-        }}
-      >
+        }}>
         {airtimeOperators.loaded ? (
           airtimeOperators.data.map((operator, index) => {
             if (displayedOperators.has(operator.name.split(" ")[0])) {
@@ -190,28 +189,26 @@ export default function Airtime({
           isEnabled={isEnabled}
         />
       </View>
-      {route.name === "data-bundle" && (
-        <View
-          style={{
-            paddingHorizontal: hp(20),
-            marginTop: hp(10),
-            marginBottom: hp(10),
-          }}
-        >
-          <CustomDropdown
-            data={dataBundles}
-            placeholder="Choose a bundle"
-            setValue={setAmount}
-            value={amount}
-            style={[
-              { fontFamily: "Euclid-Circular-A" },
-              { fontWeight: "400" },
-              { fontSize: hp(16) },
-            ]}
-            label={"Bundle"}
-          />
-        </View>
-      )}
+
+      {/* <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginTop: hp(10),
+          marginBottom: hp(10),
+        }}>
+        <CustomDropdown
+          data={dataBundles}
+          placeholder="Choose a bundle"
+          setValue={setAmount}
+          value={amount}
+          style={[
+            { fontFamily: "Euclid-Circular-A" },
+            { fontWeight: "400" },
+            { fontSize: hp(16) },
+          ]}
+          label={"Bundle"}
+        />
+      </View> */}
 
       <UnderlinedInput
         value={
