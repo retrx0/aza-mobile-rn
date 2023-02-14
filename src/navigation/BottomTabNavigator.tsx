@@ -159,7 +159,7 @@ const BottomTabNavigator = (
             headerTitleStyle: {
               fontWeight: "600",
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: hp(20),
+              fontSize: hp(18),
             },
           }}
         />
