@@ -98,10 +98,10 @@ export default function ApplicationSettings({
             // fontSize: hp(14),
             // fontWeight: "400",
             // marginLeft: hp(5),
-            fontFamily: "Euclid-Circular-A",
+            fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "400",
             marginLeft: hp(5),
-            fontSize: hp(16),
+            fontSize: hp(18),
           }}>
           Application Settings
         </Text>

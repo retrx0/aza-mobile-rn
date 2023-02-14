@@ -108,7 +108,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             style={{
               marginLeft: 3,
               fontSize: hp(15),
-              fontFamily: "Euclid-Circular-A",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
             }}>
             {user.azaAccountNumber}
           </Text>

@@ -105,10 +105,10 @@ export default function AccountSettings({
       <View>
         <Text
           style={{
-            fontFamily: "Euclid-Circular-A",
+            fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "400",
             marginLeft: hp(5),
-            fontSize: hp(16),
+            fontSize: hp(18),
           }}>
           Account Settings
         </Text>
