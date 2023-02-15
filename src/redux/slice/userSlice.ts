@@ -16,6 +16,7 @@ const initialState: IUserState = {
   fullName: "Test User",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
   azaAccountNumber: "1001561113",
+  azaVFDAccountNumbers: [],
   azaBalance: 0,
   emailAddress: "testuser@azanaija.com",
   accountVerified: true,
@@ -365,6 +366,7 @@ export const userSlice = createSlice({
         state.lastLogin = action.payload.lastLogin;
         state.accountTier = action.payload.accountTier;
         state.dateOfBirth = action.payload.dateOfBirth;
+        state.azaVFDAccountNumbers = action.payload.vfdAccounts;
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
       .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
