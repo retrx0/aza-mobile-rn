@@ -43,8 +43,7 @@ const WithdrawFeature = ({
               alignSelf: "center",
               marginTop: hp(81),
               marginBottom: hp(81),
-            }}
-          >
+            }}>
             <Image
               source={item.icon}
               resizeMode="cover"
@@ -61,8 +60,7 @@ const WithdrawFeature = ({
                 alignSelf: "center",
                 lineHeight: hp(30),
                 maxWidth: 335,
-              }}
-            >
+              }}>
               {item.featureTitle}
             </Text>
             <Text
@@ -75,8 +73,7 @@ const WithdrawFeature = ({
                 alignSelf: "center",
                 marginTop: hp(20),
                 maxWidth: 335,
-              }}
-            >
+              }}>
               {item.featureText}
             </Text>
           </View>

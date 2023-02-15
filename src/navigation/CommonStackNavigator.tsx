@@ -160,7 +160,7 @@ import TermsOfUse from "../screens/onboarding/TermsOfUse";
 // import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import DepositScreen from "../screens/tabs/home/withdraw-deposit/deposit/DepositScreen";
 import WithdrawFeature from "../screens/tabs/home/withdraw-deposit/withdraw/WithdrawFeature";
-import DepositFeature from "../screens/tabs/home/withdraw-deposit/withdraw/DepositFeature";
+import DepositFeature from "../screens/tabs/home/withdraw-deposit/deposit/DepositFeature";
 import DataBundle from "../screens/tabs/payments/airtime-screens/DataBundle";
 import AirtimeIndexScreen from "../screens/tabs/payments/airtime-screens/AirtimeIndex";
 import TransactionPin from "../screens/tabs/settings/screens/TransactionPin";
@@ -957,6 +957,8 @@ const CommonStack = () => {
             component={WithdrawDepositTabs}
           />
           <Stack.Screen component={DepositScreen} name="Deposit" />
+          {/* <Stack.Screen component={DepositFeature} name="DepositFeature" /> */}
+          {/* <Stack.Screen component={WithdrawFeature} name="WithdrawFeature" /> */}
         </Stack.Group>
       </Stack.Group>
 

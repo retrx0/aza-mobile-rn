@@ -36,36 +36,12 @@ const WithdrawDepositTabs = ({
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: () => (
-        <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
-          style={{
-            fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}>
-          Withdraw
-        </Text>
-      ),
       // hide default back button which only shows in android
       headerBackVisible: false,
       //center it in android
       headerTitleAlign: "center",
       headerShadowVisible: false,
       headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={() => {
-            if (routes.some((route) => route.title === "Withdraw")) {
-              navigation.navigate("WithdrawFeature");
-            } else {
-              navigation.navigate("DepositFeature");
-            }
-          }}>
-          <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
-        </TouchableOpacity>
-      ),
     });
   }, []);
 
