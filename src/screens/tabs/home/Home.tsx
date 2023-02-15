@@ -45,9 +45,8 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
           route={route}
           isBvnLinked={user.bvnVerified}
         />
-      ) : (
-        <NotificationsContainer navigation={navigation} route={route} />
-      )}
+      ) : // <NotificationsContainer navigation={navigation} route={route} />
+      null}
       <RecentTransactions navigation={navigation} route={route} />
     </View>
   );

@@ -136,7 +136,8 @@ export default function Airtime({
         contentContainerStyle={{
           justifyContent: "space-between",
           width: "100%",
-        }}>
+        }}
+      >
         {airtimeOperators.loaded ? (
           airtimeOperators.data.map((operator, index) => {
             if (displayedOperators.has(operator.name.split(" ")[0])) {
@@ -185,7 +186,10 @@ export default function Airtime({
         />
         <CustomSwitch
           title="My number"
-          onValueChange={() => setIsEnabled((previousState) => !previousState)}
+          onValueChange={(val: boolean) => {
+            if (!val) setMobileNumber("");
+            setIsEnabled((previousState) => !previousState);
+          }}
           isEnabled={isEnabled}
         />
       </View>
