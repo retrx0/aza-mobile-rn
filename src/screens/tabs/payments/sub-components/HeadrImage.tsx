@@ -102,18 +102,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "400",
-    fontSize: 16,
+    fontSize: 14,
     color: "#2A9E17",
     fontFamily: "Euclid-Circular-A-Medium",
   },
   text2: {
     fontWeight: "400",
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "Euclid-Circular-A-Medium",
   },
   text3: {
     fontWeight: "400",
-    fontSize: 16,
+    fontSize: 14,
     color: "#A6A6A6",
     fontFamily: "Euclid-Circular-A-Medium",
   },

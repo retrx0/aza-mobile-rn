@@ -108,13 +108,13 @@ export default function Payments({
         heading="Recent Payments"
       />
       {user.payments.data.length > 0 && (
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          horizontal
+        <View
           style={{
             marginLeft: hp(20),
             marginBottom: hp(10),
             maxHeight: 120,
+            flexDirection: "row",
+            marginTop: 15,
           }}>
           {user.payments.data.map((payment, i) => {
             return (
@@ -129,7 +129,7 @@ export default function Payments({
               />
             );
           })}
-        </ScrollView>
+        </View>
       )}
 
       <ScrollView style={styles.itemListContainer}>
