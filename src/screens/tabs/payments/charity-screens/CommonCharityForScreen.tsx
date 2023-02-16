@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import { useRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
-import MyButton from "../sub-components/MyButton";
 import CustomSwitch from "../../../../components/input/CustomSwitch";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 
