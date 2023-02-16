@@ -12,6 +12,7 @@ import {
 /* Common screens */
 interface IXCharity extends ICharity {
   tabKey: string;
+  recurringTransaction: boolean;
 }
 
 interface IXGiftCard extends IGiftCard {
@@ -65,9 +66,11 @@ export type CommonStackParamList = {
   CableTV: undefined;
   Pie: undefined;
   Water: undefined;
-  Charity: undefined;
+  Charity: { recurringTransaction?: boolean };
   CharityDetailsScreen: IXCharity;
   ElectricityConfirmation: undefined;
+
+  //TODO Extract below to an interface
   PaymentConfirmation: {
     beneficiaryLogo: string;
     beneficiaryName: string;
@@ -79,13 +82,14 @@ export type CommonStackParamList = {
     accountOrUserId?: string;
     smartCardNumber?: string;
     customerAccountNumber?: string;
+    recurringTransaction?: boolean;
   };
   GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
   GiftCardDetails: IGiftCard;
   GameScreen: undefined;
-  PaymentRecurring: undefined;
+  PaymentRecurring: { recurringTransaction?: boolean };
   AirtimeRecurring: undefined;
   InternetRecurring: undefined;
   CableRecurring: undefined;
@@ -185,7 +189,7 @@ export type CommonStackParamList = {
   Withdraw: undefined;
 
   // Transfer modal screens
-  SendMoney: undefined;
+  SendMoney: { recurringTransaction?: boolean };
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
   SendMoneyConfirmation: undefined;

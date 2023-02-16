@@ -22,11 +22,10 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import Divider from "../../../../components/divider/Divider";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
-import CharityForSelf from "./CharityForSelf";
-import CharityForSomeone from "./CharityForOthers";
 import { TabBar, TabView } from "react-native-tab-view";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useWindowDimensions } from "react-native";
+import CommonCharityForScreen from "./CommonCharityForScreen";
 
 export default function CharityDetailsScreen({
   navigation,
@@ -55,9 +54,21 @@ export default function CharityDetailsScreen({
   const renderScene = (props: any) => {
     switch (props.route.key) {
       case "first":
-        return <CharityForSelf navigation={navigation} route={route} />;
+        return (
+          <CommonCharityForScreen
+            isCharityForSomeone={false}
+            navigation={navigation}
+            route={route}
+          />
+        );
       case "second":
-        return <CharityForSomeone navigation={navigation} route={route} />;
+        return (
+          <CommonCharityForScreen
+            isCharityForSomeone
+            navigation={navigation}
+            route={route}
+          />
+        );
     }
   };
 
@@ -102,7 +113,8 @@ export default function CharityDetailsScreen({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

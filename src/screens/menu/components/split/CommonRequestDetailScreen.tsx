@@ -76,9 +76,10 @@ const CommonRequestDetailScreen = ({
         Request Recipients
       </Text>
       <ScrollView>
-        {requestees.map((_requestee) => {
+        {requestees.map((_requestee, i) => {
           return (
             <RequestDetailItem
+              key={i}
               status={status}
               splitAmount={splitAmountForEachPerson}
               requestItem={_requestee}

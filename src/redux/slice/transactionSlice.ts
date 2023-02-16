@@ -12,6 +12,7 @@ export interface ITransactionState {
   amount: number;
   description?: string;
   transferType: "send" | "request" | "withdraw" | "debit";
+  recurring?: boolean;
 }
 
 interface ITransferState {
@@ -52,6 +53,7 @@ const initialState: ITransactionState = {
     pictureUrl: "",
   },
   transferType: "send",
+  recurring: false,
 };
 
 export const transactionSlice = createSlice({

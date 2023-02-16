@@ -22,17 +22,20 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import Divider from "../../../../components/divider/Divider";
 
-export default function CharityForSelf({
+const CommonCharityForScreen = ({
   navigation,
   route,
-}: CommonScreenProps<"CharityDetailsScreen">) {
+  isCharityForSomeone,
+}: CommonScreenProps<"CharityDetailsScreen"> & {
+  isCharityForSomeone: boolean;
+}) => {
   const [amount, setAmount] = useState("");
   const [charityTransaction, setCharityTransaction] = useState({
     amount: "",
     name: "",
     email: "",
   });
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isRecurringEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
@@ -45,6 +48,7 @@ export default function CharityForSelf({
     primaryAccountNo,
     primaryAccBankName,
     tabKey,
+    recurringTransaction,
   } = route.params;
 
   return (
@@ -53,6 +57,38 @@ export default function CharityForSelf({
         <InfoIcon />
         <Text style={styles.text}>{description}</Text>
       </View>
+
+      {isCharityForSomeone && (
+        <View>
+          <UnderlinedInput
+            style={styles.mainInput}
+            icon={null}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
+            label=""
+            placeholder="Name and Surname"
+          />
+
+          <UnderlinedInput
+            style={styles.mainInput}
+            icon={null}
+            inputStyle={[
+              styles.input,
+              {
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+              },
+            ]}
+            labelStyle={styles.label}
+            label=""
+            placeholder="Email Address"
+          />
+        </View>
+      )}
 
       <UnderlinedInput
         value={amount}
@@ -78,7 +114,8 @@ export default function CharityForSelf({
             <TouchableOpacity
               key={item.id}
               style={styles.mainSuggestion}
-              onPress={() => setAmount("" + item.amount)}>
+              onPress={() => setAmount("" + item.amount)}
+            >
               <Text style={styles.amount}>
                 {NAIRA_UNICODE + " " + item.amount}
               </Text>
@@ -91,12 +128,13 @@ export default function CharityForSelf({
         style={[
           CommonStyles.passwordContainer,
           { bottom: insets.top || hp(45) },
-        ]}>
+        ]}
+      >
         <View style={styles.check}>
           <CustomSwitch
             title="Recurring monthly donation"
             onValueChange={toggleSwitch}
-            isEnabled={isEnabled}
+            isEnabled={isRecurringEnabled || recurringTransaction}
           />
         </View>
 
@@ -112,6 +150,7 @@ export default function CharityForSelf({
               purchaseName: "Charity",
               beneficiaryLogo: pictureUrl,
               beneficiaryName: charityName,
+              recurringTransaction: recurringTransaction || isRecurringEnabled,
             });
           }}
         />
@@ -131,7 +170,7 @@ export default function CharityForSelf({
       </View>
     </View>
   );
-}
+};
 
 const amountPresets = [
   { id: 1, amount: 100 },
@@ -139,3 +178,5 @@ const amountPresets = [
   { id: 3, amount: 1000 },
   { id: 4, amount: 5000 },
 ];
+
+export default CommonCharityForScreen;
