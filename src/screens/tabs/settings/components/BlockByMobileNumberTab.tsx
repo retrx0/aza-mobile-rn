@@ -10,21 +10,23 @@ import { AZALargeLightningLogo } from "../../../../../assets/svg";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { IBeneficiary } from "../../../../redux/types";
 
 interface IProps {
-  toggleModal: () => void;
+  blockUserOnPress: (contact: IBeneficiary) => void;
 }
 
-const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
+const BlockByMobileNumberTab = ({ blockUserOnPress }: IProps) => {
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
+
+  const { azaContacts } = useAppSelector(selectUser);
 
   return (
     <View style={[styles.container, { justifyContent: "space-between" }]}>
       <View>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A-Medium",
@@ -35,8 +37,6 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           or split payments with you.
         </Text>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontSize: hp(14),
             fontFamily: "Euclid-Circular-A",
@@ -49,8 +49,6 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
         </Text>
         <View style={{ marginTop: hp(50) }}>
           <TextInput
-            lightColor={Colors.light.mainText}
-            darkColor={Colors.dark.mainText}
             // placeholderTextColor={Colors[colorScheme].secondaryText}
             style={{
               backgroundColor: "transparent",
@@ -82,18 +80,16 @@ const BlockByMobileNumberTab = ({ toggleModal }: IProps) => {
           contentContainerStyle={{ paddingBottom: hp(300) }}
           showsVerticalScrollIndicator={false}
         >
-          {Array(20)
-            .fill("")
-            .map((_, i) => (
-              <TouchableOpacity key={i} onPress={toggleModal}>
-                <ContactListItem
-                  image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-                  name={"Adewale Adeyesufu"}
-                  phoneNumber={"8012345678"}
-                  isContactOnAza={true}
-                />
-              </TouchableOpacity>
-            ))}
+          {azaContacts.data.map((contact, i) => (
+            <TouchableOpacity key={i} onPress={() => blockUserOnPress(contact)}>
+              <ContactListItem
+                image={contact.pictureUrl!}
+                name={contact.fullName}
+                phoneNumber={contact.phone}
+                isContactOnAza={true}
+              />
+            </TouchableOpacity>
+          ))}
         </ScrollView>
       </View>
     </View>

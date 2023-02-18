@@ -10,21 +10,35 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { getAppTheme } from "../../../../theme";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { IBeneficiary } from "../../../../redux/types";
 
 interface IProps {
   toggleModal: () => void;
   isModalVisible: boolean;
-  user: string;
+  userToBlock: IBeneficiary;
 }
 
 export default function BlockUserModal({
   toggleModal,
   isModalVisible,
   navigation,
-  user,
+  userToBlock,
 }: CommonScreenProps<"BlockNewUser"> & IProps) {
-  const colorScheme = useColorScheme();
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const handleBlockingUser = () => {
+    toggleModal();
+    //TODO add blocking api call here
+
+    // if(blocked){
+    navigation.navigate("StatusScreen", {
+      statusIcon: "Success",
+      status: "Successful",
+      statusMessage: `The user ${userToBlock.fullName} has been successfully blocked.`,
+      navigateTo: "BlockNewUser",
+    });
+    // }else{
+    //   throw error
+    // }
+  };
 
   return (
     <View
@@ -53,8 +67,6 @@ export default function BlockUserModal({
         }}
       >
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
@@ -64,8 +76,6 @@ export default function BlockUserModal({
           Block User
         </Text>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontSize: 14,
             marginVertical: 15,
@@ -80,21 +90,13 @@ export default function BlockUserModal({
               fontSize: hp(15),
             }}
           >
-            {user}
+            {userToBlock.fullName}
           </Text>{" "}
           will be blocked. Do you confirm?
         </Text>
         <Button
           title="Confirm"
-          onPressButton={() => {
-            toggleModal();
-            navigation.navigate("StatusScreen", {
-              statusIcon: "Success",
-              status: "Successful",
-              statusMessage: `The user ${user} has been successfully blocked.`,
-              navigateTo: "BlockNewUser",
-            });
-          }}
+          onPressButton={handleBlockingUser}
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
@@ -102,7 +104,6 @@ export default function BlockUserModal({
           style={{
             marginTop: hp(40),
             marginBottom: hp(20),
-
             width: "90%",
           }}
         />
@@ -121,9 +122,25 @@ export function UnblockModal({
   toggleModal,
   isModalVisible,
   navigation,
-  user,
+  userToBlock,
 }: CommonScreenProps<"BlockNewUser"> & IProps) {
-  const colorScheme = useColorScheme();
+  const handleUserUnblocking = () => {
+    toggleModal();
+
+    //TODO add ublocking api call here
+
+    // if(unblocked){
+    navigation.navigate("StatusScreen", {
+      statusIcon: "Success",
+      status: "Successful",
+      statusMessage: `The user ${userToBlock.fullName} has been successfully unblocked.`,
+      navigateTo: "BlockUsers",
+    });
+    // }else{
+    //   throw error
+    // }
+  };
+
   return (
     <View
       style={{
@@ -140,7 +157,6 @@ export function UnblockModal({
     >
       <View
         style={{
-          backgroundColor: Colors[colorScheme].backgroundSecondary,
           borderRadius: 20,
           paddingBottom: 20,
           paddingTop: 30,
@@ -152,8 +168,6 @@ export function UnblockModal({
         }}
       >
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: 16,
@@ -163,8 +177,6 @@ export function UnblockModal({
           Unblock Users
         </Text>
         <Text
-          lightColor={Colors.light.text}
-          darkColor={Colors.dark.mainText}
           style={{
             fontSize: 14,
             marginVertical: 15,
@@ -179,30 +191,20 @@ export function UnblockModal({
               fontSize: hp(15),
             }}
           >
-            {user}
+            {userToBlock.fullName}
           </Text>{" "}
           will be unblocked. Do you confirm?
         </Text>
         <Button
           title="Confirm"
-          onPressButton={() => {
-            toggleModal();
-            navigation.navigate("StatusScreen", {
-              statusIcon: "Success",
-              status: "Successful",
-              statusMessage: `The user ${user} has been successfully unblocked.`,
-              navigateTo: "BlockUsers",
-            });
-          }}
+          onPressButton={handleUserUnblocking}
           styleText={{
-            color: Colors[colorScheme].buttonText,
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
           style={{
             marginTop: hp(40),
             marginBottom: hp(20),
-            backgroundColor: Colors[colorScheme].button,
             width: "90%",
           }}
         />

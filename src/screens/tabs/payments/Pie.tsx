@@ -49,7 +49,7 @@ export default function Pie() {
     },
     {
       value: calculatePaymentSum(payments.data, "Electricity"),
-      color: "#a1ea19",
+      color: "#ead919",
       text: "Electricity",
     },
     {
@@ -107,13 +107,14 @@ export default function Pie() {
             textColor={Colors.general.white}
             donut={true}
             data={data}
-            focusOnPress
+            focusOnPress={true}
             showValuesAsLabels
             centerLabelComponent={() => (
               <View style={[styles.centerLabel]}>
                 <Text
                   darkColor={Colors.general.black}
-                  lightColor={Colors.general.black}>
+                  lightColor={Colors.general.black}
+                >
                   Total
                 </Text>
                 <RegularText
@@ -133,7 +134,8 @@ export default function Pie() {
           {data.map((item, ind) => (
             <View key={ind.toString()} style={styles.individualLabel}>
               <View
-                style={[styles.colors, { backgroundColor: item.color }]}></View>
+                style={[styles.colors, { backgroundColor: item.color }]}
+              ></View>
               <Text style={{ fontSize: hp(15), padding: 5 }}>{item.text}</Text>
             </View>
           ))}

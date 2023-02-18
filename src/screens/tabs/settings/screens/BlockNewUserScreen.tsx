@@ -1,5 +1,5 @@
 import { useWindowDimensions } from "react-native";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
@@ -10,7 +10,7 @@ import BlockUserModal from "../components/BlockUserModal";
 import { Text as Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
- import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import { useAppSelector } from "../../../../redux";
@@ -18,6 +18,7 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { IBeneficiary } from "../../../../redux/types";
 
 const BlockNewUserScreen = ({
   navigation,
@@ -25,12 +26,21 @@ const BlockNewUserScreen = ({
 }: CommonScreenProps<"BlockNewUser">) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [index, setIndex] = useState(0);
+  const [userToBlock, setUserToBlock] = useState<IBeneficiary>({
+    fullName: "",
+    azaAccountNumber: "",
+  });
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },
     { key: "second", title: "Aza Number" },
   ]);
   const layout = useWindowDimensions();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const handleBlockUser = (contact: IBeneficiary) => {
+    setUserToBlock(contact);
+    setModalVisible(!isModalVisible);
+  };
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -40,7 +50,11 @@ const BlockNewUserScreen = ({
   const renderScene = ({ route }: any) => {
     switch (route.key) {
       case "first":
-        return <BlockByMobileNumberTab toggleModal={toggleModal} />;
+        return (
+          <BlockByMobileNumberTab
+            blockUserOnPress={(contact) => handleBlockUser(contact)}
+          />
+        );
       case "second":
         return <BlockByAzaNumberTab toggleModal={toggleModal} />;
     }
@@ -78,7 +92,8 @@ const BlockNewUserScreen = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );
@@ -90,7 +105,7 @@ const BlockNewUserScreen = ({
       <BlockUserModal
         navigation={navigation}
         route={route}
-        user="Chiazo"
+        userToBlock={userToBlock!}
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}
       />

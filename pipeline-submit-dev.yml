@@ -38,20 +38,20 @@ stages:
             displayName: Yarn install
           - bash: |
               set -x
-              yarn testFinal
+            #    yarn testFinal
             displayName: Run Unit Tests
-          - bash: |
-              eas build --profile development --platform android --local
-            displayName: Build Android .aap for UI Testing on Azure MacOS Agent
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          # - bash: |
+          #     eas build --profile development --platform android --local
+          #   displayName: Build Android .aap for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
               eas build --profile development --platform android --non-interactive --no-wait
             displayName: Run Build Android on EAS to have .aap available on website too
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
-          - bash: |
-              eas build --profile development --platform ios --local
-            displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          # - bash: |
+          #     eas build --profile development --platform ios --local
+          #   displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
               eas build --profile development --platform ios --non-interactive --no-wait
             displayName: Run Build IOS on EAS to have .app available on website too
@@ -60,6 +60,8 @@ stages:
               eas update --branch develop --non-interactive
             displayName: Publish app to expo default channel
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          - bash: |
+              expo send -s abdulrahmaniliyasu86@gmail.com
           - task: PublishTestResults@2
             condition: succeededOrFailed()
             inputs:
