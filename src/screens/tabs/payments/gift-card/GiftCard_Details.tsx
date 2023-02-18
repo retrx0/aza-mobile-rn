@@ -84,12 +84,11 @@ export default function GiftCardDetails({
           flexWrap: "wrap",
           marginTop: hp(30),
           marginBottom: hp(35),
-        }}
-      >
+        }}>
         <Card
           title={country.name}
           icon={country.flagUrl}
-          // onPress={() => setActive(item.icon)}
+          isActive={undefined} // onPress={() => setActive(item.icon)}
           // isActive={item.icon === active}
         />
       </View>
@@ -100,8 +99,7 @@ export default function GiftCardDetails({
             fontSize: hp(16),
             fontWeight: "500",
             fontFamily: "Euclid-Circular-A-Medium",
-          }}
-        >
+          }}>
           Select Package
         </Text>
         <Divider />

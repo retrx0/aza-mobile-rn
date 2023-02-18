@@ -47,9 +47,9 @@ const WithdrawDepositTabs = ({
 
   const handlePress = () => {
     if (tabToView === "withdraw") {
-      navigation.getParent()?.navigate("WithdrawFeature");
+      navigation.navigate("WithdrawFeature");
     } else {
-      navigation.getParent()?.navigate("DepositFeature");
+      navigation.navigate("DepositFeature");
     }
   };
 
