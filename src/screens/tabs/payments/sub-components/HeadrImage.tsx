@@ -38,8 +38,7 @@ export default function HeadrImage({
         {
           height: amount ? 120 : 70,
         },
-      ]}
-    >
+      ]}>
       <View
         style={[
           styles.imageContainer,
@@ -47,8 +46,7 @@ export default function HeadrImage({
             borderWidth: amount ? 1 : 0,
             borderColor: amount ? "#A6A6A6" : "",
           },
-        ]}
-      >
+        ]}>
         <Image
           style={[
             styles.image,
@@ -104,16 +102,19 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "400",
-    fontSize: 12,
+    fontSize: 14,
     color: "#2A9E17",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   text2: {
     fontWeight: "400",
-    fontSize: 12,
+    fontSize: 14,
+    fontFamily: "Euclid-Circular-A-Medium",
   },
   text3: {
     fontWeight: "400",
-    fontSize: 12,
+    fontSize: 14,
     color: "#A6A6A6",
+    fontFamily: "Euclid-Circular-A-Medium",
   },
 });

@@ -49,7 +49,7 @@ export default function Pie() {
     },
     {
       value: calculatePaymentSum(payments.data, "Electricity"),
-      color: "#a1ea19",
+      color: "#ead919",
       text: "Electricity",
     },
     {
@@ -100,13 +100,14 @@ export default function Pie() {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ alignSelf: "center" }}>
+        <View style={{ alignSelf: "center", height: 280, marginTop: 20 }}>
           <PieChart
+            strokeWidth={0.2}
             textBackgroundRadius={26}
             textColor={Colors.general.white}
             donut={true}
             data={data}
-            focusOnPress
+            focusOnPress={true}
             showValuesAsLabels
             centerLabelComponent={() => (
               <View style={[styles.centerLabel]}>
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
   monthText: {
     fontWeight: "600",
     fontFamily: "Euclid-Circular-A-Semi-Bold",
-    fontSize: hp(16),
+    fontSize: hp(20),
     marginRight: hp(10),
     marginLeft: hp(10),
   },

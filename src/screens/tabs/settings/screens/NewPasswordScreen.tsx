@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
@@ -25,7 +25,6 @@ const NewPasswordScreen = ({
 
   const { oldPassword } = route.params;
   useNavigationHeader(navigation, "New Password");
- 
 
   const checkIfPasswordsMatch = () => {
     if (

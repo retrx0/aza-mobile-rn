@@ -19,17 +19,15 @@ export default function BottomSheetListItem({
           style={[
             CommonStyles.row,
             { alignSelf: "flex-start", paddingVertical: 25 },
-          ]}
-        >
+          ]}>
           {itemIcon}
           <Text
             style={{
               marginLeft: 10,
               fontFamily: "Euclid-Circular-A-Semi-Bold",
-              fontSize: hp(16),
-              fontWeight: "600",
-            }}
-          >
+              fontSize: hp(18),
+              fontWeight: "500",
+            }}>
             {itemName}
           </Text>
         </View>

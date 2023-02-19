@@ -26,10 +26,11 @@ import { getAppTheme } from "../../../../../theme";
 import {
   detectNetworkOperatorAPI,
   fetchAirtimeOperatorsAPI,
+  fetchNetworkOperatorDataPlansAPI,
 } from "../../../../../api/airtime";
 import { AIrtimeStyles } from "../../airtime-screens/styles";
 
-export default function AirtimeRecurring({
+export default function DataBundleRecurring({
   navigation,
 }: CommonScreenProps<"AirtimeData">) {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -68,6 +69,10 @@ export default function AirtimeRecurring({
     }[]
   >([]);
 
+  const [dataBundles, setDataBundles] = useState<
+    { label: string; value: string }[]
+  >([]);
+
   const route = useRoute();
   const dispatch = useDispatch();
   const user = useAppSelector(selectUser);
@@ -81,6 +86,23 @@ export default function AirtimeRecurring({
       detectNetworkProvider(user.phoneNumber);
     }
   }, [isEnabled]);
+
+  useEffect(() => {
+    {
+      if (route.name === "data-bundle" && selectedProvider.name) {
+        fetchNetworkOperatorDataPlansAPI(
+          selectedProvider.name.split(" ")[0].toUpperCase()
+        )
+          .then(({ data }) => {
+            const entires = Object.entries(data.fixedAmountsDescriptions).map(
+              ([value, label]) => ({ value, label: label as string })
+            );
+            setDataBundles(entires);
+          })
+          .catch((err) => console.log(err));
+      }
+    }
+  }, [route.name, selectedProvider.name]);
 
   const detectNetworkProvider = (number: string) => {
     dispatch(toggleActivityModal(true));
@@ -200,6 +222,25 @@ export default function AirtimeRecurring({
           </View>
         )}
       </View>
+      <View
+        style={{
+          paddingHorizontal: hp(20),
+          marginTop: hp(10),
+          marginBottom: hp(10),
+        }}>
+        <CustomDropdown
+          data={dataBundles}
+          placeholder="Choose a bundle"
+          setValue={setAmount}
+          value={amount}
+          style={[
+            { fontFamily: "Euclid-Circular-A" },
+            { fontWeight: "400" },
+            { fontSize: hp(16) },
+          ]}
+          label={"Bundle"}
+        />
+      </View>
 
       {/* <UnderlinedInput
         value={
@@ -228,7 +269,6 @@ export default function AirtimeRecurring({
       <View style={{ marginTop: "auto", marginBottom: hp(45) }}>
         <Button
           title="Continue"
-          disabled={!periodValue || !dayValue}
           onPressButton={() =>
             navigation.push("TransactionKeypad", {
               headerTitle: "Recurring Transfer",
@@ -244,7 +284,12 @@ export default function AirtimeRecurring({
               },
             })
           }
-          // style={{ marginTop: hp(250) }}
+          disabled={
+            !periodValue ||
+            !selectedProvider ||
+            mobileNumber.length < 13 ||
+            !dayValue
+          }
         />
       </View>
     </View>

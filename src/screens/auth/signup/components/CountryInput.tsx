@@ -5,11 +5,7 @@ import { SvgUri } from "react-native-svg";
 import { SelectIcon } from "../../../../../assets/svg";
 import { CountryProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
-import {
-  View as View,
-  Text as Text,
-  TextInput,
-} from "../../../../theme/Themed";
+import { View, Text, TextInput } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 
 export const CountryBox = ({

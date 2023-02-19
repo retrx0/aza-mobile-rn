@@ -8,6 +8,7 @@ import Divider from "../../components/divider/Divider";
 import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 import {
   ChevronRightIcon,
@@ -44,8 +45,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
   ];
 
   return (
-    <View style={styles.container}>
-      <View>
+    <SpacerWrapper>
+      <View style={styles.container}>
         <Divider />
         {navigationListItems.map(({ name, icon, handleNavigation }, i) => (
           <View key={i}>
@@ -88,7 +89,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           </View>
         ))}
       </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 

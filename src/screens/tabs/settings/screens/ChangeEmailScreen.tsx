@@ -1,5 +1,4 @@
-import React, {  useState } from "react";
-
+import React, { useState } from "react";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
@@ -19,10 +18,9 @@ const ChangeEmailScreen = ({
 }: CommonScreenProps<"ChangeEmail">) => {
   const user = useAppSelector(selectUser);
 
-  const [newEmail, setNewEmail] = useState(""); 
- 
-  useNavigationHeader(navigation, "New Email");
+  const [newEmail, setNewEmail] = useState("");
 
+  useNavigationHeader(navigation, "New Email");
 
   return (
     <SpacerWrapper>
@@ -45,7 +43,7 @@ const ChangeEmailScreen = ({
               onChange={() => {}}
               labelStyle={{
                 fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
                 marginLeft: hp(5),
                 fontWeight: "500",
               }}
@@ -65,7 +63,7 @@ const ChangeEmailScreen = ({
               onChange={(e) => setNewEmail(e.nativeEvent.text)}
               labelStyle={{
                 fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A",
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
                 marginLeft: hp(5),
                 fontWeight: "500",
               }}

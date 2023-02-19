@@ -10,6 +10,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 const SplitAndMoneyRequestsScreen = ({
   navigation,
@@ -32,29 +33,31 @@ const SplitAndMoneyRequestsScreen = ({
   useNavigationHeader(navigation, "Split and Money Requests");
 
   return (
-    <View style={styles.container}>
-      <Text
-        style={{
-          fontSize: hp(16),
-          fontFamily: "Euclid-Circular-A",
+    <SpacerWrapper>
+      <View style={styles.container}>
+        <Text
+          style={{
+            fontSize: hp(16),
+            fontFamily: "Euclid-Circular-A",
 
-          fontWeight: "500",
-        }}
-      >
-        You can disable this setting to reject all split and money requests from
-        other users.
-      </Text>
-      <View style={{ marginTop: hp(50) }}>
-        <Divider />
-        <SettingsSwitch
-          text={"Split and Money Requests"}
-          isEnabled={isEnabled}
-          onSwitchToggle={() => {
-            setIsEnabled(!isEnabled);
+            fontWeight: "500",
           }}
-        />
+        >
+          You can disable this setting to reject all split and money requests
+          from other users.
+        </Text>
+        <View style={{ marginTop: hp(50) }}>
+          <Divider />
+          <SettingsSwitch
+            text={"Split and Money Requests"}
+            isEnabled={isEnabled}
+            onSwitchToggle={() => {
+              setIsEnabled(!isEnabled);
+            }}
+          />
+        </View>
       </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 

@@ -32,6 +32,9 @@ import { useAppSelector } from "../redux";
 import { selectAppTheme } from "../redux/slice/themeSlice";
 import { selectUser } from "../redux/slice/userSlice";
 import { View } from "../theme/Themed";
+import SpacerWrapper from "../common/util/SpacerWrapper";
+import CommonStyles from "../common/styles/CommonStyles";
+import { hp } from "../common/util/LayoutUtil";
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -92,14 +95,13 @@ const BottomTabNavigator = (
             headerTitleAlign: "center",
             headerTitle: () => (
               <AZALightningLogo
-                size={25}
                 color={
                   appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
                 }
               />
             ),
             title: "Home",
-            tabBarIcon: ({ color }) => <HomeIcon color={color} size={24} />,
+            tabBarIcon: ({ color }) => <HomeIcon color={color} size={34} />,
             headerRight: () => (
               <Pressable
                 onPress={() => navigation.navigate("QRTransactions")}
@@ -111,7 +113,7 @@ const BottomTabNavigator = (
                   <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
                 ) : (
                   <QRCodeIcon
-                    size={24}
+                    size={30}
                     color={Colors.light.text}
                     style={{ marginRight: 15 }}
                   />
@@ -126,7 +128,7 @@ const BottomTabNavigator = (
                   marginLeft: 15,
                 })}
               >
-                <MenuIcon size={25} color={Colors[appTheme].text} />
+                <MenuIcon size={30} color={Colors[appTheme].text} />
               </Pressable>
             ),
             headerShadowVisible: false,
@@ -147,7 +149,7 @@ const BottomTabNavigator = (
           options={{
             title: "Payments",
             headerShown: false,
-            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={24} />,
+            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={34} />,
           }}
         />
         <BottomTab.Screen
@@ -155,8 +157,13 @@ const BottomTabNavigator = (
           component={Settings}
           options={{
             title: "Settings",
-            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={24} />,
+            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={34} />,
             headerShadowVisible: false,
+            headerTitleStyle: {
+              fontWeight: "600",
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              fontSize: hp(18),
+            },
           }}
         />
         <BottomTab.Screen
@@ -174,7 +181,7 @@ const BottomTabNavigator = (
           options={{
             title: "Profile",
             tabBarIcon: () => (
-              <View style={{ width: 24, height: 24 }}>
+              <View style={{ width: 34, height: 34 }}>
                 <Image
                   source={{ uri: user.pictureUrl }}
                   style={{

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SigninStyles as styles } from "./styles";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -6,7 +6,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
 import { View as View, Text as Text } from "../../../theme/Themed";
-import api from "../../../api";
 import { Alert, AppState, TouchableOpacity } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
@@ -16,26 +15,17 @@ import {
   getUserAccount,
   getUserInfo,
   selectUser,
-  setUserEmail,
-  setUserFullName,
-  setUserPhoneAndFullName,
-  setUserPhoneNumber,
 } from "../../../redux/slice/userSlice";
 import { loginUserAPI } from "../../../api/auth";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
-import {
-  clearUserCredentials,
-  getUserCredentialsSecure,
-  storeItemSecure,
-  storeUserCredentialsSecure,
-} from "../../../common/util/StorageUtil";
-import CommonStyles from "../../../common/styles/CommonStyles";
+import { storeItemSecure } from "../../../common/util/StorageUtil";
 import ActivityModal from "../../../components/modal/ActivityModal";
 import useCountdownTimer from "../../../hooks/useCountdownTimer";
-import { useAppAsyncStorage } from "../../../hooks/useAsyncStorage";
 import useCachedResources from "../../../hooks/useCachedResources";
 import { IUserCred } from "../../../redux/types";
+import { AxiosError } from "axios";
+import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -52,7 +42,7 @@ const SignInWelcomeBackScreen = ({
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
   const [_tmpCreds, setTmpCreds] = useState<IUserCred>();
 
-  const { userPreferences } = useCachedResources();
+  const userPreferences = useAppSelector(selectAppPreference);
 
   const {
     minutesToDisplay,
@@ -101,40 +91,55 @@ const SignInWelcomeBackScreen = ({
       })
         .then((jwt) => {
           if (jwt) {
-            storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-              requireAuthentication: false,
-            });
-            storeItemSecure(
-              STORAGE_KEY_USER_CREDS,
-              JSON.stringify({
-                email: email,
-                token: jwt,
-                password: code,
-                phoneNumber: phoneNumber,
-                fullName: fullName,
-              }),
-              { authenticationPrompt: "storing" }
-            );
-            dispatch(getUserInfo());
-            dispatch(getUserAccount({ accountNumber: "1001561113" }));
-            setScreenLoading(false);
-            navigation.getParent()?.navigate("Root");
+            try {
+              storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
+                requireAuthentication: false,
+              });
+              storeItemSecure(
+                STORAGE_KEY_USER_CREDS,
+                JSON.stringify({
+                  email: email,
+                  token: jwt,
+                  password: code,
+                  phoneNumber: phoneNumber,
+                  fullName: fullName,
+                })
+              );
+              dispatch(getUserInfo());
+              dispatch(
+                getUserAccount({ accountNumber: user.azaAccountNumber })
+              );
+              setScreenLoading(false);
+              navigation.getParent()?.navigate("Root");
+            } catch (error) {
+              toastError(
+                "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
+              );
+            }
           } else {
             setScreenLoading(false);
             toastError("There was a problem logging you in, please try again!");
           }
         })
-        .catch((err) => {
+        .catch((err: AxiosError) => {
           setScreenLoading(false);
-          setLoginAttemptCounter((s) => s + 1);
-          toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+          if (err.response?.status === 400) {
+            setLoginAttemptCounter((s) => s + 1);
+            toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+          } else {
+            toastError(
+              "There was a problem logging you in, please try again if problem persist contact customer support"
+            );
+          }
         });
     }
   };
 
   useEffect(() => {
     setPasscode("");
+  }, []);
 
+  useEffect(() => {
     const handleSignBack = async () => {
       const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
       const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
@@ -189,14 +194,15 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>Welcome back, {user.fullName}</Text>
+          <Text style={styles.welcome}>Welcome back {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           <View
             style={{
               marginTop: hp(20),
               paddingHorizontal: hp(20),
               marginBottom: hp(100),
-            }}>
+            }}
+          >
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -212,10 +218,12 @@ const SignInWelcomeBackScreen = ({
               headerText="Password"
               secureInput={true}
               autoFocusOnLoad
+              withKeypad
             />
           </View>
           <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}>
+            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
+          >
             <TouchableOpacity onPress={forgetUser}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>

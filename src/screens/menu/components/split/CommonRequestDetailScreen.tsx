@@ -10,7 +10,6 @@ import Colors from "../../../../constants/Colors";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";
-import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { IBeneficiary, IRequest } from "../../../../redux/types";
 
@@ -33,63 +32,62 @@ const CommonRequestDetailScreen = ({
   console.log(requestor);
 
   return (
-    <SpacerWrapper>
-      <View style={styles.container}>
-        <Divider />
-        <SplitListItem
-          amount={amount}
-          date={date}
-          name={vendorName}
-          splitImage={vendorLogo}
-          requestees={[]}
-          requestor={{ azaAccountNumber: "", fullName: "" }}
-        />
-        <Divider />
-        <View
-          style={{
-            marginTop: hp(25),
-          }}
-        >
-          <Text
-            style={{
-              fontSize: hp(16),
-              fontWeight: "400",
-              fontFamily: "Euclid-Circular-A",
-              marginLeft: hp(5),
-            }}
-          >
-            Request Creator
-          </Text>
-          <RequestDetailItem
-            status={status}
-            splitAmount={splitAmountForEachPerson}
-            requestItem={requestor}
-          />
-        </View>
+    <View style={styles.container}>
+      <Divider />
+      <SplitListItem
+        amount={amount}
+        date={date}
+        name={vendorName}
+        splitImage={vendorLogo}
+        requestees={[]}
+        requestor={{ azaAccountNumber: "", fullName: "" }}
+      />
+      <Divider />
+      <View
+        style={{
+          marginTop: hp(25),
+        }}
+      >
         <Text
           style={{
             fontSize: hp(16),
             fontWeight: "400",
-            marginTop: hp(25),
             fontFamily: "Euclid-Circular-A",
             marginLeft: hp(5),
           }}
         >
-          Request Recipients
+          Request Creator
         </Text>
-        <ScrollView>
-          {requestees.map((_requestee) => {
-            return (
-              <RequestDetailItem
-                status={status}
-                splitAmount={splitAmountForEachPerson}
-                requestItem={_requestee}
-              />
-            );
-          })}
-        </ScrollView>
+        <RequestDetailItem
+          status={status}
+          splitAmount={splitAmountForEachPerson}
+          requestItem={requestor}
+        />
       </View>
-    </SpacerWrapper>
+      <Text
+        style={{
+          fontSize: hp(16),
+          fontWeight: "400",
+          marginTop: hp(25),
+          fontFamily: "Euclid-Circular-A",
+          marginLeft: hp(5),
+        }}
+      >
+        Request Recipients
+      </Text>
+      <ScrollView>
+        {requestees.map((_requestee, i) => {
+          return (
+            <RequestDetailItem
+              key={i}
+              status={status}
+              splitAmount={splitAmountForEachPerson}
+              requestItem={_requestee}
+            />
+          );
+        })}
+      </ScrollView>
+    </View>
   );
 };
 

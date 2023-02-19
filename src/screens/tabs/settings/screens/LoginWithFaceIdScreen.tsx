@@ -1,12 +1,13 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
- 
+
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import Divider from "../../../../components/divider/Divider";
 import SettingsSwitch from "../components/SettingsSwitch";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { hp } from "../../../../common/util/LayoutUtil";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
@@ -37,40 +38,41 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
       confirmTransactionsWithFaceIDSwitch: isConfirmTransactionWithFaceId,
     });
   }, [isLoginWithFaceId, isConfirmTransactionWithFaceId]);
- 
+
   useNavigationHeader(navigation, "Login with Face ID");
 
-
   return (
-    <View style={styles.container}>
-      <View>
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-        >
-          You can access your account without entering a password by signing in
-          with Face ID
-        </Text>
+    <SpacerWrapper>
+      <View style={styles.container}>
+        <View>
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(16),
+              fontWeight: "500",
+            }}
+          >
+            You can access your account without entering a password by signing
+            in with Face ID
+          </Text>
+        </View>
+        <View style={{ marginTop: hp(100) }}>
+          <Divider />
+          <SettingsSwitch
+            text={"Login with Face ID"}
+            isEnabled={isLoginWithFaceId}
+            onSwitchToggle={() => setLoginWithFaceId(!isLoginWithFaceId)}
+          />
+          <SettingsSwitch
+            text={"Confirm transactions with Face ID"}
+            isEnabled={isConfirmTransactionWithFaceId}
+            onSwitchToggle={() =>
+              setConfirmTransactionWithFaceId(!isConfirmTransactionWithFaceId)
+            }
+          />
+        </View>
       </View>
-      <View style={{ marginTop: hp(100) }}>
-        <Divider />
-        <SettingsSwitch
-          text={"Login with Face ID"}
-          isEnabled={isLoginWithFaceId}
-          onSwitchToggle={() => setLoginWithFaceId(!isLoginWithFaceId)}
-        />
-        <SettingsSwitch
-          text={"Confirm transactions with Face ID"}
-          isEnabled={isConfirmTransactionWithFaceId}
-          onSwitchToggle={() =>
-            setConfirmTransactionWithFaceId(!isConfirmTransactionWithFaceId)
-          }
-        />
-      </View>
-    </View>
+    </SpacerWrapper>
   );
 };
 

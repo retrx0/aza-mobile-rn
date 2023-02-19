@@ -1,17 +1,17 @@
 import Modal from "react-native-modal";
+
 import { hp } from "../../common/util/LayoutUtil";
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
+
 import Button from "../buttons/Button";
 import { View as View } from "../../theme/Themed";
 import BottomSheetListItem from "./BottomSheetListItem";
+
 export default function CustomBottomSheet({
   toggleModal,
   isModalVisible,
   listItems,
 }: any) {
-  const colorScheme = useColorScheme();
-
   const renderBottomSheetListItems = () => {
     return listItems.map((item: any, index: any) => (
       <BottomSheetListItem
@@ -49,14 +49,10 @@ export default function CustomBottomSheet({
           justifyContent: "space-between",
         }}
       >
-        <View
-          lightColor={Colors["light"].backgroundSecondary}
-          darkColor={Colors["dark"].backgroundSecondary}
-        >
-          {renderBottomSheetListItems()}
-        </View>
+        {renderBottomSheetListItems()}
         <Button
           title="Cancel"
+          styleText={{ color: "white" }}
           style={{
             backgroundColor: Colors.dark.error,
             marginBottom: hp(40),

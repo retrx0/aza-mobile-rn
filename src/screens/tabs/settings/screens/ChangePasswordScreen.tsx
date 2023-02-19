@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
@@ -29,7 +29,6 @@ const ChangePasswordScreen = ({
   const { phoneNumber, emailAddress } = useAppSelector(selectUser);
   useNavigationHeader(navigation, "Current Password");
 
-
   const verifyPassword = async () => {
     setButtonLoading(true);
     loginUserAPI({
@@ -59,7 +58,7 @@ const ChangePasswordScreen = ({
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
           style={{
-            fontSize: hp(16),
+            fontSize: hp(18),
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
@@ -76,6 +75,7 @@ const ChangePasswordScreen = ({
             value={password}
             secureInput
             headerText="Password"
+            autoFocusOnLoad={false}
             onValueChanged={(pass) => setPassword(pass)}
             headerstyle={{
               fontFamily: "Euclid-Circular-A-Medium",

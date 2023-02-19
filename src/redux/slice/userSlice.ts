@@ -11,14 +11,15 @@ const initialState: IUserState = {
   loading: false,
   loaded: false,
   phoneNumber: "080222222221",
-  firstName: "FEMI",
-  lastName: "ZACK",
+  firstName: "Test",
+  lastName: "User",
   fullName: "Test User",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
   azaAccountNumber: "1001561113",
-  azaBalance: 100000,
+  azaVFDAccountNumber: "",
+  azaBalance: 0,
   emailAddress: "testuser@azanaija.com",
-  accountVerified: true,
+  accountVerified: false,
   bvnVerified: false,
   bvnNumber: "",
   accountStatus: "",
@@ -31,36 +32,36 @@ const initialState: IUserState = {
       {
         dateOfTransactions: "15 June 2022",
         transactions: [
-          {
-            id: 1,
-            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
-            name: "Test User 1",
-            transactionType: "incoming",
-            transactionTitle: "Incoming Transfer",
-            transactionMessage: "Chop life my gee ",
-            amount: "28,000.00",
-            date: "4 July 2022 04:26",
-          },
-          {
-            id: 2,
-            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
-            name: "Test User 2",
-            transactionType: "outgoing",
-            transactionTitle: "Transfer to Bank",
-            transactionMessage: "",
-            amount: "328,000.00",
-            date: "4 July 2022 04:26",
-          },
-          {
-            id: 3,
-            imageUrl: "https://ui-avatars.com/api/?name=Test+User",
-            name: "Test User 3",
-            transactionType: "incoming",
-            transactionTitle: "Incoming Transfer",
-            transactionMessage: "",
-            amount: "28,000.00",
-            date: "4 July 2022 04:26",
-          },
+          // {
+          //   id: 1,
+          //   imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+          //   name: "Test User 1",
+          //   transactionType: "incoming",
+          //   transactionTitle: "Incoming Transfer",
+          //   transactionMessage: "Chop life my gee ",
+          //   amount: "28,000.00",
+          //   date: "4 July 2022 04:26",
+          // },
+          // {
+          //   id: 2,
+          //   imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+          //   name: "Test User 2",
+          //   transactionType: "outgoing",
+          //   transactionTitle: "Transfer to Bank",
+          //   transactionMessage: "",
+          //   amount: "328,000.00",
+          //   date: "4 July 2022 04:26",
+          // },
+          // {
+          //   id: 3,
+          //   imageUrl: "https://ui-avatars.com/api/?name=Test+User",
+          //   name: "Test User 3",
+          //   transactionType: "incoming",
+          //   transactionTitle: "Incoming Transfer",
+          //   transactionMessage: "",
+          //   amount: "28,000.00",
+          //   date: "4 July 2022 04:26",
+          // },
         ],
       },
       {
@@ -365,6 +366,7 @@ export const userSlice = createSlice({
         state.lastLogin = action.payload.lastLogin;
         state.accountTier = action.payload.accountTier;
         state.dateOfBirth = action.payload.dateOfBirth;
+        state.azaVFDAccountNumber = action.payload.vfdAccount;
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
       .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
@@ -379,7 +381,7 @@ export const userSlice = createSlice({
       })
       .addCase(addUserBvnThunk.fulfilled, (state, action) => {
         console.log("BVN" + action.payload);
-        state.bvnVerified = action.payload as any;
+        state.bvnVerified = action.payload as boolean;
       })
       .addCase(getUserAccount.pending, (state, action) => {})
       .addCase(getUserAccount.rejected, (state, action) => {})

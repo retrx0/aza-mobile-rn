@@ -32,12 +32,14 @@ const SelectNewRecurringTransferScreen = ({
   const navigationListItems = [
     {
       name: "Charity",
-      handleNavigation: () => navigation.navigate("Charity"),
+      handleNavigation: () =>
+        navigation.navigate("Charity", { recurringTransaction: true }),
       icon: <HeartOutlinedIcon size={24} color={Colors[appTheme].mainText} />,
     },
     {
       name: "Money Transfer",
-      handleNavigation: () => navigation.navigate("SendMoney"),
+      handleNavigation: () =>
+        navigation.navigate("SendMoney", { recurringTransaction: true }),
       icon: (
         <MoneyTransferNairaIcon size={24} color={Colors[appTheme].mainText} />
       ),
@@ -45,7 +47,9 @@ const SelectNewRecurringTransferScreen = ({
     {
       name: "Bill payment",
       handleNavigation: () =>
-        navigation.getParent()?.navigate("PaymentRecurring"),
+        navigation
+          .getParent()
+          ?.navigate("PaymentRecurring", { recurringTransaction: true }),
       icon: <BillIcon size={24} color={Colors[appTheme].mainText} />,
     },
 

@@ -194,7 +194,7 @@ export const AZALogo = ({ color, size, style }: SvgIconProps) => {
 
 export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
   return (
-    <Svg width={10} height={24} fill="none">
+    <Svg width={12} height={30} fill="none">
       <G clipPath="url(#a)">
         <Path
           d="m.01 23.997 3.31-10.035H.01V.003h6.732l-3.38 10.6h6.629L.009 23.997Z"
@@ -277,7 +277,7 @@ export const TickIcon = ({ style }: SvgIconProps) => {
 
 export const PieIcon = ({ style }: SvgIconProps) => {
   return (
-    <Svg style={style} width="28" height="28" viewBox="0 0 24 24" fill="none">
+    <Svg style={style} width="30" height="30" viewBox="0 0 24 24" fill="none">
       <Path
         d="M24 14C24 16.1118 23.3314 18.1694 22.0902 19.8779C20.8489 21.5863 19.0986 22.858 17.0902 23.5106C15.0817 24.1631 12.9182 24.1631 10.9098 23.5106C8.90138 22.858 7.15109 21.5863 5.90981 19.8779L9.9549 16.9389C10.5755 17.7932 11.4507 18.429 12.4549 18.7553C13.4591 19.0816 14.5409 19.0816 15.5451 18.7553C16.5493 18.429 17.4244 17.7932 18.0451 16.9389C18.6657 16.0847 19 15.0559 19 14H24Z"
         fill="#2A9E17"
@@ -765,7 +765,7 @@ export const WithdrawIcon = ({ color, size, style }: SvgIconProps) => (
 
 export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width={24} height={24} fill="none">
+    <Svg width={30} height={30} fill="none">
       <Path
         d="M3 7h18M3 12h18M3 17h18"
         stroke={color}

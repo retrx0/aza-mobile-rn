@@ -21,11 +21,16 @@ import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import Divider from "../../../../components/divider/Divider";
+import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { TabBar, TabView } from "react-native-tab-view";
+import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { useWindowDimensions } from "react-native";
+import CommonCharityForScreen from "./CommonCharityForScreen";
 
-export default function CharityDetail({
+export default function CharityDetailsScreen({
   navigation,
   route,
-}: CommonScreenProps<"CharityDetail">) {
+}: CommonScreenProps<"CharityDetailsScreen">) {
   const [amount, setAmount] = useState("");
   const [charityTransaction, setCharityTransaction] = useState({
     amount: "",
@@ -37,6 +42,35 @@ export default function CharityDetail({
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: "first", title: "For Myself" },
+    { key: "second", title: "For Someone Else" },
+  ]);
+  const layout = useWindowDimensions();
+
+  useNavigationHeader(navigation, "CharityDetail");
+
+  const renderScene = (props: any) => {
+    switch (props.route.key) {
+      case "first":
+        return (
+          <CommonCharityForScreen
+            isCharityForSomeone={false}
+            navigation={navigation}
+            route={route}
+          />
+        );
+      case "second":
+        return (
+          <CommonCharityForScreen
+            isCharityForSomeone
+            navigation={navigation}
+            route={route}
+          />
+        );
+    }
+  };
 
   const {
     charityName,
@@ -48,124 +82,46 @@ export default function CharityDetail({
   } = route.params;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.detailContainer}>
-        <InfoIcon />
-        <Text style={styles.text}>{description}</Text>
-      </View>
-      {tabKey == "someone" && (
-        <>
-          <UnderlinedInput
-            style={styles.mainInput}
-            icon={null}
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
-            labelStyle={styles.label}
-            label=""
-            placeholder="Name and Surname"
+    <SpacerWrapper>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        sceneContainerStyle={{ overflow: "visible" }}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            style={{
+              elevation: 0,
+              backgroundColor: "transparent",
+              borderBottomColor: Colors[appTheme].secondaryText,
+              borderBottomWidth: 2,
+            }}
+            indicatorStyle={{
+              backgroundColor: Colors[appTheme].text,
+              marginBottom: -2,
+            }}
+            renderLabel={({ focused, route }) => {
+              return (
+                <Text
+                  lightColor={
+                    focused ? Colors.light.text : Colors.light.secondaryText
+                  }
+                  darkColor={
+                    focused ? Colors.dark.mainText : Colors.dark.secondaryText
+                  }
+                  style={{
+                    fontSize: hp(16),
+                  }}
+                >
+                  {route.title}
+                </Text>
+              );
+            }}
           />
-
-          <UnderlinedInput
-            style={styles.mainInput}
-            icon={null}
-            inputStyle={[
-              styles.input,
-              {
-                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-              },
-            ]}
-            labelStyle={styles.label}
-            label=""
-            placeholder="Email Address"
-          />
-        </>
-      )}
-      <UnderlinedInput
-        value={amount}
-        onChangeText={(amnt) => setAmount(amnt)}
-        style={styles.mainInput}
-        icon={null}
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
-        labelStyle={styles.label}
-        label=""
-        placeholder="Donation Amount"
-        keyboardType="number-pad"
-        returnKeyType="done"
+        )}
       />
-
-      <View style={styles.suggestions}>
-        {amountPresets.map((item) => {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.mainSuggestion}
-              onPress={() => setAmount("" + item.amount)}>
-              <Text style={styles.amount}>
-                {NAIRA_UNICODE + " " + item.amount}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-
-      <View
-        style={[
-          CommonStyles.passwordContainer,
-          { bottom: insets.top || hp(45) },
-        ]}>
-        <View style={styles.check}>
-          <CustomSwitch
-            title="Recurring monthly donation"
-            onValueChange={toggleSwitch}
-            isEnabled={isEnabled}
-          />
-        </View>
-
-        <Divider />
-        <Button
-          style={styles.btn}
-          disabled={false}
-          title="Continue"
-          onPressButton={() => {
-            navigation.navigate("PaymentConfirmation", {
-              amount,
-              paymentMethod: "Aza Account",
-              purchaseName: "Charity",
-              beneficiaryLogo: pictureUrl,
-              beneficiaryName: charityName,
-            });
-          }}
-        />
-        <CancelButtonWithUnderline
-          onPressButton={() => navigation.goBack()}
-          style={{ borderBottomColor: Colors.general.red }}
-          title="Cancel"
-          styleText={{
-            textAlign: "center",
-            color: Colors.general.red,
-            fontSize: hp(16),
-            fontWeight: "500",
-            lineHeight: hp(17),
-            fontFamily: "Euclid-Circular-A",
-          }}
-        />
-      </View>
-    </View>
+    </SpacerWrapper>
   );
 }
-
-const amountPresets = [
-  { id: 1, amount: 100 },
-  { id: 2, amount: 500 },
-  { id: 3, amount: 1000 },
-  { id: 4, amount: 5000 },
-];

@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 import SettingsListItem from "./SettingsListItem";
 import Colors from "../../../../constants/Colors";
@@ -16,6 +15,7 @@ import { RootTabScreenProps } from "../../../../../types";
 import { useAppSelector } from "../../../../redux";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { Text, View } from "../../../../theme/Themed";
 
 export default function ApplicationSettings({
   navigation,
@@ -93,11 +93,15 @@ export default function ApplicationSettings({
       <View>
         <Text
           style={{
-            color: appTheme === "dark" ? "#E7E9EA" : "#000000",
-            fontFamily: "Euclid-Circular-A",
-            fontSize: hp(14),
+            // color: appTheme === "dark" ? "#E7E9EA" : "#000000",
+            // fontFamily: "Euclid-Circular-A",
+            // fontSize: hp(14),
+            // fontWeight: "400",
+            // marginLeft: hp(5),
+            fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "400",
             marginLeft: hp(5),
+            fontSize: hp(18),
           }}>
           Application Settings
         </Text>

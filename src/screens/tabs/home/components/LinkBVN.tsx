@@ -17,17 +17,16 @@ export const LinkBVN = ({
   return (
     <View
       style={{
-        marginTop: 50,
+        marginTop: hp(25),
         backgroundColor: "#FAEB9E",
-        paddingVertical: 15,
+        paddingVertical: 30,
         paddingHorizontal: 30,
         borderRadius: 10,
         display: isBvnLinked ? "none" : "flex",
         justifyContent: "center",
         alignItems: "flex-start",
         flexDirection: "row",
-      }}
-    >
+      }}>
       <DangerIcon />
       <View
         style={{
@@ -35,24 +34,21 @@ export const LinkBVN = ({
           display: "flex",
           justifyContent: "space-between",
           backgroundColor: "transparent",
-        }}
-      >
+        }}>
         <Text
           darkColor={Colors["general"].black}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(16),
-          }}
-        >
+            fontSize: hp(17),
+          }}>
           Link your BVN to start using AZA
         </Text>
         <Text
           darkColor={Colors["general"].black}
           style={{
-            fontSize: hp(12),
+            fontSize: hp(14),
             marginTop: 5,
-          }}
-        >
+          }}>
           Link your BVN to upgrade your account as there are certain limits on
           it.
         </Text>
@@ -64,8 +60,7 @@ export const LinkBVN = ({
                 onVerifyNavigateBackTo: "Home",
               },
             })
-          }
-        >
+          }>
           <View
             style={{
               backgroundColor: "transparent",
@@ -73,15 +68,13 @@ export const LinkBVN = ({
               paddingBottom: 1,
               marginTop: 10,
               alignSelf: "flex-start",
-            }}
-          >
+            }}>
             <Text
               darkColor={Colors["dark"].buttonText}
               style={{
-                fontSize: hp(14),
+                fontSize: hp(16),
                 fontFamily: "Euclid-Circular-A-Medium",
-              }}
-            >
+              }}>
               Link your BVN
             </Text>
           </View>

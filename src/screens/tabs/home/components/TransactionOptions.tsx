@@ -43,8 +43,7 @@ const TransactionOptions = ({
           marginTop: hp(20),
           marginBottom: hp(10),
           paddingHorizontal: hp(10),
-        }}
-      >
+        }}>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", {
@@ -54,25 +53,28 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <WithdrawIcon size={40} color="#FF361A" />
+          style={{ display: "flex", alignItems: "center" }}>
+          <WithdrawIcon size={43} color="#FF361A" />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
-            style={{ fontSize: hp(17) }}
-          >
+            style={{
+              fontSize: hp(17),
+              fontFamily: "Euclid-Circular-A-Medium",
+            }}>
             Withdraw
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleModal}>
           <View style={{ display: "flex", alignItems: "center" }}>
-            <TransferIcon size={40} color={Colors[appTheme].text} />
+            <TransferIcon size={43} color={Colors[appTheme].text} />
             <Text
               lightColor={Colors.light.text}
               darkColor={"#CCCCCC"}
-              style={{ fontSize: hp(17) }}
-            >
+              style={{
+                fontSize: hp(17),
+                fontFamily: "Euclid-Circular-A-Medium",
+              }}>
               Transfer
             </Text>
           </View>
@@ -86,14 +88,15 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}
-        >
+          style={{ display: "flex", alignItems: "center" }}>
           <DepositIcon color="#2AD168" size={40} />
           <Text
             lightColor={Colors.light.text}
             darkColor={"#CCCCCC"}
-            style={{ fontSize: hp(17) }}
-          >
+            style={{
+              fontSize: hp(17),
+              fontFamily: "Euclid-Circular-A-Medium",
+            }}>
             Deposit
           </Text>
         </TouchableOpacity>

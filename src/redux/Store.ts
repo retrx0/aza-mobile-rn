@@ -9,6 +9,7 @@ import activityModalSlice from "./slice/activityModalSlice";
 import themeSlice from "./slice/themeSlice";
 import paymentSlice from "./slice/paymentSlice";
 import bankSlice from "./slice/bankSlice";
+import preferenceSlice from "./slice/preferenceSlice";
 
 export const Store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ export const Store = configureStore({
     theme: themeSlice,
     payment: paymentSlice,
     bank: bankSlice,
+    preference: preferenceSlice,
   },
 });
 

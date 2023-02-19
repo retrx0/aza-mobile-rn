@@ -17,19 +17,25 @@ import { ICharity } from "../../../../redux/types";
 import CharityCard from "./CharityCard";
 import Colors from "../../../../constants/Colors";
 import PaymentCardSkeleton from "../../../skeletons/PaymentCardSkeleton";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+
 export default function CharityIndexScreen({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+  route,
+}: CommonScreenProps<"Charity">) {
   const dispatch = useAppDispatch();
   const { charities } = useAppSelector(selectPayment);
   const [searchTerm, setSearchTerm] = useState("");
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
 
+  const recurring = route.params.recurringTransaction === true;
+
   const handleAction = (item: ICharity) => {
-    navigation.navigate("Common", {
-      screen: "CharityDetail",
-      params: { ...item, tabKey: "" },
+    navigation.navigate("CharityDetailsScreen", {
+      ...item,
+      tabKey: "",
+      recurringTransaction: recurring,
     });
   };
 

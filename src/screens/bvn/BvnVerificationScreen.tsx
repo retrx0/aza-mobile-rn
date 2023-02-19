@@ -70,8 +70,7 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Verify your BVN
           </Text>
           <View>
@@ -79,10 +78,8 @@ const BvnVerificationScreen = ({
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
-
                 fontWeight: "400",
-              }}
-            >
+              }}>
               Date of Birth
             </Text>
 
@@ -106,10 +103,8 @@ const BvnVerificationScreen = ({
               style={{
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
-
                 fontWeight: "400",
-              }}
-            >
+              }}>
               BVN
             </Text>
             <TextInput
@@ -120,7 +115,7 @@ const BvnVerificationScreen = ({
                 paddingBottom: 5,
                 marginTop: hp(15),
                 borderBottomWidth: 1,
-                borderBottomColor: Colors[appTheme].borderColor,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
                 fontSize: hp(16),
                 fontWeight: "500",
               }}
@@ -137,8 +132,7 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}
-        >
+          ]}>
           <Button
             title="Verify"
             onPressButton={verifyBvn}

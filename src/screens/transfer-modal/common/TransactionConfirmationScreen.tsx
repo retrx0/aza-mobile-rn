@@ -25,6 +25,7 @@ import { transferToAzaUserAPI } from "../../../api/vfd";
 import { requestMoneyAPI } from "../../../api/money-request";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
 import { payAzaUserAPI } from "../../../api/payment";
+import { toastError } from "../../../common/util/ToastUtil";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -54,7 +55,7 @@ const TransactionConfirmationScreen = ({
   const makeTransaction = async () => {
     // do some validation
 
-    if (!bvnVerified) {
+    if (bvnVerified) {
       navigation.navigate("BvnVerification", {
         onVerifyNavigateBackTo:
           confirmationType === "send"
@@ -87,8 +88,8 @@ const TransactionConfirmationScreen = ({
         //   toKyc: "",
         // });
         const transfer = await payAzaUserAPI({
-          sourceAccount: "",
-          destinationAccount: "",
+          sourceAccount: azaAccountNumber,
+          destinationAccount: beneficiary.azaAccountNumber,
           amount,
           transactionPin: "",
           description: transDescription ? transDescription : "Aza transaction",
@@ -98,8 +99,12 @@ const TransactionConfirmationScreen = ({
           destinationChannel: "",
         });
 
+        console.log(transfer);
+
         if (transfer) {
           transactionCompleted = true;
+        } else {
+          toastError("There was a problem completing transaction!");
         }
       } else {
         const request = await requestMoneyAPI({
@@ -112,6 +117,8 @@ const TransactionConfirmationScreen = ({
 
         if (request) {
           transactionCompleted = true;
+        } else {
+          toastError("There was a problem making the request!");
         }
       }
 

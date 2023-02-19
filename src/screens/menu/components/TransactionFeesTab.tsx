@@ -1,18 +1,13 @@
-import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../common/util/LayoutUtil";
-import Colors from "../../../constants/Colors";
 
 import { View, Text } from "../../../theme/Themed";
 
 import Divider from "../../../components/divider/Divider";
-import useColorScheme from "../../../hooks/useColorScheme";
 
 const TransactionFeesTab = () => {
-  const colorScheme = useColorScheme();
-
   const transactionFees = [
     {
       transaction: "Account usage and opening fee",

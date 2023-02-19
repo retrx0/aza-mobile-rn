@@ -34,8 +34,7 @@ const SettingsListItem = ({
       <TouchableOpacity
         disabled={disabled}
         onPress={handleNavigation}
-        style={[CommonStyles.col, { alignSelf: "stretch" }]}
-      >
+        style={[CommonStyles.col, { alignSelf: "stretch" }]}>
         <View
           style={[
             CommonStyles.row,
@@ -44,15 +43,13 @@ const SettingsListItem = ({
               justifyContent: "space-between",
               marginVertical: hp(20),
             },
-          ]}
-        >
+          ]}>
           <View>{disabled ? disabledIcon : icon}</View>
           <View
             style={[
               CommonStyles.col,
               { marginRight: "auto", marginLeft: icon ? 20 : 0 },
-            ]}
-          >
+            ]}>
             <Text
               lightColor={
                 disabled ? Colors[colorScheme].disabled : Colors.light.text
@@ -61,11 +58,10 @@ const SettingsListItem = ({
                 disabled ? Colors[colorScheme].disabled : Colors.dark.mainText
               }
               style={{
-                fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(18),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontWeight: "500",
-              }}
-            >
+              }}>
               {name}
             </Text>
             {detail && (
@@ -79,12 +75,11 @@ const SettingsListItem = ({
                     : Colors.dark.secondaryText
                 }
                 style={{
-                  fontSize: hp(12),
+                  fontSize: hp(13),
                   fontFamily: "Euclid-Circular-A",
                   fontWeight: "400",
                   marginTop: hp(4),
-                }}
-              >
+                }}>
                 {detail}
               </Text>
             )}

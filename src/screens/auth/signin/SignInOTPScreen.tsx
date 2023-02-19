@@ -42,7 +42,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
                 //   String(STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN),
                 //   token
                 // );
-                navigation.navigate("SignInWelcomeBack");
+                navigation.getParent()?.navigate("SignInWelcomeBack");
               } else {
                 Toast.show({ type: "error", text1: "Invalid OTP" });
               }

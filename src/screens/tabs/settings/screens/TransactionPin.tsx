@@ -46,6 +46,7 @@ const TransactionPin = ({
             value={pin}
             secureInput
             headerText="Pin"
+            autoFocusOnLoad={false}
             onValueChanged={(pass) => setPin(pass)}
             headerstyle={{
               fontFamily: "Euclid-Circular-A-Medium",

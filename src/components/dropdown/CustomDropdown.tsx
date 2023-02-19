@@ -3,7 +3,7 @@ import React from "react";
 import { ChevronRightIcon } from "../../../assets/svg";
 import Colors from "../../constants/Colors";
 import { View, Text } from "../../theme/Themed";
-import { StyleProp, TextStyle } from "react-native";
+import { StyleProp, TextStyle, TouchableOpacity } from "react-native";
 import { hp } from "../../common/util/LayoutUtil";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { getAppTheme } from "../../theme";
@@ -110,9 +110,9 @@ const CustomDropdown = ({
           setValue(item.value);
         }}
         renderRightIcon={() => (
-          <View style={{ transform: [{ rotate: "90deg" }] }}>
+          <TouchableOpacity style={{ transform: [{ rotate: "90deg" }] }}>
             <ChevronRightIcon color={Colors.general.green} size={20} />
-          </View>
+          </TouchableOpacity>
         )}
       />
     </>

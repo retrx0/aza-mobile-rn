@@ -1,0 +1,69 @@
+trigger:
+  branches:
+    include:
+      - develop
+
+pr:
+  autoCancel: true
+  drafts: false
+
+variables:
+  - group: expo-variable-group 20-Jan
+
+stages:
+  - stage: build_and_test
+    displayName: Build and Test
+    pool:
+      vmImage: "macos-latest"
+    jobs:
+      - job: build
+        displayName: Build
+        steps:
+          - checkout: self
+            clean: true
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "16.x"
+            displayName: Install Node.js
+          - bash: |
+              set -x
+              npm install -g expo-cli
+              npm install -g eas-cli
+            displayName: Install pipeline dependencies
+          - bash: |
+              set -x
+              expo login -u $(SHARED_EXPO_USERNAME) -p $(SHARED_EXPO_PASSWORD) --non-interactive
+            displayName: Login to expo cli
+          - bash: yarn install --frozen-lockfile
+            displayName: Yarn install
+          - bash: |
+              set -x
+            #    yarn testFinal
+            displayName: Run Unit Tests
+          # - bash: |
+          #     eas build --profile development --platform android --local
+          #   displayName: Build Android .aap for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          - bash: |
+              eas build --profile development --platform android --non-interactive --no-wait
+            displayName: Run Build Android on EAS to have .aap available on website too
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          # - bash: |
+          #     eas build --profile development --platform ios --local
+          #   displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          - bash: |
+              eas build --profile development --platform ios --non-interactive --no-wait
+            displayName: Run Build IOS on EAS to have .app available on website too
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          - bash: |
+              eas update --branch develop --non-interactive
+            displayName: Publish app to expo default channel
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          - bash: |
+              expo send -s abdulrahmaniliyasu86@gmail.com
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: "**/junit.xml"

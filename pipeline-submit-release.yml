@@ -2,7 +2,7 @@ trigger:
   branches:
     include:
       - main
-      - releases/*
+      - release/*
       - hotfix/*
 
 pr:
@@ -42,26 +42,34 @@ stages:
               set -x
               yarn testFinal
             displayName: Run Unit Tests
-          - bash: |
-              eas build --platform android --profile buildForDetoxTesting --local
-            displayName: Build Android .aap for UI Testing on Azure MacOS Agent
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+          # - bash: |
+          #     eas build --platform android --profile buildForDetoxTesting --local
+          #   displayName: Build Android .aap for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
           - bash: |
               eas build --platform android --non-interactive --no-wait
             displayName: Run Build Android on EAS to have .aap available on website too
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
-          - bash: |
-              eas build --platform ios --profile buildForDetoxTesting --local
-            displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+          # - bash: |
+          #     eas build --platform ios --profile buildForDetoxTesting --local
+          #   displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
           - bash: |
               eas build --platform ios --non-interactive --no-wait
             displayName: Run Build IOS on EAS to have .app available on website too
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
           - bash: |
-              expo publish --non-interactive
-            displayName: Publish app to expo default channel
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+              eas submit -p ios --latest
+            displayName: Submit IOS on EAS to App Store
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+          - bash: |
+              eas submit -p android --latest
+            displayName: Submit IOS on EAS to App Store
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+          # - bash: |
+          #     eas update --branch releases/* --non-interactive
+          #   displayName: Publish app to expo default channel
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
           - task: PublishTestResults@2
             condition: succeededOrFailed()
             inputs:

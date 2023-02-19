@@ -3,6 +3,9 @@ import { OTPInput } from "../../theme/Themed";
 import { View as View, Text as Text } from "../../theme/Themed";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { hp, wp } from "../../common/util/LayoutUtil";
+import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
+import VirtualKeyboard from "./VirtualKeyboard";
+import CommonStyles from "../../common/styles/CommonStyles";
 
 type SegmentedInputProps = {
   value: string;
@@ -12,6 +15,7 @@ type SegmentedInputProps = {
   style?: StyleProp<ViewStyle>;
   headerstyle?: StyleProp<TextStyle>;
   autoFocusOnLoad?: boolean;
+  withKeypad?: boolean;
 };
 
 const SegmentedInput = (props: SegmentedInputProps) => {
@@ -23,22 +27,45 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     style,
     headerstyle,
     autoFocusOnLoad = true,
+    withKeypad,
   } = props;
   return (
     <View style={[styles.otpContainer, style]}>
       <Text style={[styles.otpText, headerstyle]}>{headerText}</Text>
+      {/* Transparent overlay to disable editing password input */}
+      {withKeypad && (
+        <View
+          style={{
+            position: "absolute",
+            right: 0,
+            left: 0,
+            height: 80,
+            zIndex: 100,
+            backgroundColor: "transparent",
+          }}></View>
+      )}
       <OTPInput
         keyboardType="number-pad"
         pinCount={6}
         code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
         onCodeChanged={(code) => onValueChanged(code)}
         secureTextEntry={secureInput}
-        autoFocusOnLoad={autoFocusOnLoad}
+        autoFocusOnLoad={false}
         codeInputFieldStyle={styles.underlineStyleBase}
         // codeInputHighlightStyle={styles.underlineStyleHighLighted}
         onCodeFilled={() => null}
         style={{ marginBottom: hp(20), marginTop: hp(10) }}
       />
+      <View style={[{ position: "absolute", left: 0, right: 0, top: 180 }]}>
+        {withKeypad && (
+          <VirtualKeyboard
+            value={value}
+            setValue={onValueChanged}
+            maxLength={6}
+            allowZeroAsFirstCharacter
+          />
+        )}
+      </View>
     </View>
   );
 };

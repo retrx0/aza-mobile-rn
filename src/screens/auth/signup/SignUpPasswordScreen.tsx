@@ -21,7 +21,7 @@ import { createPinAPI, registerUserAPI } from "../../../api/user";
 import { useNotifications } from "../../../hooks/useNotifications";
 import * as Crypto from "expo-crypto";
 import { loginUserAPI } from "../../../api/auth";
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { toastError } from "../../../common/util/ToastUtil";
 import {
   storeItemSecure,
@@ -114,31 +114,48 @@ const SignUpPasswordScreen = ({
           // Store user credentials for face id
           // storeUserCredentialsSecure(newUser.emailAddress, passcode);
 
-          const loginJWT = await loginUserAPI({
+          await loginUserAPI({
             email: newUser.emailAddress,
             phoneNumber: newUser.phoneNumber,
             password: passcode,
-          });
-          if (loginJWT) {
-            storeItemSecure(STORAGE_KEY_JWT_TOKEN, loginJWT);
-            storeUserCredentialsSecure(
-              JSON.stringify({
-                email: newUser.emailAddress,
-                token: loginJWT,
-                password: passcode,
-                phoneNumber: newUser.phoneNumber,
-              })
-            );
-            navigation.getParent()?.navigate("Root");
-            if (!ceoMessageShown || ceoMessageShown === "null") {
-              //show CEO Message
-              navigation.getParent()?.navigate("CEOMessage");
-              storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
-            }
-          }
-          dispatch(getUserInfo());
+          })
+            .then((jwt) => {
+              if (jwt) {
+                try {
+                  storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
+                  storeItemSecure(
+                    STORAGE_KEY_USER_CREDS,
+                    JSON.stringify({
+                      email: newUser.emailAddress,
+                      token: jwt,
+                      password: passcode,
+                      phoneNumber: newUser.phoneNumber,
+                      fullName: newUser.firstName + " " + newUser.lastName,
+                    })
+                  );
+                  navigation.getParent()?.navigate("Root");
+                  if (!ceoMessageShown || ceoMessageShown === "null") {
+                    //show CEO Message
+                    navigation.getParent()?.navigate("CEOMessage");
+                    storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
+                  }
+                  dispatch(getUserInfo());
+                } catch (e) {
+                  console.debug(
+                    "There was a problem logging user in after signup",
+                    e
+                  );
+                }
+              }
+              setLoading(false);
+            })
+            .catch((error) => {
+              setLoading(false);
+              toastError(
+                "There was a problem logging you in, please try again!"
+              );
+            });
         }
-        setLoading(false);
       } else {
         toastError("Password does not match ⚠️");
         setLoading(false);

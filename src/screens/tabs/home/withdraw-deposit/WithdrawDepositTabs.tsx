@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabBar, TabView } from "react-native-tab-view";
 
@@ -18,6 +18,7 @@ import { InfoIcon } from "../../../../../assets/svg";
 import Navigation from "../../../../navigation";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import BackButton from "../../../../components/buttons/BackButton";
 
 const WithdrawDepositTabs = ({
   navigation,
@@ -33,11 +34,22 @@ const WithdrawDepositTabs = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      // hide default back button which only shows in android
+      headerBackVisible: false,
+      //center it in android
+      headerTitleAlign: "center",
+      headerShadowVisible: false,
+      headerLeft: () => <BackButton onPress={() => navigation.goBack()} />,
+    });
+  }, []);
+
   const handlePress = () => {
     if (tabToView === "withdraw") {
-      navigation.getParent()?.navigate("WithdrawFeature");
+      navigation.navigate("WithdrawFeature");
     } else {
-      navigation.getParent()?.navigate("DepositFeature");
+      navigation.navigate("DepositFeature");
     }
   };
 
@@ -90,8 +102,7 @@ const WithdrawDepositTabs = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );
