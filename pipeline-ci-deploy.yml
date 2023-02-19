@@ -40,7 +40,11 @@ stages:
             #    yarn testFinal
             displayName: Run Unit Tests
           - bash: |
-              eas update --branch variables['Build.SourceBranch'] --message variables['Build.Reason']-variables['Build.SourceVersionMessage'] --non-interactive
+              eas update:configure --platform all
+            displayName: Configure EAS update
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          - bash: |
+              eas update --branch $(variables['Build.SourceBranch']) --message $(variables['Build.Reason'])-$(variables['Build.SourceVersionMessage']) --non-interactive
             displayName: Publish app to expo default channel
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
