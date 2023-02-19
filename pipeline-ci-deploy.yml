@@ -40,7 +40,7 @@ stages:
             #    yarn testFinal
             displayName: Run Unit Tests
           - bash: |
-              eas update --branch develop --non-interactive
+              eas update --branch develop --message development-bau --non-interactive
             displayName: Publish app to expo default channel
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
