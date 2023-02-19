@@ -1,5 +1,5 @@
 import axios, { Axios, AxiosError } from "axios";
-import { API_BASE_URL } from "@env";
+import { API_BASE_URL, ENV } from "@env";
 
 const api = axios.create({
   baseURL: API_BASE_URL.replace("\\", ""),
@@ -31,8 +31,7 @@ api.interceptors.response.use(
     let res = error as AxiosError;
     if (res.response?.status == 401) {
     }
-    console.debug(res.toJSON());
-    console.error("Looks like there was a problem. Status Code: " + res.code);
+    if (ENV === "developement") console.error(res.toJSON());
     return Promise.reject(error);
   }
 );

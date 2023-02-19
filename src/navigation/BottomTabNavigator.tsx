@@ -85,7 +85,8 @@ const BottomTabNavigator = (
         initialRouteName={"Home"}
         screenOptions={{
           tabBarActiveTintColor: Colors[appTheme].tint,
-        }}>
+        }}
+      >
         <BottomTab.Screen
           name="Home"
           component={Home}
@@ -106,7 +107,8 @@ const BottomTabNavigator = (
                 onPress={() => navigation.navigate("QRTransactions")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
-                })}>
+                })}
+              >
                 {appTheme === "dark" ? (
                   <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
                 ) : (
@@ -124,7 +126,8 @@ const BottomTabNavigator = (
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                   marginLeft: 15,
-                })}>
+                })}
+              >
                 <MenuIcon size={30} color={Colors[appTheme].text} />
               </Pressable>
             ),

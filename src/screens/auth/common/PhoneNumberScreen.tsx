@@ -30,7 +30,6 @@ const PhoneNumberScreen = ({
 }: SignUpScreenProps<"SignUpPhoneNumber">) => {
   const [phone, setPhone] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const colorScheme = useColorScheme();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
@@ -68,7 +67,8 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -86,7 +86,7 @@ const PhoneNumberScreen = ({
           textProps={{
             placeholder: "Enter a phone number...",
           }}
-          pickerBackgroundColor={Colors[colorScheme].backgroundSecondary}
+          pickerBackgroundColor={"transparent"}
           offset={20}
         />
 
@@ -121,7 +121,8 @@ const PhoneNumberScreen = ({
             // {
             //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
             // },
-          ]}>
+          ]}
+        >
           <FlatList
             style={[
               {
