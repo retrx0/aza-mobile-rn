@@ -57,7 +57,7 @@ stages:
             displayName: Run Build IOS on EAS to have .app available on website too
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
-              eas update --branch $(variables['Build.SourceBranch']) --message $(variables['Build.Reason'])-$(variables['Build.SourceVersionMessage']) --non-interactive
+              eas update --branch develop --message $['Build.Reason']-$['Build.SourceVersionMessage'] --non-interactive
             displayName: Publish app to expo default channel
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
