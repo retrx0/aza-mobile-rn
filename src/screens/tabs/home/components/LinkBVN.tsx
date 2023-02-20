@@ -39,14 +39,14 @@ export const LinkBVN = ({
           darkColor={Colors["general"].black}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
-            fontSize: hp(17),
+            fontSize: hp(16),
           }}>
           Link your BVN to start using AZA
         </Text>
         <Text
           darkColor={Colors["general"].black}
           style={{
-            fontSize: hp(14),
+            fontSize: hp(12),
             marginTop: 5,
           }}>
           Link your BVN to upgrade your account as there are certain limits on
@@ -72,7 +72,7 @@ export const LinkBVN = ({
             <Text
               darkColor={Colors["dark"].buttonText}
               style={{
-                fontSize: hp(16),
+                fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Medium",
               }}>
               Link your BVN
