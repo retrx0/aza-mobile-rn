@@ -44,7 +44,7 @@ stages:
             displayName: Configure EAS update
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
-              eas update --branch develop --message $['Build.SourceVersionMessage'] --non-interactive
+              eas update --branch develop --message dev-expo-bau --non-interactive
             displayName: Publish app to expo default channel
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - bash: |
