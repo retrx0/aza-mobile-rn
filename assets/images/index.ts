@@ -106,6 +106,34 @@ export const UK = require("./common/UK.png");
 export const CANADA = require("./common/CANADA.png");
 export const GAME = require("./common/GAME.png");
 export const Chess = require("./common/Chess.png");
+export const PlayStation = require("./common/PlayStation.png");
+export const LACOSTE = require("./common/LACOSTE.png");
+export const NEXT = require("./common/NEXT.png");
+
+export const PUMA = require("./common/PUMA.png");
+
+export const ZARA = require("./common/ZARA.png");
+
+export const IKEA = require("./common/IKEA.png");
+export const BOOKING = require("./common/BOOKING.png");
+export const BURGER = require("./common/BURGER.png");
+export const CINEMA = require("./common/CINEMA.png");
+export const DOMINOS = require("./common/DOMINOS.png");
+export const REPUBLIC = require("./common/REPUBLIC.png");
+export const SHOPRITE = require("./common/SHOPRITE.png");
+export const ColdStone = require("./common/ColdStone.png");
+export const PICANTO = require("./common/PICANTO.png");
+export const ADIDAS = require("./common/ADIDAS.png");
+export const JUMIAFOOD = require("./common/JUMIAFOOD.png");
+export const AFRIC = require("./common/AFRIC.png");
+export const JUMIA = require("./common/JUMIA.png");
+export const ASHLUXE = require("./common/ASHLUXE.png");
+export const PIZZAHUT = require("./common/PIZZAHUT.png");
+export const KONGA = require("./common/KONGA.png");
+export const SLOT = require("./common/SLOT.png");
+export const VCONNECT = require("./common/VCONNECT.png");
+
+export const KFC = require("./common/KFC.png");
 
 /* AZA */
 

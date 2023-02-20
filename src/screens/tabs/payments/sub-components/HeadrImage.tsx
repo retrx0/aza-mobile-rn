@@ -9,6 +9,7 @@ import { TickIcon } from "../../../../../assets/svg";
 import Animated, { ZoomIn, ZoomInDown } from "react-native-reanimated";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
+import { hp } from "../../../../common/util/LayoutUtil";
 
 type HeaderImageProps = {
   image: ImageSourcePropType;
@@ -102,19 +103,19 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "400",
-    fontSize: 14,
+    fontSize: hp(16),
     color: "#2A9E17",
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
   },
   text2: {
     fontWeight: "400",
-    fontSize: 14,
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontSize: hp(16),
+    fontFamily: "Euclid-Circular-A",
   },
   text3: {
     fontWeight: "400",
-    fontSize: 14,
+    fontSize: hp(16),
     color: "#A6A6A6",
-    fontFamily: "Euclid-Circular-A-Medium",
+    fontFamily: "Euclid-Circular-A",
   },
 });

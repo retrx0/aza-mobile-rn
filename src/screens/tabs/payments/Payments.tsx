@@ -89,15 +89,13 @@ export default function Payments({
           alignItems: "center",
           position: "relative",
           marginTop: hp(10),
-        }}
-      >
+        }}>
         <Text style={styles.headerText}>Payments</Text>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Common", { screen: "Pie" });
           }}
-          style={styles.icon}
-        >
+          style={styles.icon}>
           <PieIcon style={styles.imageIcon} />
         </TouchableOpacity>
       </View>
@@ -105,9 +103,8 @@ export default function Payments({
         description=""
         headerStyle={{
           fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: hp(20),
+          fontSize: hp(16),
           fontWeight: "400",
-          color: appTheme === "dark" ? "#999999" : "#A6A6A6",
         }}
         descriptionStyle={null}
         style={styles.subHead}
@@ -121,8 +118,7 @@ export default function Payments({
             maxHeight: 120,
             flexDirection: "row",
             marginTop: 15,
-          }}
-        >
+          }}>
           {user.payments.data.map((payment, i) => {
             return (
               <HeadrImage
