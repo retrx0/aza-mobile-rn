@@ -118,7 +118,6 @@ const BottomTabNavigator = (
                   />
                 ) : (
                   <QRCodeIcon
-                    size={30}
                     color={Colors.light.text}
                     style={{ marginRight: 15 }}
                   />

@@ -4,7 +4,7 @@ import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
   dot: {
-    backgroundColor: Colors.light.disabledButton,
+    backgroundColor: "#A6A6A6",
   },
 
   activedot: {

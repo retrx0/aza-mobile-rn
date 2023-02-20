@@ -17,10 +17,10 @@ export const LinkBVN = ({
   return (
     <View
       style={{
-        marginTop: hp(25),
+        marginTop: hp(10),
         backgroundColor: "#FAEB9E",
-        paddingVertical: 30,
-        paddingHorizontal: 30,
+        paddingVertical: 15,
+        paddingHorizontal: 15,
         borderRadius: 10,
         display: isBvnLinked ? "none" : "flex",
         justifyContent: "center",
