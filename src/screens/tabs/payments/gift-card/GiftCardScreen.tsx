@@ -66,7 +66,7 @@ export default function GiftCardScreen({
       <View>
         <Text
           style={{
-            marginTop: hp(30),
+            marginTop: hp(25),
             textAlign: "center",
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
@@ -78,7 +78,7 @@ export default function GiftCardScreen({
         </Text>
         <Text
           style={{
-            marginTop: hp(30),
+            marginTop: hp(25),
             textAlign: "center",
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
