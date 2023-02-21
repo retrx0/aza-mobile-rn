@@ -75,7 +75,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   darkColor={Colors.dark.mainText}
                   style={{
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
-                    fontSize: hp(35),
+                    fontSize: hp(32),
                     marginVertical: hp(10),
                   }}>
                   {NAIRA_UNICODE + "" + numberWithCommas(user.azaBalance)}
@@ -87,7 +87,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                 darkColor={Colors.dark.mainText}
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  fontSize: hp(35),
+                  fontSize: hp(32),
                   marginVertical: hp(10),
                 }}>
                 **********
@@ -99,7 +99,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
           <Text
             style={{
               marginLeft: 3,
-              fontSize: hp(15),
+              fontSize: hp(12),
               fontFamily: "Euclid-Circular-A",
             }}>
             AZA-VFD Number:

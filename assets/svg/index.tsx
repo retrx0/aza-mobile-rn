@@ -135,28 +135,125 @@ export const ProfileIcon = ({
 
 export const QRCodeIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg style={style} width={size} height={size} fill="none">
+    <Svg style={style} width="32" height="32" viewBox="0 0 32 32" fill="none">
       <Path
-        d="M2 9V6.5C2 4.01 4.01 2 6.5 2H9M15 2h2.5C19.99 2 22 4.01 22 6.5V9M22 16v1.5c0 2.49-2.01 4.5-4.5 4.5H16M9 22H6.5C4.01 22 2 19.99 2 17.5V15M10.5 7v2c0 1-.5 1.5-1.5 1.5H7c-1 0-1.5-.5-1.5-1.5V7C5.5 6 6 5.5 7 5.5h2c1 0 1.5.5 1.5 1.5ZM18.5 7v2c0 1-.5 1.5-1.5 1.5h-2c-1 0-1.5-.5-1.5-1.5V7c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5ZM10.5 15v2c0 1-.5 1.5-1.5 1.5H7c-1 0-1.5-.5-1.5-1.5v-2c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5ZM18.5 15v2c0 1-.5 1.5-1.5 1.5h-2c-1 0-1.5-.5-1.5-1.5v-2c0-1 .5-1.5 1.5-1.5h2c1 0 1.5.5 1.5 1.5Z"
+        d="M2.66669 12V8.66666C2.66669 5.34666 5.34669 2.66666 8.66669 2.66666H12"
         stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M20 2.66666H23.3333C26.6533 2.66666 29.3333 5.34666 29.3333 8.66666V12"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M29.3333 21.3333V23.3333C29.3333 26.6533 26.6533 29.3333 23.3333 29.3333H21.3333"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M12 29.3333H8.66669C5.34669 29.3333 2.66669 26.6533 2.66669 23.3333V20"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M14 9.33334V12C14 13.3333 13.3333 14 12 14H9.33331C7.99998 14 7.33331 13.3333 7.33331 12V9.33334C7.33331 8.00001 7.99998 7.33334 9.33331 7.33334H12C13.3333 7.33334 14 8.00001 14 9.33334Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M24.6667 9.33334V12C24.6667 13.3333 24 14 22.6667 14H20C18.6667 14 18 13.3333 18 12V9.33334C18 8.00001 18.6667 7.33334 20 7.33334H22.6667C24 7.33334 24.6667 8.00001 24.6667 9.33334Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M14 20V22.6667C14 24 13.3333 24.6667 12 24.6667H9.33331C7.99998 24.6667 7.33331 24 7.33331 22.6667V20C7.33331 18.6667 7.99998 18 9.33331 18H12C13.3333 18 14 18.6667 14 20Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M24.6667 20V22.6667C24.6667 24 24 24.6667 22.6667 24.6667H20C18.6667 24.6667 18 24 18 22.6667V20C18 18.6667 18.6667 18 20 18H22.6667C24 18 24.6667 18.6667 24.6667 20Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </Svg>
   );
 };
 
-export const QRCodeDarkModeIcon = ({ style }: SvgIconProps) => {
+export const QRCodeDarkModeIcon = ({ style, color }: SvgIconProps) => {
   return (
-    <Svg style={style} width={24} height={24} fill="none">
+    <Svg style={style} width="32" height="32" viewBox="0 0 32 32" fill="none">
       <Path
-        d="M2 9.75c-.41 0-.75-.34-.75-.75V6.5c0-2.9 2.36-5.25 5.25-5.25H9c.41 0 .75.34.75.75s-.34.75-.75.75H6.5c-2.07 0-3.75 1.68-3.75 3.75V9c0 .41-.34.75-.75.75ZM22 9.75c-.41 0-.75-.34-.75-.75V6.5c0-2.07-1.68-3.75-3.75-3.75H15c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h2.5c2.89 0 5.25 2.35 5.25 5.25V9c0 .41-.34.75-.75.75ZM17.5 22.75H16c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h1.5c2.07 0 3.75-1.68 3.75-3.75V16c0-.41.34-.75.75-.75s.75.34.75.75v1.5c0 2.9-2.36 5.25-5.25 5.25ZM9 22.75H6.5c-2.89 0-5.25-2.35-5.25-5.25V15c0-.41.34-.75.75-.75s.75.34.75.75v2.5c0 2.07 1.68 3.75 3.75 3.75H9c.41 0 .75.34.75.75s-.34.75-.75.75Z"
-        fill="#CCC"
+        d="M2.66669 12V8.66666C2.66669 5.34666 5.34669 2.66666 8.66669 2.66666H12"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
       <Path
-        d="M9 5.25H7c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75V7c0-1.15-.61-1.75-1.75-1.75ZM17 5.25h-2c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75V7c0-1.15-.61-1.75-1.75-1.75ZM9 13.25H7c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75v-2c0-1.15-.61-1.75-1.75-1.75ZM17 13.25h-2c-1.14 0-1.75.6-1.75 1.75v2c0 1.15.61 1.75 1.75 1.75h2c1.14 0 1.75-.6 1.75-1.75v-2c0-1.15-.61-1.75-1.75-1.75Z"
-        fill="#CCC"
+        d="M20 2.66666H23.3333C26.6533 2.66666 29.3333 5.34666 29.3333 8.66666V12"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M29.3333 21.3333V23.3333C29.3333 26.6533 26.6533 29.3333 23.3333 29.3333H21.3333"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M12 29.3333H8.66669C5.34669 29.3333 2.66669 26.6533 2.66669 23.3333V20"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M14 9.33334V12C14 13.3333 13.3333 14 12 14H9.33331C7.99998 14 7.33331 13.3333 7.33331 12V9.33334C7.33331 8.00001 7.99998 7.33334 9.33331 7.33334H12C13.3333 7.33334 14 8.00001 14 9.33334Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M24.6667 9.33334V12C24.6667 13.3333 24 14 22.6667 14H20C18.6667 14 18 13.3333 18 12V9.33334C18 8.00001 18.6667 7.33334 20 7.33334H22.6667C24 7.33334 24.6667 8.00001 24.6667 9.33334Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M14 20V22.6667C14 24 13.3333 24.6667 12 24.6667H9.33331C7.99998 24.6667 7.33331 24 7.33331 22.6667V20C7.33331 18.6667 7.99998 18 9.33331 18H12C13.3333 18 14 18.6667 14 20Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M24.6667 20V22.6667C24.6667 24 24 24.6667 22.6667 24.6667H20C18.6667 24.6667 18 24 18 22.6667V20C18 18.6667 18.6667 18 20 18H22.6667C24 18 24.6667 18.6667 24.6667 20Z"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
     </Svg>
   );
@@ -194,18 +291,11 @@ export const AZALogo = ({ color, size, style }: SvgIconProps) => {
 
 export const AZALightningLogo = ({ size, color }: SvgIconProps) => {
   return (
-    <Svg width={12} height={30} fill="none">
-      <G clipPath="url(#a)">
-        <Path
-          d="m.01 23.997 3.31-10.035H.01V.003h6.732l-3.38 10.6h6.629L.009 23.997Z"
-          fill={color}
-        />
-      </G>
-      <Defs>
-        <ClipPath id="a">
-          <Path fill="#fff" d="M0 0h10v24H0z" />
-        </ClipPath>
-      </Defs>
+    <Svg width="20" height="40" viewBox="0 0 20 48" fill="none">
+      <Path
+        d="M0.0184937 47.9931L6.63933 27.9239H0.0184937V0.00695801H13.4838L6.72405 21.2066H19.9815L0.0184937 47.9931Z"
+        fill={color}
+      />
     </Svg>
   );
 };
@@ -662,28 +752,21 @@ export const AzaLOGO = ({ color }: SvgIconProps) => {
 
 export const InfoIcon = ({ style, color }: SvgIconProps) => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <Path
-        d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-        stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M11.998 15.5V10.5"
-        stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <Path
-        d="M12.0039 7.5H11.9949"
-        stroke={color}
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
+    <Svg
+      fill={color}
+      id="Capa_1"
+      width="18"
+      height="18"
+      viewBox="0 0 490.318 490.318">
+      <G>
+        <G>
+          <G>
+            <Path d="M245.148,0C109.967,0,0.009,109.98,0.009,245.162c0,135.182,109.958,245.156,245.139,245.156     c135.186,0,245.162-109.978,245.162-245.156C490.31,109.98,380.333,0,245.148,0z M245.148,438.415     c-106.555,0-193.234-86.698-193.234-193.253c0-106.555,86.68-193.258,193.234-193.258c106.559,0,193.258,86.703,193.258,193.258     C438.406,351.717,351.706,438.415,245.148,438.415z" />
+            <Path d="M270.036,221.352h-49.771c-8.351,0-15.131,6.78-15.131,15.118v147.566c0,8.352,6.78,15.119,15.131,15.119h49.771     c8.351,0,15.131-6.77,15.131-15.119V236.471C285.167,228.133,278.387,221.352,270.036,221.352z" />
+            <Path d="M245.148,91.168c-24.48,0-44.336,19.855-44.336,44.336c0,24.484,19.855,44.34,44.336,44.34     c24.485,0,44.342-19.855,44.342-44.34C289.489,111.023,269.634,91.168,245.148,91.168z" />
+          </G>
+        </G>
+      </G>
     </Svg>
   );
 };
@@ -765,12 +848,24 @@ export const WithdrawIcon = ({ color, size, style }: SvgIconProps) => (
 
 export const MenuIcon = ({ color, size, style }: SvgIconProps) => {
   return (
-    <Svg width={30} height={30} fill="none">
+    <Svg width="32" height="32" viewBox="0 0 32 32" fill="none">
       <Path
-        d="M3 7h18M3 12h18M3 17h18"
+        d="M4 9.33334H28"
         stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <Path
+        d="M4 16H28"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+      <Path
+        d="M4 22.6667H28"
+        stroke={color}
+        stroke-width="2"
+        stroke-linecap="round"
       />
     </Svg>
   );

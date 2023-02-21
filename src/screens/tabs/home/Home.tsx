@@ -11,6 +11,8 @@ import { useNotifications } from "../../../hooks/useNotifications";
 import { selectUser } from "../../../redux/slice/userSlice";
 import { View as View } from "../../../theme/Themed";
 import NotificationsContainer from "./components/NotificationsContainer";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import CommonStyles from "../../../common/styles/CommonStyles";
 
 const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   const {
@@ -36,25 +38,26 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
   const user = useAppSelector(selectUser);
 
   return (
-    <View style={styles.container}>
-      <AccountDetails />
-      <TransactionOptions navigation={navigation} route={route} />
-      {!user.bvnVerified ? (
-        <LinkBVN
-          navigation={navigation}
-          route={route}
-          isBvnLinked={user.bvnVerified}
-        />
-      ) : // <NotificationsContainer navigation={navigation} route={route} />
-      null}
-      <RecentTransactions navigation={navigation} route={route} />
-    </View>
+    <SpacerWrapper>
+      <View style={styles.container}>
+        <AccountDetails />
+        <TransactionOptions navigation={navigation} route={route} />
+        {!user.bvnVerified ? (
+          <LinkBVN
+            navigation={navigation}
+            route={route}
+            isBvnLinked={user.bvnVerified}
+          />
+        ) : // <NotificationsContainer navigation={navigation} route={route} />
+        null}
+        <RecentTransactions navigation={navigation} route={route} />
+      </View>
+    </SpacerWrapper>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingHorizontal: 15,
   },
 });

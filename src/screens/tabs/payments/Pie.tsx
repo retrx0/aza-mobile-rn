@@ -14,6 +14,7 @@ import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectUser } from "../../../redux/slice/userSlice";
 import Colors from "../../../constants/Colors";
 import { IPayment, PaymentCategory } from "../../../redux/types";
+import { numberWithCommas } from "../../../common/util/NumberUtils";
 
 export default function Pie() {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -100,45 +101,59 @@ export default function Pie() {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ alignSelf: "center", height: 280, marginTop: 20 }}>
+        <View style={styles.chartContainer}>
           <PieChart
-            strokeWidth={0.2}
-            textBackgroundRadius={26}
-            textColor={Colors.general.white}
-            donut={true}
             data={data}
-            focusOnPress={true}
-            showValuesAsLabels
-            centerLabelComponent={() => (
-              <View style={[styles.centerLabel]}>
-                <Text
-                  darkColor={Colors.general.black}
-                  lightColor={Colors.general.black}
-                >
-                  Total
-                </Text>
-                <RegularText
-                  text={NAIRA_UNICODE + total}
+            innerCircleColor={"transparent"}
+            centerLabelComponent={() => {
+              return (
+                <View style={styles.chartCenter}>
+                  <Text
+                    lightColor={Colors.light.text}
+                    darkColor={Colors.dark.secondaryText}
+                    style={{
+                      fontSize: 14,
+                    }}>
+                    Total
+                  </Text>
+                  <Text
+                    lightColor={Colors.light.text}
+                    darkColor={Colors.dark.mainText}
+                    style={{
+                      fontFamily: "Euclid-Circular-A-Semi-Bold",
+                      fontSize: hp(16),
+                    }}>
+                    {"\u20A6"} {numberWithCommas(35000)}
+                  </Text>
+                </View>
+              );
+            }}
+          />
+
+          <View style={styles.chartLegendContainer}>
+            {data.map(({ color, text }, i) => (
+              <View
+                key={i}
+                style={[CommonStyles.row, { marginRight: 10, marginTop: 15 }]}>
+                <View
                   style={[
+                    styles.legendBox,
                     {
-                      color: Colors.general.black,
+                      backgroundColor: color,
                     },
                   ]}
                 />
+                <Text
+                  lightColor={Colors.light.text}
+                  darkColor={Colors.dark.secondaryText}
+                  style={{
+                    fontSize: 16,
+                  }}>
+                  {text}
+                </Text>
               </View>
-            )}
-          />
-        </View>
-
-        <View style={(styles.labels, { maxWidth: "100%" })}>
-          {data.map((item, ind) => (
-            <View key={ind.toString()} style={styles.individualLabel}>
-              <View
-                style={[styles.colors, { backgroundColor: item.color }]}
-              ></View>
-              <Text style={{ fontSize: hp(15), padding: 5 }}>{item.text}</Text>
-            </View>
-          ))}
+            ))}
+          </View>
         </View>
       </View>
     </SpacerWrapper>
@@ -146,6 +161,30 @@ export default function Pie() {
 }
 
 const styles = StyleSheet.create({
+  chartContainer: {
+    alignItems: "center",
+    marginTop: 40,
+    paddingLeft: 20,
+  },
+  chartLegendContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    width: 300,
+  },
+  legendBox: {
+    width: 15,
+    height: 15,
+    borderRadius: 3,
+    marginRight: 10,
+  },
+  chartCenter: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 130,
+    height: 130,
+    borderRadius: 150,
+  },
   centerLabel: {
     justifyContent: "center",
     alignItems: "center",
