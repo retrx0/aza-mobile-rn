@@ -6,8 +6,8 @@ import Constants from "expo-constants";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: "aza",
-  slug: "aza",
+  name: "Aza",
+  slug: "Aza",
   hooks: {
     postPublish: [
       {

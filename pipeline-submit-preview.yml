@@ -45,7 +45,7 @@ stages:
           #   displayName: Build Android .aap for UI Testing on Azure MacOS Agent
           #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - bash: |
-              eas build --profile staging --platform android --non-interactive --no-wait
+              eas build --profile preview --platform android --non-interactive --no-wait
             displayName: Run Build Android on EAS to have .aap available on website too
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           # - bash: |
@@ -53,12 +53,16 @@ stages:
           #   displayName: Build IOS .ipa for UI Testing on Azure MacOS Agent
           #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - bash: |
-              eas build --profile staging --platform ios --non-interactive --no-wait
+              eas build --profile preview --platform ios --non-interactive --no-wait
             displayName: Run Build IOS on EAS to have .app available on website too
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - bash: |
-              eas update --branch staging --message stage-bau --non-interactive
+              eas update --branch preview --message stage-bau --non-interactive
             displayName: Publish app to expo default channel
+            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
+          - bash: |
+              eas submit --platform all --profile preview --latest
+            displayName: Submit app binary to App/Play Store
             condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/staging'))
           - task: PublishTestResults@2
             condition: succeededOrFailed()
