@@ -171,12 +171,7 @@ export default function Airtime({
           maxLength={13}
           keyboardType="phone-pad"
           value={isEnabled ? user.phoneNumber : mobileNumber}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           style={{ marginTop: hp(10) }}
           label="Phone Number"
@@ -223,10 +218,7 @@ export default function Airtime({
         style={{ paddingHorizontal: hp(20) }}
         disabled={route.name === "data-bundle"}
         icon={null}
-        inputStyle={[
-          styles.input,
-          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
-        ]}
+        inputStyle={[styles.input]}
         labelStyle={styles.label}
         label="Amount"
         placeholder="Enter an amount"

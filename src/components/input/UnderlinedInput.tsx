@@ -53,7 +53,8 @@ export const UnderlinedInput = ({
         style,
         containerStyle,
         { opacity: disabled ? 0.3 : 1 },
-      ]}>
+      ]}
+    >
       <Text style={[styles.label, labelStyle]}>{label}</Text>
       {isPhone ? (
         <View style={[styles.textInput, isPhone && styles.isPhone]}>
@@ -76,10 +77,12 @@ export const UnderlinedInput = ({
             style={[
               {
                 borderBottomColor: focused
-                  ? Colors[appTheme].text
-                  : Colors[appTheme].borderColor,
+                  ? Colors["general"].blueHighlight
+                  : appTheme === "dark"
+                  ? "#262626"
+                  : "#EAEAEC",
                 backgroundColor: Colors[appTheme].background,
-                opacity: 0.7,
+                opacity: 1,
               },
               inputStyle,
               {},

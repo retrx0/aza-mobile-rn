@@ -42,6 +42,7 @@ interface IThemeGroup {
     lightGreen: string;
     lightRed: string;
     skeleton: string;
+    blueHighlight: string;
   };
 }
 
@@ -99,6 +100,7 @@ const Colors: IThemeGroup = {
     lightGreen: "#EBFCE9",
     lightRed: "#FFE9E5",
     skeleton: "#a4a4a4",
+    blueHighlight: "#1968df",
   },
 };
 
