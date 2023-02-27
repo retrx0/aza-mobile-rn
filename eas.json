@@ -30,10 +30,14 @@
       "android": {
         "gradleCommand": ":app:assembleRelease",
         "autoIncrement": true
-      }
+      },
+      "channel": "staging"
     },
     "preview3": {
-      "developmentClient": true
+      "developmentClient": true,
+      "channel": "staging",
+      "ios": { "autoIncrement": true },
+      "android": { "autoIncrement": true }
     },
     "production": {
       "distribution": "store",
