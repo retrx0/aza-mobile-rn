@@ -35,7 +35,7 @@
           "audio"
         ]
       },
-      "buildNumber": "7"
+      "buildNumber": "8"
     },
     "android": {
       "adaptiveIcon": {
@@ -44,7 +44,7 @@
       },
       "package": "com.aza.azaapp",
       "googleServicesFile": "google-services.json",
-      "versionCode": 7
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
