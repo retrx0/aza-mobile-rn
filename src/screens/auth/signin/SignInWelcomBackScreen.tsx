@@ -6,26 +6,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
 import { View as View, Text as Text } from "../../../theme/Themed";
-import { Alert, AppState, TouchableOpacity } from "react-native";
-import * as LocalAuthentication from "expo-local-authentication";
-import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
-import { useAppDispatch, useAppSelector } from "../../../redux";
-import {
-  getUserAccount,
-  getUserInfo,
-  selectUser,
-} from "../../../redux/slice/userSlice";
-import { loginUserAPI } from "../../../api/auth";
+import { AppState, TouchableOpacity } from "react-native";
+import { useAppSelector } from "../../../redux";
+import { selectUser } from "../../../redux/slice/userSlice";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
-import { toastError } from "../../../common/util/ToastUtil";
-import { storeItemSecure } from "../../../common/util/StorageUtil";
 import ActivityModal from "../../../components/modal/ActivityModal";
-import useCountdownTimer from "../../../hooks/useCountdownTimer";
-import useCachedResources from "../../../hooks/useCachedResources";
-import { IUserCred } from "../../../redux/types";
-import { AxiosError } from "axios";
-import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
+import { forgetUser } from "./helpers";
+import useSignIn from "./hooks/useSignIn";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -33,155 +20,14 @@ const SignInWelcomeBackScreen = ({
 }: SignInScreenProps<"SignInWelcomeBack">) => {
   const insets = useSafeAreaInsets();
   const user = useAppSelector(selectUser);
-  const cachedUser = route.params.cachedUser;
 
-  const dispatch = useAppDispatch();
-
-  const [screenLoading, setScreenLoading] = useState(false);
   const [passcode, setPasscode] = useState("");
-  const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
-  const [_tmpCreds, setTmpCreds] = useState<IUserCred>();
 
-  const userPreferences = useAppSelector(selectAppPreference);
-
-  const {
-    minutesToDisplay,
-    secondsToDisplay,
-    resetTimer,
-    toTwoDigits,
-    timerStatus,
-    startTimer,
-  } = useCountdownTimer(60 * 5);
-
-  const forgetUser = async () => {
-    console.debug("forgeting user!");
-    await SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN);
-    await SecureStore.deleteItemAsync(STORAGE_KEY_USER_CREDS);
-
-    navigation.getParent()?.navigate("Welcome");
-    // clearUserCredentials();
-  };
-
-  const verifyPassword = async (
-    email: string,
-    phoneNumber: string,
-    code: string,
-    fullName: string
-  ) => {
-    // TODO add push notification token to the server to always keep it updated incase it change
-
-    // TODO refactor below code
-    if (loginAttemptCounter > 3) {
-      if (timerStatus === "Started") {
-        Alert.alert(
-          `Your account has been locked, try again after ${minutesToDisplay} minutes`
-        );
-      } else if (timerStatus === "Stopped") {
-        setLoginAttemptCounter(1);
-        resetTimer();
-      } else {
-        startTimer();
-      }
-    } else {
-      setScreenLoading(true);
-      await loginUserAPI({
-        email: email,
-        password: code,
-        phoneNumber: phoneNumber,
-      })
-        .then((jwt) => {
-          if (jwt) {
-            try {
-              storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-                requireAuthentication: false,
-              });
-              storeItemSecure(
-                STORAGE_KEY_USER_CREDS,
-                JSON.stringify({
-                  email: email,
-                  token: jwt,
-                  password: code,
-                  phoneNumber: phoneNumber,
-                  fullName: fullName,
-                })
-              );
-              dispatch(getUserInfo());
-              dispatch(
-                getUserAccount({ accountNumber: user.azaAccountNumber })
-              );
-              setScreenLoading(false);
-              navigation.getParent()?.navigate("Root");
-            } catch (error) {
-              toastError(
-                "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
-              );
-            }
-          } else {
-            setScreenLoading(false);
-            toastError("There was a problem logging you in, please try again!");
-          }
-        })
-        .catch((err: AxiosError) => {
-          setScreenLoading(false);
-          if (err.response?.status === 400) {
-            setLoginAttemptCounter((s) => s + 1);
-            toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
-          } else {
-            toastError(
-              "There was a problem logging you in, please try again if problem persist contact customer support"
-            );
-          }
-        });
-    }
-  };
+  const { handleSignBack, verifyPassword, screenLoading } = useSignIn();
 
   useEffect(() => {
     setPasscode("");
-  }, []);
-
-  useEffect(() => {
-    const handleSignBack = async () => {
-      const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
-      const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
-
-      // TODO add check to see if account is closed or locked
-
-      // Check if redux stored user email and phone number for login
-      if (!cachedUser) {
-        // try to get and set email and phone number
-        // return user to main login again
-        if (!user.emailAddress && user.phoneNumber === "") {
-          toastError("We encountered a problem, please login again");
-          navigation.getParent()?.navigate("Welcome");
-        }
-      } else {
-        // Check if biometric is enabled
-        if (hasBiometricHardware && biometricEnrolled) {
-          console.debug("biometric enroled");
-          // Check if user enabled biometrics
-          if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
-            const authenticated = await LocalAuthentication.authenticateAsync();
-            if (authenticated.success) {
-              // biometrics authenticated
-              verifyPassword(
-                cachedUser.email,
-                cachedUser.phoneNumber,
-                cachedUser.password,
-                cachedUser.fullName
-              );
-            }
-          }
-        } else {
-          console.debug("biometric not enroled!");
-          setTmpCreds(cachedUser);
-        }
-      }
-    };
-
-    handleSignBack();
-  }, []);
-
-  useEffect(() => {
+    handleSignBack({ navigation, route });
     const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") setPasscode("");
     });
@@ -212,7 +58,8 @@ const SignInWelcomeBackScreen = ({
                     user.emailAddress,
                     user.phoneNumber,
                     code,
-                    user.fullName
+                    user.fullName,
+                    { navigation, route }
                   );
               }}
               headerText="Password"
@@ -224,7 +71,7 @@ const SignInWelcomeBackScreen = ({
           <View
             style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
           >
-            <TouchableOpacity onPress={forgetUser}>
+            <TouchableOpacity onPress={() => forgetUser(navigation)}>
               <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
             </TouchableOpacity>
           </View>

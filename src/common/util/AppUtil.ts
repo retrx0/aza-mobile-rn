@@ -2,7 +2,7 @@ import { ENV } from "@env";
 import { ENV_DEVELOPMENT } from "../../constants/AppConstants";
 import getSymbolFromCurrency from "currency-symbol-map";
 import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
+import * as Clipboard from "expo-clipboard";
 
 export const isEnvDevelopent = ENV === ENV_DEVELOPMENT ? true : false;
 
@@ -26,4 +26,8 @@ export const getDefaultPictureUrl = (item: {
     }&background=${Colors[item.scheme].backgroundSecondary}&color=${
       Colors[item.scheme].mainText
     }`;
+};
+
+export const copyToClipboard = async (text: string) => {
+  await Clipboard.setStringAsync(text);
 };

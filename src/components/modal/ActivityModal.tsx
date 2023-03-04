@@ -28,33 +28,43 @@ const ActivityModal = ({ loading }: IProps) => {
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
-      transform: [{ rotateZ: `${rotation.value}deg` }, { scale: scale.value }],
+      transform: [{ scale: scale.value }],
     };
   });
 
   useEffect(() => {
+    // scale.value = withRepeat(
+    //   withSequence(withSpring(1.3), withSpring(1, { damping: 200 })),
+    //   200
+    // );
     scale.value = withRepeat(
-      withSequence(withSpring(1.3), withSpring(1, { damping: 200 })),
-      200
+      withSequence(
+        withTiming(1, { duration: 130 }),
+        withTiming(1.3, { duration: 20, easing: Easing.linear }),
+        withTiming(1, { duration: 1000 }),
+        withTiming(1.3, { duration: 20, easing: Easing.linear }),
+        withTiming(1, { duration: 130 })
+      ),
+      500
     );
     // withSequence(withSpring(1.5), withSpring(1))
-    rotation.value = withRepeat(
-      withSequence(
-        withTiming(-5, {
-          duration: 1000,
-          easing: Easing.linear,
-        }),
-        withTiming(0, {
-          duration: 1000,
-          easing: Easing.linear,
-        }),
-        withTiming(5, {
-          duration: 1000,
-          easing: Easing.linear,
-        })
-      ),
-      200
-    );
+    // rotation.value = withRepeat(
+    //   withSequence(
+    //     withTiming(-5, {
+    //       duration: 1000,
+    //       easing: Easing.linear,
+    //     }),
+    //     withTiming(0, {
+    //       duration: 1000,
+    //       easing: Easing.linear,
+    //     }),
+    //     withTiming(5, {
+    //       duration: 1000,
+    //       easing: Easing.linear,
+    //     })
+    //   ),
+    //   200
+    // );
     // rotation.value = withSequence(
     //   withTiming(-10, { duration: 50 }),
     //   withRepeat(withTiming(20, { duration: 20 }), 2, true),
@@ -68,10 +78,8 @@ const ActivityModal = ({ loading }: IProps) => {
         <View style={[styles.activityIndicatorWrapper]}>
           <Animated.View style={[animatedStyles]}>
             <AZALargeLightningLogo color={Colors[appTheme].mainText} />
-            {/* <ActivityIndicator
-            animating={loading}
-          /> */}
           </Animated.View>
+          {/* <ActivityIndicator animating={true} /> */}
         </View>
       </View>
     </Modal>

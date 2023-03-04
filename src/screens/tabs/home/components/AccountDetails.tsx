@@ -20,6 +20,8 @@ import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
+import { copyToClipboard } from "../../../../common/util/AppUtil";
+import { toastInfo } from "../../../../common/util/ToastUtil";
 
 export default function AccountDetails({ isModalVisible, listItems }: any) {
   const [secure, setSecure] = useState(false);
@@ -35,7 +37,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
   return (
     <>
       <View
-        style={[CommonStyles.col, { alignItems: "center", marginTop: hp(20) }]}>
+        style={[CommonStyles.col, { alignItems: "center", marginTop: hp(20) }]}
+      >
         {/* <TouchableOpacity onPress={() => setModalVisible(true)}> */}
         <View
           lightColor="#eaeaec"
@@ -49,7 +52,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               justifyContent: "center",
               borderRadius: hp(50),
             },
-          ]}>
+          ]}
+        >
           <Text style={{ fontSize: 16 }}>Naira</Text>
           <Image
             source={NigeriaFlag}
@@ -66,7 +70,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
         {/* </TouchableOpacity> */}
         <TouchableOpacity
           style={[CommonStyles.row, { marginTop: hp(5) }]}
-          onPress={() => setSecure(!secure)}>
+          onPress={() => setSecure(!secure)}
+        >
           <>
             {!secure ? (
               <>
@@ -77,7 +82,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                     fontFamily: "Euclid-Circular-A-Semi-Bold",
                     fontSize: hp(32),
                     marginVertical: hp(10),
-                  }}>
+                  }}
+                >
                   {NAIRA_UNICODE + "" + numberWithCommas(user.azaBalance)}
                 </Text>
               </>
@@ -89,7 +95,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(32),
                   marginVertical: hp(10),
-                }}>
+                }}
+              >
                 **********
               </Text>
             )}
@@ -101,17 +108,27 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               marginLeft: 3,
               fontSize: hp(12),
               fontFamily: "Euclid-Circular-A",
-            }}>
+            }}
+          >
             AZA-VFD Number:
           </Text>
-          <Text
-            style={{
-              marginLeft: 3,
-              fontSize: hp(15),
-              fontFamily: "Euclid-Circular-A-Semi-Bold",
-            }}>
-            {user.azaAccountNumber}
-          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              copyToClipboard(user.azaAccountNumber).then((_) =>
+                toastInfo("Account number copied to clipboard!")
+              );
+            }}
+          >
+            <Text
+              style={{
+                marginLeft: 3,
+                fontSize: hp(15),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+              }}
+            >
+              {user.azaAccountNumber}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -119,7 +136,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
         <Modal
           onBackdropPress={() => setModalVisible(false)}
           isVisible={ModalVisible}
-          style={{ justifyContent: "flex-end", margin: 0 }}>
+          style={{ justifyContent: "flex-end", margin: 0 }}
+        >
           <TouchableOpacity
             style={{
               backgroundColor: "transparent",
@@ -127,7 +145,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               marginBottom: 10,
               marginRight: 10,
             }}
-            onPress={() => setModalVisible(false)}>
+            onPress={() => setModalVisible(false)}
+          >
             <CloseCircleLargeIcon color={"#E7E9EA"} />
           </TouchableOpacity>
           <View
@@ -135,11 +154,13 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingHorizontal: 15,
-            }}>
+            }}
+          >
             <View
               style={{
                 height: hp(335),
-              }}>
+              }}
+            >
               <Text
                 style={{
                   fontFamily: "Euclid-Circular-A-Medium",
@@ -148,7 +169,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   fontWeight: "500",
                   marginTop: hp(20),
                   marginBottom: hp(20),
-                }}>
+                }}
+              >
                 Accounts
               </Text>
               <Divider />
@@ -163,12 +185,14 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   justifyContent: "space-between",
                   marginBottom: hp(30),
                   marginTop: hp(30),
-                }}>
+                }}
+              >
                 <View
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                  }}>
+                  }}
+                >
                   <Image
                     source={NigeriaFlag}
                     style={{ width: wp(40), height: hp(40) }}
@@ -180,7 +204,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                       textAlign: "center",
                       fontWeight: "500",
                       marginLeft: hp(10),
-                    }}>
+                    }}
+                  >
                     NGN - Naira
                   </Text>
                 </View>
@@ -190,7 +215,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                     fontSize: hp(16),
                     textAlign: "center",
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {`${NAIRA_UNICODE} 239,290`}
                 </Text>
               </TouchableOpacity>
@@ -208,12 +234,14 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                     screen: "NewUserVault",
                   });
                   setModalVisible(false);
-                }}>
+                }}
+              >
                 <View
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                  }}>
+                  }}
+                >
                   <Image
                     style={{ width: wp(40), height: hp(40) }}
                     source={VaultLogo}
@@ -225,7 +253,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                       textAlign: "center",
                       fontWeight: "500",
                       marginLeft: hp(10),
-                    }}>
+                    }}
+                  >
                     Vault
                   </Text>
                 </View>
@@ -235,7 +264,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                     fontSize: hp(16),
                     textAlign: "center",
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {`${NAIRA_UNICODE} 239,290`}
                 </Text>
               </TouchableOpacity>

@@ -118,7 +118,6 @@
     "remove": "^0.1.5",
     "rn-placeholder": "^3.0.3",
     "sentry-expo": "^4.2.0",
-    "typescript": "^4.9.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -144,6 +143,7 @@
     "react-test-renderer": "17.0.2",
     "ts-jest": "^26.5.6",
     "ts-node": "^10.9.1",
+    "typescript": "^4.9.5",
     "typesync": "^0.10.0"
   },
   "private": true,

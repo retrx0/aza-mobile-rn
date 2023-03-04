@@ -30,7 +30,7 @@ export const toastConfig: ToastConfig = {
   info: ({ text1, text2 }: ToastData) => (
     <ToastFrame
       text1={text1!}
-      backgroundColor={"#EAEAEC;"}
+      backgroundColor={"#EAEAEC"}
       textColor={"black"}
       title={""}
     />
