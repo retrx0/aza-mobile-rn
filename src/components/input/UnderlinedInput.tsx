@@ -13,7 +13,10 @@ import { TextInput, View, Text } from "../../theme/Themed";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector } from "./../../redux";
-import Animated from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
 
 export type InputProps = {
   label: string;
@@ -45,6 +48,14 @@ export const UnderlinedInput = ({
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   const [focused, setFocused] = useState(false);
+
+  const opacity = useSharedValue(0);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    };
+  });
 
   return (
     <View
