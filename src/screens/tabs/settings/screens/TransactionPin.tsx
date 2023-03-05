@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import Button from "../../../../components/buttons/Button";
-import { View as View, Text as Text } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
@@ -16,13 +16,16 @@ const TransactionPin = ({
   navigation,
 }: CommonScreenProps<"TransactionPin">) => {
   const [pin, setPin] = useState("");
-  const [isButtonLoading, setButtonLoading] = useState(false);
 
   useNavigationHeader(navigation, "Transaction Pin");
 
+  const handleChangePin = () => {
+    navigation.getParent()?.navigate("Settings");
+  };
+
   return (
     <SpacerWrapper>
-      <View style={[CommonStyles.vaultcontainer]}>
+      <View style={[{ marginTop: hp(20) }]}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -45,9 +48,16 @@ const TransactionPin = ({
           <SegmentedInput
             value={pin}
             secureInput
-            headerText="Pin"
+            pinCount={4}
+            withKeypad
+            headerText="Set New Pin"
             autoFocusOnLoad={false}
-            onValueChanged={(pass) => setPin(pass)}
+            onValueChanged={(pass) => {
+              setPin(pass);
+              if (pass.length >= 4) {
+                handleChangePin();
+              }
+            }}
             headerstyle={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
@@ -55,20 +65,18 @@ const TransactionPin = ({
             }}
           />
         </View>
-        <Button
-          title="Save Changes"
-          disabled={pin.length < 6 ? true : false}
-          onPressButton={() => navigation.getParent()?.navigate("Settings")}
-          styleText={{
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
-          }}
-          style={{
-            marginTop: hp(100),
-          }}
-          buttonLoading={isButtonLoading}
-        />
       </View>
+      {/* <Button
+        title="Save Changes"
+        disabled={pin.length < 4 ? true : false}
+        onPressButton={handleChangePin}
+        styleText={{
+          fontFamily: "Euclid-Circular-A-Medium",
+          fontSize: 14,
+        }}
+        style={{ bottom: 10 }}
+        buttonLoading={isButtonLoading}
+      /> */}
     </SpacerWrapper>
   );
 };

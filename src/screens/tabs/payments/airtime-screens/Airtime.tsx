@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 import { AIrtimeStyles as styles } from "./styles";
@@ -117,7 +117,10 @@ export default function Airtime({
   const displayedOperators = new Set();
 
   return (
-    <View style={CommonStyles.vaultcontainer}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "position" : "height"}
+      style={CommonStyles.vaultcontainer}
+    >
       <Header
         description=""
         descriptionStyle={null}
@@ -246,6 +249,6 @@ export default function Airtime({
           disabled={!amount || !selectedProvider || mobileNumber.length < 13}
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

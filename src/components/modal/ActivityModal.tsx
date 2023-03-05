@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { StyleSheet, Modal, ActivityIndicator } from "react-native";
 import Animated, {
   Easing,
+  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
@@ -25,10 +26,12 @@ const ActivityModal = ({ loading }: IProps) => {
 
   const rotation = useSharedValue(0);
   const scale = useSharedValue(1);
+  const opacity = useSharedValue(0);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [{ scale: scale.value }],
+      opacity: opacity.value,
     };
   });
 
@@ -39,14 +42,43 @@ const ActivityModal = ({ loading }: IProps) => {
     // );
     scale.value = withRepeat(
       withSequence(
-        withTiming(1, { duration: 130 }),
-        withTiming(1.2, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 1000 }),
-        withTiming(1.2, { duration: 20, easing: Easing.linear }),
-        withTiming(1, { duration: 130 })
+        withTiming(1, { duration: 0 }),
+        withTiming(1.15, { duration: 1300, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(1.15, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(1.15, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(1.15, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(1.15, { duration: 20, easing: Easing.linear }),
+        withTiming(1, { duration: 100 })
       ),
-      500
+      100
     );
+
+    opacity.value = withRepeat(
+      withSequence(
+        withTiming(1, { duration: 0 }),
+        withTiming(0.5, { duration: 1300, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(0.5, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(0.5, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(0.5, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 10 }),
+        withTiming(0.5, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 100 })
+      ),
+      100
+    );
+
+    // opacity.value = withRepeat(
+    //   interpolate(opacity.value, [0, opacity.value], [0, 1]),
+    //   5
+    // );
+
     // withSequence(withSpring(1.5), withSpring(1))
     // rotation.value = withRepeat(
     //   withSequence(
