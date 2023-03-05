@@ -34,7 +34,7 @@ import NotificationsScreen from "../screens/notification/NotificationsScreen";
 import ChangePasswordScreen from "../screens/tabs/settings/screens/ChangePasswordScreen";
 import NewPasswordScreen from "../screens/tabs/settings/screens/NewPasswordScreen";
 import ChangePhoneNumberScreen from "../screens/tabs/settings/screens/ChangePhoneNumberScreen";
-import ChangePhoneNumberOTPScreen from "../screens/tabs/settings/screens/ChangePhoneNumberOTPScreen";
+import ChangeUserDataOTPScreen from "../screens/tabs/settings/screens/ChangeUserDataOTPScreen";
 import ChangeEmailScreen from "../screens/tabs/settings/screens/ChangeEmailScreen";
 import PrivacySettingsScreen from "../screens/tabs/settings/screens/PrivacySettingsScreen";
 import AccountBalanceVisibilityScreen from "../screens/tabs/settings/screens/AccountBalanceVisibilityScreen";
@@ -181,7 +181,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
           flexDirection: "row",
           alignItems: "center",
           marginTop: hp(20),
-        }}>
+        }}
+      >
         <View style={{ marginLeft: 15 }}>
           <BackButton onPress={() => navigation.goBack()} />
         </View>
@@ -191,7 +192,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginLeft: hp(65),
-          }}>
+          }}
+        >
           Flight Ticket Vault
         </Text>
       </View>
@@ -213,7 +215,8 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
             // marginTop: hp(30),
           },
         }}
-        initialRouteName="details">
+        initialRouteName="details"
+      >
         <Tab.Screen component={VaultDetails} name="details" />
         <Tab.Screen component={VaultActivity} name="activity" />
       </Tab.Navigator>
@@ -275,8 +278,8 @@ const CommonStack = () => {
           component={ChangePhoneNumberScreen}
         />
         <Stack.Screen
-          name="ChangePhoneNumberOTP"
-          component={ChangePhoneNumberOTPScreen}
+          name="ChangeUserDataOTP"
+          component={ChangeUserDataOTPScreen}
         />
         <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
         <Stack.Screen
@@ -471,7 +474,8 @@ const CommonStack = () => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-              }}>
+              }}
+            >
               <BackIcon
                 color={scheme == "light" ? "#000000" : "#ffffff"}
                 size={12}
@@ -482,7 +486,8 @@ const CommonStack = () => {
                   fontSize: hp(16),
                   fontWeight: "400",
                   fontFamily: "Euclid-Circular-A",
-                }}>
+                }}
+              >
                 Back
               </Text>
             </TouchableOpacity>
@@ -503,7 +508,8 @@ const CommonStack = () => {
             fontSize: 16,
             fontWeight: "600",
           },
-        })}>
+        })}
+      >
         <Stack.Screen
           options={{ title: "Airtime & Data" }}
           name="AirtimeRecurring"
@@ -539,7 +545,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -549,14 +556,16 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GiftCardEasy")}>
+                onPress={() => props.navigation.navigate("GiftCardEasy")}
+              >
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -572,7 +581,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}>
+          })}
+        >
           <Stack.Screen
             options={{ title: "Gift Cards" }}
             name="GiftCard"
@@ -605,7 +615,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -615,14 +626,16 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GameCredit")}>
+                onPress={() => props.navigation.navigate("GameCredit")}
+              >
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -638,7 +651,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}>
+          })}
+        >
           <Stack.Screen
             options={{ title: "Game Credits" }}
             name="GameScreen"
@@ -680,7 +694,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -690,14 +705,16 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("CharityFeature")}>
+                onPress={() => props.navigation.navigate("CharityFeature")}
+              >
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -713,7 +730,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}>
+          })}
+        >
           <Stack.Screen name="Charity" component={CharityIndexScreen} />
         </Stack.Group>
 
@@ -726,7 +744,8 @@ const CommonStack = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 <BackIcon
                   color={scheme == "light" ? "#000000" : "#ffffff"}
                   size={24}
@@ -736,14 +755,16 @@ const CommonStack = () => {
                     fontSize: hp(16),
                     fontWeight: "600",
                     fontFamily: "Euclid-Circular-A",
-                  }}>
+                  }}
+                >
                   Back
                 </Text>
               </TouchableOpacity>
             ),
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("GameCredit")}>
+                onPress={() => props.navigation.navigate("GameCredit")}
+              >
                 <InfoIcon color={scheme === "dark" ? "#999999" : "#000000"} />
               </TouchableOpacity>
             ),
@@ -759,7 +780,8 @@ const CommonStack = () => {
               fontWeight: "500",
               fontFamily: "Euclid-Circular-A-Medium",
             },
-          })}>
+          })}
+        >
           <Stack.Screen
             options={{ title: "GameCredit" }}
             name="GameCredit"

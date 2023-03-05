@@ -1,28 +1,20 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { PhoneInput } from "../../../theme/Themed";
-import { View as View, Text as Text } from "../../../theme/Themed";
-import Colors from "../../../constants/Colors";
+import { View, Text } from "../../../theme/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import { SignUpScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
-import { useAppDispatch, useAppSelector } from "../../../redux";
-import {
-  requestOtp,
-  setEmail as setReduxStoreEmail,
-} from "../../../redux/slice/newUserSlice";
+import { useAppDispatch } from "../../../redux";
+import { setEmail as setReduxStoreEmail } from "../../../redux/slice/newUserSlice";
 import * as WebBrowser from "expo-web-browser";
 import InputFormFieldNormal from "../../../components/input/InputFormFieldNormal";
 import { requestOtpApi } from "../../../api/auth";
 import { Formik } from "formik";
 import * as yup from "yup";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
-import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import { toastError } from "../../../common/util/ToastUtil";
-import ActivityModal from "../../../components/modal/ActivityModal";
-import styles from "../../onboarding/OnboardingStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 
 WebBrowser.maybeCompleteAuthSession();

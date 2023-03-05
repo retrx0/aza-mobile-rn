@@ -14,7 +14,6 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp, wp } from "../../../common/util/LayoutUtil";
 import {
   CountriesType,
-  CountryDetails,
   CountryProps,
   SignUpScreenProps,
 } from "../../../../types";
@@ -32,8 +31,8 @@ const PhoneNumberScreen = ({
   const [phoneNumber, setPhoneNumber] = useState("");
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const [country, setCountry] = useState<CountriesType>(CountryDetails[0]);
   const { loading, countries } = useCountries();
+  const [country, setCountry] = useState<CountriesType>(countries[0]);
 
   const FetchedCountries = ({ item }: { item: CountryProps }) => {
     return <CountriesCard onPress={() => selectCountry(item)} {...item} />;

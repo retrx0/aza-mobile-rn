@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
@@ -12,12 +12,15 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import useSettings from "../hooks/useSettings";
 
-const ChangePhoneNumberOTPScreen = ({
+const ChangeUserDataOTPScreen = ({
   navigation,
-}: CommonScreenProps<"ChangePhoneNumberOTP">) => {
+  route,
+}: CommonScreenProps<"ChangeUserDataOTP">) => {
   const [otp, setOTP] = useState("");
-
+  const { verifyDataChangeOTP, loading } = useSettings({ navigation, route });
+  const { type, value } = route.params;
   useNavigationHeader(navigation, "OTP");
 
   return (
@@ -33,7 +36,7 @@ const ChangePhoneNumberOTPScreen = ({
             marginLeft: hp(20),
           }}
         >
-          Please enter the OTP sent to your phone via SMS
+          Please enter the OTP sent to your {type}
         </Text>
         <View
           style={{
@@ -46,16 +49,24 @@ const ChangePhoneNumberOTPScreen = ({
             value={otp}
             secureInput={false}
             headerText="OTP"
-            onValueChanged={(pass) => setOTP(pass)}
+            onValueChanged={(_otp) => setOTP(_otp)}
           />
         </View>
         <Button
           title="Continue"
-          onPressButton={() => navigation.getParent()?.navigate("Settings")}
+          onPressButton={() =>
+            verifyDataChangeOTP(
+              otp,
+              type,
+              type === "email" ? value : "",
+              type === "phone" ? value : ""
+            )
+          }
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(14),
           }}
+          buttonLoading={loading}
           style={{}}
         />
       </View>
@@ -63,12 +74,4 @@ const ChangePhoneNumberOTPScreen = ({
   );
 };
 
-export default ChangePhoneNumberOTPScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
-  },
-});
+export default ChangeUserDataOTPScreen;

@@ -40,9 +40,9 @@ const ActivityModal = ({ loading }: IProps) => {
     scale.value = withRepeat(
       withSequence(
         withTiming(1, { duration: 130 }),
-        withTiming(1.3, { duration: 20, easing: Easing.linear }),
+        withTiming(1.2, { duration: 10, easing: Easing.linear }),
         withTiming(1, { duration: 1000 }),
-        withTiming(1.3, { duration: 20, easing: Easing.linear }),
+        withTiming(1.2, { duration: 20, easing: Easing.linear }),
         withTiming(1, { duration: 130 })
       ),
       500
