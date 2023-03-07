@@ -118,7 +118,7 @@
     "react-yup": "^1.24.1",
     "remove": "^0.1.5",
     "rn-placeholder": "^3.0.3",
-    "sentry-expo": "~6.0.0",
+    "sentry-expo": "~6.1.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -149,7 +149,10 @@
   },
   "private": true,
   "resolutions": {
-    "react-native-svg": "13.4.0",
-    "react-native-reanimated": "~2.14.4"
+    "react-native-svg": "^13.4.0",
+    "react-native-reanimated": "~2.14.4",
+    "expo-modules-autolinking": "~1.1.0",
+    "@expo/config-plugins": "~6.0.0",
+    "@expo/prebuild-config": "~6.0.0"
   }
 }
