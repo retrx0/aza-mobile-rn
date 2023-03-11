@@ -2,7 +2,7 @@
   "expo": {
     "name": "Aza",
     "slug": "aza",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "orientation": "portrait",
     "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-white.png",
@@ -18,9 +18,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "usesAppleSignIn": true,
@@ -31,11 +29,9 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
+        "UIBackgroundModes": ["audio"]
       },
-      "buildNumber": "12"
+      "buildNumber": "13"
     },
     "android": {
       "adaptiveIcon": {
@@ -44,7 +40,7 @@
       },
       "package": "com.aza.azaapp",
       "googleServicesFile": "google-services.json",
-      "versionCode": 12
+      "versionCode": 13
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
@@ -64,9 +60,7 @@
         {
           "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
-          "sounds": [
-            "./assets/sounds/notifications/coindrop.wav"
-          ]
+          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }
       ],
       [
