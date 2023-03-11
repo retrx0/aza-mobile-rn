@@ -20,11 +20,11 @@ const VaultWithdrawsuccessful = ({
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <Image
+        {/* <Image
           source={require("../../../../../assets/images/Successful.png")}
           resizeMode="cover"
           style={[CommonStyles.caution]}
-        />
+        /> */}
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>

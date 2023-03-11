@@ -50,7 +50,6 @@ export const UnderlinedInput = ({
   const [focused, setFocused] = useState(false);
 
   const opacity = useSharedValue(0);
-
   const animatedStyles = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,

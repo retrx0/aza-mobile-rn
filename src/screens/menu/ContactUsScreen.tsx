@@ -10,9 +10,8 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 
-import { WhatsappLogo } from "../../../assets/images";
-
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import { WhatsAppLogo } from "../../../assets/svg";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const insets = useSafeAreaInsets();
@@ -77,10 +76,10 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               alignSelf: "center",
             }}
           >
-            <Image
-              source={WhatsappLogo}
-              style={{ marginRight: 10, width: hp(22), height: hp(23) }}
-            />
+            <View style={{ marginRight: 10 }}>
+              <WhatsAppLogo color={"#25D366"} size={23} />
+            </View>
+
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",

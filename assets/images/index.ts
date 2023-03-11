@@ -64,12 +64,6 @@ export const STANBIC = require("./logo/banks/StanbicIBTC.png");
 
 /*  */
 
-export const ScanCardBackground = require("./scanCardBackground.png");
-export const Joseph = require("./Joseph.png");
-export const Aleemz = require("./Aleemz.png");
-export const Card = require("./Card.png");
-
-export const WhatsappLogo = require("./whatsappLogo.png");
 export const NigeriaFlag = require("./common/NigeriaFlag.png");
 export const NigerianFlag = require("./icons/NigerianFlag.png");
 
@@ -100,7 +94,6 @@ export const RAZER = require("./common/RAZER.png");
 export const NETFLIX = require("./common/NETFLIX.png");
 export const STEAM = require("./common/STEAM.png");
 export const SEPHORA = require("./common/SEPHORA.png");
-export const Nintendo = require("./Nintendo.png");
 export const USA = require("./common/USA.png");
 export const UK = require("./common/UK.png");
 export const CANADA = require("./common/CANADA.png");
