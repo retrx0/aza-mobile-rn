@@ -73,7 +73,7 @@ const useSignUp = () => {
           email: newUser.emailAddress!,
           firstName: newUser.firstName!,
           lastName: newUser.lastName!,
-          gender: newUser.gender === "male" ? `1` : `2`,
+          gender: newUser.gender,
           newPassword: passcode,
           pushNotificationToken: newUser.pushToken,
         }).then((regitration) => {

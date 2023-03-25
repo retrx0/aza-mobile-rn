@@ -8,6 +8,7 @@ import {
   STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
 } from "@env";
 import { toastError, toastSuccess } from "../../common/util/ToastUtil";
+import apiCourier from "../courier";
 
 type RegisterUserModel = {
   firstName: string;
@@ -107,6 +108,17 @@ export const verifyEmailAPI = async (email: string) => {
   } catch (e) {
     console.log(e as Error);
   }
+};
+
+export const setUserTransactionPinAPI = async (newTransactionPin: string) => {
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/set/transactionPin",
+    {
+      newTransactionPin,
+    },
+    "jwt"
+  );
 };
 
 export const createPinAPI = async (newTransactionPin: string) => {

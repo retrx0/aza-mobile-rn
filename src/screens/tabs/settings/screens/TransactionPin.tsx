@@ -11,6 +11,8 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { setUserTransactionPinAPI } from "../../../../api/user";
+import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
 
 const TransactionPin = ({
   navigation,
@@ -20,7 +22,15 @@ const TransactionPin = ({
   useNavigationHeader(navigation, "Transaction Pin");
 
   const handleChangePin = () => {
-    navigation.getParent()?.navigate("Settings");
+    setUserTransactionPinAPI(pin)
+      .then((res) => {
+        navigation.getParent()?.navigate("Settings");
+        toastSuccess("Transaction pin set successfully");
+      })
+      .catch((e) => {
+        console.debug(e);
+        toastError("Couldn't set transaction pin!");
+      });
   };
 
   return (
@@ -54,7 +64,7 @@ const TransactionPin = ({
             autoFocusOnLoad={false}
             onValueChanged={(pass) => {
               setPin(pass);
-              if (pass.length >= 4) {
+              if (pass.length > 3 && pass.length === 4 && pass.length < 5) {
                 handleChangePin();
               }
             }}

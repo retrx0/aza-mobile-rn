@@ -76,15 +76,15 @@ const RootNavigator = ({
       }
     });
 
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        // handle notification
-      });
+    // notificationListener.current =
+    //   Notifications.addNotificationReceivedListener((notification) => {
+    //     // handle notification
+    //   });
 
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
+    // responseListener.current =
+    //   Notifications.addNotificationResponseReceivedListener((response) => {
+    //     // console.log(response);
+    //   });
 
     return () => {
       Notifications.removeNotificationSubscription(
@@ -97,8 +97,8 @@ const RootNavigator = ({
   return (
     <UserInactivity
       isActive={active}
-      // 5 minutes inactivity
-      timeForInactivity={1000 * 60 * 5}
+      // 10 minutes inactivity
+      timeForInactivity={1000 * 60 * 10}
       onAction={(isActive) => {
         setActive(isActive);
         if (isActive === false && isUserSignedIn) {

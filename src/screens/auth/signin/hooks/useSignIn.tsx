@@ -1,16 +1,13 @@
 // Separation of Concern
 
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { AxiosError } from "axios";
 import * as LocalAuthentication from "expo-local-authentication";
 import { useState } from "react";
-import { SignInScreenProps, SignInStackParamList } from "../../../../../types";
+import { SignInScreenProps } from "../../../../../types";
 import { loginUserAPI } from "../../../../api/auth";
 import { storeItemSecure } from "../../../../common/util/StorageUtil";
 import { toastError } from "../../../../common/util/ToastUtil";
 import useCountdownTimer from "../../../../hooks/useCountdownTimer";
-import navigation from "../../../../navigation";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
 import { getUserInfo, selectUser } from "../../../../redux/slice/userSlice";
@@ -88,7 +85,7 @@ const useSignIn = () => {
             navigation.getParent()?.navigate("Root");
           } else {
             setScreenLoading(false);
-            toastError("Couldn't fetch user data!");
+            toastError("There was a problem fetching your data!");
           }
         } catch (err) {
           setScreenLoading(false);
@@ -124,7 +121,7 @@ const useSignIn = () => {
       }
     } else {
       // Check if biometric is enabled
-      if (hasBiometricHardware) {
+      if (hasBiometricHardware && biometricEnrolled) {
         console.debug("biometric enroled");
         // Check if user enabled biometrics
         if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
