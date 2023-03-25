@@ -24,6 +24,8 @@ import {
   setUserEmail,
   setUserPhoneAndFullName,
 } from "../redux/slice/userSlice";
+import * as SecureStore from "expo-secure-store";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -136,7 +138,6 @@ const RootNavigator = ({
             isUserSignedIn: isUserSignedIn,
             cachedUser: cachedUser,
           }}
-        />
         />
         <Stack.Screen
           name="Root"
