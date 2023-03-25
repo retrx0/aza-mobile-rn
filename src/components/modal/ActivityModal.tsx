@@ -1,13 +1,11 @@
 import { useEffect } from "react";
-import { StyleSheet, Modal, ActivityIndicator } from "react-native";
+import { StyleSheet, Modal } from "react-native";
 import Animated, {
   Easing,
-  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withSequence,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
 import { AZALargeLightningLogo } from "../../../assets/svg";
@@ -44,34 +42,34 @@ const ActivityModal = ({ loading }: IProps) => {
       withSequence(
         withTiming(1, { duration: 0 }),
         withTiming(1.15, { duration: 1300, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(1.15, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(1.15, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(1.15, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(1.15, { duration: 20, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(1.15, { duration: 30, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(1.15, { duration: 30, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(1.15, { duration: 30, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(1.15, { duration: 30, easing: Easing.linear }),
         withTiming(1, { duration: 100 })
       ),
-      100
+      1000
     );
 
     opacity.value = withRepeat(
       withSequence(
         withTiming(1, { duration: 0 }),
         withTiming(0.5, { duration: 1300, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(0.5, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(0.5, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(0.5, { duration: 10, easing: Easing.linear }),
-        withTiming(1, { duration: 10 }),
-        withTiming(0.5, { duration: 10, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(0.5, { duration: 30, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(0.5, { duration: 30, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(0.5, { duration: 30, easing: Easing.linear }),
+        withTiming(1, { duration: 30 }),
+        withTiming(0.5, { duration: 20, easing: Easing.linear }),
         withTiming(1, { duration: 100 })
       ),
-      100
+      1000
     );
 
     // opacity.value = withRepeat(

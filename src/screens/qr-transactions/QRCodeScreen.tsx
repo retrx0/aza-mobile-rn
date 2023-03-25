@@ -1,7 +1,7 @@
-import { Image, Alert } from "react-native";
+import { Image, Alert, ImageSourcePropType } from "react-native";
 import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
-import { QRCode } from "react-native-custom-qr-codes-expo";
+import QRCode from "react-native-qrcode-svg";
 import { View, Text } from "../../theme/Themed";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -11,7 +11,7 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { RootStackScreenProps } from "../../../types";
 
-import { NairaIcon } from "../../../assets/svg";
+import { AZALightningLogo, NairaIcon } from "../../../assets/svg";
 import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
@@ -19,7 +19,7 @@ import { selectTransaction } from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { toastError, toastSuccess } from "../../common/util/ToastUtil";
+import { toastError, toastInfo } from "../../common/util/ToastUtil";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 
@@ -43,7 +43,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           .then(
             (uri) => {
               MediaLibrary.saveToLibraryAsync(uri);
-              toastSuccess("QR Code saved to images");
+              toastInfo("QR Code saved to images");
               navigation.goBack();
             },
             (error) => {
@@ -113,11 +113,15 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
         </View>
         <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <QRCode
-            content={JSON.stringify({
+            value={JSON.stringify({
               azaNumber: user.azaAccountNumber,
               amount: transaction.amount,
             })}
-            codeStyle="circle"
+            size={220}
+            logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
+            logoSize={50}
+            logoBorderRadius={10}
+            backgroundColor={Colors[appTheme].background}
             color={
               appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
             }

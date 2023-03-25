@@ -17,11 +17,11 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <Image
+        {/* <Image
           source={require("../../../../assets/images/Caution.png")}
           resizeMode="cover"
           style={[CommonStyles.caution]}
-        />
+        /> */}
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.actionStyle}>
             This action cannot be undone

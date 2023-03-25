@@ -29,25 +29,25 @@ const initialState: VaultState = {
 };
 
 //Create async function for vault
-export const newVault = createAsyncThunk("vault", async (props: VaultState) => {
-  api
-    .post("/api/v1/vault", {
-      duration: props.duration,
-      durationType: props.durationType,
-      vaultName: props.vaultName,
-      initatialLockAmount: props.initatialLockAmount,
-      currency: props.currency,
-      accountNumber: props.accountNumber,
-    })
-    .then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-});
+// export const newVault = createAsyncThunk("vault", async (props: VaultState) => {
+//   api
+//     .post("/api/v1/vault", {
+//       duration: props.duration,
+//       durationType: props.durationType,
+//       vaultName: props.vaultName,
+//       initatialLockAmount: props.initatialLockAmount,
+//       currency: props.currency,
+//       accountNumber: props.accountNumber,
+//     })
+//     .then(
+//       (response) => {
+//         console.log(response);
+//       },
+//       (error) => {
+//         console.log(error);
+//       }
+//     );
+// });
 
 //Create async function to get vaultId
 export const vaultId = createAsyncThunk(

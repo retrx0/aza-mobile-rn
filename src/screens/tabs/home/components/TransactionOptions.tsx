@@ -43,8 +43,10 @@ const TransactionOptions = ({
           marginTop: hp(20),
           marginBottom: hp(10),
           paddingHorizontal: hp(10),
-        }}>
-        <TouchableOpacity
+        }}
+      >
+        <TransactionOptionButton
+          title="Withdraw"
           onPress={() =>
             navigation.navigate("Common", {
               screen: "WithdrawDepositTabs",
@@ -53,33 +55,16 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}>
-          <WithdrawIcon size={43} color="#FF361A" />
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={"#CCCCCC"}
-            style={{
-              fontSize: hp(17),
-              fontFamily: "Euclid-Circular-A-Medium",
-            }}>
-            Withdraw
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={toggleModal}>
-          <View style={{ display: "flex", alignItems: "center" }}>
-            <TransferIcon size={43} color={Colors[appTheme].text} />
-            <Text
-              lightColor={Colors.light.text}
-              darkColor={"#CCCCCC"}
-              style={{
-                fontSize: hp(17),
-                fontFamily: "Euclid-Circular-A-Medium",
-              }}>
-              Transfer
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
+          icon={<WithdrawIcon size={43} color={"#FF361A"} />}
+        />
+
+        <TransactionOptionButton
+          title="Transfer"
+          onPress={toggleModal}
+          icon={<TransferIcon size={43} color={Colors[appTheme].text} />}
+        />
+        <TransactionOptionButton
+          title="Deposit"
           onPress={() =>
             navigation.navigate("Common", {
               screen: "WithdrawDepositTabs",
@@ -88,18 +73,8 @@ const TransactionOptions = ({
               },
             })
           }
-          style={{ display: "flex", alignItems: "center" }}>
-          <DepositIcon color="#2AD168" size={40} />
-          <Text
-            lightColor={Colors.light.text}
-            darkColor={"#CCCCCC"}
-            style={{
-              fontSize: hp(17),
-              fontFamily: "Euclid-Circular-A-Medium",
-            }}>
-            Deposit
-          </Text>
-        </TouchableOpacity>
+          icon={<DepositIcon color="#2AD168" size={43} />}
+        />
       </View>
       <CustomBottomSheet
         isModalVisible={isModalVisible}
@@ -107,6 +82,35 @@ const TransactionOptions = ({
         listItems={transferBottomSheetListItems}
       />
     </>
+  );
+};
+
+const TransactionOptionButton = ({
+  title,
+  onPress,
+  icon,
+}: {
+  title: string;
+  onPress: () => void;
+  icon: JSX.Element;
+}) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={{ display: "flex", alignItems: "center" }}
+    >
+      {icon}
+      <Text
+        lightColor={Colors.light.text}
+        darkColor={Colors.general.lightGrey}
+        style={{
+          fontSize: hp(17),
+          fontFamily: "Euclid-Circular-A-Medium",
+        }}
+      >
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

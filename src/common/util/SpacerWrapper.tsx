@@ -2,7 +2,7 @@ import { View as View } from "../../theme/Themed";
 import CommonStyles from "../styles/CommonStyles";
 import NotchResponsive from "./NotchResponsiveness";
 
-const SpacerWrapper: React.FC = ({ children }) => {
+const SpacerWrapper = ({ children }) => {
   return (
     <View style={[CommonStyles.wrapperContainer]}>
       <NotchResponsive />

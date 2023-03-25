@@ -34,7 +34,6 @@
       "channel": "staging"
     },
     "preview3": {
-      "developmentClient": true,
       "channel": "staging",
       "ios": { "autoIncrement": true },
       "android": { "autoIncrement": true }

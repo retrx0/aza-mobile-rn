@@ -126,7 +126,7 @@ const useSignIn = () => {
       }
     } else {
       // Check if biometric is enabled
-      if (hasBiometricHardware && biometricEnrolled) {
+      if (hasBiometricHardware) {
         console.debug("biometric enroled");
         // Check if user enabled biometrics
         if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
