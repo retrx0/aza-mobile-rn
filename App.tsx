@@ -29,7 +29,7 @@ const App = () => {
       setisDeviceRooted(rooted)
     );
 
-    // TODO fix below code
+    // TODO fix below code 
     NetInfo.addEventListener((netChange) => {
       if (
         netChange.isConnected === false &&

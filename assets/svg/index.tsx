@@ -755,8 +755,8 @@ export const InfoIcon = ({ style, color }: SvgIconProps) => {
     <Svg
       fill={color}
       id="Capa_1"
-      width="18"
-      height="18"
+      width="22"
+      height="22"
       viewBox="0 0 490.318 490.318">
       <G>
         <G>
@@ -2613,7 +2613,7 @@ export const VaultLargeIcon = ({ color, size }: SvgIconProps) => {
 
 export const ExitIcon = ({ color }: SvgIconProps) => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <Svg width="40" height="40" viewBox="0 0 24 24" fill="none">
       <Path
         d="M7.75732 16.2427L16.2426 7.75739"
         stroke={color}

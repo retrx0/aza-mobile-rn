@@ -44,11 +44,9 @@ const TransactionScreen = ({
     navigation,
     headerTitle,
     <TouchableOpacity
-      onPress={() => navigation.navigate(featureNavigationScreen)}
-    >
+      onPress={() => navigation.navigate(featureNavigationScreen)}>
       <InfoIcon
         color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
-        style={{ width: 20, height: 20 }}
       />
     </TouchableOpacity>
   );
@@ -105,8 +103,7 @@ const TransactionScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );
