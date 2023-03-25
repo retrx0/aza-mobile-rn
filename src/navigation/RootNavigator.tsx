@@ -102,13 +102,13 @@ const RootNavigator = ({
         if (isActive === false && isUserSignedIn) {
           navigation.navigate("SignInWelcomeBack");
 
-          // SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
-          //   requireAuthentication: true,
-          // })
-          //   .then(() => {
-          //     navigation.navigate("SignInWelcomeBack");
-          //   })
-          //   .catch((e) => console.log(e));
+          SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
+            requireAuthentication: true,
+          })
+            .then(() => {
+              navigation.navigate("SignInWelcomeBack");
+            })
+            .catch((e) => console.log(e));
         }
       }}
       style={{ flex: 1 }}>
@@ -116,7 +116,7 @@ const RootNavigator = ({
       <Stack.Navigator
         initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
         screenOptions={{ gestureEnabled: false }}>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
           options={{ headerShown: false }}
@@ -134,7 +134,7 @@ const RootNavigator = ({
             isUserSignedIn: isUserSignedIn,
             cachedUser: cachedUser,
           }}
-        /> */}
+        />
         <Stack.Screen
           name="Root"
           component={BottomTabNavigator}

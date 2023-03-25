@@ -53,6 +53,7 @@ export const registerUserAPI = async (data: RegisterUserModel) => {
     const result = await api.put("/api/v1/user/register", data, {
       headers: {
         Authorization: `Bearer ${jwt}`,
+        "x-api-key": "6ab5e79e-4deb-4993-ad0e-e41b70f31166",
       },
     });
     if (result.status === 200) return result.data;
