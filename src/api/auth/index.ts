@@ -42,11 +42,7 @@ export const loginUserAPI = async (data: {
     }
     return undefined;
   } catch (e) {
-    console.debug("Error logging in user: ", e as Error);
-    if ((e as AxiosError).response) {
-      if ((e as AxiosError).response?.status === 400) throw Error();
-      else toastError("We encountered an error, please try again!");
-    }
+    console.debug(e as AxiosError);
   }
 };
 
@@ -59,7 +55,7 @@ export const requestOtpApi = async (data: {
     if (result.status === 204) return result.status;
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: ", (e as AxiosError).toJSON());
+    console.debug("Error Requesting OTP: ", (e as AxiosError).toJSON());
     toastError("We encountered an error, please try again!");
   }
 };
@@ -77,7 +73,7 @@ export const verifyOtpApi = async (
     if (result.status === 204) return result.headers["access-token"];
     return undefined;
   } catch (e) {
-    console.error("Error Requesting OTP: ", e as Error);
+    console.debug("Error Requesting OTP: ", e as AxiosError);
   }
 };
 
@@ -95,6 +91,6 @@ export const cancelToken = async () => {
     );
     return result.data;
   } catch (e) {
-    console.error("Error canceling token: ", e as Error);
+    console.debug("Error canceling token: ", e as AxiosError);
   }
 };

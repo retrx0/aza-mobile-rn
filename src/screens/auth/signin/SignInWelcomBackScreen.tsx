@@ -53,7 +53,7 @@ const SignInWelcomeBackScreen = ({
               value={passcode}
               onValueChanged={(code) => {
                 setPasscode(code);
-                if (code.length >= 6)
+                if (code.length > 5 && code.length === 6 && code.length < 7)
                   verifyPassword(
                     user.emailAddress,
                     user.phoneNumber,
