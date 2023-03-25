@@ -87,6 +87,7 @@ const useSignIn = () => {
             setScreenLoading(false);
             toastError("There was a problem fetching your data!");
           }
+          navigation.getParent()?.navigate("Root");
         } catch (err) {
           setScreenLoading(false);
           toastError(

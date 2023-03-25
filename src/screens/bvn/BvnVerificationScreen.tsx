@@ -18,6 +18,8 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
 import DatePicker from "@react-native-community/datetimepicker";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import apiCourier from "../../api/courier";
+import { create9PSBWallet } from "../../api/account";
 
 const BvnVerificationScreen = ({
   navigation,
@@ -39,25 +41,35 @@ const BvnVerificationScreen = ({
   const verifyBvn = async () => {
     setButtonLoading(true);
     console.log(dob.toISOString().split("T")[0]);
-    const bv = await dispatch(
-      addUserBvnThunk({
-        bvn: bvn,
-        dateOfBirth: dob.toISOString().split("T")[0],
+
+    const createWallet = await create9PSBWallet({
+      bvn,
+      dateOfBirth: dob.toISOString().split("T")[0],
+    })
+      .then((r) => {
+        console.log(r);
       })
-    );
-    if (bv.meta.requestStatus === "fulfilled") {
-      setButtonLoading(false);
-      navigation.navigate("StatusScreen", {
-        statusIcon: "Success",
-        status: "Successful",
-        statusMessage:
-          "You have successfully added your BVN to your Aza account",
-        navigateTo: onVerifyNavigateBackTo,
-      });
-    } else {
-      setButtonLoading(false);
-      toastError("Couldn't verify your BVN, please try again!");
-    }
+      .catch((e) => console.debug(e));
+
+    // const bv = await dispatch(
+    //   addUserBvnThunk({
+    //     bvn: bvn,
+    //     dateOfBirth: dob.toISOString().split("T")[0],
+    //   })
+    // );
+    // if (bv.meta.requestStatus === "fulfilled") {
+    //   setButtonLoading(false);
+    //   navigation.navigate("StatusScreen", {
+    //     statusIcon: "Success",
+    //     status: "Successful",
+    //     statusMessage:
+    //       "You have successfully added your BVN to your Aza account",
+    //     navigateTo: onVerifyNavigateBackTo,
+    //   });
+    // } else {
+    //   setButtonLoading(false);
+    //   toastError("Couldn't verify your BVN, please try again!");
+    // }
   };
 
   return (
@@ -70,7 +82,8 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Verify your BVN
           </Text>
           <View>
@@ -79,7 +92,8 @@ const BvnVerificationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               Date of Birth
             </Text>
 
@@ -104,7 +118,8 @@ const BvnVerificationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               BVN
             </Text>
             <TextInput
@@ -132,7 +147,8 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Verify"
             onPressButton={verifyBvn}
