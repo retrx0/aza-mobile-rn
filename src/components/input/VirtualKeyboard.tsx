@@ -71,6 +71,7 @@ const VirtualKeyboard = ({
             }}
           >
             <ArrowRightIcon
+              style={{ backgroundColor: "transparent" }}
               color={
                 appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
               }

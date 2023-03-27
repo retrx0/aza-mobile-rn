@@ -6,13 +6,14 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../../types";
 import { View as View, Text as Text } from "../../../theme/Themed";
-import { AppState, TouchableOpacity } from "react-native";
+import { AppState, Image, TouchableOpacity } from "react-native";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import ActivityModal from "../../../components/modal/ActivityModal";
 import { forgetUser } from "./helpers";
 import useSignIn from "./hooks/useSignIn";
+import CommonStyles from "../../../common/styles/CommonStyles";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -42,6 +43,17 @@ const SignInWelcomeBackScreen = ({
         <View>
           <Text style={styles.welcome}>Welcome back {user.fullName}</Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
+          {/* <View style={[CommonStyles.row]}>
+            <View>
+
+            </View>
+
+            <Image
+              source={{ uri: user.pictureUrl }}
+              style={{ width: 50, height: 50 }}
+            />
+          </View> */}
+
           <View
             style={{
               marginTop: hp(20),

@@ -25,8 +25,8 @@ const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
-  const [bvn, setBvn] = useState("22222222224");
-  const [dob, setDOB] = useState<Date>(new Date("1989-03-17"));
+  const [bvn, setBvn] = useState("");
+  const [dob, setDOB] = useState<Date>(new Date());
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -48,8 +48,12 @@ const BvnVerificationScreen = ({
     })
       .then((r) => {
         console.log(r);
+        setButtonLoading(false);
       })
-      .catch((e) => console.debug(e));
+      .catch(() => {
+        toastError("Couldn't link your BVN, please try again!");
+        setButtonLoading(false);
+      });
 
     // const bv = await dispatch(
     //   addUserBvnThunk({
@@ -102,11 +106,6 @@ const BvnVerificationScreen = ({
               maximumDate={new Date()}
               placeholderText="Date of Birth"
               onChange={(date) => {
-                console.log(
-                  new Date(date.nativeEvent.timestamp!)
-                    .toISOString()
-                    .split("T")[0]
-                );
                 if (date.nativeEvent.timestamp)
                   setDOB(new Date(date.nativeEvent.timestamp));
               }}
