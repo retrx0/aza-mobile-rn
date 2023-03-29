@@ -90,7 +90,7 @@ const AccountDetailsScreen = ({
       data: user.accountVerified ? "Verified" : "Not Verified",
     },
     {
-      title: "Aza-VFD Number",
+      title: "Aza-9PSB Number",
       subText: "You can receive money transfer/payment \nby sharing.",
       data: user.azaAccountNumber,
     },

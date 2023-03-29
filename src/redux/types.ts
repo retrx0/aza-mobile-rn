@@ -214,6 +214,14 @@ export interface IBankState {
   banks: ICommonTypedListResult<IBank>;
 }
 
+export interface I9PSBWallet {
+  availableBalance: number;
+  bankName: string;
+  status: string | "Inactive";
+  walletName: string;
+  walletNumber: number;
+}
+
 export type PaymentCategory =
   | "Internet"
   | "Cable Tv"

@@ -102,34 +102,36 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             )}
           </>
         </TouchableOpacity>
-        <View style={[CommonStyles.row]}>
-          <Text
-            style={{
-              marginLeft: 3,
-              fontSize: hp(12),
-              fontFamily: "Euclid-Circular-A",
-            }}
-          >
-            AZA-VFD Number:
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              copyToClipboard(user.azaAccountNumber).then((_) =>
-                toastInfo("Account number copied to clipboard!")
-              );
-            }}
-          >
+        {user.bvnVerified && (
+          <View style={[CommonStyles.row]}>
             <Text
               style={{
                 marginLeft: 3,
-                fontSize: hp(15),
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                fontSize: hp(12),
+                fontFamily: "Euclid-Circular-A",
               }}
             >
-              {user.azaAccountNumber}
+              AZA-9PSB Number:
             </Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              onPress={() => {
+                copyToClipboard(user.azaAccountNumber).then((_) =>
+                  toastInfo("Account number copied to clipboard!")
+                );
+              }}
+            >
+              <Text
+                style={{
+                  marginLeft: 3,
+                  fontSize: hp(15),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                }}
+              >
+                {user.azaAccountNumber}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
 
       <View>

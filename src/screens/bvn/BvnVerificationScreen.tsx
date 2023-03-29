@@ -13,7 +13,10 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { toastError } from "../../common/util/ToastUtil";
 
-import { addUserBvnThunk } from "../../redux/slice/userSlice";
+import {
+  addUserBvnThunk,
+  getUserAccountDetails,
+} from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
 import DatePicker from "@react-native-community/datetimepicker";
@@ -47,33 +50,20 @@ const BvnVerificationScreen = ({
       dateOfBirth: dob.toISOString().split("T")[0],
     })
       .then((r) => {
-        console.log(r);
         setButtonLoading(false);
+        navigation.navigate("StatusScreen", {
+          statusIcon: "Success",
+          status: "Successful",
+          statusMessage:
+            "You have successfully added your BVN to your Aza account",
+          navigateTo: onVerifyNavigateBackTo,
+        });
+        dispatch(getUserAccountDetails());
       })
       .catch(() => {
         toastError("Couldn't link your BVN, please try again!");
         setButtonLoading(false);
       });
-
-    // const bv = await dispatch(
-    //   addUserBvnThunk({
-    //     bvn: bvn,
-    //     dateOfBirth: dob.toISOString().split("T")[0],
-    //   })
-    // );
-    // if (bv.meta.requestStatus === "fulfilled") {
-    //   setButtonLoading(false);
-    //   navigation.navigate("StatusScreen", {
-    //     statusIcon: "Success",
-    //     status: "Successful",
-    //     statusMessage:
-    //       "You have successfully added your BVN to your Aza account",
-    //     navigateTo: onVerifyNavigateBackTo,
-    //   });
-    // } else {
-    //   setButtonLoading(false);
-    //   toastError("Couldn't verify your BVN, please try again!");
-    // }
   };
 
   return (

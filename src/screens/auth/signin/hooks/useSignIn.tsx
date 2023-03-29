@@ -10,7 +10,11 @@ import { toastError } from "../../../../common/util/ToastUtil";
 import useCountdownTimer from "../../../../hooks/useCountdownTimer";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
-import { getUserInfo, selectUser } from "../../../../redux/slice/userSlice";
+import {
+  getUserAccountDetails,
+  getUserInfo,
+  selectUser,
+} from "../../../../redux/slice/userSlice";
 
 // All sign in logic goes here
 
@@ -78,9 +82,7 @@ const useSignIn = () => {
           // Fetch user info
           const info = await dispatch(getUserInfo());
           if (info.meta.requestStatus === "fulfilled") {
-            // dispatch(
-            //   getUserAccount({ accountNumber: user.azaAccountNumber })
-            // );
+            await dispatch(getUserAccountDetails());
             setScreenLoading(false);
             navigation.getParent()?.navigate("Root");
           } else {

@@ -4,21 +4,21 @@ import { Dstv, Ie, Mtn } from "../../../assets/images";
 import api from "../../api";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
-import { ITransactions, IUserState } from "../types";
+import { I9PSBWallet, ITransactions, IUserState } from "../types";
 
 // Define the initial state using that type
 const initialState: IUserState = {
   loading: false,
   loaded: false,
-  phoneNumber: "080222222221",
-  firstName: "Test",
-  lastName: "User",
-  fullName: "Test User",
+  phoneNumber: "",
+  firstName: "",
+  lastName: "",
+  fullName: "",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
-  azaAccountNumber: "1001561113",
+  azaAccountNumber: "",
   azaVFDAccountNumber: "",
   azaBalance: 0,
-  emailAddress: "testuser@azanaija.com",
+  emailAddress: "",
   accountVerified: false,
   bvnVerified: false,
   bvnNumber: "",
@@ -346,12 +346,13 @@ export const userSlice = createSlice({
         console.log("BVN" + action.payload);
         state.bvnVerified = action.payload as boolean;
       })
-      .addCase(getUserAccount.pending, (state, action) => {})
-      .addCase(getUserAccount.rejected, (state, action) => {})
-      .addCase(getUserAccount.fulfilled, (state, action) => {
-        // console.log(action.payload);
-        // state.azaAccountNumber = action.payload
-        // state.azaBalance = action.payload
+      .addCase(getUserAccountDetails.pending, (state, action) => {})
+      .addCase(getUserAccountDetails.rejected, (state, action) => {})
+      .addCase(getUserAccountDetails.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.azaAccountNumber = String(action.payload.walletNumber);
+        state.azaBalance = action.payload.availableBalance;
+        state.accountStatus = action.payload.status;
       })
       .addCase(getUserSavedBankAccs.pending, (state, action) => {
         state.bankAccounts.loading = true;
@@ -387,7 +388,14 @@ export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
   return await thunkCourier("get", "/api/v1/user/info");
 });
 
-export const getUserAccount = createAsyncThunk(
+export const getUserAccountDetails = createAsyncThunk<I9PSBWallet>(
+  "user/getAccount",
+  async () => {
+    return await thunkCourier("get", "/api/v1/account");
+  }
+);
+
+export const getUserAccountDetailsWithNumber = createAsyncThunk(
   "user/getAccount",
   async ({ accountNumber }: { accountNumber: string }) => {
     return await thunkCourier("get", `/api/v1/account/${accountNumber}`);
