@@ -1,6 +1,6 @@
 import { RefreshControl, StyleSheet } from "react-native";
 
-import { RootTabScreenProps } from "../../../../types";
+import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
 
 import AccountDetails from "./components/AccountDetails";
 import TransactionOptions from "./components/TransactionOptions";
@@ -19,7 +19,10 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useState } from "react";
 
-const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
+const Home = ({
+  navigation,
+  route,
+}: RootTabScreenProps<"Home"> & RootStackScreenProps<"Root">) => {
   const user = useAppSelector(selectUser);
   const [refreshing, setRefreshing] = useState(false);
   const dispatch = useAppDispatch();

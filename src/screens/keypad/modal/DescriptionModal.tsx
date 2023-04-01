@@ -7,10 +7,6 @@ import Modal from "react-native-modal";
 import { TransactionKeypadParamsType } from "../../../common/navigation/types";
 import { hp } from "../../../common/util/LayoutUtil";
 import { useAppDispatch, useAppSelector } from "../../../redux";
-import {
-  selectTransaction,
-  setTransaction,
-} from "../../../redux/slice/transactionSlice";
 import { getAppTheme } from "../../../theme";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
@@ -127,15 +123,9 @@ const DescriptionModal = ({
                 navigation.navigate("RequestMoneyConfirmation");
               }
             }}
-            styleText={{
-              color: Colors[appTheme].buttonText,
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: 14,
-            }}
             style={{
               marginVertical: 10,
               width: "100%",
-              backgroundColor: Colors[appTheme].button,
             }}
           />
         </View>

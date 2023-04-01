@@ -2,8 +2,6 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { TouchableOpacity, Platform } from "react-native";
 
-import { AirtimeRecurringTab, AirtimeTabs } from "./PaymentsNavigation";
-
 // Vault
 import AddVault from "../screens/tabs/vault/AddVault";
 import ConfirmDeleteVault from "../screens/tabs/vault/ConfirmDeleteVault";
@@ -227,7 +225,7 @@ export const TopBar = ({ navigation }: { navigation: any }) => {
 const CommonStack = () => {
   const scheme = getAppTheme(useAppSelector(selectAppTheme));
   return (
-    <Stack.Navigator defaultScreenOptions={{ headerShown: false }}>
+    <Stack.Navigator>
       <Stack.Group>
         <Stack.Screen
           component={BvnVerificationScreen}
@@ -263,10 +261,6 @@ const CommonStack = () => {
           name="TransactionKeypad"
           component={TransactionKeypadScreen}
         />
-        <Stack.Screen
-          name="VaultWithdrawConfirm"
-          component={VaultWithdrawConfirm}
-        />
       </Stack.Group>
 
       {/* Settings */}
@@ -286,7 +280,11 @@ const CommonStack = () => {
           name="PrivacySettings"
           component={PrivacySettingsScreen}
         />
-        <Stack.Screen name="TransactionPin" component={TransactionPin} />
+        <Stack.Screen
+          name="TransactionPin"
+          component={TransactionPin}
+          options={{ presentation: "modal" }}
+        />
 
         <Stack.Screen
           name="AccountBalanceVisibility"
@@ -377,7 +375,7 @@ const CommonStack = () => {
 
         <Stack.Screen
           options={{ headerShown: false }}
-          name="VaultWithdrawConfirmation"
+          name="VaultWithdrawConfirm"
           component={VaultWithdrawConfirmation}
         />
         <Stack.Screen
@@ -819,13 +817,6 @@ const CommonStack = () => {
           component={InternetDetail}
         />
 
-        <Stack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name="CompleteTransaction"
-          component={StatusScreen}
-        />
         <Stack.Screen
           options={{
             headerShown: false,

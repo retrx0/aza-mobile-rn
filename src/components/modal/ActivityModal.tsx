@@ -22,7 +22,6 @@ interface IProps {
 const ActivityModal = ({ loading }: IProps) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  const rotation = useSharedValue(0);
   const scale = useSharedValue(1);
   const opacity = useSharedValue(0);
 

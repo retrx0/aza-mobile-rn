@@ -14,7 +14,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const SendMoneyFeature = ({
   navigation,
-}: CommonScreenProps<"RecurringTransfer">) => {
+}: CommonScreenProps<"SendMoneyFeature">) => {
   useNavigationHeader(
     navigation,
     "Send Money",

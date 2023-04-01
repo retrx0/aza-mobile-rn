@@ -24,9 +24,10 @@ import { Pressable } from "react-native";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
 import VaultModal from "./components/VaultModal";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
 const NewUserVault = (
-  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
+  _navigation: RootStackScreenProps<"Root"> & CommonScreenProps<"NewUserVault">
 ) => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
@@ -119,7 +120,7 @@ const NewUserVault = (
               >
                 Vault
               </Text>
-              <OpenIcon color={Colors[colorScheme].button} />
+              <OpenIcon color={Colors[colorScheme].secondaryText} />
             </View>
           </TouchableOpacity>
           <TouchableOpacity

@@ -123,7 +123,7 @@ export function UnblockModal({
   isModalVisible,
   navigation,
   userToBlock,
-}: CommonScreenProps<"BlockNewUser"> & IProps) {
+}: CommonScreenProps<"BlockUsers"> & IProps) {
   const handleUserUnblocking = () => {
     toggleModal();
 

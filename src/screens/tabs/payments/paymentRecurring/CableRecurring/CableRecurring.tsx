@@ -257,7 +257,7 @@ import { Cable } from "../../../../../../assets/images";
 
 export default function CableRecurring({
   navigation,
-}: CommonScreenProps<"CableTV">) {
+}: CommonScreenProps<"CableRecurring">) {
   const [selectedCable, setSelectedCable] = useState<{
     title: string;
     icon: string;
@@ -290,7 +290,8 @@ export default function CableRecurring({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -302,7 +303,8 @@ export default function CableRecurring({
             fontWeight: "500",
             maxWidth: wp(333),
             textAlign: "center",
-          }}>
+          }}
+        >
           The ultimate TV viewing experience like never before!
         </Text>
         <Image

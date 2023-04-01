@@ -13,8 +13,11 @@ import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToBankAmount = ({
+  navigation,
+}: CommonScreenProps<"VaultToBankAmount">) => {
   const colorScheme = useColorScheme();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -78,7 +81,7 @@ const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             marginBottom: "auto",
           }}
         >
-          <VirtualKeyboard value={amount} setValue={setAmount} />
+          <VirtualKeyboard value={amount} setValue={setAmount} maxLength={7} />
         </View>
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
           <Button
@@ -95,15 +98,9 @@ const VaultToBankAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
         <View style={[CommonStyles.passwordContainer, { bottom: hp(70) }]}>
           <Button
             title="Save Change"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
+            onPressButton={() => navigation.navigate("TopBar")}
             style={[
               {
-                backgroundColor: Colors[colorScheme].button,
                 marginBottom: hp(10),
               },
               CommonStyles.button,

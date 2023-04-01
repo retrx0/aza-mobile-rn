@@ -9,7 +9,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
-const CloseAccount = ({ navigation }: CommonScreenProps<"Common">) => {
+const CloseAccount = ({ navigation }: CommonScreenProps<"CloseAccount">) => {
   const insets = useSafeAreaInsets();
 
   useNavigationHeader(navigation, "Close Account");

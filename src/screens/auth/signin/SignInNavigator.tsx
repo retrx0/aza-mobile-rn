@@ -3,12 +3,13 @@ import React from "react";
 import LoginOTPScreen from "./SignInOTPScreen";
 import SignInWelcomeBackScreen from "./SignInWelcomBackScreen";
 import SignInScreen from "./SignInScreen";
-import useCachedResources from "../../../hooks/useCachedResources";
-import { RootStackScreenProps } from "../../../../types";
-import { useAppDispatch } from "../../../redux";
-import { getUserInfo } from "../../../redux/slice/userSlice";
+import {
+  RootStackScreenProps,
+  SignInScreenProps,
+  SignInStackParamList,
+} from "../../../../types";
 
-const LogInStack = createNativeStackNavigator();
+const LogInStack = createNativeStackNavigator<SignInStackParamList>();
 
 const LoginNavigator = ({
   navigation,

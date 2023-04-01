@@ -12,7 +12,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AccountClosureSurveyScreen = ({
   navigation,
-}: CommonScreenProps<"CloseAccountScreen">) => {
+}: CommonScreenProps<"AccountClosureSurveyScreen">) => {
   const [selectToppings, setSelectToppings] = useState("");
   const insets = useSafeAreaInsets();
 

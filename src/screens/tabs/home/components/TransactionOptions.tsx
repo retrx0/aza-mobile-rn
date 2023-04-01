@@ -6,7 +6,7 @@ import {
   TransferIcon,
   WithdrawIcon,
 } from "../../../../../assets/svg";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootStackScreenProps, RootTabScreenProps } from "../../../../../types";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";
@@ -21,7 +21,7 @@ import { getAppTheme } from "../../../../theme";
 const TransactionOptions = ({
   navigation,
   route,
-}: RootTabScreenProps<"Home">) => {
+}: RootStackScreenProps<"Root">) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const transferBottomSheetListItems = useBottomSheetType("transfer", {
     navigation,

@@ -6,8 +6,11 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { RootTabScreenProps } from "../../../../types";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultSuccessful = ({
+  navigation,
+}: CommonScreenProps<"VaultSuccessful">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -33,9 +36,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "UserVault" })
-            }
+            onPressButton={() => navigation.navigate("UserVault")}
             styleText={{}}
             style={[{}, { bottom: hp(20) }, CommonStyles.button]}
           />

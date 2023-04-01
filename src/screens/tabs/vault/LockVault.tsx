@@ -9,8 +9,9 @@ import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonW
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const LockVault = ({ navigation }: CommonScreenProps<"LockVault">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -51,12 +52,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            style={[CommonStyles.button]}
           />
 
           <CancelButtonWithUnderline

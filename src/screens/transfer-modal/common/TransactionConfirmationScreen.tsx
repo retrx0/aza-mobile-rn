@@ -81,15 +81,15 @@ const TransactionConfirmationScreen = ({
           sourceAccount: azaAccountNumber,
           destinationAccount: beneficiary.azaAccountNumber,
           amount,
-          transactionPin: "",
+          transactionPin: "1111",
           description: transDescription ? transDescription : "Aza transaction",
           currency: NAIRA_CCY_CODE,
           destinationBankCode: PSB_BANK_CODE,
         })
           .then((res) => {
-            console.log(res);
             transactionCompleted = true;
             setScreenLoading(false);
+            navigateToNextScreen();
           })
           .catch(() => {
             setScreenLoading(false);
@@ -105,43 +105,43 @@ const TransactionConfirmationScreen = ({
         })
           .then(() => {
             transactionCompleted = true;
+            navigateToNextScreen();
           })
           .catch(() => {});
         toastError("There was a problem making the request!");
       }
-
-      if (transactionCompleted) {
-        navigation.navigate("StatusScreen", {
-          status:
-            confirmationType === "request"
-              ? "Successful"
-              : "Your transaction was \n successful",
-          statusIcon: "Success",
-          statusMessage: `You have successfully ${
-            confirmationType === "request" ? "requested" : "sent"
-          } ${NAIRA_UNICODE} ${amount} ${
-            confirmationType === "request" ? "from" : "to"
-          } ${beneficiary.fullName}`,
-          statusMessage2:
-            confirmationType === "send"
-              ? "You can perform this transaction automatically by giving a Recurring Transfer order"
-              : "",
-          receiptDetails:
-            confirmationType === "send"
-              ? {
-                  amount: String(amount),
-                  beneficiaryName: beneficiary.fullName,
-                }
-              : undefined,
-          recurringTransferBeneficiary:
-            confirmationType === "send" ? beneficiary : undefined,
-          navigateTo: "Home",
-          // to disallow swoosh sound in request screen
-          screenType: confirmationType === "send" ? "transaction" : undefined,
-        });
-      } else {
-      }
     }
+
+    const navigateToNextScreen = () => {
+      navigation.navigate("StatusScreen", {
+        status:
+          confirmationType === "request"
+            ? "Successful"
+            : "Your transaction was \n successful",
+        statusIcon: "Success",
+        statusMessage: `You have successfully ${
+          confirmationType === "request" ? "requested" : "sent"
+        } ${NAIRA_UNICODE} ${amount} ${
+          confirmationType === "request" ? "from" : "to"
+        } ${beneficiary.fullName}`,
+        statusMessage2:
+          confirmationType === "send"
+            ? "You can perform this transaction automatically by giving a Recurring Transfer order"
+            : "",
+        receiptDetails:
+          confirmationType === "send"
+            ? {
+                amount: String(amount),
+                beneficiaryName: beneficiary.fullName,
+              }
+            : undefined,
+        recurringTransferBeneficiary:
+          confirmationType === "send" ? beneficiary : undefined,
+        navigateTo: "Home",
+        // to disallow swoosh sound in request screen
+        screenType: confirmationType === "send" ? "transaction" : undefined,
+      });
+    };
   };
 
   return (

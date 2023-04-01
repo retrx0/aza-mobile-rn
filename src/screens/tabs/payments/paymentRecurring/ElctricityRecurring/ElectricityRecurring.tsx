@@ -242,7 +242,7 @@ import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
 
 export default function ElectricittRecurring({
   navigation,
-}: CommonScreenProps<"Electricity">) {
+}: CommonScreenProps<"ElectricityRecurring">) {
   const [providers, setProviders] = useState([]);
   const [meterNumber, setMeterNumber] = useState("");
   const [selectedMeterType, setSelectedMeterType] = useState("");
@@ -382,7 +382,8 @@ export default function ElectricittRecurring({
                 maxHeight: hp(100),
                 marginTop: hp(20),
                 marginBottom: hp(25),
-              }}>
+              }}
+            >
               {electricityBillers.data.map(
                 (item: IElectricityBiller, index) => {
                   if (displayedProviders.has(item.name)) {
@@ -407,7 +408,8 @@ export default function ElectricittRecurring({
               style={{
                 paddingHorizontal: hp(20),
                 marginBottom: hp(10),
-              }}>
+              }}
+            >
               {!electricityBillers.loaded ? (
                 <PaymentRoundSkeleton />
               ) : (
@@ -472,7 +474,8 @@ export default function ElectricittRecurring({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             disabled={!meterNumber}
             title="Continue"
@@ -482,9 +485,9 @@ export default function ElectricittRecurring({
                 transactionType: {
                   type: "recurring",
                   beneficiary: {
-                    beneficiaryAccount: "",
-                    beneficiaryImage: selectedProvider.logoUrl,
-                    beneficiaryName: electricityBillers.data,
+                    beneficiaryName: "",
+                    fullName: "",
+                    azaAccountNumber: "",
                   },
                   period: periodValue,
                   day: dayValue,

@@ -9,7 +9,7 @@ import * as Images from "../../../../assets/images";
 import { Image } from "react-native";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
 
-const QRFeature = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
+const QRFeature = ({ navigation }: CommonScreenProps<"QRFeature">) => {
   useNavigationHeader(
     navigation,
     "QR Transaction",

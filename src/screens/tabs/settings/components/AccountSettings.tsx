@@ -18,11 +18,13 @@ import { View as View, Text as Text } from "../../../../theme/Themed";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 export default function AccountSettings({
   navigation,
 }: RootTabScreenProps<"Settings">) {
   const selectedTheme = useAppSelector(selectAppTheme);
+  const { isTransactionPinSet } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
 
   const accountSettings = [
@@ -83,7 +85,10 @@ export default function AccountSettings({
         <TransactionKey size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate("Common", { screen: "TransactionPin" }),
+        navigation.navigate("Common", {
+          screen: "TransactionPin",
+          params: { type: isTransactionPinSet ? "update" : "set" },
+        }),
     },
 
     // TODO TO BE IMPLEMENTED LATER
@@ -109,7 +114,8 @@ export default function AccountSettings({
             fontWeight: "400",
             marginLeft: hp(5),
             fontSize: hp(18),
-          }}>
+          }}
+        >
           Account Settings
         </Text>
         <View

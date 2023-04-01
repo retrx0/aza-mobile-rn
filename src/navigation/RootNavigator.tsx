@@ -76,15 +76,15 @@ const RootNavigator = ({
       }
     });
 
-    // notificationListener.current =
-    //   Notifications.addNotificationReceivedListener((notification) => {
-    //     // handle notification
-    //   });
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        // handle notification
+      });
 
-    // responseListener.current =
-    //   Notifications.addNotificationResponseReceivedListener((response) => {
-    //     // console.log(response);
-    //   });
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        // console.log(response);
+      });
 
     return () => {
       Notifications.removeNotificationSubscription(

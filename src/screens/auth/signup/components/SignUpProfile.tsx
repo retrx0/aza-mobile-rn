@@ -138,21 +138,8 @@ const SignUpProfile = ({
                   handleChange("gender")(String(gender.value));
                 }}
               />
-              {/* <Picker
-                placeholder={"Gender"}
-                prompt="Gender"
-                onValueChange={(value) => {
-                  handleChange("gender")(value.toString());
-                  console.log(values.gender);
-                }}
-                selectedValue={"male"}
-                style={{ height: 20 }}
-              >
-                <Picker.Item enabled label="Male" value={"male"} />
-                <Picker.Item enabled label="Female" value={"female"} />
-              </Picker> */}
               {errors.gender && touched.gender && (
-                <Text style={CommonStyles.errorText}>{errors}</Text>
+                <Text style={CommonStyles.errorText}>{errors.gender}</Text>
               )}
             </View>
 

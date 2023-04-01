@@ -14,8 +14,11 @@ import { View, Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultRecurringAmount = ({
+  navigation,
+}: CommonScreenProps<"VaultRecurringAmount">) => {
   const colorScheme = useColorScheme();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -154,7 +157,7 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             marginBottom: "auto",
           }}
         >
-          <VirtualKeyboard value={amount} setValue={setAmount} />
+          <VirtualKeyboard value={amount} setValue={setAmount} maxLength={10} />
         </View>
         <View
           style={[
@@ -166,16 +169,10 @@ const VaultRecurringAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
             disabled={!amount}
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "RecurringMoneyConfirmationScreen",
-              })
+              navigation.navigate("RecurringMoneyConfirmationScreen")
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
             style={[
               {
-                backgroundColor: Colors[colorScheme].button,
                 marginBottom: hp(10),
               },
               CommonStyles.button,

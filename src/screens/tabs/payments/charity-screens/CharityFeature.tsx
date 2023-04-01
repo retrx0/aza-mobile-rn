@@ -14,7 +14,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const CharityFeature = ({
   navigation,
-}: CommonScreenProps<"RecurringTransfer">) => {
+}: CommonScreenProps<"CharityFeature">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   useNavigationHeader(

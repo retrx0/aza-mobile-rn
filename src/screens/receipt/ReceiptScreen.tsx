@@ -106,7 +106,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
           },
         ]}
         label={"Transaction Type"}
-        value={"Aza to Bank"}
+        value={"Aza"}
       />
       <UnderlinedInput
         icon={null}
@@ -119,7 +119,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
           },
         ]}
         label={"Receiving Bank"}
-        value={"Access Bank"}
+        value={""}
       />
       <UnderlinedInput
         icon={null}
@@ -132,7 +132,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
           },
         ]}
         label={"Transaction Fee"}
-        value={"0.00 NGN"}
+        value={""}
       />
       <UnderlinedInput
         icon={null}
@@ -145,7 +145,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
           },
         ]}
         label={"Reference ID"}
-        value={"Ng627jdjskknsGHYt293j3"}
+        value={""}
       />
       <UnderlinedInput
         icon={null}

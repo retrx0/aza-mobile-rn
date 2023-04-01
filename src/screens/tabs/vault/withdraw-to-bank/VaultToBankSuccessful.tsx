@@ -10,8 +10,11 @@ import { RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { TopBar } from "../../../../navigation/CommonStackNavigator";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultToBankSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToBankSuccessful = ({
+  navigation,
+}: CommonScreenProps<"VaultToBankSuccessful">) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
 
@@ -44,7 +47,6 @@ const VaultToBankSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
             }}
             style={[
               {
-                backgroundColor: Colors[colorScheme].button,
                 bottom: hp(20),
               },
               CommonStyles.button,

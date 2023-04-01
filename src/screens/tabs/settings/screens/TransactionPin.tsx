@@ -16,21 +16,46 @@ import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
 
 const TransactionPin = ({
   navigation,
+  route,
 }: CommonScreenProps<"TransactionPin">) => {
   const [pin, setPin] = useState("");
 
-  useNavigationHeader(navigation, "Transaction Pin");
+  const pinSceenType = route.params.type;
+  const capitalizedScreenType =
+    pinSceenType.charAt(0).toUpperCase() + pinSceenType.slice(1);
+
+  useNavigationHeader(navigation, `Transaction Pin`);
 
   const handleChangePin = () => {
-    setUserTransactionPinAPI(pin)
-      .then((res) => {
-        navigation.getParent()?.navigate("Settings");
-        toastSuccess("Transaction pin set successfully");
-      })
-      .catch((e) => {
-        console.debug(e);
-        toastError("Couldn't set transaction pin!");
-      });
+    switch (pinSceenType) {
+      case "set":
+        setUserTransactionPinAPI(pin)
+          .then((res) => {
+            navigation.getParent()?.navigate("Settings");
+            toastSuccess("Transaction pin set successfully");
+          })
+          .catch((e) => {
+            console.debug(e);
+            toastError("Couldn't set transaction pin!");
+          });
+        break;
+      case "update":
+        confirmPin();
+        break;
+      case "reset":
+        break;
+      case "confirm":
+        break;
+      case "transaction":
+        break;
+      default:
+        break;
+    }
+  };
+
+  const confirmPin = () => {
+    setPin("");
+    navigation.navigate("TransactionPin", { type: "confirm" });
   };
 
   return (
@@ -46,13 +71,16 @@ const TransactionPin = ({
             marginLeft: hp(20),
           }}
         >
-          You can change your transaction pin
+          {pinSceenType !== "transaction"
+            ? `You can ${capitalizedScreenType} your transaction pin`
+            : "Please type in your transaction pin"}
         </Text>
         <View
           style={{
             marginTop: hp(80),
-            marginBottom: hp(100),
-            paddingHorizontal: hp(20),
+            marginBottom: hp(10),
+            paddingHorizontal: hp(35),
+            paddingVertical: hp(20),
           }}
         >
           <SegmentedInput
@@ -60,7 +88,7 @@ const TransactionPin = ({
             secureInput
             pinCount={4}
             withKeypad
-            headerText="Set New Pin"
+            headerText={`${capitalizedScreenType} Pin`}
             autoFocusOnLoad={false}
             onValueChanged={(pass) => {
               setPin(pass);

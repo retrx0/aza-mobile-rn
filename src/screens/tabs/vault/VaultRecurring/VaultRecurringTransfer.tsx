@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { RootTabScreenProps } from "../../../../../types";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -10,13 +9,12 @@ import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
 import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const VaultRecurringTransfer = ({
   navigation,
-}: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
+}: CommonScreenProps<"VaultRecurringTransfer">) => {
   const [periodValue, setPeriodValue] = useState("");
   const [dayValue, setDayValue] = useState("");
   const insets = useSafeAreaInsets();
@@ -123,19 +121,7 @@ const VaultRecurringTransfer = ({
         >
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "VaultRecurringAmount",
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            onPressButton={() => navigation.navigate("VaultRecurringAmount")}
             disabled={!periodValue}
           />
 

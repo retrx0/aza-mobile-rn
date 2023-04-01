@@ -207,7 +207,7 @@ import { Water } from "../../../../../../assets/images";
 
 export default function WaterRecurring({
   navigation,
-}: CommonScreenProps<"Water">) {
+}: CommonScreenProps<"WaterRecurring">) {
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -220,7 +220,8 @@ export default function WaterRecurring({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -232,7 +233,8 @@ export default function WaterRecurring({
             fontWeight: "500",
             maxWidth: wp(333),
             textAlign: "center",
-          }}>
+          }}
+        >
           Easily pay for your water services through Aza
         </Text>
         <Image

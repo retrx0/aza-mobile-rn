@@ -1,4 +1,3 @@
-import { Image } from "react-native";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../theme/Themed";
 
@@ -6,16 +5,13 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../../types";
-import { TopBar } from "../../../../navigation/CommonStackNavigator";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import Colors from "../../../../constants/Colors";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const VaultWithdrawsuccessful = ({
   navigation,
-}: RootTabScreenProps<"Vault">) => {
+}: CommonScreenProps<"VaultWithdrawsuccessful">) => {
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
 
   return (
     <SpacerWrapper>
@@ -49,16 +45,7 @@ const VaultWithdrawsuccessful = ({
                 navigateTo: "Vault",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              { bottom: hp(20) },
-              CommonStyles.button,
-            ]}
+            style={[{ bottom: hp(20) }, CommonStyles.button]}
           />
         </View>
       </View>

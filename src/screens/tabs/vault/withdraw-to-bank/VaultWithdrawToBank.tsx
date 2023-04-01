@@ -15,8 +15,9 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { useNavigation } from "@react-navigation/core";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AccessBank } from "../../../../../assets/images";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultToBank = () => {
+const VaultToBank = ({}: CommonScreenProps<"VaultToBank">) => {
   const [click, setClick] = useState(false);
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
@@ -68,7 +69,7 @@ const VaultToBank = () => {
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
-              source={AccessBank}
+              source={{ uri: "" }}
               resizeMode="cover"
               style={[CommonStyles.accessBank]}
             />
@@ -110,28 +111,11 @@ const VaultToBank = () => {
           />
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("VaultConfirmation", {
-                headerTitle: "Amount",
-                transactionType: {
-                  transaction: "deposit",
-                  type: "normal",
-                  beneficiary: {
-                    beneficiaryAccount: "",
-                    beneficiaryImage: "",
-                    beneficiaryName: "",
-                  },
-                },
-              })
+            onPressButton={
+              () => {}
+              // navigation.navigate("VaultConfirmation")
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            style={[]}
             disabled={!click}
           />
 

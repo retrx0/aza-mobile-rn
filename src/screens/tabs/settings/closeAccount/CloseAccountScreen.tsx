@@ -24,7 +24,9 @@ import { loginUserAPI } from "../../../../api/auth";
 import { toastError } from "../../../../common/util/ToastUtil";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
-const CloseAccountScreen = ({ navigation }: CommonScreenProps<"Common">) => {
+const CloseAccountScreen = ({
+  navigation,
+}: CommonScreenProps<"CloseAccountScreen">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [selectedCard, setSelectedCard] = useState("");
   const insets = useSafeAreaInsets();

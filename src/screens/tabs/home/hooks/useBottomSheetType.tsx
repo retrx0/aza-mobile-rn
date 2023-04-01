@@ -20,7 +20,7 @@ import {
   UserIcon,
 } from "../../../../../assets/svg";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { RootStackScreenProps, RootTabScreenProps } from "../../../../../types";
 import Colors from "../../../../constants/Colors";
 import { getAppTheme } from "../../../../theme";
 
@@ -35,7 +35,7 @@ import {
 
 export const useBottomSheetType = (
   itemToReturn: string,
-  { navigation }: RootTabScreenProps<"Home">
+  { navigation }: RootStackScreenProps<"Root">
 ) => {
   const dispatch = useAppDispatch();
 
@@ -178,7 +178,8 @@ export const useBottomSheetType = (
       {
         itemName: "Send Money",
         itemIcon: <SendMoneyIcon size={16} />,
-        onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
+        onPress: () =>
+          navigation.navigate("Common", { screen: "SendMoney", params: {} }),
       },
       {
         itemName: "Request Money",

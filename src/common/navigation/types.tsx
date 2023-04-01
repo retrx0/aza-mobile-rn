@@ -70,20 +70,7 @@ export type CommonStackParamList = {
   CharityDetailsScreen: IXCharity;
   ElectricityConfirmation: undefined;
 
-  //TODO Extract below to an interface
-  PaymentConfirmation: {
-    beneficiaryLogo: string;
-    beneficiaryName: string;
-    phoneNumber?: string;
-    amount: string;
-    paymentMethod?: string;
-    purchaseName: string;
-    meterNumber?: string;
-    accountOrUserId?: string;
-    smartCardNumber?: string;
-    customerAccountNumber?: string;
-    recurringTransaction?: boolean;
-  };
+  PaymentConfirmation: IPaymentConfirmation;
   GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
@@ -151,7 +138,10 @@ export type CommonStackParamList = {
   LoginOptions: undefined;
   Appearance: undefined;
   AppLanguage: undefined;
-  TransactionPin: undefined;
+  TransactionPin: {
+    type: "set" | "update" | "reset" | "transaction" | "confirm";
+    confirmPinString?: string;
+  };
 
   // Profile
   AccountDetails: undefined;
@@ -274,6 +264,20 @@ export type PaymentsStackParamList = {
   Charity: undefined;
   CharityDetail: undefined;
 };
+
+export interface IPaymentConfirmation {
+  beneficiaryLogo: string;
+  beneficiaryName: string;
+  phoneNumber?: string;
+  amount: string;
+  paymentMethod?: string;
+  purchaseName: string;
+  meterNumber?: string;
+  accountOrUserId?: string;
+  smartCardNumber?: string;
+  customerAccountNumber?: string;
+  recurringTransaction?: boolean;
+}
 
 export type PaymentsTabScreenProps<
   Screen extends keyof PaymentsStackParamList

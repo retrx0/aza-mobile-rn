@@ -3,14 +3,12 @@ import { Image, StyleSheet } from "react-native";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
-import BackButton from "../../../../components/buttons/BackButton";
 import { View, Text } from "../../../../theme/Themed";
 
 import VirtualKeyboard from "../../../../components/input/VirtualKeyboard";
 import Button from "../../../../components/buttons/Button";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
-import { hp } from "../../../../common/util/LayoutUtil";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { NairaLargeIcon } from "../../../../../assets/svg";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";
@@ -18,7 +16,6 @@ import { numberWithCommas } from "../../../../common/util/NumberUtils";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { getDefaultPictureUrl } from "../../../../common/util/AppUtil";
-import { setTransaction } from "../../../../redux/slice/transactionSlice";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const VaultWithdrawConfirm = ({
@@ -167,7 +164,7 @@ const VaultWithdrawConfirm = ({
           </View>
         </View>
 
-        <VirtualKeyboard value={amount} setValue={setAmount} />
+        <VirtualKeyboard value={amount} setValue={setAmount} maxLength={10} />
 
         <Button
           title="Continue"
@@ -230,14 +227,6 @@ const VaultWithdrawConfirm = ({
               navigateTo: "UserVault",
             })
           }
-          styleText={{
-            color: Colors[colorScheme].buttonText,
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: 14,
-          }}
-          style={{
-            backgroundColor: Colors[colorScheme].button,
-          }}
         />
       </View>
 

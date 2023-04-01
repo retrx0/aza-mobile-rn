@@ -8,8 +8,11 @@ import { RootTabScreenProps } from "../../../../types";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const ConfirmDeleteVault = ({
+  navigation,
+}: CommonScreenProps<"ConfirmDeleteVault">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -36,9 +39,7 @@ const ConfirmDeleteVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           <Button
             title="Delete"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "AddVault" })
-            }
+            onPressButton={() => navigation.navigate("AddVault")}
             styleText={{}}
             style={[{}]}
           />

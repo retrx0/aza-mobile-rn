@@ -17,8 +17,9 @@ import { InfoIcon } from "../../../../assets/svg";
 import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const NewVault = ({ navigation }: CommonScreenProps<"NewVault">) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [isEnabled, setIsEnabled] = useState(false);
   const [periodValue, setPeriodValue] = useState("");
@@ -32,7 +33,7 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
     { label: "1 Month", value: "1" },
   ];
 
-  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
   return (
     <SpacerWrapper>
@@ -58,16 +59,10 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           >
             New Vault
           </Text>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Common", {
-                screen: "VaultFeature",
-              })
-            }
-          >
+          <TouchableOpacity onPress={() => navigation.navigate("VaultFeature")}>
             <InfoIcon
               style={{ marginRight: hp(20) }}
-              color={colorScheme === "dark" ? "#999999" : "#000000"}
+              color={appTheme === "dark" ? "#999999" : "#000000"}
             />
           </TouchableOpacity>
         </View>
@@ -152,19 +147,11 @@ const NewVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Separator /> */}
           <Button
             title={"Continue"}
-            onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "AddCoverImage",
-              })
-            }
+            onPressButton={() => navigation.navigate("AddCoverImage")}
             styleText={{
-              color: Colors[colorScheme].buttonText,
+              color: Colors[appTheme].buttonText,
             }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            style={[]}
             disabled={!periodValue}
           />
         </View>
@@ -182,13 +169,5 @@ const Separator = () => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  separator: {
-    borderWidth: hp(0.3),
-    borderColor: "#EAEAEC",
-    width: "100%",
-  },
-});
 
 export default NewVault;

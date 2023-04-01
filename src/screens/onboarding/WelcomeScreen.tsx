@@ -36,7 +36,8 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           marginTop: hp(30),
           marginBottom: hp(30),
           alignItems: "center",
-        }}>
+        }}
+      >
         <AZALogo color={"black"} size={16} />
       </View>
       <AppIntroSlider
@@ -59,14 +60,18 @@ const WelcomeScreen = ({ navigation }: RootStackScreenProps<"Welcome">) => {
           marginBottom: hp(100),
           paddingHorizontal: 20,
           maxHeight: wp(350),
-        }}>
+        }}
+      >
         <View>
           <ButtonMd
             title="Login"
             color={Colors.general.white}
             alt={true}
             onPress={() => {
-              navigation.navigate("SignIn");
+              navigation.navigate("SignIn", {
+                isUserSignedIn: false,
+                cachedUser: undefined,
+              });
             }}
             style={{
               fontFamily: "Euclid-Circular-A",

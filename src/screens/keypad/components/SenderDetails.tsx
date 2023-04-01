@@ -7,14 +7,13 @@ import { View, Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { UserState } from "../../../redux/types";
-// import { UserState } from "../../../redux/slice/userSlice";
+import { IUserState } from "../../../redux/types";
 
 const SenderDetails = ({
   userData,
   amount,
 }: {
-  userData: UserState;
+  userData: IUserState;
   amount: string;
 }) => {
   const colorScheme = useColorScheme();

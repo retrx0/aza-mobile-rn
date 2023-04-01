@@ -3,11 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -15,7 +11,6 @@ import { selectAppTheme, setAppTheme } from "../redux/slice/themeSlice";
 import RootNavigator from "./RootNavigator";
 import { useAppDispatch, useAppSelector } from "../redux";
 import { getDeviceTheme } from "../theme";
-import useCachedResources from "../hooks/useCachedResources";
 import { ISettings } from "../hooks/useAsyncStorage";
 import { IUserCred } from "../redux/types";
 import { setAppPreference } from "../redux/slice/preferenceSlice";

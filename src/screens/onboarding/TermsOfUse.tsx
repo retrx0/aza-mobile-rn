@@ -12,7 +12,7 @@ import { getAppTheme } from "../../theme";
 import Colors from "../../constants/Colors";
 import ExitButton from "../../components/buttons/ExitButton";
 
-const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
+const TermsOfUse = ({ navigation }: CommonScreenProps<"TermsOfUse">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
 
   const appTheme = getAppTheme(selectedTheme);
@@ -27,7 +27,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
               paddingHorizontal: hp(20),
               marginTop: hp(20),
               marginBottom: hp(20),
-            }}>
+            }}
+          >
             <ExitButton onPress={() => navigation.goBack()} />
           </View>
           <View
@@ -35,7 +36,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
               marginBottom: hp(25),
               alignItems: "center",
               // marginTop: hp(40),
-            }}>
+            }}
+          >
             <AZALogo
               color={
                 appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
@@ -53,7 +55,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 marginBottom: hp(15),
                 fontWeight: "600",
                 lineHeight: hp(30),
-              }}>
+              }}
+            >
               Terms of Use
             </Text>
             {/* <Text
@@ -77,14 +80,16 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 fontWeight: "400",
                 maxWidth: 350,
                 alignSelf: "center",
-              }}>
+              }}
+            >
               Welcome to Aza! These terms of use (the "Terms") apply to your use
               of Aza, a fintech app provided by{" "}
               <Text
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 Aza Innovations Limited
               </Text>{" "}
               ("Aza," "we," "us," or "our"){"\n"}
@@ -99,7 +104,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 maxWidth: 350,
                 alignSelf: "center",
                 alignItems: "center",
-              }}>
+              }}
+            >
               Please read these Terms of Use and our Privacy Policy carefully.
               By using or accessing the Services, you represent that you have
               read and understand these Terms and our Privacy Policy and you
@@ -112,7 +118,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 1. Eligibility
               </Text>
               {"\n"}
@@ -125,7 +132,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 2. Account Registration
               </Text>
               {"\n"}In order to access certain features of Aza, you may be
@@ -139,7 +147,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 3. Use of Aza
               </Text>
               {"\n"}Aza is intended for personal, non-commercial use. You may
@@ -153,7 +162,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 {" "}
                 .
               </Text>{" "}
@@ -163,7 +173,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 {" "}
                 .
               </Text>{" "}
@@ -174,7 +185,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 {" "}
                 .
               </Text>{" "}
@@ -185,7 +197,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 4. Prohibited Uses
               </Text>
               {"\n"}
@@ -202,7 +215,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
                   alignItems: "center",
-                }}>
+                }}
+              >
                 {" "}
                 .
               </Text>{" "}
@@ -213,7 +227,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 {" "}
                 .
               </Text>{" "}
@@ -225,7 +240,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 .
               </Text>{" "}
               Intellectual property infringement: This involves engaging in any
@@ -241,7 +257,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 .
               </Text>{" "}
               Make transfers between Aza users and other banks.{"\n"}
@@ -249,7 +266,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 .
               </Text>{" "}
               Pay utility bills (Electricity, Water, Cable Tv, Airtime/Data,
@@ -259,7 +277,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 .
               </Text>{" "}
               Purchase Gift Cards.{"\n"}
@@ -267,7 +286,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 .
               </Text>{" "}
               Save your money in the Aza vault.
@@ -295,7 +315,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Bold",
                   fontSize: hp(25),
-                }}>
+                }}
+              >
                 .
               </Text>{" "}
               Abuse other users: This includes any activity which interferes
@@ -311,7 +332,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 5. Third Party Affiliation
               </Text>
               {"\n"}
@@ -326,7 +348,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 6. Intellectual Property
               </Text>
               {"\n"}Aza and all content and materials included on Aza, including
@@ -340,7 +363,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 7. Disclaimer of Warranties
               </Text>
               {"\n"}
@@ -355,7 +379,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 8. Indemnification
               </Text>
               {"\n"}You agree to indemnify and hold Aza, and its subsidiaries,
@@ -368,7 +393,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 9. Force Majeure
               </Text>
               {"\n"}We shall not be liable for any delay or failure to perform
@@ -385,7 +411,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 10. Governing Law
               </Text>
               {"\n"}
@@ -397,7 +424,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 11. Dispute Resolution
               </Text>
               {"\n"}
@@ -410,7 +438,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 12. Changes to These Terms
               </Text>
               {"\n"}
@@ -423,7 +452,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 13. Change of Control
               </Text>
               {"\n"}In the event that Aza is acquired by or merged with a
@@ -435,7 +465,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 14. Termination
               </Text>
               {"\n"}Aza reserves the right to terminate this Agreement at any
@@ -446,7 +477,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 15. Complaints and Disputes
               </Text>
               {"\n"}If you have any feedback, questions or complaints, contact
@@ -457,7 +489,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 style={{
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                   fontSize: hp(14),
-                }}>
+                }}
+              >
                 16. Entire Agreement
               </Text>
               {"\n"}These Terms, together with our Privacy Policy constitute the
@@ -470,7 +503,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
             style={{
               alignItems: "center",
               alignSelf: "center",
-            }}>
+            }}
+          >
             <ZEAL
               color={
                 appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
@@ -486,7 +520,8 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"PrivacySettings">) => {
                 marginBottom: hp(20),
                 fontWeight: "400",
                 marginTop: hp(10),
-              }}>
+              }}
+            >
               www.azanaija.com
             </Text>
           </View>

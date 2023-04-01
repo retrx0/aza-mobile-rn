@@ -15,14 +15,24 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UndrawCancelIcon } from "../../../../../assets/svg";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { useAppSelector } from "../../../../redux";
+import { selectUser } from "../../../../redux/slice/userSlice";
+import { IBeneficiary } from "../../../../redux/types";
 
 const BlockUsersScreen = ({
   navigation,
   route,
-}: CommonScreenProps<"BlockNewUser">) => {
+}: CommonScreenProps<"BlockUsers">) => {
   const insets = useSafeAreaInsets();
   const [blockUser] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
+
+  const [selectedBlcokedUser, setSelectedBlcokedUser] = useState<IBeneficiary>({
+    fullName: "",
+    azaAccountNumber: "",
+  });
+
+  const { azaContacts } = useAppSelector(selectUser);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -141,20 +151,25 @@ const BlockUsersScreen = ({
         >
           Blocked Users
         </Text>
+        // TODO map blocked contacts
+        {/* {blockedContats.map((blocked) => {
         <TouchableOpacity
-          style={{
-            paddingHorizontal: hp(20),
-          }}
-          onPress={toggleModal}
-        >
-          <Contact
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEbyNWazv3E1ToRNblv4QnUK8m696KHm-w96VapAaMHQ&s"
-            name={"Adewale Adeyesufu"}
-            phoneNumber={"8012345678"}
-            isContactOnAza={true}
-          />
-        </TouchableOpacity>
-
+        style={{
+          paddingHorizontal: hp(20),
+        }}
+        onPress={() => {
+          setSelectedBlcokedUser(blocked)
+          toggleModal()
+        }}
+      >
+        <Contact
+          image={blocked}
+          name={"Adewale Adeyesufu"}
+          phoneNumber={"8012345678"}
+          isContactOnAza={true}
+        />
+      </TouchableOpacity>
+})} */}
         <View
           style={[
             CommonStyles.passwordContainer,
@@ -172,20 +187,12 @@ const BlockUsersScreen = ({
       <UnblockModal
         navigation={navigation}
         route={route}
-        user="Chiazo"
         toggleModal={toggleModal}
         isModalVisible={isModalVisible}
+        userToBlock={selectedBlcokedUser}
       />
     </SpacerWrapper>
   );
 };
 
 export default BlockUsersScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: hp(20),
-    paddingHorizontal: hp(20),
-  },
-});

@@ -11,8 +11,9 @@ import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "react-native";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const MaturedVault = ({ navigation }: CommonScreenProps<"mature">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -76,10 +77,7 @@ const MaturedVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             //     ?.navigate("Common", { screen: "VaultToBank" })
             // }
             onPressButton={() => {
-              navigation.navigate("Common", {
-                screen: "BankAccounts",
-                params: { screenType: "Withdraw" },
-              });
+              navigation.navigate("BankAccounts", { screenType: "Withdraw" });
             }}
             style={[CommonStyles.toAzabutton]}
             styleText={CommonStyles.toAzabuttonText}
