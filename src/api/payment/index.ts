@@ -4,12 +4,12 @@ type PaymentType = {
   sourceAccount: string;
   destinationAccount: string;
   amount: number;
-  destinationChannel: string;
+  destinationBank?: string;
   destinationBankCode: string;
   description: string;
   currency: string;
   transactionPin: string;
-  destinationAccountName: string;
+  destinationAccountName?: string;
 };
 
 export const checkPaymentEndpointHealthAPI = async () => {
@@ -19,7 +19,7 @@ export const checkPaymentEndpointHealthAPI = async () => {
 export const payAzaUserAPI = async (data: PaymentType) => {
   return await apiCourier<PaymentType>(
     "post",
-    "/api/v1/payment/transfer/aza",
+    "/api/v1/payment/transfer/intra",
     data,
     "jwt"
   );
@@ -28,7 +28,7 @@ export const payAzaUserAPI = async (data: PaymentType) => {
 export const payOtherBankAPI = async (data: PaymentType) => {
   return await apiCourier<PaymentType>(
     "post",
-    "/api/v1/payment/transfer/other",
+    "/api/v1/payment/transfer/inter",
     data,
     "jwt"
   );

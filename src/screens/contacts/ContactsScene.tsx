@@ -232,8 +232,8 @@ const ContactsScene = ({
           </View>
           <TextInput
             keyboardType={"number-pad"}
-            returnKeyType={"send"}
-            returnKeyLabel={"Send"}
+            returnKeyType={"done"}
+            returnKeyLabel={"done"}
             value={receipientAzaNumber}
             onChangeText={(number) => setReceipientAzaNumber(number)}
             style={{
@@ -251,7 +251,7 @@ const ContactsScene = ({
         </View>
         <View style={{ marginTop: 10 }}>
           <Button
-            title="Send"
+            title="Continue"
             onPressButton={() => {
               sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
             }}

@@ -17,7 +17,11 @@ import {
   ITransactionState,
 } from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { NAIRA_UNICODE } from "../../../constants/AppConstants";
+import {
+  NAIRA_CCY_CODE,
+  NAIRA_UNICODE,
+  PSB_BANK_CODE,
+} from "../../../constants/AppConstants";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
 import { selectUser } from "../../../redux/slice/userSlice";
@@ -26,6 +30,7 @@ import { requestMoneyAPI } from "../../../api/money-request";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
 import { payAzaUserAPI } from "../../../api/payment";
 import { toastError } from "../../../common/util/ToastUtil";
+import ActivityModal from "../../../components/modal/ActivityModal";
 
 type TransactionScreenProps = {
   confirmationType: "send" | "request";
@@ -48,6 +53,8 @@ const TransactionConfirmationScreen = ({
 
   const [transDescription, setTransDescription] = useState(description);
 
+  const [screenLoading, setScreenLoading] = useState(false);
+
   const dispatch = useAppDispatch();
 
   useNavigationHeader(navigation, "Confirmation");
@@ -55,7 +62,7 @@ const TransactionConfirmationScreen = ({
   const makeTransaction = async () => {
     // do some validation
 
-    if (bvnVerified) {
+    if (!bvnVerified) {
       navigation.navigate("BvnVerification", {
         onVerifyNavigateBackTo:
           confirmationType === "send"
@@ -69,57 +76,38 @@ const TransactionConfirmationScreen = ({
       let transactionCompleted = false;
 
       if (confirmationType === "send") {
-        // const transfer = await transferToAzaUserAPI({
-        //   amount: "" + amount,
-        //   fromAccount: azaAccountNumber,
-        //   fromBvn: bvnNumber,
-        //   fromClientId: "",
-        //   fromClient: "",
-        //   fromSavingsId: "",
-        //   toClient: "",
-        //   toBvn: "",
-        //   toAccount: beneficiary.azaAccountNumber,
-        //   toBank: "",
-        //   signature: "Aza",
-        //   remark: "",
-        //   transferType: "intra",
-        //   reference: transDescription ? transDescription : "Aza transaction",
-        //   toSession: "",
-        //   toKyc: "",
-        // });
-        const transfer = await payAzaUserAPI({
+        setScreenLoading(true);
+        payAzaUserAPI({
           sourceAccount: azaAccountNumber,
           destinationAccount: beneficiary.azaAccountNumber,
           amount,
           transactionPin: "",
           description: transDescription ? transDescription : "Aza transaction",
-          currency: "NGN",
-          destinationAccountName: "",
-          destinationBankCode: "",
-          destinationChannel: "",
-        });
-
-        console.log(transfer);
-
-        if (transfer) {
-          transactionCompleted = true;
-        } else {
-          toastError("There was a problem completing transaction!");
-        }
+          currency: NAIRA_CCY_CODE,
+          destinationBankCode: PSB_BANK_CODE,
+        })
+          .then((res) => {
+            console.log(res);
+            transactionCompleted = true;
+            setScreenLoading(false);
+          })
+          .catch(() => {
+            setScreenLoading(false);
+            toastError("There was a problem completing transaction!");
+          });
       } else {
-        const request = await requestMoneyAPI({
+        requestMoneyAPI({
           amount: amount,
           decription: transDescription ? transDescription : "",
           initiatorAccountNumber: "" + azaAccountNumber,
           receipientAccountNumber: beneficiary.azaAccountNumber,
           recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
-        });
-
-        if (request) {
-          transactionCompleted = true;
-        } else {
-          toastError("There was a problem making the request!");
-        }
+        })
+          .then(() => {
+            transactionCompleted = true;
+          })
+          .catch(() => {});
+        toastError("There was a problem making the request!");
       }
 
       if (transactionCompleted) {
@@ -300,6 +288,7 @@ const TransactionConfirmationScreen = ({
           style={{ marginTop: 5 }}
         />
       </View>
+      <ActivityModal loading={screenLoading} />
     </SpacerWrapper>
   );
 };

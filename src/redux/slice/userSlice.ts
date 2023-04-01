@@ -4,7 +4,12 @@ import { Dstv, Ie, Mtn } from "../../../assets/images";
 import api from "../../api";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
-import { I9PSBWallet, ITransactions, IUserState } from "../types";
+import {
+  I9PSBWallet,
+  ITransactions,
+  IUserInfoResponse,
+  IUserState,
+} from "../types";
 
 // Define the initial state using that type
 const initialState: IUserState = {
@@ -16,7 +21,7 @@ const initialState: IUserState = {
   fullName: "",
   pictureUrl: "https://ui-avatars.com/api/?name=Aza",
   azaAccountNumber: "",
-  azaVFDAccountNumber: "",
+  aza9PSBAccountNumber: "",
   azaBalance: 0,
   emailAddress: "",
   accountVerified: false,
@@ -124,12 +129,32 @@ const initialState: IUserState = {
     loaded: false,
     data: [
       {
-        azaAccountNumber: "12345678",
-        fullName: "Test Aza",
-        firstName: "Test",
+        azaAccountNumber: "1100016732",
+        fullName: "CEO",
+        firstName: "CEO",
         lastName: "Aza",
         phone: "2344444444444",
-        pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+        pictureUrl: "https://ui-avatars.com/api/?name=C+E",
+        currency: "NGN",
+        email: "testuser@aza.com",
+      },
+      {
+        azaAccountNumber: "1100016725",
+        fullName: "CTO",
+        firstName: "CTO",
+        lastName: "Aza",
+        phone: "2344444444444",
+        pictureUrl: "https://ui-avatars.com/api/?name=C+T",
+        currency: "NGN",
+        email: "testuser@aza.com",
+      },
+      {
+        azaAccountNumber: "11000167646",
+        fullName: "VP",
+        firstName: "VP",
+        lastName: "Aza",
+        phone: "2344444444444",
+        pictureUrl: "https://ui-avatars.com/api/?name=V+P",
         currency: "NGN",
         email: "testuser@aza.com",
       },
@@ -254,6 +279,7 @@ const initialState: IUserState = {
   bvn: "",
   isEmailConfirmed: false,
   isPhoneNumberConfirmed: false,
+  isTransactionPinSet: false,
   userName: "",
 };
 
@@ -300,7 +326,8 @@ export const userSlice = createSlice({
         state.recentTransactions.loading = true;
       })
       .addCase(getUserTransactions.fulfilled, (state, action) => {
-        state.recentTransactions.data = action.payload.payload;
+        console.log(action.payload);
+        state.recentTransactions.data = action.payload.data;
       })
       .addCase(getUserTransactions.rejected, (state, action) => {
         state.recentTransactions.loading = false;
@@ -314,22 +341,25 @@ export const userSlice = createSlice({
         state.loaded = false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.loading = false;
         state.loaded = true;
-        // state.firstName = action.payload.firstName;
-        // state.lastName = action.payload.lastName;
+        state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
         state.fullName =
-          action.payload.firstName + " " + action.payload.lastName;
-        // state.phoneNumber = action.payload.phoneNumber;
+          action.payload.lastName + ", " + action.payload.firstName;
+        state.phoneNumber = action.payload.phoneNumber;
         state.emailAddress = action.payload.email;
         state.gender = action.payload.gender;
         state.bvnVerified = action.payload.isBVNComfirmed;
+        state.accountVerified = action.payload.isBVNComfirmed;
+        state.isTransactionPinSet = action.payload.isTransactionPinSet;
         state.dateOfBirth = action.payload.dateOfBirth;
         state.pictureUrl = action.payload.pictureUrl;
         state.lastLogin = action.payload.lastLogin;
         state.accountTier = action.payload.accountTier;
         state.dateOfBirth = action.payload.dateOfBirth;
-        state.azaVFDAccountNumber = action.payload.vfdAccount;
+        state.aza9PSBAccountNumber = action.payload.walletNumber;
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
       .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
@@ -349,7 +379,6 @@ export const userSlice = createSlice({
       .addCase(getUserAccountDetails.pending, (state, action) => {})
       .addCase(getUserAccountDetails.rejected, (state, action) => {})
       .addCase(getUserAccountDetails.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.azaAccountNumber = String(action.payload.walletNumber);
         state.azaBalance = action.payload.availableBalance;
         state.accountStatus = action.payload.status;
@@ -384,9 +413,12 @@ export const getSupportedBanks = createAsyncThunk("banks", async () => {
   return await thunkCourier("get", "/api/v1/bank/banks");
 });
 
-export const getUserInfo = createAsyncThunk("user/getInfo", async () => {
-  return await thunkCourier("get", "/api/v1/user/info");
-});
+export const getUserInfo = createAsyncThunk<IUserInfoResponse>(
+  "user/getInfo",
+  async () => {
+    return await thunkCourier("get", "/api/v1/user/info");
+  }
+);
 
 export const getUserAccountDetails = createAsyncThunk<I9PSBWallet>(
   "user/getAccount",
@@ -404,10 +436,10 @@ export const getUserAccountDetailsWithNumber = createAsyncThunk(
 
 export const getUserTransactions = createAsyncThunk(
   "user/getTransactions",
-  async ({ accountNumber }: { accountNumber: number }) => {
+  async ({ accountNumber }: { accountNumber: string }) => {
     return await thunkCourier(
       "get",
-      `/api/v1/account/${accountNumber}/transactions`
+      `/api/v1/account/${accountNumber}/trnasactions`
     );
   }
 );

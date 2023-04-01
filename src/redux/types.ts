@@ -178,7 +178,7 @@ export interface IUserState {
   lastName: string;
   pictureUrl: string | undefined;
   azaAccountNumber: string;
-  azaVFDAccountNumber: string;
+  aza9PSBAccountNumber: string;
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;
@@ -190,6 +190,7 @@ export interface IUserState {
   bvn: string;
   isEmailConfirmed: boolean;
   isPhoneNumberConfirmed: boolean;
+  isTransactionPinSet: boolean;
   userName: string;
   transfers: {
     loading: boolean;
@@ -212,6 +213,28 @@ export interface IUserState {
 
 export interface IBankState {
   banks: ICommonTypedListResult<IBank>;
+}
+
+/* RESPONSE STATES */
+
+export interface IUserInfoResponse {
+  accountTier: any;
+  bvn: string;
+  dateOfBirth: string;
+  email: string;
+  firstName: string;
+  gender: string;
+  isBVNComfirmed: boolean;
+  isDateOfBirthConfirmed: boolean;
+  isEmailConfirmed: boolean;
+  isPhoneNumberConfirmed: boolean;
+  isTransactionPinSet: boolean;
+  lastLogin: string;
+  lastName: string;
+  phoneNumber: string;
+  pictureUrl: string;
+  userName: any;
+  walletNumber: string;
 }
 
 export interface I9PSBWallet {

@@ -39,7 +39,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "googleServicesFile": "google-services.json",
+      "googleServicesFile": "./google-services.json",
       "versionCode": 14
     },
     "web": {
