@@ -142,24 +142,15 @@ export const createPinAPI = async (newTransactionPin: string) => {
 };
 
 export const updatePinAPI = async (oldPin: string, newPin: string) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.patch(
-      "/api/v1/user/update-pin",
-      {
-        oldPin,
-        newPin,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result.data;
-  } catch (e) {
-    console.log(e as Error);
-  }
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/update-pin",
+    {
+      oldPin,
+      newPin,
+    },
+    "jwt"
+  );
 };
 
 export const resetPinAPI = async (newTransactionPin: string) => {

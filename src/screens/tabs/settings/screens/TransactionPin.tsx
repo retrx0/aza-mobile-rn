@@ -8,55 +8,27 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import CommonStyles from "../../../../common/styles/CommonStyles";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
-import { setUserTransactionPinAPI } from "../../../../api/user";
-import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+import useSettings from "../hooks/useSettings";
+import ActivityModal from "../../../../components/modal/ActivityModal";
 
 const TransactionPin = ({
   navigation,
   route,
 }: CommonScreenProps<"TransactionPin">) => {
-  const [pin, setPin] = useState("");
-
   const pinSceenType = route.params.type;
   const capitalizedScreenType =
     pinSceenType.charAt(0).toUpperCase() + pinSceenType.slice(1);
+  const [pin, setPin] = useState("");
+  const [pin2, setNewPin] = useState("");
 
   useNavigationHeader(navigation, `Transaction Pin`);
 
-  const handleChangePin = () => {
-    switch (pinSceenType) {
-      case "set":
-        setUserTransactionPinAPI(pin)
-          .then((res) => {
-            navigation.getParent()?.navigate("Settings");
-            toastSuccess("Transaction pin set successfully");
-          })
-          .catch((e) => {
-            console.debug(e);
-            toastError("Couldn't set transaction pin!");
-          });
-        break;
-      case "update":
-        confirmPin();
-        break;
-      case "reset":
-        break;
-      case "confirm":
-        break;
-      case "transaction":
-        break;
-      default:
-        break;
-    }
-  };
-
-  const confirmPin = () => {
-    setPin("");
-    navigation.navigate("TransactionPin", { type: "confirm" });
-  };
+  const { handlePinChange, loading } = useSettings({
+    navigation: navigation,
+    route: route,
+  });
 
   return (
     <SpacerWrapper>
@@ -72,7 +44,7 @@ const TransactionPin = ({
           }}
         >
           {pinSceenType !== "transaction"
-            ? `You can ${capitalizedScreenType} your transaction pin`
+            ? `You can ${pinSceenType} your transaction pin`
             : "Please type in your transaction pin"}
         </Text>
         <View
@@ -87,34 +59,80 @@ const TransactionPin = ({
             value={pin}
             secureInput
             pinCount={4}
-            withKeypad
-            headerText={`${capitalizedScreenType} Pin`}
+            withKeypad={pinSceenType === "transaction"}
+            headerText={
+              pinSceenType === "update"
+                ? "Current Pin"
+                : `${capitalizedScreenType} Pin`
+            }
             autoFocusOnLoad={false}
+            onCodeFilled={(code) => {
+              if (pinSceenType === "transaction")
+                handlePinChange(pinSceenType, pin);
+            }}
             onValueChanged={(pass) => {
               setPin(pass);
-              if (pass.length > 3 && pass.length === 4 && pass.length < 5) {
-                handleChangePin();
+              if (pinSceenType === "transaction") {
+                if (pass.length > 3 && pass.length === 4 && pass.length < 5) {
+                  setTimeout(() => {
+                    handlePinChange(pinSceenType, pass);
+                  }, 100);
+                }
               }
             }}
             headerstyle={{
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
+              paddingBottom: 20,
             }}
           />
         </View>
+        {(pinSceenType === "update" || pinSceenType === "set") && (
+          <View
+            style={{
+              marginTop: hp(10),
+              marginBottom: hp(80),
+              paddingHorizontal: hp(35),
+              paddingVertical: hp(20),
+            }}
+          >
+            <SegmentedInput
+              value={pin2}
+              secureInput
+              pinCount={4}
+              withKeypad={false}
+              headerText={pinSceenType === "set" ? "Confirm" : `New Pin`}
+              autoFocusOnLoad={false}
+              onCodeFilled={() => {}}
+              onValueChanged={(pass) => setNewPin(pass)}
+              headerstyle={{
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(16),
+                fontWeight: "500",
+                paddingBottom: 20,
+              }}
+            />
+          </View>
+        )}
       </View>
-      {/* <Button
-        title="Save Changes"
-        disabled={pin.length < 4 ? true : false}
-        onPressButton={handleChangePin}
-        styleText={{
-          fontFamily: "Euclid-Circular-A-Medium",
-          fontSize: 14,
-        }}
-        style={{ bottom: 10 }}
-        buttonLoading={isButtonLoading}
-      /> */}
+      {(pinSceenType === "update" || pinSceenType === "set") && (
+        <Button
+          title="Save Changes"
+          disabled={
+            pinSceenType === "update"
+              ? pin.length < 4 || pin === pin2 || pin2.length < 4
+              : pin.length < 4 || pin !== pin2 || pin2.length < 4
+          }
+          onPressButton={() => handlePinChange(pinSceenType, pin, pin2)}
+          styleText={{
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: 14,
+          }}
+          style={{ bottom: 10 }}
+          buttonLoading={loading}
+        />
+      )}
     </SpacerWrapper>
   );
 };

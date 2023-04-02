@@ -283,7 +283,7 @@ const CommonStack = () => {
         <Stack.Screen
           name="TransactionPin"
           component={TransactionPin}
-          options={{ presentation: "modal" }}
+          options={{ presentation: "modal", gestureEnabled: false }}
         />
 
         <Stack.Screen
@@ -385,7 +385,7 @@ const CommonStack = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="NewUserVault"
+          name="NewUserVault" // @ts-ignore
           component={NewUserVault}
         />
         <Stack.Screen
@@ -403,9 +403,10 @@ const CommonStack = () => {
           name="ConfirmGoal"
           component={ConfirmGoal}
         />
+
         <Stack.Screen
           options={{ headerShown: false }}
-          name="UserVault"
+          name="UserVault" // @ts-ignore
           component={UserVault}
         />
         <Stack.Screen
@@ -1013,7 +1014,9 @@ const CommonStack = () => {
           name="RequestMoneyFeature"
           component={RequestMoneyFeature}
         />
+        {/* @ts-ignore */}
         <Stack.Screen name="WithdrawFeature" component={WithdrawFeature} />
+        {/* @ts-ignore */}
         <Stack.Screen name="DepositFeature" component={DepositFeature} />
         <Stack.Screen
           name="TermsOfUse"

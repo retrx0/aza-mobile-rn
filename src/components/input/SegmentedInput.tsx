@@ -17,6 +17,8 @@ type SegmentedInputProps = {
   autoFocusOnLoad?: boolean;
   withKeypad?: boolean;
   pinCount?: number;
+  onCodeFilled?: (code: string) => void;
+  isLoading?: boolean;
 };
 
 const SegmentedInput = (props: SegmentedInputProps) => {
@@ -30,6 +32,8 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     autoFocusOnLoad = true,
     withKeypad,
     pinCount,
+    isLoading,
+    onCodeFilled,
   } = props;
   return (
     <View style={[styles.otpContainer, style]}>
@@ -56,7 +60,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         autoFocusOnLoad={false}
         codeInputFieldStyle={styles.underlineStyleBase}
         // codeInputHighlightStyle={styles.underlineStyleHighLighted}
-        onCodeFilled={() => null}
+        onCodeFilled={onCodeFilled}
         style={{ marginBottom: hp(20), marginTop: hp(10) }}
       />
       <View style={[{ position: "absolute", left: 0, right: 0, top: 180 }]}>
@@ -64,8 +68,9 @@ const SegmentedInput = (props: SegmentedInputProps) => {
           <VirtualKeyboard
             value={value}
             setValue={onValueChanged}
-            maxLength={6}
+            maxLength={pinCount ? pinCount : 6}
             allowZeroAsFirstCharacter
+            isLoading={isLoading}
           />
         )}
       </View>

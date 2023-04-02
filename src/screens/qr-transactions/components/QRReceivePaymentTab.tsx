@@ -19,7 +19,7 @@ import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const QRReceivePaymentTab = ({
   navigation,
-}: RootStackScreenProps<"QRTransactions">) => {
+}: RootStackScreenProps<"QRReceivePayment">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
 
@@ -30,12 +30,13 @@ const QRReceivePaymentTab = ({
 
   return (
     <>
-      <View style={[CommonStyles.vaultcontainer]}>
+      <View style={[CommonStyles.vaultcontainer, { marginTop: 0 }]}>
         <View
           style={{
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -44,7 +45,8 @@ const QRReceivePaymentTab = ({
               fontSize: hp(14),
               marginTop: hp(40),
               marginBottom: hp(20),
-            }}>
+            }}
+          >
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -66,7 +68,8 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -76,7 +79,8 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: hp(40),
             marginBottom: hp(30),
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <Button
@@ -99,7 +103,7 @@ const QRReceivePaymentTab = ({
                 description: description,
               })
             );
-            navigation.navigate("QRCode");
+            navigation.goBack();
           }}
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",

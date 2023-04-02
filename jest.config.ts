@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-module.exports = {
+export default {
   preset: "jest-expo",
   collectCoverage: true,
   // setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],

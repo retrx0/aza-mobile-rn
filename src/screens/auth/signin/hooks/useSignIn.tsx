@@ -65,9 +65,7 @@ const useSignIn = () => {
 
       if (jwt) {
         try {
-          await storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-            requireAuthentication: false,
-          });
+          await storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
           await storeItemSecure(
             STORAGE_KEY_USER_CREDS,
             JSON.stringify({
@@ -110,6 +108,7 @@ const useSignIn = () => {
   }: SignInScreenProps<"SignInWelcomeBack">) => {
     const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
     const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
+
     const cachedUser = route.params.cachedUser;
 
     // TODO add check to see if account is closed or locked

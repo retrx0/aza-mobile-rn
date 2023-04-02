@@ -66,18 +66,23 @@ const SignInWelcomeBackScreen = ({
               onValueChanged={(code) => {
                 setPasscode(code);
                 if (code.length > 5 && code.length === 6 && code.length < 7)
-                  verifyPassword(
-                    user.emailAddress,
-                    user.phoneNumber,
-                    code,
-                    user.fullName,
-                    { navigation, route }
+                  setTimeout(
+                    () =>
+                      verifyPassword(
+                        user.emailAddress,
+                        user.phoneNumber,
+                        code,
+                        user.fullName,
+                        { navigation, route }
+                      ),
+                    100
                   );
               }}
               headerText="Password"
               secureInput={true}
               autoFocusOnLoad
               withKeypad
+              isLoading={screenLoading}
             />
           </View>
           <View

@@ -1,3 +1,4 @@
+import React from "react";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -29,7 +30,7 @@ const App = () => {
       setisDeviceRooted(rooted)
     );
 
-    // TODO fix below code 
+    // TODO fix below code
     NetInfo.addEventListener((netChange) => {
       if (
         netChange.isConnected === false &&

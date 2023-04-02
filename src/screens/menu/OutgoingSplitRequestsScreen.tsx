@@ -7,7 +7,7 @@ import CommonRequestScreen from "./components/split/CommonRequestScreen";
 const OutgoingSplitRequestsScreen = ({
   navigation,
   route,
-}: CommonScreenProps<"IncomingSplitRequests">) => {
+}: CommonScreenProps<"OutgoingSplitRequests">) => {
   // OutgoingSplitRequest
   return (
     <CommonRequestScreen

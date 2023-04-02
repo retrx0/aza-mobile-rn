@@ -5,12 +5,13 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["node_modules/yup"],
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": ["@types/jest", "jest", "node"]
     // "baseUrl": "./",
     // "paths": {
     //   "@screens/*": ["/src/screens/*"],
     //   "@components/*": ["/src/components/*"]
     // }
-  },
-  "typeRoots": ["./src/types"]
+  }
+  // "typeRoots": ["./src/types"]
 }

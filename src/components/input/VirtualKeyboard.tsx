@@ -14,6 +14,7 @@ interface IProps {
   maxLength: number;
   withComma?: boolean;
   allowZeroAsFirstCharacter?: boolean;
+  isLoading?: boolean;
 }
 
 const VirtualKeyboard = ({
@@ -22,6 +23,7 @@ const VirtualKeyboard = ({
   maxLength,
   withComma,
   allowZeroAsFirstCharacter,
+  isLoading,
 }: IProps) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
@@ -55,6 +57,7 @@ const VirtualKeyboard = ({
       <TouchableOpacity
         key={i}
         onPress={() => onKeyPress(key)}
+        disabled={isLoading}
         style={{
           flex: 1,
           justifyContent: "center",
@@ -62,22 +65,24 @@ const VirtualKeyboard = ({
         }}
       >
         {key === "backIcon" ? (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              transform: [{ rotate: "180deg" }],
-            }}
-          >
-            <ArrowRightIcon
-              style={{ backgroundColor: "transparent" }}
-              color={
-                appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
-              }
-              size={24}
-            />
-          </View>
+          !isLoading && (
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                transform: [{ rotate: "180deg" }],
+              }}
+            >
+              <ArrowRightIcon
+                style={{ backgroundColor: "transparent" }}
+                color={
+                  appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
+                }
+                size={24}
+              />
+            </View>
+          )
         ) : (
           <Text
             style={{
@@ -85,6 +90,9 @@ const VirtualKeyboard = ({
               fontSize: hp(24),
               padding: 10,
               textAlign: "center",
+              color: isLoading
+                ? Colors[appTheme].secondaryText
+                : Colors[appTheme].text,
             }}
           >
             {key}

@@ -22,6 +22,8 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { toastError, toastInfo } from "../../common/util/ToastUtil";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import Button from "../../components/buttons/Button";
+import { useState } from "react";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -30,6 +32,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const user = useAppSelector(selectUser);
   const transaction = useAppSelector(selectTransaction);
   const insets = useSafeAreaInsets();
+
+  const [amount, setAmount] = useState(0);
 
   useNavigationHeader(navigation, "QR Transactions");
 
@@ -90,7 +94,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           >
             {user.fullName}
           </Text>
-          <View style={[CommonStyles.row]}>
+          {/* <View style={[CommonStyles.row]}>
             <NairaIcon
               color={
                 appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
@@ -109,13 +113,12 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             >
               {numberWithCommas(transaction.amount)}
             </Text>
-          </View>
+          </View> */}
         </View>
         <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <QRCode
             value={JSON.stringify({
               azaNumber: user.azaAccountNumber,
-              amount: transaction.amount,
             })}
             size={220}
             logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
@@ -150,6 +153,14 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               });
             }}
           /> */}
+          <Button
+            title="Set Amount"
+            styleText={{}}
+            style={{ marginBottom: 10 }}
+            onPressButton={() => {
+              navigation.navigate("QRReceivePayment");
+            }}
+          />
           <ButtonWithUnderline
             title="Save to Gallery"
             color={appTheme === "dark" ? "#262626" : "#EAEAEC"}

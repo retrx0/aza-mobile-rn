@@ -18,6 +18,14 @@ interface IXCharity extends ICharity {
 interface IXGiftCard extends IGiftCard {
   selectedPrice: string;
 }
+
+export type TransactionScreenPinType =
+  | "set"
+  | "update"
+  | "reset"
+  | "transaction"
+  | "confirm";
+
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
@@ -139,7 +147,7 @@ export type CommonStackParamList = {
   Appearance: undefined;
   AppLanguage: undefined;
   TransactionPin: {
-    type: "set" | "update" | "reset" | "transaction" | "confirm";
+    type: TransactionScreenPinType;
     confirmPinString?: string;
   };
 
@@ -226,6 +234,10 @@ export type TransactionKeypadParamsType = {
 export type VaultConfirmationParamsType = {
   transactionType: RecurringTransaction | NormalTransaction;
   headerTitle: string;
+};
+
+export type TransactionScreenProps = {
+  confirmationType: "send" | "request";
 };
 
 // bvn screen

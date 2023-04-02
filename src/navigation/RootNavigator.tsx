@@ -26,6 +26,7 @@ import {
 } from "../redux/slice/userSlice";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import QRReceivePaymentTab from "../screens/qr-transactions/components/QRReceivePaymentTab";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -154,8 +155,21 @@ const RootNavigator = ({
           component={NotFoundScreen}
           options={{ title: "Oops!" }}
         />
-        <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
+        <Stack.Screen
+          name="QRTransactions"
+          component={QRTransactionsScreen}
+          options={{ presentation: "card" }}
+        />
         <Stack.Screen name="QRCode" component={QRCodeScreen} />
+        <Stack.Screen
+          name="QRReceivePayment"
+          component={QRReceivePaymentTab}
+          options={{
+            presentation: "modal",
+            headerTitle: "Receive Payment",
+            gestureEnabled: true,
+          }}
+        />
         <Stack.Screen
           name="CEOMessage"
           component={CEOMessage}

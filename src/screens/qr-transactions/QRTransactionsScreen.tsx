@@ -15,6 +15,8 @@ import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import QRCodeScreen from "./QRCodeScreen";
+import { CommonScreenProps } from "../../common/navigation/types";
 
 const QRTransactionsScreen = ({
   navigation,
@@ -34,7 +36,8 @@ const QRTransactionsScreen = ({
     navigation,
     "QR Transactions",
     <TouchableOpacity
-      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}>
+      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}
+    >
       {/* TODO Add these colors to Colors.ts and import them */}
       <InfoIcon
         color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
@@ -48,7 +51,8 @@ const QRTransactionsScreen = ({
       case "first":
         return <QRMakePaymentTab navigation={navigation} route={route} />;
       case "second":
-        return <QRReceivePaymentTab navigation={navigation} route={route} />;
+        // @ts-ignore
+        return <QRCodeScreen navigation={navigation} route={route} />;
     }
   };
 
@@ -86,7 +90,8 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}>
+                    }}
+                  >
                     {route.title}
                   </Text>
                 );

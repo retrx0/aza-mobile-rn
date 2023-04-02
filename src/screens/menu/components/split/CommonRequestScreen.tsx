@@ -20,7 +20,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 const CommonRequestScreen = ({
   navigation,
   type,
-}: CommonScreenProps<"IncomingSplitRequests"> & {
+}: CommonScreenProps<"IncomingSplitRequests" | "OutgoingSplitRequests"> & {
   type: "incoming" | "outgoing";
 }) => {
   const [index, setIndex] = useState(0);
