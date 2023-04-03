@@ -272,11 +272,20 @@ const sentToAzaNumber = (
   azaContactOnPress: (beneficiary: IBeneficiary) => void
 ) => {
   //do some check with aza number
-  verifyAzaNumber(azaNumber).then((verifiedUser) => {
-    if (verifiedUser) {
-      azaContactOnPress(verifiedUser);
-    } else {
-    }
+  // verifyAzaNumber(azaNumber).then((verifiedUser) => {
+  //   if (verifiedUser) {
+  //   } else {
+  //   }
+  // });
+
+  azaContactOnPress({
+    azaAccountNumber: azaNumber,
+    fullName: azaNumber,
+    beneficiaryName: "",
+    currency: "NGN",
+    email: "",
+    firstName: "",
+    lastName: "",
   });
 };
 
