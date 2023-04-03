@@ -38,17 +38,16 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const handleSubmission = async (email: string) => {
     setButtonLoading(true);
     const userLoginInfo = await getUserLoginInfoAPI(email);
-
     if (userLoginInfo) {
       dispatch(
         setUserPhoneAndFullName({
-          phoneNumber: userLoginInfo.phoneNumber,
-          fullName: userLoginInfo.fullName,
+          phoneNumber: userLoginInfo.data.phoneNumber,
+          fullName: userLoginInfo.data.fullName,
         })
       );
       requestOtpApi({
         email: "",
-        phoneNumber: userLoginInfo.phoneNumber,
+        phoneNumber: userLoginInfo.data.phoneNumber,
       }).then(() => setButtonLoading(false));
 
       navigation.navigate("SignInOTP");

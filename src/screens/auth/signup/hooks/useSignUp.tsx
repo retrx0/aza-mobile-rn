@@ -34,7 +34,10 @@ const useSignUp = () => {
 
   const handleSignUp = async (
     passcode: string,
-    { navigation, route }: SignUpScreenProps<"SignUpPassword">
+    {
+      navigation,
+      route,
+    }: SignUpScreenProps<"SignUpPassword" | "SignUpConfirmPassword">
   ) => {
     const { passwordScreenType } = route.params;
 
@@ -99,13 +102,13 @@ const useSignUp = () => {
                         fullName: newUser.firstName + " " + newUser.lastName,
                       })
                     );
+                    dispatch(getUserInfo());
                     navigation.getParent()?.navigate("Root");
                     if (!ceoMessageShown || ceoMessageShown === "null") {
                       //show CEO Message
                       navigation.getParent()?.navigate("CEOMessage");
                       storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
                     }
-                    dispatch(getUserInfo());
                   } catch (e) {
                     console.debug(
                       "There was a problem logging user in after signup",

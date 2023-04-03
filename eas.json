@@ -46,6 +46,8 @@
     }
   },
   "submit": {
+    "development": { "android": {}, "ios": {} },
+    "preview": { "android": {}, "ios": {} },
     "production": { "android": {}, "ios": {} }
   }
 }

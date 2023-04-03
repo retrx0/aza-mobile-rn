@@ -14,7 +14,7 @@ import useSignUp from "./hooks/useSignUp";
 const SignUpPasswordScreen = ({
   navigation,
   route,
-}: SignUpScreenProps<"SignUpPassword">) => {
+}: SignUpScreenProps<"SignUpPassword" | "SignUpConfirmPassword">) => {
   const { passwordScreenType } = route.params;
   const [passcode, setPasscode] = useState("");
   const { handleSignUp, loading, isConfirmScreen } = useSignUp();

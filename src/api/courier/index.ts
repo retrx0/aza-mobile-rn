@@ -38,7 +38,7 @@ const addJWTAuthorizationHeader = async (
   }
 };
 
-export async function apiCourier<T>(
+export async function apiCourier<T, R>(
   type: "get" | "post" | "patch" | "put",
   url: string,
   data: T,
@@ -46,7 +46,7 @@ export async function apiCourier<T>(
 ) {
   try {
     const authJwt = await addJWTAuthorizationHeader(jwtAuthType);
-    const result = await api.request({
+    const result = await api.request<R>({
       method: type,
       url: url,
       data: type === "get" ? undefined : data,

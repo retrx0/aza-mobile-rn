@@ -32,11 +32,13 @@ export default function RecentTransactions({
           marginBottom: hp(20),
           flexDirection: "row",
           alignItems: "center",
-        }}>
+        }}
+      >
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Common", { screen: "TransactionHistory" })
-          }>
+          }
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.mainText}
@@ -44,7 +46,8 @@ export default function RecentTransactions({
               marginRight: hp(3),
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(18),
-            }}>
+            }}
+          >
             Recent Transactions
           </Text>
         </TouchableOpacity>

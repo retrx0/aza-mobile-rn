@@ -41,7 +41,7 @@ const SignUpRoot = () => {
       <SignUpStack.Screen
         component={SignUpPasswordScreen}
         initialParams={confirm}
-        name="SignUpPassword"
+        name="SignUpConfirmPassword"
         options={{ headerShown: false }}
       />
 

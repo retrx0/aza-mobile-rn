@@ -23,11 +23,12 @@ import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlic
 import { requestOtpApi } from "../../../api/auth";
 import Phone from "./PhoneStage";
 import { useCountries } from "../../../hooks/useCountries";
+import { phone } from "phone";
 
 const PhoneNumberScreen = ({
   navigation,
 }: SignUpScreenProps<"SignUpPhoneNumber">) => {
-  const [phone, setPhone] = useState<string>("");
+  // const [phone, setPhone] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
@@ -78,7 +79,9 @@ const PhoneNumberScreen = ({
           onChangeText={(number) => {
             setPhoneNumber(number);
           }}
-          onChangePhoneNumber={(p: React.SetStateAction<string>) => setPhone(p)}
+          onChangePhoneNumber={(p: React.SetStateAction<string>) =>
+            setPhoneNumber(p)
+          }
           initialValue={phoneNumber}
           autoFormat
           textStyle={[CommonStyles.textStyle]}
@@ -110,16 +113,13 @@ const PhoneNumberScreen = ({
           }}
           styleText={{}}
           style={[CommonStyles.button]}
-          disabled={phoneNumber.length < 7}
+          disabled={!phone(country.code + phoneNumber).isValid}
         />
       </SpacerWrapper>
       <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>
         <View
           style={[
             { borderRadius: hp(10), marginTop: hp(50), marginBottom: hp(50) },
-            // {
-            //   backgroundColor: colorScheme === "dark" ? "white" : "#dark",
-            // },
           ]}
         >
           <FlatList

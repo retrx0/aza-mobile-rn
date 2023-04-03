@@ -1,6 +1,8 @@
+import { ENV } from "@env";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { CountriesType } from "../../types";
+import { ENV_DEVELOPMENT } from "../constants/AppConstants";
 
 const staticCountries = [
   {
@@ -28,7 +30,9 @@ const staticCountries = [
 
 export const useCountries = () => {
   const [loading, setLoading] = useState(false);
-  const [countries, setCountries] = useState<CountriesType[]>(staticCountries);
+  const [countries, setCountries] = useState<CountriesType[]>(
+    ENV === ENV_DEVELOPMENT ? staticCountries : [staticCountries[0]]
+  );
 
   useEffect(() => {
     // fetchCountry();

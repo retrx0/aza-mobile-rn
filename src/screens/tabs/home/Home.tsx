@@ -7,16 +7,12 @@ import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
 import { useAppDispatch, useAppSelector } from "../../../redux";
-import { useNotifications } from "../../../hooks/useNotifications";
 import {
   getUserAccountDetails,
-  getUserTransactions,
   selectUser,
 } from "../../../redux/slice/userSlice";
 import { ScrollView, View as View } from "../../../theme/Themed";
-import NotificationsContainer from "./components/NotificationsContainer";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import CommonStyles from "../../../common/styles/CommonStyles";
 import { useState } from "react";
 
 const Home = ({
