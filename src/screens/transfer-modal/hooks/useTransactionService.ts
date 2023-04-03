@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { requestMoneyAPI } from "../../../api/money-request";
 import { payAzaUserAPI } from "../../../api/payment";
-import { TransactionScreenProps } from "../../../common/navigation/types";
+import {
+  CommonScreenProps,
+  TransactionScreenProps,
+} from "../../../common/navigation/types";
 import { toastError } from "../../../common/util/ToastUtil";
 import {
   NAIRA_CCY_CODE,
@@ -28,12 +31,22 @@ import {
 import { STORAGE_KEY_TRANSACTION_PIN } from "@env";
 
 const useTransactionService = (
-  navigation: any,
+  {
+    navigation,
+    route,
+  }: CommonScreenProps<
+    | "TransactionPin"
+    | "SendMoneyConfirmation"
+    | "RequestMoneyConfirmation"
+    | "ChangeEmail"
+    | "ChangePhoneNumber"
+    | "ChangeUserDataOTP"
+  >,
   { confirmationType }: TransactionScreenProps
 ) => {
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
-  const { bvnVerified, azaAccountNumber, bvnNumber } =
+  const { bvnVerified, azaAccountNumber, isTransactionPinSet } =
     useAppSelector(selectUser);
   const userPreferences = useAppSelector(selectAppPreference);
 
@@ -56,7 +69,8 @@ const useTransactionService = (
       //make transaction
       if (confirmationType === "send") {
         // setScreenLoading(true);
-        authenticateForTransaction();
+        if (isTransactionPinSet) authenticateForTransaction();
+        else navigation.navigate("TransactionPin", { type: "set" });
       } else {
         requestMoneyAPI({
           amount: amount,

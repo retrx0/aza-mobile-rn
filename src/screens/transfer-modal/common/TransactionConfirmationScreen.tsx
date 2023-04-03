@@ -43,9 +43,12 @@ const TransactionConfirmationScreen = ({
     screenLoading,
     transDescription,
     setTransDescription,
-  } = useTransactionService(navigation, {
-    confirmationType,
-  });
+  } = useTransactionService(
+    { navigation: navigation, route: route },
+    {
+      confirmationType,
+    }
+  );
 
   return (
     <SpacerWrapper>

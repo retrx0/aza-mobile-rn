@@ -23,9 +23,12 @@ const useSettings = ({
   const [loading, setLoading] = useState(false);
   const [transactionPin, setTransactionPin] = useState("");
 
-  const { sendMoneyToAzaUser } = useTransactionService(navigation, {
-    confirmationType: "send",
-  });
+  const { sendMoneyToAzaUser } = useTransactionService(
+    { navigation: navigation, route: route },
+    {
+      confirmationType: "send",
+    }
+  );
 
   const changeEmailAddress = (newEmail: string, emailValidated: boolean) => {
     setLoading(true);
@@ -132,7 +135,7 @@ const useSettings = ({
         updatePinAPI(transactionPin, newTransactionPin)
           .then((res) => {
             setLoading(false);
-            toastSuccess("Your pin has was updated!");
+            toastSuccess("Your pin has been updated!");
             storeItemSecure(STORAGE_KEY_TRANSACTION_PIN, newTransactionPin);
             navigation.goBack();
           })

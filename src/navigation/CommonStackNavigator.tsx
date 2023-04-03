@@ -283,7 +283,7 @@ const CommonStack = () => {
         <Stack.Screen
           name="TransactionPin"
           component={TransactionPin}
-          options={{ presentation: "modal", gestureEnabled: false }}
+          options={{ presentation: "card", gestureEnabled: false }}
         />
 
         <Stack.Screen
