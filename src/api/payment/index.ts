@@ -17,7 +17,7 @@ export const checkPaymentEndpointHealthAPI = async () => {
 };
 
 export const payAzaUserAPI = async (data: PaymentType) => {
-  return await apiCourier<PaymentType>(
+  return await apiCourier<PaymentType, any>(
     "post",
     "/api/v1/payment/transfer/intra",
     data,
@@ -26,7 +26,7 @@ export const payAzaUserAPI = async (data: PaymentType) => {
 };
 
 export const payOtherBankAPI = async (data: PaymentType) => {
-  return await apiCourier<PaymentType>(
+  return await apiCourier<PaymentType, any>(
     "post",
     "/api/v1/payment/transfer/inter",
     data,

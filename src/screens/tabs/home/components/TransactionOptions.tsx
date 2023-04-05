@@ -6,7 +6,10 @@ import {
   TransferIcon,
   WithdrawIcon,
 } from "../../../../../assets/svg";
-import { RootStackScreenProps, RootTabScreenProps } from "../../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../../types/types.navigation";
 import { hp } from "../../../../common/util/LayoutUtil";
 
 import CustomBottomSheet from "../../../../components/bottomsheet/CustomBottomSheet";

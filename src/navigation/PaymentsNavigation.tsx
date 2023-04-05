@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { PaymentsStackParamList } from "../../types";
+import { PaymentsStackParamList } from "../types/types.navigation";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { SafeAreaView } from "../theme/Themed";
 import CommonStyles from "../common/styles/CommonStyles";

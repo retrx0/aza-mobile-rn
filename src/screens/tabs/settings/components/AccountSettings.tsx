@@ -12,7 +12,7 @@ import {
   TransactionKey,
 } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { useAppSelector } from "../../../../redux";

@@ -20,7 +20,7 @@ const _apiCourier = (query: any, payload?: any) => {
     .catch((error) => ({ error }));
 };
 
-const addJWTAuthorizationHeader = async (
+export const addJWTAuthorizationHeader = async (
   type: "jwt" | "emailOTP" | "phoneOTP" | "none"
 ) => {
   switch (type) {

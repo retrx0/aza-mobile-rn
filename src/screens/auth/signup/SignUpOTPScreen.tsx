@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SignUpScreenProps } from "../../../../types";
+import { SignUpScreenProps } from "../../../types/types.navigation";
 import { requestOtpApi, verifyOtpApi } from "../../../api/auth";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useAppDispatch, useAppSelector } from "../../../redux";

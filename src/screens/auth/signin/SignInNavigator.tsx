@@ -7,7 +7,7 @@ import {
   RootStackScreenProps,
   SignInScreenProps,
   SignInStackParamList,
-} from "../../../../types";
+} from "../../../types/types.navigation";
 
 const LogInStack = createNativeStackNavigator<SignInStackParamList>();
 

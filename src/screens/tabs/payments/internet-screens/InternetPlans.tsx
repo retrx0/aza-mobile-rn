@@ -5,7 +5,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { InternetCard, InternetList } from "../sub-components/Filters";
 import { useAppSelector } from "../../../../redux";

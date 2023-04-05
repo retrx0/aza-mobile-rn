@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { OTPInput } from "../../theme/Themed";
 import { View as View, Text as Text } from "../../theme/Themed";
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
@@ -6,6 +6,14 @@ import { hp, wp } from "../../common/util/LayoutUtil";
 import TransactionKeypadScreen from "../../screens/keypad/TransactionKeypadScreen";
 import VirtualKeyboard from "./VirtualKeyboard";
 import CommonStyles from "../../common/styles/CommonStyles";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from "react-native-reanimated";
 
 type SegmentedInputProps = {
   value: string;
@@ -35,6 +43,37 @@ const SegmentedInput = (props: SegmentedInputProps) => {
     isLoading,
     onCodeFilled,
   } = props;
+
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value,
+    };
+  });
+
+  useEffect(() => {
+    if (isLoading) {
+      opacity.value = withRepeat(
+        withSequence(
+          withTiming(0.2, { duration: 500, easing: Easing.linear }),
+          withTiming(1, { duration: 400 }),
+          withTiming(0.2, { duration: 500, easing: Easing.linear }),
+          withTiming(1, { duration: 400 }),
+          withTiming(0.2, { duration: 500, easing: Easing.linear }),
+          withTiming(1, { duration: 400 }),
+          withTiming(0.2, { duration: 500, easing: Easing.linear }),
+          withTiming(1, { duration: 400 }),
+          withTiming(0.2, { duration: 500, easing: Easing.linear }),
+          withTiming(1, { duration: 400 })
+        ),
+        undefined
+      );
+    }
+  }, [isLoading]);
+
   return (
     <View style={[styles.otpContainer, style]}>
       <Text style={[styles.otpText, headerstyle]}>{headerText}</Text>
@@ -51,18 +90,21 @@ const SegmentedInput = (props: SegmentedInputProps) => {
           }}
         ></View>
       )}
-      <OTPInput
-        keyboardType="number-pad"
-        pinCount={pinCount ? pinCount : 6}
-        code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-        onCodeChanged={(code) => onValueChanged(code)}
-        secureTextEntry={secureInput}
-        autoFocusOnLoad={false}
-        codeInputFieldStyle={styles.underlineStyleBase}
-        // codeInputHighlightStyle={styles.underlineStyleHighLighted}
-        onCodeFilled={onCodeFilled}
-        style={{ marginBottom: hp(20), marginTop: hp(10) }}
-      />
+      <Animated.View style={[animatedStyles]}>
+        <OTPInput
+          keyboardType="number-pad"
+          pinCount={pinCount ? pinCount : 6}
+          code={value} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
+          onCodeChanged={(code) => onValueChanged(code)}
+          secureTextEntry={secureInput}
+          autoFocusOnLoad={false}
+          codeInputFieldStyle={styles.underlineStyleBase}
+          // codeInputHighlightStyle={styles.underlineStyleHighLighted}
+          onCodeFilled={onCodeFilled}
+          style={{ marginBottom: hp(20), marginTop: hp(10) }}
+        />
+      </Animated.View>
+
       <View style={[{ position: "absolute", left: 0, right: 0, top: 180 }]}>
         {withKeypad && (
           <VirtualKeyboard

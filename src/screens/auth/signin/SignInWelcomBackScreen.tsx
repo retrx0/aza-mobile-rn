@@ -4,7 +4,7 @@ import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { SignInScreenProps } from "../../../../types";
+import { SignInScreenProps } from "../../../types/types.navigation";
 import { View as View, Text as Text } from "../../../theme/Themed";
 import { AppState, Image, TouchableOpacity } from "react-native";
 import { useAppSelector } from "../../../redux";
@@ -94,7 +94,7 @@ const SignInWelcomeBackScreen = ({
           </View>
         </View>
       </HideKeyboardOnTouch>
-      <ActivityModal loading={screenLoading} />
+      {/* <ActivityModal loading={screenLoading} /> */}
     </SpacerWrapper>
   );
 };

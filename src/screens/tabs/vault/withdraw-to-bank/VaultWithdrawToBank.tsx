@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { View, Text } from "../../../../theme/Themed";
 
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";

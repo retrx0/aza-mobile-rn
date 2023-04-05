@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
-import { RootStackScreenProps } from "../../../types";
+import { RootStackScreenProps } from "../../types/types.navigation";
 
 import QRMakePaymentTab from "./components/QRMakePaymentTab";
 import QRReceivePaymentTab from "./components/QRReceivePaymentTab";

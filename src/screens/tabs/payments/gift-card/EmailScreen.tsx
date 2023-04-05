@@ -1,5 +1,5 @@
 import { Image, Keyboard, TouchableOpacity } from "react-native";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../theme/Themed";
 

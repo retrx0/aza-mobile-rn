@@ -2,7 +2,7 @@
 
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { useEffect, useState } from "react";
-import { SignUpScreenProps } from "../../../../../types";
+import { SignUpScreenProps } from "../../../../types/types.navigation";
 import { loginUserAPI } from "../../../../api/auth";
 import { createPinAPI, registerUserAPI } from "../../../../api/user";
 import {

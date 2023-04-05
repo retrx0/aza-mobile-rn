@@ -9,7 +9,7 @@ import * as Notifications from "expo-notifications";
 import UserInactivity from "react-native-user-inactivity";
 import ActivityModal from "../components/modal/ActivityModal";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../types/types.navigation";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
@@ -19,7 +19,7 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
 import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import CEOMessage from "../screens/onboarding/CEOMessage";
-import { IUserCred } from "../redux/types";
+import { IUserCred } from "../types/types.redux";
 import {
   setUserEmail,
   setUserPhoneAndFullName,

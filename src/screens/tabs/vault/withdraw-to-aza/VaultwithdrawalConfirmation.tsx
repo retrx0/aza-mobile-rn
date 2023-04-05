@@ -5,7 +5,7 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { VaultStyles as styles } from "../styles";

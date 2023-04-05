@@ -3,7 +3,7 @@ import { View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AZALogo } from "../../../assets/svg";
-import { RootStackScreenProps } from "../../../types";
+import { RootStackScreenProps } from "../../types/types.navigation";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import ButtonMd from "../../components/buttons/ButtonMd";

@@ -12,7 +12,10 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Phone from "../../../auth/common/PhoneStage";
 import { phone } from "phone";
 
-import { CountriesType, CountryProps } from "../../../../../types";
+import {
+  CountriesType,
+  CountryProps,
+} from "../../../../types/types.navigation";
 import { useCountries } from "../../../../hooks/useCountries";
 import { CountriesCard } from "../../../auth/signup/components/CountriesCard";
 import { useAppSelector } from "../../../../redux";

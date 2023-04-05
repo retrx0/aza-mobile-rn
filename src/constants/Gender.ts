@@ -1,4 +1,4 @@
-import { CountriesType } from "../../types";
+import { CountriesType } from "../types/types.navigation";
 
 export const MALE = "male";
 export const FEMALE = "female";

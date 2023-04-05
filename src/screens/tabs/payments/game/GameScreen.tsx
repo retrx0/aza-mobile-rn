@@ -3,7 +3,7 @@ import React from "react";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { GAME } from "../../../../../assets/images";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";

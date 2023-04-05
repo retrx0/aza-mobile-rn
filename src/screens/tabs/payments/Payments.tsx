@@ -19,7 +19,7 @@ import {
   WifiIcon,
 } from "../../../../assets/svg";
 
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import { hp } from "../../../common/util/LayoutUtil";
 
 import { useAppSelector } from "../../../redux";
@@ -89,13 +89,15 @@ export default function Payments({
           alignItems: "center",
           position: "relative",
           marginTop: hp(10),
-        }}>
+        }}
+      >
         <Text style={styles.headerText}>Payments</Text>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Common", { screen: "Pie" });
           }}
-          style={styles.icon}>
+          style={styles.icon}
+        >
           <PieIcon style={styles.imageIcon} />
         </TouchableOpacity>
       </View>
@@ -118,7 +120,8 @@ export default function Payments({
             maxHeight: 120,
             flexDirection: "row",
             marginTop: 15,
-          }}>
+          }}
+        >
           {user.payments.data.map((payment, i) => {
             return (
               <HeadrImage

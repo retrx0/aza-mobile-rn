@@ -8,11 +8,15 @@ import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import Colors from "../../../constants/Colors";
-import { RootStackScreenProps } from "../../../../types";
+import { RootStackScreenProps } from "../../../types/types.navigation";
 
 import { NairaLargeIcon } from "../../../../assets/svg";
 import { useAppDispatch, useAppSelector } from "../../../redux";
-import { setTransaction } from "../../../redux/slice/transactionSlice";
+import {
+  setQRPaymentAmount,
+  setTransaction,
+  setTransactionAmount,
+} from "../../../redux/slice/transactionSlice";
 import { selectUser } from "../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../theme";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
@@ -88,21 +92,24 @@ const QRReceivePaymentTab = ({
           disabled={!amount}
           onPressButton={() => {
             dispatch(
-              setTransaction({
-                amount: Number(amount),
-                beneficiary: {
-                  fullName: user.fullName,
-                  azaAccountNumber: "" + user.azaAccountNumber,
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  email: user.emailAddress,
-                  phone: user.phoneNumber,
-                  pictureUrl: user.pictureUrl,
-                },
-                transferType: "request",
-                description: description,
-              })
+              //   setTransaction({
+              //     amount: Number(amount),
+              //     beneficiary: {
+              //       fullName: user.fullName,
+              //       azaAccountNumber: "" + user.azaAccountNumber,
+              //       firstName: user.firstName,
+              //       lastName: user.lastName,
+              //       email: user.emailAddress,
+              //       phone: user.phoneNumber,
+              //       pictureUrl: user.pictureUrl,
+              //     },
+              //     transferType: "request",
+              //     description: description,
+              //   })
+              // );
+              setTransactionAmount(Number(amount))
             );
+            dispatch(setQRPaymentAmount(Number(amount)));
             navigation.goBack();
           }}
           styleText={{

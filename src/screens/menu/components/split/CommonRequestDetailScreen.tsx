@@ -11,7 +11,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";
 
-import { IBeneficiary, IRequest } from "../../../../redux/types";
+import { IBeneficiary, IRequest } from "../../../../types/types.redux";
 
 const CommonRequestDetailScreen = ({
   requestDetails: {

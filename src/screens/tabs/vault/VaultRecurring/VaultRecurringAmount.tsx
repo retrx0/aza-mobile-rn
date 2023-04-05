@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { NairaLargeIcon } from "../../../../../assets/svg";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { numberWithCommas } from "../../../../common/util/NumberUtils";

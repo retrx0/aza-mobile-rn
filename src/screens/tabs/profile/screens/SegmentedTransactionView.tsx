@@ -1,9 +1,13 @@
 import React from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
+import {
+  numberWithCommas,
+  transfromDataString,
+} from "../../../../common/util/NumberUtils";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
 import Colors from "../../../../constants/Colors";
-import { ITransaction } from "../../../../redux/types";
+import { I9PSBTransaction, ITransaction } from "../../../../types/types.redux";
 import { Text, View } from "../../../../theme/Themed";
 
 const SegmentedTransactionView = ({
@@ -11,8 +15,9 @@ const SegmentedTransactionView = ({
   transactions,
 }: {
   dateOfTransactions: string;
-  transactions: ITransaction[];
+  transactions: I9PSBTransaction[];
 }) => {
+  const formmattedDate = new Date(dateOfTransactions).toDateString();
   return (
     <View style={[CommonStyles.col, { alignSelf: "stretch" }]}>
       <Text
@@ -24,31 +29,36 @@ const SegmentedTransactionView = ({
           fontFamily: "Euclid-Circular-A",
           fontWeight: "500",
           marginLeft: hp(5),
-        }}>
-        {dateOfTransactions}
+        }}
+      >
+        {formmattedDate}
       </Text>
       {transactions.map(
         (
           {
             amount,
-            date,
-            imageUrl,
+            createdAt,
+            sourceAccount,
+            destinationCreditAccount,
             name,
-            transactionMessage,
-            transactionTitle,
+            description,
+            transactionId,
+            type,
             transactionType,
           },
           i
         ) => (
           <View key={i} style={{ marginBottom: hp(20) }}>
             <TransactionListItem
-              amount={amount}
-              date={date}
-              image={imageUrl}
-              name={name}
-              transactionMessage={transactionMessage}
-              transactionTitle={transactionTitle}
-              transactionType={transactionType}
+              amount={numberWithCommas(String(amount))}
+              date={transfromDataString(createdAt)}
+              image={`https://ui-avatars.com/api/?name=${name}`}
+              name={name ? name : destinationCreditAccount}
+              transactionMessage={description}
+              transactionTitle={
+                type === "CREDIT" ? "Incoming Transfer" : "Outgoing Transfer"
+              }
+              transactionType={type === "CREDIT" ? "incoming" : "outgoing"}
             />
           </View>
         )

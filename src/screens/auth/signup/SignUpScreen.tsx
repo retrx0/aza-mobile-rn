@@ -4,7 +4,7 @@ import { View, Text } from "../../../theme/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
-import { SignUpScreenProps } from "../../../../types";
+import { SignUpScreenProps } from "../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import { useAppDispatch } from "../../../redux";
 import { setEmail as setReduxStoreEmail } from "../../../redux/slice/newUserSlice";

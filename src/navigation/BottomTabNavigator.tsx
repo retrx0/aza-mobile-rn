@@ -11,7 +11,7 @@ import {
   RootStackScreenProps,
   RootTabParamList,
   RootTabScreenProps,
-} from "../../types";
+} from "../types/types.navigation";
 import {
   HomeIcon,
   QRCodeIcon,

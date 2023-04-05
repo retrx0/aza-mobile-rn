@@ -10,7 +10,7 @@ import { PercentageCard, PercentageList } from "./components/VaultCard";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import Colors from "../../../constants/Colors";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import BackButton from "../../../components/buttons/BackButton";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { InfoIcon } from "../../../../assets/svg";

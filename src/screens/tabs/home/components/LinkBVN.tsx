@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { DangerIcon } from "../../../../../assets/svg";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import { View, Text } from "../../../../theme/Themed";
@@ -26,7 +26,8 @@ export const LinkBVN = ({
         justifyContent: "center",
         alignItems: "flex-start",
         flexDirection: "row",
-      }}>
+      }}
+    >
       <DangerIcon />
       <View
         style={{
@@ -34,13 +35,15 @@ export const LinkBVN = ({
           display: "flex",
           justifyContent: "space-between",
           backgroundColor: "transparent",
-        }}>
+        }}
+      >
         <Text
           darkColor={Colors["general"].black}
           style={{
             fontFamily: "Euclid-Circular-A-Semi-Bold",
             fontSize: hp(16),
-          }}>
+          }}
+        >
           Link your BVN to start using AZA
         </Text>
         <Text
@@ -48,7 +51,8 @@ export const LinkBVN = ({
           style={{
             fontSize: hp(12),
             marginTop: 5,
-          }}>
+          }}
+        >
           Link your BVN to upgrade your account as there are certain limits on
           it.
         </Text>
@@ -60,7 +64,8 @@ export const LinkBVN = ({
                 onVerifyNavigateBackTo: "Home",
               },
             })
-          }>
+          }
+        >
           <View
             style={{
               backgroundColor: "transparent",
@@ -68,13 +73,15 @@ export const LinkBVN = ({
               paddingBottom: 1,
               marginTop: 10,
               alignSelf: "flex-start",
-            }}>
+            }}
+          >
             <Text
               darkColor={Colors["dark"].buttonText}
               style={{
                 fontSize: hp(14),
                 fontFamily: "Euclid-Circular-A-Medium",
-              }}>
+              }}
+            >
               Link your BVN
             </Text>
           </View>

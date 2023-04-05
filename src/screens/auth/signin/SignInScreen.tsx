@@ -18,7 +18,7 @@ import { getUserLoginInfoAPI } from "../../../api/user";
 import { useAppDispatch } from "../../../redux";
 import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
 
-import { SignInScreenProps } from "../../../../types";
+import { SignInScreenProps } from "../../../types/types.navigation";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { hp } from "../../../common/util/LayoutUtil";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";

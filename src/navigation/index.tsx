@@ -12,7 +12,7 @@ import RootNavigator from "./RootNavigator";
 import { useAppDispatch, useAppSelector } from "../redux";
 import { getDeviceTheme } from "../theme";
 import { ISettings } from "../hooks/useAsyncStorage";
-import { IUserCred } from "../redux/types";
+import { IUserCred } from "../types/types.redux";
 import { setAppPreference } from "../redux/slice/preferenceSlice";
 
 const Navigation = ({

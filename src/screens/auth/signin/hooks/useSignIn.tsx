@@ -3,7 +3,7 @@
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import * as LocalAuthentication from "expo-local-authentication";
 import { useState } from "react";
-import { SignInScreenProps } from "../../../../../types";
+import { SignInScreenProps } from "../../../../types/types.navigation";
 import { loginUserAPI } from "../../../../api/auth";
 import { storeItemSecure } from "../../../../common/util/StorageUtil";
 import { toastError } from "../../../../common/util/ToastUtil";
@@ -13,8 +13,10 @@ import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
 import {
   getUserAccountDetails,
   getUserInfo,
+  getUserTransactions,
   selectUser,
 } from "../../../../redux/slice/userSlice";
+import { IUserInfoResponse } from "../../../../types/types.redux";
 
 // All sign in logic goes here
 
@@ -65,8 +67,8 @@ const useSignIn = () => {
 
       if (jwt) {
         try {
-          await storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
-          await storeItemSecure(
+          storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
+          storeItemSecure(
             STORAGE_KEY_USER_CREDS,
             JSON.stringify({
               email: email,
@@ -81,6 +83,8 @@ const useSignIn = () => {
           const info = await dispatch(getUserInfo());
           if (info.meta.requestStatus === "fulfilled") {
             await dispatch(getUserAccountDetails());
+            const { walletNumber } = info.payload as IUserInfoResponse;
+            dispatch(getUserTransactions({ accountNumber: walletNumber }));
             setScreenLoading(false);
             navigation.getParent()?.navigate("Root");
           } else {

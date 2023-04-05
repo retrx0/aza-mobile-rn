@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from "react";
-import { SignInScreenProps } from "../../../../types";
+import { SignInScreenProps } from "../../../types/types.navigation";
 import { requestOtpApi, verifyOtpApi } from "../../../api/auth";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useAppSelector, useAppDispatch } from "../../../redux";

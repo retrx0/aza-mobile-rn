@@ -9,13 +9,16 @@ import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { RootStackScreenProps } from "../../../types";
+import { RootStackScreenProps } from "../../types/types.navigation";
 
 import { AZALightningLogo, NairaIcon } from "../../../assets/svg";
-import { useAppSelector } from "../../redux";
+import { useAppDispatch, useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
-import { selectTransaction } from "../../redux/slice/transactionSlice";
+import {
+  selectTransaction,
+  setQRPaymentAmount,
+} from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
@@ -24,13 +27,15 @@ import { numberWithCommas } from "../../common/util/NumberUtils";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 import Button from "../../components/buttons/Button";
 import { useState } from "react";
+import { IQRScanTransactionData } from "../../types/types.redux";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [, requestPermission] = MediaLibrary.usePermissions();
 
   const user = useAppSelector(selectUser);
-  const transaction = useAppSelector(selectTransaction);
+  const { qrPaymentAmount } = useAppSelector(selectTransaction);
+  const dispatch = useAppDispatch();
   const insets = useSafeAreaInsets();
 
   const [amount, setAmount] = useState(0);
@@ -118,9 +123,11 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
         <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <QRCode
             value={JSON.stringify({
-              azaNumber: user.azaAccountNumber,
-            })}
-            size={220}
+              azaAccountNumber: user.azaAccountNumber,
+              fullName: user.fullName,
+              amount: qrPaymentAmount,
+            } as IQRScanTransactionData)}
+            size={280}
             logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
             logoSize={50}
             logoBorderRadius={10}
@@ -162,10 +169,16 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             }}
           />
           <ButtonWithUnderline
+            title="Reset Amount"
+            color={Colors.general.red}
+            onPressButton={() => dispatch(setQRPaymentAmount(undefined))}
+            style={{ marginVertical: 10 }}
+          />
+          <ButtonWithUnderline
             title="Save to Gallery"
-            color={appTheme === "dark" ? "#262626" : "#EAEAEC"}
+            color={Colors[appTheme].backgroundSecondary}
             onPressButton={captureScreenAndSaveToGallery}
-            style={{ marginTop: 5 }}
+            style={{ marginVertical: 10 }}
           />
         </View>
       </View>

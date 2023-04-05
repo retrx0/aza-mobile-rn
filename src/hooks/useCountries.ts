@@ -1,7 +1,7 @@
 import { ENV } from "@env";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { CountriesType } from "../../types";
+import { CountriesType } from "../types/types.navigation";
 import { ENV_DEVELOPMENT } from "../constants/AppConstants";
 
 const staticCountries = [

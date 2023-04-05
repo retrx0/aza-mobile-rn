@@ -1,4 +1,4 @@
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";

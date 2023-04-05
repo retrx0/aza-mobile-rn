@@ -20,7 +20,10 @@ import {
   UserIcon,
 } from "../../../../../assets/svg";
 
-import { RootStackScreenProps, RootTabScreenProps } from "../../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../../types/types.navigation";
 import Colors from "../../../../constants/Colors";
 import { getAppTheme } from "../../../../theme";
 

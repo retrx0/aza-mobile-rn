@@ -23,7 +23,7 @@ const useSettings = ({
   const [loading, setLoading] = useState(false);
   const [transactionPin, setTransactionPin] = useState("");
 
-  const { sendMoneyToAzaUser } = useTransactionService(
+  const { sendMoneyToAzaUser, screenLoading } = useTransactionService(
     { navigation: navigation, route: route },
     {
       confirmationType: "send",
@@ -146,7 +146,7 @@ const useSettings = ({
     };
 
     const handleTransactionPin = () => {
-      navigation.goBack();
+      // navigation.goBack();
       setLoading(true);
       sendMoneyToAzaUser(transactionPin);
     };
@@ -180,6 +180,7 @@ const useSettings = ({
     transactionPin,
     setTransactionPin,
     loading,
+    screenLoading,
   };
 };
 

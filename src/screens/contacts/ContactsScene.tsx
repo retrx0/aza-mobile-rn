@@ -18,9 +18,10 @@ import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { IBeneficiary } from "../../redux/types";
-
-import { verifyAzaNumber } from "../../api/aza";
+import { IBeneficiary } from "../../types/types.redux";
+import { NAIRA_CCY_CODE, PSB_BANK_CODE } from "../../constants/AppConstants";
+import { verifyBankAccountAPI } from "../../api/account";
+import { toastError } from "../../common/util/ToastUtil";
 
 const ContactsScene = ({
   route,
@@ -41,7 +42,37 @@ const ContactsScene = ({
   const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
   const insets = useSafeAreaInsets();
 
+  const [buttonLoading, setButtonLoading] = useState(false);
+
   const user = useAppSelector(selectUser);
+
+  const sentToAzaNumber = (
+    azaNumber: string,
+    azaContactOnPress: (beneficiary: IBeneficiary) => void
+  ) => {
+    setButtonLoading(true);
+    //do some check with aza number
+    verifyBankAccountAPI(PSB_BANK_CODE, azaNumber, azaNumber)
+      .then((response) => {
+        if (response) {
+          azaContactOnPress({
+            azaAccountNumber: azaNumber,
+            fullName: response.data.name,
+            beneficiaryName: response.data.name,
+            currency: NAIRA_CCY_CODE,
+            email: "",
+            firstName: "",
+            lastName: "",
+          });
+        }
+        setButtonLoading(false);
+      })
+      .catch((e) => {
+        console.debug(e);
+        toastError("Aza account not found!");
+        setButtonLoading(false);
+      });
+  };
 
   useEffect(() => {
     getUserContacts().then((_contacts) => {
@@ -258,6 +289,7 @@ const ContactsScene = ({
             disabled={receipientAzaNumber.length < 10}
             styleText={{}}
             style={[]}
+            buttonLoading={buttonLoading}
           />
         </View>
       </View>
@@ -265,28 +297,6 @@ const ContactsScene = ({
   } else {
     return <></>;
   }
-};
-
-const sentToAzaNumber = (
-  azaNumber: string,
-  azaContactOnPress: (beneficiary: IBeneficiary) => void
-) => {
-  //do some check with aza number
-  // verifyAzaNumber(azaNumber).then((verifiedUser) => {
-  //   if (verifiedUser) {
-  //   } else {
-  //   }
-  // });
-
-  azaContactOnPress({
-    azaAccountNumber: azaNumber,
-    fullName: azaNumber,
-    beneficiaryName: "",
-    currency: "NGN",
-    email: "",
-    firstName: "",
-    lastName: "",
-  });
 };
 
 export default ContactsScene;

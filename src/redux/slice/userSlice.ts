@@ -1,15 +1,12 @@
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Dstv, Ie, Mtn } from "../../../assets/images";
-import api from "../../api";
+import { Mtn } from "../../../assets/images";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
 import {
   I9PSBWallet,
-  ITransactions,
   IUserInfoResponse,
   IUserState,
-} from "../types";
+} from "../../types/types.redux";
 
 // Define the initial state using that type
 const initialState: IUserState = {
@@ -55,41 +52,6 @@ const initialState: IUserState = {
       //       transactionTitle: "Transfer to Bank",
       //       transactionMessage: "",
       //       amount: "328,000.00",
-      //       date: "4 July 2022 04:26",
-      //     },
-      //     {
-      //       id: 3,
-      //       imageUrl: "https://ui-avatars.com/api/?name=Test+User",
-      //       name: "Test User 3",
-      //       transactionType: "incoming",
-      //       transactionTitle: "Incoming Transfer",
-      //       transactionMessage: "",
-      //       amount: "28,000.00",
-      //       date: "4 July 2022 04:26",
-      //     },
-      //   ],
-      // },
-      // {
-      //   dateOfTransactions: "9 June 2022",
-      //   transactions: [
-      //     {
-      //       id: 9,
-      //       imageUrl: "https://ui-avatars.com/api/?name=Test+User",
-      //       name: "Test User 1",
-      //       transactionType: "outgoing",
-      //       transactionTitle: "Outgoing Transfer",
-      //       transactionMessage: "Chop life my gee ",
-      //       amount: "28,000.00",
-      //       date: "4 July 2022 04:26",
-      //     },
-      //     {
-      //       id: 10,
-      //       imageUrl: "https://ui-avatars.com/api/?name=Test+User",
-      //       name: "Test User 2",
-      //       transactionType: "outgoing",
-      //       transactionTitle: "Outgoing Transfer",
-      //       transactionMessage: "Chop life my gee ",
-      //       amount: "28,000.00",
       //       date: "4 July 2022 04:26",
       //     },
       //   ],
@@ -149,7 +111,7 @@ const initialState: IUserState = {
         email: "testuser@aza.com",
       },
       {
-        azaAccountNumber: "11000167646",
+        azaAccountNumber: "1100016746",
         fullName: "VP",
         firstName: "VP",
         lastName: "Aza",
@@ -325,12 +287,14 @@ export const userSlice = createSlice({
       .addCase(getUserTransactions.pending, (state, action) => {
         state.recentTransactions.loading = true;
       })
-      .addCase(getUserTransactions.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.recentTransactions.data = action.payload.data;
-      })
+
       .addCase(getUserTransactions.rejected, (state, action) => {
         state.recentTransactions.loading = false;
+      })
+      .addCase(getUserTransactions.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.recentTransactions.loading = false;
+        state.recentTransactions.data = action.payload;
       })
       .addCase(getUserInfo.pending, (state, action) => {
         state.loading = true;
@@ -359,7 +323,7 @@ export const userSlice = createSlice({
         state.lastLogin = action.payload.lastLogin;
         state.accountTier = action.payload.accountTier;
         state.dateOfBirth = action.payload.dateOfBirth;
-        state.aza9PSBAccountNumber = action.payload.walletNumber;
+        state.aza9PSBAccountNumber = String(action.payload.walletNumber);
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
       .addCase(uploadProfilePicThunk.rejected, (state, action) => {})
@@ -380,6 +344,7 @@ export const userSlice = createSlice({
       .addCase(getUserAccountDetails.rejected, (state, action) => {})
       .addCase(getUserAccountDetails.fulfilled, (state, action) => {
         state.azaAccountNumber = String(action.payload.walletNumber);
+        state.aza9PSBAccountNumber = String(action.payload.walletNumber);
         state.azaBalance = action.payload.availableBalance;
         state.accountStatus = action.payload.status;
       })
@@ -392,6 +357,7 @@ export const userSlice = createSlice({
         state.bankAccounts.loaded = false;
       })
       .addCase(getUserSavedBankAccs.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.bankAccounts.loading = false;
         state.bankAccounts.loaded = true;
         state.bankAccounts.data = action.payload;
@@ -409,9 +375,9 @@ export const userSlice = createSlice({
   },
 });
 
-export const getSupportedBanks = createAsyncThunk("banks", async () => {
-  return await thunkCourier("get", "/api/v1/bank/banks");
-});
+// export const getSupportedBanks = createAsyncThunk("banks", async () => {
+//   return await thunkCourier("get", "/api/v1/payment/banks");
+// });
 
 export const getUserInfo = createAsyncThunk<IUserInfoResponse>(
   "user/getInfo",
@@ -439,7 +405,7 @@ export const getUserTransactions = createAsyncThunk(
   async ({ accountNumber }: { accountNumber: string }) => {
     return await thunkCourier(
       "get",
-      `/api/v1/account/${accountNumber}/trnasactions`
+      `/api/v1/account/${accountNumber}/transactions`
     );
   }
 );

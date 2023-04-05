@@ -7,7 +7,7 @@ import {
   ICharity,
   IGiftCard,
   IRequest,
-} from "../../redux/types";
+} from "../../types/types.redux";
 
 /* Common screens */
 interface IXCharity extends ICharity {

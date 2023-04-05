@@ -13,7 +13,7 @@ import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectUser } from "../../../redux/slice/userSlice";
 import Colors from "../../../constants/Colors";
-import { IPayment, PaymentCategory } from "../../../redux/types";
+import { IPayment, PaymentCategory } from "../../../types/types.redux";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 
 export default function Pie() {
@@ -113,7 +113,8 @@ export default function Pie() {
                     darkColor={Colors.dark.secondaryText}
                     style={{
                       fontSize: 14,
-                    }}>
+                    }}
+                  >
                     Total
                   </Text>
                   <Text
@@ -122,7 +123,8 @@ export default function Pie() {
                     style={{
                       fontFamily: "Euclid-Circular-A-Semi-Bold",
                       fontSize: hp(16),
-                    }}>
+                    }}
+                  >
                     {"\u20A6"} {numberWithCommas(35000)}
                   </Text>
                 </View>
@@ -134,7 +136,8 @@ export default function Pie() {
             {data.map(({ color, text }, i) => (
               <View
                 key={i}
-                style={[CommonStyles.row, { marginRight: 10, marginTop: 15 }]}>
+                style={[CommonStyles.row, { marginRight: 10, marginTop: 15 }]}
+              >
                 <View
                   style={[
                     styles.legendBox,
@@ -148,7 +151,8 @@ export default function Pie() {
                   darkColor={Colors.dark.secondaryText}
                   style={{
                     fontSize: 16,
-                  }}>
+                  }}
+                >
                   {text}
                 </Text>
               </View>

@@ -6,7 +6,7 @@ import {
   PasswordScreenParamsType,
   RootStackScreenProps,
   SignUpStackParamList,
-} from "../../../../types";
+} from "../../../types/types.navigation";
 import SignUpProfileSetupScreen from "./SignUpProfileSetupScreen";
 import PhoneNumberScreen from "../common/PhoneNumberScreen";
 

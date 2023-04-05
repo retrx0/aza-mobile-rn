@@ -9,13 +9,13 @@ import { CommonScreenProps } from "../../../common/navigation/types";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { hp } from "../../../common/util/LayoutUtil";
 import ContactsScene from "../../contacts/ContactsScene";
-import { sendInviteToNonAzaContact } from "../../../api/notification";
 import { InfoIcon } from "../../../../assets/svg";
 import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
-import { IBeneficiary } from "../../../redux/types";
+import { IBeneficiary } from "../../../types/types.redux";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
+import { inviteUserAPI } from "../../../api/user";
 
 type TransactionScreenProps = {
   headerTitle: string;
@@ -75,7 +75,7 @@ const TransactionScreen = ({
             route={route}
             azaContactOnPress={(_b) => azaContactOnClick(_b)}
             nonAzaContactOnPress={({ email, phone }) =>
-              sendInviteToNonAzaContact({ email: email!, phoneNumber: phone! })
+              inviteUserAPI(phone!, email!)
             }
           />
         )}

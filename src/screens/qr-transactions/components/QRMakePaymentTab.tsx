@@ -14,13 +14,21 @@ import { View } from "../../../theme/Themed";
 
 import { hp } from "../../../common/util/LayoutUtil";
 import { toastError } from "../../../common/util/ToastUtil";
-import { RootStackScreenProps } from "../../../../types";
+import { RootStackScreenProps } from "../../../types/types.navigation";
+import { useAppDispatch, useAppSelector } from "../../../redux";
+import { setTransaction } from "../../../redux/slice/transactionSlice";
+import { IQRScanTransactionData } from "../../../types/types.redux";
+import { QR_CODE_SCAN_ISO } from "../../../constants/AppConstants";
+import { selectUser } from "../../../redux/slice/userSlice";
 
 const QRMakePaymentTab = ({
   navigation,
 }: RootStackScreenProps<"QRTransactions">) => {
   const [cameraPermission, setCameraPermission] =
     useState<PermissionResponse>();
+
+  const dispatch = useAppDispatch();
+  const { fullName } = useAppSelector(selectUser);
 
   useEffect(() => {
     (async () => {
@@ -68,12 +76,49 @@ const QRMakePaymentTab = ({
     );
   };
 
-  const onBarCodeScanned = (code: BarCodeScanningResult) => {
-    if (code.type === "org.iso.QRCode") {
-      console.log("Code Scanned " + code.data);
+  const handleCodeScanned = (scannedCodeData: IQRScanTransactionData) => {
+    if (scannedCodeData.amount) {
+      dispatch(
+        setTransaction({
+          amount: Number(scannedCodeData.amount),
+          transferType: "send",
+          beneficiary: {
+            azaAccountNumber: scannedCodeData.azaAccountNumber,
+            fullName: fullName,
+            beneficiaryName: scannedCodeData.azaAccountNumber,
+          },
+          recurring: false,
+          description: "",
+        })
+      );
       navigation.navigate("Common", {
         screen: "SendMoneyConfirmation",
       });
+    } else {
+      navigation.navigate("Common", {
+        screen: "TransactionKeypad",
+        params: {
+          transactionType: {
+            type: "normal",
+            transaction: "send",
+            beneficiary: {
+              azaAccountNumber: scannedCodeData.azaAccountNumber,
+              fullName: scannedCodeData.fullName,
+            },
+          },
+          headerTitle: "QR Payment",
+        },
+      });
+    }
+  };
+
+  let flag = false;
+
+  const onBarCodeScanned = (code: BarCodeScanningResult) => {
+    if (code.type === QR_CODE_SCAN_ISO && !flag) {
+      console.log("Code Scanned " + code.data);
+      handleCodeScanned(JSON.parse(code.data) as IQRScanTransactionData);
+      flag = true;
     }
   };
 
@@ -87,6 +132,9 @@ const QRMakePaymentTab = ({
         const results = await BarCodeScanner.scanFromURLAsync(uri);
         if (results.length > 0) {
           console.log("qr code data: ", results[0].data);
+          handleCodeScanned(
+            JSON.parse(results[0].data) as IQRScanTransactionData
+          );
         } else {
           toastError("The QR code could not be decoded");
         }

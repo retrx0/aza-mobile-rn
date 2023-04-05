@@ -4,7 +4,10 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../types/types.navigation";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Colors from "../../../constants/Colors";
 import React, { useState } from "react";

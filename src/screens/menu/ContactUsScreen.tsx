@@ -12,6 +12,7 @@ import { CommonScreenProps } from "../../common/navigation/types";
 
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 import { WhatsAppLogo } from "../../../assets/svg";
+import * as Linking from "expo-linking";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const insets = useSafeAreaInsets();
@@ -43,16 +44,22 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             >
               Email
             </Text>
-            <Text
-              style={{
-                marginBottom: 5,
-                marginTop: 10,
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: hp(16),
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL("mailto:hello@azanaija.com");
               }}
             >
-              customersupport@aza.com
-            </Text>
+              <Text
+                style={{
+                  marginBottom: 5,
+                  marginTop: 10,
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontSize: hp(16),
+                }}
+              >
+                hello@azanaija.com
+              </Text>
+            </TouchableOpacity>
             <Divider />
           </View>
         </View>
@@ -74,6 +81,9 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               flexDirection: "row",
               justifyContent: "center",
               alignSelf: "center",
+            }}
+            onPress={() => {
+              Linking.openURL("whatsapp://app");
             }}
           >
             <View style={{ marginRight: 10 }}>

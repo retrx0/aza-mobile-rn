@@ -12,7 +12,7 @@ import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 
 const NotificationsContainer = ({ navigation }: RootTabScreenProps<"Home">) => {
   const [isNotificationsOpen, setNotificationsOpen] = useState(false);

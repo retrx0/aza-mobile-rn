@@ -233,7 +233,7 @@ import {
   selectPayment,
 } from "../../../../../redux/slice/paymentSlice";
 import { PaymentRoundSkeleton } from "../../../../skeletons";
-import { IElectricityBiller } from "../../../../../redux/types";
+import { IElectricityBiller } from "../../../../../types/types.redux";
 import { NAIRA_UNICODE } from "../../../../../constants/AppConstants";
 import ProviderSkeleton from "../../sub-components/ProviderSkeleton";
 import { selectAppTheme } from "../../../../../redux/slice/themeSlice";

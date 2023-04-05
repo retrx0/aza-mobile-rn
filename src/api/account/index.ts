@@ -1,3 +1,4 @@
+import { IVerifyBankResponse } from "../../types/types.api";
 import apiCourier from "../courier";
 
 export const checkAccountEndpointHealthAPI = async () => {
@@ -28,14 +29,19 @@ export const getUserTransactionsAPI = async (accountNumber: string) => {
 
 export const verifyBankAccountAPI = async (
   bankCode: string,
-  accountNumber: string
+  accountNumber: string,
+  walletNumber: string
 ) => {
-  return await apiCourier(
+  return await apiCourier<
+    { bankCode; accountNumber; walletNumber },
+    IVerifyBankResponse
+  >(
     "post",
     "/api/v1/account/verify",
     {
       bankCode,
       accountNumber,
+      walletNumber,
     },
     "jwt"
   );

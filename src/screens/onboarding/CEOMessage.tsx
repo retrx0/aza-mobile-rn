@@ -2,7 +2,7 @@ import { ScrollView } from "../../theme/Themed";
 import { View, Text } from "../../theme/Themed";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
-import { RootStackScreenProps } from "../../../types";
+import { RootStackScreenProps } from "../../types/types.navigation";
 import React, { useState } from "react";
 import { AZALogo, Signature, ZEAL } from "../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";

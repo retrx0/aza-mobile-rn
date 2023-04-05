@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { View, Text } from "../../../../theme/Themed";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

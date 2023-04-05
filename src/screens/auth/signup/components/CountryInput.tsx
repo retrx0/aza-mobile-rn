@@ -3,7 +3,7 @@ import { StyleSheet, TextInputProps, Pressable } from "react-native";
 import { SvgUri } from "react-native-svg";
 
 import { SelectIcon } from "../../../../../assets/svg";
-import { CountryProps } from "../../../../../types";
+import { CountryProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { View, Text, TextInput } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";

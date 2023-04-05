@@ -66,6 +66,28 @@ export interface ITransaction {
   date: string;
 }
 
+export interface I9PSBRecentTransactions {
+  key: string;
+  transactions: I9PSBTransaction[];
+}
+
+export interface I9PSBTransaction {
+  amount: number;
+  createdAt: string;
+  currency: string;
+  description: string;
+  destinationCreditAccount: string;
+  destinationCreditChannel: string | null;
+  modeOfTransaction: string | null;
+  name: string | null;
+  sourceAccount: string;
+  sourceChannel: string | null;
+  transactionId: string;
+  transactionReference: string | null;
+  transactionType: "IntraBank" | "InterBank";
+  type: "DEBIT" | "CREDIT";
+}
+
 interface IVault {}
 
 export interface IPaymentMethod {
@@ -147,6 +169,12 @@ export interface IBank {
   logoUrl: string;
 }
 
+export interface IQRScanTransactionData {
+  azaAccountNumber: string;
+  fullName: string;
+  amount: string | undefined;
+}
+
 /* REDUX STATES */
 
 export interface IPaymentState {
@@ -206,7 +234,7 @@ export interface IUserState {
   vault: { loading: boolean; recentTransaction: [] };
   payments: ICommonTypedListResult<IPayment>;
   paymentRequests: ICommonTypedListResult<IRequest>;
-  recentTransactions: ICommonTypedListResult<ITransactions>;
+  recentTransactions: ICommonTypedListResult<I9PSBRecentTransactions>;
   azaContacts: ICommonTypedListResult<IBeneficiary>;
   bankAccounts: ICommonTypedListResult<IBankAccount>;
 }

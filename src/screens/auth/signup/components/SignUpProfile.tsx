@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
-import { SignUpScreenProps } from "../../../../../types";
+import { SignUpScreenProps } from "../../../../types/types.navigation";
 import Button from "../../../../components/buttons/Button";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Picker } from "@react-native-picker/picker";

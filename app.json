@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-white.png",
-    "scheme": "com.aza.azaapp",
+    "scheme": "azaapp",
     "owner": "retro1",
     "notification": {
       "icon": "./assets/images/app/aza-app-icon-white.png",

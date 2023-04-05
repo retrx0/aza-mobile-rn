@@ -4,7 +4,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { ArrowFowardIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
 import Divider from "../../../components/divider/Divider";
-import { ICharity, IGiftCard } from "../../../redux/types";
+import { ICharity, IGiftCard } from "../../../types/types.redux";
 import { Text, View } from "../../../theme/Themed";
 
 interface ITypedProps {

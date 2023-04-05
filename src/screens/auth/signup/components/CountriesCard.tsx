@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Image, StyleSheet } from "react-native";
 import { SvgUri } from "react-native-svg";
-import { CountryProps } from "../../../../../types";
+import { CountryProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { View, Text } from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";

@@ -4,7 +4,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { View, Text } from "../../../theme/Themed";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
 import Colors from "../../../constants/Colors";

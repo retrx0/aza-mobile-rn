@@ -22,7 +22,10 @@ import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import UserArchieved from "./components/UserArchieved";
 import TransactionListItem from "../../../components/ListItem/TransactionListItem";
-import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../types/types.navigation";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
 import { VaultLogo } from "../../../../assets/images";

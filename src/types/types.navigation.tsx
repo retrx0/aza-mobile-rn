@@ -12,8 +12,8 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { CommonStackParamList } from "./src/common/navigation/types";
-import { IGiftCard, IUserCred } from "./src/redux/types";
+import { CommonStackParamList } from "../common/navigation/types";
+import { IGiftCard, IUserCred } from "./types.redux";
 
 declare global {
   namespace ReactNavigation {

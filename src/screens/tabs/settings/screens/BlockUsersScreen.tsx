@@ -17,7 +17,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { IBeneficiary } from "../../../../redux/types";
+import { IBeneficiary } from "../../../../types/types.redux";
 
 const BlockUsersScreen = ({
   navigation,

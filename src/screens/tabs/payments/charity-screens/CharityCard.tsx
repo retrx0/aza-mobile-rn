@@ -1,5 +1,5 @@
 import React from "react";
-import { ICharity } from "../../../../redux/types";
+import { ICharity } from "../../../../types/types.redux";
 import CommonPaymentCard from "../../common/CommonPaymentCard";
 
 export const CharityCard = ({

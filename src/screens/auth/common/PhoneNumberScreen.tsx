@@ -16,7 +16,7 @@ import {
   CountriesType,
   CountryProps,
   SignUpScreenProps,
-} from "../../../../types";
+} from "../../../types/types.navigation";
 
 import { useAppDispatch } from "../../../redux";
 import { setPhone as setReduxStorePhone } from "../../../redux/slice/newUserSlice";

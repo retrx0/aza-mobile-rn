@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UnMatureVault from "./UnMatureVault";
 import MaturedVault from "./MaturedVault";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const VaultDetails = ({ navigation, route }: CommonScreenProps<"details">) => {

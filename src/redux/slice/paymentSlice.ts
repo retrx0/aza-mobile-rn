@@ -5,7 +5,7 @@ import api from "../../api";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { getItemSecure } from "../../common/util/StorageUtil";
 import { RootState } from "../Store";
-import { ICharity, IGiftCard, IPaymentState } from "../types";
+import { ICharity, IGiftCard, IPaymentState } from "../../types/types.redux";
 
 const initialState: IPaymentState = {
   detailHeader: "",

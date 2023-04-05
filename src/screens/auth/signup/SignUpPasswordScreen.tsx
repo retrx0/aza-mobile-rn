@@ -7,7 +7,7 @@ import BackButton from "../../../components/buttons/BackButton";
 import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { hp } from "../../../common/util/LayoutUtil";
-import { SignUpScreenProps } from "../../../../types";
+import { SignUpScreenProps } from "../../../types/types.navigation";
 import { Separator } from "../../../components/divider/Separator";
 import useSignUp from "./hooks/useSignUp";
 

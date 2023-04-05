@@ -7,7 +7,7 @@ import { View, Text } from "../../../theme/Themed";
 
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
-import { IUserState } from "../../../redux/types";
+import { IUserState } from "../../../types/types.redux";
 
 const SenderDetails = ({
   userData,

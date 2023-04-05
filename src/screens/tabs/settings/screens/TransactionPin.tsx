@@ -25,7 +25,7 @@ const TransactionPin = ({
 
   useNavigationHeader(navigation, `Transaction Pin`);
 
-  const { handlePinChange, loading } = useSettings({
+  const { handlePinChange, loading, screenLoading } = useSettings({
     navigation: navigation,
     route: route,
   });
@@ -59,6 +59,7 @@ const TransactionPin = ({
             value={pin}
             secureInput
             pinCount={4}
+            isLoading={loading && screenLoading}
             withKeypad={pinSceenType === "transaction"}
             headerText={
               pinSceenType === "update"

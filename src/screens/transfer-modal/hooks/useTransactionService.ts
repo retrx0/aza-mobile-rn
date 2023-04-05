@@ -82,8 +82,9 @@ const useTransactionService = (
           .then(() => {
             navigateToNextScreen();
           })
-          .catch(() => {});
-        toastError("There was a problem making the request!");
+          .catch(() => {
+            toastError("There was a problem making the request!");
+          });
       }
     }
   };
@@ -99,8 +100,10 @@ const useTransactionService = (
       description: transDescription ? transDescription : "Aza transaction",
       currency: NAIRA_CCY_CODE,
       destinationBankCode: PSB_BANK_CODE,
+      destinationAccountName: beneficiary.fullName,
     })
       .then((res) => {
+        console.log(res);
         setScreenLoading(false);
         navigateToNextScreen();
         dispatch(getUserAccountDetails());

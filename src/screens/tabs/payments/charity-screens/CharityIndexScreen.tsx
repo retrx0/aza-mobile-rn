@@ -4,7 +4,7 @@ import { View, Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
@@ -13,7 +13,7 @@ import {
   getCharities,
   selectPayment,
 } from "../../../../redux/slice/paymentSlice";
-import { ICharity } from "../../../../redux/types";
+import { ICharity } from "../../../../types/types.redux";
 import CharityCard from "./CharityCard";
 import Colors from "../../../../constants/Colors";
 import PaymentCardSkeleton from "../../../skeletons/PaymentCardSkeleton";

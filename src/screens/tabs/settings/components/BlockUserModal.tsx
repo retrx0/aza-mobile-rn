@@ -10,7 +10,7 @@ import useColorScheme from "../../../../hooks/useColorScheme";
 import { getAppTheme } from "../../../../theme";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { IBeneficiary } from "../../../../redux/types";
+import { IBeneficiary } from "../../../../types/types.redux";
 
 interface IProps {
   toggleModal: () => void;

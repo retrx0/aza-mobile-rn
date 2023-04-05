@@ -8,7 +8,7 @@ import Colors from "../../../constants/Colors";
 import { ArrowRightIcon, ChevronRightIcon } from "../../../../assets/svg";
 import { hp } from "../../../common/util/LayoutUtil";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
-import { IBeneficiary } from "../../../redux/types";
+import { IBeneficiary } from "../../../types/types.redux";
 
 interface SplitItem {
   splitImage: string;

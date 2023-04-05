@@ -6,7 +6,7 @@ import { Header } from "../../../components/text/header";
 import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
 import { hp } from "../../../common/util/LayoutUtil";

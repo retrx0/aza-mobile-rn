@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import api from "../../api";
 import { RootState } from "../Store";
-import { IBeneficiary } from "../types";
+import { IBeneficiary } from "../../types/types.redux";
 
 //TODO to be replaced with api call only!
 
@@ -10,6 +10,7 @@ import { IBeneficiary } from "../types";
 export interface ITransactionState {
   beneficiary: IBeneficiary;
   amount: number;
+  qrPaymentAmount?: number;
   description?: string;
   transferType: "send" | "request" | "withdraw" | "debit";
   recurring?: boolean;
@@ -42,6 +43,7 @@ interface IRecurringTransferState {
 const initialState: ITransactionState = {
   amount: 0,
   description: "",
+  qrPaymentAmount: undefined,
   beneficiary: {
     azaAccountNumber: "",
     fullName: "",
@@ -88,6 +90,9 @@ export const transactionSlice = createSlice({
     ) => {
       state.transferType = action.payload;
     },
+    setQRPaymentAmount: (state, action: PayloadAction<number | undefined>) => {
+      state.qrPaymentAmount = action.payload;
+    },
   },
 });
 
@@ -98,6 +103,7 @@ export const {
   setTransactionTransferType,
   setTransactionBeneficairyAndAmount,
   setTransactionDescription,
+  setQRPaymentAmount,
 } = transactionSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

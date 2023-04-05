@@ -19,6 +19,7 @@ import { toggleActivityModal } from "../../../../redux/slice/activityModalSlice"
 
 import { verifyBankAccountAPI } from "../../../../api/account";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 const AddBankAccountScreen = ({
   navigation,
@@ -32,6 +33,7 @@ const AddBankAccountScreen = ({
 
   const { bankName, screenType, logoUrl, bankCode, id } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
+  const { aza9PSBAccountNumber, azaAccountNumber } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
   const dispatch = useAppDispatch();
 
@@ -51,10 +53,10 @@ const AddBankAccountScreen = ({
 
   const verifyAccount = (accNo: string) => {
     dispatch(toggleActivityModal(true));
-    verifyBankAccountAPI(bankCode, accNo)
+    verifyBankAccountAPI(bankCode, accNo, aza9PSBAccountNumber)
       .then((res) => {
         dispatch(toggleActivityModal(false));
-        if (res !== undefined) {
+        if (res) {
           setAccountName(res.data.name);
           setVerified(true);
           moveToNextScreen(res.data.name, accNo);
