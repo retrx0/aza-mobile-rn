@@ -40,14 +40,13 @@ const TransactionOptions = ({
     <>
       <View
         style={{
-          display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
           marginTop: hp(20),
           marginBottom: hp(10),
-          paddingHorizontal: hp(10),
-        }}
-      >
+          alignItems: "center",
+          paddingHorizontal: 10,
+        }}>
         <TransactionOptionButton
           title="Withdraw"
           onPress={() =>
@@ -100,8 +99,7 @@ const TransactionOptionButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{ display: "flex", alignItems: "center" }}
-    >
+      style={{ display: "flex", alignItems: "center" }}>
       {icon}
       <Text
         lightColor={Colors.light.text}
@@ -109,8 +107,8 @@ const TransactionOptionButton = ({
         style={{
           fontSize: hp(17),
           fontFamily: "Euclid-Circular-A-Medium",
-        }}
-      >
+          textAlign: "center",
+        }}>
         {title}
       </Text>
     </TouchableOpacity>

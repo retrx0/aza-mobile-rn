@@ -95,8 +95,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(14),
               marginVertical: 15,
-            }}
-          >
+            }}>
             {user.fullName}
           </Text>
           {/* <View style={[CommonStyles.row]}>
@@ -140,9 +139,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
         <View
           style={[
             CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}
-        >
+            { bottom: insets.top || hp(45) },
+          ]}>
           {/* <Button
             title="Copy Link"
             styleText={{
@@ -170,7 +168,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           />
           <ButtonWithUnderline
             title="Reset Amount"
-            color={Colors.general.red}
+            color={Colors[appTheme].backgroundSecondary}
             onPressButton={() => dispatch(setQRPaymentAmount(undefined))}
             style={{ marginVertical: 10 }}
           />

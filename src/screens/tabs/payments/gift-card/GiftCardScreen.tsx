@@ -74,8 +74,7 @@ export default function GiftCardScreen({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}
-        >
+          }}>
           Coming Soon
         </Text>
         <Text
@@ -85,9 +84,8 @@ export default function GiftCardScreen({
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}
-        >
-          Choose from hundreds of game brands
+          }}>
+          Choose from hundreds of brands
         </Text>
 
         <View
@@ -96,8 +94,7 @@ export default function GiftCardScreen({
             marginTop: 42,
             justifyContent: "space-between",
             marginHorizontal: 15,
-          }}
-        >
+          }}>
           <Image
             source={ITUNES}
             resizeMode="cover"
@@ -159,8 +156,7 @@ export default function GiftCardScreen({
           style={{
             flexDirection: "row",
             marginTop: 50,
-          }}
-        >
+          }}>
           <Image
             source={ColdStone}
             resizeMode="cover"
@@ -231,8 +227,7 @@ export default function GiftCardScreen({
             marginTop: 42,
             justifyContent: "space-between",
             marginHorizontal: 15,
-          }}
-        >
+          }}>
           <Image
             source={DOMINOS}
             resizeMode="cover"
@@ -298,8 +293,7 @@ export default function GiftCardScreen({
           style={{
             flexDirection: "row",
             marginTop: 50,
-          }}
-        >
+          }}>
           <Image
             source={AFRIC}
             resizeMode="cover"
@@ -370,8 +364,7 @@ export default function GiftCardScreen({
             marginTop: 42,
             justifyContent: "space-between",
             marginHorizontal: 15,
-          }}
-        >
+          }}>
           <Image
             source={ADIDAS}
             resizeMode="cover"
