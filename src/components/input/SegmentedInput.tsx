@@ -21,6 +21,7 @@ import Animated, {
   withTiming,
   cond,
   block,
+  cancelAnimation,
 } from "react-native-reanimated";
 import Colors from "../../constants/Colors";
 
@@ -83,6 +84,9 @@ const SegmentedInput = (props: SegmentedInputProps) => {
         undefined,
         undefined
       );
+    } else {
+      cancelAnimation(opacity);
+      opacity.value = 1;
     }
   }, [isLoading]);
 
