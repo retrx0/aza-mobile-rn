@@ -3,19 +3,13 @@ import { SignUpScreenProps } from "../../../types/types.navigation";
 import { requestOtpApi, verifyOtpApi } from "../../../api/auth";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useAppDispatch, useAppSelector } from "../../../redux";
-import {
-  selectNewUser,
-  setIsVerified,
-  verifyOtp,
-} from "../../../redux/slice/newUserSlice";
+import { selectNewUser } from "../../../redux/slice/newUserSlice";
 import OtpScreen from "../otp/OtpScreen";
 import * as SecureStore from "expo-secure-store";
 import {
   STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN,
   STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
 } from "@env";
-import { Alert } from "react-native";
-import Toast from "react-native-toast-message";
 import { toastError, toastInfo } from "../../../common/util/ToastUtil";
 
 const SignUpOTPScreen = ({
@@ -23,6 +17,7 @@ const SignUpOTPScreen = ({
   route,
 }: SignUpScreenProps<"SignUpOTP">) => {
   const [signUpOtp, setSignUpOtp] = useState("");
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const dispatch = useAppDispatch();
   const { phoneNumber, emailAddress } = useAppSelector(selectNewUser);
@@ -50,6 +45,7 @@ const SignUpOTPScreen = ({
         otpCode={signUpOtp}
         onOtpChanged={(code) => setSignUpOtp(code)}
         onVerify={() => {
+          setButtonLoading(true);
           verifyOtpApi(
             {
               email: otpScrenType === "email" ? emailAddress! : "",
@@ -57,25 +53,31 @@ const SignUpOTPScreen = ({
               otp: signUpOtp,
             },
             "email"
-          ).then((token) => {
-            if (token) {
-              SecureStore.setItemAsync(
-                otpScrenType === "email"
-                  ? STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN
-                  : STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
-                token
-              );
-              if (otpScrenType === "email") {
-                navigation.navigate("SignUpPhoneNumber");
-              } else if (otpScrenType === "phone") {
-                navigation.navigate("SignUpProfileSetup");
+          )
+            .then((token) => {
+              if (token) {
+                SecureStore.setItemAsync(
+                  otpScrenType === "email"
+                    ? STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN
+                    : STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
+                  token
+                );
+                if (otpScrenType === "email") {
+                  navigation.navigate("SignUpPhoneNumber");
+                } else if (otpScrenType === "phone") {
+                  navigation.navigate("SignUpProfileSetup");
+                } else {
+                  // navigation.navigate("")
+                }
+                setButtonLoading(false);
               } else {
-                // navigation.navigate("")
+                toastError("Invalid OTP ⚠️");
+                setButtonLoading(false);
               }
-            } else {
-              toastError("Invalid OTP ⚠️");
-            }
-          });
+            })
+            .catch(() => {
+              setButtonLoading(false);
+            });
         }}
         onResend={() => {
           requestOtpApi({
@@ -86,6 +88,7 @@ const SignUpOTPScreen = ({
             .catch((e) => toastInfo("Could not send otp!, please try again"));
         }}
         phoneNumber={""}
+        buttonLoading={buttonLoading}
       />
     </SpacerWrapper>
   );
