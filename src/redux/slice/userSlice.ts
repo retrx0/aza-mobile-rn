@@ -371,7 +371,15 @@ export const userSlice = createSlice({
       })
       .addCase(saveUserBankAcc.pending, (state, action) => {})
       .addCase(saveUserBankAcc.rejected, (state, action) => {})
-      .addCase(saveUserBankAcc.fulfilled, (state, action) => {});
+      .addCase(saveUserBankAcc.fulfilled, (state, action) => {})
+      .addCase(fetchPaymentRequestThunk.pending, (state, action) => {})
+      .addCase(fetchPaymentRequestThunk.rejected, (state, action) => {})
+      .addCase(fetchPaymentRequestThunk.fulfilled, (state, action) => {
+        state.paymentRequests.loaded = false;
+        state.paymentRequests.loading = false;
+        console.log(action.payload);
+        // state.paymentRequests.data = action.payload
+      });
   },
 });
 
@@ -490,6 +498,13 @@ export const saveUserBankAcc = createAsyncThunk(
       bankCode,
       isBeneficiary,
     });
+  }
+);
+
+export const fetchPaymentRequestThunk = createAsyncThunk(
+  "user/fetchPaymentRequests",
+  async () => {
+    return await thunkCourier("get", `/api/v1/m-request/incoming`);
   }
 );
 

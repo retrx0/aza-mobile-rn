@@ -165,6 +165,7 @@ import TransactionPin from "../screens/tabs/settings/screens/TransactionPin";
 import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawDepositTabs";
 import CharityDetailsScreen from "../screens/tabs/payments/charity-screens/CharityDetail";
 import AirtimeDataRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurringIndex";
+import TransactionPinOptionsScreen from "../screens/tabs/settings/screens/TransactionPinOptionsScreen";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -265,7 +266,7 @@ const CommonStack = () => {
 
       {/* Settings */}
       <Stack.Group>
-        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+        <Stack.Screen name="CurrentPassword" component={ChangePasswordScreen} />
         <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
         <Stack.Screen
           name="ChangePhoneNumber"
@@ -284,6 +285,10 @@ const CommonStack = () => {
           name="TransactionPin"
           component={TransactionPin}
           options={{ presentation: "card", gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="TransactionPinOptions"
+          component={TransactionPinOptionsScreen}
         />
 
         <Stack.Screen

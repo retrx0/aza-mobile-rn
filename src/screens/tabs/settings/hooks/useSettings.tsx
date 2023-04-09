@@ -1,7 +1,11 @@
 import { STORAGE_KEY_TRANSACTION_PIN } from "@env";
 import { useState } from "react";
 import { requestOtpApi, verifyOtpApi } from "../../../../api/auth";
-import { setUserTransactionPinAPI, updatePinAPI } from "../../../../api/user";
+import {
+  resetPinAPI,
+  setUserTransactionPinAPI,
+  updatePinAPI,
+} from "../../../../api/user";
 import {
   CommonScreenProps,
   TransactionScreenPinType,
@@ -12,6 +16,8 @@ import {
   toastInfo,
   toastSuccess,
 } from "../../../../common/util/ToastUtil";
+import { useAppDispatch } from "../../../../redux";
+import { getUserInfo } from "../../../../redux/slice/userSlice";
 import useTransactionService from "../../../transfer-modal/hooks/useTransactionService";
 
 const useSettings = ({
@@ -22,6 +28,7 @@ const useSettings = ({
 >) => {
   const [loading, setLoading] = useState(false);
   const [transactionPin, setTransactionPin] = useState("");
+  const dispatch = useAppDispatch();
 
   const { sendMoneyToAzaUser, screenLoading } = useTransactionService(
     { navigation: navigation, route: route },
@@ -118,6 +125,7 @@ const useSettings = ({
           toastSuccess("Transaction pin set successfully");
           // save pin to keychain for face id
           storeItemSecure(STORAGE_KEY_TRANSACTION_PIN, transactionPin);
+          dispatch(getUserInfo());
           navigation.goBack();
         })
         .catch((e) => {
@@ -127,7 +135,21 @@ const useSettings = ({
         });
     };
 
-    const resetPin = () => {};
+    const resetPin = () => {
+      //TODO verify user
+      setLoading(true);
+      resetPinAPI(transactionPin)
+        .then(() => {
+          setLoading(false);
+          toastSuccess("Your pin reset request was successfull");
+          storeItemSecure(STORAGE_KEY_TRANSACTION_PIN, transactionPin);
+          navigation.navigate("TransactionPinOptions");
+        })
+        .catch(() => {
+          toastError("Couldn't reset your pin!");
+          setLoading(false);
+        });
+    };
 
     const updatePin = () => {
       setLoading(true);
@@ -135,7 +157,7 @@ const useSettings = ({
         updatePinAPI(transactionPin, newTransactionPin)
           .then((res) => {
             setLoading(false);
-            toastSuccess("Your pin has been updated!");
+            toastSuccess("Your pin was updated!");
             storeItemSecure(STORAGE_KEY_TRANSACTION_PIN, newTransactionPin);
             navigation.goBack();
           })

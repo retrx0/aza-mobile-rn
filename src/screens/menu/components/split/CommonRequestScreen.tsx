@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useWindowDimensions, TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
@@ -10,9 +10,12 @@ import { CommonScreenProps } from "../../../../common/navigation/types";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Colors from "../../../../constants/Colors";
 
-import { useAppSelector } from "../../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { selectUser } from "../../../../redux/slice/userSlice";
+import {
+  fetchPaymentRequestThunk,
+  selectUser,
+} from "../../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../../theme";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
@@ -30,12 +33,18 @@ const CommonRequestScreen = ({
   ]);
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
+  const dispatch = useAppDispatch();
 
   const { paymentRequests } = useAppSelector(selectUser);
   useNavigationHeader(
     navigation,
     `${type === "incoming" ? "Incoming" : "Outgoing"} Requests`
   );
+
+  useEffect(() => {
+    if (!paymentRequests.loaded) dispatch(fetchPaymentRequestThunk());
+  }, []);
+
   const renderScene = ({ route }: any) => {
     switch (route.key) {
       case "first":
@@ -82,6 +91,7 @@ const CommonRequestScreen = ({
                       }
                     >
                       <SplitListItem
+                        key={i + 2}
                         amount={amount}
                         date={date}
                         name={vendorName}
@@ -142,6 +152,7 @@ const CommonRequestScreen = ({
                       }
                     >
                       <SplitListItem
+                        key={i + 1}
                         amount={amount}
                         date={date}
                         name={vendorName}

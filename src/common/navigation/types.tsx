@@ -60,6 +60,12 @@ export type CommonStackParamList = {
   Receipt: {
     amount: string;
     beneficiaryName: string;
+    transactionDate: string;
+    transactionFee: string;
+    referenceId: string;
+    description: string;
+    receivingBank: string;
+    transactionType: string;
   };
 
   Notifications: undefined;
@@ -129,7 +135,7 @@ export type CommonStackParamList = {
   VaultLiberty: undefined;
 
   // Settings
-  ChangePassword: undefined;
+  CurrentPassword: { onVerifyNavigateTo: keyof CommonStackParamList };
   NewPassword: { oldPassword: string };
   ChangePhoneNumber: undefined;
   ChangeUserDataOTP: { type: "phone" | "email"; value: string };
@@ -150,6 +156,7 @@ export type CommonStackParamList = {
     type: TransactionScreenPinType;
     confirmPinString?: string;
   };
+  TransactionPinOptions: undefined;
 
   // Profile
   AccountDetails: undefined;

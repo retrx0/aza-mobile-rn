@@ -22,9 +22,12 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const ChangePasswordScreen = ({
   navigation,
-}: CommonScreenProps<"ChangePassword">) => {
+  route,
+}: CommonScreenProps<"CurrentPassword">) => {
   const [password, setPassword] = useState("");
   const [isButtonLoading, setButtonLoading] = useState(false);
+
+  const { onVerifyNavigateTo } = route.params;
 
   const { phoneNumber, emailAddress } = useAppSelector(selectUser);
   useNavigationHeader(navigation, "Current Password");
@@ -40,9 +43,24 @@ const ChangePasswordScreen = ({
         if (token) {
           storeItemSecure(STORAGE_KEY_JWT_TOKEN, token);
           setButtonLoading(false);
-          navigation.navigate("NewPassword", {
-            oldPassword: password,
-          });
+          switch (onVerifyNavigateTo) {
+            case "NewPassword":
+              navigation.navigate("NewPassword", {
+                oldPassword: password,
+              });
+              break;
+            case "TransactionPin":
+              navigation.navigate("TransactionPin", {
+                type: "reset",
+              });
+              break;
+
+            default:
+              break;
+          }
+        } else {
+          setButtonLoading(false);
+          toastError("Invalid password");
         }
       })
       .catch(() => {
@@ -62,7 +80,8 @@ const ChangePasswordScreen = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}>
+          }}
+        >
           Please enter your current password
         </Text>
         <View
@@ -70,7 +89,8 @@ const ChangePasswordScreen = ({
             marginTop: hp(80),
             marginBottom: hp(100),
             paddingHorizontal: hp(20),
-          }}>
+          }}
+        >
           <SegmentedInput
             value={password}
             secureInput

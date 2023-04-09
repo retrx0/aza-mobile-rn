@@ -3,7 +3,10 @@
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import * as LocalAuthentication from "expo-local-authentication";
 import { useState } from "react";
-import { SignInScreenProps } from "../../../../types/types.navigation";
+import {
+  RootStackScreenProps,
+  SignInScreenProps,
+} from "../../../../types/types.navigation";
 import { loginUserAPI } from "../../../../api/auth";
 import { storeItemSecure } from "../../../../common/util/StorageUtil";
 import { toastError } from "../../../../common/util/ToastUtil";
@@ -17,6 +20,13 @@ import {
   selectUser,
 } from "../../../../redux/slice/userSlice";
 import { IUserInfoResponse } from "../../../../types/types.redux";
+import NetInfo from "@react-native-community/netinfo";
+import {
+  setEmail,
+  setNewUser,
+  setPhone,
+} from "../../../../redux/slice/newUserSlice";
+import useAppBiometricAuthentication from "../../../../hooks/useAppBiometricAuthentication";
 
 // All sign in logic goes here
 
@@ -26,6 +36,7 @@ const useSignIn = () => {
   const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
   const [screenLoading, setScreenLoading] = useState(false);
   const dispatch = useAppDispatch();
+  const { authenticateWithBiometrics } = useAppBiometricAuthentication();
 
   const {
     minutesToDisplay,
@@ -45,6 +56,9 @@ const useSignIn = () => {
   ) => {
     // TODO add push notification token to the server to always keep it updated incase it change
     // TODO refactor below code
+
+    const netInfo = await NetInfo.fetch();
+
     if (loginAttemptCounter > 3) {
       if (timerStatus === "Started") {
         toastError(
@@ -57,51 +71,55 @@ const useSignIn = () => {
         startTimer();
       }
     } else {
-      setScreenLoading(true);
+      if (netInfo.isConnected && netInfo.isInternetReachable) {
+        setScreenLoading(true);
 
-      const jwt = await loginUserAPI({
-        email: email,
-        password: code,
-        phoneNumber: phoneNumber,
-      });
+        const jwt = await loginUserAPI({
+          email: email,
+          password: code,
+          phoneNumber: phoneNumber,
+        });
 
-      if (jwt) {
-        try {
-          storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
-          storeItemSecure(
-            STORAGE_KEY_USER_CREDS,
-            JSON.stringify({
-              email: email,
-              token: jwt,
-              password: code,
-              phoneNumber: phoneNumber,
-              fullName: fullName,
-            })
-          );
+        if (jwt) {
+          try {
+            storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt);
+            storeItemSecure(
+              STORAGE_KEY_USER_CREDS,
+              JSON.stringify({
+                email: email,
+                token: jwt,
+                password: code,
+                phoneNumber: phoneNumber,
+                fullName: fullName,
+              })
+            );
 
-          // Fetch user info
-          const info = await dispatch(getUserInfo());
-          if (info.meta.requestStatus === "fulfilled") {
-            await dispatch(getUserAccountDetails());
-            const { walletNumber } = info.payload as IUserInfoResponse;
-            dispatch(getUserTransactions({ accountNumber: walletNumber }));
-            setScreenLoading(false);
+            // Fetch user info
+            const info = await dispatch(getUserInfo());
+            if (info.meta.requestStatus === "fulfilled") {
+              await dispatch(getUserAccountDetails());
+              const { walletNumber } = info.payload as IUserInfoResponse;
+              dispatch(getUserTransactions({ accountNumber: walletNumber }));
+              setScreenLoading(false);
+              navigation.getParent()?.navigate("Root");
+            } else {
+              setScreenLoading(false);
+              toastError("There was a problem fetching your data!");
+            }
             navigation.getParent()?.navigate("Root");
-          } else {
+          } catch (err) {
             setScreenLoading(false);
-            toastError("There was a problem fetching your data!");
+            toastError(
+              "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
+            );
           }
-          navigation.getParent()?.navigate("Root");
-        } catch (err) {
+        } else {
           setScreenLoading(false);
-          toastError(
-            "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
-          );
+          setLoginAttemptCounter((s) => s + 1);
+          toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
         }
       } else {
-        setScreenLoading(false);
-        setLoginAttemptCounter((s) => s + 1);
-        toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
+        toastError("Internet connection is not reacheable!");
       }
     }
   };
@@ -110,9 +128,6 @@ const useSignIn = () => {
     navigation,
     route,
   }: SignInScreenProps<"SignInWelcomeBack">) => {
-    const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
-    const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
-
     const cachedUser = route.params.cachedUser;
 
     // TODO add check to see if account is closed or locked
@@ -127,30 +142,48 @@ const useSignIn = () => {
       }
     } else {
       // Check if biometric is enabled
-      if (hasBiometricHardware && biometricEnrolled) {
-        console.debug("biometric enroled");
-        // Check if user enabled biometrics
-        if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
-          console.log("face id preference is enabled");
-          const authenticated = await LocalAuthentication.authenticateAsync();
-          if (authenticated.success) {
-            // biometrics authenticated
-            verifyPassword(
-              cachedUser.email,
-              cachedUser.phoneNumber,
-              cachedUser.password,
-              cachedUser.fullName,
-              { navigation, route }
-            );
-          }
-        }
-      } else {
-        console.debug("biometric not enroled!");
-      }
+
+      await authenticateWithBiometrics(
+        userPreferences && userPreferences?.loginWithFaceIDSwitch
+      ).then((authenticated) => {
+        if (authenticated)
+          verifyPassword(
+            cachedUser.email,
+            cachedUser.phoneNumber,
+            cachedUser.password,
+            cachedUser.fullName,
+            { navigation, route }
+          );
+      });
     }
   };
 
-  return { handleSignBack, verifyPassword, screenLoading, setScreenLoading };
+  const handleForgotPassword = ({
+    navigation,
+    route,
+  }: SignInScreenProps<"SignInWelcomeBack">) => {
+    const cacheduser = route.params.cachedUser;
+
+    // console.log(
+    //   navigation.getParent<SignInScreenProps<"SignInWelcomeBack">>().navigation
+    // );
+    if (cacheduser) {
+      dispatch(setEmail(cacheduser.email));
+      dispatch(setPhone(cacheduser.phoneNumber));
+      navigation.getParent()?.navigate("SignUp", {
+        screen: "SignUpOTP",
+        params: { otpScreenType: "email" },
+      });
+    }
+  };
+
+  return {
+    handleSignBack,
+    verifyPassword,
+    screenLoading,
+    setScreenLoading,
+    handleForgotPassword,
+  };
 };
 
 export default useSignIn;

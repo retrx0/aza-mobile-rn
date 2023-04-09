@@ -20,9 +20,11 @@ import {
   ShineOverlay,
 } from "rn-placeholder";
 import ListItemSkeleton from "../../../../components/skeleton/ListItemSkeleton";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 export default function RecentTransactions({
   navigation,
+  route,
 }: RootTabScreenProps<"Home">) {
   const { recentTransactions } = useAppSelector(selectUser);
   const theme = useAppSelector(selectAppTheme);
@@ -85,6 +87,7 @@ export default function RecentTransactions({
               <SegmentedTransactionView
                 dateOfTransactions={key}
                 transactions={transactions}
+                navigation={{ navigation, route }}
               />
             )}
           />

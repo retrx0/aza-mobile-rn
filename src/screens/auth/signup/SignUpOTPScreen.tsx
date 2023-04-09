@@ -31,10 +31,12 @@ const SignUpOTPScreen = ({
 
   const otpTitle =
     otpScrenType === "email"
-      ? `Please enter the 6-digit code sent to **${emailAddress?.substring(
-          emailAddress.indexOf("@") - 2,
-          emailAddress.length
-        )}`
+      ? emailAddress
+        ? `Please enter the 6-digit code sent to **${emailAddress?.substring(
+            emailAddress.indexOf("@") - 2,
+            emailAddress.length
+          )}`
+        : "Please enter the 6-digit code sent to your email"
       : `Please enter the 6-digit code sent to **${phoneNumber?.substring(
           phoneNumber.length - 2,
           phoneNumber.length
@@ -63,10 +65,12 @@ const SignUpOTPScreen = ({
                   : STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
                 token
               );
-              if (otpScrenType == "email") {
+              if (otpScrenType === "email") {
                 navigation.navigate("SignUpPhoneNumber");
-              } else {
+              } else if (otpScrenType === "phone") {
                 navigation.navigate("SignUpProfileSetup");
+              } else {
+                // navigation.navigate("")
               }
             } else {
               toastError("Invalid OTP ⚠️");

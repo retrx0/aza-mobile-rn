@@ -1,4 +1,4 @@
-interface ICommonTypedListResult<T> {
+export interface ICommonTypedListResult<T> {
   loading: boolean;
   loaded: boolean;
   data: T[];

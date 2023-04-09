@@ -20,15 +20,19 @@ import { setTransaction } from "../../../redux/slice/transactionSlice";
 import { IQRScanTransactionData } from "../../../types/types.redux";
 import { QR_CODE_SCAN_ISO } from "../../../constants/AppConstants";
 import { selectUser } from "../../../redux/slice/userSlice";
+import useQRService from "../useQRService";
 
 const QRMakePaymentTab = ({
   navigation,
+  route,
 }: RootStackScreenProps<"QRTransactions">) => {
   const [cameraPermission, setCameraPermission] =
     useState<PermissionResponse>();
 
-  const dispatch = useAppDispatch();
-  const { fullName } = useAppSelector(selectUser);
+  const { onBarCodeScanned, selectImageFromGalleryAndDecode } = useQRService({
+    navigation,
+    route,
+  });
 
   useEffect(() => {
     (async () => {
@@ -74,74 +78,6 @@ const QRMakePaymentTab = ({
         />
       )
     );
-  };
-
-  const handleCodeScanned = (scannedCodeData: IQRScanTransactionData) => {
-    if (scannedCodeData.amount) {
-      dispatch(
-        setTransaction({
-          amount: Number(scannedCodeData.amount),
-          transferType: "send",
-          beneficiary: {
-            azaAccountNumber: scannedCodeData.azaAccountNumber,
-            fullName: fullName,
-            beneficiaryName: scannedCodeData.azaAccountNumber,
-          },
-          recurring: false,
-          description: "",
-        })
-      );
-      navigation.navigate("Common", {
-        screen: "SendMoneyConfirmation",
-      });
-    } else {
-      navigation.navigate("Common", {
-        screen: "TransactionKeypad",
-        params: {
-          transactionType: {
-            type: "normal",
-            transaction: "send",
-            beneficiary: {
-              azaAccountNumber: scannedCodeData.azaAccountNumber,
-              fullName: scannedCodeData.fullName,
-            },
-          },
-          headerTitle: "QR Payment",
-        },
-      });
-    }
-  };
-
-  let flag = false;
-
-  const onBarCodeScanned = (code: BarCodeScanningResult) => {
-    if (code.type === QR_CODE_SCAN_ISO && !flag) {
-      console.log("Code Scanned " + code.data);
-      handleCodeScanned(JSON.parse(code.data) as IQRScanTransactionData);
-      flag = true;
-    }
-  };
-
-  const selectImageFromGalleryAndDecode = async () => {
-    try {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status === "granted") {
-        const imageData = await ImagePicker.launchImageLibraryAsync();
-        const { uri } = imageData as ImagePicker.ImageInfo;
-        const results = await BarCodeScanner.scanFromURLAsync(uri);
-        if (results.length > 0) {
-          console.log("qr code data: ", results[0].data);
-          handleCodeScanned(
-            JSON.parse(results[0].data) as IQRScanTransactionData
-          );
-        } else {
-          toastError("The QR code could not be decoded");
-        }
-      }
-    } catch (error) {
-      console.debug(error);
-    }
   };
 
   return (

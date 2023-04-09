@@ -68,7 +68,7 @@ const TransactionPin = ({
             }
             autoFocusOnLoad={false}
             onCodeFilled={(code) => {
-              if (pinSceenType === "transaction")
+              if (pinSceenType === "transaction" || pinSceenType === "reset")
                 handlePinChange(pinSceenType, pin);
             }}
             onValueChanged={(pass) => {
@@ -134,6 +134,7 @@ const TransactionPin = ({
           buttonLoading={loading}
         />
       )}
+      {pinSceenType === "reset" && <ActivityModal loading={loading} />}
     </SpacerWrapper>
   );
 };

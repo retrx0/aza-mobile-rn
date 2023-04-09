@@ -5,7 +5,7 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../types/types.navigation";
-import { View as View, Text as Text } from "../../../theme/Themed";
+import { View, Text } from "../../../theme/Themed";
 import { AppState, Image, TouchableOpacity } from "react-native";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
@@ -24,7 +24,12 @@ const SignInWelcomeBackScreen = ({
 
   const [passcode, setPasscode] = useState("");
 
-  const { handleSignBack, verifyPassword, screenLoading } = useSignIn();
+  const {
+    handleSignBack,
+    verifyPassword,
+    screenLoading,
+    handleForgotPassword,
+  } = useSignIn();
 
   useEffect(() => {
     setPasscode("");
@@ -83,6 +88,10 @@ const SignInWelcomeBackScreen = ({
               autoFocusOnLoad
               withKeypad
               isLoading={screenLoading}
+              forgetPasswordOption
+              onForgotPassword={() =>
+                handleForgotPassword({ navigation, route })
+              }
             />
           </View>
           <View
