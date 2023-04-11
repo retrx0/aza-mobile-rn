@@ -81,7 +81,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
           withTiming(0.2, { duration: 500, easing: Easing.linear }),
           withTiming(1, { duration: 400 })
         ),
-        undefined,
+        10,
         undefined
       );
     } else {

@@ -1,12 +1,8 @@
 // Separation of Concern
 
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
-import * as LocalAuthentication from "expo-local-authentication";
 import { useState } from "react";
-import {
-  RootStackScreenProps,
-  SignInScreenProps,
-} from "../../../../types/types.navigation";
+import { SignInScreenProps } from "../../../../types/types.navigation";
 import { loginUserAPI } from "../../../../api/auth";
 import { storeItemSecure } from "../../../../common/util/StorageUtil";
 import { toastError } from "../../../../common/util/ToastUtil";
@@ -27,6 +23,7 @@ import {
   setPhone,
 } from "../../../../redux/slice/newUserSlice";
 import useAppBiometricAuthentication from "../../../../hooks/useAppBiometricAuthentication";
+import { useNavigation } from "@react-navigation/native";
 
 // All sign in logic goes here
 
@@ -37,6 +34,8 @@ const useSignIn = () => {
   const [screenLoading, setScreenLoading] = useState(false);
   const dispatch = useAppDispatch();
   const { authenticateWithBiometrics } = useAppBiometricAuthentication();
+
+  const _nav = useNavigation();
 
   const {
     minutesToDisplay,
@@ -101,16 +100,17 @@ const useSignIn = () => {
               const { walletNumber } = info.payload as IUserInfoResponse;
               dispatch(getUserTransactions({ accountNumber: walletNumber }));
               setScreenLoading(false);
+              // TODO replace navigate() with replace()
               navigation.getParent()?.navigate("Root");
             } else {
               setScreenLoading(false);
               toastError("There was a problem fetching your data!");
             }
-            navigation.getParent()?.navigate("Root");
+            // navigation.getParent()?.navigate("Root");
           } catch (err) {
             setScreenLoading(false);
             toastError(
-              "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
+              "There is an issue loggin you in, please try again and confirm the app is giving the right permissions"
             );
           }
         } else {

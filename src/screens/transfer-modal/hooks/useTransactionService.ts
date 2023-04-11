@@ -22,7 +22,6 @@ import {
   getUserAccountDetails,
   selectUser,
 } from "../../../redux/slice/userSlice";
-import * as LocalAuthentication from "expo-local-authentication";
 import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
 import {
   getItemSecure,
@@ -30,6 +29,7 @@ import {
 } from "../../../common/util/StorageUtil";
 import { STORAGE_KEY_TRANSACTION_PIN } from "@env";
 import useAppBiometricAuthentication from "../../../hooks/useAppBiometricAuthentication";
+import { AxiosError } from "axios";
 
 const useTransactionService = (
   {
@@ -110,7 +110,7 @@ const useTransactionService = (
         navigateToNextScreen();
         dispatch(getUserAccountDetails());
       })
-      .catch(() => {
+      .catch((err) => {
         setScreenLoading(false);
         toastError("There was a problem completing transaction!");
       });

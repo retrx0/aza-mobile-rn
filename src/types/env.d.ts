@@ -1,6 +1,8 @@
 declare module "@env" {
-  export const BASE_URL: string;
   export const API_BASE_URL: string;
+  export const API_BASE_URL_DEV: string;
+  export const API_BASE_URL_TST: string;
+  export const API_BASE_URL_PROD: string;
   export const API_TOKEN: string;
   export const API_KEY: string;
   export const PORT: number;

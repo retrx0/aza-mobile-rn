@@ -1,8 +1,21 @@
 import axios, { Axios, AxiosError } from "axios";
-import { API_BASE_URL, ENV, API_KEY } from "@env";
+import {
+  API_BASE_URL,
+  ENV,
+  API_KEY,
+  API_BASE_URL_DEV,
+  API_BASE_URL_TST,
+  API_BASE_URL_PROD,
+} from "@env";
+import { ENV_DEVELOPMENT, ENV_TESTING } from "../constants/AppConstants";
 
 const api = axios.create({
-  baseURL: API_BASE_URL.replace("\\", ""),
+  baseURL:
+    ENV === ENV_DEVELOPMENT
+      ? API_BASE_URL_DEV.replace("\\", "")
+      : ENV === ENV_TESTING
+      ? API_BASE_URL_TST.replace("\\", "")
+      : API_BASE_URL_PROD.replace("\\", ""),
   responseType: "json",
   headers: {
     "X-API-KEY": API_KEY,
