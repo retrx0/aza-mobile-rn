@@ -68,7 +68,7 @@ const Home = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
-    display: "flex",
+
     flex: 1,
   },
 });
