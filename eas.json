@@ -9,7 +9,6 @@
       "channel": "develop",
       "env": { "ENV": "development" },
       "ios": {
-        "simulator": true,
         "autoIncrement": true
       },
       "android": { "autoIncrement": true }
