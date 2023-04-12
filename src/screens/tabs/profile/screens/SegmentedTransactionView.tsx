@@ -9,13 +9,18 @@ import TransactionListItem from "../../../../components/ListItem/TransactionList
 import Colors from "../../../../constants/Colors";
 import { I9PSBTransaction, ITransaction } from "../../../../types/types.redux";
 import { Text, View } from "../../../../theme/Themed";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
+import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 
 const SegmentedTransactionView = ({
   dateOfTransactions,
   transactions,
+  navigation,
 }: {
   dateOfTransactions: string;
   transactions: I9PSBTransaction[];
+  navigation: RootTabScreenProps<"Home">;
 }) => {
   const formmattedDate = new Date(dateOfTransactions).toDateString();
   return (
@@ -59,6 +64,27 @@ const SegmentedTransactionView = ({
                 type === "CREDIT" ? "Incoming Transfer" : "Outgoing Transfer"
               }
               transactionType={type === "CREDIT" ? "incoming" : "outgoing"}
+              onPress={() =>
+                navigation.navigation.navigate("Common", {
+                  screen: "Receipt",
+                  params: {
+                    amount: String(amount),
+                    beneficiaryName: name!,
+                    description,
+                    transactionType:
+                      transactionType === "IntraBank"
+                        ? "Aza to Aza"
+                        : transactionType,
+                    referenceId: transactionId,
+                    transactionDate: transfromDataString(createdAt),
+                    receivingBank: transactionType === "IntraBank" ? "Aza" : "",
+                    transactionFee:
+                      transactionType === "IntraBank"
+                        ? `${NAIRA_UNICODE}0`
+                        : NAIRA_UNICODE + String((0.1 / 100) * amount),
+                  },
+                })
+              }
             />
           </View>
         )

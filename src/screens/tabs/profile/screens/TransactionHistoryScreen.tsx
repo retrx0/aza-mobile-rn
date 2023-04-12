@@ -17,10 +17,12 @@ import SegmentedTransactionView from "./SegmentedTransactionView";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 
 const TransactionHistoryScreen = ({
   navigation,
-}: CommonScreenProps<"TransactionHistory">) => {
+  route,
+}: RootTabScreenProps<"Home"> & CommonScreenProps<"TransactionHistory">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [ModalVisible, setModalVisible] = useState(false);
 
@@ -55,6 +57,7 @@ const TransactionHistoryScreen = ({
                 key={i}
                 dateOfTransactions={key}
                 transactions={transactions}
+                navigation={{ navigation, route }}
               />
             ))}
           </ScrollView>

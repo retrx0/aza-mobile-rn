@@ -22,6 +22,7 @@ import { IBeneficiary } from "../../types/types.redux";
 import { NAIRA_CCY_CODE, PSB_BANK_CODE } from "../../constants/AppConstants";
 import { verifyBankAccountAPI } from "../../api/account";
 import { toastError } from "../../common/util/ToastUtil";
+import { selectAppPreference } from "../../redux/slice/preferenceSlice";
 
 const ContactsScene = ({
   route,
@@ -45,6 +46,7 @@ const ContactsScene = ({
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const user = useAppSelector(selectUser);
+  const { contactVisibilitySwitch } = useAppSelector(selectAppPreference);
 
   const sentToAzaNumber = (
     azaNumber: string,
@@ -145,13 +147,15 @@ const ContactsScene = ({
                 stickySectionHeadersEnabled={false}
                 sections={[
                   {
-                    title: "Contacts using Aza",
-                    data: user.azaContacts.data.filter((_c) =>
-                      _c.fullName
-                        .toUpperCase()
-                        .includes(searchContact.toUpperCase())
-                    ),
-                    azaContacts: false,
+                    title: contactVisibilitySwitch ? "Contacts using Aza" : "",
+                    data: contactVisibilitySwitch
+                      ? user.azaContacts.data.filter((_c) =>
+                          _c.fullName
+                            .toUpperCase()
+                            .includes(searchContact.toUpperCase())
+                        )
+                      : [],
+                    azaContacts: true,
                   },
                   {
                     title: "Contacts not using Aza yet",
@@ -171,6 +175,10 @@ const ContactsScene = ({
                   <SectionListSeparator
                     title={section.title}
                     listSize={section.data.length}
+                    showListSize={
+                      section.azaContacts &&
+                      (contactVisibilitySwitch ? contactVisibilitySwitch : true)
+                    }
                   />
                 )}
                 renderItem={({ section, item }) => {

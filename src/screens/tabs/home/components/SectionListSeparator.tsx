@@ -7,9 +7,11 @@ import Colors from "../../../../constants/Colors";
 const SectionListSeparator = ({
   title,
   listSize,
+  showListSize,
 }: {
   title: string;
   listSize: number;
+  showListSize: boolean;
 }) => {
   return (
     <View
@@ -29,16 +31,18 @@ const SectionListSeparator = ({
       >
         {title}
       </Text>
-      <Text
-        style={{
-          color: "#2A9E17",
-          marginLeft: 10,
-          fontSize: 12,
-          fontFamily: "Euclid-Circular-A-Light",
-        }}
-      >
-        {listSize}
-      </Text>
+      {showListSize && (
+        <Text
+          style={{
+            color: "#2A9E17",
+            marginLeft: 10,
+            fontSize: 12,
+            fontFamily: "Euclid-Circular-A-Light",
+          }}
+        >
+          {listSize}
+        </Text>
+      )}
     </View>
   );
 };

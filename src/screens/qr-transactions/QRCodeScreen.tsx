@@ -28,6 +28,8 @@ import useNavigationHeader from "../../hooks/useNavigationHeader";
 import Button from "../../components/buttons/Button";
 import { useState } from "react";
 import { IQRScanTransactionData } from "../../types/types.redux";
+import Constants from "expo-constants";
+import * as Linking from "expo-linking";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -66,6 +68,12 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           })
       : Alert.alert("Permission not granted");
   };
+
+  // JSON.stringify({
+  //   azaAccountNumber: user.azaAccountNumber,
+  //   fullName: user.fullName,
+  //   amount: qrPaymentAmount,
+  // } as IQRScanTransactionData)
 
   return (
     <SpacerWrapper>
@@ -121,11 +129,11 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
         </View>
         <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <QRCode
-            value={JSON.stringify({
-              azaAccountNumber: user.azaAccountNumber,
-              fullName: user.fullName,
-              amount: qrPaymentAmount,
-            } as IQRScanTransactionData)}
+            value={`com.aza.azaapp://app/qrcode?accountNumber=${
+              user.azaAccountNumber
+            }&fullName=${user.fullName}&amount=${
+              qrPaymentAmount ? qrPaymentAmount : ""
+            }`}
             size={280}
             logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
             logoSize={50}

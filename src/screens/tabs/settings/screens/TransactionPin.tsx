@@ -12,6 +12,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 import useSettings from "../hooks/useSettings";
 import ActivityModal from "../../../../components/modal/ActivityModal";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const TransactionPin = ({
   navigation,
@@ -68,18 +69,17 @@ const TransactionPin = ({
             }
             autoFocusOnLoad={false}
             onCodeFilled={(code) => {
-              if (pinSceenType === "transaction")
-                handlePinChange(pinSceenType, pin);
+              if (pinSceenType === "reset") handlePinChange(pinSceenType, code);
             }}
             onValueChanged={(pass) => {
-              setPin(pass);
               if (pinSceenType === "transaction") {
-                if (pass.length > 3 && pass.length === 4 && pass.length < 5) {
+                if (pass.length === 4) {
                   setTimeout(() => {
                     handlePinChange(pinSceenType, pass);
                   }, 100);
                 }
               }
+              setPin(pass);
             }}
             headerstyle={{
               fontFamily: "Euclid-Circular-A-Medium",
@@ -130,10 +130,11 @@ const TransactionPin = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: 14,
           }}
-          style={{ bottom: 10 }}
+          style={{}}
           buttonLoading={loading}
         />
       )}
+      {pinSceenType === "reset" && <ActivityModal loading={loading} />}
     </SpacerWrapper>
   );
 };

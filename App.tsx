@@ -15,7 +15,7 @@ import { toastConfig } from "./src/components/notification/toast";
 import * as Device from "expo-device";
 import { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo";
-import { toastError } from "./src/common/util/ToastUtil";
+import { toastError, toastInfo } from "./src/common/util/ToastUtil";
 import { ENV, SENTRY_DSN } from "@env";
 
 const App = () => {

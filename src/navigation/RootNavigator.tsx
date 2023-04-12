@@ -73,17 +73,20 @@ const RootNavigator = ({
 
     registerForPushNotificationsAsync().then((token) => {
       if (token) {
+        console.log(token);
         dispatch(setPushToken(token));
       }
     });
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
+        console.log(notification);
         // handle notification
       });
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
         // console.log(response);
       });
 

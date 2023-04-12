@@ -37,7 +37,7 @@ const OtpScreen = (props: OtpProp) => {
     resetTimer,
     toTwoDigits,
     timerStatus,
-  } = useCountdownTimer(60);
+  } = useCountdownTimer(90);
 
   const resendCode = () => {
     onResend();
@@ -56,7 +56,8 @@ const OtpScreen = (props: OtpProp) => {
           marginTop: hp(20),
           paddingHorizontal: hp(20),
           marginBottom: hp(111),
-        }}>
+        }}
+      >
         <SegmentedInput
           value={otpCode}
           onValueChanged={(code) => onOtpChanged(code)}

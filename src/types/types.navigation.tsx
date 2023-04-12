@@ -33,7 +33,7 @@ export type RootStackParamList = {
   NotFound: undefined;
   Welcome: undefined;
   Common: NavigatorScreenParams<CommonStackParamList>;
-  SignUp: undefined;
+  SignUp: NavigatorScreenParams<SignUpStackParamList> | undefined;
   SignIn: {
     isUserSignedIn: boolean;
     cachedUser: IUserCred | undefined;
@@ -134,7 +134,9 @@ export type PasswordScreenParamsType = {
   passwordScreenType: "Create" | "Confirm";
 };
 
-export type OtpForScreenType = { otpScreenType: "email" | "phone" };
+export type OtpForScreenType = {
+  otpScreenType: "email" | "phone" | "forgotpassword";
+};
 
 export type ProfileSetupInfo = {
   profilePreloadedInfo: { firstname: string; lastname: string };

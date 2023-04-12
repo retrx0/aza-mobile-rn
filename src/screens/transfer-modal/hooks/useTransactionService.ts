@@ -22,13 +22,14 @@ import {
   getUserAccountDetails,
   selectUser,
 } from "../../../redux/slice/userSlice";
-import * as LocalAuthentication from "expo-local-authentication";
 import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
 import {
   getItemSecure,
   storeItemSecure,
 } from "../../../common/util/StorageUtil";
 import { STORAGE_KEY_TRANSACTION_PIN } from "@env";
+import useAppBiometricAuthentication from "../../../hooks/useAppBiometricAuthentication";
+import { AxiosError } from "axios";
 
 const useTransactionService = (
   {
@@ -49,6 +50,7 @@ const useTransactionService = (
   const { bvnVerified, azaAccountNumber, isTransactionPinSet } =
     useAppSelector(selectUser);
   const userPreferences = useAppSelector(selectAppPreference);
+  const { authenticateWithBiometrics } = useAppBiometricAuthentication();
 
   const dispatch = useAppDispatch();
 
@@ -108,41 +110,25 @@ const useTransactionService = (
         navigateToNextScreen();
         dispatch(getUserAccountDetails());
       })
-      .catch(() => {
+      .catch((err) => {
         setScreenLoading(false);
         toastError("There was a problem completing transaction!");
       });
   };
 
   const authenticateForTransaction = async () => {
-    const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
-    const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
-
-    if (hasBiometricHardware && biometricEnrolled) {
-      console.debug("biometric enroled for transaction authentication");
-      // Check if user enabled biometrics
-      if (
-        userPreferences &&
-        userPreferences?.confirmTransactionsWithFaceIDSwitch
-      ) {
-        console.log("face id preference is enabled");
-        const authenticated = await LocalAuthentication.authenticateAsync();
-        if (authenticated.success) {
-          // biometrics authenticated
-          // get cached user pin
-          const cachedPin = await getItemSecure(STORAGE_KEY_TRANSACTION_PIN);
+    authenticateWithBiometrics(
+      userPreferences && userPreferences?.confirmTransactionsWithFaceIDSwitch
+    ).then((authenticated) => {
+      if (authenticated) {
+        getItemSecure(STORAGE_KEY_TRANSACTION_PIN).then((cachedPin) => {
           if (cachedPin) sendMoneyToAzaUser(cachedPin);
           else navigation.push("TransactionPin", { type: "transaction" });
-        }
+        });
       } else {
-        console.log("face id preference is disabled");
         navigation.push("TransactionPin", { type: "transaction" });
       }
-    } else {
-      console.debug("biometric not enroled for transaction authentication!");
-      // authenticate with pin
-      navigation.push("TransactionPin", { type: "transaction" });
-    }
+    });
   };
 
   const navigateToNextScreen = () => {

@@ -24,7 +24,6 @@ export default function AccountSettings({
   navigation,
 }: RootTabScreenProps<"Settings">) {
   const selectedTheme = useAppSelector(selectAppTheme);
-  const { isTransactionPinSet } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
 
   const accountSettings = [
@@ -37,7 +36,10 @@ export default function AccountSettings({
         <ChangePasswordIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate("Common", { screen: "ChangePassword" }),
+        navigation.navigate("Common", {
+          screen: "CurrentPassword",
+          params: { onVerifyNavigateTo: "NewPassword" },
+        }),
     },
 
     {
@@ -85,10 +87,7 @@ export default function AccountSettings({
         <TransactionKey size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate("Common", {
-          screen: "TransactionPin",
-          params: { type: isTransactionPinSet ? "update" : "set" },
-        }),
+        navigation.navigate("Common", { screen: "TransactionPinOptions" }),
     },
 
     // TODO TO BE IMPLEMENTED LATER
