@@ -48,7 +48,7 @@
       },
       "package": "com.aza.azaapp",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 18
+      "versionCode": 20
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
