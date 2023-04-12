@@ -1,6 +1,6 @@
 import axios, { Axios, AxiosError } from "axios";
+
 import {
-  API_BASE_URL,
   ENV,
   API_KEY,
   API_BASE_URL_DEV,
