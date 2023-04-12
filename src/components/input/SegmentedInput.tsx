@@ -87,8 +87,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
             height: 80,
             zIndex: 100,
             backgroundColor: "transparent",
-          }}
-        ></View>
+          }}></View>
       )}
       <Animated.View style={[animatedStyles]}>
         <OTPInput
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   otpText: {
-    marginBottom: hp(10),
+    marginBottom: hp(15),
     fontWeight: "500",
     fontSize: hp(16),
     fontFamily: "Euclid-Circular-A-Medium",
@@ -138,8 +137,8 @@ const styles = StyleSheet.create({
     lineHeight: 20.29,
   },
   underlineStyleBase: {
-    width: wp(40),
-    height: hp(40),
+    width: wp(45),
+    height: hp(50),
     fontSize: hp(20),
     borderRadius: hp(5),
     marginVertical: 50,

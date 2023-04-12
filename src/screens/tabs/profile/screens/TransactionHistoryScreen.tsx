@@ -31,17 +31,15 @@ const TransactionHistoryScreen = ({
     "Transaction History",
     <TouchableOpacity
       style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
-      onPress={() => setModalVisible(true)}
-    >
+      onPress={() => setModalVisible(true)}>
       <DownLoadIcon color={Colors[appTheme].secondaryText} size={16} />
       <Text
         style={{
           color: Colors[appTheme].secondaryText,
-          fontSize: 12,
+          fontSize: 14,
           fontFamily: "Euclid-Circular-A-Semi-Bold",
           textAlign: "center",
-        }}
-      >
+        }}>
         Download
       </Text>
     </TouchableOpacity>

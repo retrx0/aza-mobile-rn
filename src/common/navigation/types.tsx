@@ -50,6 +50,7 @@ export type CommonStackParamList = {
   CloseAccount: undefined;
   AlternativeSurvey: undefined;
   AirtimeIndexScreen: undefined;
+  SplitFeature: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
@@ -180,6 +181,7 @@ export type CommonStackParamList = {
   MonthlySummary: undefined;
   FeesAndLimits: undefined;
   ContactUs: undefined;
+  SpliFeature: undefined;
 
   //withdraw and deposit
   WithdrawDepositTabs: { tabToView: "withdraw" | "deposit" };

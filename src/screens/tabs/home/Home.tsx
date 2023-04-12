@@ -41,12 +41,11 @@ const Home = ({
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <View style={{ flex: user.bvnVerified ? 0.63 : 1.5 }}>
+        <View style={{ flex: user.bvnVerified ? 0.63 : 1 }}>
           <ScrollView
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={refreshData} />
-            }
-          >
+            }>
             <AccountDetails />
             <TransactionOptions navigation={navigation} route={route} />
           </ScrollView>
@@ -69,7 +68,7 @@ const Home = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
-    display: "flex",
+
     flex: 1,
   },
 });
