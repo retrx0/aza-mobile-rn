@@ -79,7 +79,7 @@ const DepositScreen = ({ navigation }: CommonScreenProps<"Deposit">) => {
             resizeMode="cover"
             style={{
               width: wp(260),
-              height: hp(227),
+              height: hp(98),
               marginTop: hp(80),
               alignSelf: "center",
             }}

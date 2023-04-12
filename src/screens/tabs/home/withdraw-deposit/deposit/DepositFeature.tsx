@@ -47,7 +47,7 @@ const DepositFeature = ({
             <Image
               source={item.icon}
               resizeMode="cover"
-              style={{ width: hp(200), height: hp(150), borderRadius: 10 }}
+              style={{ width: hp(200), height: hp(200), borderRadius: 10 }}
             />
           </View>
           <View style={{ paddingHorizontal: hp(30) }}>
