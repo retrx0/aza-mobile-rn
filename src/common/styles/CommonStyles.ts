@@ -4,11 +4,11 @@ import { hp, wp } from "../util/LayoutUtil";
 
 const CommonStyles = StyleSheet.create({
   dot: {
-    backgroundColor: Colors.dark.buttonText,
+    backgroundColor: "#A6A6A6",
   },
 
   activedot: {
-    backgroundColor: Colors.light.disabledButtonBackground,
+    backgroundColor: Colors.dark.buttonText,
   },
 
   gameImage: {

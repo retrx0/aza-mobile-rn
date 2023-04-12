@@ -148,4 +148,3 @@ export const Cable = require("./common/Cable.png");
 export const Internet = require("./common/Internet.png");
 export const Water = require("./common/Water.png");
 export const DebitCard = require("./common/DebitCard.png");
-export const Split = require("./common/Split.png");

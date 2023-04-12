@@ -104,7 +104,8 @@ const SegmentedInput = (props: SegmentedInputProps) => {
               height: 80,
               zIndex: 100,
               backgroundColor: "transparent",
-            }}></View>
+            }}
+          ></View>
         )}
         <Animated.View style={[animatedStyles]}>
           <OTPInput
@@ -143,13 +144,15 @@ const SegmentedInput = (props: SegmentedInputProps) => {
             right: 0,
             bottom: -480,
           }}
-          onPress={onForgotPassword}>
+          onPress={onForgotPassword}
+        >
           <Text
             style={{
               color: Colors.general.blueHighlight,
               textAlign: "center",
               fontSize: 15,
-            }}>
+            }}
+          >
             Forgot Password?
           </Text>
         </TouchableOpacity>

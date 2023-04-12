@@ -117,11 +117,13 @@ const RootNavigator = ({
             .catch((e) => console.log(e));
         }
       }}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <ActivityModal loading={isActivityModalOpen} />
       <Stack.Navigator
         initialRouteName={isUserSignedIn ? "SignIn" : "Welcome"}
-        screenOptions={{ gestureEnabled: false }}>
+        screenOptions={{ gestureEnabled: false }}
+      >
         <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}

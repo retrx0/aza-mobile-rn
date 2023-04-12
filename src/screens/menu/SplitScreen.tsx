@@ -12,7 +12,6 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 import {
   ChevronRightIcon,
-  InfoIcon,
   ReceivedIcon,
   SendIcon,
   SplitIcon,
@@ -24,22 +23,8 @@ import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
   const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  useNavigationHeader(
-    navigation,
-    "Split",
-    <TouchableOpacity onPress={() => navigation.navigate("SplitFeature")}>
-      {/* TODO Add these colors to Colors.ts and import them */}
-      <InfoIcon
-        color={
-          appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
-        }
-        style={{ width: 20, height: 20 }}
-      />
-      {/* <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} /> */}
-    </TouchableOpacity>
-  );
+  useNavigationHeader(navigation, "Split");
 
   const navigationListItems = [
     {
@@ -67,7 +52,8 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           <View key={i}>
             <TouchableOpacity
               onPress={handleNavigation}
-              style={[CommonStyles.col, { alignSelf: "stretch" }]}>
+              style={[CommonStyles.col, { alignSelf: "stretch" }]}
+            >
               <View
                 style={[
                   CommonStyles.row,
@@ -77,19 +63,22 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     marginVertical: hp(20),
                     marginLeft: hp(3),
                   },
-                ]}>
+                ]}
+              >
                 <View>{icon}</View>
                 <View
                   style={[
                     CommonStyles.col,
                     { marginRight: "auto", marginLeft: 20 },
-                  ]}>
+                  ]}
+                >
                   <Text
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),
                       fontWeight: "600",
-                    }}>
+                    }}
+                  >
                     {name}
                   </Text>
                 </View>
