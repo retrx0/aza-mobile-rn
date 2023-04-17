@@ -44,7 +44,6 @@ const QRTransactionsScreen = ({
         }
         style={{ width: 20, height: 20 }}
       />
-      {/* <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} /> */}
     </TouchableOpacity>
   );
 
