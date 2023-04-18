@@ -121,7 +121,10 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 
 export type SignInStackParamList = {
   SignInRoot: undefined;
-  SignInWelcomeBack: { cachedUser: IUserCred | undefined };
+  SignInWelcomeBack: {
+    cachedUser: IUserCred | undefined;
+    clearPasswordInput?: boolean;
+  };
   SignInOTP: undefined;
 };
 

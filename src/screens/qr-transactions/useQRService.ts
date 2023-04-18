@@ -3,7 +3,7 @@
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { BarCodeScanningResult, PermissionResponse } from "expo-camera";
 import { toastError } from "../../common/util/ToastUtil";
-import { QR_CODE_SCAN_ISO } from "../../constants/AppConstants";
+import { APP_SCHEME, QR_CODE_SCAN_ISO } from "../../constants/AppConstants";
 import { setTransaction } from "../../redux/slice/transactionSlice";
 import { IQRScanTransactionData } from "../../types/types.redux";
 import * as ImagePicker from "expo-image-picker";
@@ -76,11 +76,13 @@ const useQRService = ({
   const onBarCodeScanned = (code: BarCodeScanningResult) => {
     if (code.type === QR_CODE_SCAN_ISO && !flag) {
       console.log("Code Scanned " + code.data);
-      const parsedString = JSON.parse(
-        JSON.stringify(parseQueryString(code.data.split("?")[1]))
-      );
-      handleCodeScanned(parsedString as IQRScanTransactionData);
-      flag = true;
+      if (code.data.includes(APP_SCHEME)) {
+        const parsedString = JSON.parse(
+          JSON.stringify(parseQueryString(code.data.split("?")[1]))
+        );
+        handleCodeScanned(parsedString as IQRScanTransactionData);
+        flag = true;
+      }
     }
   };
 

@@ -27,6 +27,7 @@ import {
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import QRReceivePaymentTab from "../screens/qr-transactions/components/QRReceivePaymentTab";
+import { removeItemSecure } from "../common/util/StorageUtil";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -106,15 +107,10 @@ const RootNavigator = ({
       onAction={(isActive) => {
         setActive(isActive);
         if (isActive === false && isUserSignedIn) {
-          navigation.navigate("SignInWelcomeBack");
-
-          SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
-            requireAuthentication: true,
-          })
-            .then(() => {
-              navigation.navigate("SignInWelcomeBack");
-            })
-            .catch((e) => console.log(e));
+          navigation.navigate("SignInWelcomeBack", {
+            clearPasswordInput: true,
+          });
+          removeItemSecure(STORAGE_KEY_JWT_TOKEN);
         }
       }}
       style={{ flex: 1 }}

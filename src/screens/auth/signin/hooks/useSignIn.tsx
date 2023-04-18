@@ -21,9 +21,12 @@ import {
   setEmail,
   setNewUser,
   setPhone,
+  setPushToken,
 } from "../../../../redux/slice/newUserSlice";
 import useAppBiometricAuthentication from "../../../../hooks/useAppBiometricAuthentication";
 import { useNavigation } from "@react-navigation/native";
+import { updateUserNotificationToken } from "../../../../api/user";
+import { useNotifications } from "../../../../hooks/useNotifications";
 
 // All sign in logic goes here
 
@@ -46,6 +49,8 @@ const useSignIn = () => {
     startTimer,
   } = useCountdownTimer(60 * 5);
 
+  const { registerForPushNotificationsAsync } = useNotifications();
+
   const verifyPassword = async (
     email: string,
     phoneNumber: string,
@@ -54,6 +59,15 @@ const useSignIn = () => {
     { navigation }: SignInScreenProps<"SignInWelcomeBack">
   ) => {
     // TODO add push notification token to the server to always keep it updated incase it change
+
+    registerForPushNotificationsAsync().then((token) => {
+      if (token !== user.pushToken) {
+        updateUserNotificationToken(token);
+        dispatch(setPushToken(token));
+        console.debug("your notification token was updated!");
+      }
+    });
+
     // TODO refactor below code
 
     const netInfo = await NetInfo.fetch();

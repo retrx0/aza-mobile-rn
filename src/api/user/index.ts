@@ -183,6 +183,17 @@ export const getUserLoginInfoAPI = async (email: string) => {
   >("get", `/api/v1/user/${email}`, null, "jwt");
 };
 
+export const updateUserNotificationToken = async (newPushToken: string) => {
+  return await apiCourier<any, any>(
+    "patch",
+    "/api/v1/user/update-push-token",
+    {
+      newPushToken,
+    },
+    "jwt"
+  );
+};
+
 const deleteUser = async () => {};
 
 const getUserAccountStatus = async (email: string) => {};

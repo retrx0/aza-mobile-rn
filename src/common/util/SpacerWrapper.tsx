@@ -4,7 +4,7 @@ import NotchResponsive from "./NotchResponsiveness";
 
 const SpacerWrapper = ({ children }) => {
   return (
-    <View style={[CommonStyles.wrapperContainer]}>
+    <View style={[CommonStyles.wrapperContainer, { flex: 1 }]}>
       <NotchResponsive />
       <View style={[CommonStyles.wrapperContainer]}>{children}</View>
     </View>

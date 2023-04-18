@@ -33,6 +33,7 @@ const SignInWelcomeBackScreen = ({
 
   useEffect(() => {
     setPasscode("");
+    if (route.params.clearPasswordInput) setPasscode("");
     handleSignBack({ navigation, route });
     const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") setPasscode("");

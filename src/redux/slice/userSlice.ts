@@ -323,7 +323,9 @@ export const userSlice = createSlice({
         state.lastLogin = action.payload.lastLogin;
         state.accountTier = action.payload.accountTier;
         state.dateOfBirth = action.payload.dateOfBirth;
+        state.azaAccountNumber = String(action.payload.walletNumber);
         state.aza9PSBAccountNumber = String(action.payload.walletNumber);
+        state.pushToken = action.payload.pushNotificationToken;
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
       .addCase(uploadProfilePicThunk.rejected, (state, action) => {})

@@ -8,6 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: "Aza",
   slug: "aza",
+  scheme: "azaapp",
   hooks: {
     postPublish: [
       {

@@ -263,6 +263,7 @@ export interface IUserInfoResponse {
   pictureUrl: string;
   userName: any;
   walletNumber: string;
+  pushNotificationToken: string;
 }
 
 export interface I9PSBWallet {

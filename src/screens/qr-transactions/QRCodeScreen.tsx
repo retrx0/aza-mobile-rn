@@ -30,6 +30,7 @@ import { useState } from "react";
 import { IQRScanTransactionData } from "../../types/types.redux";
 import Constants from "expo-constants";
 import * as Linking from "expo-linking";
+import { APP_SCHEME } from "../../constants/AppConstants";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
@@ -130,7 +131,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
         </View>
         <View style={{ alignSelf: "center", marginTop: hp(40) }}>
           <QRCode
-            value={`com.aza.azaapp://app/qrcode?accountNumber=${
+            value={`${APP_SCHEME}://app/qrcode?accountNumber=${
               user.azaAccountNumber
             }&fullName=${user.fullName}&amount=${
               qrPaymentAmount ? qrPaymentAmount : ""
