@@ -52,8 +52,7 @@ const TransactionPinOptionsScreen = ({
   return (
     <SpacerWrapper>
       <View
-        style={{ flex: 1, paddingVertical: hp(20), paddingHorizontal: hp(20) }}
-      >
+        style={{ flex: 1, paddingVertical: hp(20), paddingHorizontal: hp(20) }}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -61,8 +60,7 @@ const TransactionPinOptionsScreen = ({
             fontSize: hp(16),
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
-          }}
-        >
+          }}>
           You can change your transaction pin settings
         </Text>
         {/* <View style={{ marginTop: hp(80) }}>

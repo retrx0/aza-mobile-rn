@@ -33,7 +33,7 @@ const TransactionPin = ({
 
   return (
     <SpacerWrapper>
-      <View style={[{ marginTop: hp(20) }]}>
+      <View>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
@@ -42,20 +42,18 @@ const TransactionPin = ({
             fontFamily: "Euclid-Circular-A-Medium",
             fontWeight: "500",
             marginLeft: hp(20),
-          }}
-        >
+          }}>
           {pinSceenType !== "transaction"
             ? `You can ${pinSceenType} your transaction pin`
             : "Please type in your transaction pin"}
         </Text>
         <View
           style={{
-            marginTop: hp(80),
+            marginTop: hp(50),
             marginBottom: hp(10),
             paddingHorizontal: hp(35),
             paddingVertical: hp(20),
-          }}
-        >
+          }}>
           <SegmentedInput
             value={pin}
             secureInput
@@ -85,7 +83,7 @@ const TransactionPin = ({
               fontFamily: "Euclid-Circular-A-Medium",
               fontSize: hp(16),
               fontWeight: "500",
-              paddingBottom: 20,
+              paddingBottom: 10,
             }}
           />
         </View>
@@ -96,8 +94,7 @@ const TransactionPin = ({
               marginBottom: hp(80),
               paddingHorizontal: hp(35),
               paddingVertical: hp(20),
-            }}
-          >
+            }}>
             <SegmentedInput
               value={pin2}
               secureInput
@@ -111,7 +108,7 @@ const TransactionPin = ({
                 fontFamily: "Euclid-Circular-A-Medium",
                 fontSize: hp(16),
                 fontWeight: "500",
-                paddingBottom: 20,
+                paddingBottom: 10,
               }}
             />
           </View>
