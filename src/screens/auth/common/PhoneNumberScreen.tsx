@@ -67,8 +67,7 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -97,13 +96,12 @@ const PhoneNumberScreen = ({
           onPressButton={() => {
             dispatch(
               setReduxStorePhone(
-                country.code + phoneNumber.trim().replaceAll(/\s/g, "")
+                country.code + phoneNumber.trim().replace(/\s/g, "")
               )
             );
             requestOtpApi({
               email: "",
-              phoneNumber:
-                country.code + phoneNumber.trim().replaceAll(/\s/g, ""),
+              phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
             }).then((code) => {
               if (code) console.debug("Phone otp requested");
             });
@@ -120,8 +118,7 @@ const PhoneNumberScreen = ({
         <View
           style={[
             { borderRadius: hp(10), marginTop: hp(50), marginBottom: hp(50) },
-          ]}
-        >
+          ]}>
           <FlatList
             style={[
               {
