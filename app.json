@@ -39,7 +39,7 @@
           "audio"
         ]
       },
-      "buildNumber": "23"
+      "buildNumber": "24"
     },
     "android": {
       "adaptiveIcon": {
@@ -48,7 +48,7 @@
       },
       "package": "com.aza.azaapp",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 23,
+      "versionCode": 24,
       "permissions": [
         "NOTIFICATIONS"
       ],

@@ -36,6 +36,7 @@
       "channel": "staging"
     },
     "preview3": {
+      "env": { "ENV": "development" },
       "channel": "staging",
       "ios": { "autoIncrement": true },
       "android": { "autoIncrement": true }
