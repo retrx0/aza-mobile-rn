@@ -33,7 +33,7 @@ const TransactionPin = ({
 
   return (
     <SpacerWrapper>
-      <View>
+      <View style={[{ marginTop: hp(20) }]}>
         <Text
           lightColor={Colors.light.text}
           darkColor={Colors.dark.mainText}
