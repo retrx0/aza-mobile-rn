@@ -11,9 +11,9 @@ import { ENV_DEVELOPMENT, ENV_TESTING } from "../constants/AppConstants";
 
 const api = axios.create({
   baseURL:
-    ENV === ENV_DEVELOPMENT
+    process.env.ENV === ENV_DEVELOPMENT
       ? API_BASE_URL_DEV.replace("\\", "")
-      : ENV === ENV_TESTING
+      : process.env.ENV === ENV_TESTING
       ? API_BASE_URL_TST.replace("\\", "")
       : API_BASE_URL_PROD.replace("\\", ""),
   responseType: "json",
@@ -41,7 +41,7 @@ api.interceptors.response.use(
     let res = error as AxiosError;
     if (res.response?.status == 401) {
     }
-    if (ENV === "developement") console.error(res.toJSON());
+    if (process.env.ENV === "developement") console.error(res.toJSON());
     return Promise.reject(error);
   }
 );

@@ -33,4 +33,5 @@ declare module "@env" {
   export const STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN: string;
   export const STORAGE_KEY_PUSH_NOTIFICATION_TOKEN: string;
   export const PREFERENCE_KEY: string;
+  export const GOOGLE_SERVICES_JSON: any;
 }

@@ -67,7 +67,8 @@ const SignInWelcomeBackScreen = ({
               // marginTop: hp(20),
               paddingHorizontal: hp(20),
               marginBottom: hp(70),
-            }}>
+            }}
+          >
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -88,7 +89,12 @@ const SignInWelcomeBackScreen = ({
               headerText="Password"
               secureInput={true}
               autoFocusOnLoad
+              isLoading={screenLoading}
               withKeypad
+              // forgetPasswordOption
+              // onForgotPassword={() =>
+              //   handleForgotPassword({ navigation, route })
+              // }
             />
           </View>
           {/* <View>

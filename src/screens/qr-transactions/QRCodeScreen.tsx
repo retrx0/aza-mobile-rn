@@ -78,7 +78,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
 
   return (
     <SpacerWrapper>
-      <View style={CommonStyles.vaultcontainer}>
+      <View style={{ flex: 1, marginTop: 15 }}>
         <View style={{ alignItems: "center" }}>
           <Image
             style={{
@@ -146,12 +146,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             }
           />
         </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}
-        >
+        <View style={[]}>
           {/* <Button
             title="Copy Link"
             styleText={{
