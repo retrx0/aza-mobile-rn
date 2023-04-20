@@ -24,7 +24,19 @@ import useNavigationHeader from "../../hooks/useNavigationHeader";
 const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
   const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  useNavigationHeader(navigation, "Split");
+  useNavigationHeader(
+    navigation,
+    "Split",
+    <TouchableOpacity onPress={() => navigation.navigate("SplitFeature")}>
+      {/* TODO Add these colors to Colors.ts and import them */}
+      <InfoIcon
+        color={
+          appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
+        }
+        style={{ width: 20, height: 20 }}
+      />
+    </TouchableOpacity>
+  );
 
   const navigationListItems = [
     {

@@ -37,8 +37,7 @@ const SignUpPasswordScreen = ({
           marginTop: hp(20),
           paddingHorizontal: hp(20),
           marginBottom: hp(100),
-        }}
-      >
+        }}>
         <SegmentedInput
           value={passcode}
           secureInput
@@ -49,27 +48,8 @@ const SignUpPasswordScreen = ({
       <View
         style={[
           CommonStyles.container,
-          { bottom: hp(Platform.OS == "android" ? 300 : 400) },
-        ]}
-      >
-        <View style={[CommonStyles.row]}>
-          {/* <Text style={[CommonStyles.transaction]}>
-            Use as transaction pin?
-          </Text> */}
-          {/* <Switch
-            trackColor={{
-              false: Colors.general.tertiary,
-              true: Colors.general.green,
-            }}
-            thumbColor={isUsePasscodeAsPin ? "white" : "grey"}
-            ios_backgroundColor={Colors.general.tertiary}
-            onValueChange={toggleSwitch}
-            value={isUsePasscodeAsPin}
-            style={{
-              marginLeft: hp(13),
-            }}
-          /> */}
-        </View>
+          { bottom: hp(Platform.OS == "android" ? 100 : 400) },
+        ]}>
         <Separator />
         <Button
           title="Continue"

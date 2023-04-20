@@ -129,7 +129,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             </Text>
           </View> */}
         </View>
-        <View style={{ alignSelf: "center", marginTop: hp(40) }}>
+        <View style={{ alignSelf: "center" }}>
           <QRCode
             value={`${APP_SCHEME}://app/qrcode?accountNumber=${
               user.azaAccountNumber
@@ -172,7 +172,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           <Button
             title="Set Amount"
             styleText={{}}
-            style={{ marginBottom: 10 }}
+            style={{ marginBottom: 10, marginTop: 20 }}
             onPressButton={() => {
               navigation.navigate("QRReceivePayment");
             }}

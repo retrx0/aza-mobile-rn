@@ -97,13 +97,12 @@ const PhoneNumberScreen = ({
           onPressButton={() => {
             dispatch(
               setReduxStorePhone(
-                country.code + String(phoneNumber).trim().replaceAll(/\s/g, "")
+                country.code + phoneNumber.trim().replace(/\s/g, "")
               )
             );
             requestOtpApi({
               email: "",
-              phoneNumber:
-                country.code + String(phoneNumber).trim().replaceAll(/\s/g, ""),
+              phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
             }).then((code) => {
               if (code) console.debug("Phone otp requested");
             });

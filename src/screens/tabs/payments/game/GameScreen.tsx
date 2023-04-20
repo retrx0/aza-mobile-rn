@@ -1,15 +1,11 @@
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image } from "react-native";
 import React from "react";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { GAME } from "../../../../../assets/images";
-import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-// import navigation from "navigation";
-import { InfoIcon } from "../../../../../assets/svg";
-import BackButton from "../../../../components/buttons/BackButton";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
 
