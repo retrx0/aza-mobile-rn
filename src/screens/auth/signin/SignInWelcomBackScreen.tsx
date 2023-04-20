@@ -14,6 +14,8 @@ import ActivityModal from "../../../components/modal/ActivityModal";
 import { forgetUser } from "./helpers";
 import useSignIn from "./hooks/useSignIn";
 import CommonStyles from "../../../common/styles/CommonStyles";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import Colors from "../../../constants/Colors";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -51,23 +53,20 @@ const SignInWelcomeBackScreen = ({
           </Text>
           <Text style={styles.sentCode}>Enter your Aza password to login</Text>
           {/* <View style={[CommonStyles.row]}>
-            <View>
-
-            </View>
+            <View></View>
 
             <Image
               source={{ uri: user.pictureUrl }}
-              style={{ width: 50, height: 50 }}
+              style={{ width: 50, height: 50, borderRadius: 25 }}
             />
           </View> */}
 
           <View
             style={{
-              marginTop: hp(20),
+              // marginTop: hp(20),
               paddingHorizontal: hp(20),
-              marginBottom: hp(100),
-            }}
-          >
+              marginBottom: hp(70),
+            }}>
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
@@ -89,18 +88,50 @@ const SignInWelcomeBackScreen = ({
               secureInput={true}
               autoFocusOnLoad
               withKeypad
-              isLoading={screenLoading}
-              forgetPasswordOption
-              onForgotPassword={() =>
-                handleForgotPassword({ navigation, route })
-              }
             />
           </View>
-          <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
-          >
-            <TouchableOpacity onPress={() => forgetUser(navigation)}>
-              <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
+          {/* <View>
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginBottom: hp(20),
+                lineHeight: hp(18),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                color: Colors.light.secondaryText,
+              }}>
+              OR
+            </Text>
+            <Image
+              source={require("../../../../assets/images/common/FaceId.png")}
+              style={{
+                width: 50,
+                height: 50,
+                alignSelf: "center",
+                marginBottom: hp(10),
+              }}
+            />
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: hp(14),
+                fontWeight: "500",
+                marginBottom: hp(20),
+                lineHeight: hp(18),
+                fontFamily: "Euclid-Circular-A-Semi-Bold",
+                color: Colors.light.secondaryText,
+              }}>
+              Login with Face ID
+            </Text>
+          </View> */}
+          <View style={[{ alignSelf: "center", marginTop: hp(370) }]}>
+            <TouchableOpacity>
+              <CancelButtonWithUnderline
+                title="Forget Me"
+                onPressButton={() => forgetUser(navigation)}
+                styleText={CommonStyles.resend}
+              />
             </TouchableOpacity>
           </View>
         </View>

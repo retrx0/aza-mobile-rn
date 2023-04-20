@@ -149,3 +149,4 @@ export const Internet = require("./common/Internet.png");
 export const Water = require("./common/Water.png");
 export const DebitCard = require("./common/DebitCard.png");
 export const Split = require("./common/Split.png");
+export const FaceId = require("./common/FaceId.png");
