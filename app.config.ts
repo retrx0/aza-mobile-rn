@@ -23,5 +23,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
+    package: "com.aza.azaapp",
+    permissions: ["NOTIFICATIONS"],
   },
 });
