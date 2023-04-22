@@ -41,11 +41,9 @@ api.interceptors.response.use(
     let res = error as AxiosError;
     if (res.response?.status == 401) {
     }
-    if (process.env.ENV === "developement") console.error(res.toJSON());
+    if (process.env.ENV === ENV_DEVELOPMENT) console.error(res.toJSON());
     return Promise.reject(error);
   }
 );
-
-alert(process.env.ENV + ": " + API_BASE_URL_DEV);
 
 export default api;
