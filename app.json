@@ -35,7 +35,7 @@
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
       },
-      "buildNumber": "33"
+      "buildNumber": "35"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,7 +43,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "versionCode": 33,
+      "versionCode": 35,
       "permissions": ["NOTIFICATIONS"]
     },
     "web": {
