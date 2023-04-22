@@ -1,20 +1,17 @@
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import { View, Text } from "../../../../theme/Themed";
 
-import Colors from "../../../../constants/Colors";
 import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ExitButton from "../../../../components/buttons/ExitButton";
 import Button from "../../../../components/buttons/Button";
-import { RootTabScreenProps } from "../../../../../types";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultLiberty = ({ navigation }: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
+const VaultLiberty = ({ navigation }: CommonScreenProps<"VaultLiberty">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -93,19 +90,9 @@ const VaultLiberty = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           <Button
             title="Go Back to Vault"
-            onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "NewVault",
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            onPressButton={() => navigation.navigate("NewVault")}
+            styleText={{}}
+            style={[]}
           />
         </View>
       </View>

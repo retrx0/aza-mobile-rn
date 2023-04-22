@@ -15,11 +15,15 @@ import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import SegmentedTransactionView from "./SegmentedTransactionView";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { getAppTheme } from "../../../../theme";
+import { selectAppTheme } from "../../../../redux/slice/themeSlice";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 
 const TransactionHistoryScreen = ({
   navigation,
-}: CommonScreenProps<"TransactionHistory">) => {
-  const colorScheme = useColorScheme();
+  route,
+}: RootTabScreenProps<"Home"> & CommonScreenProps<"TransactionHistory">) => {
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [ModalVisible, setModalVisible] = useState(false);
 
   const { recentTransactions } = useAppSelector(selectUser);
@@ -31,10 +35,10 @@ const TransactionHistoryScreen = ({
       style={[CommonStyles.col, { alignItems: "center", marginTop: 2 }]}
       onPress={() => setModalVisible(true)}
     >
-      <DownLoadIcon color={Colors[colorScheme].secondaryText} size={16} />
+      <DownLoadIcon color={Colors[appTheme].secondaryText} size={16} />
       <Text
         style={{
-          color: Colors[colorScheme].secondaryText,
+          color: Colors[appTheme].secondaryText,
           fontSize: 12,
           fontFamily: "Euclid-Circular-A-Semi-Bold",
           textAlign: "center",
@@ -50,15 +54,14 @@ const TransactionHistoryScreen = ({
       <SpacerWrapper>
         <View style={[styles.container]}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {recentTransactions.data.map(
-              ({ dateOfTransactions, transactions }, i) => (
-                <SegmentedTransactionView
-                  key={i}
-                  dateOfTransactions={dateOfTransactions}
-                  transactions={transactions}
-                />
-              )
-            )}
+            {recentTransactions.data.map(({ key, transactions }, i) => (
+              <SegmentedTransactionView
+                key={i}
+                dateOfTransactions={key}
+                transactions={transactions}
+                navigation={{ navigation, route }}
+              />
+            ))}
           </ScrollView>
         </View>
       </SpacerWrapper>

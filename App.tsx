@@ -1,3 +1,4 @@
+import React from "react";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -14,7 +15,7 @@ import { toastConfig } from "./src/components/notification/toast";
 import * as Device from "expo-device";
 import { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo";
-import { toastError } from "./src/common/util/ToastUtil";
+import { toastError, toastInfo } from "./src/common/util/ToastUtil";
 import { ENV, SENTRY_DSN } from "@env";
 
 const App = () => {
@@ -72,8 +73,8 @@ Sentry.init({
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
   // We recommend adjusting this value in production.
   tracesSampleRate: 1.0,
-  enableInExpoDevelopment: ENV === "developement",
-  debug: ENV === "developement", // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  enableInExpoDevelopment: process.env.ENV === "developement",
+  debug: process.env.ENV === "developement", // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
 
 export default App;

@@ -18,7 +18,7 @@ import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
-import { IBeneficiary } from "../../../../redux/types";
+import { IBeneficiary } from "../../../../types/types.redux";
 
 const BlockNewUserScreen = ({
   navigation,

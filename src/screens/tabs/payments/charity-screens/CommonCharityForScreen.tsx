@@ -93,12 +93,7 @@ const CommonCharityForScreen = ({
         onChangeText={(amnt) => setAmount(amnt)}
         style={styles.mainInput}
         icon={null}
-        inputStyle={[
-          styles.input,
-          {
-            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-          },
-        ]}
+        inputStyle={[styles.input]}
         labelStyle={styles.label}
         label=""
         placeholder="Donation Amount"

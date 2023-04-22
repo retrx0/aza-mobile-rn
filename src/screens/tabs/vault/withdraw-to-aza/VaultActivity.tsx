@@ -1,15 +1,10 @@
-import { TouchableOpacity, Image } from "react-native";
-import { View, Text } from "../../../../theme/Themed";
+import { View } from "../../../../theme/Themed";
 
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { ActivityCard, ActivityList } from "../components/ActivityComponents";
-import { hp } from "../../../../common/util/LayoutUtil";
-import useColorScheme from "../../../../hooks/useColorScheme";
 
 const VaultActivity = () => {
-  const colorScheme = useColorScheme();
-
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
@@ -21,7 +16,7 @@ const VaultActivity = () => {
                 send={item.send}
                 status={item.status}
                 due={item.due}
-                amount={item.amount}
+                amount={""}
               />
             );
           })}

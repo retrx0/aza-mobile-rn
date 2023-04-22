@@ -8,18 +8,22 @@ import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import Colors from "../../../constants/Colors";
-import { RootStackScreenProps } from "../../../../types";
+import { RootStackScreenProps } from "../../../types/types.navigation";
 
 import { NairaLargeIcon } from "../../../../assets/svg";
 import { useAppDispatch, useAppSelector } from "../../../redux";
-import { setTransaction } from "../../../redux/slice/transactionSlice";
+import {
+  setQRPaymentAmount,
+  setTransaction,
+  setTransactionAmount,
+} from "../../../redux/slice/transactionSlice";
 import { selectUser } from "../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../theme";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 
 const QRReceivePaymentTab = ({
   navigation,
-}: RootStackScreenProps<"QRTransactions">) => {
+}: RootStackScreenProps<"QRReceivePayment">) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
 
@@ -30,12 +34,13 @@ const QRReceivePaymentTab = ({
 
   return (
     <>
-      <View style={[CommonStyles.vaultcontainer]}>
+      <View style={[CommonStyles.vaultcontainer, { marginTop: 0 }]}>
         <View
           style={{
             display: "flex",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Text
             lightColor={Colors.light.text}
             darkColor={Colors.dark.secondaryText}
@@ -44,7 +49,8 @@ const QRReceivePaymentTab = ({
               fontSize: hp(14),
               marginTop: hp(40),
               marginBottom: hp(20),
-            }}>
+            }}
+          >
             Enter amount to be paid
           </Text>
           <View style={[CommonStyles.row]}>
@@ -66,7 +72,8 @@ const QRReceivePaymentTab = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: 36,
-              }}>
+              }}
+            >
               {!amount && " 0"} {numberWithCommas(amount)}
             </Text>
           </View>
@@ -76,7 +83,8 @@ const QRReceivePaymentTab = ({
             width: "100%",
             marginTop: hp(40),
             marginBottom: hp(30),
-          }}>
+          }}
+        >
           <VirtualKeyboard value={amount} setValue={setAmount} maxLength={9} />
         </View>
         <Button
@@ -84,22 +92,25 @@ const QRReceivePaymentTab = ({
           disabled={!amount}
           onPressButton={() => {
             dispatch(
-              setTransaction({
-                amount: Number(amount),
-                beneficiary: {
-                  fullName: user.fullName,
-                  azaAccountNumber: "" + user.azaAccountNumber,
-                  firstName: user.firstName,
-                  lastName: user.lastName,
-                  email: user.emailAddress,
-                  phone: user.phoneNumber,
-                  pictureUrl: user.pictureUrl,
-                },
-                transferType: "request",
-                description: description,
-              })
+              //   setTransaction({
+              //     amount: Number(amount),
+              //     beneficiary: {
+              //       fullName: user.fullName,
+              //       azaAccountNumber: "" + user.azaAccountNumber,
+              //       firstName: user.firstName,
+              //       lastName: user.lastName,
+              //       email: user.emailAddress,
+              //       phone: user.phoneNumber,
+              //       pictureUrl: user.pictureUrl,
+              //     },
+              //     transferType: "request",
+              //     description: description,
+              //   })
+              // );
+              setTransactionAmount(Number(amount))
             );
-            navigation.navigate("QRCode");
+            dispatch(setQRPaymentAmount(Number(amount)));
+            navigation.goBack();
           }}
           styleText={{
             fontFamily: "Euclid-Circular-A-Medium",

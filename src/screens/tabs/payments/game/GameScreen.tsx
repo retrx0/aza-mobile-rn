@@ -1,17 +1,15 @@
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image } from "react-native";
 import React from "react";
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { GAME } from "../../../../../assets/images";
-import { RootTabScreenProps } from "../../../../../types";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-// import navigation from "navigation";
-import { InfoIcon } from "../../../../../assets/svg";
-import BackButton from "../../../../components/buttons/BackButton";
+import { CommonScreenProps } from "../../../../common/navigation/types";
+import Colors from "../../../../constants/Colors";
 
-const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
+const GameScreen = ({ navigation }: CommonScreenProps<"GameScreen">) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -25,8 +23,9 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
             fontSize: hp(16),
             fontWeight: "600",
             marginBottom: hp(30),
-            color: "#2A9E17",
-          }}>
+            color: Colors.general.green,
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -36,7 +35,8 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Choose from hundreds of game brands
         </Text>
         <Image
@@ -53,28 +53,5 @@ const GameScreen = ({ navigation }: RootTabScreenProps<"Payments">) => {
     </SpacerWrapper>
   );
 };
-
-const styles2 = StyleSheet.create({
-  container: {
-    paddingTop: 80,
-    padding: 20,
-  },
-  input: {
-    width: "100%",
-    borderBottomColor: "#EAEAEC",
-    borderBottomWidth: 1,
-    height: 40,
-    fontSize: hp(16),
-    fontWeight: "500",
-    fontFamily: "Euclid-Circular-A",
-  },
-  mainInput: {
-    marginTop: 0,
-  },
-  img: {
-    width: 36,
-    height: 36,
-  },
-});
 
 export default GameScreen;

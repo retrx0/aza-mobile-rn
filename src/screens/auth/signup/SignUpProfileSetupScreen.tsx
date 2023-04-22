@@ -3,7 +3,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import BackButton from "../../../components/buttons/BackButton";
 import { View as View, Text as Text } from "../../../theme/Themed";
-import { SignUpScreenProps } from "../../../../types";
+import { SignUpScreenProps } from "../../../types/types.navigation";
 import SignUpProfile from "./components/SignUpProfile";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";

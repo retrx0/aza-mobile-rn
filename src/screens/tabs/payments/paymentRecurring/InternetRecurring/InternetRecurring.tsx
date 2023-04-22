@@ -177,13 +177,14 @@ import { Image } from "react-native";
 import React from "react";
 import { View as View, Text as Text } from "../../../../../theme/Themed";
 import CommonStyles from "../../../../../common/styles/CommonStyles";
-import { RootTabScreenProps } from "../../../../../../types";
+import { RootTabScreenProps } from "../../../../../types/types.navigation";
 import { hp, wp } from "../../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
 import { Internet } from "../../../../../../assets/images";
+import { CommonScreenProps } from "../../../../../common/navigation/types";
 export default function InternetRecurring({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"InternetRecurring">) {
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -196,7 +197,8 @@ export default function InternetRecurring({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -208,7 +210,8 @@ export default function InternetRecurring({
             fontWeight: "500",
             maxWidth: wp(333),
             textAlign: "center",
-          }}>
+          }}
+        >
           Subscribe to your favourite Internet Service Providers through our
           internet feature
         </Text>

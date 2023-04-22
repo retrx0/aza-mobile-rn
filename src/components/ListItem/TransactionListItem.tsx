@@ -1,12 +1,13 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { MessageIcon, ReceivedIcon, SendIcon } from "../../../assets/svg";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { View, Text } from "../../theme/Themed";
 
 import Colors from "../../constants/Colors";
-import { hp } from "../../common/util/LayoutUtil";
+import { hp, wp } from "../../common/util/LayoutUtil";
 import { NAIRA_UNICODE } from "../../constants/AppConstants";
+import ProfilePictureView from "../views/ProfilePictureView";
 
 interface TransactionItem {
   image: string;
@@ -16,6 +17,7 @@ interface TransactionItem {
   transactionMessage?: string;
   amount: string;
   date: string;
+  onPress?: () => void;
 }
 
 export default function TransactionListItem({
@@ -26,6 +28,7 @@ export default function TransactionListItem({
   transactionMessage,
   amount,
   date,
+  onPress,
 }: TransactionItem) {
   return (
     <View
@@ -37,51 +40,63 @@ export default function TransactionListItem({
         },
       ]}
     >
-      <Image
+      <ProfilePictureView
+        firstName={name.substring(0, 1)}
+        lastName={
+          name.split(" ")[1]
+            ? name.split(" ")[1].substring(0, 1).toUpperCase()
+            : name.substring(1, 2).toUpperCase()
+        }
+        profilePictureUrl={image}
+      />
+      {/* <Image
         style={{ borderRadius: 45, width: 45, height: 45 }}
         source={{
           uri: image,
           cache: "default",
         }}
-      />
+      /> */}
       <View style={{ display: "flex", marginRight: "auto", marginLeft: 15 }}>
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A-Bold",
-            fontSize: hp(16),
-            fontWeight: "600",
-          }}
-        >
-          {name}
-        </Text>
-        <View
-          style={[
-            CommonStyles.row,
-            {
-              marginTop: hp(3),
-              marginBottom: hp(8),
-              alignSelf: "flex-start",
-            },
-          ]}
-        >
-          {transactionType === "incoming" ? (
-            <ReceivedIcon color={Colors.general.green} />
-          ) : (
-            <SendIcon color={Colors.light.error} />
-          )}
+        <TouchableOpacity onPress={onPress}>
           <Text
-            lightColor={Colors.light.text}
-            darkColor={Colors.dark.secondaryText}
             style={{
-              marginLeft: hp(3),
-              fontSize: hp(14),
-              fontWeight: "400",
-              fontFamily: "Euclid-Circular-A-Medium",
+              fontFamily: "Euclid-Circular-A-Bold",
+              fontSize: hp(16),
+              fontWeight: "600",
             }}
           >
-            {transactionTitle}
+            {name}
           </Text>
-        </View>
+          <View
+            style={[
+              CommonStyles.row,
+              {
+                marginTop: hp(3),
+                marginBottom: hp(8),
+                alignSelf: "flex-start",
+              },
+            ]}
+          >
+            {transactionType === "incoming" ? (
+              <ReceivedIcon color={Colors.general.green} />
+            ) : (
+              <SendIcon color={Colors.light.error} />
+            )}
+            <Text
+              lightColor={Colors.light.text}
+              darkColor={Colors.dark.secondaryText}
+              style={{
+                marginLeft: hp(3),
+                fontSize: hp(14),
+                fontWeight: "400",
+                fontFamily: "Euclid-Circular-A-Medium",
+              }}
+            >
+              {transactionTitle}
+            </Text>
+          </View>
+        </TouchableOpacity>
+
         {transactionMessage ? (
           <View style={[CommonStyles.row, { alignSelf: "flex-start" }]}>
             <MessageIcon color={Colors.general.grey} size={12} />
@@ -129,6 +144,7 @@ export default function TransactionListItem({
             marginTop: 3,
             fontFamily: "Euclid-Circular-A",
             fontWeight: "300",
+            maxWidth: wp(70),
           }}
         >
           {date}

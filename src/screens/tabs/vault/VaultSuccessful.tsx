@@ -5,19 +5,22 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultSuccessful = ({
+  navigation,
+}: CommonScreenProps<"VaultSuccessful">) => {
   const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <Image
+        {/* <Image
           source={require("../../../../assets/images/Successful.png")}
           resizeMode="cover"
           style={[CommonStyles.caution]}
-        />
+        /> */}
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>
@@ -33,9 +36,7 @@ const VaultSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "UserVault" })
-            }
+            onPressButton={() => navigation.navigate("UserVault")}
             styleText={{}}
             style={[{}, { bottom: hp(20) }, CommonStyles.button]}
           />

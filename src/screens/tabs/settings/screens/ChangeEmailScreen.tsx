@@ -12,83 +12,105 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import * as yup from "yup";
+import { Formik } from "formik";
+import useSettings from "../hooks/useSettings";
+import InputFormFieldNormal from "../../../../components/input/InputFormFieldNormal";
 
 const ChangeEmailScreen = ({
   navigation,
+  route,
 }: CommonScreenProps<"ChangeEmail">) => {
-  const user = useAppSelector(selectUser);
-
-  const [newEmail, setNewEmail] = useState("");
+  const { emailAddress } = useAppSelector(selectUser);
+  const { changeEmailAddress, loading } = useSettings({ navigation, route });
 
   useNavigationHeader(navigation, "New Email");
+
+  const validationSchema = yup.object({
+    email: yup
+      .string()
+      .required("New email is required!")
+      .notOneOf([emailAddress])
+      .email(),
+  });
 
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
-        <View style={{ paddingHorizontal: hp(20) }}>
+        <View
+          style={{ marginBottom: 10, marginTop: 30, paddingHorizontal: hp(20) }}
+        >
           <Text
             style={{
               fontSize: hp(16),
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
               // marginTop: hp(30),
-            }}>
+            }}
+          >
             Change your email
           </Text>
-          <View style={{ marginBottom: 10, marginTop: 30 }}>
-            <BoxTextInput
-              placeHolder="Current Email"
-              required={true}
-              value={user.emailAddress}
-              onChange={() => {}}
-              labelStyle={{
-                fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                marginLeft: hp(5),
-                fontWeight: "500",
-              }}
-              inputStyle={undefined}
-              containerStyle={undefined}
-              inputProps={{
-                keyboardType: "email-address",
-                textContentType: "emailAddress",
-                autoComplete: "email",
-                editable: false,
-              }}
-            />
-            <BoxTextInput
-              placeHolder="New Email"
-              required={true}
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.nativeEvent.text)}
-              labelStyle={{
-                fontSize: hp(16),
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                marginLeft: hp(5),
-                fontWeight: "500",
-              }}
-              inputStyle={{}}
-              containerStyle={undefined}
-              inputProps={{
-                keyboardType: "email-address",
-                textContentType: "emailAddress",
-                autoComplete: "email",
-              }}
-            />
-          </View>
+          <BoxTextInput
+            placeHolder="Current Email"
+            required={true}
+            value={emailAddress}
+            onChange={() => {}}
+            labelStyle={{
+              fontSize: hp(16),
+              fontFamily: "Euclid-Circular-A-Semi-Bold",
+              marginLeft: hp(5),
+              fontWeight: "500",
+            }}
+            inputStyle={undefined}
+            containerStyle={undefined}
+            inputProps={{
+              keyboardType: "email-address",
+              textContentType: "emailAddress",
+              autoComplete: "email",
+              editable: false,
+            }}
+          />
         </View>
-        <Button
-          title="Continue"
-          onPressButton={() => navigation.getParent()?.navigate("Settings")}
-          styleText={{
-            fontFamily: "Euclid-Circular-A-Medium",
-            fontSize: hp(14),
+        <Formik
+          validationSchema={validationSchema}
+          initialValues={{ email: "" }}
+          onSubmit={(values, actions) => {
+            changeEmailAddress(values.email, false);
           }}
-          style={{
-            marginTop: hp(47),
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            isValid,
+            errors,
+            touched,
+          }) => {
+            return (
+              <View>
+                <InputFormFieldNormal
+                  value={values.email}
+                  onChangeText={handleChange("email")}
+                  onBlur={handleBlur("email")}
+                  placeholderVisible={true}
+                  type="email"
+                  formikProps={{
+                    errors: errors.email,
+                    touched: touched.email,
+                  }}
+                  autoFocus={false}
+                />
+                <Button
+                  title="Continue"
+                  onPressButton={handleSubmit}
+                  buttonLoading={loading}
+                  disabled={!isValid}
+                />
+              </View>
+            );
           }}
-          disabled={!newEmail}
-        />
+        </Formik>
       </View>
     </SpacerWrapper>
   );

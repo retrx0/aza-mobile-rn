@@ -118,7 +118,7 @@ const SelectBankScreen = ({
                       { flex: 1, justifyContent: "space-between" },
                     ]}
                   >
-                    {logoUrl !== "" && (
+                    {logoUrl !== "" && logoUrl && (
                       <Image
                         source={{ uri: logoUrl }}
                         style={{ width: 30, height: 30, resizeMode: "contain" }}

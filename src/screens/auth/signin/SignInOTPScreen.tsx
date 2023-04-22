@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from "react";
-import { SignInScreenProps } from "../../../../types";
+import { SignInScreenProps } from "../../../types/types.navigation";
 import { requestOtpApi, verifyOtpApi } from "../../../api/auth";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useAppSelector, useAppDispatch } from "../../../redux";
@@ -50,6 +50,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
             })
             .catch((e) => {
               console.error("Error verifying otp" + e);
+              Toast.show({ type: "error", text1: "Invalid OTP" });
               setButtonLoading(false);
             });
         }}
@@ -58,8 +59,7 @@ const LoginOTPScreen = ({ navigation }: SignInScreenProps<"SignInOTP">) => {
             requestOtpApi({
               email: "",
               phoneNumber: user.phoneNumber,
-            });
-            toastInfo("OTP resent!");
+            }).then(() => toastInfo("OTP resent!"));
           }
         }}
         phoneNumber={""}

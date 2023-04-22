@@ -1,11 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import CommonStyles from "../../common/styles/CommonStyles";
 import { hp, wp } from "../../common/util/LayoutUtil";
-import Colors from "../../constants/Colors";
-import useColorScheme from "../../hooks/useColorScheme";
-import { TextInput } from "../../theme/Themed";
-import { Text as Text } from "../../theme/Themed";
+import { TextInput, Text } from "../../theme/Themed";
 
 const InputFormFieldNormal = ({
   value,

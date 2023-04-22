@@ -8,6 +8,7 @@ import {
   STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
 } from "@env";
 import { toastError, toastSuccess } from "../../common/util/ToastUtil";
+import apiCourier from "../courier";
 
 type RegisterUserModel = {
   firstName: string;
@@ -109,101 +110,88 @@ export const verifyEmailAPI = async (email: string) => {
   }
 };
 
+export const setUserTransactionPinAPI = async (newTransactionPin: string) => {
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/set/transactionPin",
+    {
+      newTransactionPin,
+    },
+    "jwt"
+  );
+};
+
 export const createPinAPI = async (newTransactionPin: string) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.patch(
-      "/api/v1/user/create-pin",
-      {
-        newTransactionPin,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result.data;
-  } catch (e) {
-    throw Error("Error creating pin");
-  }
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/create-pin",
+    {
+      newTransactionPin,
+    },
+    "jwt"
+  );
 };
 
 export const updatePinAPI = async (oldPin: string, newPin: string) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.patch(
-      "/api/v1/user/update-pin",
-      {
-        oldPin,
-        newPin,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result.data;
-  } catch (e) {
-    console.log(e as Error);
-  }
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/update-pin",
+    {
+      oldPin,
+      newPin,
+    },
+    "jwt"
+  );
 };
 
 export const resetPinAPI = async (newTransactionPin: string) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.post(
-      "/api/v1/user/reset-pin",
-      {
-        newTransactionPin,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result.data;
-  } catch (e) {
-    console.log(e as Error);
-  }
+  return await apiCourier(
+    "post",
+    "/api/v1/user/reset-pin",
+    {
+      newTransactionPin,
+    },
+    "jwt"
+  );
 };
 
 export const inviteUserAPI = async (phoneNumber: string, email: string) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.post(
-      "/api/v1/user/invite",
-      {
-        phoneNumber,
-        email,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    return result.data;
-  } catch (e) {
-    console.log(e as Error);
-  }
+  return await apiCourier(
+    "post",
+    "/api/v1/user/invite",
+    {
+      phoneNumber,
+      email,
+    },
+    "jwt"
+  );
 };
 
 export const getUserLoginInfoAPI = async (email: string) => {
-  try {
-    const response = await api.get(`/api/v1/user/${email}`);
-    if (response.status === 200) return response.data.data;
-    return undefined;
-  } catch (e) {
-    if ((e as AxiosError).response) {
-      if ((e as AxiosError).response?.status === 404)
-        toastError("Email address not valid!");
-      else toastError("We encountered an error, please try again!");
+  return await apiCourier<
+    null,
+    {
+      data: {
+        fullName: string;
+        phoneNumber: string;
+        profilePictureUrl: string;
+      };
+      message: string;
+      requestState: string;
+      statusCode: string;
     }
-    console.debug("Error get user login details: ", e as Error);
-  }
+  >("get", `/api/v1/user/${email}`, null, "jwt");
+};
+
+export const updateUserNotificationToken = async (newPushToken: string) => {
+  return await apiCourier<any, any>(
+    "patch",
+    "/api/v1/user/update-push-token",
+    {
+      newPushToken,
+    },
+    "jwt"
+  );
 };
 
 const deleteUser = async () => {};

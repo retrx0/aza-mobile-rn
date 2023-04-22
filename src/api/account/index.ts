@@ -1,84 +1,65 @@
-import api from "..";
-
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
-import { getItemSecure } from "../../common/util/StorageUtil";
-import { AxiosError } from "axios";
-import { toastError } from "../../common/util/ToastUtil";
+import { IVerifyBankResponse } from "../../types/types.api";
 import apiCourier from "../courier";
 
 export const checkAccountEndpointHealthAPI = async () => {
-  try {
-    const result = await api.get("/api/v1/account/health");
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e) {
-    console.log(e);
-  }
+  return await apiCourier("get", "/api/v1/account/health", undefined, "none");
 };
 
 export const getUserAccountInfoAPI = async () => {
-  try {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.get("/api/v1/account", {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e) {
-    throw new Error("Error getting user account info: ", e as Error);
-  }
+  return await apiCourier("get", "/api/v1/account", undefined, "jwt");
 };
 
 export const getAccountInfoAPI = async (accountNumber: string) => {
-  try {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.get(`/api/v1/account/${accountNumber}`, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e: any) {
-    throw new Error(e.response.data.message);
-  }
+  return await apiCourier(
+    "get",
+    `/api/v1/account/${accountNumber}`,
+    undefined,
+    "jwt"
+  );
 };
 
 export const getUserTransactionsAPI = async (accountNumber: string) => {
-  try {
-    const jwt = await getItemSecure(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.get(
-      `/api/v1/account/${accountNumber}/trnasactions`,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e: any) {
-    throw new Error(e.response.data.message);
-  }
+  return await apiCourier(
+    "get",
+    `/api/v1/account/${accountNumber}/trnasactions`,
+    undefined,
+    "jwt"
+  );
 };
 
 export const verifyBankAccountAPI = async (
   bankCode: string,
-  accountNumber: string
+  accountNumber: string,
+  walletNumber: string
 ) => {
-  return await apiCourier(
+  return await apiCourier<
+    { bankCode; accountNumber; walletNumber },
+    IVerifyBankResponse
+  >(
     "post",
     "/api/v1/account/verify",
     {
       bankCode,
       accountNumber,
+      walletNumber,
     },
     "jwt"
   );
 };
 
-const fetchVFDAccountData = async () => {};
+export const create9PSBWallet = async ({
+  bvn,
+  dateOfBirth,
+}: {
+  bvn: string;
+  dateOfBirth: string;
+}) => {
+  return await apiCourier(
+    "put",
+    "/api/v1/account/create",
+    { bvn, dateOfBirth },
+    "jwt"
+  );
+};
 
-const closeVFDAccount = async () => {};
+const close9PSBAccount = async () => {};

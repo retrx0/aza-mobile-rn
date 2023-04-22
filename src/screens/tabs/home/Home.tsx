@@ -1,55 +1,65 @@
-import { StyleSheet } from "react-native";
+import { RefreshControl, StyleSheet } from "react-native";
 
-import { RootTabScreenProps } from "../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../types/types.navigation";
 
 import AccountDetails from "./components/AccountDetails";
 import TransactionOptions from "./components/TransactionOptions";
 import LinkBVN from "./components/LinkBVN";
 import RecentTransactions from "./components/RecentTransactions";
-import { useAppSelector } from "../../../redux";
-import { useNotifications } from "../../../hooks/useNotifications";
-import { selectUser } from "../../../redux/slice/userSlice";
-import { View as View } from "../../../theme/Themed";
-import NotificationsContainer from "./components/NotificationsContainer";
+import { useAppDispatch, useAppSelector } from "../../../redux";
+import {
+  getUserAccountDetails,
+  getUserTransactions,
+  selectUser,
+} from "../../../redux/slice/userSlice";
+import { ScrollView, View as View } from "../../../theme/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import CommonStyles from "../../../common/styles/CommonStyles";
+import { useState } from "react";
 
-const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
-  const {
-    schedulePushNotification,
-    registerForPushNotificationsAsync,
-    sendPushNotification,
-  } = useNotifications();
-
-  // Testing notification
-  // schedulePushNåotification("Hi 👋", "Welcome to AZA!!", 1, { a: "b" });
-
-  // registerForPushNotificationsAsync().then((token) => {
-  //   if (token) {
-  //     sendPushNotification(
-  //       token,
-  //       "Hello Again 👀",
-  //       "This is a push notification",
-  //       {}
-  //     );
-  //   }
-  // });
-
+const Home = ({
+  navigation,
+  route,
+}: RootTabScreenProps<"Home"> & RootStackScreenProps<"Root">) => {
   const user = useAppSelector(selectUser);
+  const [refreshing, setRefreshing] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const refreshData = async () => {
+    setRefreshing(true);
+    dispatch(
+      getUserTransactions({
+        accountNumber: user.aza9PSBAccountNumber,
+      })
+    );
+    await dispatch(getUserAccountDetails());
+    setRefreshing(false);
+  };
 
   return (
     <SpacerWrapper>
       <View style={styles.container}>
-        <AccountDetails />
-        <TransactionOptions navigation={navigation} route={route} />
-        {!user.bvnVerified ? (
-          <LinkBVN
-            navigation={navigation}
-            route={route}
-            isBvnLinked={user.bvnVerified}
-          />
-        ) : // <NotificationsContainer navigation={navigation} route={route} />
-        null}
+        <View style={{ flex: user.bvnVerified ? 0.63 : 1.5 }}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={refreshData} />
+            }
+          >
+            <AccountDetails />
+            <TransactionOptions navigation={navigation} route={route} />
+          </ScrollView>
+
+          {!user.bvnVerified ? (
+            <LinkBVN
+              navigation={navigation}
+              route={route}
+              isBvnLinked={user.bvnVerified}
+            />
+          ) : // <NotificationsContainer navigation={navigation} route={route} />
+          null}
+        </View>
         <RecentTransactions navigation={navigation} route={route} />
       </View>
     </SpacerWrapper>
@@ -59,6 +69,8 @@ const Home = ({ navigation, route }: RootTabScreenProps<"Home">) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
+    display: "flex",
+    flex: 1,
   },
 });
 

@@ -12,6 +12,7 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 
 import {
   ChevronRightIcon,
+  InfoIcon,
   ReceivedIcon,
   SendIcon,
   SplitIcon,
@@ -22,25 +23,37 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
-  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
-  useNavigationHeader(navigation, "Split");
+  useNavigationHeader(
+    navigation,
+    "Split",
+    <TouchableOpacity onPress={() => navigation.navigate("Split")}>
+      {/* TODO Add these colors to Colors.ts and import them */}
+      <InfoIcon
+        color={
+          appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
+        }
+        style={{ width: 20, height: 20 }}
+      />
+    </TouchableOpacity>
+  );
 
   const navigationListItems = [
     {
       name: "Split",
       handleNavigation: () => navigation.navigate("ChooseSplit"),
-      icon: <SplitIcon size={18} color={Colors[colorScheme].mainText} />,
+      icon: <SplitIcon size={18} color={Colors[appTheme].mainText} />,
     },
     {
       name: "Incoming Requests",
       handleNavigation: () => navigation.navigate("IncomingSplitRequests"),
-      icon: <ReceivedIcon size={18} color={Colors[colorScheme].mainText} />,
+      icon: <ReceivedIcon size={18} color={Colors[appTheme].mainText} />,
     },
     {
       name: "Outgoing Requests",
       handleNavigation: () => navigation.navigate("OutgoingSplitRequests"),
-      icon: <SendIcon size={18} color={Colors[colorScheme].mainText} />,
+      icon: <SendIcon size={18} color={Colors[appTheme].mainText} />,
     },
   ];
 

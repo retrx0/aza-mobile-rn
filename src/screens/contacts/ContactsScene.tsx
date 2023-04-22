@@ -18,9 +18,11 @@ import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { IBeneficiary } from "../../redux/types";
-
-import { verifyAzaNumber } from "../../api/aza";
+import { IBeneficiary } from "../../types/types.redux";
+import { NAIRA_CCY_CODE, PSB_BANK_CODE } from "../../constants/AppConstants";
+import { verifyBankAccountAPI } from "../../api/account";
+import { toastError } from "../../common/util/ToastUtil";
+import { selectAppPreference } from "../../redux/slice/preferenceSlice";
 
 const ContactsScene = ({
   route,
@@ -41,7 +43,38 @@ const ContactsScene = ({
   const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
   const insets = useSafeAreaInsets();
 
+  const [buttonLoading, setButtonLoading] = useState(false);
+
   const user = useAppSelector(selectUser);
+  const { contactVisibilitySwitch } = useAppSelector(selectAppPreference);
+
+  const sentToAzaNumber = (
+    azaNumber: string,
+    azaContactOnPress: (beneficiary: IBeneficiary) => void
+  ) => {
+    setButtonLoading(true);
+    //do some check with aza number
+    verifyBankAccountAPI(PSB_BANK_CODE, azaNumber, azaNumber)
+      .then((response) => {
+        if (response) {
+          azaContactOnPress({
+            azaAccountNumber: azaNumber,
+            fullName: response.data.name,
+            beneficiaryName: response.data.name,
+            currency: NAIRA_CCY_CODE,
+            email: "",
+            firstName: "",
+            lastName: "",
+          });
+        }
+        setButtonLoading(false);
+      })
+      .catch((e) => {
+        console.debug(e);
+        toastError("Aza account not found!");
+        setButtonLoading(false);
+      });
+  };
 
   useEffect(() => {
     getUserContacts().then((_contacts) => {
@@ -114,13 +147,15 @@ const ContactsScene = ({
                 stickySectionHeadersEnabled={false}
                 sections={[
                   {
-                    title: "Contacts using Aza",
-                    data: user.azaContacts.data.filter((_c) =>
-                      _c.fullName
-                        .toUpperCase()
-                        .includes(searchContact.toUpperCase())
-                    ),
-                    azaContacts: false,
+                    title: contactVisibilitySwitch ? "Contacts using Aza" : "",
+                    data: contactVisibilitySwitch
+                      ? user.azaContacts.data.filter((_c) =>
+                          _c.fullName
+                            .toUpperCase()
+                            .includes(searchContact.toUpperCase())
+                        )
+                      : [],
+                    azaContacts: true,
                   },
                   {
                     title: "Contacts not using Aza yet",
@@ -140,6 +175,10 @@ const ContactsScene = ({
                   <SectionListSeparator
                     title={section.title}
                     listSize={section.data.length}
+                    showListSize={
+                      section.azaContacts &&
+                      (contactVisibilitySwitch ? contactVisibilitySwitch : true)
+                    }
                   />
                 )}
                 renderItem={({ section, item }) => {
@@ -232,8 +271,8 @@ const ContactsScene = ({
           </View>
           <TextInput
             keyboardType={"number-pad"}
-            returnKeyType={"send"}
-            returnKeyLabel={"Send"}
+            returnKeyType={"done"}
+            returnKeyLabel={"done"}
             value={receipientAzaNumber}
             onChangeText={(number) => setReceipientAzaNumber(number)}
             style={{
@@ -251,13 +290,14 @@ const ContactsScene = ({
         </View>
         <View style={{ marginTop: 10 }}>
           <Button
-            title="Send"
+            title="Continue"
             onPressButton={() => {
               sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
             }}
             disabled={receipientAzaNumber.length < 10}
             styleText={{}}
             style={[]}
+            buttonLoading={buttonLoading}
           />
         </View>
       </View>
@@ -265,19 +305,6 @@ const ContactsScene = ({
   } else {
     return <></>;
   }
-};
-
-const sentToAzaNumber = (
-  azaNumber: string,
-  azaContactOnPress: (beneficiary: IBeneficiary) => void
-) => {
-  //do some check with aza number
-  verifyAzaNumber(azaNumber).then((verifiedUser) => {
-    if (verifiedUser) {
-      azaContactOnPress(verifiedUser);
-    } else {
-    }
-  });
 };
 
 export default ContactsScene;

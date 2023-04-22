@@ -11,7 +11,7 @@ import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import { selectUser } from "../../../../redux/slice/userSlice";
-import { IBeneficiary } from "../../../../redux/types";
+import { IBeneficiary } from "../../../../types/types.redux";
 
 interface IProps {
   blockUserOnPress: (contact: IBeneficiary) => void;

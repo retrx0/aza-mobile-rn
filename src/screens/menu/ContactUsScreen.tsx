@@ -10,9 +10,9 @@ import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 
-import { WhatsappLogo } from "../../../assets/images";
-
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import { WhatsAppLogo } from "../../../assets/svg";
+import * as Linking from "expo-linking";
 
 const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
   const insets = useSafeAreaInsets();
@@ -44,16 +44,22 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
             >
               Email
             </Text>
-            <Text
-              style={{
-                marginBottom: 5,
-                marginTop: 10,
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                fontSize: hp(16),
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL("mailto:hello@azanaija.com");
               }}
             >
-              customersupport@aza.com
-            </Text>
+              <Text
+                style={{
+                  marginBottom: 5,
+                  marginTop: 10,
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontSize: hp(16),
+                }}
+              >
+                hello@azanaija.com
+              </Text>
+            </TouchableOpacity>
             <Divider />
           </View>
         </View>
@@ -76,11 +82,14 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               justifyContent: "center",
               alignSelf: "center",
             }}
+            onPress={() => {
+              Linking.openURL("whatsapp://app");
+            }}
           >
-            <Image
-              source={WhatsappLogo}
-              style={{ marginRight: 10, width: hp(22), height: hp(23) }}
-            />
+            <View style={{ marginRight: 10 }}>
+              <WhatsAppLogo color={"#25D366"} size={23} />
+            </View>
+
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Semi-Bold",

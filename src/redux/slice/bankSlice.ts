@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
-import { IBankState } from "../types";
+import { IBankState } from "../../types/types.redux";
 
 const initialState: IBankState = {
   banks: {
@@ -35,7 +35,7 @@ export const bankSlice = createSlice({
 });
 
 export const getSupportedBanks = createAsyncThunk("banks", async () => {
-  return await thunkCourier("get", "/api/v1/bank/banks");
+  return await thunkCourier("get", "/api/v1/payment/banks");
 });
 
 export const {} = bankSlice.actions;

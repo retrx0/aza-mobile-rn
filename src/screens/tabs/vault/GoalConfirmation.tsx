@@ -1,5 +1,5 @@
 import { Image } from "react-native";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -12,8 +12,9 @@ import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../vault/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const ConfirmGoal = ({ navigation }: CommonScreenProps<"ConfirmGoal">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -117,19 +118,7 @@ const ConfirmGoal = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           <Button
             title="Confirm"
-            onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "LockVault",
-              })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            onPressButton={() => navigation.navigate("LockVault")}
           />
           <CancelButtonWithUnderline
             title="Cancel Transaction"

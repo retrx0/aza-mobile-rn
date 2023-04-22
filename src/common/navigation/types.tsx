@@ -7,7 +7,7 @@ import {
   ICharity,
   IGiftCard,
   IRequest,
-} from "../../redux/types";
+} from "../../types/types.redux";
 
 /* Common screens */
 interface IXCharity extends ICharity {
@@ -18,6 +18,14 @@ interface IXCharity extends ICharity {
 interface IXGiftCard extends IGiftCard {
   selectedPrice: string;
 }
+
+export type TransactionScreenPinType =
+  | "set"
+  | "update"
+  | "reset"
+  | "transaction"
+  | "confirm";
+
 export type CommonStackParamList = {
   // page with virtual keyboard
   TransactionKeypad: TransactionKeypadParamsType;
@@ -52,6 +60,12 @@ export type CommonStackParamList = {
   Receipt: {
     amount: string;
     beneficiaryName: string;
+    transactionDate: string;
+    transactionFee: string;
+    referenceId: string;
+    description: string;
+    receivingBank: string;
+    transactionType: string;
   };
 
   Notifications: undefined;
@@ -70,20 +84,7 @@ export type CommonStackParamList = {
   CharityDetailsScreen: IXCharity;
   ElectricityConfirmation: undefined;
 
-  //TODO Extract below to an interface
-  PaymentConfirmation: {
-    beneficiaryLogo: string;
-    beneficiaryName: string;
-    phoneNumber?: string;
-    amount: string;
-    paymentMethod?: string;
-    purchaseName: string;
-    meterNumber?: string;
-    accountOrUserId?: string;
-    smartCardNumber?: string;
-    customerAccountNumber?: string;
-    recurringTransaction?: boolean;
-  };
+  PaymentConfirmation: IPaymentConfirmation;
   GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
   GiftCard: undefined;
@@ -134,10 +135,10 @@ export type CommonStackParamList = {
   VaultLiberty: undefined;
 
   // Settings
-  ChangePassword: undefined;
+  CurrentPassword: { onVerifyNavigateTo: keyof CommonStackParamList };
   NewPassword: { oldPassword: string };
   ChangePhoneNumber: undefined;
-  ChangePhoneNumberOTP: undefined;
+  ChangeUserDataOTP: { type: "phone" | "email"; value: string };
   ChangeEmail: undefined;
   PrivacySettings: undefined;
   AccountBalanceVisibility: undefined;
@@ -151,7 +152,11 @@ export type CommonStackParamList = {
   LoginOptions: undefined;
   Appearance: undefined;
   AppLanguage: undefined;
-  TransactionPin: undefined;
+  TransactionPin: {
+    type: TransactionScreenPinType;
+    confirmPinString?: string;
+  };
+  TransactionPinOptions: undefined;
 
   // Profile
   AccountDetails: undefined;
@@ -238,6 +243,10 @@ export type VaultConfirmationParamsType = {
   headerTitle: string;
 };
 
+export type TransactionScreenProps = {
+  confirmationType: "send" | "request";
+};
+
 // bvn screen
 
 export type BvnScreenParamsType = {
@@ -274,6 +283,20 @@ export type PaymentsStackParamList = {
   Charity: undefined;
   CharityDetail: undefined;
 };
+
+export interface IPaymentConfirmation {
+  beneficiaryLogo: string;
+  beneficiaryName: string;
+  phoneNumber?: string;
+  amount: string;
+  paymentMethod?: string;
+  purchaseName: string;
+  meterNumber?: string;
+  accountOrUserId?: string;
+  smartCardNumber?: string;
+  customerAccountNumber?: string;
+  recurringTransaction?: boolean;
+}
 
 export type PaymentsTabScreenProps<
   Screen extends keyof PaymentsStackParamList

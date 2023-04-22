@@ -28,7 +28,7 @@ import {
   getUserSavedBankAccs,
   selectUser,
 } from "../../../../redux/slice/userSlice";
-import { IBankAccount } from "../../../../redux/types";
+import { IBankAccount } from "../../../../types/types.redux";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const BankAccountsScreen = ({
@@ -197,7 +197,6 @@ const BankAccountsScreen = ({
               showsVerticalScrollIndicator={false}
               style={{ height: "100%" }}
             >
-              {console.log(user.bankAccounts.data)}
               {user.bankAccounts.data.map(
                 ({ bankLogo, bankName, accountNumber, accountName, id }, i) => (
                   <View key={i}>
@@ -218,14 +217,17 @@ const BankAccountsScreen = ({
                           { alignSelf: "stretch", paddingVertical: 15 },
                         ]}
                       >
-                        <Image
-                          source={{ uri: bankLogo }}
-                          style={{
-                            width: 36,
-                            height: 36,
-                            borderRadius: 50,
-                          }}
-                        />
+                        {bankLogo && (
+                          <Image
+                            source={{ uri: bankLogo }}
+                            style={{
+                              width: 36,
+                              height: 36,
+                              borderRadius: 50,
+                            }}
+                          />
+                        )}
+
                         <Text
                           style={{
                             marginLeft: hp(20),

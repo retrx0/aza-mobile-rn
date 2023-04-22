@@ -7,7 +7,7 @@ import TransactionScreen from "../common/TransactionScreen";
 const SendMoneyScreen = ({
   navigation,
   route,
-}: CommonScreenProps<"Common">) => {
+}: CommonScreenProps<"SendMoney">) => {
   return (
     <TransactionScreen
       navigation={navigation}

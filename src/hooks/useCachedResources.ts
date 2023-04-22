@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
 import { ISettings, useAppAsyncStorage } from "./useAsyncStorage";
-import { IUserCred } from "../redux/types";
+import { IUserCred } from "../types/types.redux";
 import {
   EuclidBold,
   EuclidLight,
@@ -57,6 +57,7 @@ const useCachedResources = () => {
             password: _prsd.password,
             fullName: _prsd.fullName,
             token: _prsd.token,
+            pictureUrl: _prsd.pictureUrl,
           });
         }
 

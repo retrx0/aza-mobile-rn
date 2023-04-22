@@ -10,7 +10,7 @@ import HeadrImage from "../sub-components/HeadrImage";
 import MyButton from "../sub-components/MyButton";
 import { useRoute } from "@react-navigation/native";
 import { CANADA, UK, USA } from "../../../../../assets/images";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ClockIcon, CloseIcon } from "../../../../../assets/svg";
@@ -84,7 +84,8 @@ export default function GiftCardDetails({
           flexWrap: "wrap",
           marginTop: hp(30),
           marginBottom: hp(35),
-        }}>
+        }}
+      >
         <Card
           title={country.name}
           icon={country.flagUrl}
@@ -99,7 +100,8 @@ export default function GiftCardDetails({
             fontSize: hp(16),
             fontWeight: "500",
             fontFamily: "Euclid-Circular-A-Medium",
-          }}>
+          }}
+        >
           Select Package
         </Text>
         <Divider />

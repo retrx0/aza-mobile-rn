@@ -1,8 +1,12 @@
 declare module "@env" {
-  export const BASE_URL: string;
   export const API_BASE_URL: string;
+  export const API_BASE_URL_DEV: string;
+  export const API_BASE_URL_TST: string;
+  export const API_BASE_URL_PROD: string;
   export const API_TOKEN: string;
-  export const API_KEY: string;
+  export const API_KEY_DEV: string;
+  export const API_KEY_TST: string;
+  export const API_KEY_PROD: string;
   export const PORT: number;
   export const PWD: string;
   export const SENTRY_ORG: string;
@@ -19,6 +23,7 @@ declare module "@env" {
   export const FACEBOOK_EXPO_CLINET_ID: string;
   export const STORAGE_KEY_JWT_TOKEN: string;
   export const STORAGE_KEY_USER_CREDS: string;
+  export const STORAGE_KEY_TRANSACTION_PIN: string;
   export const STORAGE_KEY_JWT_REFRESH_TOKEN: string;
   export const STORAGE_KEY_GOOGLE_TOKEN: string;
   export const STORAGE_KEY_GOOGLE_REFRESH_TOKEN: string;
@@ -30,4 +35,5 @@ declare module "@env" {
   export const STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN: string;
   export const STORAGE_KEY_PUSH_NOTIFICATION_TOKEN: string;
   export const PREFERENCE_KEY: string;
+  export const GOOGLE_SERVICES_JSON: any;
 }

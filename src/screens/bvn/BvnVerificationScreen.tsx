@@ -13,18 +13,23 @@ import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { CommonScreenProps } from "../../common/navigation/types";
 import { toastError } from "../../common/util/ToastUtil";
 
-import { addUserBvnThunk } from "../../redux/slice/userSlice";
+import {
+  addUserBvnThunk,
+  getUserAccountDetails,
+} from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
 import DatePicker from "@react-native-community/datetimepicker";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import apiCourier from "../../api/courier";
+import { create9PSBWallet } from "../../api/account";
 
 const BvnVerificationScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"BvnVerification">) => {
-  const [bvn, setBvn] = useState("22222222224");
-  const [dob, setDOB] = useState<Date>(new Date("1989-03-17"));
+  const [bvn, setBvn] = useState("");
+  const [dob, setDOB] = useState<Date>(new Date());
   const [isButtonLoading, setButtonLoading] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -39,25 +44,26 @@ const BvnVerificationScreen = ({
   const verifyBvn = async () => {
     setButtonLoading(true);
     console.log(dob.toISOString().split("T")[0]);
-    const bv = await dispatch(
-      addUserBvnThunk({
-        bvn: bvn,
-        dateOfBirth: dob.toISOString().split("T")[0],
+
+    const createWallet = await create9PSBWallet({
+      bvn,
+      dateOfBirth: dob.toISOString().split("T")[0],
+    })
+      .then((r) => {
+        setButtonLoading(false);
+        navigation.navigate("StatusScreen", {
+          statusIcon: "Success",
+          status: "Successful",
+          statusMessage:
+            "You have successfully added your BVN to your Aza account",
+          navigateTo: onVerifyNavigateBackTo,
+        });
+        dispatch(getUserAccountDetails());
       })
-    );
-    if (bv.meta.requestStatus === "fulfilled") {
-      setButtonLoading(false);
-      navigation.navigate("StatusScreen", {
-        statusIcon: "Success",
-        status: "Successful",
-        statusMessage:
-          "You have successfully added your BVN to your Aza account",
-        navigateTo: onVerifyNavigateBackTo,
+      .catch(() => {
+        toastError("Couldn't link your BVN, please try again!");
+        setButtonLoading(false);
       });
-    } else {
-      setButtonLoading(false);
-      toastError("Couldn't verify your BVN, please try again!");
-    }
   };
 
   return (
@@ -70,7 +76,8 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Verify your BVN
           </Text>
           <View>
@@ -79,7 +86,8 @@ const BvnVerificationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               Date of Birth
             </Text>
 
@@ -88,11 +96,6 @@ const BvnVerificationScreen = ({
               maximumDate={new Date()}
               placeholderText="Date of Birth"
               onChange={(date) => {
-                console.log(
-                  new Date(date.nativeEvent.timestamp!)
-                    .toISOString()
-                    .split("T")[0]
-                );
                 if (date.nativeEvent.timestamp)
                   setDOB(new Date(date.nativeEvent.timestamp));
               }}
@@ -104,7 +107,8 @@ const BvnVerificationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               BVN
             </Text>
             <TextInput
@@ -132,7 +136,8 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Verify"
             onPressButton={verifyBvn}

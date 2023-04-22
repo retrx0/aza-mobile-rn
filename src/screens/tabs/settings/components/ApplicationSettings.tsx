@@ -11,7 +11,7 @@ import {
   NotificationSettingsIcon,
   AppLanguageIcon,
 } from "../../../../../assets/svg";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { useAppSelector } from "../../../../redux";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
@@ -102,7 +102,8 @@ export default function ApplicationSettings({
             fontWeight: "400",
             marginLeft: hp(5),
             fontSize: hp(18),
-          }}>
+          }}
+        >
           Application Settings
         </Text>
         <View

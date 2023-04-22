@@ -7,14 +7,15 @@
       "developmentClient": true,
       "distribution": "internal",
       "channel": "develop",
+      "env": { "ENV": "development" },
       "ios": {
-        "simulator": true,
         "autoIncrement": true
       },
       "android": { "autoIncrement": true }
     },
     "preview": {
       "distribution": "internal",
+      "env": { "ENV": "testing" },
       "ios": {
         "simulator": false,
         "autoIncrement": true
@@ -26,23 +27,31 @@
       "channel": "staging"
     },
     "preview2": {
+      "env": { "ENV": "testing" },
       "ios": { "autoIncrement": true },
       "android": {
         "gradleCommand": ":app:assembleRelease",
         "autoIncrement": true
-      }
+      },
+      "channel": "staging"
     },
     "preview3": {
-      "developmentClient": true
+      "env": { "ENV": "development" },
+      "channel": "staging",
+      "ios": { "autoIncrement": true },
+      "android": { "autoIncrement": true }
     },
     "production": {
       "distribution": "store",
+      "env": { "ENV": "production" },
       "channel": "release",
       "ios": { "autoIncrement": true },
       "android": { "autoIncrement": true }
     }
   },
   "submit": {
+    "development": { "android": {}, "ios": {} },
+    "preview": { "android": {}, "ios": {} },
     "production": { "android": {}, "ios": {} }
   }
 }

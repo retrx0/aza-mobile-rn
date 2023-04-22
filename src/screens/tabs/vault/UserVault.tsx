@@ -22,17 +22,21 @@ import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import UserArchieved from "./components/UserArchieved";
 import TransactionListItem from "../../../components/ListItem/TransactionListItem";
-import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../types/types.navigation";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
 import { VaultLogo } from "../../../../assets/images";
 import { getAppTheme } from "../../../theme";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
 const UserVault = (
-  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
+  _navigation: CommonScreenProps<"UserVault"> & RootStackScreenProps<"Root">
 ) => {
-  const colorScheme = getAppTheme(useAppSelector(selectAppTheme));
+  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const navigation = useNavigation();
   const [secure, setSecure] = useState(true);
   const user = useAppSelector(selectUser);
@@ -62,12 +66,12 @@ const UserVault = (
               marginLeft: 15,
             })}
           >
-            <MenuIcon size={25} color={Colors[colorScheme].text} />
+            <MenuIcon size={25} color={Colors[appTheme].text} />
           </Pressable>
           <AZALightningLogo
             size={25}
             color={
-              colorScheme === "dark" ? Colors.dark.mainText : Colors.light.text
+              appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
             }
           />
           <Pressable
@@ -76,7 +80,7 @@ const UserVault = (
               opacity: pressed ? 0.5 : 1,
             })}
           >
-            {colorScheme === "dark" ? (
+            {appTheme === "dark" ? (
               <QRCodeDarkModeIcon style={{ marginRight: 15 }} />
             ) : (
               <QRCodeIcon
@@ -119,7 +123,7 @@ const UserVault = (
               >
                 Vault
               </Text>
-              <OpenIcon color={Colors[colorScheme].button} />
+              <OpenIcon color={Colors[appTheme].secondaryText} />
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -132,7 +136,7 @@ const UserVault = (
                   <NairaIcon
                     size={25}
                     color={
-                      colorScheme === "dark"
+                      appTheme === "dark"
                         ? Colors.dark.mainText
                         : Colors.light.text
                     }
@@ -208,7 +212,7 @@ const UserVault = (
             >
               Vaults
             </Text>
-            <SendIcon color={Colors[colorScheme].secondaryText} />
+            <SendIcon color={Colors[appTheme].secondaryText} />
           </TouchableOpacity>
           <View
             style={[
@@ -219,7 +223,7 @@ const UserVault = (
                 marginTop: hp(20),
               },
               {
-                borderColor: colorScheme === "dark" ? "#262626" : "#EAEAEC",
+                borderColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
               },
             ]}
           />
@@ -249,7 +253,7 @@ const UserVault = (
                 Recent Transactions
               </Text>
             </TouchableOpacity>
-            <SendIcon color={Colors[colorScheme].secondaryText} />
+            <SendIcon color={Colors[appTheme].secondaryText} />
           </View>
         </View>
 

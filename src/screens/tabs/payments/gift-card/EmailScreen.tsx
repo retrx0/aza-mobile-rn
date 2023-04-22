@@ -1,5 +1,5 @@
 import { Image, Keyboard, TouchableOpacity } from "react-native";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import Button from "../../../../components/buttons/Button";
 import { View, Text } from "../../../../theme/Themed";
 
@@ -18,8 +18,12 @@ import { AIrtimeStyles as styles } from "../../payments/airtime-screens/styles";
 import { useAppSelector } from "../../../../redux";
 import { selectUser } from "../../../../redux/slice/userSlice";
 import { setEmail } from "../../../../redux/slice/newUserSlice";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
+const GiftCardEmail = ({
+  navigation,
+  route,
+}: CommonScreenProps<"GiftCardEmail">) => {
   const [email, setEmail] = useState("");
 
   const { emailAddress } = useAppSelector(selectUser);
@@ -98,8 +102,32 @@ const GiftCardEmail = ({ navigation }: RootTabScreenProps<"Payments">) => {
           <Button
             title="Continue"
             onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "GiftCardConfirmation",
+              // FIXME
+              // TODO please fix the below code to have real data!
+              navigation.navigate("GiftCardConfirmation", {
+                giftCard: {
+                  productId: 1,
+                  productName: "",
+                  selectedPrice: "0",
+                  logoUrls: [],
+                  senderFee: "0",
+                  fixedSenderDenominations: [],
+                  redeemInstruction: { concise: "", verbose: "" },
+                  recipientCurrencyCode: "",
+                  maxRecipientDenomination: "",
+                  minRecipientDenomination: "",
+                  fixedRecipientDenominations: [],
+                  fixedRecipientToSenderDenominationsMap: { "1.00": "740.00" },
+                  global: false,
+                  country: {
+                    isoName: "NGN",
+                    name: "Nigeria",
+                    currencyCode: "NGN",
+                    currencyName: "Naira",
+                    flagUrl: "",
+                  },
+                  brand: { brandId: 0, brandName: "" },
+                },
               })
             }
             styleText={{}}

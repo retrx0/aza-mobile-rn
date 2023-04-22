@@ -1,4 +1,9 @@
-import { ScrollView, StyleSheet } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -25,7 +30,7 @@ import {
   selectPayment,
 } from "../../../../redux/slice/paymentSlice";
 import { PaymentRoundSkeleton } from "../../../skeletons";
-import { IElectricityBiller } from "../../../../redux/types";
+import { IElectricityBiller } from "../../../../types/types.redux";
 import { NAIRA_UNICODE } from "../../../../constants/AppConstants";
 import ProviderSkeleton from "../sub-components/ProviderSkeleton";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
@@ -128,7 +133,10 @@ export default function ElectricityIndex({
 
   return (
     <SpacerWrapper>
-      <View style={CommonStyles.vaultcontainer}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "position" : "height"}
+        style={CommonStyles.vaultcontainer}
+      >
         <Header
           description=""
           descriptionStyle={null}
@@ -153,7 +161,8 @@ export default function ElectricityIndex({
                 maxHeight: hp(100),
                 marginTop: hp(20),
                 marginBottom: hp(25),
-              }}>
+              }}
+            >
               {electricityBillers.data.map(
                 (item: IElectricityBiller, index) => {
                   if (displayedProviders.has(item.name)) {
@@ -178,7 +187,8 @@ export default function ElectricityIndex({
               style={{
                 paddingHorizontal: hp(20),
                 marginBottom: hp(10),
-              }}>
+              }}
+            >
               {!electricityBillers.loaded ? (
                 <PaymentRoundSkeleton />
               ) : (
@@ -238,12 +248,7 @@ export default function ElectricityIndex({
             </View>
           </View>
         )}
-
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.top || hp(45) },
-          ]}>
+        <View style={[{ paddingTop: hp(30) }]}>
           <Button
             title="Continue"
             onPressButton={() => {
@@ -261,13 +266,7 @@ export default function ElectricityIndex({
             }
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </SpacerWrapper>
   );
 }
-
-const styles2 = StyleSheet.create({
-  container: {
-    marginTop: 70,
-  },
-});

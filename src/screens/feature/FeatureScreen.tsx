@@ -62,7 +62,7 @@ const FeatureScreen = ({
           {isImage ? (
             <Image style={CommonStyles.gameImage} source={imageSource} />
           ) : (
-            <Icon color={Colors[appTheme].Text} />
+            <Icon color={Colors[appTheme].text} />
           )}
         </View>
 

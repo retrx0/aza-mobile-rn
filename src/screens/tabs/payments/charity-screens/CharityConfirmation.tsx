@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { View, Text } from "../../../../theme/Themed";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -15,10 +15,11 @@ import Button from "../../../../components/buttons/Button";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { Chess } from "../../../../../assets/images";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 export default function CharityConfirmation({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"CharityConfirmation">) {
   const [confirmed, setConfirm] = useState(false);
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
@@ -80,7 +81,8 @@ export default function CharityConfirmation({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Confirm"
             onPressButton={() => {

@@ -4,7 +4,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { View, Text } from "../../../theme/Themed";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
 import Colors from "../../../constants/Colors";
@@ -12,8 +12,11 @@ import VirtualKeyboard from "../../../components/input/VirtualKeyboard";
 import { NairaLargeIcon } from "../../../../assets/svg";
 import { numberWithCommas } from "../../../common/util/NumberUtils";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const ChangeGoalAmount = ({
+  navigation,
+}: CommonScreenProps<"ChangeGoalAmount">) => {
   const colorScheme = useColorScheme();
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
@@ -93,17 +96,7 @@ const ChangeGoalAmount = ({ navigation }: RootTabScreenProps<"Vault">) => {
           <Button
             disabled={!amount}
             title="Save Change"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
-            }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            onPressButton={() => navigation.navigate("TopBar")}
           />
         </View>
       </View>

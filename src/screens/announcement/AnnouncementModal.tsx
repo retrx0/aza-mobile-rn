@@ -94,7 +94,7 @@ const AnnouncementModal = ({
                   lineHeight: hp(17),
                   fontFamily: "Euclid-Circular-A",
                   marginTop: hp(20),
-                  color: Colors.dark.Text,
+                  color: Colors.dark.text,
                 }}
               />
             </View>

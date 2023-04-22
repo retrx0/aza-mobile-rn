@@ -4,7 +4,10 @@ import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { RootStackScreenProps, RootTabScreenProps } from "../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../types/types.navigation";
 import useColorScheme from "../../../hooks/useColorScheme";
 import Colors from "../../../constants/Colors";
 import React, { useState } from "react";
@@ -24,9 +27,10 @@ import { Pressable } from "react-native";
 import { useBottomSheetType } from "../home/hooks/useBottomSheetType";
 import CustomBottomSheet from "../../../components/bottomsheet/CustomBottomSheet";
 import VaultModal from "./components/VaultModal";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
 const NewUserVault = (
-  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
+  _navigation: RootStackScreenProps<"Root"> & CommonScreenProps<"NewUserVault">
 ) => {
   const colorScheme = useColorScheme();
   const navigation = useNavigation();
@@ -119,7 +123,7 @@ const NewUserVault = (
               >
                 Vault
               </Text>
-              <OpenIcon color={Colors[colorScheme].button} />
+              <OpenIcon color={Colors[colorScheme].secondaryText} />
             </View>
           </TouchableOpacity>
           <TouchableOpacity

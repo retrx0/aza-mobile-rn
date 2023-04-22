@@ -6,7 +6,7 @@ import { Header } from "../../../components/text/header";
 import { InfoIcon } from "../../../../assets/svg";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import ArchievedComponents from "./components/ArchievedCard";
 import { hp } from "../../../common/util/LayoutUtil";
@@ -16,8 +16,9 @@ import { getAppTheme } from "../../../theme";
 import { useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import Divider from "../../../components/divider/Divider";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const AddVault = ({ navigation }: CommonScreenProps<"AddVault">) => {
   const insets = useSafeAreaInsets();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 
@@ -31,7 +32,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             justifyContent: "space-between",
             paddingHorizontal: hp(20),
             marginBottom: hp(35),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -41,7 +43,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
               fontSize: hp(16),
               fontWeight: "600",
               marginRight: hp(50),
-            }}>
+            }}
+          >
             Vault
           </Text>
           <TouchableOpacity>
@@ -55,7 +58,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             marginBottom: hp(40),
             marginLeft: hp(19),
-          }}>
+          }}
+        >
           Choose a vault to view/edit details
         </Text>
         <Divider />
@@ -64,7 +68,8 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <CancelButtonWithUnderline
             title="Archived Vaults"
             onPressButton={() =>
@@ -74,9 +79,7 @@ const AddVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
           <Button
             title="New Vault"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "NewVault" })
-            }
+            onPressButton={() => navigation.navigate("NewVault")}
             styleText={{}}
             style={[{}]}
           />

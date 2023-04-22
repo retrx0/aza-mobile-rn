@@ -6,23 +6,26 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { TopBar } from "../../../../navigation/CommonStackNavigator";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultToBankSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToBankSuccessful = ({
+  navigation,
+}: CommonScreenProps<"VaultToBankSuccessful">) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
 
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <Image
+        {/* <Image
           source={require("../../../../../assets/images/Successful.png")}
           resizeMode="cover"
           style={[CommonStyles.caution]}
-        />
+        /> */}
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.Style}>Successful!</Text>
           <Text style={CommonStyles.successStyle}>
@@ -44,7 +47,6 @@ const VaultToBankSuccessful = ({ navigation }: RootTabScreenProps<"Vault">) => {
             }}
             style={[
               {
-                backgroundColor: Colors[colorScheme].button,
                 bottom: hp(20),
               },
               CommonStyles.button,

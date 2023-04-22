@@ -1,33 +1,22 @@
-import { ScrollView, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { ScrollView } from "react-native";
+import React from "react";
 import { PaymentStyles as styles } from "../styles";
-import { SafeAreaView } from "../../../../theme/Themed";
 import { View, Text } from "../../../../theme/Themed";
 
-import { Header } from "../../../../components/text/header";
-import HeadrImage from "../sub-components/HeadrImage";
-import Divider from "../sub-components/Divider";
 import ListItem from "../sub-components/ListItem";
 import {
   CableTvIcon,
   DataIcon,
   DropIcon,
   ElectricIcon,
-  GameIcon,
-  GiftIcon,
-  LoveIcon,
-  PieIcon,
   WifiIcon,
 } from "../../../../../assets/svg";
-import { RootTabScreenProps } from "../../../../../types";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { hp } from "../../../../common/util/LayoutUtil";
-import * as Images from "../../../../../assets/images/index";
-import { Card } from "../sub-components/Card";
-import { PaymentsCard } from "../sub-components/PaymentsCard";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 // const Network = [
 //   {
@@ -59,7 +48,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 export default function PaymentRecurring({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"PaymentRecurring">) {
   const scheme = useColorScheme();
 
   return (
@@ -90,7 +79,7 @@ export default function PaymentRecurring({
           <ListItem
             index={0}
             onPress={() => {
-              navigation.navigate("Common", { screen: "AirtimeRecurring" });
+              navigation.navigate("AirtimeRecurring");
             }}
             Icon={() => <DataIcon size={30} />}
             title="Airtime & Data"
@@ -100,7 +89,7 @@ export default function PaymentRecurring({
           <ListItem
             index={1}
             onPress={() => {
-              navigation.navigate("Common", { screen: "InternetRecurring" });
+              navigation.navigate("InternetRecurring");
             }}
             Icon={() => <WifiIcon size={30} />}
             title="Internet"
@@ -110,7 +99,7 @@ export default function PaymentRecurring({
           <ListItem
             index={2}
             onPress={() => {
-              navigation.navigate("Common", { screen: "CableRecurring" });
+              navigation.navigate("CableRecurring");
             }}
             Icon={() => <CableTvIcon size={30} />}
             title="Cable TV"
@@ -120,7 +109,7 @@ export default function PaymentRecurring({
           <ListItem
             index={3}
             onPress={() => {
-              navigation.navigate("Common", { screen: "ElectricityRecurring" });
+              navigation.navigate("ElectricityRecurring");
             }}
             Icon={() => <ElectricIcon size={30} />}
             title="Electricity"
@@ -130,7 +119,7 @@ export default function PaymentRecurring({
           <ListItem
             index={4}
             onPress={() => {
-              navigation.navigate("Common", { screen: "WaterRecurring" });
+              navigation.navigate("WaterRecurring");
             }}
             Icon={() => <DropIcon size={30} />}
             title="Water"

@@ -5,15 +5,16 @@ import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import BackButton from "../../../../components/buttons/BackButton";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { VaultStyles as styles } from "../styles";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
-const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const VaultToAza = ({ navigation }: CommonScreenProps<"VaultToAza">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
@@ -93,14 +94,8 @@ const VaultToAza = ({ navigation }: RootTabScreenProps<"Vault">) => {
                 navigateTo: "UserVault",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-            ]}
+            styleText={{}}
+            style={[]}
           />
 
           <CancelButtonWithUnderline

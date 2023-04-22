@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image } from "react-native";
 import BackButton from "../../../components/buttons/BackButton";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import useColorScheme from "../../../hooks/useColorScheme";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { VaultStyles } from "./styles";
 import { View, Text } from "../../../theme/Themed";
-import { RootTabScreenProps } from "../../../../types";
 import { hp } from "../../../common/util/LayoutUtil";
 import Button from "../../../components/buttons/Button";
 import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
 const selectImageFromGallery = async () => {
   const result = await ImagePicker.launchImageLibraryAsync({
@@ -25,7 +23,7 @@ const selectImageFromGallery = async () => {
   }
 };
 
-const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const AddCoverImage = ({ navigation }: CommonScreenProps<"AddCoverImage">) => {
   const insets = useSafeAreaInsets();
   return (
     <SpacerWrapper>
@@ -81,11 +79,7 @@ const AddCoverImage = ({ navigation }: RootTabScreenProps<"Vault">) => {
           />
           <Button
             title="Continue"
-            onPressButton={() =>
-              navigation.navigate("Common", {
-                screen: "SetVaultGoal",
-              })
-            }
+            onPressButton={() => navigation.navigate("SetVaultGoal")}
             style={[CommonStyles.toAzabutton]}
             styleText={CommonStyles.toAzabuttonText}
           />

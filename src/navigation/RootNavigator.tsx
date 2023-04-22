@@ -9,7 +9,7 @@ import * as Notifications from "expo-notifications";
 import UserInactivity from "react-native-user-inactivity";
 import ActivityModal from "../components/modal/ActivityModal";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types";
+import { RootStackParamList } from "../types/types.navigation";
 import WelcomeScreen from "../screens/onboarding/WelcomeScreen";
 import SignUpRoot from "../screens/auth/signup/SignUpNavigator";
 import LoginNavigator from "../screens/auth/signin/SignInNavigator";
@@ -19,11 +19,16 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import QRTransactionsScreen from "../screens/qr-transactions/QRTransactionsScreen";
 import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import CEOMessage from "../screens/onboarding/CEOMessage";
-import { IUserCred } from "../redux/types";
+import { IUserCred } from "../types/types.redux";
 import {
+  setProfilePicture,
   setUserEmail,
   setUserPhoneAndFullName,
 } from "../redux/slice/userSlice";
+import * as SecureStore from "expo-secure-store";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
+import QRReceivePaymentTab from "../screens/qr-transactions/components/QRReceivePaymentTab";
+import { removeItemSecure } from "../common/util/StorageUtil";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -46,8 +51,7 @@ const RootNavigator = ({
   isUserSignedIn: boolean;
   cachedUser: IUserCred | undefined;
 }) => {
-  const { registerForPushNotificationsAsync, sendPushNotification } =
-    useNotifications();
+  const { registerForPushNotificationsAsync } = useNotifications();
   const notificationListener = React.useRef<any>();
   const responseListener = React.useRef<any>();
   const navigation = useNavigation<any>();
@@ -65,23 +69,28 @@ const RootNavigator = ({
           phoneNumber: cachedUser.phoneNumber,
         })
       );
+      if (cachedUser.pictureUrl)
+        dispatch(setProfilePicture(cachedUser.pictureUrl));
       dispatch(setUserEmail(cachedUser.email));
     }
 
     registerForPushNotificationsAsync().then((token) => {
-      if (token !== undefined) {
+      if (token) {
+        console.log(token);
         dispatch(setPushToken(token));
       }
     });
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
+        console.log(notification);
         // handle notification
       });
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
         console.log(response);
+        // console.log(response);
       });
 
     return () => {
@@ -95,20 +104,15 @@ const RootNavigator = ({
   return (
     <UserInactivity
       isActive={active}
-      // 5 minutes inactivity
-      timeForInactivity={1000 * 60 * 5}
+      // 10 minutes inactivity
+      timeForInactivity={1000 * 60 * 10}
       onAction={(isActive) => {
         setActive(isActive);
         if (isActive === false && isUserSignedIn) {
-          navigation.navigate("SignInWelcomeBack");
-
-          // SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN, {
-          //   requireAuthentication: true,
-          // })
-          //   .then(() => {
-          //     navigation.navigate("SignInWelcomeBack");
-          //   })
-          //   .catch((e) => console.log(e));
+          navigation.navigate("SignInWelcomeBack", {
+            clearPasswordInput: true,
+          });
+          removeItemSecure(STORAGE_KEY_JWT_TOKEN);
         }
       }}
       style={{ flex: 1 }}
@@ -152,8 +156,21 @@ const RootNavigator = ({
           component={NotFoundScreen}
           options={{ title: "Oops!" }}
         />
-        <Stack.Screen name="QRTransactions" component={QRTransactionsScreen} />
+        <Stack.Screen
+          name="QRTransactions"
+          component={QRTransactionsScreen}
+          options={{ presentation: "card" }}
+        />
         <Stack.Screen name="QRCode" component={QRCodeScreen} />
+        <Stack.Screen
+          name="QRReceivePayment"
+          component={QRReceivePaymentTab}
+          options={{
+            presentation: "modal",
+            headerTitle: "Receive Payment",
+            gestureEnabled: true,
+          }}
+        />
         <Stack.Screen
           name="CEOMessage"
           component={CEOMessage}

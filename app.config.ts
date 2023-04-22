@@ -8,6 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: "Aza",
   slug: "aza",
+  scheme: "azaapp",
   hooks: {
     postPublish: [
       {
@@ -19,5 +20,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         },
       },
     ],
+  },
+  android: {
+    ...config.android,
+    googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
   },
 });

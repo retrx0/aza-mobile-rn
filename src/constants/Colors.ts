@@ -32,6 +32,7 @@ interface IThemeGroup {
     google: string;
     apple: string;
     darkGrey: string;
+    lightGrey: string;
     primary: string;
     grey: string;
     tertiary: string;
@@ -42,6 +43,7 @@ interface IThemeGroup {
     lightGreen: string;
     lightRed: string;
     skeleton: string;
+    blueHighlight: string;
   };
 }
 
@@ -89,6 +91,7 @@ const Colors: IThemeGroup = {
     google: "#EB4235",
     apple: black,
     darkGrey: "#4D4D4D",
+    lightGrey: "#CCCCCC",
     primary: "#121212",
     grey: "#A6A6A6",
     tertiary: "#D7D7DB",
@@ -99,6 +102,7 @@ const Colors: IThemeGroup = {
     lightGreen: "#EBFCE9",
     lightRed: "#FFE9E5",
     skeleton: "#a4a4a4",
+    blueHighlight: "#1968df",
   },
 };
 

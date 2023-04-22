@@ -5,7 +5,7 @@ import {
   DaysProps,
   PercentageProps,
   VaultListProps,
-} from "../../../../../types";
+} from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { View, Text } from "../../../../theme/Themed";
 

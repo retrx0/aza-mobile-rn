@@ -4,24 +4,25 @@ import { View, Text } from "../../../theme/Themed";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import useColorScheme from "../../../hooks/useColorScheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const LockVault = ({ navigation }: CommonScreenProps<"LockVault">) => {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
   return (
     <SpacerWrapper>
       <View style={CommonStyles.vaultcontainer}>
-        <Image
+        {/* <Image
           source={require("../../../../assets/images/Caution.png")}
           resizeMode="cover"
           style={[CommonStyles.caution]}
-        />
+        /> */}
         <View style={CommonStyles.actionContainer}>
           <Text style={CommonStyles.actionStyle}>
             This action cannot be undone
@@ -51,12 +52,7 @@ const LockVault = ({ navigation }: RootTabScreenProps<"Vault">) => {
             styleText={{
               color: Colors[colorScheme].buttonText,
             }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            style={[CommonStyles.button]}
           />
 
           <CancelButtonWithUnderline

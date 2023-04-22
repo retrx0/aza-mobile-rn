@@ -1,7 +1,7 @@
-import { Image, Alert } from "react-native";
+import { Image, Alert, ImageSourcePropType } from "react-native";
 import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
-import { QRCode } from "react-native-custom-qr-codes-expo";
+import QRCode from "react-native-qrcode-svg";
 import { View, Text } from "../../theme/Themed";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
 
@@ -9,27 +9,39 @@ import Colors from "../../constants/Colors";
 import { hp } from "../../common/util/LayoutUtil";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { RootStackScreenProps } from "../../../types";
+import { RootStackScreenProps } from "../../types/types.navigation";
 
-import { NairaIcon } from "../../../assets/svg";
-import { useAppSelector } from "../../redux";
+import { AZALightningLogo, NairaIcon } from "../../../assets/svg";
+import { useAppDispatch, useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
-import { selectTransaction } from "../../redux/slice/transactionSlice";
+import {
+  selectTransaction,
+  setQRPaymentAmount,
+} from "../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { toastError, toastSuccess } from "../../common/util/ToastUtil";
+import { toastError, toastInfo } from "../../common/util/ToastUtil";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import Button from "../../components/buttons/Button";
+import { useState } from "react";
+import { IQRScanTransactionData } from "../../types/types.redux";
+import Constants from "expo-constants";
+import * as Linking from "expo-linking";
+import { APP_SCHEME } from "../../constants/AppConstants";
 
 const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const [, requestPermission] = MediaLibrary.usePermissions();
 
   const user = useAppSelector(selectUser);
-  const transaction = useAppSelector(selectTransaction);
+  const { qrPaymentAmount } = useAppSelector(selectTransaction);
+  const dispatch = useAppDispatch();
   const insets = useSafeAreaInsets();
+
+  const [amount, setAmount] = useState(0);
 
   useNavigationHeader(navigation, "QR Transactions");
 
@@ -43,7 +55,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           .then(
             (uri) => {
               MediaLibrary.saveToLibraryAsync(uri);
-              toastSuccess("QR Code saved to images");
+              toastInfo("QR Code saved to images");
               navigation.goBack();
             },
             (error) => {
@@ -58,9 +70,15 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
       : Alert.alert("Permission not granted");
   };
 
+  // JSON.stringify({
+  //   azaAccountNumber: user.azaAccountNumber,
+  //   fullName: user.fullName,
+  //   amount: qrPaymentAmount,
+  // } as IQRScanTransactionData)
+
   return (
     <SpacerWrapper>
-      <View style={CommonStyles.vaultcontainer}>
+      <View style={{ flex: 1, marginTop: 15 }}>
         <View style={{ alignItems: "center" }}>
           <Image
             style={{
@@ -90,7 +108,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           >
             {user.fullName}
           </Text>
-          <View style={[CommonStyles.row]}>
+          {/* <View style={[CommonStyles.row]}>
             <NairaIcon
               color={
                 appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
@@ -109,26 +127,26 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
             >
               {numberWithCommas(transaction.amount)}
             </Text>
-          </View>
+          </View> */}
         </View>
-        <View style={{ alignSelf: "center", marginTop: hp(40) }}>
+        <View style={{ alignSelf: "center" }}>
           <QRCode
-            content={JSON.stringify({
-              azaNumber: user.azaAccountNumber,
-              amount: transaction.amount,
-            })}
-            codeStyle="circle"
+            value={`${APP_SCHEME}://app/qrcode?accountNumber=${
+              user.azaAccountNumber
+            }&fullName=${user.fullName}&amount=${
+              qrPaymentAmount ? qrPaymentAmount : ""
+            }`}
+            size={280}
+            logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
+            logoSize={50}
+            logoBorderRadius={10}
+            backgroundColor={Colors[appTheme].background}
             color={
               appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
             }
           />
         </View>
-        <View
-          style={[
-            CommonStyles.passwordContainer,
-            { bottom: insets.bottom || hp(45) },
-          ]}
-        >
+        <View style={[]}>
           {/* <Button
             title="Copy Link"
             styleText={{
@@ -146,11 +164,25 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               });
             }}
           /> */}
+          <Button
+            title="Set Amount"
+            styleText={{}}
+            style={{ marginBottom: 10, marginTop: 20 }}
+            onPressButton={() => {
+              navigation.navigate("QRReceivePayment");
+            }}
+          />
+          <ButtonWithUnderline
+            title="Reset Amount"
+            color={Colors.general.red}
+            onPressButton={() => dispatch(setQRPaymentAmount(undefined))}
+            style={{ marginVertical: 10 }}
+          />
           <ButtonWithUnderline
             title="Save to Gallery"
-            color={appTheme === "dark" ? "#262626" : "#EAEAEC"}
+            color={Colors[appTheme].backgroundSecondary}
             onPressButton={captureScreenAndSaveToGallery}
-            style={{ marginTop: 5 }}
+            style={{ marginVertical: 10 }}
           />
         </View>
       </View>

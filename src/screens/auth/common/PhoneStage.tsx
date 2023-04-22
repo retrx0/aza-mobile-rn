@@ -1,5 +1,5 @@
 import React from "react";
-import { CountriesType } from "../../../../types";
+import { CountriesType } from "../../../types/types.navigation";
 import { PhoneInputProps } from "../../../theme/Themed";
 import { CountryBox } from "../signup/components/CountryInput";
 

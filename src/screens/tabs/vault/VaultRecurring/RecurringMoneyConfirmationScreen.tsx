@@ -1,5 +1,3 @@
-import { Image } from "react-native";
-import { RootTabScreenProps } from "../../../../../types";
 import CommonStyles from "../../../../common/styles/CommonStyles";
 import { hp } from "../../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
@@ -10,15 +8,14 @@ import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { View, Text } from "../../../../theme/Themed";
 
 import Colors from "../../../../constants/Colors";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { VaultStyles as styles } from "../styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ImageInput } from "../../payments/sub-components/ImageInput";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 
 const RecurringMoneyConfirmationScreen = ({
   navigation,
-}: RootTabScreenProps<"Vault">) => {
-  const colorScheme = useColorScheme();
+}: CommonScreenProps<"RecurringMoneyConfirmationScreen">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -140,15 +137,7 @@ const RecurringMoneyConfirmationScreen = ({
                 navigateTo: "TopBar",
               })
             }
-            styleText={{
-              color: Colors[colorScheme].buttonText,
-            }}
-            style={[
-              {
-                backgroundColor: Colors[colorScheme].button,
-              },
-              CommonStyles.button,
-            ]}
+            style={[CommonStyles.button]}
           />
 
           <CancelButtonWithUnderline

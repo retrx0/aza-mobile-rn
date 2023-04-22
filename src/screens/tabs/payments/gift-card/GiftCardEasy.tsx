@@ -9,9 +9,7 @@ import * as Images from "../../../../../assets/images";
 import { Image } from "react-native";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
-const GiftCardEasy = ({
-  navigation,
-}: CommonScreenProps<"RecurringTransfer">) => {
+const GiftCardEasy = ({ navigation }: CommonScreenProps<"GiftCardEasy">) => {
   useNavigationHeader(
     navigation,
     "Giftcards",

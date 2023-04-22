@@ -1,25 +1,22 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React, { useEffect } from "react";
-import { AppState, Image, Pressable } from "react-native";
+import { Image, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import Home from "../screens/tabs/home/Home";
 import Payments from "../screens/tabs/payments/Payments";
 import Profile from "../screens/tabs/profile/Profile";
-import Vault from "../screens/tabs/vault/Vault";
 import Settings from "../screens/tabs/settings/Settings";
 import {
   RootStackScreenProps,
   RootTabParamList,
   RootTabScreenProps,
-} from "../../types";
+} from "../types/types.navigation";
 import {
   HomeIcon,
   QRCodeIcon,
-  VaultIcon,
   PaymentsIcon,
   SettingsIcon,
-  ProfileIcon,
   MenuIcon,
   AZALightningLogo,
   QRCodeDarkModeIcon,
@@ -32,8 +29,6 @@ import { useAppSelector } from "../redux";
 import { selectAppTheme } from "../redux/slice/themeSlice";
 import { selectUser } from "../redux/slice/userSlice";
 import { View } from "../theme/Themed";
-import SpacerWrapper from "../common/util/SpacerWrapper";
-import CommonStyles from "../common/styles/CommonStyles";
 import { hp } from "../common/util/LayoutUtil";
 
 /**
@@ -43,9 +38,7 @@ import { hp } from "../common/util/LayoutUtil";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
-const BottomTabNavigator = (
-  _navigation: RootStackScreenProps<"Root"> & RootTabScreenProps<"Home">
-) => {
+const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
   const [isProfileModalVisible, setProfileModalVisible] = React.useState(false);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
 
@@ -85,7 +78,8 @@ const BottomTabNavigator = (
         initialRouteName={"Home"}
         screenOptions={{
           tabBarActiveTintColor: Colors[appTheme].tint,
-        }}>
+        }}
+      >
         <BottomTab.Screen
           name="Home"
           component={Home}
@@ -106,7 +100,8 @@ const BottomTabNavigator = (
                 onPress={() => navigation.navigate("QRTransactions")}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
-                })}>
+                })}
+              >
                 {appTheme === "dark" ? (
                   <QRCodeDarkModeIcon
                     style={{ marginRight: 15 }}
@@ -130,7 +125,8 @@ const BottomTabNavigator = (
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.5 : 1,
                   marginLeft: 15,
-                })}>
+                })}
+              >
                 <MenuIcon color={Colors[appTheme].text} />
               </Pressable>
             ),

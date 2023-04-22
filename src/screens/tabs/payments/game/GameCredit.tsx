@@ -9,7 +9,7 @@ import * as Images from "../../../../../assets/images";
 import { Image } from "react-native";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
-const GameCredit = ({ navigation }: CommonScreenProps<"RecurringTransfer">) => {
+const GameCredit = ({ navigation }: CommonScreenProps<"GameCredit">) => {
   useNavigationHeader(
     navigation,
     "Game Credits",

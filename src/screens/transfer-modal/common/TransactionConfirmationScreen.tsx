@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image } from "react-native";
 
 import { TextInput, View, Text } from "../../../theme/Themed";
@@ -9,33 +9,26 @@ import Colors from "../../../constants/Colors";
 import { hp } from "../../../common/util/LayoutUtil";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
-import { CommonScreenProps } from "../../../common/navigation/types";
-import { useAppDispatch, useAppSelector } from "../../../redux";
 import {
-  selectTransaction,
-  setTransactionDescription,
-  ITransactionState,
-} from "../../../redux/slice/transactionSlice";
+  CommonScreenProps,
+  TransactionScreenProps,
+} from "../../../common/navigation/types";
+import { useAppSelector } from "../../../redux";
+import { selectTransaction } from "../../../redux/slice/transactionSlice";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../theme";
-import { selectUser } from "../../../redux/slice/userSlice";
-import { transferToAzaUserAPI } from "../../../api/vfd";
-import { requestMoneyAPI } from "../../../api/money-request";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
-import { payAzaUserAPI } from "../../../api/payment";
-import { toastError } from "../../../common/util/ToastUtil";
-
-type TransactionScreenProps = {
-  confirmationType: "send" | "request";
-};
+import ActivityModal from "../../../components/modal/ActivityModal";
+import useTransactionService from "../hooks/useTransactionService";
 
 const TransactionConfirmationScreen = ({
   navigation,
   route,
   confirmationType,
-}: CommonScreenProps<"Common"> & TransactionScreenProps) => {
+}: CommonScreenProps<"SendMoneyConfirmation" | "RequestMoneyConfirmation"> &
+  TransactionScreenProps) => {
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
@@ -43,118 +36,19 @@ const TransactionConfirmationScreen = ({
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
 
-  const { bvnVerified, azaAccountNumber, bvnNumber } =
-    useAppSelector(selectUser);
-
-  const [transDescription, setTransDescription] = useState(description);
-
-  const dispatch = useAppDispatch();
-
   useNavigationHeader(navigation, "Confirmation");
 
-  const makeTransaction = async () => {
-    // do some validation
-
-    if (bvnVerified) {
-      navigation.navigate("BvnVerification", {
-        onVerifyNavigateBackTo:
-          confirmationType === "send"
-            ? "SendMoneyConfirmation"
-            : "RequestMoneyConfirmation",
-      });
-    } else {
-      dispatch(setTransactionDescription("" + transDescription));
-
-      //make transaction
-      let transactionCompleted = false;
-
-      if (confirmationType === "send") {
-        // const transfer = await transferToAzaUserAPI({
-        //   amount: "" + amount,
-        //   fromAccount: azaAccountNumber,
-        //   fromBvn: bvnNumber,
-        //   fromClientId: "",
-        //   fromClient: "",
-        //   fromSavingsId: "",
-        //   toClient: "",
-        //   toBvn: "",
-        //   toAccount: beneficiary.azaAccountNumber,
-        //   toBank: "",
-        //   signature: "Aza",
-        //   remark: "",
-        //   transferType: "intra",
-        //   reference: transDescription ? transDescription : "Aza transaction",
-        //   toSession: "",
-        //   toKyc: "",
-        // });
-        const transfer = await payAzaUserAPI({
-          sourceAccount: azaAccountNumber,
-          destinationAccount: beneficiary.azaAccountNumber,
-          amount,
-          transactionPin: "",
-          description: transDescription ? transDescription : "Aza transaction",
-          currency: "NGN",
-          destinationAccountName: "",
-          destinationBankCode: "",
-          destinationChannel: "",
-        });
-
-        console.log(transfer);
-
-        if (transfer) {
-          transactionCompleted = true;
-        } else {
-          toastError("There was a problem completing transaction!");
-        }
-      } else {
-        const request = await requestMoneyAPI({
-          amount: amount,
-          decription: transDescription ? transDescription : "",
-          initiatorAccountNumber: "" + azaAccountNumber,
-          receipientAccountNumber: beneficiary.azaAccountNumber,
-          recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
-        });
-
-        if (request) {
-          transactionCompleted = true;
-        } else {
-          toastError("There was a problem making the request!");
-        }
-      }
-
-      if (transactionCompleted) {
-        navigation.navigate("StatusScreen", {
-          status:
-            confirmationType === "request"
-              ? "Successful"
-              : "Your transaction was \n successful",
-          statusIcon: "Success",
-          statusMessage: `You have successfully ${
-            confirmationType === "request" ? "requested" : "sent"
-          } ${NAIRA_UNICODE} ${amount} ${
-            confirmationType === "request" ? "from" : "to"
-          } ${beneficiary.fullName}`,
-          statusMessage2:
-            confirmationType === "send"
-              ? "You can perform this transaction automatically by giving a Recurring Transfer order"
-              : "",
-          receiptDetails:
-            confirmationType === "send"
-              ? {
-                  amount: String(amount),
-                  beneficiaryName: beneficiary.fullName,
-                }
-              : undefined,
-          recurringTransferBeneficiary:
-            confirmationType === "send" ? beneficiary : undefined,
-          navigateTo: "Home",
-          // to disallow swoosh sound in request screen
-          screenType: confirmationType === "send" ? "transaction" : undefined,
-        });
-      } else {
-      }
+  const {
+    makeTransaction,
+    screenLoading,
+    transDescription,
+    setTransDescription,
+  } = useTransactionService(
+    { navigation: navigation, route: route },
+    {
+      confirmationType,
     }
-  };
+  );
 
   return (
     <SpacerWrapper>
@@ -300,6 +194,7 @@ const TransactionConfirmationScreen = ({
           style={{ marginTop: 5 }}
         />
       </View>
+      <ActivityModal loading={screenLoading} />
     </SpacerWrapper>
   );
 };

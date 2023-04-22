@@ -12,12 +12,13 @@ import {
   TransactionKey,
 } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 
 import { View as View, Text as Text } from "../../../../theme/Themed";
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
+import { selectUser } from "../../../../redux/slice/userSlice";
 
 export default function AccountSettings({
   navigation,
@@ -35,7 +36,10 @@ export default function AccountSettings({
         <ChangePasswordIcon size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate("Common", { screen: "ChangePassword" }),
+        navigation.navigate("Common", {
+          screen: "CurrentPassword",
+          params: { onVerifyNavigateTo: "NewPassword" },
+        }),
     },
 
     {
@@ -83,7 +87,7 @@ export default function AccountSettings({
         <TransactionKey size={36} color={Colors[appTheme].disabled} />
       ),
       handleNavigation: () =>
-        navigation.navigate("Common", { screen: "TransactionPin" }),
+        navigation.navigate("Common", { screen: "TransactionPinOptions" }),
     },
 
     // TODO TO BE IMPLEMENTED LATER
@@ -109,7 +113,8 @@ export default function AccountSettings({
             fontWeight: "400",
             marginLeft: hp(5),
             fontSize: hp(18),
-          }}>
+          }}
+        >
           Account Settings
         </Text>
         <View

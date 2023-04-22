@@ -5,7 +5,7 @@ import CommonStyles from "../../../../common/styles/CommonStyles";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import { AIrtimeStyles as styles } from "../airtime-screens/styles";
 
-import { RootTabScreenProps } from "../../../../../types";
+import { RootTabScreenProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { InternetCard, InternetList } from "../sub-components/Filters";
 import { useAppSelector } from "../../../../redux";
@@ -14,9 +14,10 @@ import { getAppTheme } from "../../../../theme";
 import InternetDetail from "./InternetDetail";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import { Internet } from "../../../../../assets/images";
+import { CommonScreenProps } from "../../../../common/navigation/types";
 export default function InternetPlans({
   navigation,
-}: RootTabScreenProps<"Payments">) {
+}: CommonScreenProps<"InternetPlans">) {
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -29,7 +30,8 @@ export default function InternetPlans({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -41,7 +43,8 @@ export default function InternetPlans({
             fontWeight: "500",
             maxWidth: wp(333),
             textAlign: "center",
-          }}>
+          }}
+        >
           Subscribe to your favourite Internet Service Providers through our
           internet feature
         </Text>

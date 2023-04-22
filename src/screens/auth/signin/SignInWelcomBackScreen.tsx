@@ -4,28 +4,20 @@ import SegmentedInput from "../../../components/input/SegmentedInput";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
-import { SignInScreenProps } from "../../../../types";
-import { View as View, Text as Text } from "../../../theme/Themed";
-import { Alert, AppState, TouchableOpacity } from "react-native";
-import * as LocalAuthentication from "expo-local-authentication";
-import * as SecureStore from "expo-secure-store";
-import { STORAGE_KEY_JWT_TOKEN, STORAGE_KEY_USER_CREDS } from "@env";
-import { useAppDispatch, useAppSelector } from "../../../redux";
-import {
-  getUserAccount,
-  getUserInfo,
-  selectUser,
-} from "../../../redux/slice/userSlice";
-import { loginUserAPI } from "../../../api/auth";
+import { SignInScreenProps } from "../../../types/types.navigation";
+import { View, Text } from "../../../theme/Themed";
+import { AppState, Image, TouchableOpacity } from "react-native";
+import { useAppSelector } from "../../../redux";
+import { selectUser } from "../../../redux/slice/userSlice";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
-import { toastError } from "../../../common/util/ToastUtil";
-import { storeItemSecure } from "../../../common/util/StorageUtil";
 import ActivityModal from "../../../components/modal/ActivityModal";
-import useCountdownTimer from "../../../hooks/useCountdownTimer";
-import useCachedResources from "../../../hooks/useCachedResources";
-import { IUserCred } from "../../../redux/types";
-import { AxiosError } from "axios";
-import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
+import { forgetUser } from "./helpers";
+import useSignIn from "./hooks/useSignIn";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
+import Colors from "../../../constants/Colors";
+import ProfilePictureView from "../../../components/views/ProfilePictureView";
+import { FaceIdIcon } from "../../../../assets/svg";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -33,155 +25,20 @@ const SignInWelcomeBackScreen = ({
 }: SignInScreenProps<"SignInWelcomeBack">) => {
   const insets = useSafeAreaInsets();
   const user = useAppSelector(selectUser);
-  const cachedUser = route.params.cachedUser;
 
-  const dispatch = useAppDispatch();
-
-  const [screenLoading, setScreenLoading] = useState(false);
   const [passcode, setPasscode] = useState("");
-  const [loginAttemptCounter, setLoginAttemptCounter] = useState(1);
-  const [_tmpCreds, setTmpCreds] = useState<IUserCred>();
-
-  const userPreferences = useAppSelector(selectAppPreference);
 
   const {
-    minutesToDisplay,
-    secondsToDisplay,
-    resetTimer,
-    toTwoDigits,
-    timerStatus,
-    startTimer,
-  } = useCountdownTimer(60 * 5);
-
-  const forgetUser = async () => {
-    console.debug("forgeting user!");
-    await SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN);
-    await SecureStore.deleteItemAsync(STORAGE_KEY_USER_CREDS);
-
-    navigation.getParent()?.navigate("Welcome");
-    // clearUserCredentials();
-  };
-
-  const verifyPassword = async (
-    email: string,
-    phoneNumber: string,
-    code: string,
-    fullName: string
-  ) => {
-    // TODO add push notification token to the server to always keep it updated incase it change
-
-    // TODO refactor below code
-    if (loginAttemptCounter > 3) {
-      if (timerStatus === "Started") {
-        Alert.alert(
-          `Your account has been locked, try again after ${minutesToDisplay} minutes`
-        );
-      } else if (timerStatus === "Stopped") {
-        setLoginAttemptCounter(1);
-        resetTimer();
-      } else {
-        startTimer();
-      }
-    } else {
-      setScreenLoading(true);
-      await loginUserAPI({
-        email: email,
-        password: code,
-        phoneNumber: phoneNumber,
-      })
-        .then((jwt) => {
-          if (jwt) {
-            try {
-              storeItemSecure(STORAGE_KEY_JWT_TOKEN, jwt, {
-                requireAuthentication: false,
-              });
-              storeItemSecure(
-                STORAGE_KEY_USER_CREDS,
-                JSON.stringify({
-                  email: email,
-                  token: jwt,
-                  password: code,
-                  phoneNumber: phoneNumber,
-                  fullName: fullName,
-                })
-              );
-              dispatch(getUserInfo());
-              dispatch(
-                getUserAccount({ accountNumber: user.azaAccountNumber })
-              );
-              setScreenLoading(false);
-              navigation.getParent()?.navigate("Root");
-            } catch (error) {
-              toastError(
-                "There is an issue loggin you in, please try again and confirm the app is giving the right permissions!"
-              );
-            }
-          } else {
-            setScreenLoading(false);
-            toastError("There was a problem logging you in, please try again!");
-          }
-        })
-        .catch((err: AxiosError) => {
-          setScreenLoading(false);
-          if (err.response?.status === 400) {
-            setLoginAttemptCounter((s) => s + 1);
-            toastError(`Invalid passcode, attempt ${loginAttemptCounter} ⚠️`);
-          } else {
-            toastError(
-              "There was a problem logging you in, please try again if problem persist contact customer support"
-            );
-          }
-        });
-    }
-  };
+    handleSignBack,
+    verifyPassword,
+    screenLoading,
+    handleForgotPassword,
+  } = useSignIn();
 
   useEffect(() => {
     setPasscode("");
-  }, []);
-
-  useEffect(() => {
-    const handleSignBack = async () => {
-      const hasBiometricHardware = await LocalAuthentication.hasHardwareAsync();
-      const biometricEnrolled = await LocalAuthentication.isEnrolledAsync();
-
-      // TODO add check to see if account is closed or locked
-
-      // Check if redux stored user email and phone number for login
-      if (!cachedUser) {
-        // try to get and set email and phone number
-        // return user to main login again
-        if (!user.emailAddress && user.phoneNumber === "") {
-          toastError("We encountered a problem, please login again");
-          navigation.getParent()?.navigate("Welcome");
-        }
-      } else {
-        // Check if biometric is enabled
-        if (hasBiometricHardware && biometricEnrolled) {
-          console.debug("biometric enroled");
-          // Check if user enabled biometrics
-          if (userPreferences && userPreferences?.loginWithFaceIDSwitch) {
-            const authenticated = await LocalAuthentication.authenticateAsync();
-            if (authenticated.success) {
-              // biometrics authenticated
-              verifyPassword(
-                cachedUser.email,
-                cachedUser.phoneNumber,
-                cachedUser.password,
-                cachedUser.fullName
-              );
-            }
-          }
-        } else {
-          console.debug("biometric not enroled!");
-          setTmpCreds(cachedUser);
-        }
-      }
-    };
-
-    handleSignBack();
-  }, []);
-
-  useEffect(() => {
+    if (route.params.clearPasswordInput) setPasscode("");
+    handleSignBack({ navigation, route });
     const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") setPasscode("");
     });
@@ -194,43 +51,113 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>Welcome back {user.fullName}</Text>
-          <Text style={styles.sentCode}>Enter your Aza password to login</Text>
+          <View style={[CommonStyles.row, { alignSelf: "flex-start" }]}>
+            <View>
+              <Text style={styles.welcome}>
+                Welcome back, {user.fullName.split(",")[1]}
+              </Text>
+              <Text style={styles.sentCode}>
+                Enter your Aza password to login
+              </Text>
+            </View>
+            {user.fullName && (
+              <ProfilePictureView
+                firstName={user.fullName.split(",")[1].substring(1, 2)}
+                lastName={user.fullName.split(",")[0].substring(0, 1)}
+                profilePictureUrl={user.pictureUrl}
+              />
+            )}
+          </View>
+
           <View
             style={{
-              marginTop: hp(20),
+              // marginTop: hp(20),
               paddingHorizontal: hp(20),
-              marginBottom: hp(100),
+              marginBottom: hp(50),
             }}
           >
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
                 setPasscode(code);
-                if (code.length >= 6)
-                  verifyPassword(
-                    user.emailAddress,
-                    user.phoneNumber,
-                    code,
-                    user.fullName
+                if (code.length > 5 && code.length === 6 && code.length < 7)
+                  setTimeout(
+                    () =>
+                      verifyPassword(
+                        user.emailAddress,
+                        user.phoneNumber,
+                        code,
+                        user.fullName,
+                        { navigation, route }
+                      ),
+                    100
                   );
               }}
               headerText="Password"
               secureInput={true}
               autoFocusOnLoad
+              isLoading={screenLoading}
               withKeypad
+              // forgetPasswordOption
+              // onForgotPassword={() =>
+              //   handleForgotPassword({ navigation, route })
+              // }
             />
           </View>
+          {route.params.cachedUser && (
+            <View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: hp(14),
+                  fontWeight: "500",
+                  marginBottom: hp(5),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  color: Colors.light.secondaryText,
+                }}
+              >
+                OR
+              </Text>
+              <TouchableOpacity
+                style={{ alignSelf: "center", marginVertical: 10 }}
+                onPress={() => handleSignBack({ navigation, route })}
+              >
+                <FaceIdIcon color={Colors["general"].darkGrey} size={40} />
+              </TouchableOpacity>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: hp(12),
+                  fontWeight: "500",
+                  marginBottom: hp(8),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  color: Colors.light.secondaryText,
+                }}
+              >
+                Login with biometrics
+              </Text>
+            </View>
+          )}
+
           <View
-            style={[{ alignSelf: "center", bottom: insets.bottom || hp(15) }]}
+            style={[
+              {
+                alignSelf: "center",
+                top: route.params.cachedUser ? hp(300) : hp(390),
+              },
+            ]}
           >
-            <TouchableOpacity onPress={forgetUser}>
-              <Text style={styles.welcomeForgetMeButton}>Forget Me</Text>
+            <TouchableOpacity>
+              <CancelButtonWithUnderline
+                title="Forget Me"
+                onPressButton={() => forgetUser(navigation)}
+                styleText={CommonStyles.resend}
+              />
             </TouchableOpacity>
           </View>
         </View>
       </HideKeyboardOnTouch>
-      <ActivityModal loading={screenLoading} />
+      {/* <ActivityModal loading={screenLoading} /> */}
     </SpacerWrapper>
   );
 };

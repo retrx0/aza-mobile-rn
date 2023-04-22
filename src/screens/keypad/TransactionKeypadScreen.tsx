@@ -28,6 +28,7 @@ import { NigeriaFlag } from "../../../assets/images";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import ProfilePictureView from "../../components/views/ProfilePictureView";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -80,6 +81,7 @@ const TransactionKeypadScreen = ({
               transferType: "send",
             })
           );
+
           navigation.navigate("SendMoneyConfirmation");
           break;
         case "debit":
@@ -129,17 +131,26 @@ const TransactionKeypadScreen = ({
             transactionType.transaction === "deposit" ? (
               <></>
             ) : (
-              <Image
-                style={{ borderRadius: 50, width: 50, height: 50 }}
-                source={{
-                  uri: getDefaultPictureUrl({
-                    firstName: beneficiary.fullName,
-                    lastName: beneficiary.lastName,
-                    scheme: appTheme,
-                    pictureUrl: beneficiary.pictureUrl,
-                  }),
-                }}
+              <ProfilePictureView
+                firstName={beneficiary.fullName.substring(0, 1)}
+                lastName={
+                  beneficiary.lastName
+                    ? beneficiary.lastName.substring(0, 1).toUpperCase()
+                    : beneficiary.fullName.substring(1, 2).toUpperCase()
+                }
+                profilePictureUrl={beneficiary.pictureUrl}
               />
+              // <Image
+              //   style={{ borderRadius: 50, width: 50, height: 50 }}
+              //   source={{
+              //     uri: getDefaultPictureUrl({
+              //       firstName: beneficiary.fullName,
+              //       lastName: beneficiary.lastName,
+              //       scheme: appTheme,
+              //       pictureUrl: beneficiary.pictureUrl,
+              //     }),
+              //   }}
+              // />
             )
           ) : (
             <></>
@@ -149,7 +160,7 @@ const TransactionKeypadScreen = ({
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(16),
               marginTop: hp(15),
-              marginBottom: hp(15),
+              marginBottom: hp(10),
             }}
           >
             {beneficiary.fullName}
@@ -164,7 +175,7 @@ const TransactionKeypadScreen = ({
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 50,
-                marginBottom: hp(20),
+                marginBottom: hp(10),
               },
             ]}
           >
@@ -211,7 +222,7 @@ const TransactionKeypadScreen = ({
                   : Colors.light.text,
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 fontSize: hp(36),
-                marginVertical: hp(10),
+                marginVertical: hp(7),
               }}
             >
               {!amount && "0"} {numberWithCommas(amount)}
@@ -222,7 +233,7 @@ const TransactionKeypadScreen = ({
               style={{
                 fontSize: hp(14),
                 fontWeight: "400",
-                marginVertical: hp(10),
+                marginVertical: hp(7),
               }}
             >
               Aza Balance:

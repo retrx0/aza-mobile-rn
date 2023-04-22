@@ -7,7 +7,7 @@ import TransactionConfirmationScreen from "../common/TransactionConfirmationScre
 const RequestMoneyConfirmationScreen = ({
   navigation,
   route,
-}: CommonScreenProps<"Common">) => {
+}: CommonScreenProps<"RequestMoneyConfirmation">) => {
   return (
     <SpacerWrapper>
       <TransactionConfirmationScreen

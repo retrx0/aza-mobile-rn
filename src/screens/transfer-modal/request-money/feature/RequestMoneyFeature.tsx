@@ -13,7 +13,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const RequestMoneyFeature = ({
   navigation,
-}: CommonScreenProps<"RecurringTransfer">) => {
+}: CommonScreenProps<"RequestMoneyFeature">) => {
   useNavigationHeader(
     navigation,
     "Request Money",

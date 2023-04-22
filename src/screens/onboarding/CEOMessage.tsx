@@ -2,11 +2,10 @@ import { ScrollView } from "../../theme/Themed";
 import { View, Text } from "../../theme/Themed";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { hp } from "../../common/util/LayoutUtil";
-import { RootStackScreenProps, RootTabScreenProps } from "../../../types";
+import { RootStackScreenProps } from "../../types/types.navigation";
 import React, { useState } from "react";
 import { AZALogo, Signature, ZEAL } from "../../../assets/svg";
 import { useNavigation } from "@react-navigation/core";
-import MyButton from "../tabs/payments/sub-components/MyButton";
 import CustomSwitch from "../../components/input/CustomSwitch";
 import { storeItem } from "../../common/util/StorageUtil";
 import { CEO_MESSAGE_STORAGE_KEY } from "../../constants/AppConstants";
@@ -16,7 +15,7 @@ import { getAppTheme } from "../../theme";
 import Colors from "../../constants/Colors";
 import Button from "../../components/buttons/Button";
 
-const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
+const CEOMessage = (_navigation: RootStackScreenProps<"CEOMessage">) => {
   const navigation = useNavigation();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
@@ -35,7 +34,8 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
             marginTop: hp(50),
             marginBottom: hp(35),
             alignItems: "center",
-          }}>
+          }}
+        >
           <AZALogo
             color={
               appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
@@ -53,7 +53,8 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
               marginBottom: hp(20),
               fontWeight: "600",
               lineHeight: hp(30),
-            }}>
+            }}
+          >
             Message from the CEO
           </Text>
           <Text
@@ -64,7 +65,8 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
               lineHeight: hp(19),
               marginBottom: hp(35),
               fontWeight: "400",
-            }}>
+            }}
+          >
             Calling all Nigerians, the future is now. Gone are the times where
             we had to accept poorly made apps that frustrated the living out of
             us just because the companies were lazy, cared more about revenue,
@@ -82,7 +84,8 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-            }}>
+            }}
+          >
             <ZEAL
               color={
                 appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
@@ -111,7 +114,8 @@ const CEOMessage = (_navigation: RootTabScreenProps<"Home">) => {
               justifyContent: "center",
               alignItems: "center",
               marginBottom: hp(50),
-            }}>
+            }}
+          >
             <CustomSwitch
               title="Don’t show this again"
               onValueChange={toggleSwitch}

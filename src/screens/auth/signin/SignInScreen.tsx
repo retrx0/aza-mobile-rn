@@ -3,11 +3,8 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 
-import Colors from "../../../constants/Colors";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import CommonStyles from "../../../common/styles/CommonStyles";
-// import { View, Text } from "../../../theme/Themed";
-//
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
 import InputFormEmail from "../../../components/input/InputFormFieldNormal";
@@ -16,15 +13,18 @@ import { requestOtpApi } from "../../../api/auth";
 import { getUserLoginInfoAPI } from "../../../api/user";
 
 import { useAppDispatch } from "../../../redux";
-import { setUserPhoneAndFullName } from "../../../redux/slice/userSlice";
+import {
+  setProfilePicture,
+  setUserEmail,
+  setUserPhoneAndFullName,
+} from "../../../redux/slice/userSlice";
 
-import { SignInScreenProps } from "../../../../types";
-import useColorScheme from "../../../hooks/useColorScheme";
+import { SignInScreenProps } from "../../../types/types.navigation";
 import { hp } from "../../../common/util/LayoutUtil";
 import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
-import { Text as Text, View as View } from "../../../theme/Themed";
+import { Text, View } from "../../../theme/Themed";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const dispatch = useAppDispatch();
@@ -36,20 +36,23 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   });
 
   const handleSubmission = async (email: string) => {
-    setButtonLoading(true);
     const userLoginInfo = await getUserLoginInfoAPI(email);
-
     if (userLoginInfo) {
+      setButtonLoading(true);
       dispatch(
         setUserPhoneAndFullName({
-          phoneNumber: userLoginInfo.phoneNumber,
-          fullName: userLoginInfo.fullName,
+          phoneNumber: userLoginInfo.data.phoneNumber,
+          fullName: userLoginInfo.data.fullName,
         })
       );
+      dispatch(setProfilePicture(userLoginInfo.data.profilePictureUrl));
+      dispatch(setUserEmail(email));
       requestOtpApi({
         email: "",
-        phoneNumber: userLoginInfo.phoneNumber,
-      }).then(() => setButtonLoading(false));
+        phoneNumber: userLoginInfo.data.phoneNumber,
+      })
+        .then(() => setButtonLoading(false))
+        .catch(() => setButtonLoading(false));
 
       navigation.navigate("SignInOTP");
     } else {

@@ -2,13 +2,17 @@
   "expo": {
     "name": "Aza",
     "slug": "aza",
-    "version": "0.2.1",
+    "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#000000",
     "icon": "./assets/images/app/aza-app-icon-white.png",
-    "scheme": "com.aza.azaapp",
+    "scheme": "azaapp",
     "owner": "retro1",
-    "notification": {},
+    "notification": {
+      "icon": "./assets/images/app/aza-app-icon-white.png",
+      "iosDisplayInForeground": true,
+      "color": "#000000"
+    },
     "splash": {
       "image": "./assets/images/app/aza-splash.png",
       "resizeMode": "contain",
@@ -18,9 +22,11 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "usesAppleSignIn": true,
       "usesIcloudStorage": false,
       "bundleIdentifier": "com.aza.azaapp",
@@ -29,9 +35,11 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": [
+          "audio"
+        ]
       },
-      "buildNumber": "6"
+      "buildNumber": "33"
     },
     "android": {
       "adaptiveIcon": {
@@ -39,8 +47,11 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "googleServicesFile": "google-services.json",
-      "versionCode": 7
+      "versionCode": 33,
+      "permissions": [
+        "NOTIFICATIONS"
+      ],
+      "useNextNotificationsApi": true
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
@@ -60,7 +71,15 @@
         {
           "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
-          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
+          "sounds": [
+            "./assets/sounds/notifications/coindrop.wav"
+          ]
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow Aza to use Face ID."
         }
       ],
       "@config-plugins/detox"

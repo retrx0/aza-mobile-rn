@@ -2,11 +2,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignUpOTPScreen from "./SignUpOTPScreen";
 import SignUpPasswordScreen from "./SignUpPasswordScreen";
 import SignUpScreen from "./SignUpScreen";
-import { PasswordScreenParamsType } from "../../../../types";
+import {
+  PasswordScreenParamsType,
+  RootStackScreenProps,
+  SignUpStackParamList,
+} from "../../../types/types.navigation";
 import SignUpProfileSetupScreen from "./SignUpProfileSetupScreen";
 import PhoneNumberScreen from "../common/PhoneNumberScreen";
 
-const SignUpStack = createNativeStackNavigator();
+const SignUpStack = createNativeStackNavigator<SignUpStackParamList>();
 
 const SignUpRoot = () => {
   const create: PasswordScreenParamsType = { passwordScreenType: "Create" };
@@ -43,7 +47,6 @@ const SignUpRoot = () => {
 
       <SignUpStack.Screen
         component={PhoneNumberScreen}
-        initialParams={confirm}
         name="SignUpPhoneNumber"
         options={{ headerShown: false }}
       />

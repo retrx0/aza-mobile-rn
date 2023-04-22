@@ -20,7 +20,10 @@ import {
   UserIcon,
 } from "../../../../../assets/svg";
 
-import { RootTabScreenProps } from "../../../../../types";
+import {
+  RootStackScreenProps,
+  RootTabScreenProps,
+} from "../../../../types/types.navigation";
 import Colors from "../../../../constants/Colors";
 import { getAppTheme } from "../../../../theme";
 
@@ -28,11 +31,14 @@ import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
 
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { uploadProfilePicThunk } from "../../../../redux/slice/userSlice";
+import {
+  getUserInfo,
+  uploadProfilePicThunk,
+} from "../../../../redux/slice/userSlice";
 
 export const useBottomSheetType = (
   itemToReturn: string,
-  { navigation }: RootTabScreenProps<"Home">
+  { navigation }: RootStackScreenProps<"Root">
 ) => {
   const dispatch = useAppDispatch();
 
@@ -55,6 +61,7 @@ export const useBottomSheetType = (
         .unwrap()
         .then(() => {
           toastSuccess("Your picture has been successfully uploaded");
+          dispatch(getUserInfo());
         })
         .catch(() => {
           toastError("Error uploading profile picture");
@@ -83,6 +90,7 @@ export const useBottomSheetType = (
           .unwrap()
           .then(() => {
             toastSuccess("Your picture has been successfully uploaded");
+            dispatch(getUserInfo());
           })
           .catch(() => {
             toastError("Error uploading profile picture");
@@ -173,7 +181,8 @@ export const useBottomSheetType = (
       {
         itemName: "Send Money",
         itemIcon: <SendMoneyIcon size={16} />,
-        onPress: () => navigation.navigate("Common", { screen: "SendMoney" }),
+        onPress: () =>
+          navigation.navigate("Common", { screen: "SendMoney", params: {} }),
       },
       {
         itemName: "Request Money",

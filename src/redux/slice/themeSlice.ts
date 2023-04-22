@@ -1,7 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useAppSelector } from "..";
-import Colors from "../../constants/Colors";
-import { useAppAsyncStorage } from "../../hooks/useAsyncStorage";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../Store";
 
 // Define a type for the slice state

@@ -13,7 +13,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 
 const AlternativeSurvey = ({
   navigation,
-}: CommonScreenProps<"CloseAccountScreen">) => {
+}: CommonScreenProps<"AlternativeSurvey">) => {
   const insets = useSafeAreaInsets();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
 

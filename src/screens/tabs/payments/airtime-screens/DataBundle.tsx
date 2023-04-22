@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 import { AIrtimeStyles as styles } from "./styles";
@@ -117,7 +117,10 @@ export default function DataBundle({
   const displayedOperators = new Set();
 
   return (
-    <View style={CommonStyles.vaultcontainer}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "position" : "height"}
+      style={CommonStyles.vaultcontainer}
+    >
       <Header
         description=""
         descriptionStyle={null}
@@ -171,12 +174,7 @@ export default function DataBundle({
           maxLength={13}
           keyboardType="phone-pad"
           value={isEnabled ? user.phoneNumber : mobileNumber}
-          inputStyle={[
-            styles.input,
-            {
-              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-            },
-          ]}
+          inputStyle={[styles.input]}
           labelStyle={styles.label}
           style={{ marginTop: hp(10) }}
           label="Phone Number"
@@ -224,10 +222,7 @@ export default function DataBundle({
         style={{ paddingHorizontal: hp(20) }}
         disabled={route.name === "data-bundle"}
         icon={null}
-        inputStyle={[
-          styles.input,
-          { borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC" },
-        ]}
+        inputStyle={[styles.input]}
         labelStyle={styles.label}
         label="Amount"
         placeholder="Enter an amount"
@@ -255,6 +250,6 @@ export default function DataBundle({
           disabled={!amount || !selectedProvider || mobileNumber.length < 13}
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

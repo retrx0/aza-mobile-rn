@@ -19,7 +19,7 @@ import DataBundleRecurring from "./DataBundleRecurring";
 const AirtimeDataRecurring = ({
   navigation,
   route,
-}: CommonScreenProps<"AirtimeData">) => {
+}: CommonScreenProps<"AirtimeRecurring">) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Airtime" },
@@ -71,7 +71,8 @@ const AirtimeDataRecurring = ({
                   }
                   style={{
                     fontSize: hp(16),
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );

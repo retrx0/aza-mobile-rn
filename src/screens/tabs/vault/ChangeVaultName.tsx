@@ -1,4 +1,4 @@
-import { RootTabScreenProps } from "../../../../types";
+import { RootTabScreenProps } from "../../../types/types.navigation";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import { hp } from "../../../common/util/LayoutUtil";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
@@ -8,8 +8,11 @@ import { UnderlinedInput } from "../../../components/input/UnderlinedInput";
 import { View, Text } from "../../../theme/Themed";
 import { VaultStyles as styles } from "../vault/styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CommonScreenProps } from "../../../common/navigation/types";
 
-const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
+const ChangeVaultName = ({
+  navigation,
+}: CommonScreenProps<"ChangeVaultName">) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -66,9 +69,7 @@ const ChangeVaultName = ({ navigation }: RootTabScreenProps<"Vault">) => {
         >
           <Button
             title="Save Change"
-            onPressButton={() =>
-              navigation.navigate("Common", { screen: "TopBar" })
-            }
+            onPressButton={() => navigation.navigate("TopBar")}
             styleText={{}}
             style={[{}, CommonStyles.button]}
           />

@@ -11,7 +11,7 @@ import { View, Text } from "../../../../theme/Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { ArchieveIcon, CloseIcon, TrashIcon } from "../../../../../assets/svg";
-import { VaultListProps } from "../../../../../types";
+import { VaultListProps } from "../../../../types/types.navigation";
 import { hp, wp } from "../../../../common/util/LayoutUtil";
 import Colors from "../../../../constants/Colors";
 import useColorScheme from "../../../../hooks/useColorScheme";

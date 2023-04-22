@@ -9,6 +9,7 @@ import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getAppTheme } from "../../theme";
 import { View, Text } from "../../theme/Themed";
+import ProfilePictureView from "../views/ProfilePictureView";
 
 interface IContact {
   image: string;
@@ -38,12 +39,21 @@ const ContactListItem = ({
         alignItems: "center",
       }}
     >
-      <Image
+      <ProfilePictureView
+        firstName={name.substring(0, 1)}
+        lastName={
+          name.split(" ")[1]
+            ? name.split(" ")[1].substring(0, 1).toUpperCase()
+            : name.substring(1, 2).toUpperCase()
+        }
+        profilePictureUrl={image}
+      />
+      {/* <Image
         style={{ borderRadius: 50, width: 45, height: 45 }}
         source={{
           uri: image,
         }}
-      />
+      /> */}
       <View style={[CommonStyles.col, { marginLeft: 10, marginRight: "auto" }]}>
         <Text
           lightColor={Colors.light.text}
