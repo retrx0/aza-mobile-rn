@@ -59,9 +59,9 @@ export async function apiCourier<T, R>(
       return result.headers["access-token"] as R;
     return result.data;
   } catch (e) {
-    throw new Error(
-      "Error making request: " + (e as AxiosError).response?.config.url,
-      e as AxiosError
+    return Promise.reject(e);
+    throw new AxiosError(
+      "Error making request: " + (e as AxiosError).response?.config.url
     );
   }
 }

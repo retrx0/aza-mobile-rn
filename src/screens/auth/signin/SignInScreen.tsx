@@ -36,10 +36,9 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   });
 
   const handleSubmission = async (email: string) => {
-    setButtonLoading(true);
     const userLoginInfo = await getUserLoginInfoAPI(email);
-    console.log(userLoginInfo);
     if (userLoginInfo) {
+      setButtonLoading(true);
       dispatch(
         setUserPhoneAndFullName({
           phoneNumber: userLoginInfo.data.phoneNumber,

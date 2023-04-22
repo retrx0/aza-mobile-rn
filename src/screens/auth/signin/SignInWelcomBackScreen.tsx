@@ -104,39 +104,49 @@ const SignInWelcomeBackScreen = ({
               // }
             />
           </View>
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: hp(14),
-                fontWeight: "500",
-                marginBottom: hp(5),
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                color: Colors.light.secondaryText,
-              }}
-            >
-              OR
-            </Text>
-            <TouchableOpacity
-              style={{ alignSelf: "center", marginVertical: 10 }}
-              onPress={() => handleSignBack({ navigation, route })}
-            >
-              <FaceIdIcon color={Colors["general"].darkGrey} size={40} />
-            </TouchableOpacity>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: hp(12),
-                fontWeight: "500",
-                marginBottom: hp(8),
-                fontFamily: "Euclid-Circular-A-Semi-Bold",
-                color: Colors.light.secondaryText,
-              }}
-            >
-              Login with biometrics
-            </Text>
-          </View>
-          <View style={[{ alignSelf: "center", top: hp(300) }]}>
+          {route.params.cachedUser && (
+            <View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: hp(14),
+                  fontWeight: "500",
+                  marginBottom: hp(5),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  color: Colors.light.secondaryText,
+                }}
+              >
+                OR
+              </Text>
+              <TouchableOpacity
+                style={{ alignSelf: "center", marginVertical: 10 }}
+                onPress={() => handleSignBack({ navigation, route })}
+              >
+                <FaceIdIcon color={Colors["general"].darkGrey} size={40} />
+              </TouchableOpacity>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: hp(12),
+                  fontWeight: "500",
+                  marginBottom: hp(8),
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  color: Colors.light.secondaryText,
+                }}
+              >
+                Login with biometrics
+              </Text>
+            </View>
+          )}
+
+          <View
+            style={[
+              {
+                alignSelf: "center",
+                top: route.params.cachedUser ? hp(300) : hp(390),
+              },
+            ]}
+          >
             <TouchableOpacity>
               <CancelButtonWithUnderline
                 title="Forget Me"
