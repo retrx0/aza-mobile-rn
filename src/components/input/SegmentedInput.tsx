@@ -122,7 +122,7 @@ const SegmentedInput = (props: SegmentedInputProps) => {
           />
         </Animated.View>
       </View>
-      <View style={[{ position: "absolute", left: 0, right: 0, top: 180 }]}>
+      <View style={[{ position: "absolute", left: 0, right: 0, top: 190 }]}>
         {withKeypad && (
           <VirtualKeyboard
             value={value}

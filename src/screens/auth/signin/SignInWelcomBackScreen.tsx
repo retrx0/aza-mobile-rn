@@ -17,6 +17,7 @@ import CommonStyles from "../../../common/styles/CommonStyles";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
 import ProfilePictureView from "../../../components/views/ProfilePictureView";
+import { FaceIdIcon } from "../../../../assets/svg";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -72,7 +73,7 @@ const SignInWelcomeBackScreen = ({
             style={{
               // marginTop: hp(20),
               paddingHorizontal: hp(20),
-              marginBottom: hp(70),
+              marginBottom: hp(50),
             }}
           >
             <SegmentedInput
@@ -103,42 +104,39 @@ const SignInWelcomeBackScreen = ({
               // }
             />
           </View>
-          {/* <View>
+          <View>
             <Text
               style={{
                 textAlign: "center",
                 fontSize: hp(14),
                 fontWeight: "500",
-                marginBottom: hp(20),
-                lineHeight: hp(18),
+                marginBottom: hp(5),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 color: Colors.light.secondaryText,
-              }}>
+              }}
+            >
               OR
             </Text>
-            <Image
-              source={require("../../../../assets/images/common/FaceId.png")}
-              style={{
-                width: 50,
-                height: 50,
-                alignSelf: "center",
-                marginBottom: hp(10),
-              }}
-            />
+            <TouchableOpacity
+              style={{ alignSelf: "center", marginVertical: 10 }}
+              onPress={() => handleSignBack({ navigation, route })}
+            >
+              <FaceIdIcon color={Colors["general"].darkGrey} size={40} />
+            </TouchableOpacity>
             <Text
               style={{
                 textAlign: "center",
-                fontSize: hp(14),
+                fontSize: hp(12),
                 fontWeight: "500",
-                marginBottom: hp(20),
-                lineHeight: hp(18),
+                marginBottom: hp(8),
                 fontFamily: "Euclid-Circular-A-Semi-Bold",
                 color: Colors.light.secondaryText,
-              }}>
-              Login with Face ID
+              }}
+            >
+              Login with biometrics
             </Text>
-          </View> */}
-          <View style={[{ alignSelf: "center", marginTop: hp(370) }]}>
+          </View>
+          <View style={[{ alignSelf: "center", top: hp(300) }]}>
             <TouchableOpacity>
               <CancelButtonWithUnderline
                 title="Forget Me"
