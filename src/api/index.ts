@@ -46,4 +46,6 @@ api.interceptors.response.use(
   }
 );
 
+alert(process.env.ENV + ": " + API_BASE_URL_DEV);
+
 export default api;
