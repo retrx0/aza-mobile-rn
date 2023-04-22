@@ -88,7 +88,7 @@
     "phone": "^3.1.35",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "react-native": "0.69.6",
+    "react-native": "0.69.9",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-datepicker": "^1.7.2",
     "react-native-dotenv": "^3.3.1",

@@ -22,9 +22,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "usesAppleSignIn": true,
@@ -35,9 +33,7 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
+        "UIBackgroundModes": ["audio"]
       },
       "buildNumber": "33"
     },
@@ -48,10 +44,7 @@
       },
       "package": "com.aza.azaapp",
       "versionCode": 33,
-      "permissions": [
-        "NOTIFICATIONS"
-      ],
-      "useNextNotificationsApi": true
+      "permissions": ["NOTIFICATIONS"]
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
@@ -71,9 +64,7 @@
         {
           "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
-          "sounds": [
-            "./assets/sounds/notifications/coindrop.wav"
-          ]
+          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }
       ],
       [
