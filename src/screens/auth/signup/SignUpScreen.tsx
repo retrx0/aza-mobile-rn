@@ -35,13 +35,12 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps<"SignUpRoot">) => {
       phoneNumber: "",
     })
       .then((r) => {
-        if (r) {
-          !emailValidated
-            ? navigation.navigate("SignUpOTP", {
-                otpScreenType: "email",
-              })
-            : navigation.navigate("SignUpPhoneNumber");
-        }
+        !emailValidated
+          ? navigation.navigate("SignUpOTP", {
+              otpScreenType: "email",
+            })
+          : navigation.navigate("SignUpPhoneNumber");
+
         setButtonLoading(false);
       })
       .catch(() => {

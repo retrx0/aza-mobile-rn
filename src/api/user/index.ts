@@ -176,9 +176,9 @@ export const getUserLoginInfoAPI = async (email: string) => {
         phoneNumber: string;
         profilePictureUrl: string;
       };
-      message: string | null;
-      requestState: string | "Success";
-      statusCode: string | "OK";
+      message: string;
+      requestState: string;
+      statusCode: string;
     }
   >("get", `/api/v1/user/${email}`, null, "jwt");
 };

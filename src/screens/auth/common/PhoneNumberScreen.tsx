@@ -104,7 +104,7 @@ const PhoneNumberScreen = ({
               email: "",
               phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
             }).then((code) => {
-              if (code) console.debug("Phone otp requested");
+              console.debug("Phone otp requested");
             });
             navigation.push("SignUpOTP", {
               otpScreenType: "phone",

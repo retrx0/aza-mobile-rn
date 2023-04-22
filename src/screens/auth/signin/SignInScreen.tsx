@@ -14,6 +14,7 @@ import { getUserLoginInfoAPI } from "../../../api/user";
 
 import { useAppDispatch } from "../../../redux";
 import {
+  setProfilePicture,
   setUserEmail,
   setUserPhoneAndFullName,
 } from "../../../redux/slice/userSlice";
@@ -37,6 +38,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const handleSubmission = async (email: string) => {
     setButtonLoading(true);
     const userLoginInfo = await getUserLoginInfoAPI(email);
+    console.log(userLoginInfo);
     if (userLoginInfo) {
       dispatch(
         setUserPhoneAndFullName({
@@ -44,11 +46,14 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
           fullName: userLoginInfo.data.fullName,
         })
       );
+      dispatch(setProfilePicture(userLoginInfo.data.profilePictureUrl));
       dispatch(setUserEmail(email));
       requestOtpApi({
         email: "",
         phoneNumber: userLoginInfo.data.phoneNumber,
-      }).then(() => setButtonLoading(false));
+      })
+        .then(() => setButtonLoading(false))
+        .catch(() => setButtonLoading(false));
 
       navigation.navigate("SignInOTP");
     } else {

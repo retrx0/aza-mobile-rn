@@ -44,12 +44,11 @@ const useSettings = ({
       phoneNumber: "",
     })
       .then((r) => {
-        if (r) {
-          navigation.navigate("ChangeUserDataOTP", {
-            type: "email",
-            value: newEmail,
-          });
-        }
+        navigation.navigate("ChangeUserDataOTP", {
+          type: "email",
+          value: newEmail,
+        });
+
         setLoading(false);
       })
       .catch(() => {
@@ -66,12 +65,11 @@ const useSettings = ({
       phoneNumber: newPhone,
     })
       .then((r) => {
-        if (r) {
-          navigation.navigate("ChangeUserDataOTP", {
-            type: "phone",
-            value: newPhone,
-          });
-        }
+        navigation.navigate("ChangeUserDataOTP", {
+          type: "phone",
+          value: newPhone,
+        });
+
         setLoading(false);
       })
       .catch(() => {

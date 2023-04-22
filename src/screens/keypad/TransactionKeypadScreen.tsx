@@ -28,6 +28,7 @@ import { NigeriaFlag } from "../../../assets/images";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import ProfilePictureView from "../../components/views/ProfilePictureView";
 
 const TransactionKeypadScreen = ({
   navigation,
@@ -130,17 +131,26 @@ const TransactionKeypadScreen = ({
             transactionType.transaction === "deposit" ? (
               <></>
             ) : (
-              <Image
-                style={{ borderRadius: 50, width: 50, height: 50 }}
-                source={{
-                  uri: getDefaultPictureUrl({
-                    firstName: beneficiary.fullName,
-                    lastName: beneficiary.lastName,
-                    scheme: appTheme,
-                    pictureUrl: beneficiary.pictureUrl,
-                  }),
-                }}
+              <ProfilePictureView
+                firstName={beneficiary.fullName.substring(0, 1)}
+                lastName={
+                  beneficiary.lastName
+                    ? beneficiary.lastName.substring(0, 1).toUpperCase()
+                    : beneficiary.fullName.substring(1, 2).toUpperCase()
+                }
+                profilePictureUrl={beneficiary.pictureUrl}
               />
+              // <Image
+              //   style={{ borderRadius: 50, width: 50, height: 50 }}
+              //   source={{
+              //     uri: getDefaultPictureUrl({
+              //       firstName: beneficiary.fullName,
+              //       lastName: beneficiary.lastName,
+              //       scheme: appTheme,
+              //       pictureUrl: beneficiary.pictureUrl,
+              //     }),
+              //   }}
+              // />
             )
           ) : (
             <></>

@@ -16,7 +16,7 @@ const initialState: IUserState = {
   firstName: "",
   lastName: "",
   fullName: "",
-  pictureUrl: "https://ui-avatars.com/api/?name=Aza",
+  pictureUrl: "",
   azaAccountNumber: "",
   aza9PSBAccountNumber: "",
   azaBalance: 0,
@@ -76,14 +76,14 @@ const initialState: IUserState = {
     loading: false,
     loaded: false,
     data: [
-      {
-        amount: "2000",
-        status: "Paid",
-        vendorName: "Test",
-        vendorLogo: Mtn,
-        date: "4 July 2022 04:26",
-        category: "Airtime & Data",
-      },
+      // {
+      //   amount: "2000",
+      //   status: "Paid",
+      //   vendorName: "Test",
+      //   vendorLogo: Mtn,
+      //   date: "4 July 2022 04:26",
+      //   category: "Airtime & Data",
+      // },
     ],
   },
   azaContacts: {
@@ -292,7 +292,6 @@ export const userSlice = createSlice({
         state.recentTransactions.loading = false;
       })
       .addCase(getUserTransactions.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.recentTransactions.loading = false;
         state.recentTransactions.data = action.payload;
       })

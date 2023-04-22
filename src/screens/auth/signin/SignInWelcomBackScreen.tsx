@@ -16,6 +16,7 @@ import useSignIn from "./hooks/useSignIn";
 import CommonStyles from "../../../common/styles/CommonStyles";
 import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonWithUnderline";
 import Colors from "../../../constants/Colors";
+import ProfilePictureView from "../../../components/views/ProfilePictureView";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -49,18 +50,23 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <Text style={styles.welcome}>
-            Welcome back, {user.fullName.split(",")[1]}
-          </Text>
-          <Text style={styles.sentCode}>Enter your Aza password to login</Text>
-          {/* <View style={[CommonStyles.row]}>
-            <View></View>
-
-            <Image
-              source={{ uri: user.pictureUrl }}
-              style={{ width: 50, height: 50, borderRadius: 25 }}
-            />
-          </View> */}
+          <View style={[CommonStyles.row, { alignSelf: "flex-start" }]}>
+            <View>
+              <Text style={styles.welcome}>
+                Welcome back, {user.fullName.split(",")[1]}
+              </Text>
+              <Text style={styles.sentCode}>
+                Enter your Aza password to login
+              </Text>
+            </View>
+            {user.fullName && (
+              <ProfilePictureView
+                firstName={user.fullName.split(",")[1].substring(1, 2)}
+                lastName={user.fullName.split(",")[0].substring(0, 1)}
+                profilePictureUrl={user.pictureUrl}
+              />
+            )}
+          </View>
 
           <View
             style={{

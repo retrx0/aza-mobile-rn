@@ -7,6 +7,6 @@ export const forgetUser = async (navigation: any) => {
   await SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN);
   await SecureStore.deleteItemAsync(STORAGE_KEY_USER_CREDS);
 
-  navigation.getParent()?.navigate("Welcome");
+  navigation.getParent()?.replace("Welcome");
   // clearUserCredentials();
 };

@@ -10,6 +10,7 @@ export interface IUserCred {
   password: string;
   phoneNumber: string;
   fullName: string;
+  pictureUrl?: string;
 }
 
 export interface ITransactions {

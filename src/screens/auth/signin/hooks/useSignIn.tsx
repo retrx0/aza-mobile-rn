@@ -110,6 +110,17 @@ const useSignIn = () => {
             // Fetch user info
             const info = await dispatch(getUserInfo());
             if (info.meta.requestStatus === "fulfilled") {
+              storeItemSecure(
+                STORAGE_KEY_USER_CREDS,
+                JSON.stringify({
+                  email: email,
+                  token: jwt,
+                  password: code,
+                  phoneNumber: phoneNumber,
+                  fullName: fullName,
+                  pictureUrl: user.pictureUrl,
+                })
+              );
               await dispatch(getUserAccountDetails());
               const { walletNumber } = info.payload as IUserInfoResponse;
               dispatch(getUserTransactions({ accountNumber: walletNumber }));

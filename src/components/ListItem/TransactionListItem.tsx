@@ -7,6 +7,7 @@ import { View, Text } from "../../theme/Themed";
 import Colors from "../../constants/Colors";
 import { hp, wp } from "../../common/util/LayoutUtil";
 import { NAIRA_UNICODE } from "../../constants/AppConstants";
+import ProfilePictureView from "../views/ProfilePictureView";
 
 interface TransactionItem {
   image: string;
@@ -39,13 +40,22 @@ export default function TransactionListItem({
         },
       ]}
     >
-      <Image
+      <ProfilePictureView
+        firstName={name.substring(0, 1)}
+        lastName={
+          name.split(" ")[1]
+            ? name.split(" ")[1].substring(0, 1).toUpperCase()
+            : name.substring(1, 2).toUpperCase()
+        }
+        profilePictureUrl={image}
+      />
+      {/* <Image
         style={{ borderRadius: 45, width: 45, height: 45 }}
         source={{
           uri: image,
           cache: "default",
         }}
-      />
+      /> */}
       <View style={{ display: "flex", marginRight: "auto", marginLeft: 15 }}>
         <TouchableOpacity onPress={onPress}>
           <Text

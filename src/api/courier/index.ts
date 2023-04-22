@@ -42,8 +42,9 @@ export async function apiCourier<T, R>(
   type: "get" | "post" | "patch" | "put",
   url: string,
   data: T,
-  jwtAuthType: "jwt" | "emailOTP" | "phoneOTP" | "none"
-) {
+  jwtAuthType: "jwt" | "emailOTP" | "phoneOTP" | "none",
+  shouldReturnHeaderAccessToken?: boolean
+): Promise<R> {
   try {
     const authJwt = await addJWTAuthorizationHeader(jwtAuthType);
     const result = await api.request<R>({
@@ -54,8 +55,9 @@ export async function apiCourier<T, R>(
         Authorization: authJwt,
       },
     });
-    if (result.status === 200) return result.data;
-    return undefined;
+    if (shouldReturnHeaderAccessToken)
+      return result.headers["access-token"] as R;
+    return result.data;
   } catch (e) {
     throw new Error(
       "Error making request: " + (e as AxiosError).response?.config.url,

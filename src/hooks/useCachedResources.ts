@@ -57,6 +57,7 @@ const useCachedResources = () => {
             password: _prsd.password,
             fullName: _prsd.fullName,
             token: _prsd.token,
+            pictureUrl: _prsd.pictureUrl,
           });
         }
 

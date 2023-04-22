@@ -21,6 +21,7 @@ import QRCodeScreen from "../screens/qr-transactions/QRCodeScreen";
 import CEOMessage from "../screens/onboarding/CEOMessage";
 import { IUserCred } from "../types/types.redux";
 import {
+  setProfilePicture,
   setUserEmail,
   setUserPhoneAndFullName,
 } from "../redux/slice/userSlice";
@@ -50,8 +51,7 @@ const RootNavigator = ({
   isUserSignedIn: boolean;
   cachedUser: IUserCred | undefined;
 }) => {
-  const { registerForPushNotificationsAsync, sendPushNotification } =
-    useNotifications();
+  const { registerForPushNotificationsAsync } = useNotifications();
   const notificationListener = React.useRef<any>();
   const responseListener = React.useRef<any>();
   const navigation = useNavigation<any>();
@@ -69,6 +69,8 @@ const RootNavigator = ({
           phoneNumber: cachedUser.phoneNumber,
         })
       );
+      if (cachedUser.pictureUrl)
+        dispatch(setProfilePicture(cachedUser.pictureUrl));
       dispatch(setUserEmail(cachedUser.email));
     }
 
