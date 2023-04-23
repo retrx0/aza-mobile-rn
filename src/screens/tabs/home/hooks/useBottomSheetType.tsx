@@ -41,6 +41,7 @@ export const useBottomSheetType = (
   { navigation }: RootStackScreenProps<"Root">
 ) => {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
   const selectImageFromGallaery = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -48,23 +49,26 @@ export const useBottomSheetType = (
       quality: 0.5,
     });
 
-    if (!result.cancelled) {
-      const { uri } = result;
+    if (!result.canceled) {
+      const { assets } = result;
       const formData = new FormData();
       formData.append("ProfilePicture", {
-        uri,
-        name: `image.${uri.split(".").pop()}`,
-        type: `image/${uri.split(".").pop()}`,
+        uri: assets[0].uri,
+        name: `${assets[0].fileName}`,
+        type: `image/${assets[0].uri.split(".").pop()}`,
       } as any);
 
+      setLoading(true);
       dispatch(uploadProfilePicThunk(formData))
         .unwrap()
         .then(() => {
           toastSuccess("Your picture has been successfully uploaded");
           dispatch(getUserInfo());
+          setLoading(false);
         })
         .catch(() => {
           toastError("Error uploading profile picture");
+          setLoading(false);
         });
     }
   };
@@ -74,26 +78,28 @@ export const useBottomSheetType = (
     if (permissionStatus.status === "granted") {
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 0.5,
+        quality: 0.3,
       });
 
-      if (!result.cancelled) {
-        const { uri } = result;
+      if (!result.canceled) {
+        const { assets } = result;
         const formData = new FormData();
         formData.append("ProfilePicture", {
-          uri,
-          name: `image.${uri.split(".").pop()}`,
-          type: `image/${uri.split(".").pop()}`,
+          uri: assets[0].uri,
+          name: `${assets[0].fileName}`,
+          type: `image/${assets[0].uri.split(".").pop()}`,
         } as any);
-
+        setLoading(true);
         dispatch(uploadProfilePicThunk(formData))
           .unwrap()
           .then(() => {
             toastSuccess("Your picture has been successfully uploaded");
             dispatch(getUserInfo());
+            setLoading(false);
           })
           .catch(() => {
             toastError("Error uploading profile picture");
+            setLoading(false);
           });
       }
     }
@@ -216,17 +222,20 @@ export const useBottomSheetType = (
     ],
   });
 
-  return itemToReturn === "menu"
-    ? items.menuBottomSheetListItems
-    : itemToReturn === "profile"
-    ? isChoosePhoto
-      ? {
-          profileBottomSheetListItems: items.choosePhotoBottomSheetListItems,
-          setChoosePhoto,
-        }
-      : {
-          profileBottomSheetListItems: items.profileBottomSheetListItems,
-          setChoosePhoto,
-        }
-    : items.transferBottomSheetListItems;
+  const menuBottomSheets =
+    itemToReturn === "menu"
+      ? items.menuBottomSheetListItems
+      : itemToReturn === "profile"
+      ? isChoosePhoto
+        ? {
+            profileBottomSheetListItems: items.choosePhotoBottomSheetListItems,
+            setChoosePhoto,
+          }
+        : {
+            profileBottomSheetListItems: items.profileBottomSheetListItems,
+            setChoosePhoto,
+          }
+      : items.transferBottomSheetListItems;
+
+  return { menuBottomSheets, loading };
 };

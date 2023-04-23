@@ -18,6 +18,7 @@ import CancelButtonWithUnderline from "../../../components/buttons/CancelButtonW
 import Colors from "../../../constants/Colors";
 import ProfilePictureView from "../../../components/views/ProfilePictureView";
 import { FaceIdIcon } from "../../../../assets/svg";
+import * as LocalAuthentication from "expo-local-authentication";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -27,6 +28,7 @@ const SignInWelcomeBackScreen = ({
   const user = useAppSelector(selectUser);
 
   const [passcode, setPasscode] = useState("");
+  const [biometricEnrolled, setBiometricEnrolled] = useState(false);
 
   const {
     handleSignBack,
@@ -42,6 +44,10 @@ const SignInWelcomeBackScreen = ({
     const appStateListener = AppState.addEventListener("change", (appState) => {
       if (appState === "background") setPasscode("");
     });
+
+    LocalAuthentication.isEnrolledAsync()
+      .then((e) => setBiometricEnrolled(e))
+      .catch((e) => {});
     return () => {
       appStateListener.remove();
     };
@@ -104,7 +110,7 @@ const SignInWelcomeBackScreen = ({
               // }
             />
           </View>
-          {route.params.cachedUser && (
+          {route.params.cachedUser && biometricEnrolled && (
             <View>
               <Text
                 style={{
@@ -143,7 +149,10 @@ const SignInWelcomeBackScreen = ({
             style={[
               {
                 alignSelf: "center",
-                top: route.params.cachedUser ? hp(300) : hp(390),
+                top:
+                  route.params.cachedUser && biometricEnrolled
+                    ? hp(300)
+                    : hp(50),
               },
             ]}
           >

@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#000000",
+    "userInterfaceStyle": "automatic",
     "icon": "./assets/images/app/aza-app-icon-white.png",
     "scheme": "azaapp",
     "owner": "retro1",
@@ -28,14 +29,13 @@
       "usesAppleSignIn": true,
       "usesIcloudStorage": false,
       "bundleIdentifier": "com.aza.azaapp",
-      "googleServicesFile": "./GoogleService-Info.plist",
       "config": {
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
       },
-      "buildNumber": "35"
+      "buildNumber": "36"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,7 +43,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "versionCode": 35,
+      "versionCode": 36,
       "permissions": ["NOTIFICATIONS"]
     },
     "web": {

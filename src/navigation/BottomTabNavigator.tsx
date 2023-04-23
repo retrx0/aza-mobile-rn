@@ -30,6 +30,7 @@ import { selectAppTheme } from "../redux/slice/themeSlice";
 import { selectUser } from "../redux/slice/userSlice";
 import { View } from "../theme/Themed";
 import { hp } from "../common/util/LayoutUtil";
+import ActivityModal from "../components/modal/ActivityModal";
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -54,9 +55,8 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
     setMenuModalVisible(!isMenuModalVisible);
   };
 
-  const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
-  const { profileBottomSheetListItems, setChoosePhoto }: any =
-    useBottomSheetType("profile", _navigation);
+  const { menuBottomSheets, loading } = useBottomSheetType("menu", _navigation);
+  const profileMenu = useBottomSheetType("profile", _navigation);
 
   useEffect(() => {
     /* APP STATE CHANGES */
@@ -172,7 +172,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
               // to prevent the click from going to the profile screen and instead show a bottomsheet modal
               {
                 e.preventDefault();
-                setChoosePhoto(false);
+                profileMenu.menuBottomSheets.setChoosePhoto(false);
                 toggleProfileModal();
               },
           }}
@@ -195,17 +195,18 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
           }}
         />
       </BottomTab.Navigator>
+      <ActivityModal loading={loading} />
       {isProfileModalVisible ? (
         <CustomBottomSheet
           isModalVisible={isProfileModalVisible}
           toggleModal={toggleProfileModal}
-          listItems={profileBottomSheetListItems}
+          listItems={profileMenu.menuBottomSheets.profileBottomSheetListItems}
         />
       ) : (
         <CustomBottomSheet
           isModalVisible={isMenuModalVisible}
           toggleModal={toggleMenuModal}
-          listItems={menuBottomSheetListItems}
+          listItems={menuBottomSheets}
         />
       )}
     </>

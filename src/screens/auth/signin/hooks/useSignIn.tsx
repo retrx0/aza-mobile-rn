@@ -62,7 +62,9 @@ const useSignIn = () => {
 
     registerForPushNotificationsAsync().then((token) => {
       if (token !== user.pushToken) {
-        updateUserNotificationToken(token);
+        updateUserNotificationToken(token).catch((e) =>
+          console.debug("Unable to update push token")
+        );
         dispatch(setPushToken(token));
         console.debug("your notification token was updated!");
       }
@@ -91,6 +93,8 @@ const useSignIn = () => {
           email: email,
           password: code,
           phoneNumber: phoneNumber,
+        }).catch((e) => {
+          setScreenLoading(false);
         });
 
         if (jwt) {

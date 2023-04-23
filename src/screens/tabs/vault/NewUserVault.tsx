@@ -37,7 +37,7 @@ const NewUserVault = (
   const [secure, setSecure] = useState(true);
   const user = useAppSelector(selectUser);
   const [isMenuModalVisible, setMenuModalVisible] = React.useState(false);
-  const menuBottomSheetListItems = useBottomSheetType("menu", _navigation);
+  const { menuBottomSheets } = useBottomSheetType("menu", _navigation);
   const [ModalVisible, setModalVisible] = useState(false);
   const toggleMenuModal = () => {
     setMenuModalVisible(!isMenuModalVisible);
@@ -194,7 +194,7 @@ const NewUserVault = (
       <CustomBottomSheet
         isModalVisible={isMenuModalVisible}
         toggleModal={toggleMenuModal}
-        listItems={menuBottomSheetListItems}
+        listItems={menuBottomSheets}
       />
       <VaultModal
         visible={ModalVisible}
