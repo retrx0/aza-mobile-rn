@@ -58,7 +58,7 @@ const SignInWelcomeBackScreen = ({
       <HideKeyboardOnTouch>
         <View>
           <View style={[CommonStyles.row, { alignSelf: "flex-start" }]}>
-            <View>
+            <View style={{ maxWidth: "75%" }}>
               <Text style={styles.welcome}>
                 Welcome back, {user.fullName.split(",")[1]}
               </Text>

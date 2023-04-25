@@ -58,18 +58,6 @@ const useSignIn = () => {
     fullName: string,
     { navigation }: SignInScreenProps<"SignInWelcomeBack">
   ) => {
-    // TODO add push notification token to the server to always keep it updated incase it change
-
-    registerForPushNotificationsAsync().then((token) => {
-      if (token !== user.pushToken) {
-        updateUserNotificationToken(token).catch((e) =>
-          console.debug("Unable to update push token")
-        );
-        dispatch(setPushToken(token));
-        console.debug("your notification token was updated!");
-      }
-    });
-
     // TODO refactor below code
 
     const netInfo = await NetInfo.fetch();
@@ -142,6 +130,18 @@ const useSignIn = () => {
               "There is an issue loggin you in, please try again and confirm the app is giving the right permissions"
             );
           }
+
+          // TODO add push notification token to the server to always keep it updated incase it change
+
+          registerForPushNotificationsAsync().then((token) => {
+            if (token !== user.pushToken) {
+              updateUserNotificationToken(token).catch((e) =>
+                console.error("Unable to update push token")
+              );
+              dispatch(setPushToken(token));
+              console.debug("your notification token was updated!");
+            }
+          });
         } else {
           setScreenLoading(false);
           setLoginAttemptCounter((s) => s + 1);

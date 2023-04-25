@@ -114,12 +114,12 @@ export const useBottomSheetType = (
         itemIcon: <SplitIcon size={16} />,
         onPress: () => navigation.navigate("Common", { screen: "Split" }),
       },
-      {
-        itemName: "Monthly Summary",
-        itemIcon: <GraphIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "MonthlySummary" }),
-      },
+      // {
+      //   itemName: "Monthly Summary",
+      //   itemIcon: <GraphIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "MonthlySummary" }),
+      // },
       {
         itemName: "Fees & Limits",
         itemIcon: <FeesAndLimitsIcon size={16} />,

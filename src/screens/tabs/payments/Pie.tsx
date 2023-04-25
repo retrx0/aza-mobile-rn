@@ -92,7 +92,9 @@ export default function Pie() {
               size={0}
             />
           </TouchableOpacity>
-          <Text style={styles.monthText}>{payments.data[0].date}</Text>
+          {payments.data.length > 0 && (
+            <Text style={styles.monthText}>{payments.data[0].date}</Text>
+          )}
 
           <TouchableOpacity>
             <ArrowRightIcon
@@ -125,7 +127,7 @@ export default function Pie() {
                       fontSize: hp(16),
                     }}
                   >
-                    {"\u20A6"} {numberWithCommas(35000)}
+                    {NAIRA_UNICODE} {numberWithCommas(0)}
                   </Text>
                 </View>
               );
