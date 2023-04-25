@@ -25,6 +25,16 @@ const App = () => {
 
   const [isDeviceRooted, setisDeviceRooted] = useState(false);
 
+  const colorSchemeReversion = colorScheme === "dark" ? "light" : "dark";
+  const systemStatus =
+    userPreferences?.appearance && userPreferences.appearance === "system"
+      ? colorSchemeReversion
+      : "dark";
+  const statusBarTheme =
+    userPreferences?.appearance && userPreferences.appearance === "dark"
+      ? "light"
+      : systemStatus;
+
   useEffect(() => {
     Device.isRootedExperimentalAsync().then((rooted) =>
       setisDeviceRooted(rooted)
@@ -46,13 +56,7 @@ const App = () => {
   } else {
     return (
       <SafeAreaProvider>
-        <StatusBar
-          style={
-            userPreferences?.appearance && userPreferences.appearance === "dark"
-              ? "light"
-              : "dark"
-          }
-        />
+        <StatusBar style={statusBarTheme} />
         <Provider store={Store}>
           <Navigation
             colorScheme={colorScheme}

@@ -35,6 +35,7 @@ import {
   getUserInfo,
   uploadProfilePicThunk,
 } from "../../../../redux/slice/userSlice";
+import { forgetUser } from "../../../auth/signin/helpers";
 
 export const useBottomSheetType = (
   itemToReturn: string,
@@ -179,7 +180,7 @@ export const useBottomSheetType = (
         itemName: "Sign out",
         itemIcon: <LogoutIcon size={16} />,
         onPress: () => {
-          navigation.navigate("Welcome");
+          forgetUser(navigation);
         },
       },
     ],

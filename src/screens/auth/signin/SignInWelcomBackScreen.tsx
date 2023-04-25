@@ -57,7 +57,12 @@ const SignInWelcomeBackScreen = ({
     <SpacerWrapper>
       <HideKeyboardOnTouch>
         <View>
-          <View style={[CommonStyles.row, { alignSelf: "flex-start" }]}>
+          <View
+            style={[
+              CommonStyles.row,
+              { alignSelf: "flex-start", width: "100%" },
+            ]}
+          >
             <View style={{ maxWidth: "75%" }}>
               <Text style={styles.welcome}>
                 Welcome back, {user.fullName.split(",")[1]}
@@ -66,13 +71,15 @@ const SignInWelcomeBackScreen = ({
                 Enter your Aza password to login
               </Text>
             </View>
-            {user.fullName && (
-              <ProfilePictureView
-                firstName={user.fullName.split(",")[1].substring(1, 2)}
-                lastName={user.fullName.split(",")[0].substring(0, 1)}
-                profilePictureUrl={user.pictureUrl}
-              />
-            )}
+            <View style={{ position: "absolute", right: 30 }}>
+              {user.fullName && (
+                <ProfilePictureView
+                  firstName={user.fullName.split(",")[1].substring(1, 2)}
+                  lastName={user.fullName.split(",")[0].substring(0, 1)}
+                  profilePictureUrl={user.pictureUrl}
+                />
+              )}
+            </View>
           </View>
 
           <View
