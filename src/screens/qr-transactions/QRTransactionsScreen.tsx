@@ -36,11 +36,11 @@ const QRTransactionsScreen = ({
     navigation,
     "QR Transactions",
     <TouchableOpacity
-      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}
-    >
-      {/* TODO Add these colors to Colors.ts and import them */}
+      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}>
       <InfoIcon
-        color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
+        color={
+          appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
+        }
         style={{ width: 20, height: 20 }}
       />
     </TouchableOpacity>
@@ -90,8 +90,7 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}
-                  >
+                    }}>
                     {route.title}
                   </Text>
                 );

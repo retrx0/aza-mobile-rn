@@ -22,7 +22,7 @@ import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
-import { Cable } from "../../../../../assets/images";
+import { Cable, monitor } from "../../../../../assets/images";
 
 // const Cable = [
 //   {
@@ -90,7 +90,7 @@ export default function CableTvIndex({
           The ultimate TV viewing experience like never before!
         </Text>
         <Image
-          source={Cable}
+          source={monitor}
           resizeMode="cover"
           style={{
             width: wp(223),
