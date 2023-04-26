@@ -35,6 +35,7 @@ import {
   getUserInfo,
   uploadProfilePicThunk,
 } from "../../../../redux/slice/userSlice";
+import { forgetUser } from "../../../auth/signin/helpers";
 
 export const useBottomSheetType = (
   itemToReturn: string,
@@ -114,12 +115,12 @@ export const useBottomSheetType = (
         itemIcon: <SplitIcon size={16} />,
         onPress: () => navigation.navigate("Common", { screen: "Split" }),
       },
-      {
-        itemName: "Monthly Summary",
-        itemIcon: <GraphIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "MonthlySummary" }),
-      },
+      // {
+      //   itemName: "Monthly Summary",
+      //   itemIcon: <GraphIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "MonthlySummary" }),
+      // },
       {
         itemName: "Fees & Limits",
         itemIcon: <FeesAndLimitsIcon size={16} />,
@@ -179,7 +180,7 @@ export const useBottomSheetType = (
         itemName: "Sign out",
         itemIcon: <LogoutIcon size={16} />,
         onPress: () => {
-          navigation.navigate("Welcome");
+          forgetUser(navigation);
         },
       },
     ],
