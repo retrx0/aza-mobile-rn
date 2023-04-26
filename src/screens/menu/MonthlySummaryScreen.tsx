@@ -35,13 +35,22 @@ import {
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import { numberWithCommas } from "../../common/util/NumberUtils";
 
-import summariesData from "../../data/summaries.json";
+// import summariesData from "../../data/summaries.json";
 import { getAppTheme } from "../../theme";
 import { useAppSelector } from "../../redux";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 
 const filterBy = ["Summary", "Money Transfer", "Bills/Payment"];
+
+const summariesData = [
+  {
+    date: new Date(Date.now()).toLocaleDateString(),
+    summaries: [],
+    chartData: [],
+    totalWorthOfDonations: 0,
+  },
+];
 
 const transactionIcons: Record<string, JSX.Element> = {
   depositIcon: <DepositIcon size={40} color="#FFFFFF" />,
@@ -71,9 +80,7 @@ const MonthlySummaryScreen = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [ModalVisible, setModalVisible] = useState(false);
 
-  const [currentSummariesToShow, setCurrentSummariesToShow] = useState<
-    typeof summariesData[0]
-  >({
+  const [currentSummariesToShow, setCurrentSummariesToShow] = useState({
     date: new Date().getMonth() + " " + new Date().getFullYear(),
     chartData: [],
     summaries: [],
@@ -150,7 +157,9 @@ const MonthlySummaryScreen = ({
               <TouchableOpacity onPress={() => showSummaries("previous")}>
                 <ArrowLeftIcon color={Colors[appTheme].mainText} />
               </TouchableOpacity>
-              <Text style={styles.date}>{currentSummariesToShow.date}</Text>
+              {currentSummariesToShow.date && (
+                <Text style={styles.date}>{currentSummariesToShow.date}</Text>
+              )}
               <TouchableOpacity onPress={() => showSummaries("next")}>
                 <ArrowRightIcon color={Colors[appTheme].mainText} size={16} />
               </TouchableOpacity>
@@ -184,123 +193,67 @@ const MonthlySummaryScreen = ({
                 </TouchableOpacity>
               ))}
             </ScrollView>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingBottom: 150 }}
-            >
-              {currentSummariesToShow.summaries
-                .filter((item) =>
-                  filter === "Summary"
-                    ? item
-                    : filter === "Money Transfer"
-                    ? item.transactionName === filter
-                    : filter === "Bills/Payment" &&
-                      item.transactionName === "Bills & Payment"
-                )
-                .map(
-                  (
-                    {
-                      transactionIconName,
-                      info,
-                      totalAmount,
-                      transactionName,
-                      transactionDetails,
-                      transactionType,
-                    },
-                    index
-                  ) => (
-                    <View
-                      key={index}
-                      style={[
-                        CommonStyles.col,
-                        {
-                          alignSelf: "center",
-                          alignItems: "center",
-                          paddingTop: hp(40),
-                        },
-                      ]}
-                    >
+            {currentSummariesToShow.date && (
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 150 }}
+              >
+                {currentSummariesToShow.summaries
+                  .filter((item) =>
+                    filter === "Summary"
+                      ? item
+                      : filter === "Money Transfer"
+                      ? item.transactionName === filter
+                      : filter === "Bills/Payment" &&
+                        item.transactionName === "Bills & Payment"
+                  )
+                  .map(
+                    (
+                      {
+                        transactionIconName,
+                        info,
+                        totalAmount,
+                        transactionName,
+                        transactionDetails,
+                        transactionType,
+                      },
+                      index
+                    ) => (
                       <View
+                        key={index}
                         style={[
-                          styles.transactionIcon,
+                          CommonStyles.col,
                           {
-                            backgroundColor:
-                              transactionType === "debit"
-                                ? "#FF361A"
-                                : "#2AD168",
+                            alignSelf: "center",
+                            alignItems: "center",
+                            paddingTop: hp(40),
                           },
                         ]}
                       >
-                        {transactionIcons[transactionIconName]}
-                      </View>
-                      <Text
-                        lightColor={Colors.light.text}
-                        darkColor={Colors.dark.mainText}
-                        style={styles.transactionNameStyle}
-                      >
-                        {transactionName}
-                      </Text>
-                      {totalAmount && (
-                        <Text
+                        <View
                           style={[
-                            styles.totalAmount,
+                            styles.transactionIcon,
                             {
-                              color:
+                              backgroundColor:
                                 transactionType === "debit"
                                   ? "#FF361A"
-                                  : "#2A9E17",
+                                  : "#2AD168",
                             },
                           ]}
                         >
-                          {"\u20A6"} {numberWithCommas(totalAmount)}
-                        </Text>
-                      )}
-                      {info && (
-                        <Text
-                          style={[
-                            styles.info,
-                            {
-                              color: Colors[appTheme].secondaryText,
-                            },
-                          ]}
-                        >
-                          {info}
-                        </Text>
-                      )}
-                      {transactionDetails?.length !== undefined && (
-                        <View style={{ marginVertical: 10 }}>
-                          <ArrowDownIcon
-                            color={Colors[appTheme].mainText}
-                            size={16}
-                          />
+                          {transactionIcons[transactionIconName]}
                         </View>
-                      )}
-                      {transactionDetails?.map((transaction, i, { length }) => (
-                        <View
-                          key={i}
-                          style={[
-                            CommonStyles.col,
-                            { alignSelf: "stretch", alignItems: "center" },
-                          ]}
+                        <Text
+                          lightColor={Colors.light.text}
+                          darkColor={Colors.dark.mainText}
+                          style={styles.transactionNameStyle}
                         >
-                          <View
-                            style={[
-                              styles.transactionDetailsIcons,
-                              {
-                                backgroundColor:
-                                  appTheme === "dark" ? "#3A3D42" : "black",
-                              },
-                            ]}
-                          >
-                            {
-                              transactionDetailsIcons[
-                                transaction.detailIconName
-                              ]
-                            }
-                          </View>
+                          {transactionName}
+                        </Text>
+                        {totalAmount && (
                           <Text
                             style={[
-                              styles.detailAmount,
+                              styles.totalAmount,
                               {
                                 color:
                                   transactionType === "debit"
@@ -309,142 +262,206 @@ const MonthlySummaryScreen = ({
                               },
                             ]}
                           >
-                            {"\u20A6"}{" "}
-                            {numberWithCommas(transaction.detailAmount)}
+                            {"\u20A6"} {numberWithCommas(totalAmount)}
                           </Text>
+                        )}
+                        {info && (
                           <Text
                             style={[
-                              styles.detailInfo,
+                              styles.info,
                               {
                                 color: Colors[appTheme].secondaryText,
                               },
                             ]}
                           >
-                            {transaction.detailInfo}
+                            {info}
                           </Text>
-                          {length - 1 !== i && (
-                            <View style={{ marginVertical: 15 }}>
-                              <PlusIcon
-                                color={Colors[appTheme].mainText}
-                                size={34}
-                              />
+                        )}
+                        {transactionDetails?.length !== undefined && (
+                          <View style={{ marginVertical: 10 }}>
+                            <ArrowDownIcon
+                              color={Colors[appTheme].mainText}
+                              size={16}
+                            />
+                          </View>
+                        )}
+                        {transactionDetails?.map(
+                          (transaction, i, { length }) => (
+                            <View
+                              key={i}
+                              style={[
+                                CommonStyles.col,
+                                { alignSelf: "stretch", alignItems: "center" },
+                              ]}
+                            >
+                              <View
+                                style={[
+                                  styles.transactionDetailsIcons,
+                                  {
+                                    backgroundColor:
+                                      appTheme === "dark" ? "#3A3D42" : "black",
+                                  },
+                                ]}
+                              >
+                                {
+                                  transactionDetailsIcons[
+                                    transaction.detailIconName
+                                  ]
+                                }
+                              </View>
+                              <Text
+                                style={[
+                                  styles.detailAmount,
+                                  {
+                                    color:
+                                      transactionType === "debit"
+                                        ? "#FF361A"
+                                        : "#2A9E17",
+                                  },
+                                ]}
+                              >
+                                {"\u20A6"}{" "}
+                                {numberWithCommas(transaction.detailAmount)}
+                              </Text>
+                              <Text
+                                style={[
+                                  styles.detailInfo,
+                                  {
+                                    color: Colors[appTheme].secondaryText,
+                                  },
+                                ]}
+                              >
+                                {transaction.detailInfo}
+                              </Text>
+                              {length - 1 !== i && (
+                                <View style={{ marginVertical: 15 }}>
+                                  <PlusIcon
+                                    color={Colors[appTheme].mainText}
+                                    size={34}
+                                  />
+                                </View>
+                              )}
                             </View>
-                          )}
-                        </View>
-                      ))}
-                    </View>
-                  )
-                )}
-              <Text
-                style={[
-                  styles.info,
-                  {
-                    color: Colors[appTheme].secondaryText,
-                    alignSelf: "center",
-                  },
-                ]}
-              >
-                See distribution of money spent in a chart
-              </Text>
-              <View style={styles.chartContainer}>
-                <PieChart
-                  data={currentSummariesToShow.chartData}
-                  innerCircleColor={"transparent"}
-                  centerLabelComponent={() => {
-                    return (
-                      <View style={styles.chartCenter}>
-                        <Text
-                          lightColor={Colors.light.text}
-                          darkColor={Colors.dark.secondaryText}
-                          style={{
-                            fontSize: 14,
-                          }}
-                        >
-                          Total
-                        </Text>
-                        <Text
-                          lightColor={Colors.light.text}
-                          darkColor={Colors.dark.mainText}
-                          style={{
-                            fontFamily: "Euclid-Circular-A-Semi-Bold",
-                            fontSize: hp(16),
-                          }}
-                        >
-                          {"\u20A6"} {numberWithCommas(65000)}
-                        </Text>
-                      </View>
-                    );
-                  }}
-                />
-
-                <View style={styles.chartLegendContainer}>
-                  {currentSummariesToShow.chartData.map(
-                    ({ color, text }, i) => (
-                      <View
-                        key={i}
-                        style={[
-                          CommonStyles.row,
-                          { marginRight: 10, marginTop: 15 },
-                        ]}
-                      >
-                        <View
-                          style={[
-                            styles.legendBox,
-                            {
-                              backgroundColor: color,
-                            },
-                          ]}
-                        />
-                        <Text
-                          lightColor={Colors.light.text}
-                          darkColor={Colors.dark.secondaryText}
-                          style={{
-                            fontSize: 16,
-                          }}
-                        >
-                          {text}
-                        </Text>
+                          )
+                        )}
                       </View>
                     )
                   )}
-                </View>
-              </View>
-
-              <View
-                style={[
-                  CommonStyles.col,
-                  { alignSelf: "stretch", alignItems: "center", marginTop: 20 },
-                ]}
-              >
-                <View
-                  style={[
-                    styles.donationIconContainer,
-                    {
-                      backgroundColor:
-                        appTheme === "dark" ? "#3A3D42" : "black",
-                    },
-                  ]}
-                >
-                  <HeartIcon color="#FF361A" size={20} />
-                </View>
-                <Text style={styles.donationAmount}>
-                  {"\u20A6"}{" "}
-                  {numberWithCommas(
-                    currentSummariesToShow.totalWorthOfDonations
-                  )}
-                </Text>
                 <Text
                   style={[
-                    styles.donationText,
+                    styles.info,
                     {
                       color: Colors[appTheme].secondaryText,
+                      alignSelf: "center",
                     },
                   ]}
                 >
-                  Worth of donations made
+                  See distribution of money spent in a chart
                 </Text>
-              </View>
-            </ScrollView>
+                <View style={styles.chartContainer}>
+                  <PieChart
+                    data={currentSummariesToShow.chartData}
+                    innerCircleColor={"transparent"}
+                    centerLabelComponent={() => {
+                      return (
+                        <View style={styles.chartCenter}>
+                          <Text
+                            lightColor={Colors.light.text}
+                            darkColor={Colors.dark.secondaryText}
+                            style={{
+                              fontSize: 14,
+                            }}
+                          >
+                            Total
+                          </Text>
+                          <Text
+                            lightColor={Colors.light.text}
+                            darkColor={Colors.dark.mainText}
+                            style={{
+                              fontFamily: "Euclid-Circular-A-Semi-Bold",
+                              fontSize: hp(16),
+                            }}
+                          >
+                            {"\u20A6"} {numberWithCommas(65000)}
+                          </Text>
+                        </View>
+                      );
+                    }}
+                  />
+
+                  <View style={styles.chartLegendContainer}>
+                    {currentSummariesToShow.chartData.map(
+                      ({ color, text }, i) => (
+                        <View
+                          key={i}
+                          style={[
+                            CommonStyles.row,
+                            { marginRight: 10, marginTop: 15 },
+                          ]}
+                        >
+                          <View
+                            style={[
+                              styles.legendBox,
+                              {
+                                backgroundColor: color,
+                              },
+                            ]}
+                          />
+                          <Text
+                            lightColor={Colors.light.text}
+                            darkColor={Colors.dark.secondaryText}
+                            style={{
+                              fontSize: 16,
+                            }}
+                          >
+                            {text}
+                          </Text>
+                        </View>
+                      )
+                    )}
+                  </View>
+                </View>
+
+                <View
+                  style={[
+                    CommonStyles.col,
+                    {
+                      alignSelf: "stretch",
+                      alignItems: "center",
+                      marginTop: 20,
+                    },
+                  ]}
+                >
+                  <View
+                    style={[
+                      styles.donationIconContainer,
+                      {
+                        backgroundColor:
+                          appTheme === "dark" ? "#3A3D42" : "black",
+                      },
+                    ]}
+                  >
+                    <HeartIcon color="#FF361A" size={20} />
+                  </View>
+                  <Text style={styles.donationAmount}>
+                    {"\u20A6"}{" "}
+                    {numberWithCommas(
+                      currentSummariesToShow.totalWorthOfDonations
+                    )}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.donationText,
+                      {
+                        color: Colors[appTheme].secondaryText,
+                      },
+                    ]}
+                  >
+                    Worth of donations made
+                  </Text>
+                </View>
+              </ScrollView>
+            )}
           </View>
         </View>
       </SpacerWrapper>

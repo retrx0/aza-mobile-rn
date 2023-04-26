@@ -1,9 +1,7 @@
 import { FlatList, TouchableOpacity } from "react-native";
 
-import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
 import Colors from "../../../../constants/Colors";
 import { RootTabScreenProps } from "../../../../types/types.navigation";
-import useColorScheme from "../../../../hooks/useColorScheme";
 import { SendIcon } from "../../../../../assets/svg";
 import { hp } from "../../../../common/util/LayoutUtil";
 import { useAppSelector } from "../../../../redux";
@@ -12,15 +10,7 @@ import { View, Text, ScrollView } from "../../../../theme/Themed";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import SegmentedTransactionView from "../../profile/screens/SegmentedTransactionView";
-import {
-  Placeholder,
-  PlaceholderLine,
-  Fade,
-  Shine,
-  ShineOverlay,
-} from "rn-placeholder";
 import ListItemSkeleton from "../../../../components/skeleton/ListItemSkeleton";
-import { CommonScreenProps } from "../../../../common/navigation/types";
 
 export default function RecentTransactions({
   navigation,
