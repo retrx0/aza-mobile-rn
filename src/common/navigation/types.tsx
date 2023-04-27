@@ -50,6 +50,7 @@ export type CommonStackParamList = {
   CloseAccount: undefined;
   AlternativeSurvey: undefined;
   AirtimeIndexScreen: undefined;
+  SplitFeature: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;

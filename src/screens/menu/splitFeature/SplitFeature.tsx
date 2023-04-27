@@ -1,38 +1,45 @@
-import { CommonScreenProps } from "../../../../../common/navigation/types";
+import { CommonScreenProps } from "../../../common/navigation/types";
 import AppIntroSlider from "react-native-app-intro-slider";
-import { Text, View } from "../../../../../theme/Themed";
-import { hp } from "../../../../../common/util/LayoutUtil";
-import CommonStyles from "../../../../../common/styles/CommonStyles";
-import SpacerWrapper from "../../../../../common/util/SpacerWrapper";
-import ExitButton from "../../../../../components/buttons/ExitButton";
-import * as Images from "../../../../../../assets/images";
+import { Text, View } from "../../../theme/Themed";
+import { hp } from "../../../common/util/LayoutUtil";
+import CommonStyles from "../../../common/styles/CommonStyles";
+import SpacerWrapper from "../../../common/util/SpacerWrapper";
+import ExitButton from "../../../components/buttons/ExitButton";
+import * as Images from "../../../../assets/images";
 import { Image } from "react-native";
-import useNavigationHeader from "../../../../../hooks/useNavigationHeader";
+import useNavigationHeader from "../../../hooks/useNavigationHeader";
 
-type DepositcreenProps = {
-  headerTitle: string;
-};
-
-const DepositFeature = ({
-  navigation,
-}: CommonScreenProps<"DepositFeature"> & DepositcreenProps) => {
-  const slides = [
-    {
-      key: 1,
-      headerTitle: "Deposit",
-      featureTitle: "Deposit funds to your Aza",
-      featureText:
-        "Fund your Aza account via your debit/credit card, securely.",
-      icon: Images.DepositFeature,
-    },
-  ];
-
+const SplitFeature = ({ navigation }: CommonScreenProps<"SplitFeature">) => {
   useNavigationHeader(
     navigation,
-    "Deposit",
+    "Split",
     <ExitButton onPress={() => navigation.goBack()} />,
     true
   );
+  const slides = [
+    {
+      key: 1,
+      featureTitle: "Lightning-fast transaction speed",
+      featureText:
+        "Send money to anyone on Aza or other banks at lightning speeds",
+      icon: Images.Split,
+    },
+
+    {
+      key: 2,
+      featureTitle: "Transaction Certainty",
+      featureText:
+        "Send money with Aza and instantly carry on with your life, knowing that the transaction will go through without fail.",
+      icon: Images.Split,
+    },
+    {
+      key: 3,
+      featureTitle: "Invite new users to Aza",
+      featureText:
+        "Azarians can send money to users who don't even use Aza, after which an sms will be sent to those users with a guide on how to create an Aza account.",
+      icon: Images.Split,
+    },
+  ];
 
   const _renderItem = ({ item }: any) => {
     return (
@@ -41,13 +48,13 @@ const DepositFeature = ({
           <View
             style={{
               alignSelf: "center",
-              marginTop: hp(81),
-              marginBottom: hp(81),
+              marginTop: hp(56),
+              marginBottom: hp(56),
             }}>
             <Image
               source={item.icon}
               resizeMode="cover"
-              style={{ width: hp(200), height: hp(200) }}
+              style={{ width: hp(258), height: hp(194), borderRadius: hp(10) }}
             />
           </View>
           <View style={{ paddingHorizontal: hp(30) }}>
@@ -99,4 +106,4 @@ const DepositFeature = ({
   );
 };
 
-export default DepositFeature;
+export default SplitFeature;

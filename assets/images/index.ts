@@ -145,8 +145,11 @@ export const Undraw = require("./common/Undraw.png");
 export const AnnouncementDraw = require("./common/AnnouncementDraw.png");
 export const Info = require("./common/Info.png");
 export const Cable = require("./common/Cable.png");
+export const monitor = require("./common/monitor.png");
+export const deposit = require("./common/deposit.png");
+
 export const Internet = require("./common/Internet.png");
 export const Water = require("./common/Water.png");
 export const DebitCard = require("./common/DebitCard.png");
-// export const Split = require("./common/Split.png");
+export const Split = require("./common/Split.png");
 export const FaceId = require("./common/FaceId.png");
