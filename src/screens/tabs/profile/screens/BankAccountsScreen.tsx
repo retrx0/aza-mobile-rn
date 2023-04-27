@@ -30,6 +30,7 @@ import {
 } from "../../../../redux/slice/userSlice";
 import { IBankAccount } from "../../../../types/types.redux";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { setTransaction } from "../../../../redux/slice/transactionSlice";
 
 const BankAccountsScreen = ({
   navigation,
@@ -76,14 +77,16 @@ const BankAccountsScreen = ({
                       { alignSelf: "stretch", paddingVertical: 15 },
                     ]}
                   >
-                    <Image
-                      source={{ uri: _account.bankLogo }}
-                      style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 50,
-                      }}
-                    />
+                    {_account.bankLogo && (
+                      <Image
+                        source={{ uri: _account.bankLogo }}
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: 50,
+                        }}
+                      />
+                    )}
 
                     <Text
                       style={{
@@ -93,8 +96,8 @@ const BankAccountsScreen = ({
                       }}
                     >
                       {`${
-                        _account.bankName
-                      } (${_account.accountNumber.substring(0, 3)}.....)`}
+                        _account.accountName
+                      } (${_account.accountNumber.substring(0, 4)}.....)`}
                     </Text>
                     <View
                       style={{
@@ -136,7 +139,6 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
-              color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
               style={[
                 {
                   marginBottom: 15,
@@ -148,20 +150,36 @@ const BankAccountsScreen = ({
             <Button
               disabled={!selectedAccount}
               title="Continue"
-              onPressButton={() =>
+              onPressButton={() => {
+                dispatch(
+                  setTransaction({
+                    amount: 0,
+                    beneficiary: {
+                      fullName: selectedAccount?.accountName!,
+                      accountNumber: selectedAccount?.accountNumber!,
+                      // !TODO add bank code below
+                      bankCode: "",
+                    },
+                    transferType: "withdraw",
+                    description: "",
+                  })
+                );
                 navigation.navigate("TransactionKeypad", {
                   headerTitle: "Amount",
                   transactionType: {
                     transaction: "withdraw",
                     type: "normal",
                     beneficiary: {
-                      azaAccountNumber: selectedAccount?.accountNumber!,
+                      accountNumber: selectedAccount?.accountNumber!,
+                      beneficiaryName: selectedAccount?.accountName,
                       pictureUrl: user.pictureUrl,
-                      fullName: user.fullName,
+                      fullName: selectedAccount?.accountName!,
+                      // !TODO add bank code below
+                      bankCode: "",
                     },
                   },
-                })
-              }
+                });
+              }}
             />
             <CancelButtonWithUnderline
               title="Cancel"
@@ -208,6 +226,7 @@ const BankAccountsScreen = ({
                           id,
                           bankName,
                           bankLogo,
+                          bankCode: "",
                         })
                       }
                     >

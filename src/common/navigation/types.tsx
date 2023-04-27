@@ -197,7 +197,7 @@ export type CommonStackParamList = {
   SendMoney: { recurringTransaction?: boolean };
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
-  SendMoneyConfirmation: undefined;
+  SendMoneyConfirmation: { transactionType: "INTER" | "INTRA" };
   SetupRecurringTransfer: IBeneficiary;
   RecurringTransfer: undefined;
   SelectNewRecurringTransfer: undefined;

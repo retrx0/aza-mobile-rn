@@ -45,7 +45,7 @@ const initialState: ITransactionState = {
   description: "",
   qrPaymentAmount: undefined,
   beneficiary: {
-    azaAccountNumber: "",
+    accountNumber: "",
     fullName: "",
     phone: "",
     currency: "NGN",

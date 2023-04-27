@@ -358,7 +358,6 @@ export const userSlice = createSlice({
         state.bankAccounts.loaded = false;
       })
       .addCase(getUserSavedBankAccs.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.bankAccounts.loading = false;
         state.bankAccounts.loaded = true;
         state.bankAccounts.data = action.payload;

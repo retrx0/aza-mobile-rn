@@ -212,6 +212,7 @@ const useSignIn = () => {
     screenLoading,
     setScreenLoading,
     handleForgotPassword,
+    userPreferences,
   };
 };
 

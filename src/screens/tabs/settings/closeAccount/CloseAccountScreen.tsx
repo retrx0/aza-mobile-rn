@@ -125,7 +125,7 @@ const CloseAccountScreen = ({
                     transaction: "debit",
                     type: "normal",
                     beneficiary: {
-                      azaAccountNumber: "",
+                      accountNumber: "",
                       fullName: "",
                     },
                   },

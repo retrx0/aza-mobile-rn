@@ -48,7 +48,7 @@ const ChooseSplitScreen = ({
                     splitImage={vendorLogo}
                     name={vendorName}
                     showChevron
-                    requestor={{ azaAccountNumber: "", fullName: "" }}
+                    requestor={{ accountNumber: "", fullName: "" }}
                     requestees={[]}
                   />
                 </TouchableOpacity>

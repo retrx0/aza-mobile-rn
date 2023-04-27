@@ -103,6 +103,8 @@ export interface IBankAccount {
   id: string;
   bankName: string;
   bankLogo?: string;
+  bankCode: string;
+  userId?: string;
   accountNumber: string;
   accountName: string;
 }
@@ -127,7 +129,8 @@ export interface IBeneficiary {
   firstName?: string;
   lastName?: string;
   pictureUrl?: string;
-  azaAccountNumber: string;
+  accountNumber: string;
+  bankCode?: string;
   currency?: string;
   phone?: string;
   email?: string;

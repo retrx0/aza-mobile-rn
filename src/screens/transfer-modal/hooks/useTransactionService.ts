@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { requestMoneyAPI } from "../../../api/money-request";
-import { payAzaUserAPI } from "../../../api/payment";
+import { payAzaUserAPI, payOtherBankAPI } from "../../../api/payment";
 import {
   CommonScreenProps,
   TransactionScreenProps,
@@ -57,7 +57,7 @@ const useTransactionService = (
   const [transDescription, setTransDescription] = useState(description);
   const [screenLoading, setScreenLoading] = useState(false);
 
-  const makeTransaction = async () => {
+  const makeTransaction = async (transactionType: "INTRA" | "INTER") => {
     // do some validation
     if (!bvnVerified) {
       navigation.navigate("BvnVerification", {
@@ -71,14 +71,14 @@ const useTransactionService = (
       //make transaction
       if (confirmationType === "send") {
         // setScreenLoading(true);
-        if (isTransactionPinSet) authenticateForTransaction();
+        if (isTransactionPinSet) authenticateForTransaction(transactionType);
         else navigation.navigate("TransactionPin", { type: "set" });
       } else {
         requestMoneyAPI({
           amount: amount,
           decription: transDescription ? transDescription : "",
           initiatorAccountNumber: "" + azaAccountNumber,
-          receipientAccountNumber: beneficiary.azaAccountNumber,
+          receipientAccountNumber: beneficiary.accountNumber,
           recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
         })
           .then(() => {
@@ -91,38 +91,68 @@ const useTransactionService = (
     }
   };
 
-  const sendMoneyToAzaUser = (transactionPin: string) => {
+  const sendMoney = (
+    transactionPin: string,
+    transactionType: "INTRA" | "INTER"
+  ) => {
     setScreenLoading(true);
-
-    payAzaUserAPI({
-      sourceAccount: azaAccountNumber,
-      destinationAccount: beneficiary.azaAccountNumber,
-      amount,
-      transactionPin: transactionPin,
-      description: transDescription ? transDescription : "Aza transaction",
-      currency: NAIRA_CCY_CODE,
-      destinationBankCode: PSB_BANK_CODE,
-      destinationAccountName: beneficiary.fullName,
-    })
-      .then((res) => {
-        console.log(res);
-        setScreenLoading(false);
-        navigateToNextScreen();
-        dispatch(getUserAccountDetails());
+    if (transactionType === "INTER") {
+      payAzaUserAPI({
+        sourceAccount: azaAccountNumber,
+        destinationAccount: beneficiary.accountNumber,
+        amount,
+        transactionPin: transactionPin,
+        description: transDescription ? transDescription : "Aza transaction",
+        currency: NAIRA_CCY_CODE,
+        destinationBankCode: PSB_BANK_CODE,
+        destinationAccountName: beneficiary.fullName,
       })
-      .catch((err) => {
-        setScreenLoading(false);
-        toastError("There was a problem completing transaction!");
-      });
+        .then((res) => {
+          console.log(res);
+          setScreenLoading(false);
+          navigateToNextScreen();
+          dispatch(getUserAccountDetails());
+        })
+        .catch((err) => {
+          setScreenLoading(false);
+          toastError("There was a problem completing transaction!");
+        });
+    } else {
+      setScreenLoading(true);
+
+      payOtherBankAPI({
+        amount,
+        currency: NAIRA_CCY_CODE,
+        description: transDescription ? transDescription : "Aza withdrawal",
+        destinationAccount: beneficiary.accountNumber,
+        destinationBankCode: "",
+        destinationAccountName: beneficiary.fullName,
+        sourceAccount: azaAccountNumber,
+        transactionPin: transactionPin,
+      })
+        .then((res) => {
+          console.log(res);
+          setScreenLoading(false);
+          navigateToNextScreen();
+          dispatch(getUserAccountDetails());
+        })
+        .catch((err) => {
+          console.error(err);
+          setScreenLoading(false);
+          toastError("There was a problem completing transaction!");
+        });
+    }
   };
 
-  const authenticateForTransaction = async () => {
+  const authenticateForTransaction = async (
+    transactionType: "INTRA" | "INTER"
+  ) => {
     authenticateWithBiometrics(
       userPreferences && userPreferences?.confirmTransactionsWithFaceIDSwitch
     ).then((authenticated) => {
       if (authenticated) {
         getItemSecure(STORAGE_KEY_TRANSACTION_PIN).then((cachedPin) => {
-          if (cachedPin) sendMoneyToAzaUser(cachedPin);
+          if (cachedPin) sendMoney(cachedPin, transactionType);
           else navigation.push("TransactionPin", { type: "transaction" });
         });
       } else {
@@ -167,7 +197,7 @@ const useTransactionService = (
     screenLoading,
     transDescription,
     setTransDescription,
-    sendMoneyToAzaUser,
+    sendMoneyToAzaUser: sendMoney,
   };
 };
 
