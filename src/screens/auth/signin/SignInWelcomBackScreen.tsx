@@ -172,6 +172,7 @@ const SignInWelcomeBackScreen = ({
                 title="Forget Me"
                 onPressButton={() => forgetUser(navigation)}
                 styleText={CommonStyles.resend}
+                color={Colors.general.grey}
               />
             </TouchableOpacity>
           </View>
