@@ -30,6 +30,7 @@ import {
 import { STORAGE_KEY_TRANSACTION_PIN } from "@env";
 import useAppBiometricAuthentication from "../../../hooks/useAppBiometricAuthentication";
 import { AxiosError } from "axios";
+import { ITransferResponse } from "../../../types/types.redux";
 
 const useTransactionService = (
   {
@@ -96,7 +97,7 @@ const useTransactionService = (
     transactionType: "INTRA" | "INTER"
   ) => {
     setScreenLoading(true);
-    if (transactionType === "INTER") {
+    if (transactionType === "INTRA") {
       payAzaUserAPI({
         sourceAccount: azaAccountNumber,
         destinationAccount: beneficiary.accountNumber,
@@ -110,7 +111,7 @@ const useTransactionService = (
         .then((res) => {
           console.log(res);
           setScreenLoading(false);
-          navigateToNextScreen();
+          navigateToNextScreen(res);
           dispatch(getUserAccountDetails());
         })
         .catch((err) => {
@@ -119,13 +120,12 @@ const useTransactionService = (
         });
     } else {
       setScreenLoading(true);
-
       payOtherBankAPI({
         amount,
         currency: NAIRA_CCY_CODE,
         description: transDescription ? transDescription : "Aza withdrawal",
         destinationAccount: beneficiary.accountNumber,
-        destinationBankCode: "",
+        destinationBankCode: beneficiary.bankCode,
         destinationAccountName: beneficiary.fullName,
         sourceAccount: azaAccountNumber,
         transactionPin: transactionPin,
@@ -133,13 +133,15 @@ const useTransactionService = (
         .then((res) => {
           console.log(res);
           setScreenLoading(false);
-          navigateToNextScreen();
+          navigateToNextScreen(res);
           dispatch(getUserAccountDetails());
         })
         .catch((err) => {
           console.error(err);
           setScreenLoading(false);
-          toastError("There was a problem completing transaction!");
+          toastError(
+            `There was a problem completing transaction to ${beneficiary.accountNumber}!`
+          );
         });
     }
   };
@@ -161,7 +163,7 @@ const useTransactionService = (
     });
   };
 
-  const navigateToNextScreen = () => {
+  const navigateToNextScreen = (response?: ITransferResponse) => {
     navigation.navigate("StatusScreen", {
       status:
         confirmationType === "request"
@@ -178,10 +180,16 @@ const useTransactionService = (
           ? "You can perform this transaction automatically by giving a Recurring Transfer order"
           : "",
       receiptDetails:
-        confirmationType === "send"
+        confirmationType === "send" && response
           ? {
               amount: String(amount),
               beneficiaryName: beneficiary.fullName,
+              description: response.description,
+              receivingBank: response.destBankName,
+              referenceId: response.transactionReference,
+              transactionDate: response.dateCreated.split("T")[0],
+              transactionFee: String(Number(response.amount - amount)),
+              transactionType: response.transactionType,
             }
           : undefined,
       recurringTransferBeneficiary:

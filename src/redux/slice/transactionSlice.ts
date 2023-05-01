@@ -53,6 +53,7 @@ const initialState: ITransactionState = {
     firstName: "",
     lastName: "",
     pictureUrl: "",
+    bankCode: "",
   },
   transferType: "send",
   recurring: false,

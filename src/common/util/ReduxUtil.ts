@@ -1,4 +1,4 @@
-import { STORAGE_KEY_JWT_TOKEN, API_KEY } from "@env";
+import { STORAGE_KEY_JWT_TOKEN } from "@env";
 import { AxiosError } from "axios";
 import api from "../../api";
 import { getItemSecure } from "./StorageUtil";

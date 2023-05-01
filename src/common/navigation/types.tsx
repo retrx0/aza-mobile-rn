@@ -19,6 +19,17 @@ interface IXGiftCard extends IGiftCard {
   selectedPrice: string;
 }
 
+export interface IReceipt {
+  amount: string;
+  beneficiaryName: string;
+  transactionDate: string;
+  transactionFee: string;
+  referenceId: string | null;
+  description: string;
+  receivingBank: string | null;
+  transactionType: string | null;
+}
+
 export type TransactionScreenPinType =
   | "set"
   | "update"
@@ -58,16 +69,7 @@ export type CommonStackParamList = {
   // Status
   StatusScreen: StatusScreenParamsType;
 
-  Receipt: {
-    amount: string;
-    beneficiaryName: string;
-    transactionDate: string;
-    transactionFee: string;
-    referenceId: string;
-    description: string;
-    receivingBank: string;
-    transactionType: string;
-  };
+  Receipt: IReceipt;
 
   Notifications: undefined;
 
@@ -261,7 +263,7 @@ export type StatusScreenParamsType = {
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
   recurringTransferBeneficiary?: IBeneficiary;
-  receiptDetails?: { amount: string; beneficiaryName: string };
+  receiptDetails?: IReceipt | undefined;
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;

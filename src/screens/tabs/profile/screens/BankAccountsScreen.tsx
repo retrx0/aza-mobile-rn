@@ -49,6 +49,7 @@ const BankAccountsScreen = ({
 
   useEffect(() => {
     if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
+    console.log(user.bankAccounts.data);
   }, []);
 
   if (user.bankAccounts.data.length > 0 && screenType === "Withdraw") {
@@ -70,7 +71,11 @@ const BankAccountsScreen = ({
             <Divider />
             {user.bankAccounts.data.map((_account, i) => (
               <View key={i}>
-                <TouchableOpacity onPress={() => setSelectedAccount(_account)}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setSelectedAccount(_account);
+                  }}
+                >
                   <View
                     style={[
                       CommonStyles.row,
@@ -96,7 +101,7 @@ const BankAccountsScreen = ({
                       }}
                     >
                       {`${
-                        _account.accountName
+                        _account.bankName
                       } (${_account.accountNumber.substring(0, 4)}.....)`}
                     </Text>
                     <View
@@ -147,40 +152,41 @@ const BankAccountsScreen = ({
                 },
               ]}
             />
-            <Button
-              disabled={!selectedAccount}
-              title="Continue"
-              onPressButton={() => {
-                dispatch(
-                  setTransaction({
-                    amount: 0,
-                    beneficiary: {
-                      fullName: selectedAccount?.accountName!,
-                      accountNumber: selectedAccount?.accountNumber!,
-                      // !TODO add bank code below
-                      bankCode: "",
+            {selectedAccount && (
+              <Button
+                disabled={!selectedAccount}
+                title="Continue"
+                onPressButton={() => {
+                  dispatch(
+                    setTransaction({
+                      amount: 0,
+                      beneficiary: {
+                        fullName: selectedAccount.accountName,
+                        accountNumber: selectedAccount.accountNumber,
+                        bankCode: selectedAccount.bankCode,
+                      },
+                      transferType: "withdraw",
+                      description: "",
+                    })
+                  );
+                  navigation.navigate("TransactionKeypad", {
+                    headerTitle: "Amount",
+                    transactionType: {
+                      transaction: "withdraw",
+                      type: "normal",
+                      beneficiary: {
+                        accountNumber: selectedAccount.accountNumber,
+                        beneficiaryName: selectedAccount.accountName,
+                        pictureUrl: user.pictureUrl,
+                        fullName: selectedAccount.accountName,
+                        bankCode: selectedAccount.bankCode,
+                      },
                     },
-                    transferType: "withdraw",
-                    description: "",
-                  })
-                );
-                navigation.navigate("TransactionKeypad", {
-                  headerTitle: "Amount",
-                  transactionType: {
-                    transaction: "withdraw",
-                    type: "normal",
-                    beneficiary: {
-                      accountNumber: selectedAccount?.accountNumber!,
-                      beneficiaryName: selectedAccount?.accountName,
-                      pictureUrl: user.pictureUrl,
-                      fullName: selectedAccount?.accountName!,
-                      // !TODO add bank code below
-                      bankCode: "",
-                    },
-                  },
-                });
-              }}
-            />
+                  });
+                }}
+              />
+            )}
+
             <CancelButtonWithUnderline
               title="Cancel"
               onPressButton={() => navigation.goBack()}

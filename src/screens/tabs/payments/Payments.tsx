@@ -24,20 +24,19 @@ import { hp } from "../../../common/util/LayoutUtil";
 
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
-import { selectAppTheme } from "../../../redux/slice/themeSlice";
-import { getAppTheme } from "../../../theme";
 
 export default function Payments({
   navigation,
 }: RootTabScreenProps<"Payments">) {
   const user = useAppSelector(selectUser);
-  const selectedTheme = useAppSelector(selectAppTheme);
-  const appTheme = getAppTheme(selectedTheme);
+
   const listItems = [
     {
       title: "Airtime & Data",
       icon: <DataIcon size={35} />,
-      onPress: () => navigation.navigate("Common", { screen: "AirtimeData" }),
+      onPress: () => {
+        /*navigation.navigate("Common", { screen: "AirtimeData" }) }, */
+      },
     },
     {
       title: "Internet",
@@ -52,7 +51,9 @@ export default function Payments({
     {
       title: "Electricity",
       icon: <ElectricIcon size={35} />,
-      onPress: () => navigation.navigate("Common", { screen: "Electricity" }),
+      onPress: () => {
+        /* navigation.navigate("Common", { screen: "Electricity" })*/
+      },
     },
     {
       title: "Water",
@@ -67,11 +68,12 @@ export default function Payments({
     {
       title: "Charity",
       icon: <LoveIcon size={35} />,
-      onPress: () =>
-        navigation.navigate("Common", {
-          screen: "Charity",
-          params: { recurringTransaction: false },
-        }),
+      onPress: () => {
+        /*         navigation.navigate("Common", {
+        screen: "Charity",
+        params: { recurringTransaction: false },
+      }),*/
+      },
     },
     {
       title: "Game Credits",

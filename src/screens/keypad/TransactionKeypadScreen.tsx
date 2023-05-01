@@ -110,6 +110,7 @@ const TransactionKeypadScreen = ({
               beneficiary: {
                 fullName: beneficiary.fullName,
                 accountNumber: beneficiary.accountNumber,
+                bankCode: beneficiary.bankCode,
               },
               transferType: "withdraw",
               description: "",
