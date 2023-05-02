@@ -19,7 +19,7 @@ const InputFormFieldNormal = ({
   value: string;
   placeholderVisible: boolean;
   formikProps: { errors: any; touched: any };
-  type: "email" | "firstname" | "lastname";
+  type: "email" | "firstname" | "surname";
 }) => {
   const typeOfEmail = type === "email";
 

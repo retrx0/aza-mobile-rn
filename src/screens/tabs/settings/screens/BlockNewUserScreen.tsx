@@ -28,7 +28,7 @@ const BlockNewUserScreen = ({
   const [index, setIndex] = useState(0);
   const [userToBlock, setUserToBlock] = useState<IBeneficiary>({
     fullName: "",
-    azaAccountNumber: "",
+    accountNumber: "",
   });
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },

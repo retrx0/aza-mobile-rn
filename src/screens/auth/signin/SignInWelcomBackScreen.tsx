@@ -19,6 +19,7 @@ import Colors from "../../../constants/Colors";
 import ProfilePictureView from "../../../components/views/ProfilePictureView";
 import { FaceIdIcon } from "../../../../assets/svg";
 import * as LocalAuthentication from "expo-local-authentication";
+import { useAppAsyncStorage } from "../../../hooks/useAsyncStorage";
 
 const SignInWelcomeBackScreen = ({
   navigation,
@@ -35,6 +36,7 @@ const SignInWelcomeBackScreen = ({
     verifyPassword,
     screenLoading,
     handleForgotPassword,
+    userPreferences,
   } = useSignIn();
 
   useEffect(() => {
@@ -117,40 +119,42 @@ const SignInWelcomeBackScreen = ({
               // }
             />
           </View>
-          {route.params.cachedUser && biometricEnrolled && (
-            <View>
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontSize: hp(14),
-                  fontWeight: "500",
-                  marginBottom: hp(5),
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  color: Colors.light.secondaryText,
-                }}
-              >
-                OR
-              </Text>
-              <TouchableOpacity
-                style={{ alignSelf: "center", marginVertical: 10 }}
-                onPress={() => handleSignBack({ navigation, route })}
-              >
-                <FaceIdIcon color={Colors["general"].darkGrey} size={40} />
-              </TouchableOpacity>
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontSize: hp(12),
-                  fontWeight: "500",
-                  marginBottom: hp(8),
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  color: Colors.light.secondaryText,
-                }}
-              >
-                Login with biometrics
-              </Text>
-            </View>
-          )}
+          {route.params.cachedUser &&
+            biometricEnrolled &&
+            userPreferences?.loginWithFaceIDSwitch && (
+              <View>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: hp(14),
+                    fontWeight: "500",
+                    marginBottom: hp(5),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    color: Colors.light.secondaryText,
+                  }}
+                >
+                  OR
+                </Text>
+                <TouchableOpacity
+                  style={{ alignSelf: "center", marginVertical: 10 }}
+                  onPress={() => handleSignBack({ navigation, route })}
+                >
+                  <FaceIdIcon color={Colors["general"].darkGrey} size={40} />
+                </TouchableOpacity>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontSize: hp(12),
+                    fontWeight: "500",
+                    marginBottom: hp(8),
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    color: Colors.light.secondaryText,
+                  }}
+                >
+                  Login with biometrics
+                </Text>
+              </View>
+            )}
 
           <View
             style={[
@@ -168,6 +172,7 @@ const SignInWelcomeBackScreen = ({
                 title="Forget Me"
                 onPressButton={() => forgetUser(navigation)}
                 styleText={CommonStyles.resend}
+                color={Colors.general.grey}
               />
             </TouchableOpacity>
           </View>

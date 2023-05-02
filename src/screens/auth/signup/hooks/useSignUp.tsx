@@ -99,7 +99,7 @@ const useSignUp = () => {
                         token: jwt,
                         password: passcode,
                         phoneNumber: newUser.phoneNumber,
-                        fullName: newUser.firstName + " " + newUser.lastName,
+                        fullName: newUser.lastName + ", " + newUser.firstName,
                       })
                     );
                     dispatch(getUserInfo());

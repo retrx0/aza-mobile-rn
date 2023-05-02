@@ -51,7 +51,7 @@ const SignUpProfile = ({
 
   const signUpValidationSchema = yup.object().shape({
     firstname: yup.string().required("Firstname is required"),
-    lastname: yup.string().required("Lastname is required"),
+    surname: yup.string().required("Surname is required"),
     gender: yup
       .number()
       // .required("Please select a gender")
@@ -146,14 +146,14 @@ const SignUpProfile = ({
         validationSchema={signUpValidationSchema}
         initialValues={{
           firstname: "",
-          lastname: "",
+          surname: "",
           gender: "male",
         }}
         onSubmit={(values) => {
           dispatch(
             setNewUser({
               firstName: values.firstname,
-              lastName: values.lastname,
+              lastName: values.surname,
               emailAddress: newUser.emailAddress,
               gender: values.gender,
               isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
@@ -192,13 +192,13 @@ const SignUpProfile = ({
 
             <InputFormFieldNormal
               placeholderVisible
-              onChangeText={handleChange("lastname")}
-              onBlur={handleBlur("lastname")}
-              value={values.lastname}
-              type="lastname"
+              onChangeText={handleChange("surname")}
+              onBlur={handleBlur("surname")}
+              value={values.surname}
+              type="surname"
               formikProps={{
-                errors: errors.lastname,
-                touched: touched.lastname,
+                errors: errors.surname,
+                touched: touched.surname,
               }}
               autoFocus={false}
             />
@@ -246,19 +246,3 @@ const SignUpProfile = ({
 };
 
 export default SignUpProfile;
-
-const styles = StyleSheet.create({
-  textInput: {
-    width: "100%",
-    borderWidth: 0.5,
-    borderRadius: 5,
-    padding: 15,
-    fontSize: hp(18),
-    fontFamily: "Euclid-Circular-A",
-  },
-  errorText: {
-    fontSize: hp(14),
-    color: "red",
-    marginTop: 5,
-  },
-});

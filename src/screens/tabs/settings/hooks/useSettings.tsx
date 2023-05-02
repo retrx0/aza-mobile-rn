@@ -166,10 +166,9 @@ const useSettings = ({
     };
 
     const handleTransactionPin = () => {
-      console.log(transactionPin);
       // navigation.goBack();
       setLoading(true);
-      sendMoneyToAzaUser(transactionPin);
+      sendMoneyToAzaUser(transactionPin, "INTER");
     };
 
     switch (pinScreenType) {
