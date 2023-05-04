@@ -23,14 +23,6 @@ import * as yup from "yup";
 import CustomPicker from "../../../../components/dropdown/CustomPicker";
 import { getAppTheme } from "../../../../theme";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { create9PSBWallet } from "../../../../api/account";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { toastError } from "../../../../common/util/ToastUtil";
-import {
-  addUserBvnThunk,
-  getUserAccountDetails,
-} from "../../../../redux/slice/userSlice";
-import DatePicker from "@react-native-community/datetimepicker";
 
 const SignUpProfile = ({
   navigation,
@@ -51,97 +43,15 @@ const SignUpProfile = ({
 
   const signUpValidationSchema = yup.object().shape({
     firstname: yup.string().required("Firstname is required"),
-    surname: yup.string().required("Surname is required"),
+    lastname: yup.string().required("Lastname is required"),
     gender: yup
       .number()
       // .required("Please select a gender")
       .oneOf([0, 1]),
   });
-  const [dob, setDOB] = useState<Date>(new Date());
-  const [isButtonLoading, setButtonLoading] = useState(false);
-  const insets = useSafeAreaInsets();
-  const selectedTheme = useAppSelector(selectAppTheme);
-  const [bvn, setBvn] = useState("");
-  const verifyBvn = async () => {
-    setButtonLoading(true);
-    console.log(dob.toISOString().split("T")[0]);
 
-    const createWallet = await create9PSBWallet({
-      bvn,
-      dateOfBirth: dob.toISOString().split("T")[0],
-    });
-    // .then((r) => {
-    //   setButtonLoading(false);
-    //   navigation.navigate("SignUpPassword", {
-    //     passwordScreenType: "Create",
-    //   });
-    //   dispatch(getUserAccountDetails());
-    // })
-    // .catch(() => {
-    //   toastError("Couldn't link your BVN, please try again!");
-    //   setButtonLoading(false);
-    // });
-  };
   return (
     <>
-      <View style={{ marginLeft: hp(20) }}>
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A",
-            fontSize: hp(16),
-            fontWeight: "400",
-          }}>
-          Date of Birth
-        </Text>
-
-        <DatePicker
-          value={dob}
-          maximumDate={new Date()}
-          placeholderText="Date of Birth"
-          onChange={(date) => {
-            if (date.nativeEvent.timestamp)
-              setDOB(new Date(date.nativeEvent.timestamp));
-          }}
-        />
-      </View>
-      <View style={{ marginTop: 20, marginLeft: hp(20), marginBottom: hp(20) }}>
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A",
-            fontSize: hp(16),
-            fontWeight: "400",
-            marginBottom: 16,
-          }}>
-          Add your BVN{" "}
-        </Text>
-        <Text
-          style={{
-            fontFamily: "Euclid-Circular-A",
-            fontSize: hp(16),
-            fontWeight: "400",
-          }}>
-          BVN
-        </Text>
-        <TextInput
-          placeholderTextColor={Colors[appTheme].secondaryText}
-          style={{
-            backgroundColor: "transparent",
-            fontFamily: "Euclid-Circular-A",
-            paddingBottom: 5,
-            marginTop: hp(15),
-            borderBottomWidth: 1,
-            borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-            fontSize: hp(16),
-            fontWeight: "500",
-          }}
-          placeholder="Enter your bank verification number"
-          keyboardType="number-pad"
-          returnKeyType="done"
-          value={bvn}
-          onChangeText={(text) => setBvn(text)}
-          maxLength={11}
-        />
-      </View>
       <Formik
         validationSchema={signUpValidationSchema}
         initialValues={{
@@ -195,7 +105,7 @@ const SignUpProfile = ({
               onChangeText={handleChange("surname")}
               onBlur={handleBlur("surname")}
               value={values.surname}
-              type="surname"
+              type="lastname"
               formikProps={{
                 errors: errors.surname,
                 touched: touched.surname,
@@ -235,8 +145,8 @@ const SignUpProfile = ({
               title="Continue"
               onPressButton={handleSubmit}
               styleText={{}}
-              style={[CommonStyles.container, { bottom: hp(45) }]}
-              disabled={bvn.length < 11 && !isValid}
+              style={[CommonStyles.container, { bottom: hp(60) }]}
+              disabled={!isValid}
             />
           </>
         )}
@@ -246,3 +156,19 @@ const SignUpProfile = ({
 };
 
 export default SignUpProfile;
+
+const styles = StyleSheet.create({
+  textInput: {
+    width: "100%",
+    borderWidth: 0.5,
+    borderRadius: 5,
+    padding: 15,
+    fontSize: hp(18),
+    fontFamily: "Euclid-Circular-A",
+  },
+  errorText: {
+    fontSize: hp(14),
+    color: "red",
+    marginTop: 5,
+  },
+});

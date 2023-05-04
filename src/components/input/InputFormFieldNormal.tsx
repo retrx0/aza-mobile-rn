@@ -19,7 +19,7 @@ const InputFormFieldNormal = ({
   value: string;
   placeholderVisible: boolean;
   formikProps: { errors: any; touched: any };
-  type: "email" | "firstname" | "surname";
+  type: "email" | "firstname" | "surname" | "lastname";
 }) => {
   const typeOfEmail = type === "email";
 
@@ -35,8 +35,7 @@ const InputFormFieldNormal = ({
               fontSize: hp(18),
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
-            }}
-          >
+            }}>
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </Text>
           <Text style={{ color: "red" }}>*</Text>
