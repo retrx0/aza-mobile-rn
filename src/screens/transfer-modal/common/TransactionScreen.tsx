@@ -36,7 +36,7 @@ const TransactionScreen = ({
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },
-    { key: "second", title: "Aza Number" },
+    { key: "second", title: "Bank Account" },
   ]);
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
@@ -45,8 +45,7 @@ const TransactionScreen = ({
     navigation,
     headerTitle,
     <TouchableOpacity
-      onPress={() => navigation.navigate(featureNavigationScreen)}
-    >
+      onPress={() => navigation.navigate(featureNavigationScreen)}>
       <InfoIcon
         color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
       />
@@ -105,8 +104,7 @@ const TransactionScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}
-                >
+                  }}>
                   {route.title}
                 </Text>
               );

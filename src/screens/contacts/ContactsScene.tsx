@@ -23,6 +23,11 @@ import { NAIRA_CCY_CODE, PSB_BANK_CODE } from "../../constants/AppConstants";
 import { verifyBankAccountAPI } from "../../api/account";
 import { toastError } from "../../common/util/ToastUtil";
 import { selectAppPreference } from "../../redux/slice/preferenceSlice";
+import { UnderlinedInput } from "../../components/input/UnderlinedInput";
+import Colors from "../../constants/Colors";
+import Divider from "../../components/divider/Divider";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
+import { useNavigation } from "@react-navigation/native";
 
 const ContactsScene = ({
   route,
@@ -30,6 +35,7 @@ const ContactsScene = ({
   nonAzaContactOnPress,
 }: {
   route: any;
+
   azaContactOnPress: (beneficiary: IBeneficiary) => void;
   nonAzaContactOnPress: (beneficiary: IBeneficiary) => void;
 }) => {
@@ -38,43 +44,15 @@ const ContactsScene = ({
   const [userQuickContacts, setUserQuickContacts] = useState<IBeneficiary[]>(
     []
   );
+  const navigation = useNavigation();
+
   const [userAzaContacts, setUserAzaContacts] = useState<IBeneficiary[]>([]);
   const [searchContact, setSearchContact] = useState("");
   const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
   const insets = useSafeAreaInsets();
-
   const [buttonLoading, setButtonLoading] = useState(false);
-
   const user = useAppSelector(selectUser);
   const { contactVisibilitySwitch } = useAppSelector(selectAppPreference);
-
-  const sentToAzaNumber = (
-    azaNumber: string,
-    azaContactOnPress: (beneficiary: IBeneficiary) => void
-  ) => {
-    setButtonLoading(true);
-    //do some check with aza number
-    verifyBankAccountAPI(PSB_BANK_CODE, azaNumber, azaNumber)
-      .then((response) => {
-        if (response) {
-          azaContactOnPress({
-            accountNumber: azaNumber,
-            fullName: response.data.name,
-            beneficiaryName: response.data.name,
-            currency: NAIRA_CCY_CODE,
-            email: "",
-            firstName: "",
-            lastName: "",
-          });
-        }
-        setButtonLoading(false);
-      })
-      .catch((e) => {
-        console.debug(e);
-        toastError("Aza account not found!");
-        setButtonLoading(false);
-      });
-  };
 
   useEffect(() => {
     getUserContacts().then((_contacts) => {
@@ -98,8 +76,7 @@ const ContactsScene = ({
                 marginLeft: hp(5),
                 marginTop: hp(30),
                 marginBottom: hp(24),
-              }}
-            >
+              }}>
               Quick contacts
             </Text>
             <View>
@@ -191,8 +168,7 @@ const ContactsScene = ({
                           } else {
                             nonAzaContactOnPress(item);
                           }
-                        }}
-                      >
+                        }}>
                         <ContactListItem
                           image={getDefaultPictureUrl({
                             firstName: item?.fullName,
@@ -215,8 +191,7 @@ const ContactsScene = ({
                         } else {
                           nonAzaContactOnPress(item);
                         }
-                      }}
-                    >
+                      }}>
                       <ContactListItem
                         image={getDefaultPictureUrl({
                           firstName: item?.firstName,
@@ -242,18 +217,181 @@ const ContactsScene = ({
     return (
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
-          <Text
+          <View style={{ marginTop: 35 }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A-Bold",
+                fontSize: hp(16),
+                fontWeight: "400",
+              }}>
+              Saved Beneficiaries
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors.light.secondaryText}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A",
+                paddingBottom: 5,
+                marginTop: hp(10),
+                borderBottomWidth: 1,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="Choose from already saved accounts"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              // value="Choose from already saved accounts"
+            />
+          </View>
+
+          <View style={{ marginTop: hp(35) }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "400",
+              }}>
+              Bank
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("SearchBank", {});
+              }}>
+              <Text
+                style={{
+                  marginBottom: 5,
+                  marginTop: 10,
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontSize: hp(16),
+                }}>
+                Choose Bank
+              </Text>
+            </TouchableOpacity>
+            <Divider />
+          </View>
+          <View style={{ marginTop: 35 }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
+                fontWeight: "400",
+              }}>
+              Account Number
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors.general.black}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A-Medium",
+
+                paddingBottom: 5,
+                marginTop: hp(10),
+                borderBottomWidth: 1,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="Account Number"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              // value=
+            />
+          </View>
+          <View style={{ marginTop: 35 }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
+                fontWeight: "400",
+              }}>
+              Account Name
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors.general.black}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A-Medium",
+
+                paddingBottom: 5,
+                marginTop: hp(10),
+                borderBottomWidth: 1,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="Account Name"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              // value="Choose Bnak"
+            />
+          </View>
+        </View>
+        <View style={{ marginTop: 100 }}>
+          <Button
+            title="Continue"
+            // onPressButton={() => {
+            //   sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
+            // }}
+            // disabled={receipientAzaNumber.length < 10}
+            styleText={{}}
+            style={[]}
+            buttonLoading={buttonLoading}
+          />
+        </View>
+      </View>
+    );
+  } else {
+    return <></>;
+  }
+};
+
+export default ContactsScene;
+
+// const { screenType } = route.params;
+
+// const sentToAzaNumber = (
+//   azaNumber: string,
+//   azaContactOnPress: (beneficiary: IBeneficiary) => void
+// ) => {
+//   setButtonLoading(true);
+//   //do some check with aza number
+//   verifyBankAccountAPI(PSB_BANK_CODE, azaNumber, azaNumber)
+//     .then((response) => {
+//       if (response) {
+//         azaContactOnPress({
+//           accountNumber: azaNumber,
+//           fullName: response.data.name,
+//           beneficiaryName: response.data.name,
+//           currency: NAIRA_CCY_CODE,
+//           email: "",
+//           firstName: "",
+//           lastName: "",
+//         });
+//       }
+//       setButtonLoading(false);
+//     })
+//     .catch((e) => {
+//       console.debug(e);
+//       toastError("Aza account not found!");
+//       setButtonLoading(false);
+//     });
+// };
+
+{
+  /* <Text
             style={{
               fontSize: hp(14),
               fontWeight: "500",
               marginLeft: hp(5),
               marginTop: hp(30),
               marginBottom: hp(24),
-            }}
-          >
+            }}>
             Recents
-          </Text>
-          <View>
+          </Text> */
+}
+{
+  /* <View>
             <View style={{ flexDirection: "row", marginBottom: hp(37) }}>
               {user.azaContacts.data.map((_contct, i) => (
                 <QuickContactView
@@ -268,43 +406,5 @@ const ContactsScene = ({
                 />
               ))}
             </View>
-          </View>
-          <TextInput
-            keyboardType={"number-pad"}
-            returnKeyType={"done"}
-            returnKeyLabel={"done"}
-            value={receipientAzaNumber}
-            onChangeText={(number) => setReceipientAzaNumber(number)}
-            style={{
-              backgroundColor: "transparent",
-              fontFamily: "Euclid-Circular-A",
-              paddingBottom: 10,
-              marginTop: hp(15),
-              borderBottomWidth: 1,
-              fontSize: hp(16),
-              marginLeft: hp(5),
-              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-            }}
-            placeholder="Aza Number"
-          />
-        </View>
-        <View style={{ marginTop: 10 }}>
-          <Button
-            title="Continue"
-            onPressButton={() => {
-              sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
-            }}
-            disabled={receipientAzaNumber.length < 10}
-            styleText={{}}
-            style={[]}
-            buttonLoading={buttonLoading}
-          />
-        </View>
-      </View>
-    );
-  } else {
-    return <></>;
-  }
-};
-
-export default ContactsScene;
+          </View> */
+}
