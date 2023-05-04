@@ -171,7 +171,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Description"}
-            value={transaction.description}
+            value={description}
           />
         </ScrollView>
         <Button

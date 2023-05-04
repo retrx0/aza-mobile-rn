@@ -45,11 +45,13 @@ const SegmentedTransactionView = ({
             createdAt,
             sourceAccount,
             destinationCreditAccount,
+            destinationCreditChannel,
             name,
             description,
             transactionId,
             type,
             transactionType,
+            transactionReference,
           },
           i
         ) => (
@@ -75,9 +77,13 @@ const SegmentedTransactionView = ({
                       transactionType === "IntraBank"
                         ? "Aza to Aza"
                         : transactionType,
-                    referenceId: transactionId,
+                    referenceId: "" + transactionReference,
+
                     transactionDate: transfromDataString(createdAt),
-                    receivingBank: transactionType === "IntraBank" ? "Aza" : "",
+                    receivingBank:
+                      transactionType === "IntraBank"
+                        ? "Aza"
+                        : "" + destinationCreditChannel,
                     transactionFee:
                       transactionType === "IntraBank"
                         ? `${NAIRA_UNICODE}0`

@@ -48,7 +48,7 @@ api.interceptors.response.use(
     } else if (res.response?.status === 400) {
       toastError("Uh oh, something is wrong");
     } else if (res.response?.status === 404) {
-      toastError("Not found!");
+      // toastError("Not found!");
     }
     if (process.env.ENV === ENV_DEVELOPMENT) console.error(res.toJSON());
     return Promise.reject(error);

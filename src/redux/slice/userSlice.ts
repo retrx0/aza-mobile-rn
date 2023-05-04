@@ -4,6 +4,7 @@ import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
 import {
   I9PSBWallet,
+  IAccountMetadataResponse,
   IUserInfoResponse,
   IUserState,
 } from "../../types/types.redux";
@@ -304,7 +305,6 @@ export const userSlice = createSlice({
         state.loaded = false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.loading = false;
         state.loaded = true;
         state.firstName = action.payload.firstName;
@@ -358,7 +358,6 @@ export const userSlice = createSlice({
         state.bankAccounts.loaded = false;
       })
       .addCase(getUserSavedBankAccs.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.bankAccounts.loading = false;
         state.bankAccounts.loaded = true;
         state.bankAccounts.data = action.payload;
@@ -380,6 +379,25 @@ export const userSlice = createSlice({
         state.paymentRequests.loading = false;
         console.log(action.payload);
         // state.paymentRequests.data = action.payload
+      })
+      .addCase(getUserAccountMetadata.pending, (state, action) => {})
+      .addCase(getUserAccountMetadata.rejected, (state, action) => {})
+      .addCase(getUserAccountMetadata.fulfilled, (state, action) => {
+        const response = action.payload as IAccountMetadataResponse;
+
+        (state.transfers.loading = false),
+          (state.transfers.incommingTransferLimit =
+            response.incomingTransferLimit);
+        state.transfers.depositAmountLimit = response.depositAmountLimit;
+        state.transfers.totalMonthlySenders =
+          response.numberOfPeopleTransactionReceived;
+        state.transfers.totalMonthlyReceivers =
+          response.numberOfPeopleTransactionReceived;
+        state.transfers.totalMonthlyIncomingTransfers =
+          response.numberOfIncomingTransfers;
+        // state.transfers.totalMonthlyIncomingTransferAmount = response.numberOfIncomingTransfers
+        // state.transfers.totalMonthlyOutgoingTransfers = response.
+        // state.transfers.totalMonthlyOutgoingTransferAmount = response.
       });
   },
 });
@@ -415,6 +433,16 @@ export const getUserTransactions = createAsyncThunk(
     return await thunkCourier(
       "get",
       `/api/v1/account/${accountNumber}/transactions`
+    );
+  }
+);
+
+export const getUserAccountMetadata = createAsyncThunk(
+  "user/getAccountMetadata",
+  async ({ accountNumber }: { accountNumber: string }) => {
+    return await thunkCourier(
+      "get",
+      `/api/v1/account/${accountNumber}/metadata`
     );
   }
 );

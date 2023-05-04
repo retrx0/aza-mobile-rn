@@ -34,7 +34,6 @@ const SelectBankScreen = ({
   navigation,
   route,
 }: CommonScreenProps<"SelectBank">) => {
-  const colorScheme = useColorScheme();
   const [search, setSearch] = useState("");
 
   const { screenType } = route.params;
@@ -64,7 +63,7 @@ const SelectBankScreen = ({
             },
           ]}
         >
-          <SearchIcon color={Colors[colorScheme].secondaryText} size={16} />
+          <SearchIcon color={Colors[appTheme].secondaryText} size={16} />
           <TextInput
             style={{
               flex: 1,
@@ -89,9 +88,11 @@ const SelectBankScreen = ({
         ) : (
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={banks.data.filter(({ bankName }) =>
-              bankName.toLowerCase().includes(search.toLowerCase())
-            )}
+            data={banks.data.filter(({ bankName }) => {
+              return bankName && bankName !== null
+                ? bankName.toLowerCase().includes(search.toLowerCase())
+                : false;
+            })}
             renderItem={({ item: { bankCode, bankName, logoUrl, id } }) => (
               <View>
                 <TouchableOpacity
@@ -125,7 +126,7 @@ const SelectBankScreen = ({
                       />
                     )}
                     <Text style={{ marginHorizontal: 10, fontSize: 18 }}>
-                      {bankName}
+                      {"" + bankName}
                     </Text>
                   </View>
                 </TouchableOpacity>

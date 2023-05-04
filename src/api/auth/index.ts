@@ -1,5 +1,6 @@
 import * as SecureStore from "expo-secure-store";
 import { AxiosError } from "axios";
+import * as Device from "expo-device";
 
 import api from "..";
 
@@ -16,10 +17,19 @@ export const loginUserAPI = async (data: {
   phoneNumber: string;
   password: string;
 }) => {
-  return await apiCourier<typeof data, string>(
+  console.log(Device.deviceName);
+  console.log(Device.modelId);
+  console.log(Device.modelName);
+
+  return await apiCourier<any, string>(
     "post",
     "/api/v1/auth/login",
-    data,
+    {
+      ...data,
+      deviceUUID: Device.modelId,
+      deviceName: Device.deviceName,
+      deviceModel: Device.modelName,
+    },
     "none",
     true
   );
