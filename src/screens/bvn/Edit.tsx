@@ -32,8 +32,8 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
             status: "Successful",
             statusIcon: "Success",
             statusMessage:
-              "   You have successfully withdrawn \u20A680000 to your Bank Account",
-            navigateTo: "UserVault",
+              "   You have successfully changed your Aza account name",
+            navigateTo: "Home",
           });
         }}>
         {({
