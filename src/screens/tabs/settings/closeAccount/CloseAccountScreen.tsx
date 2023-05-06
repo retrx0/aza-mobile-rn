@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 
 import { View, Text } from "../../../../theme/Themed";
@@ -17,9 +17,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 // import { AccessBank } from "../../../../../assets/images";
 import SegmentedInput from "../../../../components/input/SegmentedInput";
 import { getAppTheme } from "../../../../theme";
-import { useAppSelector } from "../../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
-import { selectUser } from "../../../../redux/slice/userSlice";
+import {
+  getUserSavedBankAccs,
+  selectUser,
+} from "../../../../redux/slice/userSlice";
 import { loginUserAPI } from "../../../../api/auth";
 import { toastError } from "../../../../common/util/ToastUtil";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
@@ -27,8 +30,7 @@ import useNavigationHeader from "../../../../hooks/useNavigationHeader";
 const CloseAccountScreen = ({
   navigation,
 }: CommonScreenProps<"CloseAccountScreen">) => {
-  const appTheme = getAppTheme(useAppSelector(selectAppTheme));
-  const [selectedCard, setSelectedCard] = useState("");
+  const [selectedBankAccount, setSelectedBankAccount] = useState("");
   const insets = useSafeAreaInsets();
   const [password, setPassword] = useState("");
 
@@ -36,7 +38,13 @@ const CloseAccountScreen = ({
   const { bankAccounts, emailAddress, phoneNumber, azaBalance } =
     useAppSelector(selectUser);
 
+  const dispatch = useAppDispatch();
+
   useNavigationHeader(navigation, "Close Account");
+
+  useEffect(() => {
+    if (!bankAccounts.loaded) dispatch(getUserSavedBankAccs());
+  }, []);
 
   if (azaBalance > 0) {
     return (
@@ -59,21 +67,26 @@ const CloseAccountScreen = ({
             <Divider />
             {bankAccounts.data.map(({ bankLogo, bankName }, i) => (
               <View key={i}>
-                <TouchableOpacity onPress={() => setSelectedCard(bankName)}>
+                <TouchableOpacity
+                  onPress={() => setSelectedBankAccount(bankName)}
+                >
                   <View
                     style={[
                       CommonStyles.row,
                       { alignSelf: "stretch", paddingVertical: 15 },
                     ]}
                   >
-                    <Image
-                      source={{ uri: bankLogo }}
-                      style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 50,
-                      }}
-                    />
+                    {bankLogo && (
+                      <Image
+                        source={{ uri: bankLogo }}
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: 50,
+                        }}
+                      />
+                    )}
+
                     <Text
                       style={{
                         marginLeft: 20,
@@ -90,7 +103,7 @@ const CloseAccountScreen = ({
                         height: hp(20),
                         borderRadius: hp(10),
                         borderColor:
-                          selectedCard === bankName
+                          selectedBankAccount === bankName
                             ? Colors.general.green
                             : "#3A3D42",
                         alignItems: "center",
@@ -98,7 +111,7 @@ const CloseAccountScreen = ({
                         borderWidth: hp(1),
                       }}
                     >
-                      {selectedCard === bankName && (
+                      {selectedBankAccount === bankName && (
                         <View style={CommonStyles.doneSelect} />
                       )}
                     </View>
@@ -115,25 +128,30 @@ const CloseAccountScreen = ({
               { bottom: insets.bottom || hp(45) },
             ]}
           >
-            <Button
-              disabled={!selectedCard}
-              title="Continue"
-              onPressButton={() =>
-                navigation.navigate("TransactionKeypad", {
-                  headerTitle: "Close Account",
-                  transactionType: {
-                    transaction: "debit",
-                    type: "normal",
-                    beneficiary: {
-                      azaAccountNumber: "",
-                      fullName: "",
+            {selectedBankAccount && (
+              <Button
+                disabled={!selectedBankAccount}
+                title="Continue"
+                onPressButton={() =>
+                  navigation.navigate("TransactionKeypad", {
+                    headerTitle: "Close Account",
+                    transactionType: {
+                      transaction: "debit",
+                      type: "normal",
+                      // TODO Fix below code
+                      beneficiary: {
+                        accountNumber: selectedBankAccount,
+                        fullName: "",
+                        bankCode: "",
+                      },
                     },
-                  },
-                })
-              }
-              styleText={{}}
-              style={[]}
-            />
+                  })
+                }
+                styleText={{}}
+                style={[]}
+              />
+            )}
+
             <CancelButtonWithUnderline
               title="Cancel"
               onPressButton={() => navigation.goBack()}

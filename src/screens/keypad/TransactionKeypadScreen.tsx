@@ -82,7 +82,9 @@ const TransactionKeypadScreen = ({
             })
           );
 
-          navigation.navigate("SendMoneyConfirmation");
+          navigation.navigate("SendMoneyConfirmation", {
+            transactionType: "INTRA",
+          });
           break;
         case "debit":
           dispatch(
@@ -102,6 +104,21 @@ const TransactionKeypadScreen = ({
           });
           break;
         case "withdraw":
+          dispatch(
+            setTransaction({
+              amount: Number(amount),
+              beneficiary: {
+                fullName: beneficiary.fullName,
+                accountNumber: beneficiary.accountNumber,
+                bankCode: beneficiary.bankCode,
+              },
+              transferType: "withdraw",
+              description: "",
+            })
+          );
+          navigation.navigate("SendMoneyConfirmation", {
+            transactionType: "INTER",
+          });
           console.log("withdrawing");
           break;
       }

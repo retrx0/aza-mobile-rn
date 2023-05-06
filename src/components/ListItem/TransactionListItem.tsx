@@ -49,13 +49,6 @@ export default function TransactionListItem({
         }
         profilePictureUrl={image}
       />
-      {/* <Image
-        style={{ borderRadius: 45, width: 45, height: 45 }}
-        source={{
-          uri: image,
-          cache: "default",
-        }}
-      /> */}
       <View style={{ display: "flex", marginRight: "auto", marginLeft: 15 }}>
         <TouchableOpacity onPress={onPress}>
           <Text
@@ -63,6 +56,7 @@ export default function TransactionListItem({
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "600",
+              maxWidth: "80%",
             }}
           >
             {name}
@@ -105,9 +99,10 @@ export default function TransactionListItem({
               darkColor={Colors.dark.secondaryText}
               style={{
                 marginLeft: 3,
-                fontSize: hp(12),
+                fontSize: hp(11),
                 fontFamily: "Euclid-Circular-A",
                 fontWeight: "300",
+                maxWidth: "80%",
               }}
             >
               {transactionMessage}
