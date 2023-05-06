@@ -570,7 +570,7 @@ const CommonStyles = StyleSheet.create({
     marginLeft: hp(15),
     fontSize: hp(16),
     fontWeight: "500",
-    marginBottom: hp(25),
+    marginBottom: hp(35),
   },
   phoneContainer: {
     marginTop: hp(20),
