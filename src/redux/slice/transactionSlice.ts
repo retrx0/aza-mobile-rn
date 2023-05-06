@@ -45,7 +45,7 @@ const initialState: ITransactionState = {
   description: "",
   qrPaymentAmount: undefined,
   beneficiary: {
-    accountNumber: "",
+    azaAccountNumber: "",
     fullName: "",
     phone: "",
     currency: "NGN",
@@ -53,7 +53,6 @@ const initialState: ITransactionState = {
     firstName: "",
     lastName: "",
     pictureUrl: "",
-    bankCode: "",
   },
   transferType: "send",
   recurring: false,

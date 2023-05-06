@@ -22,7 +22,6 @@ import { getAppTheme } from "../../../theme";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
 import ActivityModal from "../../../components/modal/ActivityModal";
 import useTransactionService from "../hooks/useTransactionService";
-import ProfilePictureView from "../../../components/views/ProfilePictureView";
 
 const TransactionConfirmationScreen = ({
   navigation,
@@ -33,7 +32,6 @@ const TransactionConfirmationScreen = ({
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
-  const transactionType = route.params?.transactionType;
 
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
@@ -51,6 +49,7 @@ const TransactionConfirmationScreen = ({
       confirmationType,
     }
   );
+
   return (
     <SpacerWrapper>
       <View style={[CommonStyles.vaultcontainer]}>
@@ -91,7 +90,10 @@ const TransactionConfirmationScreen = ({
               value={beneficiary.fullName}
               editable={false}
             />
-            <View
+            <Image
+              source={{
+                uri: beneficiary.pictureUrl,
+              }}
               style={{
                 position: "absolute",
                 right: 0,
@@ -99,14 +101,9 @@ const TransactionConfirmationScreen = ({
                 width: 45,
                 height: 45,
                 borderRadius: 50,
+                backgroundColor: "white",
               }}
-            >
-              <ProfilePictureView
-                firstName={beneficiary.fullName.substring(0, 1)}
-                lastName={beneficiary.fullName.substring(1, 2)}
-                profilePictureUrl={beneficiary.pictureUrl}
-              />
-            </View>
+            />
           </View>
           <View style={{ marginBottom: hp(30) }}>
             <Text
@@ -188,12 +185,7 @@ const TransactionConfirmationScreen = ({
           { bottom: insets.top || hp(45) },
         ]}
       >
-        <Button
-          title="Continue"
-          onPressButton={() => {
-            if (transactionType) makeTransaction(transactionType);
-          }}
-        />
+        <Button title="Continue" onPressButton={makeTransaction} />
         <CancelButtonWithUnderline
           title="Cancel Transaction"
           color={Colors.general.red}

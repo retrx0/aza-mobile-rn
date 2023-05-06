@@ -1,4 +1,3 @@
-import { ITransferResponse } from "../../types/types.redux";
 import apiCourier from "../courier";
 
 type PaymentType = {
@@ -27,7 +26,7 @@ export const payAzaUserAPI = async (data: PaymentType) => {
 };
 
 export const payOtherBankAPI = async (data: PaymentType) => {
-  return await apiCourier<PaymentType, ITransferResponse>(
+  return await apiCourier<PaymentType, any>(
     "post",
     "/api/v1/payment/transfer/inter",
     data,

@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
 import {
   getUserAccountDetails,
-  getUserAccountMetadata,
   getUserInfo,
   getUserTransactions,
   selectUser,
@@ -41,14 +40,14 @@ const useSignIn = () => {
 
   const _nav = useNavigation();
 
-  // const {
-  //   minutesToDisplay,
-  //   secondsToDisplay,
-  //   resetTimer,
-  //   toTwoDigits,
-  //   timerStatus,
-  //   startTimer,
-  // } = useCountdownTimer(60 * 5);
+  const {
+    minutesToDisplay,
+    secondsToDisplay,
+    resetTimer,
+    toTwoDigits,
+    timerStatus,
+    startTimer,
+  } = useCountdownTimer(60 * 5);
 
   const { registerForPushNotificationsAsync } = useNotifications();
 
@@ -63,18 +62,17 @@ const useSignIn = () => {
 
     const netInfo = await NetInfo.fetch();
 
-    if (loginAttemptCounter > 5) {
-      // if (timerStatus === "Started") {
-      //   toastError(
-      //     `Your account has been locked, try again after ${minutesToDisplay} minutes`
-      //   );
-      // } else if (timerStatus === "Stopped") {
-      //   setLoginAttemptCounter(1);
-      //   resetTimer();
-      // } else {
-      //   startTimer();
-      // }
-      toastError(`Too many failed login attempts`);
+    if (loginAttemptCounter > 3) {
+      if (timerStatus === "Started") {
+        toastError(
+          `Your account has been locked, try again after ${minutesToDisplay} minutes`
+        );
+      } else if (timerStatus === "Stopped") {
+        setLoginAttemptCounter(1);
+        resetTimer();
+      } else {
+        startTimer();
+      }
     } else {
       if (netInfo.isConnected && netInfo.isInternetReachable) {
         setScreenLoading(true);
@@ -118,7 +116,6 @@ const useSignIn = () => {
               await dispatch(getUserAccountDetails());
               const { walletNumber } = info.payload as IUserInfoResponse;
               dispatch(getUserTransactions({ accountNumber: walletNumber }));
-              dispatch(getUserAccountMetadata({ accountNumber: walletNumber }));
               setScreenLoading(false);
               // TODO replace navigate() with replace()
               navigation.getParent()?.navigate("Root");
@@ -215,7 +212,6 @@ const useSignIn = () => {
     screenLoading,
     setScreenLoading,
     handleForgotPassword,
-    userPreferences,
   };
 };
 

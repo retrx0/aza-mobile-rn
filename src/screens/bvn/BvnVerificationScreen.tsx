@@ -16,7 +16,6 @@ import { toastError } from "../../common/util/ToastUtil";
 import {
   addUserBvnThunk,
   getUserAccountDetails,
-  getUserInfo,
 } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
@@ -46,7 +45,7 @@ const BvnVerificationScreen = ({
     setButtonLoading(true);
     console.log(dob.toISOString().split("T")[0]);
 
-    await create9PSBWallet({
+    const createWallet = await create9PSBWallet({
       bvn,
       dateOfBirth: dob.toISOString().split("T")[0],
     })
@@ -60,10 +59,8 @@ const BvnVerificationScreen = ({
           navigateTo: onVerifyNavigateBackTo,
         });
         dispatch(getUserAccountDetails());
-        dispatch(getUserInfo());
       })
-      .catch((e) => {
-        console.error(e);
+      .catch(() => {
         toastError("Couldn't link your BVN, please try again!");
         setButtonLoading(false);
       });

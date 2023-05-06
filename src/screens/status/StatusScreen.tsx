@@ -187,7 +187,8 @@ const StatusScreen = ({
               color={Colors[appTheme].text}
               onPressButton={() =>
                 navigation.navigate("Receipt", {
-                  ...receiptDetails,
+                  amount: receiptDetails.amount,
+                  beneficiaryName: receiptDetails.beneficiaryName,
                 })
               }
             />

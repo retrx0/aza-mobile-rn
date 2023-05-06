@@ -30,7 +30,7 @@ const useQRService = ({
           amount: Number(scannedCodeData.amount),
           transferType: "send",
           beneficiary: {
-            accountNumber: scannedCodeData.azaAccountNumber,
+            azaAccountNumber: scannedCodeData.azaAccountNumber,
             fullName: scannedCodeData.fullName,
             beneficiaryName: scannedCodeData.azaAccountNumber,
           },
@@ -49,7 +49,7 @@ const useQRService = ({
             type: "normal",
             transaction: "send",
             beneficiary: {
-              accountNumber: scannedCodeData.azaAccountNumber,
+              azaAccountNumber: scannedCodeData.azaAccountNumber,
               fullName: scannedCodeData.fullName,
             },
           },

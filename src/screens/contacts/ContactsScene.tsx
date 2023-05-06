@@ -58,7 +58,7 @@ const ContactsScene = ({
       .then((response) => {
         if (response) {
           azaContactOnPress({
-            accountNumber: azaNumber,
+            azaAccountNumber: azaNumber,
             fullName: response.data.name,
             beneficiaryName: response.data.name,
             currency: NAIRA_CCY_CODE,

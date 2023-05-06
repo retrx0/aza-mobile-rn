@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { requestMoneyAPI } from "../../../api/money-request";
-import { payAzaUserAPI, payOtherBankAPI } from "../../../api/payment";
+import { payAzaUserAPI } from "../../../api/payment";
 import {
   CommonScreenProps,
   TransactionScreenProps,
@@ -30,7 +30,6 @@ import {
 import { STORAGE_KEY_TRANSACTION_PIN } from "@env";
 import useAppBiometricAuthentication from "../../../hooks/useAppBiometricAuthentication";
 import { AxiosError } from "axios";
-import { ITransferResponse } from "../../../types/types.redux";
 
 const useTransactionService = (
   {
@@ -58,7 +57,7 @@ const useTransactionService = (
   const [transDescription, setTransDescription] = useState(description);
   const [screenLoading, setScreenLoading] = useState(false);
 
-  const makeTransaction = async (transactionType: "INTRA" | "INTER") => {
+  const makeTransaction = async () => {
     // do some validation
     if (!bvnVerified) {
       navigation.navigate("BvnVerification", {
@@ -72,14 +71,14 @@ const useTransactionService = (
       //make transaction
       if (confirmationType === "send") {
         // setScreenLoading(true);
-        if (isTransactionPinSet) authenticateForTransaction(transactionType);
+        if (isTransactionPinSet) authenticateForTransaction();
         else navigation.navigate("TransactionPin", { type: "set" });
       } else {
         requestMoneyAPI({
           amount: amount,
           decription: transDescription ? transDescription : "",
           initiatorAccountNumber: "" + azaAccountNumber,
-          receipientAccountNumber: beneficiary.accountNumber,
+          receipientAccountNumber: beneficiary.azaAccountNumber,
           recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
         })
           .then(() => {
@@ -92,69 +91,38 @@ const useTransactionService = (
     }
   };
 
-  const sendMoney = (
-    transactionPin: string,
-    transactionType: "INTRA" | "INTER"
-  ) => {
+  const sendMoneyToAzaUser = (transactionPin: string) => {
     setScreenLoading(true);
-    if (transactionType === "INTRA") {
-      payAzaUserAPI({
-        sourceAccount: azaAccountNumber,
-        destinationAccount: beneficiary.accountNumber,
-        amount,
-        transactionPin: transactionPin,
-        description: transDescription ? transDescription : "Aza transaction",
-        currency: NAIRA_CCY_CODE,
-        destinationBankCode: PSB_BANK_CODE,
-        destinationAccountName: beneficiary.fullName,
+
+    payAzaUserAPI({
+      sourceAccount: azaAccountNumber,
+      destinationAccount: beneficiary.azaAccountNumber,
+      amount,
+      transactionPin: transactionPin,
+      description: transDescription ? transDescription : "Aza transaction",
+      currency: NAIRA_CCY_CODE,
+      destinationBankCode: PSB_BANK_CODE,
+      destinationAccountName: beneficiary.fullName,
+    })
+      .then((res) => {
+        console.log(res);
+        setScreenLoading(false);
+        navigateToNextScreen();
+        dispatch(getUserAccountDetails());
       })
-        .then((res) => {
-          console.log(res);
-          setScreenLoading(false);
-          navigateToNextScreen(res);
-          dispatch(getUserAccountDetails());
-        })
-        .catch((err) => {
-          setScreenLoading(false);
-          toastError("There was a problem completing transaction!");
-        });
-    } else {
-      setScreenLoading(true);
-      payOtherBankAPI({
-        amount,
-        currency: NAIRA_CCY_CODE,
-        description: transDescription ? transDescription : "Aza withdrawal",
-        destinationAccount: beneficiary.accountNumber,
-        destinationBankCode: beneficiary.bankCode,
-        destinationAccountName: beneficiary.fullName,
-        sourceAccount: azaAccountNumber,
-        transactionPin: transactionPin,
-      })
-        .then((res) => {
-          console.log(res);
-          setScreenLoading(false);
-          navigateToNextScreen(res);
-          dispatch(getUserAccountDetails());
-        })
-        .catch((err) => {
-          console.error(err);
-          setScreenLoading(false);
-          toastError(
-            `There was a problem completing transaction to ${beneficiary.accountNumber}!`
-          );
-        });
-    }
+      .catch((err) => {
+        setScreenLoading(false);
+        toastError("There was a problem completing transaction!");
+      });
   };
 
-  const authenticateForTransaction = async (
-    transactionType: "INTRA" | "INTER"
-  ) => {
+  const authenticateForTransaction = async () => {
     authenticateWithBiometrics(
       userPreferences && userPreferences?.confirmTransactionsWithFaceIDSwitch
     ).then((authenticated) => {
       if (authenticated) {
         getItemSecure(STORAGE_KEY_TRANSACTION_PIN).then((cachedPin) => {
-          if (cachedPin) sendMoney(cachedPin, transactionType);
+          if (cachedPin) sendMoneyToAzaUser(cachedPin);
           else navigation.push("TransactionPin", { type: "transaction" });
         });
       } else {
@@ -163,7 +131,7 @@ const useTransactionService = (
     });
   };
 
-  const navigateToNextScreen = (response?: ITransferResponse) => {
+  const navigateToNextScreen = () => {
     navigation.navigate("StatusScreen", {
       status:
         confirmationType === "request"
@@ -180,16 +148,10 @@ const useTransactionService = (
           ? "You can perform this transaction automatically by giving a Recurring Transfer order"
           : "",
       receiptDetails:
-        confirmationType === "send" && response
+        confirmationType === "send"
           ? {
               amount: String(amount),
               beneficiaryName: beneficiary.fullName,
-              description: response.description,
-              receivingBank: response.destBankName,
-              referenceId: response.transactionReference,
-              transactionDate: response.dateCreated.split("T")[0],
-              transactionFee: String(Number(response.amount - amount)),
-              transactionType: response.transactionType,
             }
           : undefined,
       recurringTransferBeneficiary:
@@ -205,7 +167,7 @@ const useTransactionService = (
     screenLoading,
     transDescription,
     setTransDescription,
-    sendMoneyToAzaUser: sendMoney,
+    sendMoneyToAzaUser,
   };
 };
 

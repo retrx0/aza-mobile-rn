@@ -337,12 +337,12 @@ const TermsOfUse = ({ navigation }: CommonScreenProps<"TermsOfUse">) => {
                 5. Third Party Affiliation
               </Text>
               {"\n"}
-              Aza is using 9PSB Microfinance Banks’ API for its account creation
+              Aza is using VFD Microfinance Banks’ API for its account creation
               and money transfer services. Aza does not directly hold user’s
-              funds, rather 9PSB MFB’s services are used to hold user’s funds
-              and initiate account creations. Therefore, Aza will not be liable
-              for any issues or problems related to the errors of 9PSB
-              Microfinance Bank’s API’s and services.{"\n"}
+              funds, rather VFD MFB’s services are used to hold user’s funds and
+              initiate account creations. Therefore, Aza will not be liable for
+              any issues or problems related to the errors of VFD Microfinance
+              Bank’s API’s and services.{"\n"}
               {"\n"}
               <Text
                 style={{

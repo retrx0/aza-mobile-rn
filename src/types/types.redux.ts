@@ -103,8 +103,6 @@ export interface IBankAccount {
   id: string;
   bankName: string;
   bankLogo?: string;
-  bankCode: string;
-  userId?: string;
   accountNumber: string;
   accountName: string;
 }
@@ -129,8 +127,7 @@ export interface IBeneficiary {
   firstName?: string;
   lastName?: string;
   pictureUrl?: string;
-  accountNumber: string;
-  bankCode: string;
+  azaAccountNumber: string;
   currency?: string;
   phone?: string;
   email?: string;
@@ -276,34 +273,6 @@ export interface I9PSBWallet {
   status: string | "Inactive";
   walletName: string;
   walletNumber: number;
-}
-
-export interface IAccountMetadataResponse {
-  dailyTransactionLimit: number;
-  depositAmountLimit: number;
-  incomingTransferLimit: number;
-  maximumWalletBalance: number;
-  numberOfIncomingTransfers: number;
-  numberOfPeopleTransactionReceived: number;
-}
-
-export interface ITransferResponse {
-  amount: number;
-  createdAt: string;
-  currency: string;
-  dateCreated: string;
-  description: string;
-  destBankCode: string;
-  destBankName: string | null;
-  destinationCreditAccount: string;
-  id: string;
-  name: string;
-  sourceAccount: string;
-  sourceBankCode: string | null;
-  sourceBankName: string | null;
-  transactionReference: string | null;
-  transactionType: string;
-  type: string | null;
 }
 
 export type PaymentCategory =

@@ -30,7 +30,6 @@ import {
 } from "../../../../redux/slice/userSlice";
 import { IBankAccount } from "../../../../types/types.redux";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
-import { setTransaction } from "../../../../redux/slice/transactionSlice";
 
 const BankAccountsScreen = ({
   navigation,
@@ -49,7 +48,6 @@ const BankAccountsScreen = ({
 
   useEffect(() => {
     if (!user.bankAccounts.loaded) dispatch(getUserSavedBankAccs());
-    console.log(user.bankAccounts.data);
   }, []);
 
   if (user.bankAccounts.data.length > 0 && screenType === "Withdraw") {
@@ -71,27 +69,21 @@ const BankAccountsScreen = ({
             <Divider />
             {user.bankAccounts.data.map((_account, i) => (
               <View key={i}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setSelectedAccount(_account);
-                  }}
-                >
+                <TouchableOpacity onPress={() => setSelectedAccount(_account)}>
                   <View
                     style={[
                       CommonStyles.row,
                       { alignSelf: "stretch", paddingVertical: 15 },
                     ]}
                   >
-                    {_account.bankLogo && (
-                      <Image
-                        source={{ uri: _account.bankLogo }}
-                        style={{
-                          width: 36,
-                          height: 36,
-                          borderRadius: 50,
-                        }}
-                      />
-                    )}
+                    <Image
+                      source={{ uri: _account.bankLogo }}
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 50,
+                      }}
+                    />
 
                     <Text
                       style={{
@@ -102,7 +94,7 @@ const BankAccountsScreen = ({
                     >
                       {`${
                         _account.bankName
-                      } (${_account.accountNumber.substring(0, 4)}.....)`}
+                      } (${_account.accountNumber.substring(0, 3)}.....)`}
                     </Text>
                     <View
                       style={{
@@ -144,6 +136,7 @@ const BankAccountsScreen = ({
                   screenType,
                 })
               }
+              color={appTheme === "dark" ? "#E7E9EA" : "#000000"}
               style={[
                 {
                   marginBottom: 15,
@@ -152,41 +145,24 @@ const BankAccountsScreen = ({
                 },
               ]}
             />
-            {selectedAccount && (
-              <Button
-                disabled={!selectedAccount}
-                title="Continue"
-                onPressButton={() => {
-                  dispatch(
-                    setTransaction({
-                      amount: 0,
-                      beneficiary: {
-                        fullName: selectedAccount.accountName,
-                        accountNumber: selectedAccount.accountNumber,
-                        bankCode: selectedAccount.bankCode,
-                      },
-                      transferType: "withdraw",
-                      description: "",
-                    })
-                  );
-                  navigation.navigate("TransactionKeypad", {
-                    headerTitle: "Amount",
-                    transactionType: {
-                      transaction: "withdraw",
-                      type: "normal",
-                      beneficiary: {
-                        accountNumber: selectedAccount.accountNumber,
-                        beneficiaryName: selectedAccount.accountName,
-                        pictureUrl: user.pictureUrl,
-                        fullName: selectedAccount.accountName,
-                        bankCode: selectedAccount.bankCode,
-                      },
+            <Button
+              disabled={!selectedAccount}
+              title="Continue"
+              onPressButton={() =>
+                navigation.navigate("TransactionKeypad", {
+                  headerTitle: "Amount",
+                  transactionType: {
+                    transaction: "withdraw",
+                    type: "normal",
+                    beneficiary: {
+                      azaAccountNumber: selectedAccount?.accountNumber!,
+                      pictureUrl: user.pictureUrl,
+                      fullName: user.fullName,
                     },
-                  });
-                }}
-              />
-            )}
-
+                  },
+                })
+              }
+            />
             <CancelButtonWithUnderline
               title="Cancel"
               onPressButton={() => navigation.goBack()}
@@ -232,7 +208,6 @@ const BankAccountsScreen = ({
                           id,
                           bankName,
                           bankLogo,
-                          bankCode: "",
                         })
                       }
                     >

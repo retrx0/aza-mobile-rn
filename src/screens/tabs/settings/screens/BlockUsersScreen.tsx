@@ -29,7 +29,7 @@ const BlockUsersScreen = ({
 
   const [selectedBlcokedUser, setSelectedBlcokedUser] = useState<IBeneficiary>({
     fullName: "",
-    accountNumber: "",
+    azaAccountNumber: "",
   });
 
   const { azaContacts } = useAppSelector(selectUser);
