@@ -35,7 +35,8 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
               "   You have successfully changed your Aza account name",
             navigateTo: "Home",
           });
-        }}>
+        }}
+      >
         {({
           handleChange,
           handleBlur,

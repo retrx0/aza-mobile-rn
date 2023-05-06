@@ -28,7 +28,8 @@ const BvnVerificationFailed = ({
             justifyContent: "space-between",
             paddingHorizontal: hp(20),
             marginBottom: hp(64),
-          }}>
+          }}
+        >
           <View>
             <BackButton onPress={() => navigation.goBack()} />
           </View>
@@ -38,7 +39,8 @@ const BvnVerificationFailed = ({
               fontSize: hp(16),
               fontWeight: "600",
               marginRight: hp(85),
-            }}>
+            }}
+          >
             Couldn’t Verify BVN?
           </Text>
         </View>
@@ -52,7 +54,8 @@ const BvnVerificationFailed = ({
             fontWeight: "600",
             alignSelf: "center",
             marginBottom: hp(20),
-          }}>
+          }}
+        >
           Why can’t i verify my BVN?
         </Text>
         <Text
@@ -63,7 +66,8 @@ const BvnVerificationFailed = ({
             maxWidth: 335,
             textAlign: "center",
             alignSelf: "center",
-          }}>
+          }}
+        >
           A possible reason for that could be due to a name mismatch. Ensure
           that the first and last name provided during sign up matches the name
           format on your other bank accounts..{"\n"}
@@ -74,7 +78,8 @@ const BvnVerificationFailed = ({
               fontFamily: "Euclid-Circular-A-Bold",
               fontSize: hp(16),
               fontWeight: "400",
-            }}>
+            }}
+          >
             {" "}
             ‘Edit Name’
           </Text>{" "}
@@ -84,12 +89,11 @@ const BvnVerificationFailed = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Edit Name"
-            onPressButton={() =>
-              navigation.getParent()?.navigate("BvnEditName")
-            }
+            onPressButton={() => navigation.navigate("BvnEditName")}
             styleText={{}}
             style={[{}]}
           />

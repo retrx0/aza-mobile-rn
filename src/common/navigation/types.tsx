@@ -65,8 +65,8 @@ export type CommonStackParamList = {
 
   //bvn
   BvnVerification: BvnScreenParamsType;
-  BvnVerificationFailed: BvnScreenParamsType;
-  BvnEditName: BvnScreenParamsType;
+  BvnVerificationFailed: undefined;
+  BvnEditName: undefined;
 
   // Status
   StatusScreen: StatusScreenParamsType;

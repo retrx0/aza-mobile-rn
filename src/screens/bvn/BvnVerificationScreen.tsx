@@ -79,7 +79,8 @@ const BvnVerificationScreen = ({
               fontSize: hp(16),
               marginVertical: hp(30),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Verify your BVN
           </Text>
           <View>
@@ -88,7 +89,8 @@ const BvnVerificationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               Date of Birth
             </Text>
 
@@ -108,7 +110,8 @@ const BvnVerificationScreen = ({
                 fontFamily: "Euclid-Circular-A",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               BVN
             </Text>
             <TextInput
@@ -136,7 +139,8 @@ const BvnVerificationScreen = ({
           style={[
             CommonStyles.passwordContainer,
             { bottom: insets.top || hp(45) },
-          ]}>
+          ]}
+        >
           <Button
             title="Verify"
             onPressButton={verifyBvn}
@@ -151,9 +155,7 @@ const BvnVerificationScreen = ({
             title="Couldn’t verify BVN?"
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
-            onPressButton={() =>
-              navigation.getParent()?.navigate("BvnVerificationFailed")
-            }
+            onPressButton={() => navigation.navigate("BvnVerificationFailed")}
           />
         </View>
       </View>
