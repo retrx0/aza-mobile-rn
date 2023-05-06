@@ -59,7 +59,9 @@ export async function apiCourier<T, R>(
       return result.headers["access-token"] as R;
     return result.data;
   } catch (e) {
+    console.debug(e);
     let error = e as AxiosError;
+    console.debug(error);
     throw new AxiosError(
       "Api Courier: Request failed: " + error.response?.config.url,
       error.code,

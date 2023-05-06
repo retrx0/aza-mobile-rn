@@ -20,6 +20,7 @@ import {
 } from "../../../redux/slice/transactionSlice";
 import {
   getUserAccountDetails,
+  getUserTransactions,
   selectUser,
 } from "../../../redux/slice/userSlice";
 import { selectAppPreference } from "../../../redux/slice/preferenceSlice";
@@ -131,10 +132,11 @@ const useTransactionService = (
         transactionPin: transactionPin,
       })
         .then((res) => {
-          console.log(res);
+          console.debug(res);
           setScreenLoading(false);
-          navigateToNextScreen(res);
           dispatch(getUserAccountDetails());
+          dispatch(getUserTransactions({ accountNumber: azaAccountNumber }));
+          navigateToNextScreen(res);
         })
         .catch((err) => {
           console.error(err);
@@ -187,7 +189,7 @@ const useTransactionService = (
               description: response.description,
               receivingBank: response.destBankName,
               referenceId: response.transactionReference,
-              transactionDate: response.dateCreated.split("T")[0],
+              transactionDate: response.dateCreated,
               transactionFee: String(Number(response.amount - amount)),
               transactionType: response.transactionType,
             }

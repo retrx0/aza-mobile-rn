@@ -194,6 +194,22 @@ export const updateUserNotificationToken = async (newPushToken: string) => {
   );
 };
 
-const deleteUser = async () => {};
+export const editNameAPI = async ({
+  firstName,
+  lastName,
+}: {
+  firstName: string;
+  lastName: string;
+}) => {
+  return await apiCourier<
+    {
+      firstName: string;
+      lastName: string;
+    },
+    unknown
+  >("patch", "/api/v1/user/edit-name", { firstName, lastName }, "jwt");
+};
+
+const deleteUserAPI = async () => {};
 
 const getUserAccountStatus = async (email: string) => {};

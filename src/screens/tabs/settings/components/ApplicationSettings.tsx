@@ -65,27 +65,27 @@ export default function ApplicationSettings({
       handleNavigation: () =>
         navigation.navigate("Common", { screen: "FaceId" }),
     },
-    {
-      icon: <HeartSlashIcon size={36} color={Colors[appTheme].mainText} />,
-      name: "Close Aza account",
-      detail: "You can close your Aza account",
-      disabled: false,
-      disabledIcon: (
-        <HeartSlashIcon size={36} color={Colors[appTheme].disabled} />
-      ),
-      handleNavigation: () =>
-        navigation.navigate("Common", {
-          screen: "StatusScreen",
-          params: {
-            status: "Do you want to close your Aza account?",
-            statusIcon: "Warning",
-            statusMessage:
-              "Are you sure you want to go back to a life without Aza?",
-            cancelButton: true,
-            navigateTo: "CloseAccountScreen",
-          },
-        }),
-    },
+    // {
+    //   icon: <HeartSlashIcon size={36} color={Colors[appTheme].mainText} />,
+    //   name: "Close Aza account",
+    //   detail: "You can close your Aza account",
+    //   disabled: false,
+    //   disabledIcon: (
+    //     <HeartSlashIcon size={36} color={Colors[appTheme].disabled} />
+    //   ),
+    //   handleNavigation: () =>
+    //     navigation.navigate("Common", {
+    //       screen: "StatusScreen",
+    //       params: {
+    //         status: "Do you want to close your Aza account?",
+    //         statusIcon: "Warning",
+    //         statusMessage:
+    //           "Are you sure you want to go back to a life without Aza?",
+    //         cancelButton: true,
+    //         navigateTo: "CloseAccountScreen",
+    //       },
+    //     }),
+    // },
   ];
 
   return (

@@ -85,17 +85,40 @@ const ContactsScene = ({
   }: {
     receipientBank: IBank;
   }) => {
+    console.log(receipientAccountNumber);
     if (receipientBank.bankCode === PSB_BANK_CODE) {
-      azaContactOnPress({
-        accountNumber: receipientAccountNumber,
-        bankCode: receipientBank.bankCode,
-        fullName: receipientAccountName,
+      navigation.navigate("Common", {
+        screen: "TransactionKeypad",
+        params: {
+          headerTitle: "Send to Aza Number",
+          transactionType: {
+            transaction: "send",
+            type: "normal",
+            beneficiary: {
+              accountNumber: receipientAccountNumber,
+              bankCode: receipientBank.bankCode,
+              fullName: receipientAccountName,
+            },
+            openDescriptionModal: false,
+          },
+        },
       });
     } else {
-      nonAzaContactOnPress({
-        accountNumber: receipientAccountNumber,
-        bankCode: receipientBank.bankCode,
-        fullName: receipientAccountName,
+      navigation.navigate("Common", {
+        screen: "TransactionKeypad",
+        params: {
+          headerTitle: "Send to Bank Account",
+          transactionType: {
+            transaction: "withdraw",
+            type: "normal",
+            beneficiary: {
+              accountNumber: receipientAccountNumber,
+              bankCode: receipientBank.bankCode,
+              fullName: receipientAccountName,
+            },
+            openDescriptionModal: false,
+          },
+        },
       });
     }
   };
@@ -342,12 +365,15 @@ const ContactsScene = ({
               keyboardType="number-pad"
               returnKeyType="done"
               onChangeText={(txt) => {
+                setReceipientAccountNumber(txt);
+
                 if (txt.length === 10) {
+                  console.log(txt);
                   if (selectedBank) {
                     setScreenLoading(true);
                     verifyBankAccountAPI(
                       selectedBank.bankCode,
-                      receipientAccountNumber,
+                      txt,
                       user.azaAccountNumber
                     )
                       .then((res) => {
@@ -361,7 +387,6 @@ const ContactsScene = ({
                       });
                   }
                 }
-                setReceipientAccountNumber(txt);
               }}
               value={receipientAccountNumber}
               editable={selectedBank !== undefined}

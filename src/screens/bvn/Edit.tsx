@@ -11,6 +11,8 @@ import Button from "../../components/buttons/Button";
 import { hp } from "../../common/util/LayoutUtil";
 import * as yup from "yup";
 import { StyleSheet } from "react-native";
+import { editNameAPI } from "../../api/user";
+import { toastError } from "../../common/util/ToastUtil";
 
 const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
@@ -28,13 +30,22 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
           lastname: "",
         }}
         onSubmit={(values) => {
-          navigation.navigate("StatusScreen", {
-            status: "Successful",
-            statusIcon: "Success",
-            statusMessage:
-              "   You have successfully changed your Aza account name",
-            navigateTo: "Home",
-          });
+          editNameAPI({
+            firstName: values.firstname,
+            lastName: values.lastname,
+          })
+            .then((_) => {
+              navigation.navigate("StatusScreen", {
+                status: "Successful",
+                statusIcon: "Success",
+                statusMessage:
+                  "You have successfully changed your Aza account name",
+                navigateTo: "Home",
+              });
+            })
+            .catch((e) => {
+              toastError("Something went wrong!");
+            });
         }}
       >
         {({

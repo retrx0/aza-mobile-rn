@@ -61,8 +61,6 @@ const StatusScreen = ({
     };
   });
 
-  //TODO fix sound to only play on transcations
-
   useEffect(() => {
     switch (statusIcon) {
       case "Success":
