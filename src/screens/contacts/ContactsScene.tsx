@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { SectionList, TouchableOpacity } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  SectionList,
+  TouchableOpacity,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Button from "../../components/buttons/Button";
@@ -18,11 +24,20 @@ import { useAppSelector } from "../../redux";
 import { selectUser } from "../../redux/slice/userSlice";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { IBeneficiary } from "../../types/types.redux";
+import { IBank, IBeneficiary } from "../../types/types.redux";
 import { NAIRA_CCY_CODE, PSB_BANK_CODE } from "../../constants/AppConstants";
 import { verifyBankAccountAPI } from "../../api/account";
 import { toastError } from "../../common/util/ToastUtil";
 import { selectAppPreference } from "../../redux/slice/preferenceSlice";
+import { UnderlinedInput } from "../../components/input/UnderlinedInput";
+import Colors from "../../constants/Colors";
+import Divider from "../../components/divider/Divider";
+import useNavigationHeader from "../../hooks/useNavigationHeader";
+import { useNavigation } from "@react-navigation/native";
+import BankSearchResultView from "../bvn/BankSearchResultView";
+import { selectBank } from "../../redux/slice/bankSlice";
+import SpacerWrapper from "../../common/util/SpacerWrapper";
+import ActivityModal from "../../components/modal/ActivityModal";
 
 const ContactsScene = ({
   route,
@@ -38,43 +53,22 @@ const ContactsScene = ({
   const [userQuickContacts, setUserQuickContacts] = useState<IBeneficiary[]>(
     []
   );
+  const navigation = useNavigation();
+
   const [userAzaContacts, setUserAzaContacts] = useState<IBeneficiary[]>([]);
   const [searchContact, setSearchContact] = useState("");
-  const [receipientAzaNumber, setReceipientAzaNumber] = useState("");
+  const [receipientAccountNumber, setReceipientAccountNumber] = useState("");
   const insets = useSafeAreaInsets();
-
   const [buttonLoading, setButtonLoading] = useState(false);
-
+  const [screenLoading, setScreenLoading] = useState(false);
   const user = useAppSelector(selectUser);
-  const { contactVisibilitySwitch } = useAppSelector(selectAppPreference);
 
-  const sentToAzaNumber = (
-    azaNumber: string,
-    azaContactOnPress: (beneficiary: IBeneficiary) => void
-  ) => {
-    setButtonLoading(true);
-    //do some check with aza number
-    verifyBankAccountAPI(PSB_BANK_CODE, azaNumber, azaNumber)
-      .then((response) => {
-        if (response) {
-          azaContactOnPress({
-            accountNumber: azaNumber,
-            fullName: response.data.name,
-            beneficiaryName: response.data.name,
-            currency: NAIRA_CCY_CODE,
-            email: "",
-            firstName: "",
-            lastName: "",
-          });
-        }
-        setButtonLoading(false);
-      })
-      .catch((e) => {
-        console.debug(e);
-        toastError("Aza account not found!");
-        setButtonLoading(false);
-      });
-  };
+  const { contactVisibilitySwitch } = useAppSelector(selectAppPreference);
+  const [searchBanksModalVisisble, setSearchBanksModalVisisble] =
+    useState(false);
+  const [selectedBank, setSelectedBank] = useState<IBank>();
+  const [receipientAccountName, setReceipientAccountName] = useState("");
+  const [accountVerified, setAccountVerified] = useState(false);
 
   useEffect(() => {
     getUserContacts().then((_contacts) => {
@@ -85,6 +79,26 @@ const ContactsScene = ({
       }
     });
   }, []);
+
+  const handleSendToAccountNumber = ({
+    receipientBank,
+  }: {
+    receipientBank: IBank;
+  }) => {
+    if (receipientBank.bankCode === PSB_BANK_CODE) {
+      azaContactOnPress({
+        accountNumber: receipientAccountNumber,
+        bankCode: receipientBank.bankCode,
+        fullName: receipientAccountName,
+      });
+    } else {
+      nonAzaContactOnPress({
+        accountNumber: receipientAccountNumber,
+        bankCode: receipientBank.bankCode,
+        fullName: receipientAccountName,
+      });
+    }
+  };
 
   if (route.key == "first") {
     return (
@@ -240,20 +254,241 @@ const ContactsScene = ({
     );
   } else if (route.key === "second") {
     return (
-      <View style={[CommonStyles.vaultcontainer]}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={CommonStyles.vaultcontainer}
+      >
         <View style={{ paddingHorizontal: hp(20) }}>
-          <Text
+          {/* <View style={{ marginTop: 35 }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A-Bold",
+                fontSize: hp(16),
+                fontWeight: "400",
+              }}>
+              Saved Beneficiaries
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors.light.secondaryText}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A",
+                paddingBottom: 5,
+                marginTop: hp(10),
+                borderBottomWidth: 1,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="Choose from already saved accounts"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              // value="Choose from already saved accounts"
+            />
+          </View> */}
+
+          <View style={{ marginTop: hp(35) }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A-Medium",
+                fontSize: hp(14),
+                fontWeight: "400",
+              }}
+            >
+              Bank
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                setSearchBanksModalVisisble((t) => !t);
+              }}
+            >
+              <Text
+                style={{
+                  marginBottom: 5,
+                  marginTop: 10,
+                  fontFamily: "Euclid-Circular-A-Semi-Bold",
+                  fontSize: hp(16),
+                }}
+              >
+                {selectedBank ? selectedBank.bankName : "Choose bank"}
+              </Text>
+            </TouchableOpacity>
+            <Divider />
+          </View>
+          <View style={{ marginTop: 35 }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
+                fontWeight: "400",
+              }}
+            >
+              Account Number
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors.general.black}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A-Medium",
+
+                paddingBottom: 5,
+                marginTop: hp(10),
+                borderBottomWidth: 1,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="Account Number"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              onChangeText={(txt) => {
+                if (txt.length === 10) {
+                  if (selectedBank) {
+                    setScreenLoading(true);
+                    verifyBankAccountAPI(
+                      selectedBank.bankCode,
+                      receipientAccountNumber,
+                      user.azaAccountNumber
+                    )
+                      .then((res) => {
+                        setReceipientAccountName(res.data.name);
+                        setAccountVerified(true);
+                        setScreenLoading(false);
+                      })
+                      .catch((e) => {
+                        setAccountVerified(false);
+                        setScreenLoading(false);
+                      });
+                  }
+                }
+                setReceipientAccountNumber(txt);
+              }}
+              value={receipientAccountNumber}
+              editable={selectedBank !== undefined}
+            />
+          </View>
+          <View style={{ marginTop: 35 }}>
+            <Text
+              style={{
+                fontFamily: "Euclid-Circular-A",
+                fontSize: hp(16),
+                fontWeight: "400",
+              }}
+            >
+              Account Name
+            </Text>
+            <TextInput
+              placeholderTextColor={Colors.general.black}
+              style={{
+                backgroundColor: "transparent",
+                fontFamily: "Euclid-Circular-A-Medium",
+
+                paddingBottom: 5,
+                marginTop: hp(10),
+                borderBottomWidth: 1,
+                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
+                fontSize: hp(16),
+                fontWeight: "500",
+              }}
+              placeholder="Account Name"
+              keyboardType="number-pad"
+              returnKeyType="done"
+              editable={false}
+              value={receipientAccountName}
+            />
+          </View>
+        </View>
+        <View style={{ marginTop: 100 }}>
+          <Button
+            title="Continue"
+            onPressButton={() => {
+              if (selectedBank) {
+                handleSendToAccountNumber({ receipientBank: selectedBank });
+              }
+              // sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
+            }}
+            disabled={
+              receipientAccountNumber.length < 10 ||
+              !selectedBank ||
+              !accountVerified
+            }
+            styleText={{}}
+            style={[]}
+            buttonLoading={buttonLoading}
+          />
+        </View>
+        <Modal
+          visible={searchBanksModalVisisble}
+          style={{
+            justifyContent: "flex-end",
+            marginTop: 50,
+          }}
+          animationType="slide"
+          presentationStyle="pageSheet"
+        >
+          <View style={{ height: "100%", marginTop: 50 }}>
+            <BankSearchResultView
+              onPress={(bank) => {
+                setSelectedBank(bank);
+                setSearchBanksModalVisisble((f) => !f);
+              }}
+            />
+          </View>
+        </Modal>
+        <ActivityModal loading={screenLoading} />
+      </KeyboardAvoidingView>
+    );
+  } else {
+    return <></>;
+  }
+};
+
+export default ContactsScene;
+
+// const { screenType } = route.params;
+
+// const sentToAzaNumber = (
+//   azaNumber: string,
+//   azaContactOnPress: (beneficiary: IBeneficiary) => void
+// ) => {
+//   setButtonLoading(true);
+//   //do some check with aza number
+//   verifyBankAccountAPI(PSB_BANK_CODE, azaNumber, azaNumber)
+//     .then((response) => {
+//       if (response) {
+//         azaContactOnPress({
+//           accountNumber: azaNumber,
+//           fullName: response.data.name,
+//           beneficiaryName: response.data.name,
+//           currency: NAIRA_CCY_CODE,
+//           email: "",
+//           firstName: "",
+//           lastName: "",
+//         });
+//       }
+//       setButtonLoading(false);
+//     })
+//     .catch((e) => {
+//       console.debug(e);
+//       toastError("Aza account not found!");
+//       setButtonLoading(false);
+//     });
+// };
+
+{
+  /* <Text
             style={{
               fontSize: hp(14),
               fontWeight: "500",
               marginLeft: hp(5),
               marginTop: hp(30),
               marginBottom: hp(24),
-            }}
-          >
+            }}>
             Recents
-          </Text>
-          <View>
+          </Text> */
+}
+{
+  /* <View>
             <View style={{ flexDirection: "row", marginBottom: hp(37) }}>
               {user.azaContacts.data.map((_contct, i) => (
                 <QuickContactView
@@ -268,43 +503,5 @@ const ContactsScene = ({
                 />
               ))}
             </View>
-          </View>
-          <TextInput
-            keyboardType={"number-pad"}
-            returnKeyType={"done"}
-            returnKeyLabel={"done"}
-            value={receipientAzaNumber}
-            onChangeText={(number) => setReceipientAzaNumber(number)}
-            style={{
-              backgroundColor: "transparent",
-              fontFamily: "Euclid-Circular-A",
-              paddingBottom: 10,
-              marginTop: hp(15),
-              borderBottomWidth: 1,
-              fontSize: hp(16),
-              marginLeft: hp(5),
-              borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-            }}
-            placeholder="Aza Number"
-          />
-        </View>
-        <View style={{ marginTop: 10 }}>
-          <Button
-            title="Continue"
-            onPressButton={() => {
-              sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
-            }}
-            disabled={receipientAzaNumber.length < 10}
-            styleText={{}}
-            style={[]}
-            buttonLoading={buttonLoading}
-          />
-        </View>
-      </View>
-    );
-  } else {
-    return <></>;
-  }
-};
-
-export default ContactsScene;
+          </View> */
+}

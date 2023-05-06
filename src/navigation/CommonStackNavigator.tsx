@@ -167,6 +167,9 @@ import WithdrawDepositTabs from "../screens/tabs/home/withdraw-deposit/WithdrawD
 import CharityDetailsScreen from "../screens/tabs/payments/charity-screens/CharityDetail";
 import AirtimeDataRecurring from "../screens/tabs/payments/paymentRecurring/AirtimeRecurring/AirtimeRecurringIndex";
 import TransactionPinOptionsScreen from "../screens/tabs/settings/screens/TransactionPinOptionsScreen";
+import SearchBankScreen from "../screens/contacts/SearchBank";
+import BvnVerificationFailed from "../screens/bvn/BvnVerificationFailed";
+import BvnEditName from "../screens/bvn/EditName";
 
 const Stack = createNativeStackNavigator<CommonStackParamList>();
 const Tab = createMaterialTopTabNavigator<CommonStackParamList>();
@@ -230,6 +233,16 @@ const CommonStack = () => {
           component={BvnVerificationScreen}
           name="BvnVerification"
         />
+        <Stack.Screen
+          component={BvnVerificationFailed}
+          name="BvnVerificationFailed"
+          options={() => ({ headerShown: false })}
+        />
+        <Stack.Screen
+          component={BvnEditName}
+          name="BvnEditName"
+          options={() => ({ headerShown: false })}
+        />
       </Stack.Group>
 
       {/* status screen */}
@@ -266,6 +279,7 @@ const CommonStack = () => {
       <Stack.Group>
         <Stack.Screen name="CurrentPassword" component={ChangePasswordScreen} />
         <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+
         <Stack.Screen
           name="ChangePhoneNumber"
           component={ChangePhoneNumberScreen}
@@ -845,6 +859,8 @@ const CommonStack = () => {
         />
         <Stack.Screen name="BankAccounts" component={BankAccountsScreen} />
         <Stack.Screen name="SelectBank" component={SelectBankScreen} />
+        <Stack.Screen name="SearchBank" component={SearchBankScreen} />
+
         <Stack.Screen name="AddBankAccount" component={AddBankAccountScreen} />
         <Stack.Screen
           name="AddBankAccountConfirmation"

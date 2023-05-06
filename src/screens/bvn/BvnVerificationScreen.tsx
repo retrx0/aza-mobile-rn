@@ -152,10 +152,10 @@ const BvnVerificationScreen = ({
             buttonLoading={isButtonLoading}
           />
           <CancelButtonWithUnderline
-            title="Cancel"
+            title="Couldn’t verify BVN?"
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
-            onPressButton={() => navigation.goBack()}
+            onPressButton={() => navigation.navigate("BvnVerificationFailed")}
           />
         </View>
       </View>

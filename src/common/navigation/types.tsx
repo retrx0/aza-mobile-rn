@@ -65,6 +65,8 @@ export type CommonStackParamList = {
 
   //bvn
   BvnVerification: BvnScreenParamsType;
+  BvnVerificationFailed: undefined;
+  BvnEditName: undefined;
 
   // Status
   StatusScreen: StatusScreenParamsType;
@@ -86,7 +88,6 @@ export type CommonStackParamList = {
   Charity: { recurringTransaction?: boolean };
   CharityDetailsScreen: IXCharity;
   ElectricityConfirmation: undefined;
-
   PaymentConfirmation: IPaymentConfirmation;
   GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
@@ -175,6 +176,7 @@ export type CommonStackParamList = {
   AddNewCard: { navigateBackTo: string };
   ScanCard: undefined;
   TermsOfUse: undefined;
+  SearchBank: BankAccountsParamsType;
 
   // Home Menu
   Split: undefined;
