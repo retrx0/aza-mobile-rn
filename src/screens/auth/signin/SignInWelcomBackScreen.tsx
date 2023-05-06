@@ -58,7 +58,7 @@ const SignInWelcomeBackScreen = ({
   return (
     <SpacerWrapper>
       <HideKeyboardOnTouch>
-        <View>
+        <View style={{ flex: 1 }}>
           <View
             style={[
               CommonStyles.row,
@@ -160,10 +160,11 @@ const SignInWelcomeBackScreen = ({
             style={[
               {
                 alignSelf: "center",
-                top:
+                position: "absolute",
+                bottom:
                   route.params.cachedUser && biometricEnrolled
-                    ? hp(300)
-                    : hp(50),
+                    ? hp(50)
+                    : hp(480),
               },
             ]}
           >
