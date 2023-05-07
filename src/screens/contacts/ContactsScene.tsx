@@ -349,11 +349,10 @@ const ContactsScene = ({
               Account Number
             </Text>
             <TextInput
-              placeholderTextColor={Colors.general.black}
+              placeholderTextColor={Colors[appTheme].text}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
-
                 paddingBottom: 5,
                 marginTop: hp(10),
                 borderBottomWidth: 1,
@@ -403,7 +402,7 @@ const ContactsScene = ({
               Account Name
             </Text>
             <TextInput
-              placeholderTextColor={Colors.general.black}
+              placeholderTextColor={Colors[appTheme].text}
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
@@ -446,12 +445,14 @@ const ContactsScene = ({
           visible={searchBanksModalVisisble}
           style={{
             justifyContent: "flex-end",
+            flex: 1,
             marginTop: 50,
           }}
           animationType="slide"
           presentationStyle="pageSheet"
+          collapsable
         >
-          <View style={{ height: "100%", marginTop: 50 }}>
+          <View style={{ height: "100%", paddingTop: 50 }}>
             <BankSearchResultView
               onPress={(bank) => {
                 setSelectedBank(bank);

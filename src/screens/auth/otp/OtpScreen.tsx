@@ -37,7 +37,7 @@ const OtpScreen = (props: OtpProp) => {
     resetTimer,
     toTwoDigits,
     timerStatus,
-  } = useCountdownTimer(90);
+  } = useCountdownTimer(150);
 
   const resendCode = () => {
     onResend();

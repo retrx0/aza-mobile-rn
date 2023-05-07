@@ -94,7 +94,7 @@ const SignInWelcomeBackScreen = ({
             <SegmentedInput
               value={passcode}
               onValueChanged={(code) => {
-                setPasscode(code);
+                if (code.length < 7) setPasscode(code);
                 if (code.length > 5 && code.length === 6 && code.length < 7)
                   setTimeout(
                     () =>
