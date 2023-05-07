@@ -6,6 +6,7 @@ import { hp, wp } from "../../../common/util/LayoutUtil";
 import { View, Text } from "../../../theme/Themed";
 
 import Divider from "../../../components/divider/Divider";
+import { NAIRA_UNICODE } from "../../../constants/AppConstants";
 
 const TransactionFeesTab = () => {
   const transactionFees = [
@@ -28,7 +29,7 @@ const TransactionFeesTab = () => {
     {
       transaction: "Withdraw money to own bank",
       detail: "Withdraw money from Aza to your own bank with no fees",
-      charge: "Free",
+      charge: "0.1%",
     },
     {
       transaction: "Deposits via debit/credit cards",
@@ -36,7 +37,8 @@ const TransactionFeesTab = () => {
     },
     {
       transaction: "Money transfer to other banks",
-      charge: "0.1%",
+      charge: "~0.1%",
+      detail: `${NAIRA_UNICODE}10 for transactions between ${NAIRA_UNICODE}100 - ${NAIRA_UNICODE}9,999, 0.1% for transactions ${NAIRA_UNICODE}10,000 and above, capped at ${NAIRA_UNICODE}50`,
     },
   ];
 

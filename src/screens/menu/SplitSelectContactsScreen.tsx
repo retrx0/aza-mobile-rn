@@ -101,7 +101,7 @@ const SplitSelectContactsScreen = ({
             name={name}
             splitImage={splitImage}
             requestor={{
-              azaAccountNumber: "" + user.azaAccountNumber,
+              accountNumber: "" + user.azaAccountNumber,
               fullName: user.fullName,
             }}
             requestees={[]}

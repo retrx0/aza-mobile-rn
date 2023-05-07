@@ -1,10 +1,5 @@
-import * as SecureStore from "expo-secure-store";
-import { AxiosError } from "axios";
+import * as Device from "expo-device";
 
-import api from "..";
-
-import { STORAGE_KEY_JWT_TOKEN } from "@env";
-import { toastError } from "../../common/util/ToastUtil";
 import apiCourier from "../courier";
 
 export const checkAuthEndpointHealthAPI = async () => {
@@ -16,22 +11,18 @@ export const loginUserAPI = async (data: {
   phoneNumber: string;
   password: string;
 }) => {
-  return await apiCourier<typeof data, string>(
+  return await apiCourier<any, string>(
     "post",
     "/api/v1/auth/login",
-    data,
+    {
+      ...data,
+      deviceUUID: Device.modelId,
+      deviceName: Device.deviceName,
+      deviceModel: Device.modelName,
+    },
     "none",
     true
   );
-  try {
-    const response = await api.post("/api/v1/auth/login", data);
-    if (response.status === 200) {
-      return response.headers["access-token"];
-    }
-    return undefined;
-  } catch (e) {
-    console.debug(e as AxiosError);
-  }
 };
 
 export const requestOtpApi = async (data: {
@@ -39,14 +30,6 @@ export const requestOtpApi = async (data: {
   phoneNumber: string;
 }) => {
   return await apiCourier("post", "/api/v1/auth/request-otp", data, "none");
-  try {
-    const result = await api.post("/api/v1/auth/request-otp", data);
-    if (result.status === 204) return result.status;
-    return undefined;
-  } catch (e) {
-    console.error("Error Requesting OTP: ", (e as AxiosError).toJSON());
-    toastError("We encountered an error, please try again!");
-  }
 };
 
 export const verifyOtpApi = async (
@@ -64,14 +47,6 @@ export const verifyOtpApi = async (
     "none",
     true
   );
-
-  try {
-    const result = await api.post("/api/v1/auth/verify-otp", data);
-    if (result.status === 204) return result.headers["access-token"];
-    return undefined;
-  } catch (e) {
-    console.debug("Error Requesting OTP: ", e as AxiosError);
-  }
 };
 
 export const cancelToken = async () => {
@@ -79,6 +54,31 @@ export const cancelToken = async () => {
     "post",
     `/api/v1/auth/cancel-token`,
     undefined,
+    "jwt"
+  );
+};
+
+export const addNewDeviceAPI = async (
+  password: string,
+  type: "add" | "update"
+) => {
+  return await apiCourier<
+    {
+      deviceUUID: string;
+      deviceName: string | null;
+      deviceModel: string | null;
+      password: string;
+    },
+    unknown
+  >(
+    type === "add" ? "put" : "post",
+    "/api/v1/auth/device",
+    {
+      deviceUUID: Device.modelId,
+      deviceName: Device.deviceName,
+      deviceModel: Device.modelName,
+      password: password,
+    },
     "jwt"
   );
 };

@@ -40,7 +40,7 @@ const CommonRequestDetailScreen = ({
         name={vendorName}
         splitImage={vendorLogo}
         requestees={[]}
-        requestor={{ azaAccountNumber: "", fullName: "" }}
+        requestor={{ accountNumber: "", fullName: "" }}
       />
       <Divider />
       <View

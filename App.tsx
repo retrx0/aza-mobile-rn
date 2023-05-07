@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -13,7 +13,6 @@ import { Provider } from "react-redux";
 import { Store } from "./src/redux/Store";
 import { toastConfig } from "./src/components/notification/toast";
 import * as Device from "expo-device";
-import { useEffect, useState } from "react";
 import NetInfo from "@react-native-community/netinfo";
 import { toastError, toastInfo } from "./src/common/util/ToastUtil";
 import { ENV, SENTRY_DSN } from "@env";
@@ -24,6 +23,16 @@ const App = () => {
   const colorScheme = useColorScheme();
 
   const [isDeviceRooted, setisDeviceRooted] = useState(false);
+
+  const colorSchemeReversion = colorScheme === "dark" ? "light" : "dark";
+  const systemStatus =
+    userPreferences?.appearance && userPreferences.appearance === "system"
+      ? colorSchemeReversion
+      : "dark";
+  const statusBarTheme =
+    userPreferences?.appearance && userPreferences.appearance === "dark"
+      ? "light"
+      : systemStatus;
 
   useEffect(() => {
     Device.isRootedExperimentalAsync().then((rooted) =>
@@ -46,13 +55,7 @@ const App = () => {
   } else {
     return (
       <SafeAreaProvider>
-        <StatusBar
-          style={
-            userPreferences?.appearance && userPreferences.appearance === "dark"
-              ? "light"
-              : "dark"
-          }
-        />
+        <StatusBar style={statusBarTheme} />
         <Provider store={Store}>
           <Navigation
             colorScheme={colorScheme}

@@ -26,7 +26,7 @@ const TransactionOptions = ({
   route,
 }: RootStackScreenProps<"Root">) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const transferBottomSheetListItems = useBottomSheetType("transfer", {
+  const { menuBottomSheets } = useBottomSheetType("transfer", {
     navigation,
     route,
   });
@@ -82,7 +82,7 @@ const TransactionOptions = ({
       <CustomBottomSheet
         isModalVisible={isModalVisible}
         toggleModal={toggleModal}
-        listItems={transferBottomSheetListItems}
+        listItems={menuBottomSheets}
       />
     </>
   );

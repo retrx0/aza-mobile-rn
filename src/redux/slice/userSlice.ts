@@ -4,6 +4,7 @@ import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
 import {
   I9PSBWallet,
+  IAccountMetadataResponse,
   IUserInfoResponse,
   IUserState,
 } from "../../types/types.redux";
@@ -90,36 +91,36 @@ const initialState: IUserState = {
     loading: false,
     loaded: false,
     data: [
-      {
-        azaAccountNumber: "1100016732",
-        fullName: "CEO",
-        firstName: "CEO",
-        lastName: "Aza",
-        phone: "2344444444444",
-        pictureUrl: "https://ui-avatars.com/api/?name=C+E",
-        currency: "NGN",
-        email: "testuser@aza.com",
-      },
-      {
-        azaAccountNumber: "1100016725",
-        fullName: "CTO",
-        firstName: "CTO",
-        lastName: "Aza",
-        phone: "2344444444444",
-        pictureUrl: "https://ui-avatars.com/api/?name=C+T",
-        currency: "NGN",
-        email: "testuser@aza.com",
-      },
-      {
-        azaAccountNumber: "1100016746",
-        fullName: "VP",
-        firstName: "VP",
-        lastName: "Aza",
-        phone: "2344444444444",
-        pictureUrl: "https://ui-avatars.com/api/?name=V+P",
-        currency: "NGN",
-        email: "testuser@aza.com",
-      },
+      // {
+      //   azaAccountNumber: "1100016732",
+      //   fullName: "CEO",
+      //   firstName: "CEO",
+      //   lastName: "Aza",
+      //   phone: "2344444444444",
+      //   pictureUrl: "https://ui-avatars.com/api/?name=C+E",
+      //   currency: "NGN",
+      //   email: "testuser@aza.com",
+      // },
+      // {
+      //   azaAccountNumber: "1100016725",
+      //   fullName: "CTO",
+      //   firstName: "CTO",
+      //   lastName: "Aza",
+      //   phone: "2344444444444",
+      //   pictureUrl: "https://ui-avatars.com/api/?name=C+T",
+      //   currency: "NGN",
+      //   email: "testuser@aza.com",
+      // },
+      // {
+      //   azaAccountNumber: "1100016746",
+      //   fullName: "VP",
+      //   firstName: "VP",
+      //   lastName: "Aza",
+      //   phone: "2344444444444",
+      //   pictureUrl: "https://ui-avatars.com/api/?name=V+P",
+      //   currency: "NGN",
+      //   email: "testuser@aza.com",
+      // },
     ],
   },
   bankAccounts: {
@@ -131,110 +132,110 @@ const initialState: IUserState = {
     loading: false,
     loaded: false,
     data: [
-      {
-        type: "outgoing",
-        amount: "20300",
-        status: "Pending",
-        vendorName: "DSTV",
-        vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
-        date: "4 July 2022 04:26",
-        category: "Cable Tv",
-        requestor: {
-          azaAccountNumber: "123324354",
-          fullName: "Test User",
-          pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-        },
-        requestees: [
-          {
-            azaAccountNumber: "2342421",
-            fullName: "Testing user",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-          {
-            azaAccountNumber: "234421",
-            fullName: "Testing user 2",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-        ],
-      },
-      {
-        type: "outgoing",
-        amount: "20300",
-        status: "Paid",
-        vendorName: "DSTV",
-        category: "Cable Tv",
-        vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
-        date: "4 July 2022 04:26",
-        requestor: {
-          azaAccountNumber: "123324354",
-          fullName: "Test User",
-          pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-        },
-        requestees: [
-          {
-            azaAccountNumber: "2342421",
-            fullName: "Testing user",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-          {
-            azaAccountNumber: "234421",
-            fullName: "Testing user 2",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-        ],
-      },
-      {
-        type: "incoming",
-        amount: "20300",
-        status: "Paid",
-        vendorName: "DSTV",
-        category: "Cable Tv",
-        vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
-        date: "4 July 2022 04:26",
-        requestor: {
-          azaAccountNumber: "123324354",
-          fullName: "Test User",
-          pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-        },
-        requestees: [
-          {
-            azaAccountNumber: "2342421",
-            fullName: "Testing user",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-          {
-            azaAccountNumber: "232421",
-            fullName: "Testing user 4",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-        ],
-      },
-      {
-        type: "incoming",
-        amount: "20300",
-        status: "Pending",
-        vendorName: "DSTV",
-        category: "Cable Tv",
-        vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
-        date: "4 July 2022 04:26",
-        requestor: {
-          azaAccountNumber: "123324354",
-          fullName: "Test User",
-          pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-        },
-        requestees: [
-          {
-            azaAccountNumber: "2342421",
-            fullName: "Testing user",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-          {
-            azaAccountNumber: "232421",
-            fullName: "Testing user 4",
-            pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
-          },
-        ],
-      },
+      // {
+      //   type: "outgoing",
+      //   amount: "20300",
+      //   status: "Pending",
+      //   vendorName: "DSTV",
+      //   vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
+      //   date: "4 July 2022 04:26",
+      //   category: "Cable Tv",
+      //   requestor: {
+      //     azaAccountNumber: "123324354",
+      //     fullName: "Test User",
+      //     pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //   },
+      //   requestees: [
+      //     {
+      //       azaAccountNumber: "2342421",
+      //       fullName: "Testing user",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //     {
+      //       azaAccountNumber: "234421",
+      //       fullName: "Testing user 2",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //   ],
+      // },
+      // {
+      //   type: "outgoing",
+      //   amount: "20300",
+      //   status: "Paid",
+      //   vendorName: "DSTV",
+      //   category: "Cable Tv",
+      //   vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
+      //   date: "4 July 2022 04:26",
+      //   requestor: {
+      //     azaAccountNumber: "123324354",
+      //     fullName: "Test User",
+      //     pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //   },
+      //   requestees: [
+      //     {
+      //       azaAccountNumber: "2342421",
+      //       fullName: "Testing user",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //     {
+      //       azaAccountNumber: "234421",
+      //       fullName: "Testing user 2",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //   ],
+      // },
+      // {
+      //   type: "incoming",
+      //   amount: "20300",
+      //   status: "Paid",
+      //   vendorName: "DSTV",
+      //   category: "Cable Tv",
+      //   vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
+      //   date: "4 July 2022 04:26",
+      //   requestor: {
+      //     azaAccountNumber: "123324354",
+      //     fullName: "Test User",
+      //     pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //   },
+      //   requestees: [
+      //     {
+      //       azaAccountNumber: "2342421",
+      //       fullName: "Testing user",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //     {
+      //       azaAccountNumber: "232421",
+      //       fullName: "Testing user 4",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //   ],
+      // },
+      // {
+      //   type: "incoming",
+      //   amount: "20300",
+      //   status: "Pending",
+      //   vendorName: "DSTV",
+      //   category: "Cable Tv",
+      //   vendorLogo: "https://ui-avatars.com/api/?name=Vendor+Logo",
+      //   date: "4 July 2022 04:26",
+      //   requestor: {
+      //     azaAccountNumber: "123324354",
+      //     fullName: "Test User",
+      //     pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //   },
+      //   requestees: [
+      //     {
+      //       azaAccountNumber: "2342421",
+      //       fullName: "Testing user",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //     {
+      //       azaAccountNumber: "232421",
+      //       fullName: "Testing user 4",
+      //       pictureUrl: "https://ui-avatars.com/api/?name=Test+User",
+      //     },
+      //   ],
+      // },
     ],
   },
   accountTier: "",
@@ -304,7 +305,6 @@ export const userSlice = createSlice({
         state.loaded = false;
       })
       .addCase(getUserInfo.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.loading = false;
         state.loaded = true;
         state.firstName = action.payload.firstName;
@@ -358,7 +358,6 @@ export const userSlice = createSlice({
         state.bankAccounts.loaded = false;
       })
       .addCase(getUserSavedBankAccs.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.bankAccounts.loading = false;
         state.bankAccounts.loaded = true;
         state.bankAccounts.data = action.payload;
@@ -380,6 +379,25 @@ export const userSlice = createSlice({
         state.paymentRequests.loading = false;
         console.log(action.payload);
         // state.paymentRequests.data = action.payload
+      })
+      .addCase(getUserAccountMetadata.pending, (state, action) => {})
+      .addCase(getUserAccountMetadata.rejected, (state, action) => {})
+      .addCase(getUserAccountMetadata.fulfilled, (state, action) => {
+        const response = action.payload as IAccountMetadataResponse;
+
+        (state.transfers.loading = false),
+          (state.transfers.incommingTransferLimit =
+            response.incomingTransferLimit);
+        state.transfers.depositAmountLimit = response.depositAmountLimit;
+        state.transfers.totalMonthlySenders =
+          response.numberOfPeopleTransactionReceived;
+        state.transfers.totalMonthlyReceivers =
+          response.numberOfPeopleTransactionReceived;
+        state.transfers.totalMonthlyIncomingTransfers =
+          response.numberOfIncomingTransfers;
+        // state.transfers.totalMonthlyIncomingTransferAmount = response.numberOfIncomingTransfers
+        // state.transfers.totalMonthlyOutgoingTransfers = response.
+        // state.transfers.totalMonthlyOutgoingTransferAmount = response.
       });
   },
 });
@@ -415,6 +433,16 @@ export const getUserTransactions = createAsyncThunk(
     return await thunkCourier(
       "get",
       `/api/v1/account/${accountNumber}/transactions`
+    );
+  }
+);
+
+export const getUserAccountMetadata = createAsyncThunk(
+  "user/getAccountMetadata",
+  async ({ accountNumber }: { accountNumber: string }) => {
+    return await thunkCourier(
+      "get",
+      `/api/v1/account/${accountNumber}/metadata`
     );
   }
 );

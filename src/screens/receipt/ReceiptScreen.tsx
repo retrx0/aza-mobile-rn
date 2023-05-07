@@ -119,7 +119,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Transaction Type"}
-            value={transactionType}
+            value={transactionType ? transactionType : undefined}
           />
           <UnderlinedInput
             icon={null}
@@ -132,7 +132,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Receiving Bank"}
-            value={receivingBank}
+            value={receivingBank ? receivingBank : undefined}
           />
           <UnderlinedInput
             icon={null}
@@ -158,7 +158,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Reference ID"}
-            value={referenceId}
+            value={referenceId ? referenceId : undefined}
           />
           <UnderlinedInput
             icon={null}
@@ -171,7 +171,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Description"}
-            value={transaction.description}
+            value={description}
           />
         </ScrollView>
         <Button
@@ -182,13 +182,13 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
             marginBottom: 15,
           }}
         />
-        <ButtonWithUnderline
+        {/* <ButtonWithUnderline
           title="Download Receipt"
           color={Colors[appTheme].text}
           onPressButton={() => {
             toastInfo("Receipt will be downloaded");
           }}
-        />
+        /> */}
       </View>
     </SpacerWrapper>
   );

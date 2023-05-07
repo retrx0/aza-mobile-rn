@@ -35,12 +35,14 @@ import {
   getUserInfo,
   uploadProfilePicThunk,
 } from "../../../../redux/slice/userSlice";
+import { forgetUser } from "../../../auth/signin/helpers";
 
 export const useBottomSheetType = (
   itemToReturn: string,
   { navigation }: RootStackScreenProps<"Root">
 ) => {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
   const selectImageFromGallaery = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -48,23 +50,26 @@ export const useBottomSheetType = (
       quality: 0.5,
     });
 
-    if (!result.cancelled) {
-      const { uri } = result;
+    if (!result.canceled) {
+      const { assets } = result;
       const formData = new FormData();
       formData.append("ProfilePicture", {
-        uri,
-        name: `image.${uri.split(".").pop()}`,
-        type: `image/${uri.split(".").pop()}`,
+        uri: assets[0].uri,
+        name: `${assets[0].fileName}`,
+        type: `image/${assets[0].uri.split(".").pop()}`,
       } as any);
 
+      setLoading(true);
       dispatch(uploadProfilePicThunk(formData))
         .unwrap()
         .then(() => {
           toastSuccess("Your picture has been successfully uploaded");
           dispatch(getUserInfo());
+          setLoading(false);
         })
         .catch(() => {
           toastError("Error uploading profile picture");
+          setLoading(false);
         });
     }
   };
@@ -74,26 +79,28 @@ export const useBottomSheetType = (
     if (permissionStatus.status === "granted") {
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 0.5,
+        quality: 0.3,
       });
 
-      if (!result.cancelled) {
-        const { uri } = result;
+      if (!result.canceled) {
+        const { assets } = result;
         const formData = new FormData();
         formData.append("ProfilePicture", {
-          uri,
-          name: `image.${uri.split(".").pop()}`,
-          type: `image/${uri.split(".").pop()}`,
+          uri: assets[0].uri,
+          name: `${assets[0].fileName}`,
+          type: `image/${assets[0].uri.split(".").pop()}`,
         } as any);
-
+        setLoading(true);
         dispatch(uploadProfilePicThunk(formData))
           .unwrap()
           .then(() => {
             toastSuccess("Your picture has been successfully uploaded");
             dispatch(getUserInfo());
+            setLoading(false);
           })
           .catch(() => {
             toastError("Error uploading profile picture");
+            setLoading(false);
           });
       }
     }
@@ -108,12 +115,12 @@ export const useBottomSheetType = (
         itemIcon: <SplitIcon size={16} />,
         onPress: () => navigation.navigate("Common", { screen: "Split" }),
       },
-      {
-        itemName: "Monthly Summary",
-        itemIcon: <GraphIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "MonthlySummary" }),
-      },
+      // {
+      //   itemName: "Monthly Summary",
+      //   itemIcon: <GraphIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "MonthlySummary" }),
+      // },
       {
         itemName: "Fees & Limits",
         itemIcon: <FeesAndLimitsIcon size={16} />,
@@ -173,7 +180,7 @@ export const useBottomSheetType = (
         itemName: "Sign out",
         itemIcon: <LogoutIcon size={16} />,
         onPress: () => {
-          navigation.navigate("Welcome");
+          forgetUser(navigation);
         },
       },
     ],
@@ -184,18 +191,18 @@ export const useBottomSheetType = (
         onPress: () =>
           navigation.navigate("Common", { screen: "SendMoney", params: {} }),
       },
-      {
-        itemName: "Request Money",
-        itemIcon: <RequestMoneyIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "RequestMoney" }),
-      },
-      {
-        itemName: "Recurring Transfer",
-        itemIcon: <RecurringTransferIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "RecurringTransfer" }),
-      },
+      // {
+      //   itemName: "Request Money",
+      //   itemIcon: <RequestMoneyIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "RequestMoney" }),
+      // },
+      // {
+      //   itemName: "Recurring Transfer",
+      //   itemIcon: <RecurringTransferIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "RecurringTransfer" }),
+      // },
     ],
     choosePhotoBottomSheetListItems: [
       {
@@ -216,17 +223,20 @@ export const useBottomSheetType = (
     ],
   });
 
-  return itemToReturn === "menu"
-    ? items.menuBottomSheetListItems
-    : itemToReturn === "profile"
-    ? isChoosePhoto
-      ? {
-          profileBottomSheetListItems: items.choosePhotoBottomSheetListItems,
-          setChoosePhoto,
-        }
-      : {
-          profileBottomSheetListItems: items.profileBottomSheetListItems,
-          setChoosePhoto,
-        }
-    : items.transferBottomSheetListItems;
+  const menuBottomSheets =
+    itemToReturn === "menu"
+      ? items.menuBottomSheetListItems
+      : itemToReturn === "profile"
+      ? isChoosePhoto
+        ? {
+            profileBottomSheetListItems: items.choosePhotoBottomSheetListItems,
+            setChoosePhoto,
+          }
+        : {
+            profileBottomSheetListItems: items.profileBottomSheetListItems,
+            setChoosePhoto,
+          }
+      : items.transferBottomSheetListItems;
+
+  return { menuBottomSheets, loading };
 };

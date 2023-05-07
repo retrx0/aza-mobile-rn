@@ -61,8 +61,6 @@ const StatusScreen = ({
     };
   });
 
-  //TODO fix sound to only play on transcations
-
   useEffect(() => {
     switch (statusIcon) {
       case "Success":
@@ -189,6 +187,12 @@ const StatusScreen = ({
                 navigation.navigate("Receipt", {
                   amount: receiptDetails.amount,
                   beneficiaryName: receiptDetails.beneficiaryName,
+                  description: receiptDetails.description,
+                  receivingBank: receiptDetails.receivingBank,
+                  referenceId: receiptDetails.referenceId,
+                  transactionDate: receiptDetails.transactionDate,
+                  transactionFee: receiptDetails.transactionFee,
+                  transactionType: receiptDetails.transactionType,
                 })
               }
             />

@@ -28,8 +28,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
   useNavigationHeader(
     navigation,
     "Split",
-    <TouchableOpacity onPress={() => navigation.navigate("Split")}>
-      {/* TODO Add these colors to Colors.ts and import them */}
+    <TouchableOpacity onPress={() => navigation.navigate("SplitFeature")}>
       <InfoIcon
         color={
           appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
@@ -65,8 +64,7 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
           <View key={i}>
             <TouchableOpacity
               onPress={handleNavigation}
-              style={[CommonStyles.col, { alignSelf: "stretch" }]}
-            >
+              style={[CommonStyles.col, { alignSelf: "stretch" }]}>
               <View
                 style={[
                   CommonStyles.row,
@@ -76,22 +74,19 @@ const SplitScreen = ({ navigation }: CommonScreenProps<"Split">) => {
                     marginVertical: hp(20),
                     marginLeft: hp(3),
                   },
-                ]}
-              >
+                ]}>
                 <View>{icon}</View>
                 <View
                   style={[
                     CommonStyles.col,
                     { marginRight: "auto", marginLeft: 20 },
-                  ]}
-                >
+                  ]}>
                   <Text
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: hp(16),
                       fontWeight: "600",
-                    }}
-                  >
+                    }}>
                     {name}
                   </Text>
                 </View>

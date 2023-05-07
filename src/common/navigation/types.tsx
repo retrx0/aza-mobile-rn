@@ -19,6 +19,17 @@ interface IXGiftCard extends IGiftCard {
   selectedPrice: string;
 }
 
+export interface IReceipt {
+  amount: string;
+  beneficiaryName: string;
+  transactionDate: string;
+  transactionFee: string;
+  referenceId: string | null;
+  description: string;
+  receivingBank: string | null;
+  transactionType: string | null;
+}
+
 export type TransactionScreenPinType =
   | "set"
   | "update"
@@ -50,23 +61,17 @@ export type CommonStackParamList = {
   CloseAccount: undefined;
   AlternativeSurvey: undefined;
   AirtimeIndexScreen: undefined;
+  SplitFeature: undefined;
 
   //bvn
   BvnVerification: BvnScreenParamsType;
+  BvnVerificationFailed: undefined;
+  BvnEditName: undefined;
 
   // Status
   StatusScreen: StatusScreenParamsType;
 
-  Receipt: {
-    amount: string;
-    beneficiaryName: string;
-    transactionDate: string;
-    transactionFee: string;
-    referenceId: string;
-    description: string;
-    receivingBank: string;
-    transactionType: string;
-  };
+  Receipt: IReceipt;
 
   Notifications: undefined;
 
@@ -83,7 +88,6 @@ export type CommonStackParamList = {
   Charity: { recurringTransaction?: boolean };
   CharityDetailsScreen: IXCharity;
   ElectricityConfirmation: undefined;
-
   PaymentConfirmation: IPaymentConfirmation;
   GiftCardConfirmation: { giftCard: IXGiftCard };
   CharityConfirmation: undefined;
@@ -172,6 +176,7 @@ export type CommonStackParamList = {
   AddNewCard: { navigateBackTo: string };
   ScanCard: undefined;
   TermsOfUse: undefined;
+  SearchBank: BankAccountsParamsType;
 
   // Home Menu
   Split: undefined;
@@ -197,7 +202,7 @@ export type CommonStackParamList = {
   SendMoney: { recurringTransaction?: boolean };
   RequestMoney: undefined;
   RequestMoneyConfirmation: undefined;
-  SendMoneyConfirmation: undefined;
+  SendMoneyConfirmation: { transactionType: "INTER" | "INTRA" };
   SetupRecurringTransfer: IBeneficiary;
   RecurringTransfer: undefined;
   SelectNewRecurringTransfer: undefined;
@@ -260,7 +265,7 @@ export type StatusScreenParamsType = {
   statusMessage: string | JSX.Element;
   statusMessage2?: string;
   recurringTransferBeneficiary?: IBeneficiary;
-  receiptDetails?: { amount: string; beneficiaryName: string };
+  receiptDetails?: IReceipt | undefined;
   cancelButton?: boolean;
   navigateTo: string;
   navigateToParams?: Record<string, unknown>;

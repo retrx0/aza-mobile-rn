@@ -487,7 +487,7 @@ export default function ElectricittRecurring({
                   beneficiary: {
                     beneficiaryName: "",
                     fullName: "",
-                    azaAccountNumber: "",
+                    accountNumber: "",
                   },
                   period: periodValue,
                   day: dayValue,

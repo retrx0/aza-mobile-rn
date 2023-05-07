@@ -14,8 +14,12 @@ const linking: LinkingOptions<RootStackParamList> = {
   config: {
     screens: {
       Welcome: {},
-      QRCode: {},
-      SignIn: {},
+      QRCode: {
+        path: "/qrcodes",
+        parse: { accountNumber: Number },
+        exact: true,
+      },
+      SignIn: { path: "/qrcode", parse: { accountNumber: Number } },
       SignUp: {},
       Root: {
         screens: {

@@ -57,7 +57,12 @@ const WithdrawDepositTabs = ({
     navigation,
     "Withdraw/Deposit",
     <TouchableOpacity onPress={handlePress}>
-      <InfoIcon color={appTheme === "dark" ? "#999999" : "#000000"} />
+      <InfoIcon
+        color={
+          appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
+        }
+        style={{ width: 20, height: 20 }}
+      />
     </TouchableOpacity>
   );
 

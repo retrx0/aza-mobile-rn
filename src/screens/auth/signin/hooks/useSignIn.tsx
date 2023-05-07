@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux";
 import { selectAppPreference } from "../../../../redux/slice/preferenceSlice";
 import {
   getUserAccountDetails,
+  getUserAccountMetadata,
   getUserInfo,
   getUserTransactions,
   selectUser,
@@ -40,14 +41,14 @@ const useSignIn = () => {
 
   const _nav = useNavigation();
 
-  const {
-    minutesToDisplay,
-    secondsToDisplay,
-    resetTimer,
-    toTwoDigits,
-    timerStatus,
-    startTimer,
-  } = useCountdownTimer(60 * 5);
+  // const {
+  //   minutesToDisplay,
+  //   secondsToDisplay,
+  //   resetTimer,
+  //   toTwoDigits,
+  //   timerStatus,
+  //   startTimer,
+  // } = useCountdownTimer(60 * 5);
 
   const { registerForPushNotificationsAsync } = useNotifications();
 
@@ -58,31 +59,22 @@ const useSignIn = () => {
     fullName: string,
     { navigation }: SignInScreenProps<"SignInWelcomeBack">
   ) => {
-    // TODO add push notification token to the server to always keep it updated incase it change
-
-    registerForPushNotificationsAsync().then((token) => {
-      if (token !== user.pushToken) {
-        updateUserNotificationToken(token);
-        dispatch(setPushToken(token));
-        console.debug("your notification token was updated!");
-      }
-    });
-
     // TODO refactor below code
 
     const netInfo = await NetInfo.fetch();
 
-    if (loginAttemptCounter > 3) {
-      if (timerStatus === "Started") {
-        toastError(
-          `Your account has been locked, try again after ${minutesToDisplay} minutes`
-        );
-      } else if (timerStatus === "Stopped") {
-        setLoginAttemptCounter(1);
-        resetTimer();
-      } else {
-        startTimer();
-      }
+    if (loginAttemptCounter > 5) {
+      // if (timerStatus === "Started") {
+      //   toastError(
+      //     `Your account has been locked, try again after ${minutesToDisplay} minutes`
+      //   );
+      // } else if (timerStatus === "Stopped") {
+      //   setLoginAttemptCounter(1);
+      //   resetTimer();
+      // } else {
+      //   startTimer();
+      // }
+      toastError(`Too many failed login attempts`);
     } else {
       if (netInfo.isConnected && netInfo.isInternetReachable) {
         setScreenLoading(true);
@@ -91,6 +83,8 @@ const useSignIn = () => {
           email: email,
           password: code,
           phoneNumber: phoneNumber,
+        }).catch((e) => {
+          setScreenLoading(false);
         });
 
         if (jwt) {
@@ -124,6 +118,7 @@ const useSignIn = () => {
               await dispatch(getUserAccountDetails());
               const { walletNumber } = info.payload as IUserInfoResponse;
               dispatch(getUserTransactions({ accountNumber: walletNumber }));
+              dispatch(getUserAccountMetadata({ accountNumber: walletNumber }));
               setScreenLoading(false);
               // TODO replace navigate() with replace()
               navigation.getParent()?.navigate("Root");
@@ -138,6 +133,18 @@ const useSignIn = () => {
               "There is an issue loggin you in, please try again and confirm the app is giving the right permissions"
             );
           }
+
+          // TODO add push notification token to the server to always keep it updated incase it change
+
+          registerForPushNotificationsAsync().then((token) => {
+            if (token !== user.pushToken) {
+              updateUserNotificationToken(token).catch((e) =>
+                console.error("Unable to update push token")
+              );
+              dispatch(setPushToken(token));
+              console.debug("your notification token was updated!");
+            }
+          });
         } else {
           setScreenLoading(false);
           setLoginAttemptCounter((s) => s + 1);
@@ -208,6 +215,7 @@ const useSignIn = () => {
     screenLoading,
     setScreenLoading,
     handleForgotPassword,
+    userPreferences,
   };
 };
 

@@ -16,6 +16,7 @@ import { toastError } from "../../common/util/ToastUtil";
 import {
   addUserBvnThunk,
   getUserAccountDetails,
+  getUserInfo,
 } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
@@ -45,7 +46,7 @@ const BvnVerificationScreen = ({
     setButtonLoading(true);
     console.log(dob.toISOString().split("T")[0]);
 
-    const createWallet = await create9PSBWallet({
+    await create9PSBWallet({
       bvn,
       dateOfBirth: dob.toISOString().split("T")[0],
     })
@@ -59,8 +60,10 @@ const BvnVerificationScreen = ({
           navigateTo: onVerifyNavigateBackTo,
         });
         dispatch(getUserAccountDetails());
+        dispatch(getUserInfo());
       })
-      .catch(() => {
+      .catch((e) => {
+        console.error(e);
         toastError("Couldn't link your BVN, please try again!");
         setButtonLoading(false);
       });
@@ -149,10 +152,10 @@ const BvnVerificationScreen = ({
             buttonLoading={isButtonLoading}
           />
           <CancelButtonWithUnderline
-            title="Cancel"
+            title="Couldn’t verify BVN?"
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
-            onPressButton={() => navigation.goBack()}
+            onPressButton={() => navigation.navigate("BvnVerificationFailed")}
           />
         </View>
       </View>

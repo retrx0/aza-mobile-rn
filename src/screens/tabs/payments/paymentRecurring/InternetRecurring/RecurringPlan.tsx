@@ -137,7 +137,7 @@ export default function RecurringPlan({
               transactionType: {
                 type: "recurring",
                 beneficiary: {
-                  azaAccountNumber: "",
+                  accountNumber: "",
                   fullName: "",
                 },
                 period: periodValue,
