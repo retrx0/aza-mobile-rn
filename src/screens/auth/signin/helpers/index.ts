@@ -10,7 +10,10 @@ import {
   STORAGE_KEY_USER_CREDS,
 } from "@env";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { PREFERENCE_STORAGE_KEY } from "../../../../constants/AppConstants";
+import {
+  CEO_MESSAGE_STORAGE_KEY,
+  PREFERENCE_STORAGE_KEY,
+} from "../../../../constants/AppConstants";
 
 export const forgetUser = async (navigation: any) => {
   console.debug("forgeting user!");
@@ -23,6 +26,7 @@ export const forgetUser = async (navigation: any) => {
     // SecureStore.deleteItemAsync(STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN);
     // SecureStore.deleteItemAsync(STORAGE_KEY_PUSH_NOTIFICATION_TOKEN);
     AsyncStorage.removeItem(PREFERENCE_STORAGE_KEY);
+    AsyncStorage.removeItem(CEO_MESSAGE_STORAGE_KEY);
     navigation.replace("Welcome");
   } catch (error) {
     console.error(error);

@@ -191,18 +191,18 @@ export const useBottomSheetType = (
         onPress: () =>
           navigation.navigate("Common", { screen: "SendMoney", params: {} }),
       },
-      {
-        itemName: "Request Money",
-        itemIcon: <RequestMoneyIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "RequestMoney" }),
-      },
-      {
-        itemName: "Recurring Transfer",
-        itemIcon: <RecurringTransferIcon size={16} />,
-        onPress: () =>
-          navigation.navigate("Common", { screen: "RecurringTransfer" }),
-      },
+      // {
+      //   itemName: "Request Money",
+      //   itemIcon: <RequestMoneyIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "RequestMoney" }),
+      // },
+      // {
+      //   itemName: "Recurring Transfer",
+      //   itemIcon: <RecurringTransferIcon size={16} />,
+      //   onPress: () =>
+      //     navigation.navigate("Common", { screen: "RecurringTransfer" }),
+      // },
     ],
     choosePhotoBottomSheetListItems: [
       {

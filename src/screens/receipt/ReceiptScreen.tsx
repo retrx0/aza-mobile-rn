@@ -182,13 +182,13 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
             marginBottom: 15,
           }}
         />
-        <ButtonWithUnderline
+        {/* <ButtonWithUnderline
           title="Download Receipt"
           color={Colors[appTheme].text}
           onPressButton={() => {
             toastInfo("Receipt will be downloaded");
           }}
-        />
+        /> */}
       </View>
     </SpacerWrapper>
   );

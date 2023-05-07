@@ -45,7 +45,8 @@ const TransactionScreen = ({
     navigation,
     headerTitle,
     <TouchableOpacity
-      onPress={() => navigation.navigate(featureNavigationScreen)}>
+      onPress={() => navigation.navigate(featureNavigationScreen)}
+    >
       <InfoIcon
         color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
       />
@@ -73,9 +74,9 @@ const TransactionScreen = ({
           <ContactsScene
             route={route}
             azaContactOnPress={(_b) => azaContactOnClick(_b)}
-            nonAzaContactOnPress={({ email, phone }) =>
-              inviteUserAPI(phone!, email!)
-            }
+            nonAzaContactOnPress={({ email, phone }) => {
+              // inviteUserAPI(phone!, email!);
+            }}
           />
         )}
         onIndexChange={setIndex}
@@ -104,7 +105,8 @@ const TransactionScreen = ({
                     fontFamily: "Euclid-Circular-A-Medium",
                     fontSize: hp(16),
                     fontWeight: "500",
-                  }}>
+                  }}
+                >
                   {route.title}
                 </Text>
               );
