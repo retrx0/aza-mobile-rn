@@ -2,7 +2,7 @@ import React from "react";
 import CommonStyles from "../../common/styles/CommonStyles";
 import HideKeyboardOnTouch from "../../common/util/HideKeyboardOnTouch";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { useAppSelector } from "../../redux";
+import { useAppDispatch, useAppSelector } from "../../redux";
 import { getAppTheme } from "../../theme";
 import { CommonScreenProps } from "../../common/navigation/types";
 import InputFormFieldNormal from "../../components/input/InputFormFieldNormal";
@@ -13,10 +13,12 @@ import * as yup from "yup";
 import { StyleSheet } from "react-native";
 import { editNameAPI } from "../../api/user";
 import { toastError } from "../../common/util/ToastUtil";
+import { getUserInfo } from "../../redux/slice/userSlice";
 
 const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
+  const dispatch = useAppDispatch();
   const EdiNameValidationSchema = yup.object().shape({
     firstname: yup.string().required("Firstname is required"),
     lastname: yup.string().required("Lastname is required"),
@@ -35,6 +37,7 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
             lastName: values.lastname,
           })
             .then((_) => {
+              dispatch(getUserInfo());
               navigation.navigate("StatusScreen", {
                 status: "Successful",
                 statusIcon: "Success",
