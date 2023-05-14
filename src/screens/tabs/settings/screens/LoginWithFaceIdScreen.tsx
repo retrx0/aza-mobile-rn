@@ -11,6 +11,7 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import useAppBiometricAuthentication from "../../../../hooks/useAppBiometricAuthentication";
 
 const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
   const { saveSettingsToStorage, loadSettingsFromStorage } =
@@ -18,6 +19,8 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
   const [isLoginWithFaceId, setLoginWithFaceId] = useState<boolean>(false);
   const [isConfirmTransactionWithFaceId, setConfirmTransactionWithFaceId] =
     useState<boolean>(false);
+
+  const { authenticateWithBiometrics } = useAppBiometricAuthentication();
 
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
@@ -61,7 +64,13 @@ const LoginWithFaceIdScreen = ({ navigation }: CommonScreenProps<"FaceId">) => {
           <SettingsSwitch
             text={"Login with Face ID"}
             isEnabled={isLoginWithFaceId}
-            onSwitchToggle={() => setLoginWithFaceId(!isLoginWithFaceId)}
+            onSwitchToggle={() => {
+              if (!isLoginWithFaceId)
+                authenticateWithBiometrics(isLoginWithFaceId).then(() =>
+                  setLoginWithFaceId(!isLoginWithFaceId)
+                );
+              setLoginWithFaceId(!isLoginWithFaceId);
+            }}
           />
           <SettingsSwitch
             text={"Confirm transactions with Face ID"}
