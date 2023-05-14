@@ -34,9 +34,27 @@ const ListItemSkeleton = ({
         >
           <PlaceholderMedia style={styles.circle} />
           <View style={{ width: "100%" }}>
-            {placeHoldersWidth.map((width, i) => (
-              <PlaceholderLine key={i} width={width} height={5} />
-            ))}
+            {placeHoldersWidth.map((width, i) => {
+              return (
+                <View key={i}>
+                  <PlaceholderLine
+                    key={Math.random()}
+                    width={width}
+                    height={5 * 1.8}
+                  />
+                  <PlaceholderLine
+                    key={Math.random()}
+                    width={width - 5}
+                    height={5 * 1.3}
+                  />
+                  <PlaceholderLine
+                    key={Math.random()}
+                    width={width / 2}
+                    height={5 * 2}
+                  />
+                </View>
+              );
+            })}
           </View>
         </View>
       </View>

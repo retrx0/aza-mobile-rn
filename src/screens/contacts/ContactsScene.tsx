@@ -123,7 +123,7 @@ const ContactsScene = ({
     }
   };
 
-  if (route.key == "first") {
+  if (route.key == "second") {
     return (
       <View style={[CommonStyles.vaultcontainer]}>
         <View style={{ paddingHorizontal: hp(20) }}>
@@ -275,7 +275,7 @@ const ContactsScene = ({
         </View>
       </View>
     );
-  } else if (route.key === "second") {
+  } else if (route.key === "first") {
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -367,7 +367,6 @@ const ContactsScene = ({
                 setReceipientAccountNumber(txt);
 
                 if (txt.length === 10) {
-                  console.log(txt);
                   if (selectedBank) {
                     setScreenLoading(true);
                     verifyBankAccountAPI(

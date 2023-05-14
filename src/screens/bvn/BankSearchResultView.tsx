@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from "../../redux";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getSupportedBanks, selectBank } from "../../redux/slice/bankSlice";
+import ListItemSkeleton from "../../components/skeleton/ListItemSkeleton";
 
 const BankSearchResultView = ({
   onPress,
@@ -64,7 +65,7 @@ const BankSearchResultView = ({
             {Array(10)
               .fill(0)
               .map((_, i) => (
-                <PlaceholderLine key={i} height={70} />
+                <ListItemSkeleton key={i} placeHoldersWidth={[70]} />
               ))}
           </Placeholder>
         </ScrollView>

@@ -36,6 +36,7 @@ import {
   uploadProfilePicThunk,
 } from "../../../../redux/slice/userSlice";
 import { forgetUser } from "../../../auth/signin/helpers";
+import { updateStoredCredentials } from "../../../../common/util/StorageUtil";
 
 export const useBottomSheetType = (
   itemToReturn: string,
@@ -62,9 +63,15 @@ export const useBottomSheetType = (
       setLoading(true);
       dispatch(uploadProfilePicThunk(formData))
         .unwrap()
-        .then(() => {
+        .then((url) => {
           toastSuccess("Your picture has been successfully uploaded");
           dispatch(getUserInfo());
+
+          updateStoredCredentials({
+            pictureUrl: url,
+          })
+            .then((v) => console.debug("credentials updated!"))
+            .catch((e) => console.error("failed to updated credentials " + e));
           setLoading(false);
         })
         .catch(() => {
@@ -93,9 +100,16 @@ export const useBottomSheetType = (
         setLoading(true);
         dispatch(uploadProfilePicThunk(formData))
           .unwrap()
-          .then(() => {
+          .then((url) => {
             toastSuccess("Your picture has been successfully uploaded");
             dispatch(getUserInfo());
+            updateStoredCredentials({
+              pictureUrl: url,
+            })
+              .then((v) => console.debug("credentials updated!"))
+              .catch((e) =>
+                console.error("failed to updated credentials " + e)
+              );
             setLoading(false);
           })
           .catch(() => {

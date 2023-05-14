@@ -35,10 +35,13 @@ const BvnEditName = ({
       </View>
 
       <View>
-        <View style={[CommonStyles.phoneContainer]}>
+        <View style={[CommonStyles.phoneContainer, { marginBottom: 0 }]}>
           <Text style={[CommonStyles.headerText]}>Edit Name</Text>
           <Text style={[CommonStyles.bodyText]}>
             Edit your name to match BVN
+          </Text>
+          <Text style={[CommonStyles.bodyText]}>
+            Select bank name and type in an existing bank account number
           </Text>
         </View>
       </View>

@@ -2,6 +2,7 @@ import * as SecureStore from "expo-secure-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Keychain from "react-native-keychain";
 import { STORAGE_KEY_USER_CREDS } from "@env";
+import { IUserCred } from "../../types/types.redux";
 
 // export const storeUserCredentialsSecure = (
 //   username: string,
@@ -118,5 +119,50 @@ export const removeItem = (key: string) => {
     AsyncStorage.removeItem(key);
   } catch (e) {
     console.debug("Error removing item: ", e as Error);
+  }
+};
+
+export const updateStoredCredentials = async ({
+  fullName,
+  pictureUrl,
+}: {
+  fullName?: string;
+  pictureUrl?: string;
+}) => {
+  const item = await SecureStore.getItemAsync(STORAGE_KEY_USER_CREDS);
+  if (item) {
+    console.debug("Updating credentials");
+    const _parsedCreds = JSON.parse(item) as IUserCred;
+    if (fullName && pictureUrl) {
+      await SecureStore.setItemAsync(
+        STORAGE_KEY_USER_CREDS,
+        JSON.stringify({
+          ..._parsedCreds,
+          fullName: fullName,
+          pictureUrl: pictureUrl,
+        })
+      );
+      return true;
+    } else if (fullName) {
+      await SecureStore.setItemAsync(
+        STORAGE_KEY_USER_CREDS,
+        JSON.stringify({
+          ..._parsedCreds,
+          fullName: fullName,
+        })
+      );
+      return true;
+    } else if (pictureUrl) {
+      await SecureStore.setItemAsync(
+        STORAGE_KEY_USER_CREDS,
+        JSON.stringify({
+          ..._parsedCreds,
+          pictureUrl: pictureUrl,
+        })
+      );
+      return true;
+    } else {
+      return undefined;
+    }
   }
 };
