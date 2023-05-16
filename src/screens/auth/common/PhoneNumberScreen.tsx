@@ -25,6 +25,7 @@ import Phone from "./PhoneStage";
 import { useCountries } from "../../../hooks/useCountries";
 import { phone } from "phone";
 import { WhatsAppLogo } from "../../../../assets/svg";
+import SecondaryButton from "../../../components/buttons/SecondaryButton";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -36,12 +37,41 @@ const PhoneNumberScreen = ({
   const { loading, countries } = useCountries();
   const [country, setCountry] = useState<CountriesType>(countries[0]);
 
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [whatsAppButtonLoading, setWhatsAppButtonLoading] = useState(false);
+
   const FetchedCountries = ({ item }: { item: CountryProps }) => {
     return <CountriesCard onPress={() => selectCountry(item)} {...item} />;
   };
   const selectCountry = (item: CountriesType) => {
     setCountry(item);
     setModalVisible(false);
+  };
+
+  const handlePhoneNumberSubmission = (isWhatsAppOTP: boolean) => {
+    !isWhatsAppOTP ? setButtonLoading(true) : setWhatsAppButtonLoading(true);
+    dispatch(
+      setReduxStorePhone(country.code + phoneNumber.trim().replace(/\s/g, ""))
+    );
+    requestOtpApi({
+      email: "",
+      phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
+      sendToWhatsApp: isWhatsAppOTP,
+    })
+      .then(() => {
+        console.debug("Phone otp requested");
+        !isWhatsAppOTP
+          ? setButtonLoading(false)
+          : setWhatsAppButtonLoading(false);
+        navigation.push("SignUpOTP", {
+          otpScreenType: "phone",
+        });
+      })
+      .catch((e) => {
+        !isWhatsAppOTP
+          ? setButtonLoading(false)
+          : setWhatsAppButtonLoading(false);
+      });
   };
 
   return (
@@ -68,7 +98,8 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}>
+            }}
+          >
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -96,60 +127,31 @@ const PhoneNumberScreen = ({
           <Button
             title="SMS OTP"
             onPressButton={() => {
-              dispatch(
-                setReduxStorePhone(
-                  country.code + phoneNumber.trim().replace(/\s/g, "")
-                )
-              );
-              requestOtpApi({
-                email: "",
-                phoneNumber:
-                  country.code + phoneNumber.trim().replace(/\s/g, ""),
-              }).then((code) => {
-                console.debug("Phone otp requested");
-              });
-              navigation.push("SignUpOTP", {
-                otpScreenType: "phone",
-              });
+              handlePhoneNumberSubmission(false);
             }}
             styleText={{}}
             style={[CommonStyles.button]}
             disabled={!phone(country.code + phoneNumber).isValid}
+            buttonLoading={buttonLoading}
           />
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={{
-            borderWidth: 1,
-            borderColor: Colors["general"].grey,
-            width: "90%",
-            height: hp(50),
-            borderRadius: hp(10),
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignSelf: "center",
-          }}>
-          <View style={{ marginRight: 10 }}>
-            <WhatsAppLogo color={"#25D366"} size={20} />
-          </View>
-
-          <Text
-            style={{
-              fontFamily: "Euclid-Circular-A-Medium",
-              fontSize: hp(14),
-              fontWeight: "500",
-            }}>
-            Whatsapp OTP
-          </Text>
-        </TouchableOpacity>
+        <SecondaryButton
+          title="Whatsapp OTP"
+          Icon={() => (
+            <WhatsAppLogo color={Colors.general.whatsapp} size={20} />
+          )}
+          onPress={() => handlePhoneNumberSubmission(true)}
+          disabled={!phone(country.code + phoneNumber).isValid}
+          isLoading={whatsAppButtonLoading}
+        />
       </SpacerWrapper>
       <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>
         <View
           style={[
             { borderRadius: hp(10), marginTop: hp(50), marginBottom: hp(50) },
-          ]}>
+          ]}
+        >
           <FlatList
             style={[
               {

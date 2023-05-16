@@ -1,4 +1,4 @@
-import { Image, Alert, ImageSourcePropType } from "react-native";
+import { Image, Alert, ImageSourcePropType, Dimensions } from "react-native";
 import { captureScreen } from "react-native-view-shot";
 import * as MediaLibrary from "expo-media-library";
 import QRCode from "react-native-qrcode-svg";
@@ -49,8 +49,10 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
     const permission = await requestPermission();
     permission.granted
       ? captureScreen({
-          format: "png",
-          quality: 0.8,
+          format: "jpg",
+          quality: 0.9,
+          // height: (80 / Dimensions.get("screen").height) * 100,
+          height: 100,
         })
           .then(
             (uri) => {
@@ -104,7 +106,8 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               fontFamily: "Euclid-Circular-A-Semi-Bold",
               fontSize: hp(14),
               marginVertical: 15,
-            }}>
+            }}
+          >
             {user.fullName}
           </Text>
           {/* <View style={[CommonStyles.row]}>

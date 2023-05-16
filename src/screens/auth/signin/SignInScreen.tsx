@@ -28,40 +28,64 @@ import { Text, View } from "../../../theme/Themed";
 import { WhatsAppLogo } from "../../../../assets/svg";
 import { TouchableOpacity } from "react-native";
 import Colors from "../../../constants/Colors";
+import SecondaryButton from "../../../components/buttons/SecondaryButton";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const dispatch = useAppDispatch();
 
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [whatsAppButtonLoading, setWhatsAppButtonLoading] = useState(false);
 
   const validationSchema = yup.object({
     email: yup.string().required("Email is required!").email(),
+    isWhatsAppOTP: yup.bool().required(),
   });
 
-  const handleSubmission = async (email: string) => {
-    const userLoginInfo = await getUserLoginInfoAPI(email);
-    if (userLoginInfo) {
-      setButtonLoading(true);
-      dispatch(
-        setUserPhoneAndFullName({
-          phoneNumber: userLoginInfo.data.phoneNumber,
-          fullName: userLoginInfo.data.fullName,
-        })
-      );
-      dispatch(setProfilePicture(userLoginInfo.data.profilePictureUrl));
-      dispatch(setUserEmail(email));
-      requestOtpApi({
-        email: "",
-        phoneNumber: userLoginInfo.data.phoneNumber,
-      })
-        .then(() => setButtonLoading(false))
-        .catch(() => setButtonLoading(false));
+  const handleSubmission = async (email: string, whatsAppOTP: boolean) => {
+    whatsAppOTP ? setWhatsAppButtonLoading(true) : setButtonLoading(true);
+    getUserLoginInfoAPI(email)
+      .then((userLoginInfo) => {
+        if (userLoginInfo) {
+          whatsAppOTP ? setWhatsAppButtonLoading(true) : setButtonLoading(true);
+          dispatch(
+            setUserPhoneAndFullName({
+              phoneNumber: userLoginInfo.data.phoneNumber,
+              fullName: userLoginInfo.data.fullName,
+            })
+          );
+          dispatch(setProfilePicture(userLoginInfo.data.profilePictureUrl));
+          dispatch(setUserEmail(email));
+          requestOtpApi({
+            email: "",
+            phoneNumber: userLoginInfo.data.phoneNumber,
+            sendToWhatsApp: whatsAppOTP,
+          })
+            .then(() =>
+              whatsAppOTP
+                ? setWhatsAppButtonLoading(false)
+                : setButtonLoading(false)
+            )
+            .catch(() =>
+              whatsAppOTP
+                ? setWhatsAppButtonLoading(false)
+                : setButtonLoading(false)
+            );
 
-      navigation.navigate("SignInOTP");
-    } else {
-      toastError("Invalid email!");
-      setButtonLoading(false);
-    }
+          navigation.navigate("SignInOTP");
+        } else {
+          toastError("Invalid email!");
+          setButtonLoading(false);
+          whatsAppOTP
+            ? setWhatsAppButtonLoading(false)
+            : setButtonLoading(false);
+        }
+      })
+      .catch((e) => {
+        console.error("Error fetching user data: ", e);
+        toastError("Invalid email!");
+        setButtonLoading(false);
+        whatsAppOTP ? setWhatsAppButtonLoading(false) : setButtonLoading(false);
+      });
   };
 
   return (
@@ -88,17 +112,19 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
-              }}>
+              }}
+            >
               Email Address <Text style={{ color: "red" }}>*</Text>
             </Text>
           </View>
 
           <Formik
             validationSchema={validationSchema}
-            initialValues={{ email: "" }}
+            initialValues={{ email: "", isWhatsAppOTP: false }}
             onSubmit={(values, actions) => {
-              handleSubmission(values.email);
-            }}>
+              handleSubmission(values.email, values.isWhatsAppOTP);
+            }}
+          >
             {({
               handleChange,
               handleBlur,
@@ -125,7 +151,10 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                   <View style={{ marginBottom: hp(30) }}>
                     <Button
                       title="SMS OTP"
-                      onPressButton={handleSubmit}
+                      onPressButton={() => {
+                        values.isWhatsAppOTP = false;
+                        handleSubmit();
+                      }}
                       style={[
                         {
                           marginTop: 20,
@@ -135,33 +164,18 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                       disabled={!isValid}
                     />
                   </View>
-
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    style={{
-                      borderWidth: 1,
-                      borderColor: Colors["general"].grey,
-                      width: "90%",
-                      height: hp(50),
-                      borderRadius: hp(10),
-                      alignItems: "center",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignSelf: "center",
-                    }}>
-                    <View style={{ marginRight: 10 }}>
-                      <WhatsAppLogo color={"#25D366"} size={20} />
-                    </View>
-
-                    <Text
-                      style={{
-                        fontFamily: "Euclid-Circular-A-Medium",
-                        fontSize: hp(14),
-                        fontWeight: "500",
-                      }}>
-                      Whatsapp OTP
-                    </Text>
-                  </TouchableOpacity>
+                  <SecondaryButton
+                    title="Whatsapp OTP"
+                    Icon={() => (
+                      <WhatsAppLogo color={Colors.general.whatsapp} size={20} />
+                    )}
+                    onPress={() => {
+                      values.isWhatsAppOTP = true;
+                      handleSubmit();
+                    }}
+                    disabled={!isValid}
+                    isLoading={whatsAppButtonLoading}
+                  />
                 </View>
               );
             }}
