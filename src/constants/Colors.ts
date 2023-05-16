@@ -31,6 +31,7 @@ interface IThemeGroup {
     facebook: string;
     google: string;
     apple: string;
+    whatsapp: string;
     darkGrey: string;
     lightGrey: string;
     primary: string;
@@ -90,6 +91,7 @@ const Colors: IThemeGroup = {
     facebook: "#1198F6",
     google: "#EB4235",
     apple: black,
+    whatsapp: "#25D366",
     darkGrey: "#4D4D4D",
     lightGrey: "#CCCCCC",
     primary: "#121212",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-native-modal";
-import { FlatList } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
@@ -24,6 +24,8 @@ import { requestOtpApi } from "../../../api/auth";
 import Phone from "./PhoneStage";
 import { useCountries } from "../../../hooks/useCountries";
 import { phone } from "phone";
+import { WhatsAppLogo } from "../../../../assets/svg";
+import SecondaryButton from "../../../components/buttons/SecondaryButton";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -35,12 +37,41 @@ const PhoneNumberScreen = ({
   const { loading, countries } = useCountries();
   const [country, setCountry] = useState<CountriesType>(countries[0]);
 
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [whatsAppButtonLoading, setWhatsAppButtonLoading] = useState(false);
+
   const FetchedCountries = ({ item }: { item: CountryProps }) => {
     return <CountriesCard onPress={() => selectCountry(item)} {...item} />;
   };
   const selectCountry = (item: CountriesType) => {
     setCountry(item);
     setModalVisible(false);
+  };
+
+  const handlePhoneNumberSubmission = (isWhatsAppOTP: boolean) => {
+    !isWhatsAppOTP ? setButtonLoading(true) : setWhatsAppButtonLoading(true);
+    dispatch(
+      setReduxStorePhone(country.code + phoneNumber.trim().replace(/\s/g, ""))
+    );
+    requestOtpApi({
+      email: "",
+      phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
+      sendToWhatsApp: isWhatsAppOTP,
+    })
+      .then(() => {
+        console.debug("Phone otp requested");
+        !isWhatsAppOTP
+          ? setButtonLoading(false)
+          : setWhatsAppButtonLoading(false);
+        navigation.push("SignUpOTP", {
+          otpScreenType: "phone",
+        });
+      })
+      .catch((e) => {
+        !isWhatsAppOTP
+          ? setButtonLoading(false)
+          : setWhatsAppButtonLoading(false);
+      });
   };
 
   return (
@@ -92,27 +123,27 @@ const PhoneNumberScreen = ({
           offset={20}
         />
 
-        <Button
-          title="Continue"
-          onPressButton={() => {
-            dispatch(
-              setReduxStorePhone(
-                country.code + phoneNumber.trim().replace(/\s/g, "")
-              )
-            );
-            requestOtpApi({
-              email: "",
-              phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
-            }).then((code) => {
-              console.debug("Phone otp requested");
-            });
-            navigation.push("SignUpOTP", {
-              otpScreenType: "phone",
-            });
-          }}
-          styleText={{}}
-          style={[CommonStyles.button]}
+        <View style={{ marginBottom: hp(30) }}>
+          <Button
+            title="SMS OTP"
+            onPressButton={() => {
+              handlePhoneNumberSubmission(false);
+            }}
+            styleText={{}}
+            style={[CommonStyles.button]}
+            disabled={!phone(country.code + phoneNumber).isValid}
+            buttonLoading={buttonLoading}
+          />
+        </View>
+
+        <SecondaryButton
+          title="Whatsapp OTP"
+          Icon={() => (
+            <WhatsAppLogo color={Colors.general.whatsapp} size={20} />
+          )}
+          onPress={() => handlePhoneNumberSubmission(true)}
           disabled={!phone(country.code + phoneNumber).isValid}
+          isLoading={whatsAppButtonLoading}
         />
       </SpacerWrapper>
       <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>

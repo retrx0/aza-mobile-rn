@@ -28,8 +28,18 @@ export const loginUserAPI = async (data: {
 export const requestOtpApi = async (data: {
   email: string;
   phoneNumber: string;
+  sendToWhatsApp?: boolean;
 }) => {
-  return await apiCourier("post", "/api/v1/auth/request-otp", data, "none");
+  return await apiCourier(
+    "post",
+    "/api/v1/auth/request-otp",
+    {
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      sendToWhatsapp: data.sendToWhatsApp ? data.sendToWhatsApp : false,
+    },
+    "none"
+  );
 };
 
 export const verifyOtpApi = async (

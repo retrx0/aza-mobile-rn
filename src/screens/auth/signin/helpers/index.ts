@@ -18,9 +18,21 @@ import {
 export const forgetUser = async (navigation: any) => {
   console.debug("forgeting user!");
   try {
-    SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN);
-    SecureStore.deleteItemAsync(STORAGE_KEY_USER_CREDS);
-    SecureStore.deleteItemAsync(STORAGE_KEY_TRANSACTION_PIN);
+    SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN)
+      .then((_) => SecureStore.deleteItemAsync(STORAGE_KEY_JWT_TOKEN))
+      .catch((e) => {
+        console.error("Could not delete token from secure store");
+      });
+    SecureStore.getItemAsync(STORAGE_KEY_USER_CREDS)
+      .then((_) => SecureStore.deleteItemAsync(STORAGE_KEY_USER_CREDS))
+      .catch((e) => {
+        console.error("Could not delete user from secure store");
+      });
+    SecureStore.getItemAsync(STORAGE_KEY_TRANSACTION_PIN)
+      .then((_) => SecureStore.deleteItemAsync(STORAGE_KEY_TRANSACTION_PIN))
+      .catch((e) => {
+        console.error("Could not delete transaction pin from secure store");
+      });
     // SecureStore.deleteItemAsync(STORAGE_KEY_JWT_REFRESH_TOKEN);
     // SecureStore.deleteItemAsync(STORAGE_KEY_EMAIL_OTP_ACCESS_TOKEN);
     // SecureStore.deleteItemAsync(STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN);

@@ -83,7 +83,7 @@ const ContactUsScreen = ({ navigation }: CommonScreenProps<"ContactUs">) => {
               alignSelf: "center",
             }}
             onPress={() => {
-              Linking.openURL("https://wa.me/message/JXUMVFOC6N72O1");
+              Linking.openURL("https://wa.me/message/7OTBNBBNIP4JG1");
             }}
           >
             <View style={{ marginRight: 10 }}>
