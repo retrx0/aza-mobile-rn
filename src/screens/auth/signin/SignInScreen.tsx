@@ -25,6 +25,9 @@ import ThirdPartyAuthButtons from "../common/ThirdPartyAuthButtons";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
 import { toastError } from "../../../common/util/ToastUtil";
 import { Text, View } from "../../../theme/Themed";
+import { WhatsAppLogo } from "../../../../assets/svg";
+import { TouchableOpacity } from "react-native";
+import Colors from "../../../constants/Colors";
 
 const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
   const dispatch = useAppDispatch();
@@ -85,8 +88,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                 marginLeft: hp(15),
                 fontSize: hp(18),
                 fontWeight: "500",
-              }}
-            >
+              }}>
               Email Address <Text style={{ color: "red" }}>*</Text>
             </Text>
           </View>
@@ -96,8 +98,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             initialValues={{ email: "" }}
             onSubmit={(values, actions) => {
               handleSubmission(values.email);
-            }}
-          >
+            }}>
             {({
               handleChange,
               handleBlur,
@@ -121,17 +122,46 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
                     autoFocus={false}
                     onBlur={handleBlur("blur")}
                   />
-                  <Button
-                    title="Continue"
-                    onPressButton={handleSubmit}
-                    style={[
-                      {
-                        marginTop: 20,
-                      },
-                    ]}
-                    buttonLoading={buttonLoading}
-                    disabled={!isValid}
-                  />
+                  <View style={{ marginBottom: hp(30) }}>
+                    <Button
+                      title="SMS OTP"
+                      onPressButton={handleSubmit}
+                      style={[
+                        {
+                          marginTop: 20,
+                        },
+                      ]}
+                      buttonLoading={buttonLoading}
+                      disabled={!isValid}
+                    />
+                  </View>
+
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={{
+                      borderWidth: 1,
+                      borderColor: Colors["general"].grey,
+                      width: "90%",
+                      height: hp(50),
+                      borderRadius: hp(10),
+                      alignItems: "center",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignSelf: "center",
+                    }}>
+                    <View style={{ marginRight: 10 }}>
+                      <WhatsAppLogo color={"#25D366"} size={20} />
+                    </View>
+
+                    <Text
+                      style={{
+                        fontFamily: "Euclid-Circular-A-Medium",
+                        fontSize: hp(14),
+                        fontWeight: "500",
+                      }}>
+                      Whatsapp OTP
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               );
             }}

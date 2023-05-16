@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-native-modal";
-import { FlatList } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 
 import BackButton from "../../../components/buttons/BackButton";
 import Button from "../../../components/buttons/Button";
@@ -24,6 +24,7 @@ import { requestOtpApi } from "../../../api/auth";
 import Phone from "./PhoneStage";
 import { useCountries } from "../../../hooks/useCountries";
 import { phone } from "phone";
+import { WhatsAppLogo } from "../../../../assets/svg";
 
 const PhoneNumberScreen = ({
   navigation,
@@ -67,8 +68,7 @@ const PhoneNumberScreen = ({
               marginLeft: hp(15),
               fontSize: hp(18),
               fontWeight: "500",
-            }}
-          >
+            }}>
             Phone Number <Text style={{ color: "red" }}>*</Text>
           </Text>
         </View>
@@ -92,35 +92,64 @@ const PhoneNumberScreen = ({
           offset={20}
         />
 
-        <Button
-          title="Continue"
-          onPressButton={() => {
-            dispatch(
-              setReduxStorePhone(
-                country.code + phoneNumber.trim().replace(/\s/g, "")
-              )
-            );
-            requestOtpApi({
-              email: "",
-              phoneNumber: country.code + phoneNumber.trim().replace(/\s/g, ""),
-            }).then((code) => {
-              console.debug("Phone otp requested");
-            });
-            navigation.push("SignUpOTP", {
-              otpScreenType: "phone",
-            });
-          }}
-          styleText={{}}
-          style={[CommonStyles.button]}
-          disabled={!phone(country.code + phoneNumber).isValid}
-        />
+        <View style={{ marginBottom: hp(30) }}>
+          <Button
+            title="SMS OTP"
+            onPressButton={() => {
+              dispatch(
+                setReduxStorePhone(
+                  country.code + phoneNumber.trim().replace(/\s/g, "")
+                )
+              );
+              requestOtpApi({
+                email: "",
+                phoneNumber:
+                  country.code + phoneNumber.trim().replace(/\s/g, ""),
+              }).then((code) => {
+                console.debug("Phone otp requested");
+              });
+              navigation.push("SignUpOTP", {
+                otpScreenType: "phone",
+              });
+            }}
+            styleText={{}}
+            style={[CommonStyles.button]}
+            disabled={!phone(country.code + phoneNumber).isValid}
+          />
+        </View>
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={{
+            borderWidth: 1,
+            borderColor: Colors["general"].grey,
+            width: "90%",
+            height: hp(50),
+            borderRadius: hp(10),
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignSelf: "center",
+          }}>
+          <View style={{ marginRight: 10 }}>
+            <WhatsAppLogo color={"#25D366"} size={20} />
+          </View>
+
+          <Text
+            style={{
+              fontFamily: "Euclid-Circular-A-Medium",
+              fontSize: hp(14),
+              fontWeight: "500",
+            }}>
+            Whatsapp OTP
+          </Text>
+        </TouchableOpacity>
       </SpacerWrapper>
       <Modal isVisible={modalVisible} hasBackdrop backdropOpacity={0.7}>
         <View
           style={[
             { borderRadius: hp(10), marginTop: hp(50), marginBottom: hp(50) },
-          ]}
-        >
+          ]}>
           <FlatList
             style={[
               {
