@@ -17,6 +17,7 @@ type RegisterUserModel = {
   email: string;
   newPassword: string;
   pushNotificationToken: string;
+  isGenesisUser?: true;
 };
 
 export const checkUserEndpointHealthAPI = async () => {

@@ -79,6 +79,7 @@ const useSignUp = () => {
           gender: newUser.gender,
           newPassword: passcode,
           pushNotificationToken: newUser.pushToken,
+          isGenesisUser: true,
         }).then((regitration) => {
           // Store user credentials for face id
           // storeUserCredentialsSecure(newUser.emailAddress, passcode);
