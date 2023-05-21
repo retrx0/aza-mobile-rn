@@ -54,7 +54,7 @@ export const CountryBox = ({
         placeholder="80 11 22"
         keyboardType="number-pad"
         {...rest}
-        maxLength={11}
+        maxLength={10}
         returnKeyType="done"
       />
     </View>

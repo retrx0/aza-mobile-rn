@@ -65,16 +65,16 @@ export default function Payments({
       icon: <GiftIcon size={35} />,
       onPress: () => navigation.navigate("Common", { screen: "GiftCard" }),
     },
-    {
-      title: "Charity",
-      icon: <LoveIcon size={35} />,
-      onPress: () => {
-        /*         navigation.navigate("Common", {
-        screen: "Charity",
-        params: { recurringTransaction: false },
-      }),*/
-      },
-    },
+    // {
+    //   title: "Charity",
+    //   icon: <LoveIcon size={35} />,
+    //   onPress: () => {
+    //     /*         navigation.navigate("Common", {
+    //     screen: "Charity",
+    //     params: { recurringTransaction: false },
+    //   }),*/
+    //   },
+    // },
     {
       title: "Game Credits",
       icon: <GameIcon size={35} />,

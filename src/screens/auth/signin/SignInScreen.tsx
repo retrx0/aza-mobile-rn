@@ -60,18 +60,18 @@ const SignInScreen = ({ navigation }: SignInScreenProps<"SignInRoot">) => {
             phoneNumber: userLoginInfo.data.phoneNumber,
             sendToWhatsApp: whatsAppOTP,
           })
-            .then(() =>
+            .then(() => {
               whatsAppOTP
                 ? setWhatsAppButtonLoading(false)
-                : setButtonLoading(false)
-            )
-            .catch(() =>
+                : setButtonLoading(false);
+              navigation.navigate("SignInOTP");
+            })
+            .catch(() => {
+              toastError("Unable to request OTP");
               whatsAppOTP
                 ? setWhatsAppButtonLoading(false)
-                : setButtonLoading(false)
-            );
-
-          navigation.navigate("SignInOTP");
+                : setButtonLoading(false);
+            });
         } else {
           toastError("Invalid email!");
           setButtonLoading(false);

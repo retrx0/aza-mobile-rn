@@ -15,7 +15,7 @@ import {
   PREFERENCE_STORAGE_KEY,
 } from "../../../../constants/AppConstants";
 
-export const forgetUser = async (navigation: any) => {
+export const forgetUser = async () => {
   console.debug("forgeting user!");
   try {
     SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN)
@@ -39,7 +39,6 @@ export const forgetUser = async (navigation: any) => {
     // SecureStore.deleteItemAsync(STORAGE_KEY_PUSH_NOTIFICATION_TOKEN);
     AsyncStorage.removeItem(PREFERENCE_STORAGE_KEY);
     AsyncStorage.removeItem(CEO_MESSAGE_STORAGE_KEY);
-    navigation.replace("Welcome");
   } catch (error) {
     console.error(error);
   }

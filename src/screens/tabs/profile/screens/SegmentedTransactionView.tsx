@@ -7,7 +7,12 @@ import {
 } from "../../../../common/util/NumberUtils";
 import TransactionListItem from "../../../../components/ListItem/TransactionListItem";
 import Colors from "../../../../constants/Colors";
-import { I9PSBTransaction, ITransaction } from "../../../../types/types.redux";
+import {
+  I9PSBTransaction,
+  IBeneficiary,
+  ITransaction,
+  ITransferResponse,
+} from "../../../../types/types.redux";
 import { Text, View } from "../../../../theme/Themed";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import { RootTabScreenProps } from "../../../../types/types.navigation";
@@ -66,7 +71,7 @@ const SegmentedTransactionView = ({
                 type === "CREDIT" ? "Incoming Transfer" : "Outgoing Transfer"
               }
               transactionType={type === "CREDIT" ? "incoming" : "outgoing"}
-              onPress={() =>
+              onPress={() => {
                 navigation.navigation.navigate("Common", {
                   screen: "Receipt",
                   params: {
@@ -82,15 +87,75 @@ const SegmentedTransactionView = ({
                     transactionDate: transfromDataString(createdAt),
                     receivingBank:
                       transactionType === "IntraBank"
-                        ? "Aza"
+                        ? "Aza Wallet"
                         : "" + destinationCreditChannel,
-                    transactionFee:
-                      transactionType === "IntraBank"
-                        ? `${NAIRA_UNICODE}0`
-                        : NAIRA_UNICODE + String((0.1 / 100) * amount),
+                    transactionFee: "",
                   },
-                })
-              }
+                });
+
+                // let confirmationType: "send" | "request" = "send";
+
+                // let response: ITransferResponse = {
+                //   amount: 100,
+                //   createdAt: "cr",
+                //   currency: "NGN",
+                //   dateCreated: "22222",
+                //   description: "chop life",
+                //   destBankCode: "555",
+                //   destBankName: "Bank1",
+                //   destinationCreditAccount: "000222",
+                //   id: "someid",
+                //   name: "name",
+                //   sourceAccount: "45654",
+                //   sourceBankCode: "46848",
+                //   sourceBankName: "Banks",
+                //   transactionReference: "some refrence",
+                //   transactionType: "transaction type",
+                //   type: "type",
+                // };
+
+                // let beneficiary: IBeneficiary = {
+                //   fullName: "sAbdul",
+                //   accountNumber: "uibaidua",
+                //   bankCode: "6468",
+                // };
+
+                // navigation.navigation.navigate("Common", {
+                //   screen: "StatusScreen",
+                //   params: {
+                //     status:
+                //       confirmationType === "request"
+                //         ? "Successful"
+                //         : "Your transaction was \n successful",
+                //     statusIcon: "Success",
+                //     statusMessage: `You have successfully ${
+                //       confirmationType === "request" ? "requested" : "sent"
+                //     } ${NAIRA_UNICODE} ${amount} ${
+                //       confirmationType === "request" ? "from" : "to"
+                //     } ${beneficiary.fullName}`,
+                //     statusMessage2: confirmationType === "send" ? "" : "",
+                //     receiptDetails:
+                //       confirmationType === "send" && response
+                //         ? {
+                //             amount: String(amount),
+                //             beneficiaryName: beneficiary.fullName,
+                //             description: response.description,
+                //             receivingBank: response.destBankName,
+                //             referenceId: response.transactionReference,
+                //             transactionDate: response.dateCreated,
+                //             transactionFee: "",
+                //             transactionType: response.transactionType,
+                //           }
+                //         : undefined,
+                //     recurringTransferBeneficiary:
+                //       confirmationType === "send" ? beneficiary : undefined,
+                //     navigateTo: "Home",
+                //     // to disallow swoosh sound in request screen
+                //     screenType:
+                //       confirmationType === "send" ? "transaction" : undefined,
+                //   },
+                // });
+              }}
             />
           </View>
         )
