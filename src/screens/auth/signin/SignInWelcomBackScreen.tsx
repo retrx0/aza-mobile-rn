@@ -171,7 +171,14 @@ const SignInWelcomeBackScreen = ({
             <TouchableOpacity>
               <CancelButtonWithUnderline
                 title="Forget Me"
-                onPressButton={() => forgetUser(navigation)}
+                onPressButton={() => {
+                  forgetUser()
+                    .then(() => {
+                      // @ts-ignore
+                      navigation.replace("Welcome");
+                    })
+                    .catch((e) => {});
+                }}
                 styleText={CommonStyles.resend}
                 color={Colors.general.grey}
               />

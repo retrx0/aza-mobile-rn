@@ -42,19 +42,19 @@ export default function AccountSettings({
         }),
     },
 
-    {
-      icon: (
-        <ChangePhoneNumberIcon size={36} color={Colors[appTheme].mainText} />
-      ),
-      name: "Change Mobile Phone Number",
-      detail: "Change your mobile number",
-      disabled: false,
-      disabledIcon: (
-        <ChangePhoneNumberIcon size={36} color={Colors[appTheme].disabled} />
-      ),
-      handleNavigation: () =>
-        navigation.navigate("Common", { screen: "ChangePhoneNumber" }),
-    },
+    // {
+    //   icon: (
+    //     <ChangePhoneNumberIcon size={36} color={Colors[appTheme].mainText} />
+    //   ),
+    //   name: "Change Mobile Phone Number",
+    //   detail: "Change your mobile number",
+    //   disabled: false,
+    //   disabledIcon: (
+    //     <ChangePhoneNumberIcon size={36} color={Colors[appTheme].disabled} />
+    //   ),
+    //   handleNavigation: () =>
+    //     navigation.navigate("Common", { screen: "ChangePhoneNumber" }),
+    // },
     {
       icon: <ChangeEmailIcon size={36} color={Colors[appTheme].mainText} />,
       name: "Change Email Address",

@@ -124,7 +124,7 @@ const useTransactionService = (
       payOtherBankAPI({
         amount,
         currency: NAIRA_CCY_CODE,
-        description: transDescription ? transDescription : "Aza withdrawal",
+        description: transDescription ? transDescription : "",
         destinationAccount: beneficiary.accountNumber,
         destinationBankCode: beneficiary.bankCode,
         destinationAccountName: beneficiary.fullName,
@@ -179,7 +179,7 @@ const useTransactionService = (
       } ${beneficiary.fullName}`,
       statusMessage2:
         confirmationType === "send"
-          ? "You can perform this transaction automatically by giving a Recurring Transfer order"
+          ? "" // "You can perform this transaction automatically by giving a Recurring Transfer order"
           : "",
       receiptDetails:
         confirmationType === "send" && response
@@ -190,7 +190,7 @@ const useTransactionService = (
               receivingBank: response.destBankName,
               referenceId: response.transactionReference,
               transactionDate: response.dateCreated,
-              transactionFee: String(Number(response.amount - amount)),
+              transactionFee: "",
               transactionType: response.transactionType,
             }
           : undefined,

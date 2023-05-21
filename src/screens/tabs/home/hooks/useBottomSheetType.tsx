@@ -194,7 +194,15 @@ export const useBottomSheetType = (
         itemName: "Sign out",
         itemIcon: <LogoutIcon size={16} />,
         onPress: () => {
-          forgetUser(navigation);
+          // setLoading(true);
+          forgetUser()
+            .then(() => {
+              // setLoading(false);
+              navigation.navigate("Welcome");
+            })
+            .catch((e) => {
+              /* setLoading(false) */
+            });
         },
       },
     ],

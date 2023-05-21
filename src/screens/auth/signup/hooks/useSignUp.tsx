@@ -80,10 +80,10 @@ const useSignUp = () => {
           newPassword: passcode,
           pushNotificationToken: newUser.pushToken,
           isGenesisUser: true,
-        }).then((regitration) => {
+        }).then((registration) => {
           // Store user credentials for face id
           // storeUserCredentialsSecure(newUser.emailAddress, passcode);
-          if (regitration) {
+          if (registration) {
             loginUserAPI({
               email: newUser.emailAddress,
               phoneNumber: newUser.phoneNumber,
@@ -126,7 +126,7 @@ const useSignUp = () => {
                 );
               });
           } else {
-            toastError("User already registered!");
+            toastError("Something went wrong!");
             setLoading(false);
           }
         });
