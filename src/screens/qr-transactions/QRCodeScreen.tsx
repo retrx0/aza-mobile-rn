@@ -36,7 +36,7 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
   const insets = useSafeAreaInsets();
 
   const [amount, setAmount] = useState(0);
-  const imageRef = useRef<React.LegacyRef<View2>>();
+  const imageRef = useRef();
 
   useNavigationHeader(navigation, "QR Transactions");
 
@@ -77,7 +77,11 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
           // @ts-ignore
           ref={imageRef}
           collapsable={false}
-          style={{ padding: 10, margin: 15 }}
+          style={{
+            padding: 10,
+            margin: 15,
+            backgroundColor: Colors[appTheme].background,
+          }}
         >
           <View style={{ alignItems: "center" }}>
             <Image
