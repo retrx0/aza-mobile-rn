@@ -18,6 +18,15 @@ import {
 import { ScrollView, View as View } from "../../../theme/Themed";
 import SpacerWrapper from "../../../common/util/SpacerWrapper";
 import { useState } from "react";
+import { ENV_DEVELOPMENT, ENV_TESTING } from "../../../constants/AppConstants";
+import {
+  API_BASE_URL_DEV,
+  API_BASE_URL_PROD,
+  API_BASE_URL_TST,
+  API_KEY_DEV,
+  API_KEY_PROD,
+  API_KEY_TST,
+} from "@env";
 
 const Home = ({
   navigation,
@@ -37,6 +46,28 @@ const Home = ({
     await dispatch(getUserAccountDetails());
     setRefreshing(false);
   };
+
+  // fetch(
+  //   process.env.ENV === ENV_DEVELOPMENT
+  //     ? API_BASE_URL_DEV.replace("\\", "")
+  //     : process.env.ENV === ENV_TESTING
+  //     ? API_BASE_URL_TST.replace("\\", "")
+  //     : API_BASE_URL_PROD.replace("\\", "") +
+  //       `/api/v1/account/${user.aza9PSBAccountNumber}/transactions`,
+  //   {
+  //     headers: {
+  //       "X-API-KEY":
+  //         process.env.ENV === ENV_DEVELOPMENT
+  //           ? API_KEY_DEV
+  //           : process.env.ENV === ENV_TESTING
+  //           ? API_KEY_TST
+  //           : API_KEY_PROD,
+  //       "Content-Type": "application/json",
+  //     },
+  //   }
+  // )
+  //   .then((data) => console.log(data))
+  //   .catch((e) => console.log(e));
 
   return (
     <SpacerWrapper>

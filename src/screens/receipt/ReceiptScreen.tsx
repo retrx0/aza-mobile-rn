@@ -1,4 +1,8 @@
-import { StyleSheet } from "react-native";
+import {
+  StyleSheet,
+  View as SCView,
+  ScrollView as SCScrollView,
+} from "react-native";
 
 import Button from "../../components/buttons/Button";
 import ButtonWithUnderline from "../../components/buttons/CancelButtonWithUnderline";
@@ -18,7 +22,11 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { selectUser } from "../../redux/slice/userSlice";
 import { selectTransaction } from "../../redux/slice/transactionSlice";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
-import { toastInfo } from "../../common/util/ToastUtil";
+import { toastError, toastInfo } from "../../common/util/ToastUtil";
+import { useRef } from "react";
+import * as MediaLibrary from "expo-media-library";
+import { captureRef } from "react-native-view-shot";
+import { Alert } from "react-native";
 
 const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
@@ -36,10 +44,48 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
   } = route.params;
 
   const appTheme = getAppTheme(selectedTheme);
+  const [, requestPermission] = MediaLibrary.usePermissions();
+
+  const imageRef = useRef();
+
+  const captureScreenAndSaveToGallery = async () => {
+    const permission = await requestPermission();
+
+    if (permission.granted) {
+      try {
+        const localUri = await captureRef(imageRef, {
+          quality: 1,
+          format: "jpg",
+        });
+
+        await MediaLibrary.saveToLibraryAsync(localUri);
+        if (localUri) {
+          toastInfo("Receipt saved to images");
+          navigation.goBack();
+        }
+      } catch (e) {
+        console.error("Oops, snapshot failed", e);
+        toastError("Could not save receipt to images!");
+      }
+    } else {
+      Alert.alert("Permission not granted");
+    }
+  };
 
   return (
     <SpacerWrapper>
-      <View style={styles.container}>
+      <SCView
+        // @ts-ignore
+        ref={imageRef}
+        collapsable={false}
+        style={[
+          styles.container,
+          {
+            backgroundColor: Colors[appTheme].background,
+            flex: 5,
+          },
+        ]}
+      >
         <AZALightningLogo
           size={25}
           color={appTheme === "dark" ? Colors.dark.mainText : Colors.light.text}
@@ -81,7 +127,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
         >
           {beneficiaryName}
         </Text>
-        <ScrollView>
+        <SCScrollView>
           <UnderlinedInput
             icon={null}
             showSoftInputOnFocus={false}
@@ -173,22 +219,22 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
             label={"Description"}
             value={description}
           />
-        </ScrollView>
+        </SCScrollView>
+      </SCView>
+      <View style={{ flex: 1.2 }}>
         <Button
           title="Close Receipt"
           onPressButton={() => navigation.getParent()?.navigate("Home")}
           style={{
-            marginTop: 25,
+            marginTop: 5,
             marginBottom: 15,
           }}
         />
-        {/* <ButtonWithUnderline
-          title="Download Receipt"
+        <ButtonWithUnderline
+          title="Save Receipt to gallery"
           color={Colors[appTheme].text}
-          onPressButton={() => {
-            toastInfo("Receipt will be downloaded");
-          }}
-        /> */}
+          onPressButton={captureScreenAndSaveToGallery}
+        />
       </View>
     </SpacerWrapper>
   );

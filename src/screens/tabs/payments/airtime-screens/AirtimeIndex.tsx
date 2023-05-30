@@ -2,19 +2,20 @@ import { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { TabBar, TabView } from "react-native-tab-view";
 
-import { Text } from "../../../../theme/Themed";
+import { Text, View } from "../../../../theme/Themed";
 import Airtime from "./Airtime";
 import DataBundle from "./DataBundle";
 
 import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 import Colors from "../../../../constants/Colors";
-import { hp } from "../../../../common/util/LayoutUtil";
+import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { CommonScreenProps } from "../../../../common/navigation/types";
 
 import { useAppSelector } from "../../../../redux";
 import { selectAppTheme } from "../../../../redux/slice/themeSlice";
 import { getAppTheme } from "../../../../theme";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import CommonStyles from "../../../../common/styles/CommonStyles";
 
 const AirtimeDataScreen = ({
   navigation,
@@ -41,7 +42,35 @@ const AirtimeDataScreen = ({
 
   return (
     <SpacerWrapper>
-      <TabView
+      <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          style={{
+            marginTop: hp(30),
+            textAlign: "center",
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "600",
+            marginBottom: hp(30),
+            color: "#2A9E17",
+          }}
+        >
+          Coming Soon
+        </Text>
+        <Text
+          style={{
+            marginTop: hp(30),
+            alignSelf: "center",
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "500",
+            maxWidth: wp(333),
+            textAlign: "center",
+          }}
+        >
+          Buy Airtime and Data plans!
+        </Text>
+      </View>
+      {/* <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
@@ -79,7 +108,7 @@ const AirtimeDataScreen = ({
             }}
           />
         )}
-      />
+      /> */}
     </SpacerWrapper>
   );
 };

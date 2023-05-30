@@ -35,7 +35,7 @@ export default function Payments({
       title: "Airtime & Data",
       icon: <DataIcon size={35} />,
       onPress: () => {
-        /*navigation.navigate("Common", { screen: "AirtimeData" }) }, */
+        navigation.navigate("Common", { screen: "AirtimeData" });
       },
     },
     {
@@ -52,7 +52,7 @@ export default function Payments({
       title: "Electricity",
       icon: <ElectricIcon size={35} />,
       onPress: () => {
-        /* navigation.navigate("Common", { screen: "Electricity" })*/
+        navigation.navigate("Common", { screen: "Electricity" });
       },
     },
     {

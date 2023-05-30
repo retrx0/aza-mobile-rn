@@ -7,7 +7,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { SafeAreaView, View as View } from "../../../../theme/Themed";
+import { SafeAreaView, Text, View as View } from "../../../../theme/Themed";
 import { Header } from "../../../../components/text/header";
 import { UnderlinedInput } from "../../../../components/input/UnderlinedInput";
 import CustomDropdown from "../../../../components/dropdown/CustomDropdown";
@@ -133,7 +133,35 @@ export default function ElectricityIndex({
 
   return (
     <SpacerWrapper>
-      <KeyboardAvoidingView
+      <View style={[CommonStyles.vaultcontainer]}>
+        <Text
+          style={{
+            marginTop: hp(30),
+            textAlign: "center",
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "600",
+            marginBottom: hp(30),
+            color: "#2A9E17",
+          }}
+        >
+          Coming Soon
+        </Text>
+        <Text
+          style={{
+            marginTop: hp(30),
+            alignSelf: "center",
+            fontFamily: "Euclid-Circular-A-Medium",
+            fontSize: hp(16),
+            fontWeight: "500",
+            maxWidth: wp(333),
+            textAlign: "center",
+          }}
+        >
+          Pay your electricity bill with ease!
+        </Text>
+      </View>
+      {/* <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "position" : "height"}
         style={CommonStyles.vaultcontainer}
       >
@@ -266,7 +294,7 @@ export default function ElectricityIndex({
             }
           />
         </View>
-      </KeyboardAvoidingView>
+      </KeyboardAvoidingView> */}
     </SpacerWrapper>
   );
 }
