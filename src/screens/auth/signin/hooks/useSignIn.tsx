@@ -16,7 +16,6 @@ import {
   getUserTransactions,
   selectUser,
 } from "../../../../redux/slice/userSlice";
-import { IUserInfoResponse } from "../../../../types/types.redux";
 import NetInfo from "@react-native-community/netinfo";
 import {
   setEmail,
@@ -28,6 +27,7 @@ import useAppBiometricAuthentication from "../../../../hooks/useAppBiometricAuth
 import { useNavigation } from "@react-navigation/native";
 import { updateUserNotificationToken } from "../../../../api/user";
 import { useNotifications } from "../../../../hooks/useNotifications";
+import { IUserInfoResponse } from "../../../../libs/response";
 
 // All sign in logic goes here
 

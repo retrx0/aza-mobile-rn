@@ -20,11 +20,15 @@ import { hp } from "../../common/util/LayoutUtil";
 
 import { getUserContacts } from "../../hooks/useContacts";
 
-import { useAppSelector } from "../../redux";
-import { selectUser } from "../../redux/slice/userSlice";
+import { useAppDispatch, useAppSelector } from "../../redux";
+import {
+  getUserSavedBankAccs,
+  saveUserBankAcc,
+  selectUser,
+} from "../../redux/slice/userSlice";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { IBank, IBeneficiary } from "../../types/types.redux";
+import { IBank, IBankAccount, IBeneficiary } from "../../types/types.redux";
 import { NAIRA_CCY_CODE, PSB_BANK_CODE } from "../../constants/AppConstants";
 import { verifyBankAccountAPI } from "../../api/account";
 import { toastError } from "../../common/util/ToastUtil";
@@ -38,6 +42,8 @@ import BankSearchResultView from "../bvn/BankSearchResultView";
 import { selectBank } from "../../redux/slice/bankSlice";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import ActivityModal from "../../components/modal/ActivityModal";
+import CustomSwitch from "../../components/switch/CustomSwitch";
+import BeneficiaryBankAccountListItem from "./BeneficiaryBankAccountListItem";
 
 const ContactsScene = ({
   route,
@@ -49,6 +55,7 @@ const ContactsScene = ({
   nonAzaContactOnPress: (beneficiary: IBeneficiary) => void;
 }) => {
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
+  const { bankAccounts } = useAppSelector(selectUser);
   const [contacts, setContacts] = useState<any[]>([]);
   const [userQuickContacts, setUserQuickContacts] = useState<IBeneficiary[]>(
     []
@@ -58,7 +65,6 @@ const ContactsScene = ({
   const [userAzaContacts, setUserAzaContacts] = useState<IBeneficiary[]>([]);
   const [searchContact, setSearchContact] = useState("");
   const [receipientAccountNumber, setReceipientAccountNumber] = useState("");
-  const insets = useSafeAreaInsets();
   const [buttonLoading, setButtonLoading] = useState(false);
   const [screenLoading, setScreenLoading] = useState(false);
   const user = useAppSelector(selectUser);
@@ -69,8 +75,16 @@ const ContactsScene = ({
   const [selectedBank, setSelectedBank] = useState<IBank>();
   const [receipientAccountName, setReceipientAccountName] = useState("");
   const [accountVerified, setAccountVerified] = useState(false);
+  const [saveAccountAsBeneficiary, setSaveAccountAsBeneficiary] =
+    useState(false);
+  const [beneficiariesModalVisible, setBeneficiariesModalVisible] =
+    useState(false);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (!bankAccounts.loaded) dispatch(getUserSavedBankAccs());
+    console.log(bankAccounts.data);
     getUserContacts().then((_contacts) => {
       if (_contacts) {
         setContacts(_contacts.filter((_c) => _c.contactType === "person"));
@@ -85,7 +99,6 @@ const ContactsScene = ({
   }: {
     receipientBank: IBank;
   }) => {
-    console.log(receipientAccountNumber);
     if (receipientBank.bankCode === PSB_BANK_CODE) {
       navigation.navigate("Common", {
         screen: "TransactionKeypad",
@@ -104,6 +117,15 @@ const ContactsScene = ({
         },
       });
     } else {
+      if (saveAccountAsBeneficiary)
+        dispatch(
+          saveUserBankAcc({
+            accountName: receipientAccountName,
+            accountNumber: receipientAccountNumber,
+            bankCode: receipientBank.bankCode,
+            isBeneficiary: true,
+          })
+        );
       navigation.navigate("Common", {
         screen: "TransactionKeypad",
         params: {
@@ -282,33 +304,39 @@ const ContactsScene = ({
         style={CommonStyles.vaultcontainer}
       >
         <View style={{ paddingHorizontal: hp(20) }}>
-          {/* <View style={{ marginTop: 35 }}>
+          <View style={{ marginTop: 35 }}>
             <Text
               style={{
                 fontFamily: "Euclid-Circular-A-Bold",
                 fontSize: hp(16),
                 fontWeight: "400",
-              }}>
+              }}
+            >
               Saved Beneficiaries
             </Text>
-            <TextInput
-              placeholderTextColor={Colors.light.secondaryText}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A",
-                paddingBottom: 5,
-                marginTop: hp(10),
-                borderBottomWidth: 1,
-                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-                fontSize: hp(16),
-                fontWeight: "500",
+            <TouchableOpacity
+              onPress={() => {
+                setBeneficiariesModalVisible((v) => !v);
               }}
-              placeholder="Choose from already saved accounts"
-              keyboardType="number-pad"
-              returnKeyType="done"
-              // value="Choose from already saved accounts"
-            />
-          </View> */}
+            >
+              <Text
+                style={{
+                  backgroundColor: "transparent",
+                  fontFamily: "Euclid-Circular-A",
+                  paddingBottom: 5,
+                  marginTop: hp(10),
+                  borderBottomWidth: 1,
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+                  fontSize: hp(16),
+                  fontWeight: "500",
+                }}
+              >
+                {"Choose from already saved accounts"}
+              </Text>
+            </TouchableOpacity>
+            <Divider />
+          </View>
 
           <View style={{ marginTop: hp(35) }}>
             <Text
@@ -405,7 +433,6 @@ const ContactsScene = ({
               style={{
                 backgroundColor: "transparent",
                 fontFamily: "Euclid-Circular-A-Medium",
-
                 paddingBottom: 5,
                 marginTop: hp(10),
                 borderBottomWidth: 1,
@@ -418,6 +445,18 @@ const ContactsScene = ({
               returnKeyType="done"
               editable={false}
               value={receipientAccountName}
+            />
+          </View>
+          <View
+            style={[
+              CommonStyles.row,
+              { marginTop: 35, justifyContent: "flex-start" },
+            ]}
+          >
+            <Text style={{ paddingHorizontal: 25 }}>Save as beneficiary?</Text>
+            <CustomSwitch
+              isEnabled={saveAccountAsBeneficiary}
+              onSwitchToggle={() => setSaveAccountAsBeneficiary((v) => !v)}
             />
           </View>
         </View>
@@ -441,6 +480,43 @@ const ContactsScene = ({
           />
         </View>
         <Modal
+          visible={beneficiariesModalVisible}
+          style={{
+            justifyContent: "flex-end",
+            flex: 1,
+            marginTop: 50,
+          }}
+          animationType="slide"
+          presentationStyle="pageSheet"
+          onRequestClose={() => setBeneficiariesModalVisible((v) => !v)}
+          collapsable
+        >
+          <View style={{ height: "100%", paddingTop: 30 }}>
+            {bankAccounts.data
+              .filter((_b) => _b.isBeneficiary)
+              .map((_bankAcc, i) => {
+                return (
+                  <BeneficiaryBankAccountListItem
+                    bankAccount={_bankAcc}
+                    onPress={() => {
+                      setSelectedBank({
+                        bankCode: _bankAcc.bankCode,
+                        bankName: _bankAcc.bankName,
+                        logoUrl: _bankAcc.bankLogo!,
+                        id: Number(_bankAcc.id),
+                      });
+                      setAccountVerified(true);
+                      setReceipientAccountNumber(_bankAcc.accountNumber);
+                      setReceipientAccountName(_bankAcc.accountName);
+                      setBeneficiariesModalVisible((v) => !v);
+                    }}
+                    key={i}
+                  />
+                );
+              })}
+          </View>
+        </Modal>
+        <Modal
           visible={searchBanksModalVisisble}
           style={{
             justifyContent: "flex-end",
@@ -449,6 +525,7 @@ const ContactsScene = ({
           }}
           animationType="slide"
           presentationStyle="pageSheet"
+          onRequestClose={() => setSearchBanksModalVisisble((v) => !v)}
           collapsable
         >
           <View style={{ height: "100%", paddingTop: 50 }}>

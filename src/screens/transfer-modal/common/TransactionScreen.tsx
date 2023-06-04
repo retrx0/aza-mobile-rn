@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { TouchableOpacity, useWindowDimensions } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, TouchableOpacity, useWindowDimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { Text } from "../../../theme/Themed";
@@ -11,11 +11,13 @@ import { hp } from "../../../common/util/LayoutUtil";
 import ContactsScene from "../../contacts/ContactsScene";
 import { InfoIcon } from "../../../../assets/svg";
 import { getAppTheme } from "../../../theme";
-import { useAppSelector } from "../../../redux";
+import { useAppDispatch, useAppSelector } from "../../../redux";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
 import { IBeneficiary } from "../../../types/types.redux";
 import useNavigationHeader from "../../../hooks/useNavigationHeader";
-import { inviteUserAPI } from "../../../api/user";
+import { identifyAzaUserAPI, inviteUserAPI } from "../../../api/user";
+import { toastError, toastInfo } from "../../../common/util/ToastUtil";
+import { fetchUserAzaContacts } from "../../../redux/slice/userSlice";
 
 type TransactionScreenProps = {
   headerTitle: string;
@@ -40,6 +42,7 @@ const TransactionScreen = ({
   ]);
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
+  const dispatch = useAppDispatch();
 
   useNavigationHeader(
     navigation,
@@ -52,6 +55,10 @@ const TransactionScreen = ({
       />
     </TouchableOpacity>
   );
+
+  useEffect(() => {
+    dispatch(fetchUserAzaContacts());
+  }, []);
 
   const azaContactOnClick = (beneficiary: IBeneficiary) => {
     //TODO replace with redux slice
@@ -66,6 +73,36 @@ const TransactionScreen = ({
     });
   };
 
+  const nonAzaContactOnClick = (beneficiary: IBeneficiary) => {
+    identifyAzaUserAPI({
+      contactName: beneficiary.fullName,
+      contactPhoneNumber: "2348061280236",
+    })
+      .then((response) => {
+        toastInfo(
+          `Contact ${response.data.azaUserFullName} added to your quick contacts`
+        );
+      })
+      .catch((e) => {
+        Alert.alert(
+          "Contact not on Aza!",
+          "Would you like to invite this contact to Aza",
+
+          [
+            { onPress: () => {}, text: "Nope", style: "destructive" },
+            {
+              onPress: () => {
+                // call invitation API
+              },
+              text: "Invite",
+              style: "default",
+            },
+          ],
+          { cancelable: true, userInterfaceStyle: appTheme }
+        );
+      });
+  };
+
   return (
     <SpacerWrapper>
       <TabView
@@ -74,9 +111,9 @@ const TransactionScreen = ({
           <ContactsScene
             route={route}
             azaContactOnPress={(_b) => azaContactOnClick(_b)}
-            nonAzaContactOnPress={({ email, phone }) => {
-              // inviteUserAPI(phone!, email!);
-            }}
+            nonAzaContactOnPress={(beneficiary) =>
+              nonAzaContactOnClick(beneficiary)
+            }
           />
         )}
         onIndexChange={setIndex}

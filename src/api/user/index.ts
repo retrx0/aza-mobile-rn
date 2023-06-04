@@ -9,6 +9,11 @@ import {
 } from "@env";
 import { toastError, toastSuccess } from "../../common/util/ToastUtil";
 import apiCourier from "../courier";
+import {
+  IAddBVNRequest,
+  IIdentifyAzaContactRequest,
+} from "../../libs/requests";
+import { IIdentifyAzaContactResponse } from "../../libs/response";
 
 type RegisterUserModel = {
   firstName: string;
@@ -209,6 +214,33 @@ export const editNameAPI = async ({
     },
     unknown
   >("patch", "/api/v1/user/edit-name", { firstName, lastName }, "jwt");
+};
+
+export const identifyAzaUserAPI = async ({
+  contactName,
+  contactPhoneNumber,
+}: IIdentifyAzaContactRequest) => {
+  return await apiCourier<
+    IIdentifyAzaContactRequest,
+    IIdentifyAzaContactResponse
+  >(
+    "post",
+    "/api/v1/user/identify/contact",
+    {
+      contactPhoneNumber,
+      contactName,
+    },
+    "jwt"
+  );
+};
+
+export const addBVNAPI = async ({ bvn, dateOfBirth }: IAddBVNRequest) => {
+  return await apiCourier<IAddBVNRequest, {}>(
+    "post",
+    "/api/v1/user/add-bvn",
+    { bvn, dateOfBirth },
+    "jwt"
+  );
 };
 
 const deleteUserAPI = async () => {};
