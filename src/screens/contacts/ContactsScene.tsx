@@ -125,7 +125,15 @@ const ContactsScene = ({
             bankCode: receipientBank.bankCode,
             isBeneficiary: true,
           })
-        );
+        )
+          .unwrap()
+          .then(() => {
+            dispatch(getUserSavedBankAccs());
+          })
+          .catch((e) => {
+            console.error(e);
+            toastError("Sorry we couldn't save your beneficiary ☹️");
+          });
       navigation.navigate("Common", {
         screen: "TransactionKeypad",
         params: {
@@ -491,9 +499,10 @@ const ContactsScene = ({
           onRequestClose={() => setBeneficiariesModalVisible((v) => !v)}
           collapsable
         >
+          // TODO correct filter flag below!
           <View style={{ height: "100%", paddingTop: 30 }}>
             {bankAccounts.data
-              .filter((_b) => _b.isBeneficiary)
+              .filter((_b) => !_b.isBeneficiary)
               .map((_bankAcc, i) => {
                 return (
                   <BeneficiaryBankAccountListItem
