@@ -13,7 +13,10 @@ import {
   IAddBVNRequest,
   IIdentifyAzaContactRequest,
 } from "../../libs/requests";
-import { IIdentifyAzaContactResponse } from "../../libs/response";
+import {
+  IAddUserBVNResponse,
+  IIdentifyAzaContactResponse,
+} from "../../libs/response";
 
 type RegisterUserModel = {
   firstName: string;
@@ -235,7 +238,7 @@ export const identifyAzaUserAPI = async ({
 };
 
 export const addBVNAPI = async ({ bvn, dateOfBirth }: IAddBVNRequest) => {
-  return await apiCourier<IAddBVNRequest, {}>(
+  return await apiCourier<IAddBVNRequest, IAddUserBVNResponse>(
     "post",
     "/api/v1/user/add-bvn",
     { bvn, dateOfBirth },

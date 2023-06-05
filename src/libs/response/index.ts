@@ -67,4 +67,32 @@ export interface IIdentifyAzaContactResponse {
   statusCode: string;
 }
 
+export interface IAddUserBVNResponse {
+  data: {
+    accountTier: string | null;
+    bvn: string;
+    dateOfBirth: string;
+    email: string;
+    firstName: string;
+    gender: string;
+    isBVNComfirmed: boolean;
+    isDateOfBirthConfirmed: boolean;
+    isEmailConfirmed: boolean;
+    isGenesisUser: boolean;
+    isPhoneNumberConfirmed: boolean;
+    isPushNotificationTokenSet: boolean;
+    isTransactionPinSet: boolean;
+    lastLogin: string;
+    lastName: string;
+    phoneNumber: string;
+    pictureUrl: string;
+    pushNotificationToken: string;
+    userName: string | null;
+    walletNumber: string | null;
+  };
+  message: string;
+  requestState: "Success" | string;
+  statusCode: string | "OK";
+}
+
 export interface IUserAzaContactResponse {}

@@ -45,31 +45,32 @@ const BvnVerificationScreen = ({
 
   const verifyBvn = async () => {
     setButtonLoading(true);
-    console.log(dob.toISOString().split("T")[0]);
+    console.debug(dob.toISOString().split("T")[0]);
     addBVNAPI({ bvn, dateOfBirth: dob.toISOString().split("T")[0] })
       .then((response) => {
-        console.log(response);
-        create9PSBWallet({
-          bvn,
-          dateOfBirth: dob.toISOString().split("T")[0],
-        })
-          .then((r) => {
-            setButtonLoading(false);
-            navigation.navigate("StatusScreen", {
-              statusIcon: "Success",
-              status: "Successful",
-              statusMessage:
-                "You have successfully added your BVN to your Aza account",
-              navigateTo: onVerifyNavigateBackTo,
-            });
-            dispatch(getUserAccountDetails());
-            dispatch(getUserInfo());
+        if (response.requestState === "Success") {
+          create9PSBWallet({
+            bvn,
+            dateOfBirth: dob.toISOString().split("T")[0],
           })
-          .catch((e) => {
-            console.error(e);
-            toastError("Couldn't create wallet, please try again!");
-            setButtonLoading(false);
-          });
+            .then((r) => {
+              setButtonLoading(false);
+              navigation.navigate("StatusScreen", {
+                statusIcon: "Success",
+                status: "Successful",
+                statusMessage:
+                  "You have successfully added your BVN to your Aza account",
+                navigateTo: onVerifyNavigateBackTo,
+              });
+              dispatch(getUserAccountDetails());
+              dispatch(getUserInfo());
+            })
+            .catch((e) => {
+              console.error(e);
+              toastError("Couldn't create wallet, please try again!");
+              setButtonLoading(false);
+            });
+        }
       })
       .catch((e) => {
         console.log(e);

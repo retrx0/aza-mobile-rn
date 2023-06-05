@@ -499,7 +499,7 @@ const ContactsScene = ({
           onRequestClose={() => setBeneficiariesModalVisible((v) => !v)}
           collapsable
         >
-          // TODO correct filter flag below!
+          {/* TODO correct filter flag below! */}
           <View style={{ height: "100%", paddingTop: 30 }}>
             {bankAccounts.data
               .filter((_b) => !_b.isBeneficiary)
