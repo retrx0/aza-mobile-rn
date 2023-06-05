@@ -24,6 +24,7 @@ import DatePicker from "@react-native-community/datetimepicker";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 import apiCourier from "../../api/courier";
 import { create9PSBWallet } from "../../api/account";
+import { addBVNAPI } from "../../api/user";
 
 const BvnVerificationScreen = ({
   navigation,
@@ -44,26 +45,35 @@ const BvnVerificationScreen = ({
 
   const verifyBvn = async () => {
     setButtonLoading(true);
-    console.log(dob.toISOString().split("T")[0]);
-
-    await create9PSBWallet({
-      bvn,
-      dateOfBirth: dob.toISOString().split("T")[0],
-    })
-      .then((r) => {
-        setButtonLoading(false);
-        navigation.navigate("StatusScreen", {
-          statusIcon: "Success",
-          status: "Successful",
-          statusMessage:
-            "You have successfully added your BVN to your Aza account",
-          navigateTo: onVerifyNavigateBackTo,
-        });
-        dispatch(getUserAccountDetails());
-        dispatch(getUserInfo());
+    console.debug(dob.toISOString().split("T")[0]);
+    addBVNAPI({ bvn, dateOfBirth: dob.toISOString().split("T")[0] })
+      .then((response) => {
+        if (response.requestState === "Success") {
+          create9PSBWallet({
+            bvn,
+            dateOfBirth: dob.toISOString().split("T")[0],
+          })
+            .then((r) => {
+              setButtonLoading(false);
+              navigation.navigate("StatusScreen", {
+                statusIcon: "Success",
+                status: "Successful",
+                statusMessage:
+                  "You have successfully added your BVN to your Aza account",
+                navigateTo: onVerifyNavigateBackTo,
+              });
+              dispatch(getUserAccountDetails());
+              dispatch(getUserInfo());
+            })
+            .catch((e) => {
+              console.error(e);
+              toastError("Couldn't create wallet, please try again!");
+              setButtonLoading(false);
+            });
+        }
       })
       .catch((e) => {
-        console.error(e);
+        console.log(e);
         toastError("Couldn't link your BVN, please try again!");
         setButtonLoading(false);
       });
@@ -151,12 +161,12 @@ const BvnVerificationScreen = ({
             disabled={bvn.length < 11}
             buttonLoading={isButtonLoading}
           />
-          <CancelButtonWithUnderline
+          {/* <CancelButtonWithUnderline
             title="Couldn’t verify BVN?"
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
             onPressButton={() => navigation.navigate("BvnVerificationFailed")}
-          />
+          /> */}
         </View>
       </View>
     </SpacerWrapper>

@@ -2,12 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Mtn } from "../../../assets/images";
 import { thunkCourier } from "../../common/util/ReduxUtil";
 import { RootState } from "../Store";
+import { IBankAccount, IUserState } from "../../types/types.redux";
+import { IAddBVNRequest, ISaveBankAccountRequest } from "../../libs/requests";
 import {
-  I9PSBWallet,
+  I9PSBWalletResponse,
   IAccountMetadataResponse,
   IUserInfoResponse,
-  IUserState,
-} from "../../types/types.redux";
+} from "../../libs/response";
 
 // Define the initial state using that type
 const initialState: IUserState = {
@@ -377,7 +378,6 @@ export const userSlice = createSlice({
       .addCase(fetchPaymentRequestThunk.fulfilled, (state, action) => {
         state.paymentRequests.loaded = false;
         state.paymentRequests.loading = false;
-        console.log(action.payload);
         // state.paymentRequests.data = action.payload
       })
       .addCase(getUserAccountMetadata.pending, (state, action) => {})
@@ -398,6 +398,20 @@ export const userSlice = createSlice({
         // state.transfers.totalMonthlyIncomingTransferAmount = response.numberOfIncomingTransfers
         // state.transfers.totalMonthlyOutgoingTransfers = response.
         // state.transfers.totalMonthlyOutgoingTransferAmount = response.
+      })
+      .addCase(fetchUserAzaContacts.pending, (state, action) => {
+        state.azaContacts.loading = true;
+        state.azaContacts.loaded = false;
+        // state.azaContacts = action.payload
+      })
+      .addCase(fetchUserAzaContacts.rejected, (state, action) => {
+        state.azaContacts.loading = false;
+        state.azaContacts.loaded = false;
+      })
+      .addCase(fetchUserAzaContacts.fulfilled, (state, action) => {
+        state.azaContacts.loading = false;
+        state.azaContacts.loaded = true;
+        console.log(action.payload);
       });
   },
 });
@@ -413,7 +427,7 @@ export const getUserInfo = createAsyncThunk<IUserInfoResponse>(
   }
 );
 
-export const getUserAccountDetails = createAsyncThunk<I9PSBWallet>(
+export const getUserAccountDetails = createAsyncThunk<I9PSBWalletResponse>(
   "user/getAccount",
   async () => {
     return await thunkCourier("get", "/api/v1/account");
@@ -478,16 +492,11 @@ export const uploadProfilePicThunk = createAsyncThunk(
 
 export const addUserBvnThunk = createAsyncThunk(
   "user/addUserBvn",
-  async ({ bvn, dateOfBirth }: { bvn: string; dateOfBirth: string }) => {
-    console.log(dateOfBirth);
-    return await thunkCourier<{ bvn: string; dateOfBirth: string }>(
-      "post",
-      "/api/v1/user/add/bvn",
-      {
-        bvn: bvn,
-        dateOfBirth: dateOfBirth,
-      }
-    );
+  async ({ bvn, dateOfBirth }: IAddBVNRequest) => {
+    return await thunkCourier<IAddBVNRequest>("post", "/api/v1/user/add/bvn", {
+      bvn: bvn,
+      dateOfBirth: dateOfBirth,
+    });
   }
 );
 
@@ -515,12 +524,7 @@ export const saveUserBankAcc = createAsyncThunk(
     accountNumber,
     bankCode,
     isBeneficiary,
-  }: {
-    accountName: string;
-    accountNumber: string;
-    bankCode: string;
-    isBeneficiary: boolean;
-  }) => {
+  }: ISaveBankAccountRequest) => {
     return await thunkCourier("put", `/api/v1/bank/accounts`, {
       accountName,
       accountNumber,
@@ -534,6 +538,13 @@ export const fetchPaymentRequestThunk = createAsyncThunk(
   "user/fetchPaymentRequests",
   async () => {
     return await thunkCourier("get", `/api/v1/m-request/incoming`);
+  }
+);
+
+export const fetchUserAzaContacts = createAsyncThunk(
+  "user/fetchAzaContacts",
+  async () => {
+    return await thunkCourier("get", `/api/v1/user/identify/contacts`);
   }
 );
 

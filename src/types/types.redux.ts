@@ -107,6 +107,7 @@ export interface IBankAccount {
   userId?: string;
   accountNumber: string;
   accountName: string;
+  isBeneficiary: boolean;
 }
 
 export interface IPayment {
@@ -248,44 +249,6 @@ export interface IBankState {
 }
 
 /* RESPONSE STATES */
-
-export interface IUserInfoResponse {
-  accountTier: any;
-  bvn: string;
-  dateOfBirth: string;
-  email: string;
-  firstName: string;
-  gender: string;
-  isBVNComfirmed: boolean;
-  isDateOfBirthConfirmed: boolean;
-  isEmailConfirmed: boolean;
-  isPhoneNumberConfirmed: boolean;
-  isTransactionPinSet: boolean;
-  lastLogin: string;
-  lastName: string;
-  phoneNumber: string;
-  pictureUrl: string;
-  userName: any;
-  walletNumber: string;
-  pushNotificationToken: string;
-}
-
-export interface I9PSBWallet {
-  availableBalance: number;
-  bankName: string;
-  status: string | "Inactive";
-  walletName: string;
-  walletNumber: number;
-}
-
-export interface IAccountMetadataResponse {
-  dailyTransactionLimit: number;
-  depositAmountLimit: number;
-  incomingTransferLimit: number;
-  maximumWalletBalance: number;
-  numberOfIncomingTransfers: number;
-  numberOfPeopleTransactionReceived: number;
-}
 
 export interface ITransferResponse {
   amount: number;
