@@ -27,6 +27,7 @@ import {
   API_KEY_PROD,
   API_KEY_TST,
 } from "@env";
+import CreateWallet from "./components/CreateWallet";
 
 const Home = ({
   navigation,
@@ -87,6 +88,14 @@ const Home = ({
               navigation={navigation}
               route={route}
               isBvnLinked={user.bvnVerified}
+            />
+          ) : // <NotificationsContainer navigation={navigation} route={route} />
+          null}
+          {user.bvnVerified && user.aza9PSBAccountNumber === null ? (
+            <CreateWallet
+              navigation={navigation}
+              route={route}
+              isWalletCreated={user.aza9PSBAccountNumber !== null}
             />
           ) : // <NotificationsContainer navigation={navigation} route={route} />
           null}

@@ -78,7 +78,7 @@ const useTransactionService = (
       } else {
         requestMoneyAPI({
           amount: amount,
-          decription: transDescription ? transDescription : "",
+          decription: transDescription ? transDescription : "Aza",
           initiatorAccountNumber: "" + azaAccountNumber,
           receipientAccountNumber: beneficiary.accountNumber,
           recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
