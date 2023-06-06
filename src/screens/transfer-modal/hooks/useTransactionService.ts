@@ -49,8 +49,12 @@ const useTransactionService = (
 ) => {
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
-  const { bvnVerified, azaAccountNumber, isTransactionPinSet } =
-    useAppSelector(selectUser);
+  const {
+    bvnVerified,
+    azaAccountNumber,
+    aza9PSBAccountNumber,
+    isTransactionPinSet,
+  } = useAppSelector(selectUser);
   const userPreferences = useAppSelector(selectAppPreference);
   const { authenticateWithBiometrics } = useAppBiometricAuthentication();
 
@@ -97,54 +101,58 @@ const useTransactionService = (
     transactionPin: string,
     transactionType: "INTRA" | "INTER"
   ) => {
-    setScreenLoading(true);
-    if (transactionType === "INTRA") {
-      payAzaUserAPI({
-        sourceAccount: azaAccountNumber,
-        destinationAccount: beneficiary.accountNumber,
-        amount,
-        transactionPin: transactionPin,
-        description: transDescription ? transDescription : "Aza transaction",
-        currency: NAIRA_CCY_CODE,
-        destinationBankCode: PSB_BANK_CODE,
-        destinationAccountName: beneficiary.fullName,
-      })
-        .then((res) => {
-          console.log(res);
-          setScreenLoading(false);
-          navigateToNextScreen(res);
-          dispatch(getUserAccountDetails());
-        })
-        .catch((err) => {
-          setScreenLoading(false);
-          toastError("There was a problem completing transaction!");
-        });
-    } else {
+    if (aza9PSBAccountNumber) {
       setScreenLoading(true);
-      payOtherBankAPI({
-        amount,
-        currency: NAIRA_CCY_CODE,
-        description: transDescription ? transDescription : "",
-        destinationAccount: beneficiary.accountNumber,
-        destinationBankCode: beneficiary.bankCode,
-        destinationAccountName: beneficiary.fullName,
-        sourceAccount: azaAccountNumber,
-        transactionPin: transactionPin,
-      })
-        .then((res) => {
-          console.debug(res);
-          setScreenLoading(false);
-          dispatch(getUserAccountDetails());
-          dispatch(getUserTransactions({ accountNumber: azaAccountNumber }));
-          navigateToNextScreen(res);
+      if (transactionType === "INTRA") {
+        payAzaUserAPI({
+          sourceAccount: aza9PSBAccountNumber,
+          destinationAccount: beneficiary.accountNumber,
+          amount,
+          transactionPin: transactionPin,
+          description: transDescription ? transDescription : "Aza transaction",
+          currency: NAIRA_CCY_CODE,
+          destinationBankCode: PSB_BANK_CODE,
+          destinationAccountName: beneficiary.fullName,
         })
-        .catch((err) => {
-          console.error(err);
-          setScreenLoading(false);
-          toastError(
-            `There was a problem completing transaction to ${beneficiary.accountNumber}!`
-          );
-        });
+          .then((res) => {
+            console.log(res);
+            setScreenLoading(false);
+            navigateToNextScreen(res);
+            dispatch(getUserAccountDetails());
+          })
+          .catch((err) => {
+            setScreenLoading(false);
+            toastError("There was a problem completing transaction!");
+          });
+      } else {
+        setScreenLoading(true);
+        payOtherBankAPI({
+          amount,
+          currency: NAIRA_CCY_CODE,
+          description: transDescription ? transDescription : "",
+          destinationAccount: beneficiary.accountNumber,
+          destinationBankCode: beneficiary.bankCode,
+          destinationAccountName: beneficiary.fullName,
+          sourceAccount: aza9PSBAccountNumber,
+          transactionPin: transactionPin,
+        })
+          .then((res) => {
+            console.debug(res);
+            setScreenLoading(false);
+            dispatch(getUserAccountDetails());
+            dispatch(
+              getUserTransactions({ accountNumber: aza9PSBAccountNumber })
+            );
+            navigateToNextScreen(res);
+          })
+          .catch((err) => {
+            console.error(err);
+            setScreenLoading(false);
+            toastError(
+              `There was a problem completing transaction to ${beneficiary.accountNumber}!`
+            );
+          });
+      }
     }
   };
 

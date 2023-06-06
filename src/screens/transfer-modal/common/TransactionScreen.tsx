@@ -76,7 +76,7 @@ const TransactionScreen = ({
   const nonAzaContactOnClick = (beneficiary: IBeneficiary) => {
     identifyAzaUserAPI({
       contactName: beneficiary.fullName,
-      contactPhoneNumber: "2348061280236",
+      contactPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
     })
       .then((response) => {
         toastInfo(
