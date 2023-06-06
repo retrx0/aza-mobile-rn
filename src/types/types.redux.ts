@@ -210,8 +210,8 @@ export interface IUserState {
   firstName: string;
   lastName: string;
   pictureUrl: string | undefined;
-  azaAccountNumber: string;
-  aza9PSBAccountNumber: string;
+  azaAccountNumber: string | null;
+  aza9PSBAccountNumber: string | null;
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;

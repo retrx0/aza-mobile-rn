@@ -39,12 +39,15 @@ const Home = ({
 
   const refreshData = async () => {
     setRefreshing(true);
-    dispatch(
-      getUserTransactions({
-        accountNumber: user.aza9PSBAccountNumber,
-      })
-    );
-    await dispatch(getUserAccountDetails());
+    if (user.aza9PSBAccountNumber !== null) {
+      dispatch(
+        getUserTransactions({
+          accountNumber: user.aza9PSBAccountNumber,
+        })
+      );
+      await dispatch(getUserAccountDetails());
+    }
+
     setRefreshing(false);
   };
 
@@ -69,7 +72,6 @@ const Home = ({
   // )
   //   .then((data) => console.log(data))
   //   .catch((e) => console.log(e));
-
   return (
     <SpacerWrapper>
       <View style={styles.container}>
@@ -97,8 +99,7 @@ const Home = ({
               route={route}
               isWalletCreated={user.aza9PSBAccountNumber !== null}
             />
-          ) : // <NotificationsContainer navigation={navigation} route={route} />
-          null}
+          ) : null}
         </View>
         <RecentTransactions navigation={navigation} route={route} />
       </View>

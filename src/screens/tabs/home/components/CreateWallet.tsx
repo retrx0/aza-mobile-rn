@@ -14,6 +14,7 @@ import {
 } from "../../../../redux/slice/userSlice";
 import { create9PSBWallet } from "../../../../api/account";
 import { toastError, toastSuccess } from "../../../../common/util/ToastUtil";
+import { AxiosError } from "axios";
 
 interface IProps {
   isWalletCreated: boolean;
@@ -93,10 +94,13 @@ export const CreateWallet = ({
                       setIsLoading(false);
                     })
                     .catch((e) => {
-                      console.error(e);
+                      const error = e as AxiosError;
+                      console.error(error);
                       toastError("There was a problem creating your wallet");
                       setIsLoading(false);
                     });
+                } else {
+                  setIsLoading(false);
                 }
               } else {
                 toastError("BVN is not linked!");

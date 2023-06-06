@@ -405,20 +405,25 @@ const ContactsScene = ({
                 if (txt.length === 10) {
                   if (selectedBank) {
                     setScreenLoading(true);
-                    verifyBankAccountAPI(
-                      selectedBank.bankCode,
-                      txt,
-                      user.azaAccountNumber
-                    )
-                      .then((res) => {
-                        setReceipientAccountName(res.data.name);
-                        setAccountVerified(true);
-                        setScreenLoading(false);
-                      })
-                      .catch((e) => {
-                        setAccountVerified(false);
-                        setScreenLoading(false);
-                      });
+                    if (user.aza9PSBAccountNumber) {
+                      verifyBankAccountAPI(
+                        selectedBank.bankCode,
+                        txt,
+                        user.aza9PSBAccountNumber
+                      )
+                        .then((res) => {
+                          setReceipientAccountName(res.data.name);
+                          setAccountVerified(true);
+                          setScreenLoading(false);
+                        })
+                        .catch((e) => {
+                          setAccountVerified(false);
+                          setScreenLoading(false);
+                        });
+                    } else {
+                      setScreenLoading(false);
+                      toastError("Your account number is missing or invalid");
+                    }
                   }
                 }
               }}
