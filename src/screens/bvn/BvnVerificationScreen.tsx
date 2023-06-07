@@ -49,6 +49,7 @@ const BvnVerificationScreen = ({
     addBVNAPI({ bvn, dateOfBirth: dob.toISOString().split("T")[0] })
       .then((response) => {
         if (response.requestState === "Success") {
+          dispatch(getUserInfo());
           create9PSBWallet({
             bvn,
             dateOfBirth: dob.toISOString().split("T")[0],
