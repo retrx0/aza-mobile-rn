@@ -6,6 +6,7 @@ import {
 import { AxiosError } from "axios";
 import api from "..";
 import { getItemSecure } from "../../common/util/StorageUtil";
+import { toastError } from "../../common/util/ToastUtil";
 
 //legacy
 const _apiCourier = (query: any, payload?: any) => {
@@ -59,16 +60,17 @@ export async function apiCourier<T, R>(
       return result.headers["access-token"] as R;
     return result.data;
   } catch (e) {
-    console.debug(e);
     let error = e as AxiosError;
-    console.debug(error);
-    throw new AxiosError(
-      "Api Courier: Request failed: " + error.response?.config.url,
-      error.code,
-      error.config,
-      error.request,
-      error.response
-    );
+    // console.debug(error);
+
+    // throw new AxiosError(
+    //   "Api Courier: Request failed: " + error.response?.config.url,
+    //   error.code,
+    //   error.config,
+    //   error.request,
+    //   error.response
+    // );
+    throw error;
   }
 }
 

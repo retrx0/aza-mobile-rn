@@ -67,8 +67,8 @@ const BvnVerificationScreen = ({
               dispatch(getUserInfo());
             })
             .catch((e) => {
-              console.error(e);
-              toastError("Couldn't create wallet, please try again!");
+              console.error("Couldn't create wallet, please try again!" + e);
+              // toastError("Couldn't create wallet, please try again!");
               setButtonLoading(false);
             });
         }

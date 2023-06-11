@@ -21,7 +21,7 @@ import {
 import { editNameAPI } from "../../api/user";
 import { toastError } from "../../common/util/ToastUtil";
 import { getUserInfo, selectUser } from "../../redux/slice/userSlice";
-import { Text, TextInput, View } from "../../theme/Themed";
+import { ScrollView, Text, TextInput, View } from "../../theme/Themed";
 import BankSearchResultView from "./BankSearchResultView";
 import Divider from "../../components/divider/Divider";
 import {
@@ -33,6 +33,7 @@ import Colors from "../../constants/Colors";
 import { IBank } from "../../types/types.redux";
 import { verifyBankAccountAPI } from "../../api/account";
 import { updateStoredCredentials } from "../../common/util/StorageUtil";
+import BoxTextInput from "../../components/input/BoxTextInput";
 
 const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
   const selectedTheme = useAppSelector(selectAppTheme);
@@ -44,6 +45,7 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
   const [accountNumber, setAccountNumber] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [middleName, setMiddleName] = useState("");
   const [loading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -69,203 +71,230 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
   };
   return (
     <SpacerWrapper>
-      <Formik
-        validationSchema={EdiNameValidationSchema}
-        initialValues={{
-          firstname: "",
-          lastname: "",
-        }}
-        onSubmit={(values) => {
-          setButtonLoading(true);
-          editNameAPI({
-            firstName: values.firstname,
-            lastName: values.lastname,
-          })
-            .then((_) => {
-              dispatch(getUserInfo());
-              updateStoredCredentials({
-                fullName: values.firstname + ", " + values.lastname,
-              });
-              setButtonLoading(false);
-
-              navigation.navigate("StatusScreen", {
-                status: "Successful",
-                statusIcon: "Success",
-                statusMessage:
-                  "You have successfully changed your Aza account name",
-                navigateTo: "Home",
-              });
+      <ScrollView>
+        <Formik
+          validationSchema={EdiNameValidationSchema}
+          initialValues={{
+            firstname: "",
+            lastname: "",
+          }}
+          onSubmit={(values) => {
+            setButtonLoading(true);
+            let _lastname =
+              middleName.length === 0
+                ? values.lastname
+                : middleName.trim() + " " + values.lastname.trim();
+            editNameAPI({
+              firstName: values.firstname.trim(),
+              lastName: _lastname,
             })
+              .then((_) => {
+                dispatch(getUserInfo());
+                updateStoredCredentials({
+                  fullName: values.firstname + ", " + values.lastname,
+                });
+                setButtonLoading(false);
 
-            .catch((e) => {
-              toastError("Something went wrong!");
-              setButtonLoading(false);
-            });
-        }}
-      >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          isValid,
-          touched,
-        }) => (
-          <>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === "ios" ? "position" : "height"}
-              style={CommonStyles.vaultcontainer}
-            >
-              <View
-                style={{
-                  margin: 20,
-                  backgroundColor: Colors[appTheme].backgroundSecondary,
-                  height: 50,
-                  borderRadius: 8,
-                  padding: 5,
-                }}
+                navigation.navigate("StatusScreen", {
+                  status: "Successful",
+                  statusIcon: "Success",
+                  statusMessage:
+                    "You have successfully changed your Aza account name",
+                  navigateTo: "Home",
+                });
+              })
+
+              .catch((e) => {
+                toastError("Something went wrong!");
+                setButtonLoading(false);
+              });
+          }}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            isValid,
+            touched,
+          }) => (
+            <>
+              <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "position" : "height"}
+                style={CommonStyles.vaultcontainer}
               >
-                <TouchableOpacity
-                  onPress={() => {
-                    setSearchBanksModalVisisble((t) => !t);
+                <View
+                  style={{
+                    margin: 20,
+                    backgroundColor: Colors[appTheme].backgroundSecondary,
+                    height: 50,
+                    borderRadius: 8,
+                    padding: 5,
                   }}
                 >
-                  <Text
-                    style={{
-                      marginBottom: 5,
-                      marginTop: 10,
-                      fontFamily: "Euclid-Circular-A-Semi-Bold",
-                      fontSize: hp(16),
+                  <TouchableOpacity
+                    onPress={() => {
+                      setSearchBanksModalVisisble((t) => !t);
                     }}
                   >
-                    {selectedBank ? selectedBank.bankName : "Choose bank"}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View
-                style={[
-                  CommonStyles.row,
-                  {
-                    alignItems: "center",
-                    alignSelf: "flex-start",
-                  },
-                ]}
-              >
-                <TextInput
-                  placeholderTextColor={Colors[appTheme].text}
-                  style={{
-                    backgroundColor: Colors[appTheme].backgroundSecondary,
-                    fontFamily: "Euclid-Circular-A-Medium",
-                    padding: 5,
-                    marginTop: hp(10),
-                    fontSize: hp(16),
-                    fontWeight: "500",
-                    height: 50,
-                    margin: 20,
-                    borderRadius: 8,
-                    width: "75%",
-                  }}
-                  placeholder="Account Number"
-                  keyboardType="number-pad"
-                  returnKeyType="done"
-                  editable={!loading}
-                  value={accountNumber}
-                  maxLength={10}
-                  onChangeText={(text) => {
-                    setAccountNumber(text);
-                    if (text.length === 10) {
-                      if (selectedBank) {
-                        setLoading(true);
-                        verifyBankAccountAPI(
-                          selectedBank.bankCode,
-                          text,
-                          azaAccountNumber
-                        )
-                          .then((res) => {
-                            setFirstName(res.data.name);
-                            values.firstname = getNameFromFullName(
-                              "firstname",
-                              res.data.name
-                            );
-                            values.lastname = getNameFromFullName(
-                              "lastname",
-                              res.data.name
-                            );
-                            setLoading(false);
-                          })
-                          .catch((e) => {
-                            setLoading(false);
-                          });
+                    <Text
+                      style={{
+                        marginBottom: 5,
+                        marginTop: 10,
+                        fontFamily: "Euclid-Circular-A-Semi-Bold",
+                        fontSize: hp(16),
+                      }}
+                    >
+                      {selectedBank ? selectedBank.bankName : "Choose bank"}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={[
+                    CommonStyles.row,
+                    {
+                      alignItems: "center",
+                      alignSelf: "flex-start",
+                    },
+                  ]}
+                >
+                  <TextInput
+                    placeholderTextColor={Colors[appTheme].text}
+                    style={{
+                      backgroundColor: Colors[appTheme].backgroundSecondary,
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      padding: 5,
+                      marginTop: hp(10),
+                      fontSize: hp(16),
+                      fontWeight: "500",
+                      height: 50,
+                      margin: 20,
+                      borderRadius: 8,
+                      width: "75%",
+                    }}
+                    placeholder="Account Number"
+                    keyboardType="number-pad"
+                    returnKeyType="done"
+                    editable={!loading}
+                    value={accountNumber}
+                    maxLength={10}
+                    onChangeText={(text) => {
+                      setAccountNumber(text);
+                      if (text.length === 10) {
+                        if (selectedBank) {
+                          setLoading(true);
+                          verifyBankAccountAPI(
+                            selectedBank.bankCode,
+                            text,
+                            aza9PSBAccountNumber
+                          )
+                            .then((res) => {
+                              setFirstName(res.data.name);
+                              values.firstname = getNameFromFullName(
+                                "firstname",
+                                res.data.name
+                              );
+                              values.lastname = getNameFromFullName(
+                                "lastname",
+                                res.data.name
+                              );
+                              setLoading(false);
+                            })
+                            .catch((e) => {
+                              setLoading(false);
+                            });
+                        }
                       }
-                    }
+                    }}
+                  />
+                  <ActivityIndicator
+                    style={{ alignSelf: "center" }}
+                    animating={loading}
+                  />
+                </View>
+                <Divider />
+                <View style={{ marginVertical: 5 }}></View>
+                <InputFormFieldNormal
+                  placeholderVisible
+                  onChangeText={handleChange("firstname")}
+                  onBlur={handleBlur("firstname")}
+                  value={values.firstname}
+                  type="firstname"
+                  formikProps={{
+                    errors: errors.firstname,
+                    touched: touched.firstname,
                   }}
+                  autoFocus={false}
                 />
-                <ActivityIndicator
-                  style={{ alignSelf: "center" }}
-                  animating={loading}
-                />
-              </View>
-              <Divider />
-              <View style={{ marginVertical: 5 }}></View>
-              <InputFormFieldNormal
-                placeholderVisible
-                onChangeText={handleChange("firstname")}
-                onBlur={handleBlur("firstname")}
-                value={values.firstname}
-                type="firstname"
-                formikProps={{
-                  errors: errors.firstname,
-                  touched: touched.firstname,
-                }}
-                autoFocus={false}
-              />
-              <InputFormFieldNormal
-                placeholderVisible
-                onChangeText={handleChange("lastname")}
-                onBlur={handleBlur("lastname")}
-                value={values.lastname}
-                type="lastname"
-                formikProps={{
-                  errors: errors.lastname,
-                  touched: touched.lastname,
-                }}
-                autoFocus={false}
-              />
-            </KeyboardAvoidingView>
+                <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
+                  <Text
+                    style={{
+                      marginBottom: hp(5),
+                      fontSize: hp(18),
+                      fontFamily: "Euclid-Circular-A-Medium",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Middlename
+                  </Text>
+                  <TextInput
+                    style={[CommonStyles.textInput]}
+                    keyboardType="default"
+                    autoComplete="name-middle"
+                    onChangeText={(text) => setMiddleName(text)}
+                    value={middleName}
+                  />
+                </View>
 
-            <Modal
-              visible={searchBanksModalVisisble}
-              style={{
-                justifyContent: "flex-end",
-                flex: 1,
-                marginTop: 50,
-              }}
-              animationType="slide"
-              presentationStyle="formSheet"
-              collapsable={true}
-            >
-              <View style={{ height: "100%", paddingTop: 50 }}>
-                <BankSearchResultView
-                  onPress={(bank) => {
-                    setSelectedBank(bank);
-                    setSearchBanksModalVisisble((f) => !f);
+                <InputFormFieldNormal
+                  placeholderVisible
+                  onChangeText={handleChange("lastname")}
+                  onBlur={handleBlur("lastname")}
+                  value={values.lastname}
+                  type="lastname"
+                  formikProps={{
+                    errors: errors.lastname,
+                    touched: touched.lastname,
                   }}
+                  autoFocus={false}
                 />
-              </View>
-            </Modal>
+              </KeyboardAvoidingView>
 
-            <Button
-              title="Continue"
-              onPressButton={handleSubmit}
-              styleText={{}}
-              style={[CommonStyles.container, { bottom: hp(45) }]}
-              disabled={!isValid}
-              buttonLoading={buttonLoading}
-            />
-          </>
-        )}
-      </Formik>
+              <Modal
+                visible={searchBanksModalVisisble}
+                style={{
+                  justifyContent: "flex-end",
+                  flex: 1,
+                  marginTop: 50,
+                }}
+                animationType="slide"
+                presentationStyle="formSheet"
+                collapsable={true}
+                onRequestClose={() => setSearchBanksModalVisisble(false)}
+              >
+                <View style={{ height: "100%", paddingTop: 50 }}>
+                  <BankSearchResultView
+                    onPress={(bank) => {
+                      setSelectedBank(bank);
+                      setSearchBanksModalVisisble((f) => !f);
+                    }}
+                  />
+                </View>
+              </Modal>
+
+              <Button
+                title="Continue"
+                onPressButton={handleSubmit}
+                styleText={{}}
+                style={[{}]}
+                disabled={!isValid}
+                buttonLoading={buttonLoading}
+              />
+            </>
+          )}
+        </Formik>
+      </ScrollView>
     </SpacerWrapper>
   );
 };

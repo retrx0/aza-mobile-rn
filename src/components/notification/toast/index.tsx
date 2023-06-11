@@ -50,7 +50,7 @@ const ToastFrame = ({
   return (
     <View
       style={{
-        height: hp(55),
+        height: hp(65),
         width: "90%",
         backgroundColor: backgroundColor,
         borderRadius: 4,
@@ -65,6 +65,7 @@ const ToastFrame = ({
           fontSize: 14,
           fontFamily: "Euclid-Circular-A-Medium",
           color: textColor,
+          padding: 2,
         }}
       >
         {text1}

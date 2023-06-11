@@ -95,8 +95,11 @@ export const CreateWallet = ({
                     })
                     .catch((e) => {
                       const error = e as AxiosError;
-                      console.error(error);
-                      toastError("There was a problem creating your wallet");
+                      console.error(
+                        "There was a problem creating your wallet",
+                        error
+                      );
+                      // toastError("There was a problem creating your wallet");
                       setIsLoading(false);
                     });
                 } else {

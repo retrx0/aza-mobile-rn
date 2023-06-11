@@ -115,10 +115,15 @@ const useSignIn = () => {
                   pictureUrl: user.pictureUrl,
                 })
               );
-              await dispatch(getUserAccountDetails());
               const { walletNumber } = info.payload as IUserInfoResponse;
-              dispatch(getUserTransactions({ accountNumber: walletNumber }));
-              dispatch(getUserAccountMetadata({ accountNumber: walletNumber }));
+              if (walletNumber !== null) {
+                await dispatch(getUserAccountDetails());
+                dispatch(getUserTransactions({ accountNumber: walletNumber }));
+                dispatch(
+                  getUserAccountMetadata({ accountNumber: walletNumber })
+                );
+              }
+
               setScreenLoading(false);
               // TODO replace navigate() with replace()
               navigation.getParent()?.navigate("Root");

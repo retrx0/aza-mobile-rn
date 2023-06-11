@@ -40,7 +40,7 @@ export const forgetUser = async () => {
     AsyncStorage.removeItem(PREFERENCE_STORAGE_KEY);
     AsyncStorage.removeItem(CEO_MESSAGE_STORAGE_KEY);
   } catch (error) {
-    console.error(error);
+    console.error("Error forgetting user", error);
   }
 
   // clearUserCredentials();

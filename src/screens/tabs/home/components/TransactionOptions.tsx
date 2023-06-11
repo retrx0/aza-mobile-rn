@@ -63,7 +63,15 @@ const TransactionOptions = ({
 
         <TransactionOptionButton
           title="Transfer"
-          onPress={toggleModal}
+          onPress={() => {
+            // toggleModal()
+            navigation.navigate("Common", {
+              screen: "SendMoney",
+              params: {
+                recurringTransaction: false,
+              },
+            });
+          }}
           icon={<TransferIcon size={43} color={Colors[appTheme].text} />}
         />
         <TransactionOptionButton
