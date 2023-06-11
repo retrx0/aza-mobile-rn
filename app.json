@@ -39,7 +39,7 @@
           "audio"
         ]
       },
-      "buildNumber": "42"
+      "buildNumber": "43"
     },
     "android": {
       "adaptiveIcon": {
@@ -47,7 +47,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "versionCode": 42,
+      "versionCode": 43,
       "permissions": [
         "NOTIFICATIONS"
       ]

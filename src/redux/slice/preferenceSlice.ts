@@ -10,7 +10,6 @@ const initialState: ISettings = {
   communicationPermitSwitch: false,
   confirmTransactionsWithFaceIDSwitch: false,
   contactVisibilitySwitch: false,
-  hideAccountBalance: false,
   loginWithFaceIDSwitch: false,
   nameVisibilitySwitch: false,
   splitAndMoneyRequestsSwitch: false,
@@ -31,7 +30,6 @@ export const preferenceSlice = createSlice({
       state.confirmTransactionsWithFaceIDSwitch =
         action.payload.confirmTransactionsWithFaceIDSwitch;
       state.contactVisibilitySwitch = action.payload.contactVisibilitySwitch;
-      state.hideAccountBalance = action.payload.hideAccountBalance;
       state.nameVisibilitySwitch = action.payload.nameVisibilitySwitch;
       state.splitAndMoneyRequestsSwitch =
         action.payload.splitAndMoneyRequestsSwitch;

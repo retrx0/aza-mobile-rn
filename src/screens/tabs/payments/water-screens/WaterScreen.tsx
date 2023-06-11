@@ -36,7 +36,8 @@ export default function WaterScreen({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -48,10 +49,11 @@ export default function WaterScreen({
             fontWeight: "500",
             maxWidth: wp(333),
             textAlign: "center",
-          }}>
+          }}
+        >
           Easily pay for your water services through Aza
         </Text>
-        <Image
+        {/* <Image
           source={Water}
           resizeMode="cover"
           style={{
@@ -60,7 +62,7 @@ export default function WaterScreen({
             marginTop: hp(80),
             alignSelf: "center",
           }}
-        />
+        /> */}
       </View>
     </SpacerWrapper>
   );

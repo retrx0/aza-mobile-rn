@@ -24,7 +24,8 @@ const GameScreen = ({ navigation }: CommonScreenProps<"GameScreen">) => {
             fontWeight: "600",
             marginBottom: hp(30),
             color: Colors.general.green,
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -34,10 +35,11 @@ const GameScreen = ({ navigation }: CommonScreenProps<"GameScreen">) => {
             fontFamily: "Euclid-Circular-A-Medium",
             fontSize: hp(16),
             fontWeight: "500",
-          }}>
+          }}
+        >
           Choose from hundreds of brands
         </Text>
-        <Image
+        {/* <Image
           source={GAME}
           resizeMode="cover"
           style={{
@@ -46,7 +48,7 @@ const GameScreen = ({ navigation }: CommonScreenProps<"GameScreen">) => {
             marginTop: hp(101),
             alignSelf: "center",
           }}
-        />
+        /> */}
       </View>
     </SpacerWrapper>
   );
