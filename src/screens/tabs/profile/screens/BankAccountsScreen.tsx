@@ -101,9 +101,7 @@ const BankAccountsScreen = ({
                           fontSize: hp(14),
                         }}
                       >
-                        {`${
-                          _account.bankName
-                        } (${_account.accountNumber.substring(0, 4)}.....)`}
+                        {`${_account.bankName} (${_account.accountNumber})`}
                       </Text>
                       <View
                         style={{

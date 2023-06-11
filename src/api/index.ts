@@ -37,20 +37,31 @@ const api = axios.create({
 //   }
 // });
 
+interface AzaError {
+  data: any;
+  message: string;
+  requestState: string;
+  statusCode: string;
+}
+
 api.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
     let res = error as AxiosError;
-    if (res.response?.status === 401) {
-      // toastError("Sorry, you are not authorized");
-    } else if (res.response?.status === 400) {
-      toastError("Uh oh, something is wrong");
-    } else if (res.response?.status === 404) {
-      // toastError("Not found!");
+    if (process.env.ENV === ENV_DEVELOPMENT) {
+      if (res.response) console.error("Interceptor error: ", res.response.data);
     }
-    if (process.env.ENV === ENV_DEVELOPMENT) console.error(res.toJSON());
+    if (error.response) {
+      const errorData = error.response.data as AzaError;
+      if (
+        res.response?.status === 400 ||
+        res.response?.status === 401 ||
+        res.response?.status === 409
+      )
+        toastError("" + errorData.message);
+    }
     return Promise.reject(error);
   }
 );

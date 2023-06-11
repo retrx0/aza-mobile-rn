@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import CommonStyles from "../../../../common/styles/CommonStyles";
-import { View as View, Text as Text } from "../../../../theme/Themed";
+import {
+  View as View,
+  Text as Text,
+  TextInput,
+} from "../../../../theme/Themed";
 import Colors from "../../../../constants/Colors";
 import { SignUpScreenProps } from "../../../../types/types.navigation";
 import Button from "../../../../components/buttons/Button";
@@ -8,7 +12,7 @@ import { hp, wp } from "../../../../common/util/LayoutUtil";
 import { Picker } from "@react-native-picker/picker";
 import { FEMALE, Gender, MALE } from "../../../../constants/Gender";
 import { TextHeader } from "../../../../components/text/textHeader";
-import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../../redux";
 import {
@@ -49,6 +53,7 @@ const SignUpProfile = ({
       // .required("Please select a gender")
       .oneOf([0, 1]),
   });
+  const [middleName, setMiddleName] = useState("");
 
   return (
     <>
@@ -60,10 +65,14 @@ const SignUpProfile = ({
           gender: "male",
         }}
         onSubmit={(values) => {
+          let _lastname =
+            middleName.length === 0
+              ? values.surname
+              : middleName.trim() + " " + values.surname.trim();
           dispatch(
             setNewUser({
-              firstName: values.firstname,
-              lastName: values.surname,
+              firstName: values.firstname.trim(),
+              lastName: _lastname,
               emailAddress: newUser.emailAddress,
               gender: values.gender,
               isUsePasscodeAsPin: newUser.isUsePasscodeAsPin,
@@ -73,9 +82,9 @@ const SignUpProfile = ({
               pushToken: newUser.pushToken,
             })
           );
-          navigation.navigate("SignUpPassword", {
-            passwordScreenType: "Create",
-          });
+          // navigation.navigate("SignUpPassword", {
+          //   passwordScreenType: "Create",
+          // });
         }}
       >
         {({
@@ -100,6 +109,26 @@ const SignUpProfile = ({
               }}
               autoFocus
             />
+
+            <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
+              <Text
+                style={{
+                  marginBottom: hp(5),
+                  fontSize: hp(18),
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontWeight: "500",
+                }}
+              >
+                Middlename
+              </Text>
+              <TextInput
+                style={[CommonStyles.textInput]}
+                keyboardType="default"
+                autoComplete="name-middle"
+                onChangeText={(text) => setMiddleName(text)}
+                value={middleName}
+              />
+            </View>
 
             <InputFormFieldNormal
               placeholderVisible

@@ -16,7 +16,7 @@ export interface IUserInfoResponse {
   phoneNumber: string;
   pictureUrl: string;
   userName: any;
-  walletNumber: string;
+  walletNumber: string | null;
   pushNotificationToken: string;
 }
 

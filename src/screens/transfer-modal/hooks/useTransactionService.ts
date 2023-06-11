@@ -146,7 +146,7 @@ const useTransactionService = (
             navigateToNextScreen(res);
           })
           .catch((err) => {
-            console.error(err);
+            console.error("There was a problem completing transaction to", err);
             setScreenLoading(false);
             toastError(
               `There was a problem completing transaction to ${beneficiary.accountNumber}!`

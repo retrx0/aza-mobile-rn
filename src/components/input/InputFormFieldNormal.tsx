@@ -35,7 +35,8 @@ const InputFormFieldNormal = ({
               fontSize: hp(18),
               fontFamily: "Euclid-Circular-A-Medium",
               fontWeight: "500",
-            }}>
+            }}
+          >
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </Text>
           <Text style={{ color: "red" }}>*</Text>

@@ -111,7 +111,7 @@ const useSignUp = () => {
                       storeItem(CEO_MESSAGE_STORAGE_KEY, "true");
                     }
                   } catch (e) {
-                    console.debug(
+                    console.error(
                       "There was a problem logging user in after signup",
                       e
                     );
@@ -121,12 +121,8 @@ const useSignUp = () => {
               })
               .catch((error) => {
                 setLoading(false);
-                toastError(
-                  "There was a problem logging you in, please try again!"
-                );
               });
           } else {
-            toastError("Something went wrong!");
             setLoading(false);
           }
         });

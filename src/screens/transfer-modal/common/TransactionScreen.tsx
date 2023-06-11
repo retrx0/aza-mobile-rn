@@ -38,7 +38,7 @@ const TransactionScreen = ({
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "first", title: "Bank Account" },
-    { key: "second", title: "Mobile Number" },
+    // { key: "second", title: "Mobile Number" },
   ]);
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
   const layout = useWindowDimensions();
