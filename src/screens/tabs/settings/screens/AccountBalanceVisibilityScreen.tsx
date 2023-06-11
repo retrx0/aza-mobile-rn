@@ -42,13 +42,13 @@ const AccountBalanceVisibilityScreen = ({
             fontWeight: "500",
           }}
         >
-          You can disable this setting if you want your account balance to be
+          You can enable this setting if you want your account balance to be
           hidden when using the app.
         </Text>
         <View style={{ marginTop: hp(80) }}>
           <Divider />
           <SettingsSwitch
-            text={"Account Balance Visibility"}
+            text={"Hide Account Balance"}
             isEnabled={isEnabled}
             onSwitchToggle={() => {
               setIsEnabled(!isEnabled);

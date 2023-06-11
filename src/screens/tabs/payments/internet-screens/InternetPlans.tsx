@@ -48,7 +48,7 @@ export default function InternetPlans({
           Subscribe to your favourite Internet Service Providers through our
           internet feature
         </Text>
-        <Image
+        {/* <Image
           source={Internet}
           resizeMode="cover"
           style={{
@@ -57,7 +57,7 @@ export default function InternetPlans({
             marginTop: hp(80),
             alignSelf: "center",
           }}
-        />
+        /> */}
       </View>
     </SpacerWrapper>
   );

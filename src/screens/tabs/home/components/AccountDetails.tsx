@@ -31,7 +31,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
   const preference = useAppSelector(selectAppPreference);
 
   useEffect(() => {
-    if (preference.hideAccountBalance) setSecure(preference.hideAccountBalance);
+    if (preference.accountBalanceVisibilitySwitch)
+      setSecure(preference.accountBalanceVisibilitySwitch);
   }, []);
 
   return (

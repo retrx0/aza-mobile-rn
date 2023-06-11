@@ -260,10 +260,7 @@ const BankAccountsScreen = ({
                             fontSize: hp(14),
                           }}
                         >
-                          {`${bankName} (${accountNumber.substring(
-                            0,
-                            3
-                          )}.....)`}
+                          {`${bankName} (${accountNumber})`}
                         </Text>
                         <View style={{ marginLeft: "auto" }}>
                           <ChevronRightIcon color={"#2A9E17"} size={20} />

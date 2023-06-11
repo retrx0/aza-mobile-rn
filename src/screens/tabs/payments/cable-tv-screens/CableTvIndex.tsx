@@ -74,7 +74,8 @@ export default function CableTvIndex({
             fontWeight: "600",
             marginBottom: hp(30),
             color: "#2A9E17",
-          }}>
+          }}
+        >
           Coming Soon
         </Text>
         <Text
@@ -86,10 +87,11 @@ export default function CableTvIndex({
             fontWeight: "500",
             maxWidth: wp(333),
             textAlign: "center",
-          }}>
+          }}
+        >
           The ultimate TV viewing experience like never before!
         </Text>
-        <Image
+        {/* <Image
           source={monitor}
           resizeMode="cover"
           style={{
@@ -98,7 +100,7 @@ export default function CableTvIndex({
             marginTop: hp(80),
             alignSelf: "center",
           }}
-        />
+        /> */}
       </View>
     </SpacerWrapper>
   );
