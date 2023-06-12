@@ -88,7 +88,7 @@ const ChangePasswordScreen = ({
           style={{
             marginTop: hp(80),
             marginBottom: hp(100),
-            paddingHorizontal: hp(20),
+            marginHorizontal: hp(10),
           }}
         >
           <SegmentedInput

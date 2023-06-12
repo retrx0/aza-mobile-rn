@@ -33,9 +33,11 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
+        "UIBackgroundModes": ["audio"],
+        "NSCameraUsageDescription": "This app uses the camera to scan Aza QR codes.",
+        "NSFaceIDUsageDescription": "Allow Aza to use Face ID to authenticate your login and transactions."
       },
-      "buildNumber": "43"
+      "buildNumber": "44"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,7 +45,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "versionCode": 43,
+      "versionCode": 44,
       "permissions": ["NOTIFICATIONS"]
     },
     "web": {
@@ -70,14 +72,23 @@
       [
         "expo-local-authentication",
         {
-          "faceIDPermission": "Allow Aza to use Face ID."
+          "faceIDPermission": "Allow Aza to use Face ID to authenticate your login and transactions."
         }
       ],
       "@config-plugins/detox",
-      ["expo-facebook", { "userTrackingPermission": false }]
+      [
+        "expo-facebook",
+        {
+          "userTrackingPermission": false
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow Aza to access your photos to scan QR codes.",
+          "savePhotosPermission": "Allow Aza to access your photos to save QR codes."
+        }
+      ]
     ]
-  },
-  "infoPlist": {
-    "NSFaceIDUsageDescription": "Authentication/authorization"
   }
 }
