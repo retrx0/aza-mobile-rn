@@ -33,7 +33,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
   useEffect(() => {
     if (preference.accountBalanceVisibilitySwitch)
       setSecure(preference.accountBalanceVisibilitySwitch);
-  }, []);
+    else setSecure(false);
+  }, [preference.accountBalanceVisibilitySwitch]);
 
   return (
     <>

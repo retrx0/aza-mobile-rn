@@ -1,12 +1,10 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { View as View, Text as Text } from "../../../../theme/Themed";
+import { View, Text } from "../../../../theme/Themed";
 import Button from "../../../../components/buttons/Button";
 import ButtonWithUnderline from "../../../../components/buttons/CancelButtonWithUnderline";
 import { UnblockModal } from "../components/BlockUserModal";
-import Contact from "../../../../components/ListItem/Contact";
 
 import { CommonScreenProps } from "../../../../common/navigation/types";
 import Colors from "../../../../constants/Colors";
@@ -30,6 +28,7 @@ const BlockUsersScreen = ({
   const [selectedBlcokedUser, setSelectedBlcokedUser] = useState<IBeneficiary>({
     fullName: "",
     accountNumber: "",
+    bankCode: "",
   });
 
   const { azaContacts } = useAppSelector(selectUser);

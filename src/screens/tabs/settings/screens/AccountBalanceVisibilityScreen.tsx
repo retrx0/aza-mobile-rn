@@ -11,6 +11,11 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import {
+  selectAppPreference,
+  setAppPreference,
+} from "../../../../redux/slice/preferenceSlice";
 
 const AccountBalanceVisibilityScreen = ({
   navigation,
@@ -18,6 +23,8 @@ const AccountBalanceVisibilityScreen = ({
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const preferences = useAppSelector(selectAppPreference);
 
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
@@ -28,6 +35,12 @@ const AccountBalanceVisibilityScreen = ({
 
   useEffect(() => {
     saveSettingsToStorage({ accountBalanceVisibilitySwitch: isEnabled });
+    dispatch(
+      setAppPreference({
+        ...preferences,
+        accountBalanceVisibilitySwitch: isEnabled,
+      })
+    );
   }, [isEnabled]);
 
   useNavigationHeader(navigation, "Balance Visibility");

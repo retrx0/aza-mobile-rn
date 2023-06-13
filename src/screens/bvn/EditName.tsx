@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import CommonStyles from "../../common/styles/CommonStyles";
 import SpacerWrapper from "../../common/util/SpacerWrapper";
 import BackButton from "../../components/buttons/BackButton";
-import { View as View, Text as Text, TextInput } from "../../theme/Themed";
-import { SignUpScreenProps } from "../../types/types.navigation";
+import { View as View, Text as Text } from "../../theme/Themed";
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
-import HideKeyboardOnTouch from "../../common/util/HideKeyboardOnTouch";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
-import { useAppSelector, useAppDispatch } from "../../redux";
+import { useAppSelector } from "../../redux";
 import { getAppTheme } from "../../theme";
 import { CommonScreenProps } from "../../common/navigation/types";
-import InputFormFieldNormal from "../../components/input/InputFormFieldNormal";
-import { Formik } from "formik";
-import Button from "../../components/buttons/Button";
-import { hp, wp } from "../../common/util/LayoutUtil";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import * as yup from "yup";
 import BvnEdit from "./Edit";
 

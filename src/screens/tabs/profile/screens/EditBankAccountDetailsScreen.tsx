@@ -171,10 +171,10 @@ const EditBankAccountDetailsScreen = ({
             { bottom: insets.top || hp(45) },
           ]}
         >
-          <Button
+          {/* <Button
             title={isEditing ? "Done" : "Edit Account Details"}
             onPressButton={editDetails}
-          />
+          /> */}
           <CancelButtonWithUnderline
             title="Delete Account"
             onPressButton={deleteAccount}

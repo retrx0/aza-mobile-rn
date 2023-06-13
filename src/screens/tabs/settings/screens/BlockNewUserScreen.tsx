@@ -29,10 +29,11 @@ const BlockNewUserScreen = ({
   const [userToBlock, setUserToBlock] = useState<IBeneficiary>({
     fullName: "",
     accountNumber: "",
+    bankCode: "",
   });
   const [routes] = useState([
     { key: "first", title: "Mobile Number" },
-    { key: "second", title: "Aza Number" },
+    // { key: "second", title: "Aza Number" },
   ]);
   const layout = useWindowDimensions();
   const appTheme = getAppTheme(useAppSelector(selectAppTheme));
