@@ -131,7 +131,7 @@ const ContactsScene = ({
             dispatch(getUserSavedBankAccs());
           })
           .catch((e) => {
-            console.error(e);
+            console.error("Error saving beneficiary", e);
             toastError("Sorry we couldn't save your beneficiary ☹️");
           });
       navigation.navigate("Common", {

@@ -82,7 +82,10 @@ const useTransactionService = (
       } else {
         requestMoneyAPI({
           amount: amount,
-          decription: transDescription ? transDescription : "Aza",
+          decription:
+            transDescription && transDescription !== ""
+              ? transDescription
+              : "With love from Aza",
           initiatorAccountNumber: "" + azaAccountNumber,
           receipientAccountNumber: beneficiary.accountNumber,
           recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
@@ -109,7 +112,10 @@ const useTransactionService = (
           destinationAccount: beneficiary.accountNumber,
           amount,
           transactionPin: transactionPin,
-          description: transDescription ? transDescription : "Aza transaction",
+          description:
+            transDescription && transDescription !== ""
+              ? transDescription
+              : "With love from Aza",
           currency: NAIRA_CCY_CODE,
           destinationBankCode: PSB_BANK_CODE,
           destinationAccountName: beneficiary.fullName,
@@ -129,7 +135,10 @@ const useTransactionService = (
         payOtherBankAPI({
           amount,
           currency: NAIRA_CCY_CODE,
-          description: transDescription ? transDescription : "",
+          description:
+            transDescription && transDescription !== ""
+              ? transDescription
+              : "With love from Aza",
           destinationAccount: beneficiary.accountNumber,
           destinationBankCode: beneficiary.bankCode,
           destinationAccountName: beneficiary.fullName,

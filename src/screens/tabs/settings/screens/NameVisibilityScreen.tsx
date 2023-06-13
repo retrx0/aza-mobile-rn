@@ -13,6 +13,11 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import {
+  selectAppPreference,
+  setAppPreference,
+} from "../../../../redux/slice/preferenceSlice";
 
 const NameVisibilityScreen = ({
   navigation,
@@ -20,6 +25,8 @@ const NameVisibilityScreen = ({
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const preferences = useAppSelector(selectAppPreference);
 
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
@@ -30,6 +37,12 @@ const NameVisibilityScreen = ({
 
   useEffect(() => {
     saveSettingsToStorage({ nameVisibilitySwitch: isEnabled });
+    dispatch(
+      setAppPreference({
+        ...preferences,
+        nameVisibilitySwitch: isEnabled,
+      })
+    );
   }, [isEnabled]);
 
   useNavigationHeader(navigation, "Name Visibility");

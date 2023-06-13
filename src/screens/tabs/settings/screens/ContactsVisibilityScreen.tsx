@@ -14,6 +14,11 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import {
+  selectAppPreference,
+  setAppPreference,
+} from "../../../../redux/slice/preferenceSlice";
 
 const ContactsVisibilityScreen = ({
   navigation,
@@ -21,6 +26,8 @@ const ContactsVisibilityScreen = ({
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
+  const dispatch = useAppDispatch();
+  const preferences = useAppSelector(selectAppPreference);
 
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
@@ -31,6 +38,12 @@ const ContactsVisibilityScreen = ({
 
   useEffect(() => {
     saveSettingsToStorage({ contactVisibilitySwitch: isEnabled });
+    dispatch(
+      setAppPreference({
+        ...preferences,
+        contactVisibilitySwitch: isEnabled,
+      })
+    );
   }, [isEnabled]);
 
   useNavigationHeader(navigation, "Contacts Visibility");
