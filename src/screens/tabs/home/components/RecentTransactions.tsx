@@ -22,13 +22,19 @@ export default function RecentTransactions({
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ display: "flex", marginTop: hp(20) }}>
+      <View style={{ display: "flex" }}>
         <View
           style={{
             display: "flex",
-            marginBottom: hp(20),
             flexDirection: "row",
             alignItems: "center",
+            marginVertical: 5,
+            padding: 8,
+            borderRadius: 10,
+            shadowColor: Colors.general.black,
+            shadowOpacity: 0.05,
+            shadowOffset: { height: 2, width: 0 },
+            shadowRadius: 0.7,
           }}
         >
           <TouchableOpacity

@@ -83,7 +83,6 @@ const SegmentedTransactionView = ({
                         ? "Aza to Aza"
                         : transactionType,
                     referenceId: "" + transactionReference,
-
                     transactionDate: transfromDataString(createdAt),
                     receivingBank:
                       transactionType === "IntraBank"

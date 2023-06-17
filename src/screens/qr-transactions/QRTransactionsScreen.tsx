@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, useWindowDimensions } from "react-native";
+import { TouchableOpacity, useWindowDimensions, Animated } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 
 import { RootStackScreenProps } from "../../types/types.navigation";
@@ -36,7 +36,8 @@ const QRTransactionsScreen = ({
     navigation,
     "QR Transactions",
     <TouchableOpacity
-      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}>
+      onPress={() => navigation.navigate("Common", { screen: "QRFeature" })}
+    >
       <InfoIcon
         color={
           appTheme === "dark" ? Colors.dark.secondaryText : Colors.general.black
@@ -90,7 +91,8 @@ const QRTransactionsScreen = ({
                     style={{
                       fontFamily: "Euclid-Circular-A-Medium",
                       fontSize: 16,
-                    }}>
+                    }}
+                  >
                     {route.title}
                   </Text>
                 );

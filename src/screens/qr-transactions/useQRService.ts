@@ -3,7 +3,11 @@
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { BarCodeScanningResult, PermissionResponse } from "expo-camera";
 import { toastError } from "../../common/util/ToastUtil";
-import { APP_SCHEME, QR_CODE_SCAN_ISO } from "../../constants/AppConstants";
+import {
+  APP_SCHEME,
+  PSB_BANK_CODE,
+  QR_CODE_SCAN_ISO,
+} from "../../constants/AppConstants";
 import { setTransaction } from "../../redux/slice/transactionSlice";
 import { IQRScanTransactionData } from "../../types/types.redux";
 import * as ImagePicker from "expo-image-picker";
@@ -23,7 +27,6 @@ const useQRService = ({
   let flag = false;
 
   const handleCodeScanned = (scannedCodeData: IQRScanTransactionData) => {
-    console.log(scannedCodeData);
     if (scannedCodeData.amount) {
       dispatch(
         setTransaction({
@@ -33,6 +36,7 @@ const useQRService = ({
             accountNumber: scannedCodeData.azaAccountNumber,
             fullName: scannedCodeData.fullName,
             beneficiaryName: scannedCodeData.azaAccountNumber,
+            bankCode: PSB_BANK_CODE,
           },
           recurring: false,
           description: "",
@@ -40,6 +44,7 @@ const useQRService = ({
       );
       navigation.navigate("Common", {
         screen: "SendMoneyConfirmation",
+        params: { transactionType: "INTRA" },
       });
     } else {
       navigation.navigate("Common", {
@@ -51,6 +56,7 @@ const useQRService = ({
             beneficiary: {
               accountNumber: scannedCodeData.azaAccountNumber,
               fullName: scannedCodeData.fullName,
+              bankCode: PSB_BANK_CODE,
             },
           },
           headerTitle: "QR Payment",

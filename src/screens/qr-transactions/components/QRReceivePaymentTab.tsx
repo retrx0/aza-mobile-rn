@@ -20,6 +20,7 @@ import {
 import { selectUser } from "../../../redux/slice/userSlice";
 import { getAppTheme } from "../../../theme";
 import { selectAppTheme } from "../../../redux/slice/themeSlice";
+import { Animated } from "react-native";
 
 const QRReceivePaymentTab = ({
   navigation,
@@ -31,6 +32,11 @@ const QRReceivePaymentTab = ({
 
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
+
+  const av = new Animated.Value(0);
+  av.addListener(() => {
+    return;
+  });
 
   return (
     <>

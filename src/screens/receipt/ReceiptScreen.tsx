@@ -165,7 +165,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Transaction Type"}
-            value={transactionType ? transactionType : undefined}
+            value={transactionType ? transactionType : ""}
           />
           <UnderlinedInput
             icon={null}
@@ -204,7 +204,7 @@ const ReceiptScreen = ({ navigation, route }: CommonScreenProps<"Receipt">) => {
               },
             ]}
             label={"Reference ID"}
-            value={referenceId ? referenceId : undefined}
+            value={referenceId ? referenceId : ""}
           />
           <UnderlinedInput
             icon={null}

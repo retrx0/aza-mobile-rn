@@ -14,6 +14,11 @@ import { CheckIcon } from "../../../../../assets/svg";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
+import {
+  selectAppPreference,
+  setAppPreference,
+} from "../../../../redux/slice/preferenceSlice";
 
 const AppLanguageScreen = ({
   navigation,
@@ -21,6 +26,8 @@ const AppLanguageScreen = ({
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [selectedLanguage, setSelectedLanguage] = useState<string>("English");
+  const dispatch = useAppDispatch();
+  const preferences = useAppSelector(selectAppPreference);
 
   const languages = [
     {
@@ -43,6 +50,12 @@ const AppLanguageScreen = ({
 
   useEffect(() => {
     saveSettingsToStorage({ appLanguage: selectedLanguage });
+    dispatch(
+      setAppPreference({
+        ...preferences,
+        appLanguage: selectedLanguage,
+      })
+    );
   }, [selectedLanguage]);
 
   useNavigationHeader(navigation, "App Language");
@@ -91,7 +104,7 @@ const AppLanguageScreen = ({
                   {name}
                 </Text>
                 {selectedLanguage === name && (
-                  <CheckIcon size={20} color={"#2A9E17"} />
+                  <CheckIcon size={20} color={Colors.general.green} />
                 )}
               </TouchableOpacity>
               <Divider />
