@@ -11,6 +11,11 @@ import SpacerWrapper from "../../../../common/util/SpacerWrapper";
 
 import { useAppAsyncStorage } from "../../../../hooks/useAsyncStorage";
 import useNavigationHeader from "../../../../hooks/useNavigationHeader";
+import {
+  selectAppPreference,
+  setAppPreference,
+} from "../../../../redux/slice/preferenceSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux";
 
 const NotificationSettingsScreen = ({
   navigation,
@@ -18,6 +23,8 @@ const NotificationSettingsScreen = ({
   const { saveSettingsToStorage, loadSettingsFromStorage } =
     useAppAsyncStorage();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const preferences = useAppSelector(selectAppPreference);
 
   useEffect(() => {
     loadSettingsFromStorage().then((setting) => {
@@ -28,6 +35,12 @@ const NotificationSettingsScreen = ({
 
   useEffect(() => {
     saveSettingsToStorage({ communicationPermitSwitch: isEnabled });
+    dispatch(
+      setAppPreference({
+        ...preferences,
+        communicationPermitSwitch: isEnabled,
+      })
+    );
   }, [isEnabled]);
 
   useNavigationHeader(navigation, "Notification Settings");

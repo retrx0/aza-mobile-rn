@@ -94,7 +94,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
               />
             ),
             title: "Home",
-            tabBarIcon: ({ color }) => <HomeIcon color={color} size={34} />,
+            tabBarIcon: ({ color }) => <HomeIcon color={color} size={31} />,
             headerRight: () => (
               <Pressable
                 onPress={() => navigation.navigate("QRTransactions")}
@@ -148,7 +148,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
           options={{
             title: "Payments",
             headerShown: false,
-            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={34} />,
+            tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={31} />,
           }}
         />
         <BottomTab.Screen
@@ -156,7 +156,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
           component={Settings}
           options={{
             title: "Settings",
-            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={34} />,
+            tabBarIcon: ({ color }) => <SettingsIcon color={color} size={31} />,
             headerShadowVisible: false,
             headerTitleStyle: {
               fontWeight: "600",
@@ -180,7 +180,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
           options={{
             title: "Profile",
             tabBarIcon: () => (
-              <View style={{ width: 34, height: 34 }}>
+              <View style={{ width: 31, height: 31 }}>
                 <Image
                   source={{ uri: user.pictureUrl }}
                   style={{
