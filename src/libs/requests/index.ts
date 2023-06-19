@@ -16,3 +16,13 @@ export interface IIdentifyAzaContactRequest {
   contactPhoneNumber: string;
   contactName: string;
 }
+
+export interface IRegisterUserRequest {
+  firstName: string;
+  lastName: string;
+  gender: string;
+  email: string;
+  newPassword: string;
+  pushNotificationToken: string;
+  isGenesisUser?: true;
+}

@@ -1,32 +1,16 @@
-import * as SecureStore from "expo-secure-store";
-import { AxiosError } from "axios";
-
 import api from "..";
 
-import {
-  STORAGE_KEY_JWT_TOKEN,
-  STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN,
-} from "@env";
-import { toastError, toastSuccess } from "../../common/util/ToastUtil";
 import apiCourier from "../courier";
 import {
   IAddBVNRequest,
   IIdentifyAzaContactRequest,
+  IRegisterUserRequest,
 } from "../../libs/requests";
 import {
   IAddUserBVNResponse,
   IIdentifyAzaContactResponse,
 } from "../../libs/response";
-
-type RegisterUserModel = {
-  firstName: string;
-  lastName: string;
-  gender: string;
-  email: string;
-  newPassword: string;
-  pushNotificationToken: string;
-  isGenesisUser?: true;
-};
+import { IRegisterUserResponse } from "../../libs";
 
 export const checkUserEndpointHealthAPI = async () => {
   try {
@@ -39,84 +23,63 @@ export const checkUserEndpointHealthAPI = async () => {
 };
 
 // Use only without the need to update data in redux, else call the dispatch(getUserInfo)
-export const getFullUserInfoAPI = async () => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.get("/api/v1/user/info", {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e) {
-    console.log("Error getting user info: ", e as Error);
-    toastError("We encountered a problem ⚠️, please try again!");
-  }
-};
 
-export const registerUserAPI = async (data: RegisterUserModel) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(
-      STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN
-    );
-    const result = await api.put("/api/v1/user/register", data, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    if (result.status === 200) return result.data;
-    return undefined;
-  } catch (e) {
-    const err = e as AxiosError;
-    console.debug("Error registering user: ", err.message);
-    if (err.status && err.status === "409") {
-      toastError("User already registered!");
-    } else {
-      toastError("We encountered a problem while creating your account ⚠️");
-    }
-  }
+// export const old_registerUserAPI = async (data: IRegisterUserRequest) => {
+//   try {
+//     const jwt = await SecureStore.getItemAsync(
+//       STORAGE_KEY_PHONE_OTP_ACCESS_TOKEN
+//     );
+//     const result = await api.put("/api/v1/user/register", data, {
+//       headers: {
+//         Authorization: `Bearer ${jwt}`,
+//       },
+//     });
+//     if (result.status === 200) return result.data;
+//     return undefined;
+//   } catch (e) {
+//     const err = e as AxiosError;
+//     console.debug("Error registering user: ", err.message);
+//     if (err.status && err.status === "409") {
+//       toastError("User already registered!");
+//     } else {
+//       toastError("We encountered a problem while creating your account ⚠️");
+//     }
+//   }
+// };
+
+export const registerUserAPI = async (data: IRegisterUserRequest) => {
+  return await apiCourier<IRegisterUserRequest, IRegisterUserResponse>(
+    "put",
+    "/api/v1/user/register",
+    data,
+    "phoneOTP"
+  );
 };
 
 export const changePasswordAPI = async (
   oldPassword: string,
   newPassword: string
 ) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.patch(
-      "/api/v1/user/change-password",
-      {
-        oldPassword,
-        newPassword,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
-    if (result.status === 204) {
-      return result;
-    }
-  } catch (e) {
-    console.debug("Error changing password: ", e as AxiosError);
-    throw Error();
-  }
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/change-password",
+    {
+      oldPassword,
+      newPassword,
+    },
+    "jwt"
+  );
 };
 
 export const verifyEmailAPI = async (email: string) => {
-  try {
-    const jwt = await SecureStore.getItemAsync(STORAGE_KEY_JWT_TOKEN);
-    const result = await api.patch("/api/v1/user/verify-email", email, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    });
-    return result;
-  } catch (e) {
-    console.log(e as Error);
-  }
+  return await apiCourier(
+    "patch",
+    "/api/v1/user/verify-email",
+    {
+      email,
+    },
+    "jwt"
+  );
 };
 
 export const setUserTransactionPinAPI = async (newTransactionPin: string) => {

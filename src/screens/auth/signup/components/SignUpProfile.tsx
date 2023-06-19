@@ -82,9 +82,9 @@ const SignUpProfile = ({
               pushToken: newUser.pushToken,
             })
           );
-          // navigation.navigate("SignUpPassword", {
-          //   passwordScreenType: "Create",
-          // });
+          navigation.navigate("SignUpPassword", {
+            passwordScreenType: "Create",
+          });
         }}
       >
         {({
