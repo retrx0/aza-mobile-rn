@@ -23,6 +23,7 @@ import EditContactItem from "./components/split/EditContactItem";
 import { getAppTheme } from "../../theme";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import { PSB_BANK_CODE } from "../../constants/AppConstants";
 
 const SplitEditContactsScreen = ({
   navigation,
@@ -63,8 +64,9 @@ const SplitEditContactsScreen = ({
             name={name}
             splitImage={splitImage}
             requestor={{
-              accountNumber: "" + user.azaAccountNumber,
+              accountNumber: user.walletNumber,
               fullName: user.fullName,
+              bankCode: PSB_BANK_CODE,
             }}
             requestees={[]}
           />

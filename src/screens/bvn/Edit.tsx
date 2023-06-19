@@ -49,7 +49,7 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
   const [loading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
-  const { azaAccountNumber, aza9PSBAccountNumber } = useAppSelector(selectUser);
+  const { walletNumber } = useAppSelector(selectUser);
 
   const EdiNameValidationSchema = yup.object().shape({
     firstname: yup.string().required("Firstname is required"),
@@ -181,13 +181,14 @@ const BvnEdit = ({ navigation }: CommonScreenProps<"BvnEditName">) => {
                     maxLength={10}
                     onChangeText={(text) => {
                       setAccountNumber(text);
+                      if (!walletNumber) return;
                       if (text.length === 10) {
                         if (selectedBank) {
                           setLoading(true);
                           verifyBankAccountAPI(
                             selectedBank.bankCode,
                             text,
-                            aza9PSBAccountNumber
+                            walletNumber
                           )
                             .then((res) => {
                               setFirstName(res.data.name);

@@ -175,7 +175,7 @@ export interface IBank {
 }
 
 export interface IQRScanTransactionData {
-  azaAccountNumber: string;
+  walletNumber: string;
   fullName: string;
   amount: string | undefined;
 }
@@ -210,8 +210,7 @@ export interface IUserState {
   firstName: string;
   lastName: string;
   pictureUrl: string | undefined;
-  azaAccountNumber: string | null;
-  aza9PSBAccountNumber: string | null;
+  walletNumber: string | null;
   azaBalance: number;
   emailAddress: string;
   accountVerified: boolean;

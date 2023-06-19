@@ -309,28 +309,87 @@ const ContactsScene = ({
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={CommonStyles.vaultcontainer}
+        style={[CommonStyles.vaultcontainer, { height: "100%" }]}
       >
-        <View style={{ paddingHorizontal: hp(20) }}>
-          <View style={{ marginTop: 35 }}>
-            <Text
-              style={{
-                fontFamily: "Euclid-Circular-A-Bold",
-                fontSize: hp(16),
-                fontWeight: "400",
-              }}
-            >
-              Saved Beneficiaries
-            </Text>
-            <TouchableOpacity
-              onPress={() => {
-                setBeneficiariesModalVisible((v) => !v);
-              }}
-            >
+        <ScrollView>
+          <View style={{ paddingHorizontal: hp(20) }}>
+            <View style={{ marginTop: 35 }}>
               <Text
                 style={{
-                  backgroundColor: "transparent",
+                  fontFamily: "Euclid-Circular-A-Bold",
+                  fontSize: hp(16),
+                  fontWeight: "400",
+                }}
+              >
+                Saved Beneficiaries
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setBeneficiariesModalVisible((v) => !v);
+                }}
+              >
+                <Text
+                  style={{
+                    backgroundColor: "transparent",
+                    fontFamily: "Euclid-Circular-A",
+                    paddingBottom: 5,
+                    marginTop: hp(10),
+                    borderBottomWidth: 1,
+                    borderBottomColor:
+                      appTheme === "dark" ? "#262626" : "#EAEAEC",
+                    fontSize: hp(16),
+                    fontWeight: "500",
+                  }}
+                >
+                  {"Choose from already saved accounts"}
+                </Text>
+              </TouchableOpacity>
+              <Divider />
+            </View>
+
+            <View style={{ marginTop: hp(35) }}>
+              <Text
+                style={{
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  fontSize: hp(14),
+                  fontWeight: "400",
+                }}
+              >
+                Bank
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setSearchBanksModalVisisble((t) => !t);
+                }}
+              >
+                <Text
+                  style={{
+                    marginBottom: 5,
+                    marginTop: 10,
+                    fontFamily: "Euclid-Circular-A-Semi-Bold",
+                    fontSize: hp(16),
+                  }}
+                >
+                  {selectedBank ? selectedBank.bankName : "Choose bank"}
+                </Text>
+              </TouchableOpacity>
+              <Divider />
+            </View>
+            <View style={{ marginTop: 35 }}>
+              <Text
+                style={{
                   fontFamily: "Euclid-Circular-A",
+                  fontSize: hp(16),
+                  fontWeight: "400",
+                }}
+              >
+                Account Number
+              </Text>
+              <TextInput
+                placeholderTextColor={Colors[appTheme].text}
+                style={{
+                  backgroundColor: "transparent",
+                  fontFamily: "Euclid-Circular-A-Medium",
                   paddingBottom: 5,
                   marginTop: hp(10),
                   borderBottomWidth: 1,
@@ -339,159 +398,106 @@ const ContactsScene = ({
                   fontSize: hp(16),
                   fontWeight: "500",
                 }}
-              >
-                {"Choose from already saved accounts"}
-              </Text>
-            </TouchableOpacity>
-            <Divider />
-          </View>
+                placeholder="Account Number"
+                keyboardType="number-pad"
+                returnKeyType="done"
+                onChangeText={(txt) => {
+                  setReceipientAccountNumber(txt);
 
-          <View style={{ marginTop: hp(35) }}>
-            <Text
-              style={{
-                fontFamily: "Euclid-Circular-A-Medium",
-                fontSize: hp(14),
-                fontWeight: "400",
-              }}
-            >
-              Bank
-            </Text>
-            <TouchableOpacity
-              onPress={() => {
-                setSearchBanksModalVisisble((t) => !t);
-              }}
-            >
-              <Text
-                style={{
-                  marginBottom: 5,
-                  marginTop: 10,
-                  fontFamily: "Euclid-Circular-A-Semi-Bold",
-                  fontSize: hp(16),
-                }}
-              >
-                {selectedBank ? selectedBank.bankName : "Choose bank"}
-              </Text>
-            </TouchableOpacity>
-            <Divider />
-          </View>
-          <View style={{ marginTop: 35 }}>
-            <Text
-              style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: hp(16),
-                fontWeight: "400",
-              }}
-            >
-              Account Number
-            </Text>
-            <TextInput
-              placeholderTextColor={Colors[appTheme].text}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A-Medium",
-                paddingBottom: 5,
-                marginTop: hp(10),
-                borderBottomWidth: 1,
-                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-                fontSize: hp(16),
-                fontWeight: "500",
-              }}
-              placeholder="Account Number"
-              keyboardType="number-pad"
-              returnKeyType="done"
-              onChangeText={(txt) => {
-                setReceipientAccountNumber(txt);
-
-                if (txt.length === 10) {
-                  if (selectedBank) {
-                    setScreenLoading(true);
-                    if (user.aza9PSBAccountNumber) {
-                      verifyBankAccountAPI(
-                        selectedBank.bankCode,
-                        txt,
-                        user.aza9PSBAccountNumber
-                      )
-                        .then((res) => {
-                          setReceipientAccountName(res.data.name);
-                          setAccountVerified(true);
-                          setScreenLoading(false);
-                        })
-                        .catch((e) => {
-                          setAccountVerified(false);
-                          setScreenLoading(false);
-                        });
-                    } else {
-                      setScreenLoading(false);
-                      toastError("Your account number is missing or invalid");
+                  if (txt.length === 10) {
+                    if (selectedBank) {
+                      setScreenLoading(true);
+                      if (user.walletNumber) {
+                        verifyBankAccountAPI(
+                          selectedBank.bankCode,
+                          txt,
+                          user.walletNumber
+                        )
+                          .then((res) => {
+                            setReceipientAccountName(res.data.name);
+                            setAccountVerified(true);
+                            setScreenLoading(false);
+                          })
+                          .catch((e) => {
+                            setAccountVerified(false);
+                            setScreenLoading(false);
+                          });
+                      } else {
+                        setScreenLoading(false);
+                        toastError("Your account number is missing or invalid");
+                      }
                     }
                   }
-                }
-              }}
-              value={receipientAccountNumber}
-              editable={selectedBank !== undefined}
-            />
-          </View>
-          <View style={{ marginTop: 35 }}>
-            <Text
-              style={{
-                fontFamily: "Euclid-Circular-A",
-                fontSize: hp(16),
-                fontWeight: "400",
-              }}
+                }}
+                value={receipientAccountNumber}
+                editable={selectedBank !== undefined}
+              />
+            </View>
+            <View style={{ marginTop: 35 }}>
+              <Text
+                style={{
+                  fontFamily: "Euclid-Circular-A",
+                  fontSize: hp(16),
+                  fontWeight: "400",
+                }}
+              >
+                Account Name
+              </Text>
+              <TextInput
+                placeholderTextColor={Colors[appTheme].text}
+                style={{
+                  backgroundColor: "transparent",
+                  fontFamily: "Euclid-Circular-A-Medium",
+                  paddingBottom: 5,
+                  marginTop: hp(10),
+                  borderBottomWidth: 1,
+                  borderBottomColor:
+                    appTheme === "dark" ? "#262626" : "#EAEAEC",
+                  fontSize: hp(16),
+                  fontWeight: "500",
+                }}
+                placeholder="Account Name"
+                keyboardType="number-pad"
+                returnKeyType="done"
+                editable={false}
+                value={receipientAccountName}
+              />
+            </View>
+            <View
+              style={[
+                CommonStyles.row,
+                { marginTop: 35, justifyContent: "flex-start" },
+              ]}
             >
-              Account Name
-            </Text>
-            <TextInput
-              placeholderTextColor={Colors[appTheme].text}
-              style={{
-                backgroundColor: "transparent",
-                fontFamily: "Euclid-Circular-A-Medium",
-                paddingBottom: 5,
-                marginTop: hp(10),
-                borderBottomWidth: 1,
-                borderBottomColor: appTheme === "dark" ? "#262626" : "#EAEAEC",
-                fontSize: hp(16),
-                fontWeight: "500",
+              <Text style={{ paddingHorizontal: 25 }}>
+                Save as beneficiary?
+              </Text>
+              <CustomSwitch
+                isEnabled={saveAccountAsBeneficiary}
+                onSwitchToggle={() => setSaveAccountAsBeneficiary((v) => !v)}
+              />
+            </View>
+          </View>
+          <View style={{ marginTop: 100 }}>
+            <Button
+              title="Continue"
+              onPressButton={() => {
+                if (selectedBank) {
+                  handleSendToAccountNumber({ receipientBank: selectedBank });
+                }
+                // sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
               }}
-              placeholder="Account Name"
-              keyboardType="number-pad"
-              returnKeyType="done"
-              editable={false}
-              value={receipientAccountName}
-            />
-          </View>
-          <View
-            style={[
-              CommonStyles.row,
-              { marginTop: 35, justifyContent: "flex-start" },
-            ]}
-          >
-            <Text style={{ paddingHorizontal: 25 }}>Save as beneficiary?</Text>
-            <CustomSwitch
-              isEnabled={saveAccountAsBeneficiary}
-              onSwitchToggle={() => setSaveAccountAsBeneficiary((v) => !v)}
-            />
-          </View>
-        </View>
-        <View style={{ marginTop: 100 }}>
-          <Button
-            title="Continue"
-            onPressButton={() => {
-              if (selectedBank) {
-                handleSendToAccountNumber({ receipientBank: selectedBank });
+              disabled={
+                receipientAccountNumber.length < 10 ||
+                !selectedBank ||
+                !accountVerified
               }
-              // sentToAzaNumber(receipientAzaNumber, azaContactOnPress);
-            }}
-            disabled={
-              receipientAccountNumber.length < 10 ||
-              !selectedBank ||
-              !accountVerified
-            }
-            styleText={{}}
-            style={[]}
-            buttonLoading={buttonLoading}
-          />
-        </View>
+              styleText={{}}
+              style={[]}
+              buttonLoading={buttonLoading}
+            />
+          </View>
+        </ScrollView>
         <Modal
           visible={beneficiariesModalVisible}
           style={{

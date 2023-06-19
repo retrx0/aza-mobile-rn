@@ -20,11 +20,14 @@ import {
 } from "../../redux/slice/userSlice";
 import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { useAppSelector, useAppDispatch } from "../../redux";
-import DatePicker from "@react-native-community/datetimepicker";
+import DatePicker, {
+  DateTimePickerAndroid,
+} from "@react-native-community/datetimepicker";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
 import apiCourier from "../../api/courier";
 import { create9PSBWallet } from "../../api/account";
 import { addBVNAPI } from "../../api/user";
+import { Platform, TouchableOpacity } from "react-native";
 
 const BvnVerificationScreen = ({
   navigation,
@@ -38,6 +41,8 @@ const BvnVerificationScreen = ({
   const insets = useSafeAreaInsets();
   const selectedTheme = useAppSelector(selectAppTheme);
   const appTheme = getAppTheme(selectedTheme);
+
+  const [dateTimePickerVisible, setDateTimePickerVisible] = useState(false);
 
   const { onVerifyNavigateBackTo } = route.params;
 
@@ -104,16 +109,48 @@ const BvnVerificationScreen = ({
             >
               Date of Birth
             </Text>
+            {Platform.OS === "ios" && (
+              <DatePicker
+                value={dob}
+                mode="date"
+                maximumDate={new Date()}
+                placeholderText="Date of Birth"
+                onChange={(date) => {
+                  if (date.nativeEvent.timestamp)
+                    setDOB(new Date(date.nativeEvent.timestamp));
+                }}
+              />
+            )}
 
-            <DatePicker
-              value={dob}
-              maximumDate={new Date()}
-              placeholderText="Date of Birth"
-              onChange={(date) => {
-                if (date.nativeEvent.timestamp)
-                  setDOB(new Date(date.nativeEvent.timestamp));
-              }}
-            />
+            {Platform.OS === "android" && (
+              <View>
+                <TouchableOpacity
+                  onPress={() => setDateTimePickerVisible((v) => !v)}
+                  style={{ alignSelf: "flex-end", margin: 2 }}
+                >
+                  <Text style={{ padding: 3 }}>
+                    {dob ? "" + dob.toISOString().split("T")[0] : "Select Date"}
+                  </Text>
+                </TouchableOpacity>
+                {dateTimePickerVisible && (
+                  <DatePicker
+                    mode={"date"}
+                    display="default" // 'default', 'spinner', 'calendar', 'clock' // Android Only
+                    value={dob}
+                    accentColor={Colors[appTheme].backgroundSecondary}
+                    textColor={Colors[appTheme].text}
+                    style={{
+                      backgroundColor: Colors[appTheme].backgroundSecondary,
+                    }}
+                    themeVariant={appTheme}
+                    onChange={(event, date) => {
+                      setDateTimePickerVisible(false);
+                      if (date) setDOB(date);
+                    }}
+                  />
+                )}
+              </View>
+            )}
           </View>
           <View style={{ marginTop: 20 }}>
             <Text
@@ -166,6 +203,7 @@ const BvnVerificationScreen = ({
             title="Couldn’t verify BVN?"
             color={Colors.general.red}
             styleText={CommonStyles.cancelStyle}
+            style={{ marginTop: 10 }}
             onPressButton={() => navigation.navigate("BvnVerificationFailed")}
           />
         </View>

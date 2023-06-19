@@ -19,8 +19,7 @@ const initialState: IUserState = {
   lastName: "",
   fullName: "",
   pictureUrl: "",
-  azaAccountNumber: "",
-  aza9PSBAccountNumber: "",
+  walletNumber: null,
   azaBalance: 0,
   emailAddress: "",
   accountVerified: false,
@@ -323,8 +322,7 @@ export const userSlice = createSlice({
         state.lastLogin = action.payload.lastLogin;
         state.accountTier = action.payload.accountTier;
         state.dateOfBirth = action.payload.dateOfBirth;
-        state.azaAccountNumber = action.payload.walletNumber;
-        state.aza9PSBAccountNumber = action.payload.walletNumber;
+        state.walletNumber = action.payload.walletNumber;
         state.pushToken = action.payload.pushNotificationToken;
       })
       .addCase(uploadProfilePicThunk.pending, (state, action) => {})
@@ -345,8 +343,6 @@ export const userSlice = createSlice({
       .addCase(getUserAccountDetails.pending, (state, action) => {})
       .addCase(getUserAccountDetails.rejected, (state, action) => {})
       .addCase(getUserAccountDetails.fulfilled, (state, action) => {
-        state.azaAccountNumber = String(action.payload.walletNumber);
-        state.aza9PSBAccountNumber = String(action.payload.walletNumber);
         state.azaBalance = action.payload.availableBalance;
         state.accountStatus = action.payload.status;
       })

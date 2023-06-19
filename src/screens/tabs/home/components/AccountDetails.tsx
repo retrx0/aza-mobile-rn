@@ -117,8 +117,8 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
             </Text>
             <TouchableOpacity
               onPress={() => {
-                if (user.aza9PSBAccountNumber)
-                  copyToClipboard(user.aza9PSBAccountNumber).then((_) =>
+                if (user.walletNumber)
+                  copyToClipboard(user.walletNumber).then((_) =>
                     toastInfo("Account number copied to clipboard!")
                   );
               }}
@@ -130,7 +130,7 @@ export default function AccountDetails({ isModalVisible, listItems }: any) {
                   fontFamily: "Euclid-Circular-A-Semi-Bold",
                 }}
               >
-                {user.aza9PSBAccountNumber ? user.aza9PSBAccountNumber : ""}
+                {user.walletNumber ? user.walletNumber : ""}
               </Text>
             </TouchableOpacity>
           </View>

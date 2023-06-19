@@ -39,10 +39,10 @@ const Home = ({
 
   const refreshData = async () => {
     setRefreshing(true);
-    if (user.aza9PSBAccountNumber !== null) {
+    if (user.walletNumber !== null) {
       dispatch(
         getUserTransactions({
-          accountNumber: user.aza9PSBAccountNumber,
+          accountNumber: user.walletNumber,
         })
       );
       await dispatch(getUserAccountDetails());
@@ -51,27 +51,6 @@ const Home = ({
     setRefreshing(false);
   };
 
-  // fetch(
-  //   process.env.ENV === ENV_DEVELOPMENT
-  //     ? API_BASE_URL_DEV.replace("\\", "")
-  //     : process.env.ENV === ENV_TESTING
-  //     ? API_BASE_URL_TST.replace("\\", "")
-  //     : API_BASE_URL_PROD.replace("\\", "") +
-  //       `/api/v1/account/${user.aza9PSBAccountNumber}/transactions`,
-  //   {
-  //     headers: {
-  //       "X-API-KEY":
-  //         process.env.ENV === ENV_DEVELOPMENT
-  //           ? API_KEY_DEV
-  //           : process.env.ENV === ENV_TESTING
-  //           ? API_KEY_TST
-  //           : API_KEY_PROD,
-  //       "Content-Type": "application/json",
-  //     },
-  //   }
-  // )
-  //   .then((data) => console.log(data))
-  //   .catch((e) => console.log(e));
   return (
     <SpacerWrapper>
       <View style={styles.container}>
@@ -93,11 +72,11 @@ const Home = ({
             />
           ) : // <NotificationsContainer navigation={navigation} route={route} />
           null}
-          {user.bvnVerified && user.aza9PSBAccountNumber === null ? (
+          {user.bvnVerified && user.walletNumber === null ? (
             <CreateWallet
               navigation={navigation}
               route={route}
-              isWalletCreated={user.aza9PSBAccountNumber !== null}
+              isWalletCreated={user.walletNumber !== null}
             />
           ) : null}
         </View>

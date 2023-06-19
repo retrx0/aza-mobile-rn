@@ -6,7 +6,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp } from "../../../common/util/LayoutUtil";
 import { SignInScreenProps } from "../../../types/types.navigation";
 import { View, Text } from "../../../theme/Themed";
-import { AppState, Image, TouchableOpacity } from "react-native";
+import {
+  AppState,
+  Image,
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native";
 import { useAppSelector } from "../../../redux";
 import { selectUser } from "../../../redux/slice/userSlice";
 import HideKeyboardOnTouch from "../../../common/util/HideKeyboardOnTouch";
@@ -162,9 +167,8 @@ const SignInWelcomeBackScreen = ({
                 alignSelf: "center",
                 position: "absolute",
                 bottom:
-                  route.params.cachedUser && biometricEnrolled
-                    ? hp(50)
-                    : hp(480),
+                  useWindowDimensions().height -
+                  (useWindowDimensions().height - 30),
               },
             ]}
           >

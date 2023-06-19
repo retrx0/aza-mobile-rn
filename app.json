@@ -23,9 +23,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/c56fed50-115a-45bd-9836-6c7f739bd420"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "usesAppleSignIn": true,
@@ -35,13 +33,11 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ],
+        "UIBackgroundModes": ["audio"],
         "NSCameraUsageDescription": "This app uses the camera to scan Aza QR codes.",
         "NSFaceIDUsageDescription": "Allow Aza to use Face ID to authenticate your login and transactions."
       },
-      "buildNumber": "45"
+      "buildNumber": "46"
     },
     "android": {
       "adaptiveIcon": {
@@ -49,10 +45,9 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "versionCode": 45,
-      "permissions": [
-        "NOTIFICATIONS"
-      ]
+      "versionCode": 46,
+      "permissions": ["NOTIFICATIONS"],
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/images/app/aza-app-icon-white.png"
@@ -72,9 +67,7 @@
         {
           "icon": "./assets/images/app/aza-app-icon-white.png",
           "color": "#ffffff",
-          "sounds": [
-            "./assets/sounds/notifications/coindrop.wav"
-          ]
+          "sounds": ["./assets/sounds/notifications/coindrop.wav"]
         }
       ],
       [
