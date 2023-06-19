@@ -33,7 +33,7 @@ const AddBankAccountScreen = ({
 
   const { bankName, screenType, logoUrl, bankCode, id } = route.params;
   const selectedTheme = useAppSelector(selectAppTheme);
-  const { aza9PSBAccountNumber, azaAccountNumber } = useAppSelector(selectUser);
+  const { walletNumber } = useAppSelector(selectUser);
   const appTheme = getAppTheme(selectedTheme);
   const dispatch = useAppDispatch();
 
@@ -52,8 +52,9 @@ const AddBankAccountScreen = ({
   };
 
   const verifyAccount = (accNo: string) => {
+    if (!walletNumber) return;
     dispatch(toggleActivityModal(true));
-    verifyBankAccountAPI(bankCode, accNo, aza9PSBAccountNumber)
+    verifyBankAccountAPI(bankCode, accNo, walletNumber)
       .then((res) => {
         dispatch(toggleActivityModal(false));
         if (res) {

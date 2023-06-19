@@ -31,6 +31,7 @@ import { selectAppTheme } from "../../redux/slice/themeSlice";
 import { getDefaultPictureUrl } from "../../common/util/AppUtil";
 import { selectUser } from "../../redux/slice/userSlice";
 import useNavigationHeader from "../../hooks/useNavigationHeader";
+import { PSB_BANK_CODE } from "../../constants/AppConstants";
 
 const SplitSelectContactsScreen = ({
   navigation,
@@ -101,8 +102,9 @@ const SplitSelectContactsScreen = ({
             name={name}
             splitImage={splitImage}
             requestor={{
-              accountNumber: "" + user.azaAccountNumber,
+              accountNumber: user.walletNumber,
               fullName: user.fullName,
+              bankCode: PSB_BANK_CODE,
             }}
             requestees={[]}
           />

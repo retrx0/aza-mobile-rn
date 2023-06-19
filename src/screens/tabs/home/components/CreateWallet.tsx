@@ -25,13 +25,8 @@ export const CreateWallet = ({
   isWalletCreated,
 }: RootTabScreenProps<"Home"> & IProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    bvnNumber,
-    bvnVerified,
-    dateOfBirth,
-    aza9PSBAccountNumber,
-    azaAccountNumber,
-  } = useAppSelector(selectUser);
+  const { bvnNumber, bvnVerified, dateOfBirth, walletNumber } =
+    useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   return (
@@ -85,7 +80,7 @@ export const CreateWallet = ({
             onPress={() => {
               setIsLoading(true);
               if (bvnVerified) {
-                if (aza9PSBAccountNumber === null) {
+                if (walletNumber === null) {
                   create9PSBWallet({ bvn: bvnNumber, dateOfBirth: dateOfBirth })
                     .then(() => {
                       dispatch(getUserAccountDetails());

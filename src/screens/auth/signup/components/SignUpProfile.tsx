@@ -176,7 +176,7 @@ const SignUpProfile = ({
               title="Continue"
               onPressButton={handleSubmit}
               styleText={{}}
-              style={[CommonStyles.container, { bottom: hp(60) }]}
+              style={[{ marginVertical: 30 }]}
               disabled={!isValid}
             />
           </>

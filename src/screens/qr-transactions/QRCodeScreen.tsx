@@ -133,23 +133,31 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
     </Text>
   </View> */}
           </View>
-          <View style={{ alignSelf: "center" }}>
-            <QRCode
-              value={`${APP_SCHEME}://app/qrcode?accountNumber=${
-                user.azaAccountNumber
-              }&fullName=${user.fullName}&amount=${
-                qrPaymentAmount ? qrPaymentAmount : ""
-              }`}
-              size={280}
-              logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
-              logoSize={50}
-              logoBorderRadius={10}
-              backgroundColor={Colors[appTheme].background}
-              color={
-                appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
-              }
-            />
-          </View>
+          {user.walletNumber ? (
+            <View style={{ alignSelf: "center" }}>
+              <QRCode
+                value={`${APP_SCHEME}://app/qrcode?accountNumber=${
+                  user.walletNumber
+                }&fullName=${user.fullName}&amount=${
+                  qrPaymentAmount ? qrPaymentAmount : ""
+                }`}
+                size={280}
+                logo={require("../../../assets/images/app/-aza-app-icon-white.png")}
+                logoSize={50}
+                logoBorderRadius={10}
+                backgroundColor={Colors[appTheme].background}
+                color={
+                  appTheme === "dark" ? Colors.dark.mainText : Colors.light.text
+                }
+              />
+            </View>
+          ) : (
+            <View>
+              <Text style={{ textAlign: "center" }}>
+                Noting to see here 🙂, please create a wallet
+              </Text>
+            </View>
+          )}
         </View2>
 
         <View style={[]}>
@@ -170,26 +178,30 @@ const QRCodeScreen = ({ navigation }: RootStackScreenProps<"QRCode">) => {
               });
             }}
           /> */}
-          <Button
-            title="Set Amount"
-            styleText={{}}
-            style={{ marginBottom: 10, marginTop: 20 }}
-            onPressButton={() => {
-              navigation.navigate("QRReceivePayment");
-            }}
-          />
-          <ButtonWithUnderline
-            title="Reset Amount"
-            color={Colors[appTheme].backgroundSecondary}
-            onPressButton={() => dispatch(setQRPaymentAmount(undefined))}
-            style={{ marginVertical: 10 }}
-          />
-          <ButtonWithUnderline
-            title="Save to Gallery"
-            color={Colors[appTheme].backgroundSecondary}
-            onPressButton={captureScreenAndSaveToGallery}
-            style={{ marginVertical: 10 }}
-          />
+          {user.walletNumber && (
+            <View>
+              <Button
+                title="Set Amount"
+                styleText={{}}
+                style={{ marginBottom: 10, marginTop: 20 }}
+                onPressButton={() => {
+                  navigation.navigate("QRReceivePayment");
+                }}
+              />
+              <ButtonWithUnderline
+                title="Reset Amount"
+                color={Colors[appTheme].backgroundSecondary}
+                onPressButton={() => dispatch(setQRPaymentAmount(undefined))}
+                style={{ marginVertical: 10 }}
+              />
+              <ButtonWithUnderline
+                title="Save to Gallery"
+                color={Colors[appTheme].backgroundSecondary}
+                onPressButton={captureScreenAndSaveToGallery}
+                style={{ marginVertical: 10 }}
+              />
+            </View>
+          )}
         </View>
       </View>
     </SpacerWrapper>

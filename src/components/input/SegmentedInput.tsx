@@ -179,10 +179,10 @@ const styles = StyleSheet.create({
     lineHeight: 20.29,
   },
   underlineStyleBase: {
-    width: wp(40),
-    height: hp(40),
-    fontSize: hp(20),
-    borderRadius: hp(5),
+    width: wp(44),
+    height: hp(44),
+    fontSize: hp(25),
+    borderRadius: hp(7),
     marginVertical: 50,
   },
 });

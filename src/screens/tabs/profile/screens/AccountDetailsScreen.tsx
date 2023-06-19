@@ -93,7 +93,7 @@ const AccountDetailsScreen = ({
     {
       title: "Aza-9PSB Number",
       subText: "You can receive money transfer/payment \nby sharing.",
-      data: user.azaAccountNumber,
+      data: user.walletNumber ? user.walletNumber : "N/A",
     },
     {
       title: "Available Balance",
@@ -146,6 +146,7 @@ const AccountDetailsScreen = ({
               shadowOpacity: 0.1,
               shadowOffset: { height: 1, width: 1 },
               shadowRadius: 2,
+              elevation: 1,
             },
           ]}
         >

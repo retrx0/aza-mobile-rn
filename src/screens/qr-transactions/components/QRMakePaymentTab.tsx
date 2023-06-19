@@ -10,7 +10,7 @@ import {
 } from "expo-camera";
 
 import Button from "../../../components/buttons/Button";
-import { View } from "../../../theme/Themed";
+import { Text, View } from "../../../theme/Themed";
 
 import { hp } from "../../../common/util/LayoutUtil";
 import { toastError } from "../../../common/util/ToastUtil";
@@ -33,6 +33,8 @@ const QRMakePaymentTab = ({
     navigation,
     route,
   });
+
+  const { walletNumber } = useAppSelector(selectUser);
 
   useEffect(() => {
     (async () => {
@@ -83,7 +85,7 @@ const QRMakePaymentTab = ({
   return (
     <View style={styles.cameraContainer}>
       {/* TODO fix camera not shuting down after closing modal */}
-      {cameraPermission?.granted && (
+      {cameraPermission?.granted && walletNumber && (
         <Camera
           style={styles.camera}
           type={CameraType.back}
@@ -110,6 +112,13 @@ const QRMakePaymentTab = ({
             />
           </View>
         </Camera>
+      )}
+      {!walletNumber && (
+        <View style={{ margin: 20 }}>
+          <Text style={{ textAlign: "center" }}>
+            Create a wallet to make a QR Payment
+          </Text>
+        </View>
       )}
     </View>
   );

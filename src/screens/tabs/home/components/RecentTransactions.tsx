@@ -35,6 +35,7 @@ export default function RecentTransactions({
             shadowOpacity: 0.05,
             shadowOffset: { height: 2, width: 0 },
             shadowRadius: 0.7,
+            elevation: 1,
           }}
         >
           <TouchableOpacity

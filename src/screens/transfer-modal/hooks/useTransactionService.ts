@@ -49,12 +49,8 @@ const useTransactionService = (
 ) => {
   const { beneficiary, amount, transferType, description } =
     useAppSelector(selectTransaction);
-  const {
-    bvnVerified,
-    azaAccountNumber,
-    aza9PSBAccountNumber,
-    isTransactionPinSet,
-  } = useAppSelector(selectUser);
+  const { bvnVerified, isTransactionPinSet, walletNumber } =
+    useAppSelector(selectUser);
   const userPreferences = useAppSelector(selectAppPreference);
   const { authenticateWithBiometrics } = useAppBiometricAuthentication();
 
@@ -80,22 +76,24 @@ const useTransactionService = (
         if (isTransactionPinSet) authenticateForTransaction(transactionType);
         else navigation.navigate("TransactionPin", { type: "set" });
       } else {
-        requestMoneyAPI({
-          amount: amount,
-          decription:
-            transDescription && transDescription !== ""
-              ? transDescription
-              : "With love from Aza",
-          initiatorAccountNumber: "" + azaAccountNumber,
-          receipientAccountNumber: beneficiary.accountNumber,
-          recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
-        })
-          .then(() => {
-            navigateToNextScreen();
+        if (!walletNumber) toastError("Request not allowed!");
+        else
+          requestMoneyAPI({
+            amount: amount,
+            decription:
+              transDescription && transDescription !== ""
+                ? transDescription
+                : "With love from Aza",
+            initiatorAccountNumber: walletNumber,
+            receipientAccountNumber: beneficiary.accountNumber,
+            recepientPhoneNumber: beneficiary.phone ? beneficiary.phone : "",
           })
-          .catch(() => {
-            toastError("There was a problem making the request!");
-          });
+            .then(() => {
+              navigateToNextScreen();
+            })
+            .catch(() => {
+              toastError("There was a problem making the request!");
+            });
       }
     }
   };
@@ -104,11 +102,12 @@ const useTransactionService = (
     transactionPin: string,
     transactionType: "INTRA" | "INTER"
   ) => {
-    if (aza9PSBAccountNumber) {
+    if (!walletNumber) toastError("Transaction not allowed!");
+    else {
       setScreenLoading(true);
       if (transactionType === "INTRA") {
         payAzaUserAPI({
-          sourceAccount: aza9PSBAccountNumber,
+          sourceAccount: walletNumber,
           destinationAccount: beneficiary.accountNumber,
           amount,
           transactionPin: transactionPin,
@@ -121,10 +120,10 @@ const useTransactionService = (
           destinationAccountName: beneficiary.fullName,
         })
           .then((res) => {
-            console.log(res);
             setScreenLoading(false);
             navigateToNextScreen(res);
             dispatch(getUserAccountDetails());
+            dispatch(getUserTransactions({ accountNumber: walletNumber }));
           })
           .catch((err) => {
             setScreenLoading(false);
@@ -142,16 +141,14 @@ const useTransactionService = (
           destinationAccount: beneficiary.accountNumber,
           destinationBankCode: beneficiary.bankCode,
           destinationAccountName: beneficiary.fullName,
-          sourceAccount: aza9PSBAccountNumber,
+          sourceAccount: walletNumber,
           transactionPin: transactionPin,
         })
           .then((res) => {
             console.debug(res);
             setScreenLoading(false);
             dispatch(getUserAccountDetails());
-            dispatch(
-              getUserTransactions({ accountNumber: aza9PSBAccountNumber })
-            );
+            dispatch(getUserTransactions({ accountNumber: walletNumber }));
             navigateToNextScreen(res);
           })
           .catch((err) => {

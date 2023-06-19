@@ -33,9 +33,9 @@ const useQRService = ({
           amount: Number(scannedCodeData.amount),
           transferType: "send",
           beneficiary: {
-            accountNumber: scannedCodeData.azaAccountNumber,
+            accountNumber: scannedCodeData.walletNumber,
             fullName: scannedCodeData.fullName,
-            beneficiaryName: scannedCodeData.azaAccountNumber,
+            beneficiaryName: scannedCodeData.fullName,
             bankCode: PSB_BANK_CODE,
           },
           recurring: false,
@@ -54,7 +54,7 @@ const useQRService = ({
             type: "normal",
             transaction: "send",
             beneficiary: {
-              accountNumber: scannedCodeData.azaAccountNumber,
+              accountNumber: scannedCodeData.walletNumber,
               fullName: scannedCodeData.fullName,
               bankCode: PSB_BANK_CODE,
             },
@@ -81,13 +81,16 @@ const useQRService = ({
 
   const onBarCodeScanned = (code: BarCodeScanningResult) => {
     if (code.type === QR_CODE_SCAN_ISO && !flag) {
-      console.log("Code Scanned " + code.data);
       if (code.data.includes(APP_SCHEME)) {
         const parsedString = JSON.parse(
           JSON.stringify(parseQueryString(code.data.split("?")[1]))
-        );
-        handleCodeScanned(parsedString as IQRScanTransactionData);
+        ) as IQRScanTransactionData;
+        if (parsedString && parsedString.walletNumber)
+          handleCodeScanned(parsedString as IQRScanTransactionData);
+        else toastError("Invalid QR code");
         flag = true;
+      } else {
+        toastError("QRCode not for Aza");
       }
     }
   };
