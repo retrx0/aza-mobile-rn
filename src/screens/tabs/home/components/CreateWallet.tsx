@@ -99,7 +99,7 @@ export const CreateWallet = ({
                         "There was a problem creating your wallet",
                         error
                       );
-                      // toastError("There was a problem creating your wallet");
+                      toastError("There was a problem creating your wallet");
                       setIsLoading(false);
                     });
                 } else {

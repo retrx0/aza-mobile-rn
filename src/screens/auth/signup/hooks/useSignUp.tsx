@@ -80,10 +80,10 @@ const useSignUp = () => {
           newPassword: passcode,
           pushNotificationToken: newUser.pushToken,
           isGenesisUser: true,
-        }).then((registration) => {
-          // Store user credentials for face id
-          // storeUserCredentialsSecure(newUser.emailAddress, passcode);
-          if (registration) {
+        })
+          .then(() => {
+            // Store user credentials for face id
+            // storeUserCredentialsSecure(newUser.emailAddress, passcode);
             loginUserAPI({
               email: newUser.emailAddress,
               phoneNumber: newUser.phoneNumber,
@@ -121,11 +121,10 @@ const useSignUp = () => {
               })
               .catch((error) => {
                 setLoading(false);
+                toastError("Login failed, please try again");
               });
-          } else {
-            setLoading(false);
-          }
-        });
+          })
+          .catch((e) => setLoading(false));
       } else {
         toastError("Password does not match ⚠️");
         setLoading(false);
