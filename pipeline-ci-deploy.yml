@@ -39,18 +39,18 @@ stages:
               set -x
             #    yarn testFinal
             displayName: Run Unit Tests
-          - bash: |
-              eas update:configure --platform all
-            displayName: Configure EAS update
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
-          - bash: |
-              eas update --branch develop --message dev-expo-bau --non-interactive
-            displayName: Publish app to expo default channel
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
-          - bash: |
-              expo send -s abdulrahmaniliyasu86@gmail.com
-            displayName: Send expo link to users
-            condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          # - bash: |
+          #     eas update:configure --platform all
+          #   displayName: Configure EAS update
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          # - bash: |
+          #     eas update --branch develop --message dev-expo-bau --non-interactive
+          #   displayName: Publish app to expo default channel
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+          # - bash: |
+          #     expo send -s abdulrahmaniliyasu86@gmail.com
+          #   displayName: Send expo link to users
+          #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
           - task: PublishTestResults@2
             condition: succeededOrFailed()
             inputs:

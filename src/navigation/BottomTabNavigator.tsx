@@ -142,7 +142,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
             tabBarIcon: ({ color }) => <VaultIcon color={color} size={24} />,
           }}
         /> */}
-        <BottomTab.Screen
+        {/* <BottomTab.Screen
           name="Payments"
           component={Payments}
           options={{
@@ -150,7 +150,7 @@ const BottomTabNavigator = (_navigation: RootStackScreenProps<"Root">) => {
             headerShown: false,
             tabBarIcon: ({ color }) => <PaymentsIcon color={color} size={31} />,
           }}
-        />
+        /> */}
         <BottomTab.Screen
           name="Settings"
           component={Settings}
