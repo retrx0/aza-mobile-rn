@@ -33,11 +33,10 @@
         "usesNonExemptEncryption": false
       },
       "infoPlist": {
-        "UIBackgroundModes": ["audio"],
         "NSCameraUsageDescription": "This app uses the camera to scan Aza QR codes.",
         "NSFaceIDUsageDescription": "Allow Aza to use Face ID to authenticate your login and transactions."
       },
-      "buildNumber": "46"
+      "buildNumber": "47"
     },
     "android": {
       "adaptiveIcon": {
@@ -45,7 +44,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.aza.azaapp",
-      "versionCode": 46,
+      "versionCode": 47,
       "permissions": ["NOTIFICATIONS"],
       "softwareKeyboardLayoutMode": "pan"
     },
